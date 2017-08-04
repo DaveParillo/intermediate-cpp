@@ -11,20 +11,20 @@ sys.path.append(os.getcwd())
 
 home_dir = os.getcwd()
 master_url = 'http://127.0.0.1:8000'
-master_app = 'modern_cpp'
-serving_dir = "./build/modern_cpp"
+master_app = 'intermediate-cpp'
+serving_dir = "./build/intermediate-cpp"
 dest = "../../static"
 
 options(
     sphinx = Bunch(docroot=".",),
 
     build = Bunch(
-        builddir="./build/modern_cpp",
+        builddir="./build/intermediate-cpp",
         sourcedir="_sources",
-        outdir="./build/modern_cpp",
+        outdir="./build/intermediate-cpp",
         confdir=".",
-        project_name = "modern_cpp",
-        template_args={'course_id': 'modern_cpp',
+        project_name = "intermediate-cpp",
+        template_args={'course_id': 'intermediate-cpp',
                        'login_required':'false',
                        'appname':master_app,
                        'loglevel': 0,
@@ -32,7 +32,7 @@ options(
                        'use_services': 'false',
                        'python3': 'false',
                        'dburl': '',
-                       'basecourse': 'modern_cpp'
+                       'basecourse': 'intermediate-cpp'
                         }
     )
 )
