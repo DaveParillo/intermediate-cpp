@@ -10,7 +10,8 @@ import pkg_resources
 sys.path.append(os.getcwd())
 
 home_dir = os.getcwd()
-master_url = 'http://127.0.0.1:8000'
+#master_url = 'http://127.0.0.1:8000'
+master_url = 'https://daveparillo.github.io/intermediate-cpp/'
 master_app = 'intermediate-cpp'
 serving_dir = "./build/intermediate-cpp"
 dest = "../../static"
