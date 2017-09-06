@@ -8,5 +8,3 @@ Functions
    functions.rst
    constants.rst
    auto.rst
-   overloads.rst
-   templates.rst

@@ -630,6 +630,13 @@ Glossary
       each node has a fixed number of children (some of which might be
       ``null``).
       General tree nodes tend to be harder to implement for this reason.
+   
+   generic programming
+      A computer programming style in which functions are written 
+      using *placeholders for* types. In C++ this is accomplished
+      using templates.
+      Templates are used to create actual functions for specific types
+      as needed. 
 
    hash function
       In a :term:`hash system`, the function that converts a

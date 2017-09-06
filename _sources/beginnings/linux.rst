@@ -286,5 +286,7 @@ passwd
 
 .. admonition:: More to Explore
 
+   - `GNU / Linux tutorial <https://www.debian.org/doc/manuals/debian-reference/>`_ - from debian.org
+   - `UNIX Philosophy <https://en.wikipedia.org/wiki/Unix_philosophy>`_ - from Wikipedia
    - `Ryans Tutorials: Linux <http://ryanstutorials.net/linuxtutorial/>`_ - a decent introduction to the linux command line 
 

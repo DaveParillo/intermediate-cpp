@@ -17,16 +17,22 @@ Table of Contents
 
 .. toctree::
    :numbered:
-   :maxdepth: 2
+   :maxdepth: 1
 
    beginnings/toctree.rst
-   functions/toctree.rst
+   function-intro/toctree.rst
+   function-overloads/toctree.rst
    pointers/toctree.rst
    linear-containers/toctree.rst
    iterators/toctree.rst
    associative-containers/toctree.rst
    algorithms/toctree.rst
-   classes/toctree.rst
+   classes-I-intro/toctree.rst
+   classes-II-functions/toctree.rst
+   classes-III-design/toctree.rst
+   classes-IV-memory/toctree.rst
+   classes-V-templates/toctree.rst
+   serialization/toctree.rst
 
    glossary.rst
 
@@ -34,6 +40,7 @@ Table of Contents
 * :ref:`search`
 * :ref:`glossary`
 * :ref:`genindex`
+* :doc:`Complete Table of Contents <toc>`
 
 
 Legal

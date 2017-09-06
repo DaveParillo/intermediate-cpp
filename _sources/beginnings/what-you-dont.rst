@@ -12,20 +12,28 @@
 .. index:: 
    pair: introductory topics; C++
 
-What I Don't Expect You to Know
+What You Don't Need to Know Now
 ===============================
 
 C++ is a large, relatively complex, language.
 Due to its size, there are many topics you may have 
 not covered, covered incompletely, or covered incorrectly.
+Luckily for all of us,
+there is a relatively simple language buried inside C++.
+One of the goals of this text is to concentrate
+on the simpler parts while still solving more advanced
+problems than found in a typical introductory text.
 
-Pointer, for example.
+Pointers, for example.
 Pointers are tricky for some people to get used to.
 Very few languages outside of C and C++ give you
 direct access to pointers and so many ways to manipulate them.
 Depending on your point of view, you may consider this 
 pure genius, or the most incredibly foolish design decision
 ever made by a programmer.
+
+Modern C++ adds a variety of tools that make working with pointers
+easier and safer.
 
 C++
 ---
@@ -38,15 +46,15 @@ with a very small amount of C++ thrown in:
 * The classes ``cin`` and ``cout``
 * A ``class`` with *setters* and *getters* - maybe even using ``private`` members
 
-The version of C++ most likely taught to most is C++98 or earlier.
-Modern C++ doesn't look that much like the C++ that was written in the 80's and 90's.
-Primarily because programmers haved learned a lot about how to write
+The version of C++ most likely taught to most is C++98.
+Modern C++ doesn't look much like the C++ that was written in the 80's and 90's.
+Primarily because programmers have learned a lot about how to write
 programs in C++ over the years, but also because the
 power of the *Standard Template Library* (STL).
 The STL was not developed until C++ had been used for more than 10 years.
 While it was incorporated into the first ISO version of the C++ standard (C++98),
 it took some time for many programmers to recognize the power and flexibility
-of *generic prgramming*.
+of :term:`generic prgramming`.
 
 Unfortunately, some of you have "learned C++" mostly using an environment like
 CHide. CHide is not C++.

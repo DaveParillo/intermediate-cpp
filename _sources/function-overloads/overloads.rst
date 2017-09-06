@@ -28,24 +28,28 @@ For example:
    :language: cpp
 
    #include <iostream>
-   int operate (int a, int b) {
-     return (a*b);
+   using std::cout;
+
+   // add two ints
+   int add (int a, int b) {
+     return a+b;
    }
-   double operate (double a, double b) {
-     return (a/b);
+   // add two doubles
+   double add (double a, double b) {
+     return a+b;
    }
 
    int main () {
-     int x=5,y=2;
-     double n=5.0,m=2.0;
-     std::cout << operate (x,y) << '\n';
-     std::cout << operate (n,m) << '\n';
+     int x=5, y=2;
+     double p=3.14, e=2.718;
+     cout << add (x,y) << '\n';
+     cout << add (p,e) << '\n';
 
-     // error: call to overloaded function operate (double, int) ambiguous
-     //std::cout << operate (31.4,10) << '\n';
+     // error: call to overloaded function add (double, int) ambiguous
+     // cout << add (31.4, 10) << '\n';
 
      // explicit conversion is OK
-     std::cout << operate (31.4,double(10)) << '\n';
+     cout << add (31.4, double(10)) << '\n';
    }
 
 
@@ -73,17 +77,17 @@ Another example: a family of functions to compute volume.
    #include <cmath>
 
    // volume of a cube
-   double volume(const double a) {
+   double volume (const double a) {
      return a * a * a;
    }
 
    // volume of a cylinder
-   double volume(const double r, const double h) {
+   double volume (const double r, const double h) {
      return M_PI * r * r * h;
    }
 
    // volume of a cuboid
-   double volume(const double a, const double b, const double c) {
+   double volume (const double a, const double b, const double c) {
      return a * b * c;
    }
 
@@ -96,7 +100,6 @@ Another example: a family of functions to compute volume.
 
                << "volume of a 2 x 3 x 4 cuboid: " 
                << volume(2.0, 3.0, 4.0) << '\n';
-     return 0;
    }
 
 
@@ -139,7 +142,9 @@ For example:
    int operate (double a, int b);
    int operate (int a, double b);
 
-
+Depending on what ``operate`` does with it's parameters, 
+reversing the order of the parameters could have drastic consequences.
+We just don't know without looking at the source code.
 In this case even two parameters is too many.
 It is almost certain someone will invoke the wrong version occasionally.
 
