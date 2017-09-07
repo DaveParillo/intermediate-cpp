@@ -480,13 +480,13 @@ to perform tasks perhaps as complex as:
 
    .. fillintheblank:: fib_conditions
 
-      .. blank:: blank_conditions
-         :correct: ^4$
-         :feedback1: ('^7$','The variable a is always modified in this program.')
-         :feedback2: ('^99$', "Since a is greater than b, the code on line 6 is never executed.")
-         :feedback3: (".*", "What is happening in the else block?")
+      What value is returned? |blank|
 
-         What value is returned?
+      - :^4$: Correct.
+        :^7$: No, because the variable a is always modified in this program.
+        :^99$: No. Since a is greater than b, the code on line 6 is never executed.
+        :.*: Sorry, no. What is happening in the else block?
+
    
    Write a program that accumulates the sum of the numbers 1 - 10 and prints the result.
 

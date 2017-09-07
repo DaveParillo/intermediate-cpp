@@ -565,14 +565,14 @@ Step through `example 12 <http://pythontutor.com/cpp.html#code=%23include%20%3Ci
 
    .. fillintheblank:: fib_param_1
 
-      .. blank:: blank_conditions
-         :correct: ^428$
-         :feedback1: ('^123$','The variable a is modified in this program.')
-         :feedback2: ('^437$', 'The variable b is never modified in this program.')
-         :feedback3: ('^427$', 'Variable a is modified <em>twice</em> before the addition is performed.')
-         :feedback4: (".*", 'What is passed to the function change_and_add? What changes? What doesn\'t?')
+      What value is printed? 
 
-         What value is printed?
+      - :428: Correct.
+        :123: The variable a is modified in this program.
+        :437: The variable b is never modified in this program.
+        :427: Variable a is modified <em>twice</em> before the addition is performed.
+        :.*: What is passed to the function change_and_add? What changes? What doesn't?
+
 
 
 .. index:: function writing guidelines
