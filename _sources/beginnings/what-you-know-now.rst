@@ -253,8 +253,8 @@ Remember the focus is on **clarity**, not how many comments you write.
 Eventually some future employer will require you to (hopefully) adhere to 
 some coding standard and you should follow that guidance when you encounter it.
 
-Objects types and values
-------------------------
+Fundamental types and type conversions
+--------------------------------------
 
 You should already be familiar with declaring fundamental types
 (``int``, ``char``, ``double``, ``uint16_t``, etc.).
@@ -272,9 +272,27 @@ A narrowing conversion frequently involves the loss of information.
 Most compilers will warn about narrowing conversions even in cases where
 they are allowed.
 
+You should know how to explicitly cast fundamental types from one
+type to another.
+Most people should be familiar with the ``static_cast`` form:
+
+.. code-block:: cpp
+    
+   auto almost_pi = static_cast<int>(3.14159);
+
+Some people may have also (or only learned) the C-style cast:
+
+.. code-block:: cpp
+    
+   auto almost_pi = (int)3.14159;
+
+Know that these two forms are equivalent.
+We will be learning other ways to explicitly cast that are a bit more consistent
+with C++11's more uniform initialization syntax.
+
 Finally, you should know the basic keywords of the language,
 at least those common to both C and C++, and legal identifier names
-for classes, functions, and variables.
+for functions and variables.
 
 
 .. reveal:: reveal-skill-check-types
@@ -480,12 +498,12 @@ to perform tasks perhaps as complex as:
 
    .. fillintheblank:: fib_conditions
 
-      What value is returned? |blank|
+      What value is returned? 
 
       - :^4$: Correct.
+        :.*: Sorry, no. What is happening in the else block?
         :^7$: No, because the variable a is always modified in this program.
         :^99$: No. Since a is greater than b, the code on line 6 is never executed.
-        :.*: Sorry, no. What is happening in the else block?
 
    
    Write a program that accumulates the sum of the numbers 1 - 10 and prints the result.
