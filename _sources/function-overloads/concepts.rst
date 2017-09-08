@@ -62,7 +62,7 @@ A *requires clause* is an additional constraint on template arguments or a funct
 .. admonition:: More to Explore
 
    - `a bit of background for concepts and C++17 <https://isocpp.org/blog/2016/02/a-bit-of-background-for-concepts-and-cpp17-bjarne-stroustrup>`_ Bjarne Stroustrup
-   - `Concepts C++ <https://en.wikipedia.org/wiki/Concepts_(C%2B%2B)>_ from Wikipedia
+   - `Concepts C++ <https://en.wikipedia.org/wiki/Concepts_(C%2B%2B)>`_ from Wikipedia
    - `Constraints and concepts <http://en.cppreference.com/w/cpp/concept>`_ from cppreference.com
 
 
