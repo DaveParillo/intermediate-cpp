@@ -1,5 +1,5 @@
-Classes
-=======
+Memory Management
+=================
 
 .. toctree::
    :caption: Memory management

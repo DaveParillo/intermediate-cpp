@@ -1,5 +1,5 @@
-Classes
-=======
+Class design
+============
 
 .. toctree::
    :caption: Class design

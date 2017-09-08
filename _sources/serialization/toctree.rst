@@ -1,5 +1,5 @@
-Classes
-=======
+Serialization
+=============
 
 .. toctree::
    :caption: Serialization

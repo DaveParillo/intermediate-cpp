@@ -1,5 +1,5 @@
-Classes
-=======
+Classes and templates
+=====================
 
 .. toctree::
    :caption: Classes and templates

@@ -1,5 +1,5 @@
-Classes
-=======
+Introduction to Classes
+=======================
 
 .. toctree::
    :caption: Introduction to Classes

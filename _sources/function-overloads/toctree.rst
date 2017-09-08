@@ -1,8 +1,8 @@
-Functions
-=========
+Function overloads and templates
+================================
 
 .. toctree::
-   :caption: Introduction to Functions
+   :caption: Function overloads and templates
    :maxdepth: 2
 
    overloads.rst

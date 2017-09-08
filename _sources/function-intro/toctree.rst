@@ -1,5 +1,5 @@
-Functions
-=========
+Introduction to Functions
+=========================
 
 .. toctree::
    :caption: Introduction to Functions

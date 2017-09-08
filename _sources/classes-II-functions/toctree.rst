@@ -1,5 +1,5 @@
-Classes
-=======
+Class constructors and overloads
+================================
 
 .. toctree::
    :caption: Class constructors and overloads
