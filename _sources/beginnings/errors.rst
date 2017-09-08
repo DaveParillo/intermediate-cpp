@@ -779,44 +779,51 @@ in calls to library functions, you need to add the command line argument
     ==1302==    at 0x8048717: main (foo.cpp:3)
     ==1302== 
     ==1302== Use of uninitialised value of size 4
-    ==1302==    at 0x40DDA53: ??? (in /usr/lib/libstdc++.so.6.0.18)
-    ==1302==    by 0x40DDB7B: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/libstdc++.so.6.0.18)
-    ==1302==    by 0x40DE168: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/libstdc++.so.6.0.18)
-    ==1302==    by 0x40E9F1D: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/libstdc++.so.6.0.18)
-    ==1302==    by 0x40EA112: std::ostream::operator<<(int) (in /usr/lib/libstdc++.so.6.0.18)
-    ==1302==    by 0x41CB9D2: (below main) (in /lib/libc-2.18.so)
-    ==1302==  Uninitialised value was created by a stack allocation
-    ==1302==    at 0x8048717: main (foo.cpp:3)
-    ==1302== 
-    ==1302== Conditional jump or move depends on uninitialised value(s)
-    ==1302==    at 0x40DDA5C: ??? (in /usr/lib/libstdc++.so.6.0.18)
-    ==1302==    by 0x40DDB7B: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/libstdc++.so.6.0.18)
-    ==1302==    by 0x40DE168: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/libstdc++.so.6.0.18)
-    ==1302==    by 0x40E9F1D: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/libstdc++.so.6.0.18)
-    ==1302==    by 0x40EA112: std::ostream::operator<<(int) (in /usr/lib/libstdc++.so.6.0.18)
-    ==1302==    by 0x41CB9D2: (below main) (in /lib/libc-2.18.so)
-    ==1302==  Uninitialised value was created by a stack allocation
-    ==1302==    at 0x8048717: main (foo.cpp:3)
-    ==1302== 
-    ==1302== Conditional jump or move depends on uninitialised value(s)
-    ==1302==    at 0x40DDBA3: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/libstdc++.so.6.0.18)
-    ==1302==    by 0x40DE168: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/libstdc++.so.6.0.18)
-    ==1302==    by 0x40E9F1D: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/libstdc++.so.6.0.18)
-    ==1302==    by 0x40EA112: std::ostream::operator<<(int) (in /usr/lib/libstdc++.so.6.0.18)
-    ==1302==    by 0x41CB9D2: (below main) (in /lib/libc-2.18.so)
-    ==1302==  Uninitialised value was created by a stack allocation
-    ==1302==    at 0x8048717: main (foo.cpp:3)
-    ==1302== 
-    sum: 134514654
-    ==1302== 
-    ==1302== HEAP SUMMARY:
-    ==1302==     in use at exit: 0 bytes in 0 blocks
-    ==1302==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
-    ==1302== 
-    ==1302== All heap blocks were freed -- no leaks are possible
-    ==1302== 
-    ==1302== For counts of detected and suppressed errors, rerun with: -v
-    ==1302== ERROR SUMMARY: 20 errors from 4 contexts (suppressed: 0 from 0)
+
+.. reveal:: reveal-valgrind-details
+   :showtitle: Show All valgrind output
+   :hidetitle: Hide valgrind details
+
+   .. code-block:: cpp
+
+      ==1302==    at 0x40DDA53: ??? (in /usr/lib/libstdc++.so.6.0.18)
+      ==1302==    by 0x40DDB7B: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/libstdc++.so.6.0.18)
+      ==1302==    by 0x40DE168: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/libstdc++.so.6.0.18)
+      ==1302==    by 0x40E9F1D: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/libstdc++.so.6.0.18)
+      ==1302==    by 0x40EA112: std::ostream::operator<<(int) (in /usr/lib/libstdc++.so.6.0.18)
+      ==1302==    by 0x41CB9D2: (below main) (in /lib/libc-2.18.so)
+      ==1302==  Uninitialised value was created by a stack allocation
+      ==1302==    at 0x8048717: main (foo.cpp:3)
+      ==1302== 
+      ==1302== Conditional jump or move depends on uninitialised value(s)
+      ==1302==    at 0x40DDA5C: ??? (in /usr/lib/libstdc++.so.6.0.18)
+      ==1302==    by 0x40DDB7B: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/libstdc++.so.6.0.18)
+      ==1302==    by 0x40DE168: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/libstdc++.so.6.0.18)
+      ==1302==    by 0x40E9F1D: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/libstdc++.so.6.0.18)
+      ==1302==    by 0x40EA112: std::ostream::operator<<(int) (in /usr/lib/libstdc++.so.6.0.18)
+      ==1302==    by 0x41CB9D2: (below main) (in /lib/libc-2.18.so)
+      ==1302==  Uninitialised value was created by a stack allocation
+      ==1302==    at 0x8048717: main (foo.cpp:3)
+      ==1302== 
+      ==1302== Conditional jump or move depends on uninitialised value(s)
+      ==1302==    at 0x40DDBA3: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/libstdc++.so.6.0.18)
+      ==1302==    by 0x40DE168: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/libstdc++.so.6.0.18)
+      ==1302==    by 0x40E9F1D: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/libstdc++.so.6.0.18)
+      ==1302==    by 0x40EA112: std::ostream::operator<<(int) (in /usr/lib/libstdc++.so.6.0.18)
+      ==1302==    by 0x41CB9D2: (below main) (in /lib/libc-2.18.so)
+      ==1302==  Uninitialised value was created by a stack allocation
+      ==1302==    at 0x8048717: main (foo.cpp:3)
+      ==1302== 
+      sum: 134514654
+      ==1302== 
+      ==1302== HEAP SUMMARY:
+      ==1302==     in use at exit: 0 bytes in 0 blocks
+      ==1302==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+      ==1302== 
+      ==1302== All heap blocks were freed -- no leaks are possible
+      ==1302== 
+      ==1302== For counts of detected and suppressed errors, rerun with: -v
+      ==1302== ERROR SUMMARY: 20 errors from 4 contexts (suppressed: 0 from 0)
 
 There can be a lot of noise in the output,
 especially when templates are involved, if you look at the last line in each group, 
