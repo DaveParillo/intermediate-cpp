@@ -34,9 +34,6 @@ Table of Contents
    classes-V-templates/toctree.rst
    serialization/toctree.rst
 
-   glossary.rst
-
-
 * :ref:`search`
 * :ref:`glossary`
 * :ref:`genindex`
