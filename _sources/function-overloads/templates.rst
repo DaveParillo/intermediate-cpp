@@ -65,13 +65,14 @@ Using templates, our previous sum functions collapse down to
 
    #include <iostream>
 
-   template <class T> T sum (T a, T b) {  
+   template <class T> 
+   T sum (T a, T b) {  
      return a+b;
    }
 
    int main () {
-     std::cout << sum (10,20) << '\n';
-     std::cout << sum (1.0,1.5) << '\n';
+     std::cout << sum<int> (10, 20) << '\n';
+     std::cout << sum<double> (1.0, 1.5) << '\n';
    }
 
 When identifying template parameter types,
@@ -101,12 +102,12 @@ You can explicitly provide the type:
 .. code-block:: cpp
 
    int main () {
-     std::cout << sum<int> (10,20) << '\n';
-     std::cout << sum<double> (1.0,1.5) << '\n';
+     std::cout << sum<int> (10, 20) << '\n';
+     std::cout << sum<double> (1.0, 1.5) << '\n';
  
      // or let the compiler deduce the type
-     std::cout << sum (10,20) << '\n';
-     std::cout << sum (1.0,1.5) << '\n';
+     std::cout << sum (10, 20) << '\n';
+     std::cout << sum (1.0, 1.5) << '\n';
    }
 
 
@@ -127,7 +128,7 @@ with each parameter having potentially a different type.
    }
 
    int main () {
-     if (are_equal(10,10.0)) {
+     if (are_equal(10, 10.0)) {
        std::cout << "x and y are equal\n";
      } else {
        std::cout << "x and y are not equal\n";

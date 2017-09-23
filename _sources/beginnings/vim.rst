@@ -293,7 +293,7 @@ Given the following, almost correct version of our *hello, world* program:
      cout << "Hello, World!\n";
    }
 
-Typing ``make foo`` result in::
+Typing ``make foo`` results in::
 
    c++ -std=c++11 -Wall -Wextra -pedantic    foo.cpp   -o foo
    foo.cpp:4:5: error: use of undeclared identifier 'cout'; did you mean 'std::cout'?
@@ -308,7 +308,7 @@ Typing ``make foo`` result in::
 
    Press ENTER or type command to continue
 
-When you press ENTER, the ``make`` output is gone, but stored in a special vim buffer: 
+When you press ENTER, the ``make`` output is hidden, but stored in a special vim buffer: 
 the quickfix window.
 Open the quickfix window with the command ``:copen``.
 This will open the output from the last ``make`` command in a new pane.
@@ -335,7 +335,7 @@ There are many more quickfix commands, see ``:help quickfix`` for more informati
    - `Emacs <http://www.gnu.org/software/emacs/>`_
 
    Both vim and emacs are included on the Mesa server.
-   If you have already downloaded ``git``, then you also have vimm.
-   Git provides a subset of linux utilities, including vim.
+   If you have already downloaded ``git``, then you also have vim.
+   Git provides a subset of the Gnu/linux utilities, including vim.
 
 

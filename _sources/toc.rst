@@ -2,8 +2,6 @@ Complete Table of Contents
 ==========================
 
 .. toctree::
-   :numbered:
-   :maxdepth: 3
 
    beginnings/toctree.rst
    function-intro/toctree.rst

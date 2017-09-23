@@ -36,7 +36,7 @@ Once defined, a function may be called and
 the task it defines can be executed as often as needed.
 Some simple, specific examples:
 
-.. code-block: cpp
+.. code-block:: cpp
 
    int area (int height, int width) {
      return height*width;
