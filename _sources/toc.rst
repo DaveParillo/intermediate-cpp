@@ -11,11 +11,11 @@ Complete Table of Contents
    iterators/toctree.rst
    associative-containers/toctree.rst
    algorithms/toctree.rst
-   classes-I-intro/toctree.rst
-   classes-II-functions/toctree.rst
-   classes-III-design/toctree.rst
-   classes-IV-memory/toctree.rst
-   classes-V-templates/toctree.rst
+   class-I-intro/toctree.rst
+   class-II-functions/toctree.rst
+   class-III-design/toctree.rst
+   class-IV-memory/toctree.rst
+   class-V-templates/toctree.rst
    serialization/toctree.rst
 
    glossary.rst
