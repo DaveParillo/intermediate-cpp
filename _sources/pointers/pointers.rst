@@ -11,6 +11,28 @@
 Pointers
 ========
 
+People make a big deal out of pointers.
+They really aren't that hard to understand.
+We already know that a variable stores some value:
+
+.. code-block:: cpp
+   
+   double euler = 2.718281828459;
+
+We use the name ``euler`` to retrieve the value.
+
+A pointer is simply a variable that stores an *address*:
+
+.. code-block:: cpp
+   
+   double* e_pointer = &euler;
+
+The value assigned to ``e_pointer`` is the *address of* the variable ``euler``.
+
+
+Declaring Pointers
+------------------
+
 While some of the memory in a running program is stored in
 a small number of **registers**, 
 these live on the CPU chip and perform specialized functions like keeping track of the 
@@ -72,6 +94,8 @@ Declarations of pointers to other fundamental types follow a similar pattern:
 ``char* char_ptr;`` is an uninitialized pointer to a ``char``.
 
 Each of these declarations creates a variable of either 4 or 8 bytes, depending on the architecture.
+On any given CPU all pointers are the same size, regardless of what they point to - 
+because the **only** thing a pointer ever stores is an address.
 The pointer variable stores a specific memory location (the address) and the *value*
 associated with the pointer is stored in one or more bytes starting at the pointer
 address.
@@ -80,7 +104,7 @@ Like any other variable in C++,
 an uninitialized pointer will initially contain garbage --- in this case, 
 the address of a location that might or might not contain something important. 
 To initialize a pointer, 
-you have to assign to it the address of something that already exists.
+you assign it the address of something that already exists.
 If you already have an object, you can use the **address of operator** ``&``:
 
 .. code-block:: cpp
@@ -163,7 +187,7 @@ These require parentheses if you want the ``*`` to take precedence.
 
    int n = 2;
    int* p = &n;
-   (*p)++; // n = 3
+   (*p)++; // increments n, n = 3
    *p++;   // increments p 
            // p now points to next address in memory
            // Almost always an error
@@ -183,8 +207,6 @@ The only limit is your sanity...
    int* p2x     = &x;
    int** p2p    = &p2x;
    int*** p2pp  = &p2p;
-   int*** p2pp2 = &p2p;
-
 
 
 
