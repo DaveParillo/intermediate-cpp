@@ -318,6 +318,8 @@ When done, close the quickfix window with ``:close`` (or just ``:ccl``)
 
 There are many more quickfix commands, see ``:help quickfix`` for more information.
 
+The ``make`` utility is described in more detail in the :doc:`make` section.
+
 -----
 
 .. admonition:: More to Explore
@@ -336,6 +338,7 @@ There are many more quickfix commands, see ``:help quickfix`` for more informati
 
    Both vim and emacs are included on the Mesa server.
    If you have already downloaded ``git``, then you also have vim.
-   Git provides a subset of the Gnu/linux utilities, including vim.
+   Git provides a subset of the Gnu/linux utilities, 
+   including vim and ssh, but not make or g++.
 
 

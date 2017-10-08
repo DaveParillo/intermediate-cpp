@@ -8,3 +8,4 @@ Pointers
    pointers.rst
    function-pointers.rst
    lambda.rst
+   valgrind.rst

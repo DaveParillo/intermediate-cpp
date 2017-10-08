@@ -679,7 +679,7 @@ Glossary
 
       .. code-block:: cpp
 
-         #ifndef FOO_H_INCLUDED /* any name uniquely mapped to file name */
+         #ifndef FOO_H_INCLUDED // any name uniquely mapped to file name
          #define FOO_H_INCLUDED
          // contents of the file are here
          #endif
@@ -755,6 +755,15 @@ Glossary
    instance variable
       In :term:`object-oriented programming <object-oriented programming paradigm>`,
       a synonym for :term:`data member`.
+
+   integrated development environment
+      A software suite that consolidates many tools developers need to 
+      write and test software.
+      An IDE normally consists of a source code editor, version control,
+      build automation tools, and a debugger. 
+      Most also automatically complete partially typed keywords and
+      create commonly used code from templates.
+
 
    internal fragmentation
       A condition that occurs when more than :math:`N` bytes

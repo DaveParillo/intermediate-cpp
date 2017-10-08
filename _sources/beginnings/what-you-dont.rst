@@ -12,8 +12,8 @@
 .. index:: 
    pair: introductory topics; C++
 
-What You Don't Need to Know Now
-===============================
+What You Don't Need to Know (Yet)
+=================================
 
 C++ is a large, relatively complex, language.
 Due to its size, there are many topics you may have 
@@ -54,7 +54,7 @@ power of the *Standard Template Library* (STL).
 The STL was not developed until C++ had been used for more than 10 years.
 While it was incorporated into the first ISO version of the C++ standard (C++98),
 it took some time for many programmers to recognize the power and flexibility
-of :term:`generic prgramming`.
+of :term:`generic programming`.
 
 Unfortunately, some of you have "learned C++" mostly using an environment like
 CHide. CHide is not C++.
