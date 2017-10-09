@@ -20,9 +20,9 @@ The automatic duration applied to local variables in a block scope.
 Because it was the default storage duration for variables in a block,
 it was rarely, if ever, used.
 It is still the default storage duration for block variables,
-but no keyword is reserved for this behavior.
+but no C++11 keyword is reserved for this behavior.
 
-Since C++11, **auto** instructs the compiler to automatically deduce the type
+Since C++11, ``auto`` instructs the compiler to automatically deduce the type
 of a variable based on the initializer used.
 
 .. code-block:: cpp
@@ -54,6 +54,13 @@ You can use ``auto`` in nearly any statement that includes an initializer:
                         // then the types must all match
    auto i = 0, *p = &i; // OK. Both i and the pointer to i are int
 
+This is a far better use for the keyword auto.
+Later, we will see that some types are long and complicated -
+having to type them out, as was required prior to C++11,
+is a chore.
+``auto`` frees us from having to declare a type the compiler already knows about.
+Additionally, some types, such as those returned by :doc:`lambda expressions <../pointers/lambda>`,
+are hidden from us - auto is the only option in these cases.
 
 When variables are initialized using auto, 
 they inherit the *type* from the initializer, but not its *constness*.
