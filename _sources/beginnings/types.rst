@@ -447,8 +447,7 @@ Reference types
 ...............
 
 A :term:`reference` type
-declares a named variable as a **reference**, 
-that is, an alias to an *already-existing* object or function.
+declares a named variable as an alias to an *already-existing* object or function.
 
 References are a C++ addition - one of the few types not present in C.
 
@@ -465,6 +464,11 @@ There are no references to ``void`` and no references to references.
 Once initialized, a reference always refers to the same object.
 The value of the object may change, but the address referred to may not.
 
+.. note::
+
+   C++ 11 introduced a new kind of reference, an *rvalue reference*.
+   We will cover this when we get into classes.
+   All of the references discussed until then will be *lvalue references*.
 
 
 The type ``std::size_t``
