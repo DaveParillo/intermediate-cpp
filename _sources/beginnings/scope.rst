@@ -244,7 +244,7 @@ What's wrong with ``using namespace std;``?
 
 Nothing, technically.
 It was a simplification in your first semester classes.
-To avoid 'burdening' you with having to care about this technical detail.
+The intent was to avoid 'burdening' you with having to care about this technical detail.
 
 **BUT**
 
@@ -320,6 +320,10 @@ I think we can all agree that is not the correct answer for two points ``(0,0)``
    What is wrong with the program?
 
    Can you fix it?
+
+The problem with each of the preceding programs was that the 
+author did not realize the potential pitfalls with ``using namspace std;``.
+
 
 .. index::
    pair: Herb Sutter; namespace using quote
