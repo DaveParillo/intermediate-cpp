@@ -111,7 +111,14 @@ verify that the declarations in the two files match.
 - ``area.h`` contains the function declaration
 - ``area.cpp`` contains the function definition (which includes a declaration)
 
-Every other file that needs to use the ``area`` function **must** have
+.. admonition:: Best Practice
+
+   Keep your declarations and definitions separate.
+
+   The source file that *defines* a function should include the file that *declares*
+   a function.
+
+Every other file that needs to use the ``area`` function uses an include directive
 ``#include "area.h"`` at the top of the file that uses it:
 
 .. code-block:: cpp
@@ -315,6 +322,11 @@ even though the most recent additions to the stack are called the “top” of t
 
    }
 
+Typically, each called function and any local variables, return values, or
+parameters passed in, is stored in a special data structure called a **stack frame**
+or an **activation record**.
+Each function call pushes another activation record onto the stack.
+
 The location of the top of the stack is stored in the CPU in a special register called the **stack pointer**.
 So a typical function call looks like this internally:
 
@@ -343,11 +355,14 @@ the important point is that both the arguments and the local variables inside a
 function are stored in freshly allocated locations that are thrown away after the function exits. 
 After a function call the state of the CPU is restored to its previous state, 
 except for the return value. 
-Any arguments that are passed to a function are passed as copies, 
+Any arguments passed to a function are passed as copies by default,
 so changing the values of the function arguments inside the function has no effect on the caller. 
 Any information stored in local variables is lost.
 
-Under very rare circumstances, it may be useful to have a variable local to a function that persists from one function call to the next. You can do so by declaring the variable static. For example, here is a function that counts how many times it has been called:
+Under very rare circumstances,
+it may be useful to have a variable local to a function that persists from one function call to the next.
+You can do so by declaring the variable static.
+For example, here is a function that counts how many times it has been called:
 
 .. code-block:: cpp
 
