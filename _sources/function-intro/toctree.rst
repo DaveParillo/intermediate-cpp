@@ -8,3 +8,4 @@ Introduction to Functions
    functions.rst
    constants.rst
    auto.rst
+   error-handling.rst

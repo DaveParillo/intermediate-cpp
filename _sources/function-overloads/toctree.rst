@@ -9,5 +9,4 @@ Function overloads and templates
    templates.rst
    concepts.rst
    trailing-return.rst
-   error-handling.rst
 
