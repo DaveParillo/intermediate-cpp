@@ -279,8 +279,7 @@ However, there are important things you can't do with references:
 
 - You can't use a single reference to refer to more than one object
 - You can't use references in containers such as ``vector``
-
- - Containers can only hold \fIassignable\fR entities
+- Containers can only hold *assignable* entities
 
 We still need to be able to do all these kinds of memory manipulations.
 In C++, we achieve these goals using *pointers*.
@@ -291,7 +290,7 @@ Pointers and arrays
 
 Pointers are not arrays and arrays are not pointers.
 However, much confusion arises between them because
-*arrays in expressions* often convert to pointers.
+*arrays in expressions* often behave like pointers.
 The term you'll often see is that *arrays decay into pointers*.
 
 

@@ -500,10 +500,10 @@ to perform tasks perhaps as complex as:
 
       What value is returned? 
 
-      - :^4$: Correct.
+      - :4: Correct.
+        :7: No, because the variable a is always modified in this program.
+        :99: No. Since a is greater than b, the code on line 6 is never executed.
         :.*: Sorry, no. What is happening in the else block?
-        :^7$: No, because the variable a is always modified in this program.
-        :^99$: No. Since a is greater than b, the code on line 6 is never executed.
 
    
    Write a program that accumulates the sum of the numbers 1 - 10 and prints the result.
