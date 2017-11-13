@@ -536,7 +536,7 @@ when working with character data from an uncontrolled source
 
 
 Pointers to pointers
-....................
+--------------------
 
 .. code-block:: cpp
 
@@ -581,6 +581,28 @@ Pointers to pointers
       cout << **sp3 << '\n';
     }
 
+.. index:: const pointers
+   pair: pointers; const
+
+``const`` pointers
+------------------
+
+Pointers can be declared ``const``, just like any other type.
+Where ``const`` appears controls what is held constant:
+
+.. code-block:: cpp
+  
+    // odd whitespace to help see where const is used
+          int x;
+          int*       p1 = &x;  // non-const pointer to non-const int
+    const int*       p2 = &x;  // non-const pointer to const int
+          int* const p3 = &x;  // const pointer to non-const int
+    const int* const p4 = &x;  // const pointer to const int
+
+- In ``p1``, nothing is constant.  Either the pointer or the value pointed to can change.
+- In ``p2``, The pointer can change,  but the value pointed to is constant.
+- In ``p3``, The pointer is constant,  but the value pointed to can change.
+- In ``p4``, both are held constant.
 
 
 -----
