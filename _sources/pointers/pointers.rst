@@ -209,6 +209,8 @@ The only limit is your sanity...
    int*** p2pp  = &p2p;
 
 
+.. index:: 
+   pair: pointers; references
 
 Comparison with References
 --------------------------
@@ -279,11 +281,15 @@ However, there are important things you can't do with references:
 
 - You can't use a single reference to refer to more than one object
 - You can't use references in containers such as ``vector``
-- Containers can only hold *assignable* entities
+
+  - Containers can only hold *assignable* entities
 
 We still need to be able to do all these kinds of memory manipulations.
 In C++, we achieve these goals using *pointers*.
 
+
+.. index:: 
+   pair: pointers; arrays
 
 Pointers and arrays
 -------------------
@@ -293,7 +299,56 @@ However, much confusion arises between them because
 *arrays in expressions* often behave like pointers.
 The term you'll often see is that *arrays decay into pointers*.
 
+Any array type will implicitly convert to a pointer of the type stored in the array.
+The pointer is constructed to point to the first element of the array.
+This conversion happens whenever arrays are used in an expression where
+arrays are not expected, but pointers are:
 
+.. code-block:: cpp
+
+   #include <iostream>
+   #include <numeric>
+   #include <iterator>
+     
+   void g(int (&a)[3]) {
+     std::cout << a[0] << '\n';
+   }
+     
+   void f(int* p) {
+     std::cout << *p << '\n';
+   }
+
+   int main() {
+     int a[3] = {1, 2, 3};
+     int* p = a;
+ 
+     std::cout << sizeof a << '\n'  // prints size of array
+               << sizeof p << '\n'; // prints size of a pointer
+
+    // where arrays are acceptable, but pointers aren't, only arrays may be used
+    g(a); // okay: function takes an array by reference
+    // g(p); // error: pointers do not implicitly convert to arrays
+
+
+    for(int n: a) {          // okay: arrays can be used in range-for loops
+      std::cout << n << ' '; // prints elements of the array
+    }
+    // for(int n: p) {       // error
+
+    // where pointers are acceptable, but arrays aren't, both may be used:
+    f(a); // okay: function takes a pointer
+    f(p); // okay: function takes a pointer
+
+
+    std::cout << *a << '\n' // prints the first element
+              << *p << '\n' // same
+              << *(a + 1) << ' ' << a[1] << '\n'  // prints the second element
+              << *(p + 1) << ' ' << p[1] << '\n'; // same
+
+
+   }
+
+**Array indexing pitfalls**
 
 From the standard:
 
@@ -330,15 +385,115 @@ From the standard:
         cout << *p << '\n';
       }
 
+.. **
 
+.. index:: character arrays
 
 Arrays of ``char``
 ..................
 
+In the C language, 
+the abstract idea of a string is implemented with an array of characters. 
 
-
+For example,
 
 .. code-block:: c
+
+   char[] howdy = "Hello, world!";
+
+In memory, this is automatically transformed into 
+
+.. graphviz::
+
+   digraph char_array {
+     rankdir=LR
+     fontname = "Bitstream Vera Sans"
+     label="Character array in memory"
+     node [
+        fontname = "Bitstream Vera Sans"
+        fontsize = 11
+        shape = "record"
+        style=filled
+        fillcolor=lightblue
+     ]
+     arr [
+        label = "{H|e|l|l|o|,| |w|o|r|l|d|!|\0}"
+     ]
+
+   }
+
+The last character in the array, ``\0`` is the *null character*,
+and is used to indicate the end of the string.
+
+.. note::
+
+    Remember that the array must be large enough to hold 
+    all of the characters AND the char '\0'.
+    Forgetting to account for null, 
+    or having a 'off by one error' is one of the most 
+    common mistakes when working with C strings.
+
+Whenever a char array is encountered it is normally referred to as
+a *C string*.
+The C++ standard uses this terminology and the standard library
+contains functions to convert a ``std::string`` into a C string:
+
+.. code-block:: cpp
+
+   std::string hello = "Hello, world!";
+   char[] howdy = hello.c_str();
+
+
+A C string may allocate more memory that the characters currently stored in it.
+An array declaration like this:
+
+.. code-block:: c
+
+   char hi[10] = "Hello";
+
+results in an in-momory representation like this:
+
+.. graphviz::
+
+   digraph c {
+     rankdir=LR
+     fontname = "Bitstream Vera Sans"
+     label="Character array with reserve memory"
+     node [
+        fontname = "Bitstream Vera Sans"
+        fontsize = 11
+        shape = "record"
+        style=filled
+        fillcolor=lightblue
+     ]
+     arr [
+        label = "{H|e|l|l|o|\0| | | | }"
+     ]
+
+   }
+
+The array elements after the null are unused, but could be.
+So, an array of size 10 has space for 4 more characters, 9 total.
+
+A key limitation of C strings is that because thay are arrays,
+you must declare in advance how many characters the string will hold.
+The compiler will always statically determine the size, 
+even if an explicit size is not provided.
+
+.. code-block:: c
+
+   char[] hi     = "Hello";  // size 6
+   char   hi[10] = "Hello";  // size 10
+
+
+One last word about the null terminator.
+
+In older C and C++ code using C strings,
+it's common to see code that uses the null terminator in 
+the string as a loop exit condition:
+
+.. activecode:: ac-c-copy-idiom
+   :language: c
 
    #include <stdio.h>
 
@@ -355,14 +510,31 @@ Arrays of ``char``
 
      char* p1 = a; 
      char* p2 = b;
-     while ((*p2++ = *p1++));
+     while ((*p2++ = *p1++)); // copy *p1 to *p2
 
      printf("copy:\n");
      printf("%s\n", p2);  // print chars until '\0' detected
      return 0;
    }
 
-       
+.. 
+   **
+
+Code like this can fail if the source string contains any embedded null characters.
+The risk is that this code works fine 99% of the time, but fails
+when working with character data from an uncontrolled source 
+(a network or socket interface, for example).
+
+.. admonition:: Try This!
+
+   Run the previous example, but modify it,
+   replacing the 'Hello World' with 'Hello\0World'.
+   What happens?
+
+   What warnings does the compiler display?
+
+
+
 Pointers to pointers
 ....................
 
@@ -411,10 +583,9 @@ Pointers to pointers
 
 
 
-
 -----
 
 .. admonition:: More to Explore
 
-   TBD
+   * Array declarations in `C <http://en.cppreference.com/w/c/language/array>`_ and `C++ <http://en.cppreference.com/w/cpp/language/array>`_
 
