@@ -26,7 +26,7 @@ Tools are your friends.
    The debugging section has a brief overview of the gdb debugger
    and links to more information.
 
-#. Consider a dynamic memory analyser such as valgrind.
+#. Consider a dynamic memory checker such as valgrind.
 
 .. index::
    pair: debugging; valgrind
@@ -36,6 +36,8 @@ Valgrind
 
 The ``valgrind`` program can be used to detect some (but not all) common errors in C and C++ programs 
 that use pointers and dynamic storage allocation. 
+In addition to basic memory checking, valgrind can find many bugs related to
+uninitialized variables and undefinded behavior.
 You can run valgrind on your program by putting valgrind at the start of the command line::
 
   valgrind ./my-program 
@@ -174,6 +176,7 @@ And that is exactly where the error lies.
   - `The Valgrind Quick Start Guide <http://valgrind.org/docs/manual/QuickStart.html>`_
   - `Valgrind tutorial <http://pages.cs.wisc.edu/~bart/537/valgrind.html>`_ - from Barton P. Miller
   - `Valgrind video tutorial <https://www.youtube.com/watch?v=bb1bTJtgXrI>`_
+  - `Valgrind is not a leak checker blogpost <http://maintainablecode.logdown.com/posts/245425-valgrind-is-not-a-leak-checker>`_
 
 
 
