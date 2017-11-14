@@ -38,36 +38,6 @@ Several actually.
   Accepting arguments on the command line is trivial and 
   output to a text stream is similarly easy.
 
-Why not use an IDE?
-...................
-
-You can use an Integrated Development Environment (IDE) if you feel strongly about it.
-An IDE can make you more productive in some environments.
-But I don't recommend an IDE *ever* when learning a language.
-
-Why?
-
-When learning, 
-you are still trying to commit the syntax and grammar of the new
-language to memory.
-If ever other keystroke is <CTRL>-space and you let the tool
-autocomplete everything, you will never really master the language.
-
-An IDE is not a 'free lunch'.
-They are typically complex applications with loads of options that require 
-as much learning as the modes and keyboard commands in vim.
-Unless you put in the time and effort to learn the IDE, 
-you won't realize most of the productivity gains anyways.
-
-IDE's typically only support one language really well.
-Microsoft Visual Studio is an exception.
-I would rate it as very good for Visual Basic, C#, and Web Development (including JavaScript).
-There are no 'great' C or C++ IDE's.
-But even if you find a great IDE, 
-if you work in a different language,
-then you need to potentially learn a completely different tool
-to work with the other language.
-
 .. index:: g++ compiler
    single: c++ compiler
    single: compiler
@@ -116,8 +86,6 @@ When you invoke ``gcc``, it normally does preprocessing, compilation, assembly a
      {rank=same hello cpp cpp2} -> {rank=same gcc asm as} -> {rank=same obj ld exe} [style=invis]
 
    }
-
-
 
 It is a complex program with very many options, so naturally, you can
 execute only one of these steps, some of them, or change their behavior.
@@ -337,6 +305,8 @@ So for example, if I've just built a program called *hello*, I can run it by typ
 -----
 
 .. admonition:: More to Explore
+
+   - Textbook FAQ: :doc:`../back-matter/q1-why-not-an-ide`
 
    - `GNU Make Manual <https://www.gnu.org/software/make/manual/>`_
    - Prefer compile-time and link-time errors to runtime errors

@@ -7,7 +7,7 @@
     License".
 
 .. index:: 
-   single: function overloads
+   pair: function; overloads
    single: overloading functions
 
 
