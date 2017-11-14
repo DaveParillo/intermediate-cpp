@@ -10,7 +10,7 @@
    pair: keyword; enum
    single: enumerated types
 
-Enumerated Types
+Enumerated types
 ================
 
 Normal paragraph text.

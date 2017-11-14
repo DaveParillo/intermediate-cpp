@@ -1,8 +1,8 @@
-Linear Containers
+Linear containers
 =================
 
 .. toctree::
-   :caption: Linear Containers
+   :caption: Linear containers
    :maxdepth: 2
 
    foo.rst

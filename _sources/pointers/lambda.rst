@@ -11,7 +11,7 @@
    single: lambda expressions
    single: lambda functions
 
-Lambda Expressions
+Lambda expressions
 ==================
 
 
@@ -21,7 +21,7 @@ Lambda Expressions
 .. index::
    pair: lambda; trailing return type
 
-Trailing Return Types in Lambda expressions
+Trailing return types in lambda expressions
 -------------------------------------------
 
 

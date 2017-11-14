@@ -60,7 +60,7 @@ the initialization could use ``auto``.
    auto pt5 = new Point{13, 21};
 
 
-STL Mamory management
+STL memory management
 ---------------------
 
 

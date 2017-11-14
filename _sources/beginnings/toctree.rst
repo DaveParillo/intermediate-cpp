@@ -1,8 +1,8 @@
-Getting Started
+Getting started
 ===============
 
 .. toctree::
-   :caption: Getting Started
+   :caption: Getting started
    :maxdepth: 2
 
    what-you-know-now.rst

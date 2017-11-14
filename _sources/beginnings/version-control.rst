@@ -12,7 +12,7 @@
 .. index:: 
    triple: introductory topics; version control; git
 
-Version Control
+Version control
 ===============
 
 When you are programming, you will make mistakes. 
@@ -44,7 +44,7 @@ Whatever version control software you use, they all follow the same basic patter
   Repeat the above as often as needed.
 
 
-Setting up Git
+Setting up git
 --------------
 
 Typically you run git inside a directory that holds some project you are working 

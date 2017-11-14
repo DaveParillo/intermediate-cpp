@@ -14,7 +14,7 @@
    pair: introductory topics; header files
    pair: introductory topics; comments
 
-What You Should Already Know
+What you should already know
 ============================
 
 This book is intended for students exploring a second semester in C++ programming.
@@ -26,7 +26,7 @@ before proceeding with the material in this text.
 There are some practice problems available you can use to check your knowledge.
 
 
-Source files and Header files
+Source files and header files
 -----------------------------
 
 One of the primary goals of this course is to begin creating programs more
@@ -63,7 +63,7 @@ by now:
    triple: introductory topics; comments; best practices
    triple: introductory topics; comments; anti-patterns
 
-Code Comments
+Code comments
 -------------
 
 You should have learned different formats for code comments 
@@ -110,7 +110,7 @@ For that reason, the top of every source file should contain your name and stude
    // Dave Parillo, 123456789
 
 
-Commenting "Anti-Patterns"
+Commenting "anti-patterns"
 ..........................
 
 An :term:`anti-pattern` is a common response to a recurring problem 
@@ -441,7 +441,7 @@ We will be working with ``std::string`` and ``std::vector``
 often in this course, so if you haven't used them yet,
 don't worry - you will.
 
-File Input and Output
+File input and output
 .....................
 
 I expect you to know how to use some form of file input and output,
@@ -456,7 +456,7 @@ Don't panic.
 While file I/O is not a primary focus of this course, you will be expected to employ
 basic I/O in labs and projects.
 
-Statements and Branching
+Statements and branching
 ------------------------
 
 Writing basic statements and conditionally executing code,
@@ -548,7 +548,7 @@ You should know the difference between basic types of errors:
 I expect some basic experience using a debugger in whatever 
 programming environment you may have used previously.
 
-If not, refer to the section :doc:`errors`.
+If not, refer to the section :doc:`debugging`.
 
 .. note::
 

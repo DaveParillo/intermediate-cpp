@@ -11,7 +11,7 @@
    single: overloading functions
 
 
-Function Overloads
+Function overloads
 ==================
 
 Unlike C, in C++, 
@@ -111,7 +111,7 @@ Another example: a family of functions to compute volume.
    Two functions in the same namespace that differ only in return type will not compile.
 
 
-Overloading Anti-patterns
+Overloading anti-patterns
 .........................
 
 How many parameters are too many?

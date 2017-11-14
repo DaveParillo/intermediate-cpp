@@ -30,7 +30,7 @@ A pointer is simply a variable that stores an *address*:
 The value assigned to ``e_pointer`` is the *address of* the variable ``euler``.
 
 
-Declaring Pointers
+Declaring pointers
 ------------------
 
 While some of the memory in a running program is stored in
@@ -153,7 +153,7 @@ The equivalent example for references is:
                      //   (no assignment from int* to an int&)
    }
 
-Using Pointers
+Using pointers
 --------------
 
 The simplest way to use a pointer is to get their value as with any other variable. 
@@ -212,7 +212,7 @@ The only limit is your sanity...
 .. index:: 
    pair: pointers; references
 
-Comparison with References
+Comparison with references
 --------------------------
 
 Recall from our earlier discussions of pass by reference
@@ -389,8 +389,8 @@ From the standard:
 
 .. index:: character arrays
 
-Arrays of ``char``
-..................
+Arrays of type ``char``
+.......................
 
 In the C language, 
 the abstract idea of a string is implemented with an array of characters. 
@@ -584,8 +584,8 @@ Pointers to pointers
 .. index:: const pointers
    pair: pointers; const
 
-``const`` pointers
-------------------
+Constant pointers
+-----------------
 
 Pointers can be declared ``const``, just like any other type.
 Where ``const`` appears controls what is held constant:

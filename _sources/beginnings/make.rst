@@ -72,7 +72,7 @@ to work with the other language.
    single: c++ compiler
    single: compiler
 
-The C++ Compiler
+The C++ compiler
 ................
 
 There are many programs that will make executables from C++ source.
@@ -183,7 +183,7 @@ The order of command line arguments (generally) does not matter.
 .. index:: 
    pair: introductory topics; make
 
-The Make Utility
+The make utility
 ................
 
 The ``make`` program automatically determines which pieces of a large

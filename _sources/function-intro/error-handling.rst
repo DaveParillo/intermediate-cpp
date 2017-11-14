@@ -8,7 +8,7 @@
 
 .. index:: error-handling
 
-Error Handling
+Error handling
 ==============
 
 Error handling involves:
@@ -182,10 +182,10 @@ which harms readability if nothing else.
 .. index:: 
    pair: exceptions; I/O streams
 
-Exception and I/O streams
-.........................
+Exceptions and I/O streams
+..........................
 
-I/O streams can be configured to throw exceptions with `` std::basic_ios::exceptions``.
+I/O streams can be configured to throw exceptions with ``std::basic_ios::exceptions``.
 This object gets and sets the exception mask of the stream. 
 The exception mask set in the program determines which error states
 in the stream will throw an exception if an error is encountered.

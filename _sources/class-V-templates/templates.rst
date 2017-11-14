@@ -9,7 +9,7 @@
 .. index:: 
    pair: templates; class
 
-Class Templates
+Class templates
 ===============
 
 Text

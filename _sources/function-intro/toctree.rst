@@ -1,8 +1,8 @@
-Introduction to Functions
+Introduction to functions
 =========================
 
 .. toctree::
-   :caption: Introduction to Functions
+   :caption: Introduction to functions
    :maxdepth: 2
 
    functions.rst

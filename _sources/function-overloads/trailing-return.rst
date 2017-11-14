@@ -9,7 +9,7 @@
 .. index::
    pair: auto; trailing return type
 
-Trailing Return Types
+Trailing return types
 =====================
 
 Problem:
@@ -68,7 +68,7 @@ Similarly, there is a symmetry between auto and decltype:
    decltype(a) b = a; // same as auto b = a;  b is also unsigned
 
 
-Trailing Return Type Syntax
+Trailing return type syntax
 ---------------------------
 
 Since auto and decltype are complimentary operators,

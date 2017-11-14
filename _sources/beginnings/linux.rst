@@ -36,7 +36,7 @@ and ease forward progress.
 .. index::
    pair: git; ssh client
 
-Getting Access
+Getting access
 ..............
 
 All projects and some of the lab assignments are required to be handed in on the
@@ -63,7 +63,7 @@ In ``git`` you would type the following in the *GIT Bash* to connect to the buff
 where *fireNN** is the user name assigned to you by the instructor.
 
 
-The Command Line
+The command line
 ................
 
 A command line, or terminal, is a text based interface to the system.
@@ -95,7 +95,7 @@ What's happening?
 
   If no prompt is displayed, this means the command is still running.
 
-Absolute vs Relative Paths
+Absolute vs relative paths
 ..........................
 
 Look at the argument passed to the ``ls`` command in the previous example::
@@ -166,7 +166,7 @@ In addition, the
 
       Which of the following paths list the contents ``/home/user``?  Check all that apply.
 
-Basic Commands
+Basic commands
 ..............
 
 pwd

@@ -59,7 +59,7 @@ The C++ type system consists of the following types:
   - Class types
   - Enumeration types
 
-Fundamental Representations
+Fundamental representations
 ---------------------------
 
 Machines view stored data as sequences of bits that
@@ -135,7 +135,7 @@ While the :term:`two's complement` representation is now nearly universal,
 this was not always the case.
 In fact, during the 60's and 70's, debates raged about the best number format representations.
 
-Sign and Magnitude
+Sign and magnitude
 ..................
 
 Arguably the easiest to understand as the representation is very similar to how
@@ -223,7 +223,7 @@ of a few small numbers.
    }
 
 
-One's Complement
+One's complement
 ................
 
 Alternatively, a system known as ones' complement can be used to represent negative numbers. 
@@ -248,7 +248,7 @@ One's complement is important both historically, and because it is used to gener
 two's complement numbers.
 No modern computers store one's complement signed integers.
 
-Two's Complement
+Two's complement
 ................
 
 A variation of one's complement that avoids the "two zeroes problem" is two's complement.
@@ -353,7 +353,7 @@ two values can result in a value smaller than the sum of the two values.
    What do you expect to see? What did you see?
 
    
-Preventing Overflow Errors
+Preventing overflow errors
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The C and C++ compilers do not check math overflow for you.

@@ -1,6 +1,19 @@
 Complete Table of Contents
 ==========================
 
+Front Matter
+------------
+.. toctree::
+   :caption: Legal and foreward
+
+   front-matter/copyright.rst
+   front-matter/fdl-1.3.rst
+   front-matter/foreword.rst
+   front-matter/preface.rst
+
+Main Body
+---------
+
 .. toctree::
 
    beginnings/toctree.rst
@@ -21,13 +34,9 @@ Complete Table of Contents
    glossary.rst
 
 
-.. toctree::
-   :caption: Legal and foreward
-   :maxdepth: 1
-
-   foreward/copyright.rst
-   foreward/foreword.rst
-   foreward/preface.rst
-   foreward/fdl-1.3.rst
-
+Back Matter
+-----------
+* :ref:`search`
+* :ref:`glossary`
+* :ref:`genindex`
 

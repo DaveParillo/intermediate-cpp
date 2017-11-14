@@ -12,8 +12,24 @@ Intermediate Modern C++
 
 .. _t_o_c:
 
-Table of Contents
-=================
+Front Matter
+============
+.. toctree::
+   :caption: Legal and foreword
+   :titlesonly:
+
+   front-matter/copyright.rst
+   front-matter/fdl-1.3.rst
+   front-matter/foreword.rst
+   front-matter/preface.rst
+
+.. toctree::
+   :hidden:
+
+   toc.rst
+
+Chapters
+========
 
 .. toctree::
    :numbered:
@@ -34,23 +50,14 @@ Table of Contents
    class-V-templates/toctree.rst
    serialization/toctree.rst
 
+
+Back Matter
+===========
 * :ref:`search`
 * :ref:`glossary`
 * :ref:`genindex`
-* :doc:`Complete Table of Contents <toc>`
+* :doc:`toc`
 
-
-Legal
------
-
-.. toctree::
-   :caption: Legal and foreward
-   :maxdepth: 1
-
-   foreward/copyright.rst
-   foreward/foreword.rst
-   foreward/preface.rst
-   foreward/fdl-1.3.rst
 
 .. reveal:: about
    :showtitle: About this Book

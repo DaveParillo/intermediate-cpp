@@ -233,8 +233,8 @@ Go to the Semantic error section below.
 .. index:: 
    pair: debugging; infinite loop
 
-Infinite Loop
-.............
+Infinite loops
+..............
 
 If you think you have an infinite loop and you think you know what loop is
 causing the problem, add a ``print`` statement at the end of the loop that
@@ -271,7 +271,7 @@ ought to happen to ``x`` and ``y``, printing or inspecting its value is
 of little use. Probably the best place to debug the code is away from 
 your computer, working on your understanding of what should be happening. 
 
-Infinite Recursion
+Infinite recursion
 ..................
 
 Most of the time, an infinite recursion will cause the program to run for a
@@ -330,7 +330,7 @@ insert a few well-placed ``print`` statements is often short compared to
 setting up the debugger, inserting and removing breakpoints, and
 walking the program to where the error is occurring.
 
-General Debugging tips
+General debugging tips
 ----------------------
 
 Before you can effectively use debugging tools, 
@@ -351,8 +351,8 @@ Avoid this temptation as well:
 let the computer tell you what it is really doing inside your program instead of guessing.
 
 
-My program doesn't work.
-........................
+My program doesn't work
+.......................
 
 You should ask yourself these questions:
 
@@ -388,8 +388,8 @@ develop the program. If you encounter a problem, there should be only
 a small amount of new code that is not known to be correct.
 
 
-I've got a big hairy expression and it doesn't do what I expect.
-................................................................
+I've got a big hairy expression and it doesn't do what I expect
+...............................................................
 
 Having a "big hairy expression" is your first problem.
 Ask your self if this is the simplest solution for the problem
@@ -443,8 +443,8 @@ will also be more readable for other people who haven't memorized the rules of
 precedence.
 
 
-I've got a function or method that doesn't return what I expect.
-................................................................
+I've got a function that doesn't return what I expect
+.....................................................
 
 If you have a ``return`` statement with a complex expression, you don't have a
 chance to print the ``return`` value before returning. Again, you can use a
@@ -494,7 +494,7 @@ the debugger will stop exactly on the line where the assert failed so you can po
 .. index::
    pair: debugging; gdb
 
-Debugging Tools
+Debugging tools
 ---------------
 
 There are many tools to help programmers find and fix errors.
@@ -514,10 +514,10 @@ The program ``ddd`` is a graphical debugger for linux.
 The program ``gdb`` is a text-based debugger for linux.
 
 
-The Gnu Debugger (gdb)
+The GNU debugger (gdb)
 ......................
 
-The standard debugger on Linux is called ``gdb``. This lets you run your program
+The standard debugger on GNU/Linux is called ``gdb``. This lets you run your program
 under remote control, so that you can stop it and see what is going on inside.
 
 Given the small, buggy program:

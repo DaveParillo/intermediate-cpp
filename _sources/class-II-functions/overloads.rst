@@ -17,7 +17,7 @@ Normal paragraph text.
 .. index:: 
    pair: operator; overloads
 
-Operator Overloads
+Operator overloads
 ..................
 
 TBD

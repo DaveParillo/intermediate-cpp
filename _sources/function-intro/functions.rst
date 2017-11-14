@@ -10,7 +10,7 @@
    
 .. index:: functions
 
-Introduction to Functions
+Introduction to functions
 =========================
 
 A *function* is a group of statements that work together to perform a task.

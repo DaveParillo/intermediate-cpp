@@ -10,7 +10,7 @@
    single: function templates
    pair: templates; function
 
-Function Templates
+Function templates
 ==================
 
 Function overloads allow programmers with the same name,

@@ -9,7 +9,7 @@
 .. index:: 
    triple: introductory topics; vim; text editors
 
-Introducing the Vim Editor
+Introducing the vim editor
 ==========================
 
 Vim is a highly configurable text editor built to make creating 
@@ -193,7 +193,7 @@ Vim easy.
 
 ``iW`` An inner WORD
 
-Command & Motion Examples
+Command & motion examples
 -------------------------
 
 - Re-indent everything ``gg=G``
@@ -213,7 +213,7 @@ Command & Motion Examples
    pair: vim; hello world
 
 
-Creating 'Hello World' using Vim
+Creating 'Hello World' using vim
 --------------------------------
 
 It is best to review this section after completing the *vimtutor*.

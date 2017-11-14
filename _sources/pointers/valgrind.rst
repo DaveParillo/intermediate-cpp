@@ -11,7 +11,7 @@
 .. index:: 
    pair: debugging; pointers
 
-Pointer Debugging
+Pointer debugging
 =================
 
 All the techniques described in section ref:`Debugging` applies
@@ -81,7 +81,7 @@ Let's say we have the following code in ``foo.cpp`` with a simple error:
 
 Just as with gdb, compile it with debugging symbols.
 
-.. code-block:: bash
+.. code-block:: none
 
    g++ foo.cpp -g3 -o foo
 
@@ -103,7 +103,7 @@ in calls to library functions, you need to add the command line argument
 
     $ valgrind --track-origins=yes ./foo
 
-.. code-block:: cpp
+.. code-block:: none
 
     ==1302== Conditional jump or move depends on uninitialised value(s)
     ==1302==    at 0x40DDB47: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/libstdc++.so.6.0.18)
@@ -120,7 +120,7 @@ in calls to library functions, you need to add the command line argument
    :showtitle: Show All valgrind output
    :hidetitle: Hide valgrind details
 
-   .. code-block:: cpp
+   .. code-block:: none
 
       ==1302==    at 0x40DDA53: ??? (in /usr/lib/libstdc++.so.6.0.18)
       ==1302==    by 0x40DDB7B: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/libstdc++.so.6.0.18)

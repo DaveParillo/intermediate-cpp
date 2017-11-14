@@ -12,7 +12,7 @@
 .. index:: 
    pair: introductory topics; C++
 
-What You Don't Need to Know (Yet)
+What you don't need to know (yet)
 =================================
 
 C++ is a large, relatively complex, language.
@@ -93,8 +93,8 @@ Generally, C++ gives programmers many choices and it is true
 that some choices are preferred over others.
 We will try to make preferred programming choices clear.
 
-Linux (or Unix) in general
---------------------------
+GNU/Linux (or Unix) in general
+------------------------------
 
 And **make** in particular.
 

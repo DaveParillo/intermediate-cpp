@@ -9,7 +9,7 @@
 .. index:: 
    pair: templates; concepts
 
-Concepts Overview
+Concepts overview
 =================
 
 One of the pitfalls when using templates,

@@ -8,7 +8,7 @@
 
 .. index:: function pointers; pointers to functions
 
-Function Pointers
+Function pointers
 =================
 
 Subsection
