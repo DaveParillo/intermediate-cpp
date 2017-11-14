@@ -53,11 +53,14 @@ Chapters
 
 Back Matter
 ===========
+.. toctree::
+
+   back-matter/faq.rst
+
 * :ref:`search`
 * :ref:`glossary`
 * :ref:`genindex`
 * :doc:`toc`
-
 
 .. reveal:: about
    :showtitle: About this Book
