@@ -18,7 +18,7 @@ Variables exist only as long as the scope in which they were created.
 Sometimes, we need to create objects with dynamic storage duration, 
 that is, objects whose lifetime is not limited by the scope in which they were created.
 
-We use the ``new`` keyword to create objects on the :term:`free store`.
+One way to do this is to use the ``new`` keyword to create objects on the :term:`free store`.
 The free store is a system-provided memory pool for variables whose lifetime is 
 directly managed by the programmer.
 Compare to our experiences so far where variables were *automatically*
@@ -56,6 +56,19 @@ the initialization could use ``auto``.
 .. code-block:: cpp
 
    auto pt1 = new Point;
+
+Use the ``delete`` operator to free memory allocated using ``new``:
+
+.. code-block:: cpp
+
+   delete   p1;  // free memory allocated for p1
+   delete[] p4;  // free array memory
+
+   delete   pt2;  // same syntax is used for user defined types also
+   delete[] pt3;
+
+
+
 
 
 STL memory management
