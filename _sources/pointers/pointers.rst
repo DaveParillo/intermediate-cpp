@@ -620,19 +620,29 @@ when working with character data from an uncontrolled source
 
 Pointers to pointers
 --------------------
+We have already said that pointers can point to any address
+in the program memory.
+So it should be no surprise that pointers can point to pointers.
+Like ``int`` or ``char``, a pointer type is still a type.
+When you declare a variable of type pointer, 
+storage still must be allocated somewhere,
+and this storage must have an address too.
+
+When dealing with pointers, we have to manage the added complexity
+of keeping clear in our minds the difference between
+*the pointer variable* and *what the pointer points to*.
+When dealing with pointers to pointers, we have to manage
+the pointer, what it points to, and *what the pointer that it points to points to*.
 
 .. code-block:: cpp
 
    #include <iostream>
    #include <string>
 
-   // pointers like this string pointer can also point to pointers
-
    using std::string;
    using std::cout;
 
-    int main()
-    {
+    int main() {
       string message[] = {"Alice","Bob here!","Carol checking in."};
 
       string *sp;   // a pointer to at least 1 string
@@ -663,6 +673,168 @@ Pointers to pointers
       cout << sp3 << '\n';
       cout << **sp3 << '\n';
     }
+
+Now we have enough tools in our tool kit to understand command line arguments.
+
+.. code-block:: cpp
+
+    int main (int argc, char* argv[]) {
+      return 0;
+    }
+
+or equivalently:
+
+.. code-block:: cpp
+
+    int main (int argc, char** argv) {
+      return 0;
+    }
+
+The name of the variable ``argc`` stands for 'argument count'. 
+``argc`` contains the number of arguments passed to the program. 
+The name of the variable ``argv`` stands for "argument vector``". 
+A vector is a one-dimensional array, and ``argv`` is a one-dimensional array of strings. 
+Each string is one of the arguments that was passed to the program.
+These names are used by convention, although technically,
+any valid identifiers can be used.
+
+Dereferencing ``argv`` returns the thing ``argv`` points to:
+the first string in ``argv``.
+By convention, essentially all compilers place the name of the 
+program executed in ``argv[0]``.
+
+We know that C strings are arrays of ``char``,
+so ``argv`` is a pointer to a ``char`` array.
+Or we can say ``argv`` is a pointer to a pointer to a ``char``.
+
+When we compile a program like this:
+
+   /usr/bin/gcc -o myprog myprog.cpp
+
+The following is passed to gcc:
+
+.. graphviz::
+
+   digraph argv {
+     rankdir=LR
+     fontname = "Bitstream Vera Sans"
+     label="The two dimensional argv array"
+     node [
+        fontname = "Bitstream Vera Sans"
+        fontsize = 11
+        shape = "record"
+        style=filled
+        fillcolor=lightblue
+     ]
+     argc [shape="plain", label="argc == 4"];
+     argv [shape="plain", label="argv"];
+     argv0 [shape="plain", label="argv[0]"];
+     arr0 [
+        label = "{/|u|s|r|/|b|i|n|/|g|c|c|\\0}"
+     ]
+     argv -- argv0 ->  arr0;
+     argv1 [shape="plain", label="argv[1]"];
+     arr1 [
+        label = "{-|o|\\0}"
+     ]
+     argv2 [shape="plain", label="argv[2]"];
+     arr2 [
+        label = "{m|y|p|r|o|g|\\0}"
+     ]
+     argv3 [shape="plain", label="argv[3]"];
+     arr3 [
+        label = "{m|y|p|r|o|g|.|c|\\0}"
+     ]
+
+   }
+
+We can access any character in ``argv`` using pointer arithmetic,
+array index operators, or a combination.
+
+.. code-block:: c
+
+    #include <stdio.h>
+
+    // Print arguments using c functions
+    int main (int argc, char *argv[]) {
+      printf ("The program '%s' was called with: \n", argv[0]);
+
+      if (argc > 1) {
+        for (int count = 1; count < argc; count++) {
+          printf("argv[%d] = %s\n", count, argv[count]);
+        }
+      } else {
+        puts("\tno other arguments.");
+      }
+      return 0;
+    }
+
+How this is typically used is to provide an ability
+to change the behavior of programs using command line 'switches'
+specified by the user when the program is run.
+The following example takes 3 arguments:
+
+-h
+   Display help
+
+-n
+   Attempt to interpret the next word as a number and print it
+
+anything else
+   Interpret the next word as a string and print it
+
+There is nothing special about the character ``-``.
+It is a convention used to distinguish command line arguments
+with special meaning (the switches) with other content.
+
+.. code-block:: cpp
+
+    #include <cstring>
+    #include <iostream>
+    #include <string>
+
+    // Display a usage statement for this program.
+    // name is the program name
+    static void usage(const char* name) {
+      std::cerr << "Usage: " << name << " [-h] [-n number] [any_word]\n";
+    }
+
+    int main(int argc, char** argv) {
+      int number = 1;
+      std::string word = "Hello";
+
+      // Start at 1 to skip over program name
+      for (int i=1; i < argc; ++i) {
+        if (!std::strncmp(argv[i], "-h", 2)) {
+          // print help if the current string is '-h'
+          usage(*argv);
+        } else if (!std::strncmp(argv[i], "-n", 2)) {
+          // attempt to parse the string after '-n' as an int
+          ++i;
+          if (i < argc) {
+            number = std::atoi(argv[i]);
+            std::cout << "The number is: " << number << '\n';
+          } else {
+            std::cerr << "Error using '-n' argument: no number specified\n";
+            usage(argv[0]);
+          }
+
+        } else {
+            // print any other string provided
+            word = argv[i];
+            std::cout << "The word is: " << word << '\n';
+        }
+      }
+      std::cout << "The last number is: " << number << '\n'
+                << "The last word is: " << word << '\n';
+      return 0;
+    }
+
+Keep in mind that everything received on the command line is
+character data.
+It is the responsibility of the programmer to transform the characters
+in the array ``argv`` into whatever type is appropriate for the program.
+
 
 .. index:: const pointers
    pair: pointers; const
