@@ -192,6 +192,7 @@ These require parentheses if you want the ``*`` to take precedence.
            // p now points to next address in memory
            // Almost always an error
 
+`See what p points to when the last line is reached. <http://pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0Aint%20main%28%29%20%7B%0A%20%20int%20n%20%3D%202%3B%0A%20%20int*%20p%20%3D%20%26n%3B%20%20//%20points%20to%20n%0A%20%20int*%20q%20%3D%20p%3B%20%20%20//%20points%20to%20n%20also%0A%20%20*p%20%3D%20*p%20%2B%20*p%3B%20//%20n%20%3D%204%0A%20%20std%3A%3Acout%20%3C%3C%20%22n%20%3D%20%22%20%3C%3C%20n%20%3C%3C%20'%5Cn'%3B%0A%20%20%0A%20%20int*%20p2n%20%3D%20%26n%3B%20%20//%20another%20pointer%20to%20n%0A%20%20%28*p%29%2B%2B%3B%20//%20increments%20n%0A%20%20*p%2B%2B%3B%20%20%20//%20increments%20p%0A%0A%20%20return%200%3B%0A%7D&curInstr=0&mode=display&origin=opt-frontend.js&py=cpp&rawInputLstJSON=%5B%5D>`_
 
 A pointer can point to any memory address within the scope of the program,
 which includes pointers themselves.
@@ -208,6 +209,7 @@ The only limit is your sanity...
    int** p2p    = &p2x;
    int*** p2pp  = &p2p;
 
+`See it for yourself. <http://pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0Aint%20main%28%29%20%7B%0A%20%20int%20x%20%3D%208%3B%0A%0A%20%20//%20all%20of%20these%20variables%20point%20to%20x%0A%20%20int*%20p2x%20%20%20%20%20%3D%20%26x%3B%0A%20%20int**%20p2p%20%20%20%20%3D%20%26p2x%3B%0A%20%20int***%20p2pp%20%20%3D%20%26p2p%3B%0A%0A%20%20return%200%3B%0A%7D&curInstr=3&mode=display&origin=opt-frontend.js&py=cpp&rawInputLstJSON=%5B%5D>`_
 
 .. index:: 
    pair: pointers; references
