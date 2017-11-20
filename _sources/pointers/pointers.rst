@@ -192,6 +192,7 @@ These require parentheses if you want the ``*`` to take precedence.
            // p now points to next address in memory
            // Almost always an error
 
+`See what p points to when the last line is reached. <http://pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0Aint%20main%28%29%20%7B%0A%20%20int%20n%20%3D%202%3B%0A%20%20int*%20p%20%3D%20%26n%3B%20%20//%20points%20to%20n%0A%20%20int*%20q%20%3D%20p%3B%20%20%20//%20points%20to%20n%20also%0A%20%20*p%20%3D%20*p%20%2B%20*p%3B%20//%20n%20%3D%204%0A%20%20std%3A%3Acout%20%3C%3C%20%22n%20%3D%20%22%20%3C%3C%20n%20%3C%3C%20'%5Cn'%3B%0A%20%20%0A%20%20int*%20p2n%20%3D%20%26n%3B%20%20//%20another%20pointer%20to%20n%0A%20%20%28*p%29%2B%2B%3B%20//%20increments%20n%0A%20%20*p%2B%2B%3B%20%20%20//%20increments%20p%0A%0A%20%20return%200%3B%0A%7D&curInstr=0&mode=display&origin=opt-frontend.js&py=cpp&rawInputLstJSON=%5B%5D>`_
 
 A pointer can point to any memory address within the scope of the program,
 which includes pointers themselves.
@@ -208,6 +209,7 @@ The only limit is your sanity...
    int** p2p    = &p2x;
    int*** p2pp  = &p2p;
 
+`See it for yourself. <http://pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0Aint%20main%28%29%20%7B%0A%20%20int%20x%20%3D%208%3B%0A%0A%20%20//%20all%20of%20these%20variables%20point%20to%20x%0A%20%20int*%20p2x%20%20%20%20%20%3D%20%26x%3B%0A%20%20int**%20p2p%20%20%20%20%3D%20%26p2x%3B%0A%20%20int***%20p2pp%20%20%3D%20%26p2p%3B%0A%0A%20%20return%200%3B%0A%7D&curInstr=3&mode=display&origin=opt-frontend.js&py=cpp&rawInputLstJSON=%5B%5D>`_
 
 .. index:: 
    pair: pointers; references
@@ -238,7 +240,7 @@ that the ``address of`` operator ``&`` allows us to pass by reference:
 In function ``by_value`` the statement ``x = 99;`` changes the copy provided.
 The value of ``x`` is printed, but is destroyed when ``x`` goes out of scope on line 6.
 
-And no special character is needed of you want to use a function that takes a reference
+And no special character is needed of you want to use a function that takes a reference:
 
 .. code-block:: cpp
 
@@ -287,6 +289,80 @@ However, there are important things you can't do with references:
 We still need to be able to do all these kinds of memory manipulations.
 In C++, we achieve these goals using *pointers*.
 
+Function passing semantics
+..........................
+
+We can pass pointers to a function that expects a reference: 
+
+.. code-block:: cpp
+
+   #include <iostream>
+
+   void by_reference (int& x) {
+     std::cout << "in by_ref the address of x is   " 
+               << &x << '\n';
+     x = -1;
+   }
+
+   int main() {
+     int* p = new int{5};
+     by_reference(*p);
+     delete p;
+   }
+
+
+If we pass in only ``p``, what happens?
+
+.. reveal:: reveal-skill-check
+   :showtitle: Show Answer
+
+   The program fails to compile.
+
+   We can't pass an ``int*`` to a function expecting an ``int&``.
+
+
+.. admonition:: Non-const references vs. pointers
+
+   Some programmers consider passing by non-const reference bad style,
+   because the call syntax is the same as pass by value.
+   When a variable is passed into a function by non-const reference
+   there is no visual indication to the programmer on what to expect.
+   Without reading additional documentation or
+   actually reading the source code, if available,
+   there is no way to know if the function will change its parameter or not.
+
+   .. code-block:: cpp
+
+      void func (int& x);
+
+      int main() {
+        int x = 5;
+        func(x);       // will x change?
+      }
+
+
+   For this reason, a function that takes a *non-owning pointer* is preferred:
+
+   .. code-block:: cpp
+
+      void func (int* x);
+    
+      int main() {
+        int x = 5;
+        func(&x);       // Caller expects x to change
+      }
+
+   A function signature is a *contract* between the function author and
+   the function caller.
+   A function that takes non-const references represents a poorly written contract.
+   Callers don't know what to expect when the function is called.
+   Even if the parameter isn't changed today, it might tomorrow.
+   A non-owning pointer makes the intent clear.
+   There is still no *requirement* to change the parameter,
+   but since the caller is explicitly passing in an address, 
+   they can expect it to change.
+
+
 
 .. index:: 
    pair: pointers; arrays
@@ -307,45 +383,55 @@ arrays are not expected, but pointers are:
 .. code-block:: cpp
 
    #include <iostream>
-   #include <numeric>
-   #include <iterator>
      
-   void g(int (&a)[3]) {
-     std::cout << a[0] << '\n';
-   }
-     
-   void f(int* p) {
-     std::cout << *p << '\n';
-   }
-
    int main() {
-     int a[3] = {1, 2, 3};
+     int a[3] = {13, 21, 35};
      int* p = a;
  
      std::cout << sizeof a << '\n'  // prints size of array
                << sizeof p << '\n'; // prints size of a pointer
 
+    for(int n: a) {          // okay: arrays can be used in range-for loops
+      std::cout << n << ' '; // prints elements of the array
+    }
+    // for(int n: p) {       // error: no range for looping on a pointer
+
+
+    // arrays and pointers share the same semantics
+    std::cout << '\n'
+              << *a << '\n' // prints the first element
+              << *p << '\n' // same
+              << *(a + 1) << ' ' << a[1] << '\n'  // prints the second element twice
+              << *(p + 1) << ' ' << p[1] << '\n'; // same
+   }
+
+This behavior applies to function calling as well:
+
+.. code-block:: cpp
+
+   #include <iostream>
+     
+   // print first element of array using pointer dereference
+   void g(int (&a)[3]) {
+     std::cout << *a << '\n'; 
+   }
+     
+   // print first element of array using array semantics through pointer
+   void f(int* p) {
+     std::cout << p[0] << '\n';
+   }
+
+   int main() {
+     int a[3] = {13, 21, 35};
+     int* p = a;
+ 
     // where arrays are acceptable, but pointers aren't, only arrays may be used
     g(a); // okay: function takes an array by reference
     // g(p); // error: pointers do not implicitly convert to arrays
 
-
-    for(int n: a) {          // okay: arrays can be used in range-for loops
-      std::cout << n << ' '; // prints elements of the array
-    }
-    // for(int n: p) {       // error
-
     // where pointers are acceptable, but arrays aren't, both may be used:
     f(a); // okay: function takes a pointer
     f(p); // okay: function takes a pointer
-
-
-    std::cout << *a << '\n' // prints the first element
-              << *p << '\n' // same
-              << *(a + 1) << ' ' << a[1] << '\n'  // prints the second element
-              << *(p + 1) << ' ' << p[1] << '\n'; // same
-
-
    }
 
 **Array indexing pitfalls**
@@ -372,20 +458,17 @@ From the standard:
 
       int main() {
         int a[4] = {3, 5, 8, 13};
+        cout << "Print each array element 4 times:\n";
         for (int i=0; i<4; ++i) {
-          cout << a[i] 
-               << *(a+i)
-               << *(i+a)
-               << i[a] << '\n';
+          cout << a[i]   << ' ' 
+               << *(a+i) << ' ' 
+               << *(i+a) << ' ' 
+               << i[a]   << '\n';
         }
-        int* p = a;
-        cout << *p << '\n'; p++;
-        cout << *p << '\n'; p++;
-        cout << *p << '\n'; p++;
-        cout << *p << '\n';
       }
 
-.. **
+   Although the standard does not strictly *prohibit* this syntax,
+   doesn't mean you should.
 
 .. index:: character arrays
 
@@ -417,7 +500,7 @@ In memory, this is automatically transformed into
         fillcolor=lightblue
      ]
      arr [
-        label = "{H|e|l|l|o|,| |w|o|r|l|d|!|\0}"
+        label = "{H|e|l|l|o|,| |w|o|r|l|d|!|\\0}"
      ]
 
    }
@@ -451,7 +534,7 @@ An array declaration like this:
 
    char hi[10] = "Hello";
 
-results in an in-momory representation like this:
+results in an in-memory representation like this:
 
 .. graphviz::
 
@@ -467,7 +550,7 @@ results in an in-momory representation like this:
         fillcolor=lightblue
      ]
      arr [
-        label = "{H|e|l|l|o|\0| | | | }"
+        label = "{H|e|l|l|o|\\0| | | | }"
      ]
 
    }
@@ -528,7 +611,7 @@ when working with character data from an uncontrolled source
 .. admonition:: Try This!
 
    Run the previous example, but modify it,
-   replacing the 'Hello World' with 'Hello\0World'.
+   replacing the 'Hello World' with 'Hello\\0World'.
    What happens?
 
    What warnings does the compiler display?
