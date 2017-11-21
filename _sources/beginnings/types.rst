@@ -577,12 +577,13 @@ Later on, we will cover techniques that improve on iterating through data even m
 
    - `cppreference.com types <http://en.cppreference.com/w/cpp/language/types>`_ and
      `std::size_t <http://en.cppreference.com/w/cpp/types/size_t>`_
-   - An interesting alternative to explore, Google Protocol Buffers use
-     variable length `zig-zag encoding <https://developers.google.com/protocol-buffers/docs/encoding?csw=1>`_
+   - ISO CPP Super FAQ: `Floating point questions <https://isocpp.org/wiki/faq/newbie#floating-pt-errs>`_
    - `What every computer scientist should know about floating-point arithmetic 
      <http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html>`_
-   - `Secure Coding in C++: Integers <https://resources.sei.cmu.edu/asset_files/Presentation/2011_017_001_51345.pdf>`_
    - `CPP Core Guidelines: Arithmetic <https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#arithmetic>`_
+   - An interesting alternative to explore, Google Protocol Buffers use
+     variable length `zig-zag encoding <https://developers.google.com/protocol-buffers/docs/encoding?csw=1>`_
+   - `Secure Coding in C++: Integers <https://resources.sei.cmu.edu/asset_files/Presentation/2011_017_001_51345.pdf>`_
 
 
 .. topic:: Footnotes
