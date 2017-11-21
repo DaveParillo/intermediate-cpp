@@ -292,18 +292,18 @@ We can pass pointers to a function that expects a reference:
 
 .. code-block:: cpp
 
-   #include <iostream>
+   #include <cassert>
 
    void by_reference (int& x) {
-     std::cout << "in by_ref the address of x is   " 
-               << &x << '\n';
      x = -1;
    }
 
    int main() {
-     int* p = new int{5};
+     int  i = 5;
+     int* p = &i;
      by_reference(*p);
-     delete p;
+     assert (i = -1);
+     return 0;
    }
 
 
@@ -434,26 +434,27 @@ Array indexing pitfalls
 .......................
 
 **Pitfall #1**
+
 Arrays perform absolutely no bounds checking.
 
 Read that again.
 
 Good.
 
-No compiler will complain about this code:
+Now consider that no compiler will complain about this code:
 
 .. code-block:: cpp
    :linenos:
 
    int* p = int[3];
-   p[0]  = 3;
-   p[1]  = 5;
+   p[0]  = 3;  // OK
+   p[2]  = 5;  // OK
    p[99] = 8;  // oops!  where did we write this?
    p[-7] = 8;  // or this!
 
-No compiler will inform you that on line 3 we just wrote an ``8``
+No compiler will inform you that on line 4 we just wrote an ``8``
 at a location 96 positions past the end of the array.
-Nor will it inform you that on line 4, we just wrote to a location
+Nor will it inform you that on line 5, we just wrote to a location
 7 positions before the beginning of the array.
 
 Most pointer examples you will see will never attempt to use ``operator[]``
@@ -462,7 +463,6 @@ This is a good thing, but as you might expect, if you make a mistake,
 the compiler has nothing to offer:
 
 .. code-block:: cpp
-   :linenos:
 
    int  n = 5;
    int* p = &n;
