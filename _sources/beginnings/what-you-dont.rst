@@ -165,6 +165,7 @@ Then ``argc`` would be set = ``4`` and array ``argv`` would contain::
 .. admonition:: More to Explore
 
    - `Using the getopt function <https://www.gnu.org/software/libc/manual/html_node/Using-Getopt.html>`_ - from gnu.org
+   - Textbook: :doc:`../pointers/pointers`
 
 
 
