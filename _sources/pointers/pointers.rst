@@ -1064,6 +1064,71 @@ Consider the following code example, from Effective Modern C++:
 
    }
 
+``void`` pointers
+-----------------
+
+A *void pointer* is a
+pointer to some memory the compiler doesn't know the type of.
+
+It is about as close to a raw machine address as you can get in C++.
+
+Legitimate uses are
+calls between functions in different languages or
+templates where the provided value could literally be *anything*,
+such as the actual implementation of ``new`` in C++.
+
+.. admonition:: Important!
+
+   ``void*`` is not the same as ``void``
+
+   There are no objects of type void:
+
+   .. code-block:: cpp
+
+      int i;           // declare an int
+      void x;          // error!  void is not a type
+      void print();    // function returns nothing
+
+
+**Any** pointer can be assigned to ``void*``:
+
+.. code-block:: cpp
+   :linenos:
+
+   int*    i  = new int{5}; 
+   double* x  = new double[10];
+   int*    j  = i;             // OK: i and j are both int*
+   void*   p1 = i;             // OK: assign int* to void*
+   void*   p2 = d;             // OK: assign double* to void*
+
+   int*    i2 = p1;            // error
+                               // can't assign void* to int*
+
+The last assignment is invalid, even though ``p1`` was last assigned an ``int*``.
+A human reader knows the void pointer currently holds an int pointer,
+but the compiler does not.
+
+The compiler **can't** know the size of the value pointed to.
+``void`` isn't a type, so it has no size:
+
+.. code-clock:: cpp
+
+   int*    i = new int{5}; 
+   void*   p = i;             // OK
+   int*    j = p;             // error
+
+
+To resolve this error, 
+we have to give the compiler size information.
+We can use one of C++ *casts* to convert ``void*``
+to another pointer type that has a size:
+
+.. code-block:: cpp
+
+   int*    i = new int{5}; 
+   void*   p = i;                    // OK
+   //int*  j = p;                    // error
+   int*    j = static_cast<int*>(p); // OK
 
 
 -----
