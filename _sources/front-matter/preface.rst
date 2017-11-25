@@ -33,9 +33,9 @@ What do I mean by **idiomatic** C++?
 
    Undaunted, and armed with both an earlier Portuguese-French phrase book
    and a French-English dictionary, he managed to create a book that is
-   generally incomprehensible.
+   generally ridiculous.
 
-   He never intended to write a humor book, but that was the unintended result.
+   He never intended to write a humor book, but that was the result.
    Mark Twain is quoted as saying:[1]_
 
       Nobody can add to the absurdity of this book, 
@@ -46,7 +46,7 @@ What do I mean by **idiomatic** C++?
 
 While most 'C++' textbooks that have been marginally ported from other
 languages cannot hope to achieve the level of silliness reached by
-English As She Is Spoke, they still fail in the more fundamental sense.
+English As She Is Spoke, they still fail their readers.
 That is, they fail to teach C++ as C++.
 C++ is not C, Python, Java, Visual Basic, or anything else.
 
@@ -59,31 +59,35 @@ the first few of which are:
 - Code in ISO Standard C++
 - Express intent
 
-The goal of this book is not to describe every language feature in C++.
-C++ is a large language.
-If you really want to read about every language feature,
-then best place to go is `cppreferemce.com <http://en.cppreference.com/w/>`_.
 The goal of this book is to describe the current version of the language
 in a clear, concise style, supplemented by meaningful activities
 where appropriate.
+
+The goal of this book is **not** to describe every language feature in C++.
+C++ is a large language.
+If you really want to read about every language feature,
+then read `cppreference.com <http://en.cppreference.com/w/>`_.
 
 Programming is not a "spectator sport".  It is something you do,
 something you participate in. It would make sense, then,
 that the book you use to learn programming should allow you to be active.
 
 This book is meant to provide you with an interactive experience as you learn
-to program.  You can read the text, watch videos,
-and write and execute code.  In addition to simply executing code,
+to program.  
+You can read the text, watch videos, and write and execute code.
+In addition to simply executing code,
 there are visualizations which allow you to control the
 flow of execution, 
 and watch variables as they are created and destroyed,
 in order to gain a better understanding of how the program works.
 
-Different presentation techniques are used where they are
-most appropriate.  In other words, sometimes it might be best to read a
-description of some aspect of a programming language.  On a different occasion,
-is might be best to execute a small example program.  Often we provide multiple
-options for covering the material.  Hopefully, you will find
+Different presentation techniques are used where appropriate.  
+In other words, sometimes it might be best to read a
+description of some aspect of a programming language.  
+On a different occasion,
+it might be best to execute a small example program.  
+An important goal is to  provide multiple options for covering the material in each section.  
+Hopefully, you will find
 your understanding is enhanced because you are able to experience
 content in more than just one way.
 
