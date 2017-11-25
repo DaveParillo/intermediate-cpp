@@ -23,6 +23,7 @@ which limits what you can get done with ``cout``.
 
 Tools are your friends.
 #. Learn how to use a debugger.
+
    The debugging section has a brief overview of the gdb debugger
    and links to more information.
 
