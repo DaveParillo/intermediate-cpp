@@ -57,7 +57,10 @@ the initialization could use ``auto``.
 
    auto pt1 = new Point;
 
-Use the ``delete`` operator to free memory allocated using ``new``:
+The ``new`` operator allocates memory.
+When finished with the free-store memory,
+we return it to the pool of available memory using 
+the ``delete`` operator:
 
 .. code-block:: cpp
 
@@ -67,15 +70,62 @@ Use the ``delete`` operator to free memory allocated using ``new``:
    delete   pt2;  // same syntax is used for user defined types also
    delete[] pt3;
 
+There should always be exactly 1 ``delete`` for every pointer returned by ``new``.
 
+.. note::
 
+   There are two forms of ``delete``:
 
+   - ``delete p`` frees the memory for a single object allocated using ``new``
+   - ``delete[] p`` frees the memory for an array of objects allocated using ``new``
+
+   Mistakes over which version of delete to use is a common source of error.
+
+Other mistakes related to delete include deleting the same pointer twice, 
+or not deleting the pointer at all.
+
+Deleting the same pointer twice is a problem because it leads to undefined
+or unpredictable behavior.
+The problem rarely arises in very small or short programs,
+however, in larger programs, strange or unpredictable events may happen
+long after the code that actually does the double delete was written.
+Programs that free memory twice have created real-world
+`security vulnerabilities <http://www.kb.cert.org/vuls/id/650937>`_.
+
+Simply choosing to never delete a pointer on the theory that 
+"well, at least my program won't crash", is not a good idea either.
+All computers have a finite amount of memory.
+Depending on how long your program needs to run, 
+never returning unused memory back to the memory *pool* is
+referred to as a :term:`memory leak`.
+Also recall computer are *fast*.
+Depending on what your program does, 
+even a short program can run out of memory before accomplishing all of its goals.
 
 STL memory management
 ---------------------
+When memory is allocated using ``new``,
+eventually it must be recovered using ``delete``.
+When only a few lines of code are requesting memory,
+this is not a major problem.
+However, real world programs often request hundreds or thousands
+blocks of memory.
+Keeping track of all this memory and when it should be freed can be labor intensive.
+Moreover, the consequences of an error are high: program crash or corrupted data.
+
+The C++ Standard Template Library provides a family of classes to help solve these problems.
+They are all contained in the header ``<memory>``
+and are defined as templates so that they can point to objects of any type.
+
+Smart pointers are classes that behave like *raw* pointers but also manage objects 
+created with ``new``,
+so that you don't have to worry about when and whether to delete them.
+Smart pointers are declared on the :term:`stack` and
+automatically delete the encapsulated object when the smart pointer goes out of scope.
+The smart pointer is defined in such a way that it can be used
+syntactically almost exactly like a raw pointer. 
 
 
-TBD
 
 -----
 
