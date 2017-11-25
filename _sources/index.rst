@@ -54,6 +54,7 @@ Chapters
 Back Matter
 ===========
 .. toctree::
+   :titlesonly:
 
    back-matter/faq.rst
 
