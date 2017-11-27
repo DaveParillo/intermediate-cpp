@@ -1111,7 +1111,7 @@ but the compiler does not.
 The compiler **can't** know the size of the value pointed to.
 ``void`` isn't a type, so it has no size:
 
-.. code-clock:: cpp
+.. code-block:: cpp
 
    int*    i = new int{5}; 
    void*   p = i;             // OK
