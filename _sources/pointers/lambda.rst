@@ -14,6 +14,15 @@
 Lambda expressions
 ==================
 
+A *lambda expression*, or simply *lambda*, 
+provides a means to define an anonymous function right at the location
+where it is invoked or passed as an argument to a function.
+
+
+.. admonition:: Try this!
+    
+    Rewrite the rot13/rot47 program to use lambdas to perform the rotation instead of traditional function calls
+
 
 
 
