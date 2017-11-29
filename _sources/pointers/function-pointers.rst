@@ -97,12 +97,12 @@ The C++11 ``using`` alias allows defining a name that refers to a previously def
    using func = double(*)(int x, int y);  // new syntax
 
 
-A simple, but real example.
+A simple, but 'real' example:
 
 A simple substitution cipher, called `ROT13 <https://en.wikipedia.org/wiki/ROT13>`_, short for 'rotate 13 places'
 can be used to obfuscate text by replacing each letter with the letter 13 letters after it in the alphabet.
-It is a spacial case of the `Caesar cipher <https://en.wikipedia.org/wiki/Caesar_cipher>`_, 
-developed in ancient Rome.
+It is a special case of the `Caesar cipher <https://en.wikipedia.org/wiki/Caesar_cipher>`_, 
+used in ancient Rome to obscure communication between Julius Caesar and his generals..
 A related variation called ROT47 extends the idea of ROT13 to include numbers and common symbols.
 
 Suppose we want to create a program that allows users to run either ROT13 or ROT47?
