@@ -223,7 +223,9 @@ The result is that some operations you **can** perform on raw pointers are not a
      std::unique_ptr<Point> y = {x};     // error - copy construction not allowed
 
      std::unique_ptr<Point> z;           // new empty (nullptr) 
-     z = x;                              // error - copy assignment not allowed
+     if(!z) {                            // check if z != nullptr
+       z = x;                            // error - copy assignment not allowed
+     }
 
 
 
