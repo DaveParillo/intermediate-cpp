@@ -64,11 +64,24 @@ the ``delete`` operator:
 
 .. code-block:: cpp
 
-   delete   p1;  // free memory allocated for p1
-   delete[] p4;  // free array memory
+   struct Point {
+        double x = 0;  // member values is a C++11 feature
+        double y = 0;
+   };
 
-   delete   pt2;  // same syntax is used for user defined types also
-   delete[] pt3;
+   int main() {
+     int* p1 = new int;
+     int* p2 = new int[5];
+
+     Point* pt_x = new Point;
+     Point* points = new Point[3];
+
+     delete   p1;  // free memory allocated for a single object
+     delete[] p2;  // free array memory
+
+     delete   pt_x;  // same syntax is used for user defined types also
+     delete[] points;
+   }
 
 There should always be exactly 1 ``delete`` for every pointer returned by ``new``.
 
@@ -102,6 +115,9 @@ Also recall computer are *fast*.
 Depending on what your program does, 
 even a short program can run out of memory before accomplishing all of its goals.
 
+.. index:: memory management
+   :single: smart pointer; auto_ptr; unique_ptr; shared_ptr
+
 STL memory management
 ---------------------
 When memory is allocated using ``new``,
@@ -112,6 +128,11 @@ However, real world programs often request hundreds or thousands
 blocks of memory.
 Keeping track of all this memory and when it should be freed can be labor intensive.
 Moreover, the consequences of an error are high: program crash or corrupted data.
+
+Given that memory management is such a problem, 
+does the STL provide any resources to help solve it?
+
+Yes.
 
 The C++ Standard Template Library provides a family of classes to help solve these problems.
 They are all contained in the header ``<memory>``
@@ -125,6 +146,85 @@ automatically delete the encapsulated object when the smart pointer goes out of 
 The smart pointer is defined in such a way that it can be used
 syntactically almost exactly like a raw pointer. 
 
+One of the earliest so-called 'smart pointers' was ``auto_ptr``.
+Much online documentation and text books still refer to it and recommend it.
+auto-ptr was officially deprecated in C++11 and removed in C++17.
+Generally, where old texts refer to auto_ptr, use ``unique_ptr`` instead.
+
+
+Class ``std::unique_ptr``
+.........................
+A ``std::unique_ptr`` is a smart pointer that owns and manages another object through a pointer 
+and disposes of that object when the unique_ptr goes out of scope.
+A unique_ptr is a very lightweight wrapper around a pointer.
+The basic syntax is:
+
+.. code-block:: cpp
+
+   // older C++11 syntax
+   // clunky and repetitive
+   std::unique_ptr<int> p1 = std::unique_ptr<int>(new int);
+
+   std::unique_ptr<int> p2 = std::make_unique<int>();       // C++14 adds make_unique
+
+In each example, both ``p1`` and ``p2`` are unique pointers that 'own' an ``int*``.
+Our earlier examples can be changed to:
+
+.. code-block:: cpp
+
+   #include <memory>
+   struct Point {
+     double x = 0;
+     double y = 0;
+   };
+
+   int main() {
+     std::unique_ptr<int> p2 = std::make_unique<int>();
+     auto                 p3 = std::make_unique<int>();       // less redundant
+
+     // array examples
+     // unique pointers to arrays of 5 elements
+     std::unique_ptr<int[]> p4 = std::unique_ptr<int[]>(new int[5]);
+     auto                   p5 = std::make_unique<int[]>(5);
+
+     // user define types are no different
+     auto pt_x   = std::make_unique<Point>();    // one Point*
+     auto points = std::make_unique<Point[]>(3); // array of 3 Point*
+   }
+   
+Once declared, a unique pointer can be manipulated using the same syntax as a raw pointer.
+
+.. code-block:: cpp
+
+     auto p = std::make_unique<Point>(); 
+     // modify Point coordinates and print
+     p->x = 8;
+     p->y = 13;
+     std::cout << p->x << ' ' << p->y << '\n';
+
+     // this is an error
+     // std::cout << p.x << ' ' << p.y << '\n';
+     
+
+What makes a unique_ptr *unique*?
+
+An object stored within a unique pointer **uniquely owns** its pointer.
+In other words, an object is 'owned' by exactly one unique_ptr.
+Unlike raw pointers, a unique pointer cannot be copied or assigned to another variable,
+even another unique pointer.
+
+No two unique pointers can ever contain the same raw pointer value.
+This solves the 'double delete' problem if both go out of scope.
+The result is that some operations you **can** perform on raw pointers are not allowed:
+
+.. code-block:: cpp
+
+     auto x = std::make_unique<Point>(); 
+     std::unique_ptr<Point> y = {x};     // error - copy construction not allowed
+
+     std::unique_ptr<Point> z;           // new empty (nullptr) 
+     z = x;                              // error - copy assignment not allowed
+
 
 
 -----
@@ -133,9 +233,11 @@ syntactically almost exactly like a raw pointer.
 
    - `Free-store managment FAQ <https://isocpp.org/wiki/faq/freestore-mgmt>`_
    - From: cppreference.com: 
-     `Operator new <http://en.cppreference.com/w/cpp/language/new>`_ and 
-     `delete <http://en.cppreference.com/w/cpp/language/delete>`_. 
-   - `Descriptions of lambda expressions` <https://msdn.microsoft.com/en-us/library/dd293608.aspx>`_ from Microsoft's MSDN
+
+     - `Operator new <http://en.cppreference.com/w/cpp/language/new>`_ and 
+       `delete <http://en.cppreference.com/w/cpp/language/delete>`_. 
+     - `unique_ptr <http://en.cppreference.com/w/cpp/memory/unique_ptr>`_ and 
+       `make_unique <http://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique>`_.
 
 
 
