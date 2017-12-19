@@ -107,7 +107,9 @@ For example, given the following:
    }
 
 The ``gcc`` compiler, reports the error on line 8.
-It notices an end brace reached ``}`` but a semi-colon was expected::
+It notices an end brace reached ``}`` but a semi-colon was expected:
+
+.. code-block:: none
 
    g++ -std=c++11 -Wall -Wextra -pedantic    foo.cpp   -o foo
    g++: warning: couldn’t understand kern.osversion ‘14.5.0
@@ -118,7 +120,9 @@ It notices an end brace reached ``}`` but a semi-colon was expected::
 
 
 The ``clang`` compiler knows where the semi-colon belongs and in this case, 
-provides a slightly more specific error::
+provides a slightly more specific error:
+
+.. code-block:: none
 
    The ``clang`` compiler, reports the error on line 7.
    clang++ -std=c++11 -Wall -Wextra -pedantic    foo.cpp   -o foo
@@ -154,8 +158,10 @@ The most common mistake new programmers make is to start changing code in
 response to a link error.
 This will only make matters worse, as the program syntax was OK to begin with.
 The simplest kind of link error is when the linker can't find a ``main`` function
-to start execution::
+to start execution:
   
+.. code-block:: none
+
    g++: warning: couldn’t understand kern.osversion ‘14.5.0
    Undefined symbols for architecture x86_64:
      "_main", referenced from:
@@ -482,7 +488,9 @@ with an error if it is false.
      assert (5 == 2+2);
    }
 
-When compiled an run, the output is::
+When compiled an run, the output is:
+
+.. code-block:: none
 
    Assertion failed: (5 == 2+2), function main, file foo.cpp, line 4.
 
@@ -541,7 +549,9 @@ Debug level 3 is the most detailed debug level.
 Debug levels 2 and 3 allow gdb to translate machine addresses back into 
 identifiers and line numbers in the original program for us.
 
-Let’s compile and run it and see what happens::
+Let’s compile and run it and see what happens:
+
+.. code-block:: none
 
   $ g++ bogus.cpp -std=c++11 -Wall -Wextra -pedantic -g3 -o bogus
   $ ./bogus
@@ -563,7 +573,9 @@ So we’ll have to see what we can get the computer to tell us.
 The first thing to do is fire up ``gdb``, the debugger. 
 This runs our program in stop-motion, 
 letting us step through it a piece at a time and watch what it is actually doing. 
-In the example below gdb is run from the command line::
+In the example below gdb is run from the command line:
+
+.. code-block:: none
 
     $ gdb bogus
     GNU gdb (GDB; openSUSE 13.1) 7.6.50.20130731-cvs

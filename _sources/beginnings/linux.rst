@@ -54,11 +54,15 @@ but it also provides a minimal GNU/Linux environment
 Git provides just about everything you need, except for a compiler.
 
 Another good choice for an SSH
-client if you run Microsoft Windows is PuTTY::
+client if you run Microsoft Windows is PuTTY:
 
-  http://www.chiark.greenend.org.uk/~sgtatham/putty/
+.. code-block:: none
 
-In ``git`` you would type the following in the *GIT Bash* to connect to the buffy server::
+   http://www.chiark.greenend.org.uk/~sgtatham/putty/
+
+In ``git`` you would type the following in the *GIT Bash* to connect to the buffy server:
+
+.. code-block:: none
 
    host@user: ssh fireNN@209.129.16.61
 
@@ -73,7 +77,9 @@ You enter commands by typing them on the keyboard and feedback is returned as te
 
 The command line typically presents you with a prompt. 
 As you type, it will be displayed after the prompt.
-Most of the time you will be issuing commands. Here is an example::
+Most of the time you will be issuing commands. Here is an example:
+
+.. code-block:: none
 
    host@user: ls -l /home/user
    total 12
@@ -100,9 +106,11 @@ What's happening?
 Absolute vs relative paths
 ..........................
 
-Look at the argument passed to the ``ls`` command in the previous example::
+Look at the argument passed to the ``ls`` command in the previous example:
 
-  /home/user
+.. code-block:: none
+
+   /home/user
 
 Specifically, this indicates the *absolute path* to the directory ``/home/user``.
 There are 2 types of paths we can use, **absolute** and **relative**. 
@@ -197,7 +205,7 @@ cd
 mkdir
    Make a new directory. At least one argument is required. For example:
 
-   .. code::
+   .. code-block:: bash
 
       host@user: cd
       host@user: ls -l 
@@ -217,7 +225,7 @@ man
    to function as a comprehensive reference for everything a programmer
    would need to know to be productive in Unix.  For example:
 
-   .. code:: man
+   .. code-block:: man
 
       host@user: man ascii
    

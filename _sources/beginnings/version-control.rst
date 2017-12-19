@@ -51,20 +51,26 @@ Typically you run git inside a directory that holds some project you are working
 on (for example, homework). 
 Before you can do anything with git, 
 you need to create the repository, 
-which is a hidden directory .git that records changes to your files::
+which is a hidden directory .git that records changes to your files:
+
+.. code-block:: none
 
     $ mkdir git-demo
     $ cd git-demo/
     $ git init
     Initialized empty Git repository in /var2/home/dparillo/git-demo/.git/
 
-Now let’s create a file and use ``git add`` to add it to the repository::
+Now let’s create a file and use ``git add`` to add it to the repository:
+
+.. code-block:: none
 
     $ echo 'int main(int argc, char** argv) { return 0; }' > tiny.cpp
     $ git add tiny.cpp
 
 The ``git status`` command will tell us that Git knows about tiny.c, 
-but hasn't committed the changes to the repository yet::
+but hasn't committed the changes to the repository yet:
+
+.. code-block:: none
 
     $ git status
     On branch master
@@ -84,7 +90,9 @@ we should configure git with our actual name and email address.
 This step is not required in a standalone repository like the one
 we are using here, but in a shared repository,
 it's considered best practice to use a real name and email
-in case someone needs to contact you::
+in case someone needs to contact you:
+
+.. code-block:: none
 
    $ git config --global user.email you@example.com
 
@@ -93,7 +101,9 @@ in case someone needs to contact you::
 
 Now we are ready to save our changes in the git database.
 For short messages, 
-the easiest way to do this is to include the message on the command line::
+the easiest way to do this is to include the message on the command line:
+
+.. code-block:: none
 
     $ git commit -m 'a very short c++ program'
     [master (root-commit) 3a6fd19] a very short c++ program
@@ -101,11 +111,15 @@ the easiest way to do this is to include the message on the command line::
      create mode 100644 tiny.cpp
 
 Without the ``-m`` argument, git runs the default editor (vim) to let you edit your commit message. 
-If you don’t like vim, you can change the default using ``git config``::
+If you don’t like vim, you can change the default using ``git config``:
+
+.. code-block:: none
 
     $ git config --global core.editor "emacs -nw"
 
-You can see what commits made so far using ``git log``::
+You can see what commits made so far using ``git log``:
+
+.. code-block:: none
 
     $ git log
     commit 3a6fd19e8ef4662744bd41a20cde9924aad918ed
@@ -128,7 +142,9 @@ Suppose I edit tiny.cpp using my favorite editor to turn it into the classic hel
      return 0;
    }
 
-I can see what files have changed using git status::
+I can see what files have changed using git status:
+
+.. code-block:: none
 
     $ git status
     On branch master
@@ -146,7 +162,9 @@ I can also do ``git add tiny.cpp`` to only include the changes to tiny.cpp
 (maybe I made changes to a different file that I want to commit separately), 
 but usually that’s too much work.
 
-If I want to know the details of the changes since my last commit, I can do git diff::
+If I want to know the details of the changes since my last commit, I can do git diff:
+
+.. code-block:: none
 
     $ git diff
     diff --git a/tiny.cpp b/tiny.cpp
@@ -163,13 +181,17 @@ If I want to know the details of the changes since my last commit, I can do git 
     +}
     
 
-Since I like these changes, I do a commit::
+Since I like these changes, I do a commit:
+
+.. code-block:: none
 
     $ git commit -a -m 'turn tiny into a basic hello world'
     [master 170eaf0] turn tiny into a basic hello world
      1 file changed, 6 insertions(+), 1 deletion(-)
 
-The repository now contains two commits::
+The repository now contains two commits:
+
+.. code-block:: none
 
     $ git log | more
     commit 170eaf0461a7f0f865328b73bee6d313c3dbad42
@@ -192,7 +214,9 @@ This is just like regular ``mv``,
 except that it tells Git what you are doing.
 If you for get to use ``git mv`` it's not normally a problem.
 Unless your changes are massive, git is usually good about
-figuring out when files have been moved.::
+figuring out when files have been moved.:
+
+.. code-block:: none
 
     $ git mv tiny.cpp hello.cpp
     buffy:~/git-demo 
@@ -205,7 +229,9 @@ figuring out when files have been moved.::
 
 
 Moving a file counts as a change.
-These changes don’t get written to the repository unless you do another git commit::
+These changes don’t get written to the repository unless you do another git commit:
+
+.. code-block:: none
 
     $ git commit -m 'give better name to hello program'
     [master 7a603f4] give better name to hello program
@@ -215,7 +241,9 @@ These changes don’t get written to the repository unless you do another git co
 Adding and removing files
 .........................
 
-To add a file, create it and call ``git add``::
+To add a file, create it and call ``git add``:
+
+.. code-block:: none
 
   $ cp hello.cpp goodbye.cpp
   $ git status
@@ -237,7 +265,9 @@ If that directory is the current directory, ``.`` is acceptable.
 When you specify a directory, then all of the files new or modified are
 added recursively from that point downward.
 
-To remove a file, use ``git rm``::
+To remove a file, use ``git rm``:
+
+.. code-block:: bash
 
     $ git rm goodbye.cpp 
     rm 'goodbye.cpp'
@@ -257,7 +287,9 @@ Recovering files from the repository
 ....................................
 
 Nothing is ever truly deleted from the repository once checked in.
-If you accidentally delete something, you can recover it from the repository.::
+If you accidentally delete something, you can recover it from the repository.:
+
+.. code-block:: bash
 
     $ ls -a
     ./  ../  .git/	hello.cpp
@@ -273,7 +305,9 @@ If you accidentally delete something, you can recover it from the repository.::
     ./  ../  .git/	hello.cpp
 
 Using ``git checkout --`` gets the most recent version out of the repository, 
-but using the commit id, we can operate on any version::
+but using the commit id, we can operate on any version:
+
+.. code-block:: bash
 
     $ git checkout 3a6f -- tiny.cpp
     $ ls -a
@@ -281,7 +315,9 @@ but using the commit id, we can operate on any version::
 
 Because tiny.cpp is not part of the current HEAD (most recent version), 
 it is considered a new file, 
-but the checkout did add tiny.cpp and stage it for commit::
+but the checkout did add tiny.cpp and stage it for commit:
+
+.. code-block:: bash
 
     $ git status
     On branch master

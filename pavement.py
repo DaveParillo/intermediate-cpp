@@ -33,6 +33,7 @@ options(
                        'use_services': 'false',
                        'python3': 'false',
                        'dburl': '',
+                       'default_ac_lang': 'cpp',
                        'basecourse': 'intermediate-cpp'
                         }
     )
