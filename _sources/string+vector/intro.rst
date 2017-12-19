@@ -6,24 +6,33 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-
+.. index::
+   pair: containers; string and vector
 
 Using string and vector
 =======================
 
-Working primitive types: char, int double.
+While many useful things can get done using the
+standard fundamental types.
+Often, however, we need to group a set of related types together.
+In order to group them together, 
+we need some sort of **container**.
 
-
-
-Working with batches of data.
-The simplest 'batch of data' is a 'batch of characters'
-
+There are two of these containers you should learn first:
+``std::string`` and ``std::vector``.
+They come with many useful functions that help solve many common problems.
+WHile there is some cost in using them,
+often the cost is worth then benefits in terms of
+reduced development time, code clarity, and other benefits.
 
 Both string and vector are *container classes*.
-That is, their primary job is to make it easy to work with the data stored inside the container.
+That is, 
+their primary job is to make it easy to work with the 
+data stored inside the container.
 
-A string is simpler than vector.
-A string can store data of a single type: ``char``.
+The simplest 'batch of data' is a 'batch of characters'
+Another word for 'batch of characters' is 'string'.
+A string is a container for data of a single type: ``char``.
 
 A vector can store data of **any** type: even types that you make up.
 We will see how that is possible in a bit, 
