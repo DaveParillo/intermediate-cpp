@@ -103,11 +103,11 @@ your output looks like this::
 
 In order to get valgrind to report line numbers related to errors 
 in calls to library functions, you need to add the command line argument
-``--track-origins=yes``, like this::
-
-    $ valgrind --track-origins=yes ./foo
+``--track-origins=yes``, like this:
 
 .. code-block:: none
+
+    $ valgrind --track-origins=yes ./foo
 
     ==1302== Conditional jump or move depends on uninitialised value(s)
     ==1302==    at 0x40DDB47: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/libstdc++.so.6.0.18)

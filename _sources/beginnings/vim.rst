@@ -126,7 +126,9 @@ When you first start vi, it is automatically in normal mode.
 
 There are many sources of vim tutorials and resources for learning about vim.
 The best place to start is at your terminal, if you have one.
-At the command prompt, type ``vimtutor``::
+At the command prompt, type ``vimtutor``:
+
+.. code-block:: text
 
     host@user: vimtutor
 
@@ -221,7 +223,9 @@ The *vimtutor* does a good job of explaining the basics of vim,
 but doesn't provide information specific to compiling and running programs.
 
 #. Before jumping into the editor, first let's plan to 
-   save our project in a directory of its own::
+   save our project in a directory of its own:
+
+   .. code-block:: text
 
       host@user: mkdir work
       host@user: cd work
@@ -231,7 +235,9 @@ but doesn't provide information specific to compiling and running programs.
    Just pick something that works for you, preferably related to the task at hand.
    Recommendation: avoid spaces in directory names.
 
-#. At the command prompt, open a new cpp source file::
+#. At the command prompt, open a new cpp source file:
+
+   .. code-block:: text
 
       host@user: vi hello.cpp
 
@@ -260,7 +266,9 @@ but doesn't provide information specific to compiling and running programs.
 
 #. If you type ``:make hello`` a second time 
    (when hello already exists and you haven't yet modified hello.cpp),
-   then you should see::
+   then you should see:
+
+   .. code-block:: text
 
       make: `hello' is up to date.
 
@@ -268,7 +276,9 @@ but doesn't provide information specific to compiling and running programs.
    also without leaving ``vi``,
    by typing ``:!./hello``.
    The ``:!`` command (bang command) executes shell commands from vim.
-   If you typed the above source code, you should see::
+   If you typed the above source code, you should see:
+
+   .. code-block:: text
 
       Hello, World!
 
@@ -293,20 +303,22 @@ Given the following, almost correct version of our *hello, world* program:
      cout << "Hello, World!\n";
    }
 
-Typing ``make foo`` results in::
+Typing ``make foo`` results in:
 
-   c++ -std=c++11 -Wall -Wextra -pedantic    foo.cpp   -o foo
-   foo.cpp:4:5: error: use of undeclared identifier 'cout'; did you mean 'std::cout'?
-       cout << "Hello, World!\n";
-       ^~~~
-       std::cout
-   /usr/include/c++/v1/iostream:50:33: note: 'std::cout' declared here
-   extern _LIBCPP_FUNC_VIS ostream cout;
-                                    ^
-   1 error generated.
-   make: *** [foo] Error 1
+   .. code-block:: text
 
-   Press ENTER or type command to continue
+      c++ -std=c++11 -Wall -Wextra -pedantic    foo.cpp   -o foo
+      foo.cpp:4:5: error: use of undeclared identifier 'cout'; did you mean 'std::cout'?
+          cout << "Hello, World!\n";
+          ^~~~
+          std::cout
+      /usr/include/c++/v1/iostream:50:33: note: 'std::cout' declared here
+      extern _LIBCPP_FUNC_VIS ostream cout;
+                                        ^
+      1 error generated.
+      make: *** [foo] Error 1
+
+      Press ENTER or type command to continue
 
 When you press ENTER, the ``make`` output is hidden, but stored in a special vim buffer: 
 the quickfix window.

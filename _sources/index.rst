@@ -36,6 +36,7 @@ Chapters
    :maxdepth: 1
 
    beginnings/toctree.rst
+   string+vector/toctree.rst
    function-intro/toctree.rst
    function-overloads/toctree.rst
    pointers/toctree.rst
