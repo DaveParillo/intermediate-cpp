@@ -10,7 +10,8 @@
 The string class
 ================
 
-In standard C, the only way to work with a batch of characters was by making an array:
+In standard C, 
+the typical way to work with a collection of characters is by making an array:
 
 .. code-block:: c
 
@@ -34,9 +35,11 @@ Like a C-string, a std::string is simply a sequence of characters:
    using std::string;       // just use 'string' for type std::string 
 
    int main() {
-     string greet = "Hello, World!";
-     string hello  ("Hello, World!");
-     string howdy  {"Hello, World!"};  // C++11 only
+     string x;                          // empty string
+     string greet =  "Hello, World!";   // create from C string
+     string hello   ("Hello, World!");  // as above, constructor style syntax
+     string howdy = {"Hello, World!"};  // C++11 only
+     string howdy   {"Hello, World!"};  // as above, = is optional
      return 0;
    }
 
