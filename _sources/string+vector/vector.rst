@@ -7,32 +7,164 @@
     License".
 
 
+.. index:: vector
 
-Fundamental I/O concepts
-========================
+The vector class
+================
+A ``std::vector`` is intended to behave like a dynamically sized array.
+It is a :term:`template`, so unlike a string, 
+which is a container for characters only,
+a vector can serve as a container for any type.
+More on templates later, for now,
+we just need to know enough to know how declare a vector.
 
-.. index:: 
-   single: stream model
+As with strings, in standard C, 
+the typical way to work with a collection of data is with an array:
 
-The stream model
-................
+.. code-block:: c
 
-.. index:: 
-   single: serialization
+   int a[] = {3, 1, 4, 1, 5, 9};
 
-Serialization
-=============
 
-Normal paragraph text.
+Some downsides to arrays are that they:
 
-Subsection
-..........
+- Do not know their own size
+- Need to have their size specified when declared
+- Decay into pointers easily
+- Provide no convenience functions 
 
-TBD
+The vector class solves these problems for us and a few others besides.
+Declaring a vector is quite similar to the string declarations
+from the previous section, with one minor addition:
+
+.. code-block:: cpp
+
+   #include <string>        // access std::string functions
+   #include <vector>        // access std::vector functions
+   
+   using std::vector;       // just use 'vector' for type std::vector 
+
+   int main() {
+     vector<int> x;                          // empty vector of int
+
+     vector<std::string> two_exes (2, "x");  // "x", "x"
+
+     vector<int> pi_digits = {3,1,4,1,5,9};  // C++11 only
+     return 0;
+   }
+
+When a vector is created, you must declare what type
+of data the vector can store.
+The ``<int>`` and ``<std::string>`` represent the *template parameters*
+passed to the vector.
+It is these template parameters that allow the vector class to serve
+as a container for (almost any type).
+There are some limits we will cover later,
+but for now, know that any normal type you already have learned about
+can be stored ina  vector.
+
+Unlike a fundamental type, the declaration ``vector<int> x;`` does **not** create 
+an uninitialized variable.
+It creates a fully formed vector with no elements stored in it yet.
+This is perfectly OK and normal.
+
+A vector comes with a rich assortment of convenience functions.
+Like an array ``operator[]`` can be used to access elements
+without bounds checking.
+Like a string, an ``at()`` function provides bounds checking
+and will throw an exception if an out of bounds index is used on the vector.
+
+.. code-block:: cpp
+
+   #include <vector>
+   #include <iostream>
+     
+   int main() {
+     std::vector<int> numbers {2, 4, 6, 8};
+     
+     std::cout << "Size: " << numbers.size() << '\n';
+     std::cout << "Second element: " << numbers[1] << '\n';
+     
+     numbers.at(0) = 5;
+     numbers.at(4) = numbers[3] + 2;  // out of range error. 
+                                      // index 4 is out of bounds
+     
+     std::cout << "All numbers:";
+     for (auto i : numbers) {
+       std::cout << ' ' << i;
+     }
+     std::cout << '\n';
+     return 0;
+   }
+
+.. admonition:: Something to consider
+
+   What is the difference between a std::string and 
+   std::vector<char>?
+
+   Why did the developers of the STL decide it was important to include both?
+
+Comparisons bewteen vectors are also automatically handled by the class.
+In the case of a vector, ``operator==``, 
+or equality comparison between two vectors ``a`` and ``b``,
+means the two vectors are equal if ``a.size() == b.size()``
+and each element in ``a`` compares equal with each element in ``b``
+in the same position in the vector.
+
+.. code-block:: cpp
+
+   #include <vector>
+   #include <iostream>
+     
+   int main() {
+     std::vector<int> x {2, 4, 6, 8};
+     std::vector<int> y {2, 6, 4, 8};
+     
+     if (x == y) {
+       std::cout << "x and y are equal\n";
+     } else {
+       std::cout << "x and y are equal\n";
+     }
+     return 0;
+   }
+
+Adding data to a vector
+-----------------------
+How do we solve the out of range exceptin from a few examples ago?
+How do we dynamically add data to a vector?
+A simple way is to use the ``push_back()`` function.
+
+.. code-block:: cpp
+
+   #include <vector>
+   #include <iostream>
+     
+   int main() {
+     std::vector<char> letters {'a', 'b', 'c'};
+     
+     letters.at(0) = 'z';
+     letters.push_back('d');  // add 'd' to the end of the vector
+     char ch = 'e';
+     letters.push_back(ch);  // add 'e' to the end
+     letters.pop_back();     // pop_back is the opposite:
+                             //  - removes the end element from the vector
+
+     std::cout << "All letters:";
+     for (auto c : letters) {
+       std::cout << ' ' << c;
+     }
+     std::cout << '\n';
+     letters.clear();         // clear all contents from vector
+     return 0;
+   }
+
+
 
 -----
 
 .. admonition:: More to Explore
 
-   TBD
+   - cppreference.com `std::vector <http://en.cppreference.com/w/cpp/container/vector>`_
+   - WikiBooks.org C++ Programming `STL Containers <https://en.wikibooks.org/wiki/C%2B%2B_Programming/STL#Containers>`_
+
 
