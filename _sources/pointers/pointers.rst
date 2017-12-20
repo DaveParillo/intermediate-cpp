@@ -523,104 +523,12 @@ Arrays of type ``char``
 .......................
 
 In the C language, 
-the abstract idea of a string is implemented with an array of characters. 
-
-For example,
-
-.. code-block:: c
-
-   char[] howdy = "Hello, world!";
-
-In memory, this is automatically transformed into 
-
-.. graphviz::
-
-   digraph char_array {
-     rankdir=LR
-     fontname = "Bitstream Vera Sans"
-     label="Character array in memory"
-     node [
-        fontname = "Bitstream Vera Sans"
-        fontsize = 11
-        shape = "record"
-        style=filled
-        fillcolor=lightblue
-     ]
-     arr [
-        label = "{H|e|l|l|o|,| |w|o|r|l|d|!|\\0}"
-     ]
-
-   }
-
-The last character in the array, ``\0`` is the *null character*,
-and is used to indicate the end of the string.
-
-.. note::
-
-    Remember that the array must be large enough to hold 
-    all of the characters AND the char '\0'.
-    Forgetting to account for null, 
-    or having a 'off by one error' is one of the most 
-    common mistakes when working with C strings.
-
-Whenever a char array is encountered it is normally referred to as
-a *C string*.
-The C++ standard uses this terminology and the standard library
-contains functions to convert a ``std::string`` into a C string:
-
-.. code-block:: cpp
-
-   std::string hello = "Hello, world!";
-   char[] howdy = hello.c_str();
-
-
-A C string may allocate more memory that the characters currently stored in it.
-An array declaration like this:
-
-.. code-block:: c
-
-   char hi[10] = "Hello";
-
-results in an in-memory representation like this:
-
-.. graphviz::
-
-   digraph c {
-     rankdir=LR
-     fontname = "Bitstream Vera Sans"
-     label="Character array with reserve memory"
-     node [
-        fontname = "Bitstream Vera Sans"
-        fontsize = 11
-        shape = "record"
-        style=filled
-        fillcolor=lightblue
-     ]
-     arr [
-        label = "{H|e|l|l|o|\\0| | | | }"
-     ]
-
-   }
-
-The array elements after the null are unused, but could be.
-So, an array of size 10 has space for 4 more characters, 9 total.
-
-A key limitation of C strings is that because thay are arrays,
-you must declare in advance how many characters the string will hold.
-The compiler will always statically determine the size, 
-even if an explicit size is not provided.
-
-.. code-block:: c
-
-   char[] hi     = "Hello";  // size 6
-   char   hi[10] = "Hello";  // size 10
-
-
-One last word about the null terminator.
+the abstract idea of a string is implemented with an array of characters.
+Arrays of ``char`` that are null terminated are commonly called *C strings*.
 
 In older C and C++ code using C strings,
 it's common to see code that uses the null terminator in 
-the string as a loop exit condition:
+the C string as a loop exit condition:
 
 .. activecode:: ac-c-copy-idiom
    :language: c

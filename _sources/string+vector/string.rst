@@ -10,23 +10,111 @@
 The string class
 ================
 
-In standard C, 
-the typical way to work with a collection of characters is by making an array:
+A short review of how string abstractions are handled in C,
+followed by a short std::string primer.
+
+String abstractions in C
+------------------------
+
+In the C language, 
+the abstract idea of a string is implemented with an array of characters.
 
 .. code-block:: c
 
    char a[] = {'h', 'e', 'l', 'l', 'o', '\0'};  // the char array must be null terminated
    char b[] = {'h', 'e', 'l', 'l', 'o', 0};     // null == 0
-   char* c = "hello";                           // a string is just a special case of a char array
+   char* c = "hello";                           // a quoted literal is just a special case of a char array
 
-Arrays of ``char`` that are null terminated are commonly called *C-strings*.
+Arrays of ``char`` that are null terminated are commonly called *C strings*.
+Given the C string:
 
-C-Strings have an advantage of being extremely lightweight and simple.
+.. code-block:: c
+
+   char[] howdy = "Hello, world!";
+
+In memory, ``howdy`` is automatically transformed into:
+
+.. graphviz::
+
+   digraph char_array {
+     rankdir=LR
+     fontname = "Bitstream Vera Sans"
+     label="Character array in memory"
+     node [
+        fontname = "Bitstream Vera Sans"
+        fontsize = 11
+        shape = "record"
+        style=filled
+        fillcolor=lightblue
+     ]
+     arr [
+        label = "{H|e|l|l|o|,| |w|o|r|l|d|!|\\0}"
+     ]
+
+   }
+
+The last character in the array, ``'\0'`` is the *null character*,
+and is used to indicate the end of the string.
+
+.. note::
+
+    Care must be taken to ensure that the array is large enough to hold 
+    all of the characters AND the char '\0'.
+    Forgetting to account for null, 
+    or having a 'off by one error' is one of the most 
+    common mistakes when working with C strings.
+
+A C string may allocate more memory that the characters currently stored in it.
+An array declaration like this:
+
+.. code-block:: c
+
+   char hi[10] = "Hello";
+
+results in an in-memory representation like this:
+
+.. graphviz::
+
+   digraph c {
+     rankdir=LR
+     fontname = "Bitstream Vera Sans"
+     label="Character array with reserve memory"
+     node [
+        fontname = "Bitstream Vera Sans"
+        fontsize = 11
+        shape = "record"
+        style=filled
+        fillcolor=lightblue
+     ]
+     arr [
+        label = "{H|e|l|l|o|\\0| | | | }"
+     ]
+
+   }
+
+The array elements after the null are unused, but could be.
+So, an array of size 10 has space for 4 more characters, 9 total.
+
+A key limitation of C strings is that because they are arrays,
+you must declare in advance how many characters the string will hold.
+The compiler will always statically determine the size, 
+even if an explicit size is not provided.
+
+.. code-block:: c
+
+   char[] hi     = "Hello";  // size 6
+   char   hi[10] = "Hello";  // size 10
+
+
+C strings have an advantage of being extremely lightweight and simple.
 Their main disadvantage is that they are too simple for many applications.
 Their simplicity makes them a pain to work with,
 which is why the Standard Template Library (STL) contains the ``string`` class.
 
-Like a C-string, a std::string is simply a sequence of characters:
+A string class primer
+---------------------
+
+Like a C string, a std::string is simply a sequence of characters:
 
 .. code-block:: cpp
 
@@ -43,7 +131,7 @@ Like a C-string, a std::string is simply a sequence of characters:
      return 0;
    }
 
-Unlike a C-string, a std::string is a full-fledged *object*.
+Unlike a C string, a std::string is a full-fledged *object*.
 It knows it's own size, and comes with many convenience functions.
 
 .. code-block:: cpp
@@ -97,7 +185,7 @@ otherwise the program will terminate.
    }
 
 
-Remember that a ``std::string`` is **not** a C-String.
+Remember that a ``std::string`` is **not** a C string.
 Declarations like this are a common source of confusion for new programmers:
 
 .. code-block:: cpp
@@ -136,7 +224,7 @@ works for C++ versions older than C++14.
 
 
 Getting information out of a string
------------------------------------
+...................................
 
 A ``string`` knows its own size and can provide other useful information.
 
@@ -184,8 +272,8 @@ by functions that expect a string and
 as an indicator of *not found* by functions that return an index (like find).
 
 
-Converting a std::string to C-string 
-------------------------------------
+Converting a std::string to C string 
+....................................
 
 You cannot use std::string in a function 
 that expects ``const char*`` - you must convert it
@@ -200,6 +288,7 @@ to a null terminated character array.
 
   // the c_str() function converts a string into a c string
   printf ("Hello again, %s\n", my_name.c_str());
+
 
 Final words
 -----------
