@@ -97,12 +97,13 @@ The C++11 ``using`` alias allows defining a name that refers to a previously def
    using func = double(*)(int x, int y);  // new syntax
 
 
-A simple, but 'real' example:
+Example: Caesar ciphers
+-----------------------
 
 A simple substitution cipher, called `ROT13 <https://en.wikipedia.org/wiki/ROT13>`_, short for 'rotate 13 places'
 can be used to obfuscate text by replacing each letter with the letter 13 letters after it in the alphabet.
 It is a special case of the `Caesar cipher <https://en.wikipedia.org/wiki/Caesar_cipher>`_, 
-used in ancient Rome to obscure communication between Julius Caesar and his generals..
+used in ancient Rome to obscure communication between Julius Caesar and his generals.
 A related variation called ROT47 extends the idea of ROT13 to include numbers and common symbols.
 
 Suppose we want to create a program that allows users to run either ROT13 or ROT47?
@@ -110,96 +111,71 @@ There are many ways to implement such a program.
 This example demonstrates using function pointers to dynamically 
 control at run time which function is called within a loop.
 
-.. code-block:: cpp
+Often when writing a program, it is useful to start at 'the top'.
+Suppose we want a simple command line program that takes
+4 basic inputs:
 
-   #include <iostream>
-   #include <string>
+`-h`
+   A command line switch to show help.
 
-   // a pointer to the function that will transform a character
-   using transform = char (*)(const char c);
+`-l`
+   A command line switch to transform only letters in the Latin alphabet.
+   This switch will enable the ROT13 function.
 
-   // forward declarations
-   static void usage(const char* name);
-   static void help (const char* name);
+`-f`
+   A command line switch to transform the full set of printable letters ASCII character set.
+   This switch will enable the ROT47 function.
 
-   // rotate a character 13 places in the alphabet
-   // This function assumes a basic 26 letter Latin alphabet
-   char rot13(const char c) {
-     if (!std::isalpha(c)) return c;   // if not a Latin letter, do nothing & return the current char
+standard input
+   This is where the program will get the text to work on.
 
-     // in order to rotate upper or lower case
-     // need to know where the alphabet 'starts'
-     const char start = std::islower(c) ? 'a' : 'A';
-     return (c - start + 13) % 26 + start;
-   }
+Once we have decided on this as our basic framework, 
+we can create a file like ``help.h``:
 
-   // rotate a character 47 places in the set of printable ASCII characters
-   char rot47(const char c) {
-     // first printable character = 33 = '!'
-     static constexpr char start = '!';
-     if (c < start) return c;
-     return (c - start + 47) % 94 + start;
-   }
+.. literalinclude:: caesar/help.h
+   :language: cpp
+   
 
-   // Use a 'character handler' (rot13 or rot47) to
-   // transform a message 1 character at a time.
-   void render_text(std::string message, transform handler) {
-     for (const auto& c: message) {  // extract each char from the string
-       std::cout << handler(c);      // print transformed character
-     }
-     std::cout << std::endl;         // print newline and flush stream
-   }
+The 'fundamental unit' of any text input is a ``char``,
+so it makes sense to write our transforming functions to work with a single
+character at a time.
 
-   int main(int argc, char** argv) {
-     // Define a default a 'character handler'
-     // the variable 'handler' provides an option to swap in different encryption function
-     transform handler = rot13;
+We will write three functions for this program, one for ROT13 and one for ROT47.
+The third function takes a ``std::string``  and a function pointer as input,
+and transforms the string using the provided function,
+one character at a time.
 
-     for (int i=1; i < argc; ++i) {
-       if (!std::strcmp(argv[i], "-h")) {            // call help and exit
-         help(*argv);
-       } else if (!std::strcmp(argv[i], "-l")) {     // use rot13 transform
-         handler = rot13;
-       } else if (!std::strcmp(argv[i], "-f")) {     // use rot47 transform
-         handler = rot47;
-       } else {
-         usage(*argv);
-         exit(-1);
-       }
-     }
+First we declare our interfaces:
 
-     std::string message;
-     while (getline(std::cin,message)) {
-            render_text(message, handler);
-     }
-   }
+.. literalinclude:: caesar/caesar.h
+   :language: cpp
 
-   static void usage(const char* name) {
-     std::cerr << "Encrypt or decrypt a single line of text "
-               << "read from standard input\n"
-               << "Usage: " << name << " [-h|l|f]\n";
-   }
+The using declaration exists only to simplify our use of our function pointer.
+Any place you see the word ``transform``,
+you can literally replace it with 
+``char (*)(const unsigned char c)``
+and not change how the program behaves.
 
-   static void help (const char* name) {
-     usage(name);
-     std::cerr << "Options:\n"
-               << "  -h   Show this text and exit.\n"
-               << "  -l   En(de)crypt using the Latin characters ([A-Z,a-z]\n"
-               << "         (default)\n"
-               << "  -f   En(de)crypt using the Full set of "
-               << "printable ASCII characters\n"
-               << "\nOnly 1 of any option can be meaningfully specified.\n"
-               << "\nThe last of either '-l' or 'f' provided is used.\n"
-               << "\nRunning with no input from standard in enters\n"
-               << "'interactive mode':\n"
-               << " - Text can be entered one message per line.\n"
-               << " - The program runs until 'CTRL+C' is entered or "
-               << "   EOF is reached.\n\n"
-               << "Running on plain text creates cipher text\n"
-               << "Running on cipher text creates plain text\n\n";
-     exit(0);
-   }
+We implemented our functions to take type ``unsigned char`` because
+they depend on the library functions ``std::isdigit`` and ``std::isalpha``.
+These function have undefined behavior if the character provided
+is not an ``unsigned char``.
+   
+With these definitions in place, we can implement them:
 
+.. literalinclude:: caesar/caesar.cpp
+   :language: cpp
+   
+
+And now we have a decent set of functions we can call from a small main program:
+
+.. literalinclude:: caesar/main.cpp
+   :language: cpp
+   
+Note we did not use the function call operator, ``operator()`` when 
+assigning values to handler.  
+The name ``rot13`` points to the address where the function ``rot13`` 
+is stored.
 
 -----
 
