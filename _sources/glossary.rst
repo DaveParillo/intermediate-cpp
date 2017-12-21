@@ -1429,6 +1429,13 @@ Glossary
    tail
       The end of a :term:`list`.
 
+   template
+      A template is a specific way in C++ to write 
+      :term:`generic <generic programming>` functions and classes.
+
+      A template by itself is not a class, type, function, or any other entity.
+      It defines a **recipie** for generating a class or function.
+
    test-driven development
       Test-driven development (TDD) is a software development process 
       that relies on the repetition of a very short development cycle: 

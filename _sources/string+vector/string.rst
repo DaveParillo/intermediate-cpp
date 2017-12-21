@@ -21,35 +21,44 @@ the abstract idea of a string is implemented with an array of characters.
 
 .. code-block:: c
 
-   char a[] = {'h', 'e', 'l', 'l', 'o', '\0'};  // the char array must be null terminated
-   char b[] = {'h', 'e', 'l', 'l', 'o', 0};     // null == 0
-   char* c = "hello";                           // a quoted literal is just a special case of a char array
+   // the char array must be null terminated
+   char a[] = {'h', 'e', 'l', 'l', 'o', '\0'};  // null == '\0'
+
+   char b[] = {'h', 'e', 'l', 'l', 'o', 0};     // null == 0 also
+
+   // a quoted literal is just a special case of a char array
+   char* c = "hello";
 
 Arrays of ``char`` that are null terminated are commonly called *C strings*.
 Given the C string:
 
 .. code-block:: c
 
-   char[] howdy = "Hello, world!";
+   char[] howdy = "hi there!";
 
 In memory, ``howdy`` is automatically transformed into:
 
 .. graphviz::
 
    digraph char_array {
-     rankdir=LR
      fontname = "Bitstream Vera Sans"
      label="Character array in memory"
      node [
-        fontname = "Bitstream Vera Sans"
-        fontsize = 11
+        fontname = "Courier"
+        fontsize = 14
         shape = "record"
         style=filled
         fillcolor=lightblue
      ]
      arr [
-        label = "{H|e|l|l|o|,| |w|o|r|l|d|!|\\0}"
+        label = "{'h'|'i'|' '|'t'|'h'|'e'|'r'|'e'|'!'|'\\0'}";
      ]
+     idx [ 
+        color = white;
+        fillcolor=white;
+        label = "{howdy[0]|howdy[1]|howdy[2]|howdy[3]|howdy[4]|howdy[5]|howdy[6]|howdy[7]|howdy[8]|howdy[9]}";
+     ]
+
 
    }
 
@@ -59,7 +68,7 @@ and is used to indicate the end of the string.
 .. note::
 
     Care must be taken to ensure that the array is large enough to hold 
-    all of the characters AND the char '\0'.
+    all of the characters AND the null terminator.
     Forgetting to account for null, 
     or having a 'off by one error' is one of the most 
     common mistakes when working with C strings.
@@ -80,8 +89,8 @@ results in an in-memory representation like this:
      fontname = "Bitstream Vera Sans"
      label="Character array with reserve memory"
      node [
-        fontname = "Bitstream Vera Sans"
-        fontsize = 11
+        fontname = "Courier"
+        fontsize = 14
         shape = "record"
         style=filled
         fillcolor=lightblue
@@ -255,7 +264,7 @@ within a string.
      auto us = "team"s;
      std::size_t pos = us.find('i');       // auto pos is less typing
      if(pos == std::string::npos) {        // true
-       std::cout << "no 'i' in 'team'\n";
+       std::cout << "There is no 'i' in 'team'\n";
      }
      auto hi = "Hello world"s;
      pos = hi.find("wor");                 // pos == 6
