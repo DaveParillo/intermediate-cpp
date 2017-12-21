@@ -12,6 +12,7 @@ sys.path.append(os.getcwd())
 home_dir = os.getcwd()
 #master_url = 'http://127.0.0.1:8000'
 master_url = 'https://daveparillo.github.io/intermediate-cpp/'
+#master_url = 'http://209.129.16.61/~dparillo/book/intermediate-cpp/'
 master_app = 'intermediate-cpp'
 serving_dir = "./build/intermediate-cpp"
 dest = "../../static"
