@@ -181,5 +181,10 @@ is stored.
 
 .. admonition:: More to Explore
 
-   TBD
+   - `Caesar cipher <https://en.wikipedia.org/wiki/Caesar_cipher>`_ from Wikipedia.
+   - From: cppreference.com: 
+
+     - `isalpha <http://en.cppreference.com/w/cpp/string/byte/isalpha>`_ and 
+       `islower <http://en.cppreference.com/w/cpp/string/byte/islower>`_. 
+
 
