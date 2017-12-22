@@ -1,7 +1,7 @@
 #include "caesar.h"
 
 #include <iostream>
-#include <cctype>      // isalpha
+#include <cctype>      // isalpha, islower
 #include <string>
 
 // TODO: add locale and extend non english alphabets

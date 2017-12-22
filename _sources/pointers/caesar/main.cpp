@@ -2,6 +2,7 @@
 #include "caesar.h"
 #include "help.h"
 
+#include <cstring>    // strcmp
 #include <iostream>
 #include <string>
 
