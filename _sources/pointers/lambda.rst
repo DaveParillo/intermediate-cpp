@@ -286,78 +286,8 @@ other than what would normally be returned by the operations.
              } (3.14159, 2.71828) << ".\n";
    }
    
-
-
-
-
-.. index:: std::function
-
-std::function
--------------
-The ``std::function`` wrapper provided a standard way to pass around lambda expressions,
-function pointers, and function objects.
-Introduced in C++11, its facilities are accessed from ``#include <functional>``.
-The primary goal of std::function is clarity:
-to simplify and standardize the way function pointers are moved within a program.
-
-Starting with a simple function:
-
-.. code-block:: cpp
-
-   void print_num(int i) {
-     std::cout << i << '\n';
-   }
-
-Before ``std::function``, we would declare a function pointer like this:
-
-.. code-block:: cpp
-
-   void (*print_func)(int val);
-
-This defines a pointer to a function that returns ``void`` and take one ``int`` parameter.
-The syntax is messy:
-
-- The pointer operator requires surrounding parentheses to resolve order of operations problems
-- The return type is 'far away' from the parameters
-- The syntax is generally inconsistent with modern C++.
-
-Compare the previous declaration with:
-
-.. code-block:: cpp
-
-   std::function<void (int)>  print_func;
-
-This syntax is more consistent with other declarations:
-
-- The variable type is listed first: it's a function pointer
-- The function parameters and return type are all together as template parameters
-  and the parameters look like a traditional function declaration.
-- The name of the variable follows the type
-
-We can store any function like entity using the same consistent syntax:
-
-.. code-block:: cpp
-
-   #include <functional>
-   #include <iostream>
-
-   void print_num(int i) {
-     std::cout << i << '\n';
-   }
-
-   int main() {
-     // store a free function
-     std::function<void(int)> print_func = print_num;
-     print_func(-9);
-
-     // store a lambda
-     std::function<void()> print_42 = []() { print_num(42); };
-     print_42();
-
-     return 0;
-   }
-
-
+Note in the previous example we defined a lambda taking two parameters and then
+immediately called it using ``operator()``.
 
 -----
 
@@ -365,9 +295,7 @@ We can store any function like entity using the same consistent syntax:
 
    - From: cppreference.com: 
 
-     - C++ `lambda expressions <http://en.cppreference.com/w/cpp/language/lambda>`_ and 
-       `std::function <http://en.cppreference.com/w/cpp/utility/functional/function>`_. 
-
+     - C++ `lambda expressions <http://en.cppreference.com/w/cpp/language/lambda>`_. 
      - `std::count and std::count_if <http://en.cppreference.com/w/cpp/algorithm/count>`_.
 
    - `Descriptions of lambda expressions` <https://msdn.microsoft.com/en-us/library/dd293608.aspx>`_ from Microsoft's MSDN

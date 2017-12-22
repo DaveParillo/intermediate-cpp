@@ -9,4 +9,5 @@ Pointers
    free-store.rst
    function-pointers.rst
    lambda.rst
+   std_function.rst
    valgrind.rst
