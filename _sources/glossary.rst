@@ -1060,6 +1060,10 @@ Glossary
       then recursively visits the right child, and then visits the
       :term:`root`.
 
+   predicate
+   predicate function
+      A function that returns a boolean value.
+
    preorder traversal
       In a :term:`binary tree`, a :term:`traversal` that first
       :term:`visits <visit>` the :term:`root`, then
@@ -1494,6 +1498,9 @@ Glossary
 
    type
       A collection of values.
+
+   unary function
+      A function that accepts one parameter.
 
    unit test
       A software test method in which a single *unit* of source code, 
