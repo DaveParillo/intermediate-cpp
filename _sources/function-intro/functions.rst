@@ -264,27 +264,52 @@ Two functions would be far simpler:
    // return the maximum of x and y
    // if x == y, return y
    int maximum (int x, int y) {
-     if (x > y) {
-       return x;
-     } else {
-       return y;
-     }
+     return (x < y) ? y : x;
    }
 
    // return the minimum of x and y
    // if x == y, return y
    int minimum (int x, int y) {
-     if (x < y) {
-       return x;
-     } else {
-       return y;
-     }
+     return (y < x) ? y : x;
    }
 
+   int computeMinOrMax(int x, int y, bool getMax) {
+       if(getMax) {
+         return maximum(x, y);
+       }
+       return minimum(x, y);
+   }
+
+   // or more compactly:
+   int computeMinOrMax(int x, int y, bool getMax) {
+     return getMax ? maximum(x,y) : minimum(x,y);
+   }
+
+
 Is this *slightly* more typing? Yes.
-At the end of the day, you will be far happier testing and debugging the two simpler functions
+At the end of the day, you will be far happier testing and debugging the three simpler functions
 than the first version.
 Your future co-workers will thank you.
+
+.. note::
+
+   Also be aware the STL provides functions
+   `std::min <http://en.cppreference.com/w/cpp/algorithm/min>`_ and
+   `std::max <http://en.cppreference.com/w/cpp/algorithm/max>`_,
+   which eliminate the need for our ``minimum`` and ``maximum` entirely
+   and have the advantage of working on any comparable type.
+
+   This would transform the previous example to:
+
+   .. code-block:: cpp
+
+      #include <algorithm>
+
+      int computeMinOrMax(int x, int y, bool getMax) {
+        return getMax ? std::max(x,y) : std::min(x,y);
+      }
+
+
 
 .. index:: call stack
    pair: pointer; stack pointer
