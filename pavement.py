@@ -35,10 +35,13 @@ options(
                        'python3': 'false',
                        'dburl': '',
                        'default_ac_lang': 'cpp',
-                       'basecourse': 'intermediate-cpp'
-                        }
+                       'basecourse': 'intermediate-cpp',
+                       'jobe_server': 'http://jobe2.cosc.canterbury.ac.nz',
+                       'proxy_uri_runs': '/jobe/index.php/restapi/runs/',
+                       'proxy_uri_files': '/jobe/index.php/restapi/files/'
+                       }
+        )
     )
-)
 
 version = pkg_resources.require("runestone")[0].version
 options.build.template_args['runestone_version'] = version
