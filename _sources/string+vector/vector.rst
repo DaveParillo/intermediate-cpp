@@ -61,12 +61,57 @@ It is these template parameters that allow the vector class to serve
 as a container for (almost any type).
 There are some limits we will cover later,
 but for now, know that any normal type you already have learned about
-can be stored ina  vector.
+can be stored in a vector.
 
 Unlike a fundamental type, the declaration ``vector<int> x;`` does **not** create 
 an uninitialized variable.
 It creates a fully formed vector with no elements stored in it yet.
 This is perfectly OK and normal.
+
+Given a vector declared as:
+
+.. code-block:: cpp
+
+   std::vector<int> v(4);
+
+.. graphviz:: 
+
+   digraph {
+   node [
+        fontname = "Courier"
+        fontsize = 14
+        shape = "record"
+        style=filled
+        fillcolor=lightblue
+     ]
+     names [ 
+        color = white;
+        fillcolor=white;
+        label = "{size: | <f0> data: }";
+     ]
+     struct [
+        label = "{4 | <f0> }";
+     ]
+
+     node [shape=record, color=black, fontcolor=black, fillcolor=white, width=3.75, fixedsize=true];
+     labels [label="<f0> | <f4> size | <f5> spare\ncapacity ", color=white];
+     values [label="<f0> v[0] | <f1> v[1] | <f2> v[2] | <f3> v[3] | | <f5> ", 
+             color=black, fillcolor=lightblue, style=filled];
+
+     edge [color=black];
+     struct:f0:s -> values:f0;
+     labels:f4 -> values:f3;
+     labels:f5 -> values:f5;
+     {rank=same; struct,labels};
+   }
+
+Although the vector object is initialized, its contents are not.
+Many compilers will initialize the contents to zero, but don't rely on this behavior.
+Explicitly initialize with a default value, if that is what you want:
+
+.. code-block:: cpp
+
+   std::vector<int> v(4, -1);
 
 A vector comes with a rich assortment of convenience functions.
 Like an array ``operator[]`` can be used to access elements
@@ -104,7 +149,7 @@ and will throw an exception if an out of bounds index is used on the vector.
 
    Why did the developers of the STL decide it was important to include both?
 
-Comparisons bewteen vectors are also automatically handled by the class.
+Comparisons between vectors are also automatically handled by the class.
 In the case of a vector, ``operator==``, 
 or equality comparison between two vectors ``a`` and ``b``,
 means the two vectors are equal if ``a.size() == b.size()``

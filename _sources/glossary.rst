@@ -942,6 +942,12 @@ Glossary
    natural language
       Any one of the languages that people speak that evolved naturally.
 
+   natural order
+      An ordering of a sequence of objects that seems 'natural' to most people.
+      The 'natural order' of whole numbers is the sequence used to count things:
+      1,2,3,4,5,6...
+      The natural order for words is sorted alphabetically.
+
    node
       The objects that make up a linked structure such as a linked
       list or binary tree.

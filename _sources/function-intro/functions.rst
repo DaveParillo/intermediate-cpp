@@ -296,8 +296,8 @@ Your future co-workers will thank you.
    Also be aware the STL provides functions
    `std::min <http://en.cppreference.com/w/cpp/algorithm/min>`_ and
    `std::max <http://en.cppreference.com/w/cpp/algorithm/max>`_,
-   which eliminate the need for our ``minimum`` and ``maximum` entirely
-   and have the advantage of working on any comparable type.
+   which eliminate the need for our ``minimum`` and ``maximum`` entirely
+   and have the advantage of working on any :term:`comparable` type.
 
    This would transform the previous example to:
 

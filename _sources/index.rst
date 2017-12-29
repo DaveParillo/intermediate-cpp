@@ -40,15 +40,14 @@ Chapters
    function-intro/toctree.rst
    function-overloads/toctree.rst
    pointers/toctree.rst
-   linear-containers/toctree.rst
+   function-pointers/toctree.rst
+   containers/toctree.rst
    iterators/toctree.rst
-   associative-containers/toctree.rst
    algorithms/toctree.rst
    class-I-intro/toctree.rst
    class-II-functions/toctree.rst
    class-III-design/toctree.rst
    class-IV-memory/toctree.rst
-   class-V-templates/toctree.rst
    serialization/toctree.rst
 
 

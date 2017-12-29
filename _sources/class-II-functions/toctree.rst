@@ -8,4 +8,5 @@ Class constructors and overloads
    constructors.rst
    enum.rst
    overloads.rst
+   templates.rst
 
