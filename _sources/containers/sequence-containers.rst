@@ -60,8 +60,8 @@ A ``vector`` *is* ordered, however: by its index position.
 .. index:: 
    pair: sequence containers; vector
 
-The ``std::vector`` container
------------------------------
+``std::vector``
+---------------
 The ``std::vector`` is a sequence container that simulates a dynamically sized array.
 If you have taken a class in linear algebra, vector has nothing to do with mathematics,
 but is just about a sequential data structure.
@@ -140,19 +140,27 @@ This creates a vector of type ``int``, with size 4 and the first 3 values initia
    }
 
 
+
+
+
+
+
 .. index:: 
    pair: sequence containers; array
 
-The ``std::array`` container
-----------------------------
+``std::array``
+--------------
 The ``std::array`` is a container that encapsulates fixed size arrays.
+
+
+
 
 
 .. index:: 
    pair: sequence containers; list
 
-The ``std::list`` container
----------------------------
+``std::list``
+-------------
 The ``std::list`` is a sequence container that supports constant time insertion 
 and removal of elements from anywhere in the container. 
 Fast random access is not supported. 
@@ -162,6 +170,41 @@ Compared to ``std::forward_list`` this container provides bidirectional iteratio
 Addition, removal, and moving the elements within the list or across several lists 
 does not invalidate the iterators or references. 
 An iterator is invalidated only when the corresponding element is deleted.
+
+
+.. graphviz::
+
+   // doubly linked list
+   digraph g {
+        node [fontname = "Bitstream Vera Sans",
+             style=filled, fillcolor=lightblue,
+             shape=box, width=0.5, height=.25, label=""];
+
+
+       a,b,d,e;
+       f [style=dotted];
+       node [style=none];
+       c [label=". . .", color=white];
+
+       begin [shape=none, label="begin()"];
+       end [shape=none, label="end()"];
+
+       begin -> a;
+       a -> b -> c -> d -> e -> f [ arrowhead=vee, arrowsize=0.5];
+       f-> e -> d -> c -> b -> a [ arrowhead=vee, arrowsize=0.5];
+       f -> end [dir=back];
+
+       node [style=invis] x,y;
+       node [shape=point] p1, p2;
+       edge [style=invis];
+       x -> a;
+       y -> f;
+       begin -> p1;
+       end -> p2;
+       p1 -> a ->f -> p2;
+       {rank=sink; p1 a b c d e f p2}
+   }
+
 
 The ``std::forward_list`` container
 ...................................
@@ -188,6 +231,49 @@ a specific set of functions is provided.
 The stack pushes and pops the element from the back of the underlying container, 
 known as the top of the stack.
 
+.. graphviz::
+
+   digraph g {
+        node [fontname = "Bitstream Vera Sans",
+              style=filled, fillcolor=lightblue,
+              shape=box, width=0.5, height=.25, label=""];
+
+        a,b,d,e;
+        c [label=". . .", style=none, color=white];
+
+        top [shape=none, style=none, label="top()"];
+
+        a -> b -> c -> d -> e [ arrowhead=vee];
+        top -> a [style=invis, constraint = false];
+
+   }
+
+.. graphviz::
+
+   // shows push and pop
+   digraph g {
+       node [fontname = "Bitstream Vera Sans",
+             style=filled, fillcolor=lightblue,
+             shape=box, width=0.5, height=.25, label=""];
+
+
+       a,b,d,e;
+       node [style=none];
+       c [label=". . .", color=white];
+
+       top [shape=none, label="top()"];
+       push [shape=none, label="push()"];
+       pop [shape=none, label="pop()"];
+
+       a -> b -> c -> d -> e [dir=none, arrowhead=vee];
+       push -> a:w [style=dotted];
+       pop -> a:e [dir=back,style=dotted];
+
+       pop:e -> top:w [style=invis]   
+       top -> a [style=invis, constraint=false];
+   }
+
+
 
 
 .. index:: 
@@ -202,6 +288,57 @@ The class template acts as a wrapper to the underlying container - only
 a specific set of functions is provided. 
 The queue pushes elements on the back of the underlying container, 
 and pops them from the front.
+
+.. graphviz::
+
+   digraph g {
+       node [fontname = "Bitstream Vera Sans",
+             style=filled, fillcolor=lightblue,
+             shape=box, width=0.5, height=.25, label=""];
+
+       a,b,d,e;
+       node [style=none];
+       c [label=". . .", color=white];
+
+       back [shape=none, label="back()"];
+       front [shape=none, label="front()"];
+
+       a:e -> b -> c -> d -> e [ arrowhead=vee];
+       back -> a:w [dir=back];
+       e:e -> front;
+
+       node [style=invis] x,y;
+       x -> a [style=invis];
+       y -> e [style=invis];
+       {rank=sink; a b c d e}
+   }
+
+
+
+.. graphviz::
+
+   // shows push and pop, enqueue / dequeue
+   digraph g {
+       node [fontname = "Bitstream Vera Sans",
+             style=filled, fillcolor=lightblue,
+             shape=box, width=0.5, height=.25, label=""];
+
+
+       o,z [style=dotted];
+       a,b,d,e;
+       node [style=none];
+       c [label=". . .", color=white];
+
+       back [shape=none, label="push()"];
+       front [shape=none, label="pop()"];
+
+       o:e -> a -> b -> c -> d -> e [ arrowhead=vee];
+       e:e -> z [ arrowhead=none];
+       back -> o [style=dotted];
+       front -> z [style=dotted, dir=back];
+
+       {rank=sink; o a b c d e z}
+   }
 
 .. index:: 
    pair: sequence containers; deque
