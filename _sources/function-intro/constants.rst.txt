@@ -11,8 +11,8 @@
 Keyword: ``const``
 ==================
 
-Use ``const`` to instruct the compiler to hold something constant.
-The const keyword can modify the behavior of anything, depending on where it is used:
+Use :cref:`const` to instruct the compiler to hold something constant.
+The ``const`` keyword can modify the behavior of anything, depending on where it is used:
 
 - fundamental types
 - structs or classes
@@ -84,7 +84,7 @@ Many programmers use ``#define`` instead
 Prefer ``const`` to ``#define`` 
 -------------------------------
 
-We also prefer ``inline`` and ``enum`` over ``#define``.
+We also prefer :cref:`inline specifier` and :cref:`enum declaration` over :cref:`#define`.
 
 There are good reasons to avoid ``#define`` where alternatives exist.
 
