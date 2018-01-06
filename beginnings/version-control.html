@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>1.8. Version control &#8212; Intermediate Modern C++ Overview</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/runestonebase.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/clickable.js"></script>
+    <script type="text/javascript" src="../_static/timedclickable.js"></script>
+    <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
+    <script type="text/javascript" src="../_static/fitb.js"></script>
+    <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/reveal.js"></script>
+    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/parsons.js"></script>
+    <script type="text/javascript" src="../_static/timedparsons.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/mchoice.js"></script>
+    <script type="text/javascript" src="../_static/timedmc.js"></script>
+    <script type="text/javascript" src="../_static/timed.js"></script>
+    <script type="text/javascript" src="../_static/shortanswer.js"></script>
+    <script type="text/javascript" src="../_static/timed_shortanswer.js"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/codelens.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="../_static/clike.js"></script>
+    <script type="text/javascript" src="../_static/timed_activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="../_static/datafile.js"></script>
+    <script type="text/javascript" src="../_static/showEval.js"></script>
+    <script type="text/javascript" src="../_static/dragndrop.js"></script>
+    <script type="text/javascript" src="../_static/timeddnd.js"></script>
+    <script type="text/javascript" src="../_static/poll.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.9. Debugging" href="debugging.html" />
+    <link rel="prev" title="1.7. Command-line compiling" href="make.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="shortcut icon" href="/intermediate-cpp/static/favicon.ico" type="image/ico" />
+
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'https://daveparillo.github.io/intermediate-cpp/' ? 'https://daveparillo.github.io/intermediate-cpp/' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/intermediate-cpp';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'intermediate-cpp';
+  eBookConfig.acDefaultLanguage = 'cpp' ? 'cpp' : 'cpp'
+  eBookConfig.logLevel = 0;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "unknown";
+  eBookConfig.isLoggedIn = false;
+  eBookConfig.useRunestoneServices = false;
+  eBookConfig.python3 = false;
+  eBookConfig.basecourse = 'intermediate-cpp';
+  eBookConfig.jobehost = 'https://cryptic-headland-94862.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.runestone_version = '3.0.7';
+</script>
+
+
+  </head>
+  <body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        <a class="brand-logo" style='padding:12px 0;text-align:center' href="http://209.129.16.61/~dparillo/">
+           <i class="glyphicon glyphicon-home" style='opacity:0.9;font-size:16px;color:#848484'></i>
+        </a>
+        <!--
+        <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;' href="/intermediate-cpp/default/user/login">&nbsp; </a>
+        <a class="navbar-brand" href="/~dparillo" style="color:#5080a0">CISC-187</a>&nbsp;
+        -->
+        <a class="navbar-brand" href="../index.html">Intermediate C++</a>
+      </div>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html'>Table of Contents</a></li>
+            
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li id="scratch_ac_link"><a href="javascript:ACFactory.toggleScratchActivecode()">Scratch ActiveCode</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        
+        <li class="divider-vertical"></li>
+
+        <!-- help menu dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//help/navhelp.html'>Navigation Help</a></li>
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//glossary.html'>Glossary</a></li>
+            <li class="divider"></li>
+            <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
+          </ul>
+        </li>
+        <!-- end help menu dropdown -->
+
+        <li class="divider-vertical"></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        <!--
+          <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">1.8. Version control</a><ul>
+<li><a class="reference internal" href="#setting-up-git">1.8.1. Setting up git</a><ul>
+<li><a class="reference internal" href="#editing-files">1.8.1.1. Editing files</a></li>
+<li><a class="reference internal" href="#renaming-files">1.8.1.2. Renaming files</a></li>
+<li><a class="reference internal" href="#adding-and-removing-files">1.8.1.3. Adding and removing files</a></li>
+<li><a class="reference internal" href="#recovering-files-from-the-repository">1.8.1.4. Recovering files from the repository</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        
+          
+  <li id="relations-prev" title="Previous Chapter - 1.7. Command-line compiling" data-toggle="tooltip">
+    <a href="make.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - 1.9. Debugging' data-toggle="tooltip" >
+    <a href="debugging.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content">
+  
+  <div class="section" id="version-control">
+<span id="index-0"></span><h1>1.8. Version control<a class="headerlink" href="#version-control" title="Permalink to this headline">¶</a></h1>
+<p>When you are programming, you will make mistakes.
+If you program long enough,
+these will eventually include shenanigans like accidentally deleting all of your source files.
+You are also likely to spend some of your time trying out things that don’t work,
+at the end of which you’d like to go back to the last version of your program that did work.
+All these problems can be solved by using a <strong>version control system</strong>.</p>
+<p>If you have never used version control software before, I recommend <code class="docutils literal"><span class="pre">git</span></code>.
+If you have used it before, feel free to continue using what you are familiar with.
+A brief summary of git is given below.
+For more details, see the tutorials available at <a class="reference external" href="http://git-scm.com">http://git-scm.com</a>.</p>
+<p>Whatever version control software you use, they all follow the same basic pattern:</p>
+<ol class="arabic">
+<li><p class="first">Initialize repository</p>
+<p>You only need to do this step once.</p>
+</li>
+<li><p class="first">Work with repository</p>
+</li>
+</ol>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Create new files</li>
+<li>Add files to repository</li>
+<li>Edit existing files</li>
+<li>Commit changes</li>
+</ol>
+<p>Repeat the above as often as needed.</p>
+</div></blockquote>
+<div class="section" id="setting-up-git">
+<h2>1.8.1. Setting up git<a class="headerlink" href="#setting-up-git" title="Permalink to this headline">¶</a></h2>
+<p>Typically you run git inside a directory that holds some project you are working
+on (for example, homework).
+Before you can do anything with git,
+you need to create the repository,
+which is a hidden directory .git that records changes to your files:</p>
+<div class="highlight-none"><div class="highlight"><pre>$ mkdir git-demo
+$ cd git-demo/
+$ git init
+Initialized empty Git repository in /var2/home/dparillo/git-demo/.git/
+</pre></div>
+</div>
+<p>Now let’s create a file and use <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code> to add it to the repository:</p>
+<div class="highlight-none"><div class="highlight"><pre>$ echo &#39;int main(int argc, char** argv) { return 0; }&#39; &gt; tiny.cpp
+$ git add tiny.cpp
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">git</span> <span class="pre">status</span></code> command will tell us that Git knows about tiny.c,
+but hasn’t committed the changes to the repository yet:</p>
+<div class="highlight-none"><div class="highlight"><pre>$ git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)
+
+  new file:   tiny.cpp
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span></code> command will save the actual changes,
+along with a message saying what you did.
+But before we commit our changes,
+we should configure git with our actual name and email address.
+This step is not required in a standalone repository like the one
+we are using here, but in a shared repository,
+it’s considered best practice to use a real name and email
+in case someone needs to contact you:</p>
+<div class="highlight-none"><div class="highlight"><pre>$ git config --global user.email you@example.com
+</pre></div>
+</div>
+<p id="index-1">Now we are ready to save our changes in the git database.
+For short messages,
+the easiest way to do this is to include the message on the command line:</p>
+<div class="highlight-none"><div class="highlight"><pre>$ git commit -m &#39;a very short c++ program&#39;
+[master (root-commit) 3a6fd19] a very short c++ program
+ 1 file changed, 1 insertion(+)
+ create mode 100644 tiny.cpp
+</pre></div>
+</div>
+<p>Without the <code class="docutils literal"><span class="pre">-m</span></code> argument, git runs the default editor (vim) to let you edit your commit message.
+If you don’t like vim, you can change the default using <code class="docutils literal"><span class="pre">git</span> <span class="pre">config</span></code>:</p>
+<div class="highlight-none"><div class="highlight"><pre>$ git config --global core.editor &quot;emacs -nw&quot;
+</pre></div>
+</div>
+<p>You can see what commits made so far using <code class="docutils literal"><span class="pre">git</span> <span class="pre">log</span></code>:</p>
+<div class="highlight-none"><div class="highlight"><pre>$ git log
+commit 3a6fd19e8ef4662744bd41a20cde9924aad918ed
+Author: DaveParillo &lt;DaveParillo@noreply.github.com&gt;
+Date:   Sat Jun 10 12:07:51 2017 -0700
+
+    a very short c++ program
+</pre></div>
+</div>
+<div class="section" id="editing-files">
+<h3>1.8.1.1. Editing files<a class="headerlink" href="#editing-files" title="Permalink to this headline">¶</a></h3>
+<p>Suppose I edit tiny.cpp using my favorite editor to turn it into the classic hello-world program:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Hello, world!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>I can see what files have changed using git status:</p>
+<div class="highlight-none"><div class="highlight"><pre>$ git status
+On branch master
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+
+  modified:   tiny.cpp
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</pre></div>
+</div>
+<p>Notice how Git reminds me to use <code class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-a</span></code> to include these changes in my next commit.
+I can also do <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">tiny.cpp</span></code> to only include the changes to tiny.cpp
+(maybe I made changes to a different file that I want to commit separately),
+but usually that’s too much work.</p>
+<p>If I want to know the details of the changes since my last commit, I can do git diff:</p>
+<div class="highlight-none"><div class="highlight"><pre>$ git diff
+diff --git a/tiny.cpp b/tiny.cpp
+index a9b8738..a6501a7 100644
+--- a/tiny.cpp
++++ b/tiny.cpp
+@@ -1 +1,6 @@
+-int main(int argc, char** argv) { return 0; }
++#include &lt;iostream&gt;
++
++int main() {
++  std::cout &lt;&lt; &quot;Hello, world!\n&quot;;
++  return 0;
++}
+</pre></div>
+</div>
+<p>Since I like these changes, I do a commit:</p>
+<div class="highlight-none"><div class="highlight"><pre>$ git commit -a -m &#39;turn tiny into a basic hello world&#39;
+[master 170eaf0] turn tiny into a basic hello world
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+</pre></div>
+</div>
+<p>The repository now contains two commits:</p>
+<div class="highlight-none"><div class="highlight"><pre>$ git log | more
+commit 170eaf0461a7f0f865328b73bee6d313c3dbad42
+Author: DaveParillo &lt;DaveParillo@noreply.github.com&gt;
+Date:   Sat Jun 10 12:23:55 2017 -0700
+
+    turn tiny into a basic hello world
+
+commit 3a6fd19e8ef4662744bd41a20cde9924aad918ed
+Author: DaveParillo &lt;DaveParillo@noreply.github.com&gt;
+Date:   Sat Jun 10 12:07:51 2017 -0700
+
+    a very short c++ program
+</pre></div>
+</div>
+</div>
+<div class="section" id="renaming-files">
+<h3>1.8.1.2. Renaming files<a class="headerlink" href="#renaming-files" title="Permalink to this headline">¶</a></h3>
+<p>You can rename a file with <code class="docutils literal"><span class="pre">git</span> <span class="pre">mv</span></code>.
+This is just like regular <code class="docutils literal"><span class="pre">mv</span></code>,
+except that it tells Git what you are doing.
+If you for get to use <code class="docutils literal"><span class="pre">git</span> <span class="pre">mv</span></code> it’s not normally a problem.
+Unless your changes are massive, git is usually good about
+figuring out when files have been moved.:</p>
+<div class="highlight-none"><div class="highlight"><pre>$ git mv tiny.cpp hello.cpp
+buffy:~/git-demo
+$ git status
+On branch master
+Changes to be committed:
+  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+
+  renamed:    tiny.cpp -&gt; hello.cpp
+</pre></div>
+</div>
+<p>Moving a file counts as a change.
+These changes don’t get written to the repository unless you do another git commit:</p>
+<div class="highlight-none"><div class="highlight"><pre>$ git commit -m &#39;give better name to hello program&#39;
+[master 7a603f4] give better name to hello program
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename tiny.cpp =&gt; hello.cpp (100%)
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-and-removing-files">
+<h3>1.8.1.3. Adding and removing files<a class="headerlink" href="#adding-and-removing-files" title="Permalink to this headline">¶</a></h3>
+<p>To add a file, create it and call <code class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></code>:</p>
+<div class="highlight-none"><div class="highlight"><pre>$ cp hello.cpp goodbye.cpp
+$ git status
+On branch master
+Untracked files:
+  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+
+  goodbye.cpp
+
+nothing added to commit but untracked files present (use &quot;git add&quot; to track)
+$ git add goodbye.cpp
+$ git commit -m &#39;started to make a second program to say goodbye&#39;
+[master f41cb3a] started to make a second program to say goodbye
+ 1 file changed, 6 insertions(+)
+ create mode 100644 goodbye.cpp
+</pre></div>
+</div>
+<p>If you add many files at once, you can refer to the directory they are in.
+If that directory is the current directory, <code class="docutils literal"><span class="pre">.</span></code> is acceptable.
+When you specify a directory, then all of the files new or modified are
+added recursively from that point downward.</p>
+<p>To remove a file, use <code class="docutils literal"><span class="pre">git</span> <span class="pre">rm</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git rm goodbye.cpp
+rm <span class="s1">&#39;goodbye.cpp&#39;</span>
+<span class="nv">$ </span>git status
+On branch master
+Changes to be committed:
+  <span class="o">(</span>use <span class="s2">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
+
+  deleted:    goodbye.cpp
+
+<span class="nv">$ </span>git commit -m <span class="s1">&#39;on second thought, goodbye.cpp was a bad idea&#39;</span>
+<span class="o">[</span>master cbcf75f<span class="o">]</span> on second thought, goodbye.cpp was a bad idea
+ <span class="m">1</span> file changed, <span class="m">6</span> deletions<span class="o">(</span>-<span class="o">)</span>
+ delete mode <span class="m">100644</span> goodbye.cpp
+</pre></div>
+</div>
+</div>
+<div class="section" id="recovering-files-from-the-repository">
+<h3>1.8.1.4. Recovering files from the repository<a class="headerlink" href="#recovering-files-from-the-repository" title="Permalink to this headline">¶</a></h3>
+<p>Nothing is ever truly deleted from the repository once checked in.
+If you accidentally delete something, you can recover it from the repository.:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ls -a
+./  ../  .git/      hello.cpp
+
+<span class="nv">$ </span>rm hello.cpp
+<span class="nv">$ </span>ls -a
+./  ../  .git/
+
+<span class="c"># gone, but not forgotten</span>
+
+<span class="nv">$ </span>git checkout -- hello.cpp
+<span class="nv">$ </span>ls -a
+./  ../  .git/      hello.cpp
+</pre></div>
+</div>
+<p>Using <code class="docutils literal"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">--</span></code> gets the most recent version out of the repository,
+but using the commit id, we can operate on any version:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git checkout 3a6f -- tiny.cpp
+<span class="nv">$ </span>ls -a
+./  ../  .git/      hello.cpp  tiny.cpp
+</pre></div>
+</div>
+<p>Because tiny.cpp is not part of the current HEAD (most recent version),
+it is considered a new file,
+but the checkout did add tiny.cpp and stage it for commit:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git status
+On branch master
+Changes to be committed:
+  <span class="o">(</span>use <span class="s2">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
+
+  new file:   tiny.cpp
+</pre></div>
+</div>
+<hr class="docutils" />
+<div class="admonition-more-to-explore admonition">
+<p class="first admonition-title">More to Explore</p>
+<ul class="last">
+<li><p class="first"><a class="reference external" href="https://github.com/DaveParillo/cisc187">CISC187 git repository</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="http://git-scm.com">Git Home</a></p>
+<p>All Git commands take a <code class="docutils literal"><span class="pre">--help</span></code> argument that brings up their manual page.
+There is also extensive documentation at <a class="reference external" href="http://git-scm.com">http://git-scm.com</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+  
+      
+  <li id="relations-prev" class="navLink" title='Previous Section - 1.7. Command-line compiling' data-toggle="tooltip">
+    <a href="make.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="make.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - 1.9. Debugging' data-toggle="tooltip" >
+    <a href="debugging.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="debugging.html" >Next Section - 1.9. Debugging</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+  
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2017 Dave Parillo.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+    </p>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

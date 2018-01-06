@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>6.2. Lambda expressions &#8212; Intermediate Modern C++ Overview</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/runestonebase.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/clickable.js"></script>
+    <script type="text/javascript" src="../_static/timedclickable.js"></script>
+    <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
+    <script type="text/javascript" src="../_static/fitb.js"></script>
+    <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/reveal.js"></script>
+    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/parsons.js"></script>
+    <script type="text/javascript" src="../_static/timedparsons.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/mchoice.js"></script>
+    <script type="text/javascript" src="../_static/timedmc.js"></script>
+    <script type="text/javascript" src="../_static/timed.js"></script>
+    <script type="text/javascript" src="../_static/shortanswer.js"></script>
+    <script type="text/javascript" src="../_static/timed_shortanswer.js"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/codelens.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="../_static/clike.js"></script>
+    <script type="text/javascript" src="../_static/timed_activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="../_static/datafile.js"></script>
+    <script type="text/javascript" src="../_static/showEval.js"></script>
+    <script type="text/javascript" src="../_static/dragndrop.js"></script>
+    <script type="text/javascript" src="../_static/timeddnd.js"></script>
+    <script type="text/javascript" src="../_static/poll.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6.3. The std::function template" href="std_function.html" />
+    <link rel="prev" title="6.1. Function pointers" href="function-pointers.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="shortcut icon" href="/intermediate-cpp/static/favicon.ico" type="image/ico" />
+
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'https://daveparillo.github.io/intermediate-cpp/' ? 'https://daveparillo.github.io/intermediate-cpp/' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/intermediate-cpp';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'intermediate-cpp';
+  eBookConfig.acDefaultLanguage = 'cpp' ? 'cpp' : 'cpp'
+  eBookConfig.logLevel = 0;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "unknown";
+  eBookConfig.isLoggedIn = false;
+  eBookConfig.useRunestoneServices = false;
+  eBookConfig.python3 = false;
+  eBookConfig.basecourse = 'intermediate-cpp';
+  eBookConfig.jobehost = 'https://cryptic-headland-94862.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.runestone_version = '3.0.7';
+</script>
+
+
+  </head>
+  <body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        <a class="brand-logo" style='padding:12px 0;text-align:center' href="http://209.129.16.61/~dparillo/">
+           <i class="glyphicon glyphicon-home" style='opacity:0.9;font-size:16px;color:#848484'></i>
+        </a>
+        <!--
+        <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;' href="/intermediate-cpp/default/user/login">&nbsp; </a>
+        <a class="navbar-brand" href="/~dparillo" style="color:#5080a0">CISC-187</a>&nbsp;
+        -->
+        <a class="navbar-brand" href="../index.html">Intermediate C++</a>
+      </div>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html'>Table of Contents</a></li>
+            
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li id="scratch_ac_link"><a href="javascript:ACFactory.toggleScratchActivecode()">Scratch ActiveCode</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        
+        <li class="divider-vertical"></li>
+
+        <!-- help menu dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//help/navhelp.html'>Navigation Help</a></li>
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//glossary.html'>Glossary</a></li>
+            <li class="divider"></li>
+            <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
+          </ul>
+        </li>
+        <!-- end help menu dropdown -->
+
+        <li class="divider-vertical"></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        <!--
+          <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">6.2. Lambda expressions</a><ul>
+<li><a class="reference internal" href="#assigning-a-lambda-to-a-variable">6.2.1. Assigning a lambda to a variable</a></li>
+<li><a class="reference internal" href="#trailing-return-types-in-lambda-expressions">6.2.2. Trailing return types in lambda expressions</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        
+          
+  <li id="relations-prev" title="Previous Chapter - 6.1. Function pointers" data-toggle="tooltip">
+    <a href="function-pointers.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - 6.3. The std::function template' data-toggle="tooltip" >
+    <a href="std_function.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content">
+  
+  <div class="section" id="lambda-expressions">
+<span id="index-0"></span><h1>6.2. Lambda expressions<a class="headerlink" href="#lambda-expressions" title="Permalink to this headline">¶</a></h1>
+<p>A <em>lambda expression</em>, or simply <em>lambda</em>,
+provides a means to define an anonymous function right at the location
+where it is invoked or passed as an argument to a function.</p>
+<p>It happens that often it is more convenient to write a very short function
+‘in line’ where the function is used rather than:</p>
+<ol class="arabic simple">
+<li>Write a separate function with a name</li>
+<li>Store the function in a specific compilation unit</li>
+<li><code class="docutils literal"><span class="pre">#include</span></code> the compilation unit definitions where it will be used</li>
+<li>Call or pass the function as an argument</li>
+</ol>
+<p>While using STL facilities with lambdas is not required,
+it turns out that many facilities in the STL take function pointers as arguments.
+This fact makes lambdas particularly useful since
+any place a function pointer can be used, a lambda expression can be used instead.</p>
+<p>Suppose we want to count the number of short strings in a vector.
+There is a count_if function in the STL we can use to get the job done.
+The <code class="docutils literal"><span class="pre">count_if</span></code> function expects 3 parameters:</p>
+<ul class="simple">
+<li>A pointer to the first element to examine in the vector</li>
+<li>A pointer to one past the last element to examine in the vector</li>
+<li>A pointer to a function that will determine if the element should be counted</li>
+</ul>
+<p>The last parameter is commonly called a <a class="reference internal" href="../glossary.html#term-predicate-function"><span class="xref std std-term">predicate function</span></a>
+A predicate function is a fancy name for a function that returns a <code class="docutils literal"><span class="pre">bool</span></code>.</p>
+<p>We could implement this using the techniques we have already learned:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">bool</span> <span class="nf">less_than_5</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">str</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">size_t</span> <span class="nf">num_short_strings</span><span class="p">(</span><span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&amp;</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">const</span> <span class="n">string</span><span class="o">*</span> <span class="n">begin</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">data</span><span class="p">();</span> <span class="c1">// must be const</span>
+  <span class="k">const</span> <span class="k">auto</span> <span class="n">end</span> <span class="o">=</span> <span class="n">begin</span> <span class="o">+</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+  <span class="k">return</span> <span class="n">count_if</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">less_than_5</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>While it is easy to write as many functions like this as we need:
+less_than_10, greater_than_15, etc.,
+it’s clear this would get tedious quickly.
+Nor it is very flexible.
+Each time we want to compare a different value, or use a different comparator,
+we need to add a new function and recompile the program!</p>
+<p>In addition,
+if less_than_5 is never used anywhere else, it seems like a bad idea to have
+this special-case function elevated to the status equivalent to all other functions.
+Conceptually, it doesn’t deserve
+to have the status of a full-fledged function with its own name,
+callable from anywhere.</p>
+<p>Our goal is to void writing a new function for every little comparison we want to make.
+One obvious solution is to add a parameter to our ‘less_than_5’ function:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">bool</span> <span class="nf">less_than</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">str</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Unfortunately, we can’t use this function in <code class="docutils literal"><span class="pre">std::count_if</span></code>.
+The new version of the function is arguably more generic,
+but we can’t use our ‘improved’ less_than in count_if.
+A predicate must be a <a class="reference internal" href="../glossary.html#term-unary-function"><span class="xref std std-term">unary function</span></a>.
+In other words, it can take only 1 parameter, no more.
+The ‘improved’ function is less useful than the old,
+even though we made it ‘generic’.
+We need a way to pass more than one parameter
+to a function that can only take 1 parameter.</p>
+<p>Starting in C++11, a new language feature was added just for this kind of problem:
+lambda expressions.
+Depending on where you go, you’ll also see these referred to as
+closures, lambda functions, function literals, or just lambdas.
+All equivalent names for the same concept.</p>
+<p>A lambda allows us to omit the separate function definition entirely and use it
+within the <code class="docutils literal"><span class="pre">num_short_strings</span></code> function as an inline parameter to <code class="docutils literal"><span class="pre">count_if</span></code>:</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="kt">size_t</span> <span class="nf">num_short_strings</span><span class="p">(</span><span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&amp;</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">const</span> <span class="n">string</span><span class="o">*</span> <span class="n">begin</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">data</span><span class="p">();</span>
+  <span class="k">const</span> <span class="k">auto</span> <span class="n">end</span> <span class="o">=</span> <span class="n">begin</span> <span class="o">+</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="n">count_if</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span>
+<span class="hll">                  <span class="p">[](</span><span class="n">string</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">);</span> <span class="p">});</span>
+</span><span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>The lambda on line 6 completely replaces the old function <code class="docutils literal"><span class="pre">less_than_5</span></code>.</p>
+<p>The general syntax for a lambda is:</p>
+<div class="highlight-text"><div class="highlight"><pre>[ captures ] (parameters) -&gt; returnType { lambda_body; }
+</pre></div>
+</div>
+<p>The capture block <code class="docutils literal"><span class="pre">[]</span></code> is required, even if empty.
+This informs the compiler that a lambda expression is beginning.</p>
+<p>The capture block allows the lambda to <strong>capture</strong> variables from outside the scope
+of the lambda body and use them within the lambda.
+Without a capture, no variables outside the lambda scope are visible
+within the lambda.</p>
+<p>In our previous example, it would allow us to extend num_short_strings by
+being able to pass in a value, rather than hard code the value <code class="docutils literal"><span class="pre">5</span></code>:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">size_t</span> <span class="nf">num_short_strings</span><span class="p">(</span><span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&amp;</span> <span class="n">v</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">sz</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">const</span> <span class="n">string</span><span class="o">*</span> <span class="n">begin</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">data</span><span class="p">();</span>
+  <span class="k">const</span> <span class="k">auto</span> <span class="n">end</span> <span class="o">=</span> <span class="n">begin</span> <span class="o">+</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="n">count_if</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span>
+                  <span class="p">[</span><span class="o">&amp;</span><span class="n">sz</span><span class="p">](</span><span class="n">string</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">sz</span><span class="p">);</span> <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The parameter is optional, but many useful standard algorithm that operate
+on containers expect to be able to pass each container element one at a time
+to a function that will use it.
+This is exactly what <code class="docutils literal"><span class="pre">count_if</span></code> does.</p>
+<p>The return type is also optional.
+A lambda will ordinarily be able to deduce the correct type from the return
+statement, so an explicit return is not needed.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;algorithm&gt;</span>
+<span class="cp">#include &lt;iostream&gt;</span>
+<span class="cp">#include &lt;string&gt;</span>
+<span class="cp">#include &lt;vector&gt;</span>
+
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="p">;</span>
+
+<span class="c1">// Show the number of strings in the vector whose length</span>
+<span class="c1">// is between min and max.</span>
+<span class="c1">//</span>
+<span class="c1">// perhaps a better name for this function is &#39;show_lengths_between&#39;</span>
+<span class="kt">void</span> <span class="nf">show_lengths</span> <span class="p">(</span><span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&amp;</span> <span class="n">v</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">min</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">max</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">const</span> <span class="n">string</span><span class="o">*</span> <span class="n">begin</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">data</span><span class="p">();</span>
+  <span class="k">const</span> <span class="k">auto</span> <span class="n">end</span> <span class="o">=</span> <span class="n">begin</span> <span class="o">+</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Number of names of length </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="n">min</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">max</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;: </span><span class="se">\t</span><span class="s">&quot;</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">count_if</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span>
+               <span class="p">[</span><span class="o">&amp;</span><span class="n">i</span><span class="p">](</span><span class="n">string</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">i</span><span class="p">);</span> <span class="p">});</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">names</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&quot;alice&quot;</span><span class="p">,</span> <span class="s">&quot;bob&quot;</span><span class="p">,</span> <span class="s">&quot;clarissa&quot;</span><span class="p">,</span> <span class="s">&quot;dario&quot;</span><span class="p">,</span> <span class="s">&quot;elizabeth&quot;</span><span class="p">,</span>
+    <span class="s">&quot;abbi&quot;</span><span class="p">,</span> <span class="s">&quot;barnabas&quot;</span><span class="p">,</span> <span class="s">&quot;clarabelle&quot;</span><span class="p">,</span> <span class="s">&quot;daniel&quot;</span><span class="p">,</span> <span class="s">&quot;ethan&quot;</span>
+    <span class="s">&quot;farouk&quot;</span><span class="p">,</span> <span class="s">&quot;gabby&quot;</span><span class="p">,</span> <span class="s">&quot;hanh phuc&quot;</span><span class="p">,</span> <span class="s">&quot;lakshay&quot;</span><span class="p">,</span>
+    <span class="s">&quot;fabrice&quot;</span><span class="p">,</span> <span class="s">&quot;gail&quot;</span><span class="p">,</span> <span class="s">&quot;habeeb&quot;</span><span class="p">,</span> <span class="s">&quot;jabir&quot;</span><span class="p">,</span> <span class="s">&quot;liza&quot;</span><span class="p">,</span>
+    <span class="s">&quot;muhammad&quot;</span><span class="p">,</span> <span class="s">&quot;nora&quot;</span><span class="p">,</span> <span class="s">&quot;oscar&quot;</span><span class="p">,</span> <span class="s">&quot;pauline&quot;</span><span class="p">,</span> <span class="s">&quot;roberto&quot;</span><span class="p">,</span>
+    <span class="s">&quot;scarlett&quot;</span><span class="p">,</span> <span class="s">&quot;thomas&quot;</span><span class="p">,</span> <span class="s">&quot;ubelia&quot;</span><span class="p">,</span> <span class="s">&quot;victorio&quot;</span><span class="p">,</span>
+    <span class="s">&quot;wahkisha&quot;</span><span class="p">,</span> <span class="s">&quot;xan&quot;</span><span class="p">,</span> <span class="s">&quot;yacov&quot;</span><span class="p">,</span> <span class="s">&quot;zabrina&quot;</span>
+  <span class="p">};</span>
+
+  <span class="n">show_lengths</span> <span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition-try-this admonition">
+<p class="first admonition-title">Try this!</p>
+<p class="last">Rewrite the rot13/rot47 program to use lambdas to perform the rotation instead of traditional function calls</p>
+</div>
+<div class="section" id="assigning-a-lambda-to-a-variable">
+<h2>6.2.1. Assigning a lambda to a variable<a class="headerlink" href="#assigning-a-lambda-to-a-variable" title="Permalink to this headline">¶</a></h2>
+<p>A lambda does not always need to be defined within another function or
+within a function parameter list.
+You can define a lambda any place a normal function can be defined,
+but if you do this, you must assign the lambda to a variable so that it has a name:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">auto</span> <span class="n">lambda</span> <span class="o">=</span> <span class="p">[]</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Hello, lambda!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="n">lambda</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Once a lambda has a name, it is called like a function,
+using <code class="docutils literal"><span class="pre">operator()</span></code>.
+The previous example was about as simple as a lambda can get.
+No return type and no parameter.</p>
+<p>Note the use of <code class="docutils literal"><span class="pre">auto</span></code> when defining the type of a lambda.
+In the case of a lambda, auto is not an option.
+If auto was not used, what type would we supply in its place?</p>
+<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">numbers</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span>
+                       <span class="mi">35</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">50</span> <span class="p">};</span>
+  <span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="n">begin</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">.</span><span class="n">data</span><span class="p">();</span>
+  <span class="k">const</span> <span class="k">auto</span> <span class="n">end</span> <span class="o">=</span> <span class="n">begin</span> <span class="o">+</span> <span class="n">numbers</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+
+<span class="hll">  <span class="k">auto</span> <span class="n">gt_5</span> <span class="o">=</span> <span class="n">count_if</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span>
+</span><span class="hll">                <span class="p">[](</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">);</span> <span class="p">});</span>
+</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;The # of elements &gt; 5 is: &quot;</span>
+<span class="hll">       <span class="o">&lt;&lt;</span> <span class="n">gt_5</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Actually, there is no way to know.
+Each lambda defines a new type.
+Only the compiler knows exactly what the type is, so as a programmer,
+you must use auto and allow the compiler to deduce it.</p>
+<p>Even two identical lambdas will become two different types when compiled.</p>
+</div>
+<div class="section" id="trailing-return-types-in-lambda-expressions">
+<span id="index-1"></span><h2>6.2.2. Trailing return types in lambda expressions<a class="headerlink" href="#trailing-return-types-in-lambda-expressions" title="Permalink to this headline">¶</a></h2>
+<p>When the compiler cannot deduce the correct type,
+or does not deduce the desired type,
+then the return type must be specified.</p>
+<p>Since the capture clause must be first,
+we have a problem: where to specify the return type.
+It can’t come before the capture clause,
+which is where return types are defined for normal functions.</p>
+<p>In a lambda, the only option is to specify a <em>trailing return type</em>.
+It can be used with ordinary functions also, but
+they are most commonly seen in lambda expressions and function templates.</p>
+<p>A trailing return type is <code class="docutils literal"><span class="pre">operator-&gt;</span></code>, followed by the return type.
+The trailing return type must occur after the parameter list
+and before the function body.
+This is true for both lambdas and normal functions.</p>
+<p>In the following function, we want to return a type
+other than what would normally be returned by the operations.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;The return value of this odd function is: &quot;</span>
+          <span class="p">[](</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+              <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+              <span class="k">return</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+              <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">;</span>
+            <span class="p">}</span>
+          <span class="p">}</span> <span class="p">(</span><span class="mf">3.14159</span><span class="p">,</span> <span class="mf">2.71828</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note in the previous example we defined a lambda taking two parameters and then
+immediately called it using <code class="docutils literal"><span class="pre">operator()</span></code>.</p>
+<hr class="docutils" />
+<div class="admonition-more-to-explore admonition">
+<p class="first admonition-title">More to Explore</p>
+<ul class="last simple">
+<li>From: cppreference.com:<ul>
+<li>C++ <a class="reference external" href="http://en.cppreference.com/w/cpp/language/lambda">lambda expressions</a>.</li>
+<li><a class="reference external" href="http://en.cppreference.com/w/cpp/algorithm/count">std::count and std::count_if</a>.</li>
+</ul>
+</li>
+<li><cite>Descriptions of lambda expressions</cite> &lt;<a class="reference external" href="https://msdn.microsoft.com/en-us/library/dd293608.aspx">https://msdn.microsoft.com/en-us/library/dd293608.aspx</a>&gt;`_ from Microsoft’s MSDN</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+  
+      
+  <li id="relations-prev" class="navLink" title='Previous Section - 6.1. Function pointers' data-toggle="tooltip">
+    <a href="function-pointers.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="function-pointers.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - 6.3. The std::function template' data-toggle="tooltip" >
+    <a href="std_function.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="std_function.html" >Next Section - 6.3. The std::function template</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+  
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2017 Dave Parillo.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+    </p>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

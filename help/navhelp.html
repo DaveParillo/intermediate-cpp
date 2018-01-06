@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Getting Around The Book &#8212; Intermediate Modern C++ Overview</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/runestonebase.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/clickable.js"></script>
+    <script type="text/javascript" src="../_static/timedclickable.js"></script>
+    <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
+    <script type="text/javascript" src="../_static/fitb.js"></script>
+    <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/reveal.js"></script>
+    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/parsons.js"></script>
+    <script type="text/javascript" src="../_static/timedparsons.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/mchoice.js"></script>
+    <script type="text/javascript" src="../_static/timedmc.js"></script>
+    <script type="text/javascript" src="../_static/timed.js"></script>
+    <script type="text/javascript" src="../_static/shortanswer.js"></script>
+    <script type="text/javascript" src="../_static/timed_shortanswer.js"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/codelens.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="../_static/clike.js"></script>
+    <script type="text/javascript" src="../_static/timed_activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="../_static/datafile.js"></script>
+    <script type="text/javascript" src="../_static/showEval.js"></script>
+    <script type="text/javascript" src="../_static/dragndrop.js"></script>
+    <script type="text/javascript" src="../_static/timeddnd.js"></script>
+    <script type="text/javascript" src="../_static/poll.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="shortcut icon" href="/intermediate-cpp/static/favicon.ico" type="image/ico" />
+
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'https://daveparillo.github.io/intermediate-cpp/' ? 'https://daveparillo.github.io/intermediate-cpp/' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/intermediate-cpp';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'intermediate-cpp';
+  eBookConfig.acDefaultLanguage = 'cpp' ? 'cpp' : 'cpp'
+  eBookConfig.logLevel = 0;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "unknown";
+  eBookConfig.isLoggedIn = false;
+  eBookConfig.useRunestoneServices = false;
+  eBookConfig.python3 = false;
+  eBookConfig.basecourse = 'intermediate-cpp';
+  eBookConfig.jobehost = 'https://cryptic-headland-94862.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.runestone_version = '3.0.7';
+</script>
+
+
+  </head>
+  <body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        <a class="brand-logo" style='padding:12px 0;text-align:center' href="http://209.129.16.61/~dparillo/">
+           <i class="glyphicon glyphicon-home" style='opacity:0.9;font-size:16px;color:#848484'></i>
+        </a>
+        <!--
+        <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;' href="/intermediate-cpp/default/user/login">&nbsp; </a>
+        <a class="navbar-brand" href="/~dparillo" style="color:#5080a0">CISC-187</a>&nbsp;
+        -->
+        <a class="navbar-brand" href="../index.html">Intermediate C++</a>
+      </div>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html'>Table of Contents</a></li>
+            
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li id="scratch_ac_link"><a href="javascript:ACFactory.toggleScratchActivecode()">Scratch ActiveCode</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        
+        <li class="divider-vertical"></li>
+
+        <!-- help menu dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//help/navhelp.html'>Navigation Help</a></li>
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//glossary.html'>Glossary</a></li>
+            <li class="divider"></li>
+            <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
+          </ul>
+        </li>
+        <!-- end help menu dropdown -->
+
+        <li class="divider-vertical"></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        <!--
+          <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">Getting Around The Book</a><ul>
+<li><a class="reference internal" href="#navigation-bar">Navigation Bar</a></li>
+<li><a class="reference internal" href="#activecode-windows">ActiveCode Windows</a></li>
+<li><a class="reference internal" href="#the-codelens-tool">The CodeLens Tool</a></li>
+<li><a class="reference internal" href="#self-check-questions">Self-Check Questions</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        
+          
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content">
+  
+  <div class="section" id="getting-around-the-book">
+<span id="quick-help"></span><span id="index-0"></span><h1>Getting Around The Book<a class="headerlink" href="#getting-around-the-book" title="Permalink to this headline">¶</a></h1>
+<p>This page will help you learn how to get around this interactive textbook and use the embedded tools.</p>
+<div class="section" id="navigation-bar">
+<h2>Navigation Bar<a class="headerlink" href="#navigation-bar" title="Permalink to this headline">¶</a></h2>
+<p>Use the Search dropdown menu on the site toolbar to access several handy features:</p>
+<img alt="../_images/navbar_search_dropdown.png" class="search-dropdown-img" src="../_images/navbar_search_dropdown.png" />
+<ul class="simple">
+<li>The entire book table of contents</li>
+<li>An alphabetic index of of all the keywords in this book</li>
+<li>Scratch ActiveCode
+This will popup a window allowing you to test out an arbitrary chunk of C++ code</li>
+<li>Search performs basic (very basic) text search of the book</li>
+</ul>
+</div>
+<div class="section" id="activecode-windows">
+<span id="index-1"></span><h2>ActiveCode Windows<a class="headerlink" href="#activecode-windows" title="Permalink to this headline">¶</a></h2>
+<p>One of the most important things that you can do when you are learning a programming language is to write programs.  Unfortunately,
+typical textbooks allow you to read about programming but don’t allow you to practice.  We have created a unique tool called
+<strong>ActiveCode</strong> that allows you to write, modify, and execute programs right
+in the text itself (right from the web browser).  Although this is certainly not the way real programs are written, it provides an excellent
+environment for learning a programming language since you can experiment with the language as you are reading.</p>
+<p>Take a look at the ActiveCode interpreter in action.  If we take a simple program and make it active,
+you will see that it can be executed directly by pressing the <em>Run</em> button.
+Try pressing the <em>Run</em> button below.</p>
+
+<div data-childcomponent="codeexample1" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=codeexample1 data-lang="javascript" 
+      data-timelimit=25000  
+    data-audio=''   
+         >
+var x = 10;
+var y = 11;
+var z = x + y;
+console.log(z);
+writeln('hello world');
+</textarea>
+</div>
+</div>
+<div class="section" id="the-codelens-tool">
+<span id="index-2"></span><h2>The CodeLens Tool<a class="headerlink" href="#the-codelens-tool" title="Permalink to this headline">¶</a></h2>
+<p>In addition to ActiveCode, you can also execute code with the assistance of a unique visualization tool.
+This tool, known as <strong>CodeLens</strong>, allows you to control the step by step execution of a program.
+It also lets you see the values of all variables as they are created and modified.
+The following example shows CodeLens in action on the same simple program as we saw above.
+Remember that in ActiveCode, the source code executes from beginning to end and you can see the final result.
+In Codelens you can see and control the step by step progress.</p>
+<p>Try clicking on the <em>Forward</em> button below.</p>
+<div data-childcomponent="codelens1" class="explainer ac_section alert alert-warning">
+<iframe width="800" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=%23include%20%3Ciostream%3E%0A%0Aint%20main%20%28%29%20%7B%0A%20%20int%20test%5B%5D%20%3D%20%7B%201,%202,%203,%205,%208%20%7D%3B%20%20//%20can%20we%20use%20an%20initilaizer%20list%3F%0A%20%20for%20%28auto%20i%3A%20test%29%20%7B%20%20%20%20%20%20%20%20%20%20%20%20%20//%20can%20we%20use%20a%20range-for%20loop%3F%0A%20%20%20%20std%3A%3Acout%20%3C%3C%20%22i%20is%20%22%20%3C%3C%20i%20%3C%3C%20'%5Cn'%3B%0A%20%20%7D%0A%20%20return%200%3B%0A%7D&codeDivHeight=400&codeDivWidth=350&curInstr=1&mode=edit&origin=opt-frontend.js&py=cpp&rawInputLstJSON=%5B%5D"> </iframe>
+</div><p>Many CodeLens examples will link to an external page, like <a class="reference external" href="http://pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0A%0Aint%20main%20%28%29%20%7B%0A%20%20int%20test%5B%5D%20%3D%20%7B%201,%202,%203,%205,%208%20%7D%3B%20%20//%20can%20we%20use%20an%20initilaizer%20list%3F%0A%20%20for%20%28auto%20i%3A%20test%29%20%7B%20%20%20%20%20%20%20%20%20%20%20%20%20//%20can%20we%20use%20a%20range-for%20loop%3F%0A%20%20%20%20std%3A%3Acout%20%3C%3C%20%22i%20is%20%22%20%3C%3C%20i%20%3C%3C%20'%5Cn'%3B%0A%20%20%7D%0A%20%20return%200%3B%0A%7D&amp;curInstr=0&amp;mode=display&amp;origin=opt-frontend.js&amp;py=cpp&amp;rawInputLstJSON=%5B%5D">this</a>
+or <a class="reference external" href="https://goo.gl/WGiilZ">that</a>.</p>
+</div>
+<div class="section" id="self-check-questions">
+<span id="index-3"></span><h2>Self-Check Questions<a class="headerlink" href="#self-check-questions" title="Permalink to this headline">¶</a></h2>
+<p>Finally, it is also possible to embed simple questions into the text.  These
+questions provide a way for you to check yourselves as you go along.  The questions also provide feedback so that you can
+understand why an answer may or may not be correct.</p>
+<p><strong>Check your understanding</strong></p>
+
+            <div class="runestone">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="question1_1">
+            sc-1-1: What programming language does this course help you to learn?
+            <li data-component="answer" data-correct id="question1_1_opt_a">Python</li><li data-component="feedback" id="question1_1_opt_a">Python is a great language, but is not covered in this course.</li>
+            
+            <li data-component="answer"  id="question1_1_opt_b">Java</li><li data-component="feedback" id="question1_1_opt_b">Java is a good object oriented language but</li>
+            
+            <li data-component="answer"  id="question1_1_opt_c">C++</li><li data-component="feedback" id="question1_1_opt_c">Yes, this couse will teach you C++.  Specifically, *Modern* C++</li>
+            
+            <li data-component="answer"  id="question1_1_opt_d">Haskell</li><li data-component="feedback" id="question1_1_opt_d">No, Haskell is a functional programming language.  You can use C++ to write functional programs as well.</li>
+            
+
+            </ul>
+            </div>
+            <p>This next type of question allows more than one correct answer to be required.  The feedback will tell you whether you have the
+correct number as well as the feedback for each.</p>
+
+            <div class="runestone">
+            <ul data-component="multiplechoice" data-multipleanswers="true"  id="question1_2">
+            sc-1-2: Which colors might be found in a rainbow? (choose all that apply)
+            <li data-component="answer" data-correct id="question1_2_opt_a">red</li><li data-component="feedback" id="question1_2_opt_a">Red is a definitely on of the colors.</li>
+            
+            <li data-component="answer" data-correct id="question1_2_opt_b">yellow</li><li data-component="feedback" id="question1_2_opt_b">Yes, yellow is correct.</li>
+            
+            <li data-component="answer"  id="question1_2_opt_c">black</li><li data-component="feedback" id="question1_2_opt_c">Remember the acronym...ROY G BIV.  B stands for blue.</li>
+            
+            <li data-component="answer" data-correct id="question1_2_opt_d">green</li><li data-component="feedback" id="question1_2_opt_d">Yes, green is one of the colors.</li>
+            
+
+            </ul>
+            </div>
+            <link href='_static/guiders-1.3.0.css' rel='stylesheet' type='text/css'>
+<script src='_static/guiders-1.3.0.js' type='text/javascript'></script>
+<script src='_static/navhelp.js' type='text/javascript'></script></div>
+</div>
+
+
+  
+      
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+  
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2017 Dave Parillo.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+    </p>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>
