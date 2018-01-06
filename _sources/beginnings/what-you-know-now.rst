@@ -66,7 +66,7 @@ by now:
 Code comments
 -------------
 
-You should have learned different formats for code :cref:`comments `
+You should have learned different formats for code :cref:`comments`
 
 .. code-block:: cpp
 
