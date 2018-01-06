@@ -116,33 +116,6 @@ This creates a vector of type ``int``, with size 4 and the first 3 values initia
      pointers:f5 -> values:f5;
    }
 
-.. graphviz:: 
-
-   digraph {
-     node [shape=plaintext, fontsize=14];
-     "Pointers:" -> "Values:" -> "Indices:" [color=white];
-
-     node [shape=record, fontcolor=black, fontsize=14, width=4.75, fixedsize=true];
-     pointers [label="<f0> v | <f1> v+1 | <f2> v+2 | <f3> v+3 | | ", color=white];
-     values [label="<f0> v[0] | <f1> v[1] | <f2> v[2] | <f3> v[3] |           |         ", 
-             color=blue, fillcolor=lightblue, style=filled];
-     indices [label="0 | 1 | 2 | 3| ... | ", color=white];
-
-     { rank=same; "Pointers:"; pointers }
-     { rank=same; "Values:"; values }
-     { rank=same; "Indices:"; indices }
-
-     edge [color=blue];
-     pointers:f0 -> values:f0;
-     pointers:f1 -> values:f1;
-     pointers:f2 -> values:f2;
-     pointers:f3 -> values:f3;
-   }
-
-
-
-
-
 
 
 .. index:: 
@@ -205,8 +178,8 @@ An iterator is invalidated only when the corresponding element is deleted.
    }
 
 
-The ``std::forward_list`` container
-...................................
+``std::forward_list``
+.....................
 Like ``std::list``, 
 the ``std::forward_list`` is a container that supports fast insertion and 
 removal of elements from anywhere in the container. 
@@ -220,8 +193,8 @@ when bidirectional iteration is not needed.
 .. index:: 
    pair: sequence containers; stack
 
-The ``std::stack`` container
-----------------------------
+``std::stack``
+--------------
 The ``std::stack`` is a container adapter that gives the programmer the 
 functionality of a stack - specifically, a FILO (first-in, last-out) data structure.
 
@@ -229,23 +202,6 @@ The class template acts as a wrapper to the underlying container - only
 a specific set of functions is provided. 
 The stack pushes and pops the element from the back of the underlying container, 
 known as the top of the stack.
-
-.. graphviz::
-
-   digraph g {
-        node [fontname = "Bitstream Vera Sans", fontsize=14,
-              style=filled, fillcolor=lightblue,
-              shape=box, width=0.5, height=.25, label=""];
-
-        a,b,d,e;
-        c [label=". . .", style=none, color=white];
-
-        top [shape=none, style=none, label="top()"];
-
-        a -> b -> c -> d -> e [ arrowhead=none];
-        top -> a [style=invis, constraint = false];
-
-   }
 
 .. graphviz::
 
@@ -278,8 +234,8 @@ known as the top of the stack.
 .. index:: 
    pair: sequence containers; queue
 
-The ``std::queue`` container
-----------------------------
+``std::queue``
+--------------
 The ``std::queue`` is a container adapter that gives the programmer the 
 functionality of a queue - specifically, a FIFO (first-in, first-out) data structure.
 
@@ -342,8 +298,8 @@ and pops them from the front.
 .. index:: 
    pair: sequence containers; deque
 
-The ``std::deque`` container
-----------------------------
+``std::deque``
+--------------
 The ``std::deque`` (double-ended queue) is an indexed sequence container that 
 allows fast insertion and deletion at both its beginning and its end. 
 In addition, 
@@ -351,23 +307,16 @@ insertion and deletion at either end of a deque never invalidates pointers
 or references to the rest of the elements.
 
 
-
-
------
-
-.. admonition:: More to Explore
-
-   - `std::queue <http://en.cppreference.com/w/cpp/container/queue>`_
-   - `std::deque <http://en.cppreference.com/w/cpp/container/deque>`_
-
 -----
 
 .. admonition:: More to Explore
 
    - `Sequence containers <http://en.cppreference.com/w/cpp/container>`_
-   - `std::vector <http://en.cppreference.com/w/cpp/container/vector>`_
-   - `std::array <http://en.cppreference.com/w/cpp/container/array>`_
-   - `std::list <http://en.cppreference.com/w/cpp/container/list>`_
-   - `std::forward_list <http://en.cppreference.com/w/cpp/container/forward_list>`_
-   - `std::stack <http://en.cppreference.com/w/cpp/container/stack>`_
+   - `std::vector <http://en.cppreference.com/w/cpp/container/vector>`_ and 
+     `std::array <http://en.cppreference.com/w/cpp/container/array>`_
+   - `std::list <http://en.cppreference.com/w/cpp/container/list>`_ and
+     `std::forward_list <http://en.cppreference.com/w/cpp/container/forward_list>`_
+   - `std::stack <http://en.cppreference.com/w/cpp/container/stack>`_,
+     `std::queue <http://en.cppreference.com/w/cpp/container/queue>`_, and
+     `std::deque <http://en.cppreference.com/w/cpp/container/deque>`_
 
