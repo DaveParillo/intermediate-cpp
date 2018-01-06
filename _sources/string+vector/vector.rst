@@ -11,7 +11,7 @@
 
 The vector class
 ================
-A :cppref:`std::vector` is intended to behave like a dynamically sized array.
+A :cref:`std::vector` is intended to behave like a dynamically sized array.
 It is a :term:`template`, so unlike a string, 
 which is a container for characters only,
 a vector can serve as a container for any type.
@@ -49,13 +49,13 @@ from the previous section, with one minor addition:
 
      vector<std::string> two_exes (2, "x");  // "x", "x"
 
-     vector<int> pi_digits = {3,1,4,1,5,9};  // C++11 only
+     vector<int> pi_digits = {3,1,4,1,5,9};  // C++11 
      return 0;
    }
 
 When a vector is created, you must declare what type
 of data the vector can store.
-The :cppref:`<int>` and :cppref:`<std::string>` represent the *template parameters*
+The :cref:`<int>` and :cref:`<std::string>` represent the *template parameters*
 passed to the ``vector``.
 It is these template parameters that allow the vector class to serve
 as a container for (almost any type).
@@ -114,9 +114,9 @@ Explicitly initialize with a default value, if that is what you want:
    std::vector<int> v(4, -1);
 
 A vector comes with a rich assortment of convenience functions.
-Like an array :cppref:`vector::operator[]` can be used to access elements
+Like an array :cref:`vector::operator[]` can be used to access elements
 without bounds checking.
-Like a string, :cppref:`vector::at()` function provides bounds checking
+Like a string, :cref:`vector::at()` function provides bounds checking
 and will throw an exception if an out of bounds index is used on the ``vector``.
 
 .. code-block:: cpp
@@ -150,7 +150,7 @@ and will throw an exception if an out of bounds index is used on the ``vector``.
    Why did the developers of the STL decide it was important to include both?
 
 Comparisons between vectors are also automatically handled by the class.
-In the case of a vector, :cppref:`vector::operator==`, 
+In the case of a vector, :cref:`vector::operator==`, 
 or equality comparison between two vectors ``a`` and ``b``,
 means the two vectors are equal if ``a.size() == b.size()``
 and each element in ``a`` compares equal with each element in ``b``
@@ -181,9 +181,9 @@ in the same position in the vector.
 
 Adding data to a vector
 -----------------------
-How do we solve the :cppref:`std::out_of_range` exception from a few examples ago?
+How do we solve the :cref:`std::out_of_range` exception from a few examples ago?
 How do we dynamically add data to a ``vector``?
-A simple way is to use the :cppref:`vector::push_back()` function.
+A simple way is to use the :cref:`vector::push_back()` function.
 
 .. code-block:: cpp
 

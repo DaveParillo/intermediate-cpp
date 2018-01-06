@@ -32,7 +32,7 @@ Source files and header files
 One of the primary goals of this course is to begin creating programs more
 complex than those written previously.
 One of the core skills required when writing large programs is to split 
-different parts of the progam source into separate files.
+different parts of the program source into separate files.
 
 You may have only had to do this a few times previously, but you should know
 by now:
@@ -45,7 +45,7 @@ by now:
 
 * What happens during compilation?  Linking?
 * How to use function *main()*, *argc*, and *argv*
-* ``cout`` and the meaning of statements like:
+* :cref:`cout` and the meaning of statements like:
 
 .. code-block:: cpp
 
@@ -66,7 +66,7 @@ by now:
 Code comments
 -------------
 
-You should have learned different formats for code comments 
+You should have learned different formats for code :cref:`comments `
 
 .. code-block:: cpp
 
@@ -256,7 +256,7 @@ some coding standard and you should follow that guidance when you encounter it.
 Fundamental types and type conversions
 --------------------------------------
 
-You should already be familiar with declaring fundamental types
+You should already be familiar with declaring fundamental :cref:`types`
 (``int``, ``char``, ``double``, ``uint16_t``, etc.).
 You should also be familiar with the basic operations and operators
 (``+``, ``-``, ``=``, ``==``, etc.).
@@ -421,7 +421,7 @@ User-defined types
 Although you may not have done any object oriented programming yourself,
 you probably have used objects, even if you weren't aware of it.
 The C++ standard provides many classes.
-Two of the oldest handle stream formatted input and output: ``std::cin`` and ``std::cout``.
+Two of the oldest handle stream formatted input and output: :cref:`std::cin` and :cref:`std::cout`.
 
 You should have already encountered code like:
 
@@ -432,8 +432,8 @@ You should have already encountered code like:
    std::cin  >> name;
    std::cout << "Hello," << name << "!\\n";
 
-Hopefully, you have been taught the basics of ``std::string`` and ``std::vector``
-as it is hard to imagine doing much C++ programming without ever using either.
+Hopefully, you have been taught the basics of :cref:`std::string` and :cref:`std::vector`
+as it is hard to imagine doing much (non-embedded) C++ programming without ever using either.
 A bit like writing a paragraph in English without using the letter 'e'.
 Try that sometime!
 
@@ -445,8 +445,8 @@ File input and output
 .....................
 
 I expect you to know how to use some form of file input and output,
-whether it is the C-style ``printf`` and ``scanf``, or the
-C++-style input and output file streams: ``ofstream`` and ``ifstream``.
+whether it is the C-style :cref:`printf` and :cref:`scanf`, or the
+C++-style input and output file streams: :cref:`ofstream` and :cref:`ifstream`.
 Both are serviceable, have their own advantages and disadvantages.
 This course emphasizes *modern* C++ and encourages the use of
 C++ generally, but sometimes ``printf`` is a perfectly acceptable
@@ -565,6 +565,7 @@ If not, refer to the section :doc:`debugging`.
 
 .. admonition:: More to Explore
 
-   #. Jeff Atwood's blog: `Code smells <https://blog.codinghorror.com/code-smells/>`_
+   - Jeff Atwood's blog: `Code smells <https://blog.codinghorror.com/code-smells/>`_
+   - From cppreference.com: :cref:`statements` and :cref:`loops`
 
 

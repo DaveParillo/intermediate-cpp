@@ -82,7 +82,8 @@ C++ is actually a federation of several languages:
      c -> "C++98" -> "C++03" -> modern;
    }
 
-Where 'Modern' C++ is C++11, C++14, and the soon to be C++17.
+Where 'Modern' C++ is C++11 and later.
+More specifically, the current version of the standard.
 
 It is possible to write code in any of these languages
 compile it with a C++ compiler and call it a "C++ program".
@@ -104,21 +105,10 @@ or knowledge of hardware beyond broad generalities.
 
 This course  **does**, however have a certain *linux flair*, and
 all projects and any labs that require handing in source code
-must be able to compile on the Mesa CIS server, preferably using **make**.
+must be able to compile on the command line, preferably using **make**.
 
 For all projects, a working **Makefile** will be provided.
 You won't have to edit it.
-
-The CIS server is accessible via **ssh** outside the campus using:
-
-* 209.129.16.61 (outside the campus)
-* 10.51.1.150 (inside the campus)
-
-All the tools you need to complete your projects are there if you don't have your own C++ toolchain
-
-Solutions are posted 
-on `buffy <http://209.129.16.61/~dparillo>`_ (http://209.129.16.61/~dparillo) as well
-                 
 
 Parsing command line arguments
 ------------------------------

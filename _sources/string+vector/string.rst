@@ -11,7 +11,7 @@ The string class
 ================
 
 A short review of how string abstractions are handled in C,
-followed by a short :cppref:`std::string` primer.
+followed by a short :cref:`std::string` primer.
 
 String abstractions in C
 ------------------------
@@ -29,7 +29,7 @@ the abstract idea of a string is implemented with an array of characters.
    // a quoted literal is just a special case of a char array
    char* c = "hello";
 
-Arrays of ``char`` that are null terminated are commonly called :cppref:`C strings`.
+Arrays of ``char`` that are null terminated are commonly called :cref:`C strings`.
 Given the C string:
 
 .. code-block:: c
@@ -118,7 +118,7 @@ even if an explicit size is not provided.
 C strings have an advantage of being extremely lightweight and simple.
 Their main disadvantage is that they are too simple for many applications.
 Their simplicity makes them a pain to work with,
-which is why the Standard Template Library (STL) contains the :cppref:`string` class.
+which is why the Standard Template Library (STL) contains the :cref:`string` class.
 
 A string class primer
 ---------------------
@@ -172,16 +172,16 @@ It knows it's own size, and comes with many convenience functions.
    }
 
 
-Using the :cppref:`string::operator[]` to access select characters in a string is,
+Using the :cref:`string::operator[]` to access select characters in a string is,
 like an array,
 not range checked.
 This means that if you use an index referring to an invalid position,
 then your program might have undefined behavior, or fail unexpectedly.
-You can use the function :cppref:`string::at()` anywhere ``operator[]`` is allowed.
+You can use the function :cref:`string::at()` anywhere ``operator[]`` is allowed.
 The ``at`` function is range checked.
 While there is a cost associated with this check, 
 if the index provided is out of range, 
-then an :cppref:`std::out_of_range` exception is thrown,
+then an :cref:`std::out_of_range` exception is thrown,
 which must be caught,
 otherwise the program will terminate.
 
@@ -210,7 +210,7 @@ What type is ``my_string``?
 
    The default type for characters enclosed in double quotes is ``const char*``.
 
-This is one of those situations where :cppref:`auto` may not be deducing the type
+This is one of those situations where :cref:`auto` may not be deducing the type
 you actually want.
 There are several simple ways to to still use auto and get the type
 deduced to be a std::string.
@@ -276,7 +276,7 @@ within a string.
      return 0;
    }
 
-The special value :cppref:`std::string::npos` is used both as an end of string indicator
+The special value :cref:`std::string::npos` is used both as an end of string indicator
 by functions that expect a string and
 as an indicator of *not found* by functions that return an index (like find).
 
@@ -303,7 +303,7 @@ Final words
 -----------
 This was a very brief introduction and barely captures what std::string
 is capable of.
-Check out the documentation at cppreference.com to get a feel for the functions
+Check out the documentation at creference.com to get a feel for the functions
 and capabilities available.
 
 -----

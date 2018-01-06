@@ -171,12 +171,11 @@ Addition, removal, and moving the elements within the list or across several lis
 does not invalidate the iterators or references. 
 An iterator is invalidated only when the corresponding element is deleted.
 
-
 .. graphviz::
 
    // doubly linked list
    digraph g {
-        node [fontname = "Bitstream Vera Sans",
+        node [fontname = "Bitstream Vera Sans", fontsize=14,
              style=filled, fillcolor=lightblue,
              shape=box, width=0.5, height=.25, label=""];
 
@@ -191,7 +190,7 @@ An iterator is invalidated only when the corresponding element is deleted.
 
        begin -> a;
        a -> b -> c -> d -> e -> f [ arrowhead=vee, arrowsize=0.5];
-       f-> e -> d -> c -> b -> a [ arrowhead=vee, arrowsize=0.5];
+       e -> d -> c -> b -> a [ arrowhead=vee, arrowsize=0.5];
        f -> end [dir=back];
 
        node [style=invis] x,y;
@@ -234,7 +233,7 @@ known as the top of the stack.
 .. graphviz::
 
    digraph g {
-        node [fontname = "Bitstream Vera Sans",
+        node [fontname = "Bitstream Vera Sans", fontsize=14,
               style=filled, fillcolor=lightblue,
               shape=box, width=0.5, height=.25, label=""];
 
@@ -243,7 +242,7 @@ known as the top of the stack.
 
         top [shape=none, style=none, label="top()"];
 
-        a -> b -> c -> d -> e [ arrowhead=vee];
+        a -> b -> c -> d -> e [ arrowhead=none];
         top -> a [style=invis, constraint = false];
 
    }
@@ -252,7 +251,7 @@ known as the top of the stack.
 
    // shows push and pop
    digraph g {
-       node [fontname = "Bitstream Vera Sans",
+       node [fontname = "Bitstream Vera Sans", fontsize=14,
              style=filled, fillcolor=lightblue,
              shape=box, width=0.5, height=.25, label=""];
 
@@ -292,7 +291,7 @@ and pops them from the front.
 .. graphviz::
 
    digraph g {
-       node [fontname = "Bitstream Vera Sans",
+       node [fontname = "Bitstream Vera Sans", fontsize=14,
              style=filled, fillcolor=lightblue,
              shape=box, width=0.5, height=.25, label=""];
 
@@ -303,7 +302,7 @@ and pops them from the front.
        back [shape=none, label="back()"];
        front [shape=none, label="front()"];
 
-       a:e -> b -> c -> d -> e [ arrowhead=vee];
+       a -> b -> c -> d -> e [ arrowhead=vee];
        back -> a:w [dir=back];
        e:e -> front;
 
@@ -319,7 +318,7 @@ and pops them from the front.
 
    // shows push and pop, enqueue / dequeue
    digraph g {
-       node [fontname = "Bitstream Vera Sans",
+       node [fontname = "Bitstream Vera Sans", fontsize=14,
              style=filled, fillcolor=lightblue,
              shape=box, width=0.5, height=.25, label=""];
 
@@ -332,8 +331,8 @@ and pops them from the front.
        back [shape=none, label="push()"];
        front [shape=none, label="pop()"];
 
-       o:e -> a -> b -> c -> d -> e [ arrowhead=vee];
-       e:e -> z [ arrowhead=none];
+       o -> a -> b -> c -> d -> e [ arrowhead=vee];
+       e -> z [ arrowhead=none];
        back -> o [style=dotted];
        front -> z [style=dotted, dir=back];
 

@@ -58,6 +58,7 @@ to begin working in a new language.
 When you invoke ``gcc``, it normally does preprocessing, compilation, assembly and linking.
 
 .. graphviz::
+   :alt: Standard executable build steps
 
    digraph foo {
      fontname = "Bitstream Vera Sans"
@@ -66,29 +67,35 @@ When you invoke ``gcc``, it normally does preprocessing, compilation, assembly a
      rankdir=LR;
      node [
         fontname = "Bitstream Vera Sans"
-        fontsize = 11
+        fontsize = 14
         style=filled
         fillcolor=lightblue
-     ]
+     ];
 
-
-     hello [label="hello.cpp\n(source code)", shape=box, fillcolor=wheat];
      cpp [label="C preprocessor"];
-     cpp2 [label="preprocessed\nhello.cpp", shape=box, fillcolor=wheat];
      gcc [label="compiler"];
-     asm [label="hello.s\n(assembly code)", shape=box, fillcolor=wheat];
-     as [label="assembler"];
-     obj [label="hello.o\n(object code)", shape=box, fillcolor=wheat];
+     as  [label="assembler"];
      ld [label="linker (ld)\nlink in libstdc++ object code"];
-     exe [label="hello\n(executable)", shape=box, fillcolor=wheat];
+
+     node [
+        shape=box,
+        fillcolor=wheat
+     ];
+     hello [label="hello.cpp\n(source code)"];
+     cpp2 [label="preprocessed\nhello.cpp"];
+     asm [label="hello.s\n(assembly code)"];
+     obj [label="hello.o\n(object code)"];
+     exe [label="hello\n(executable)"];
+
      hello -> cpp -> cpp2 ->gcc -> asm -> as ->obj -> ld -> exe; 
 
      {rank=same hello cpp cpp2} -> {rank=same gcc asm as} -> {rank=same obj ld exe} [style=invis]
 
    }
 
-It is a complex program with very many options, so naturally, you can
-execute only one of these steps, some of them, or change their behavior.
+``gcc`` is a complex program with **many** options.
+You can execute only one of these steps, some of them, 
+all of them, or change the behavior of one or more steps.
 
 Generally, we are interested in building our programs as simply as possible.
 Given a single source file ``main.cpp``, that contains all the code
