@@ -11,7 +11,7 @@
 
 The vector class
 ================
-A ``std::vector`` is intended to behave like a dynamically sized array.
+A :cppref:`std::vector` is intended to behave like a dynamically sized array.
 It is a :term:`template`, so unlike a string, 
 which is a container for characters only,
 a vector can serve as a container for any type.
@@ -33,8 +33,8 @@ Some downsides to arrays are that they:
 - Decay into pointers easily
 - Provide no convenience functions 
 
-The vector class solves these problems for us and a few others besides.
-Declaring a vector is quite similar to the string declarations
+The ``vector`` class solves these problems for us and a few others besides.
+Declaring a ``vector`` is quite similar to the ``string`` declarations
 from the previous section, with one minor addition:
 
 .. code-block:: cpp
@@ -55,8 +55,8 @@ from the previous section, with one minor addition:
 
 When a vector is created, you must declare what type
 of data the vector can store.
-The ``<int>`` and ``<std::string>`` represent the *template parameters*
-passed to the vector.
+The :cppref:`<int>` and :cppref:`<std::string>` represent the *template parameters*
+passed to the ``vector``.
 It is these template parameters that allow the vector class to serve
 as a container for (almost any type).
 There are some limits we will cover later,
@@ -105,7 +105,7 @@ Given a vector declared as:
      {rank=same; struct,labels};
    }
 
-Although the vector object is initialized, its contents are not.
+Although the ``vector`` object is initialized, its contents are not.
 Many compilers will initialize the contents to zero, but don't rely on this behavior.
 Explicitly initialize with a default value, if that is what you want:
 
@@ -114,10 +114,10 @@ Explicitly initialize with a default value, if that is what you want:
    std::vector<int> v(4, -1);
 
 A vector comes with a rich assortment of convenience functions.
-Like an array ``operator[]`` can be used to access elements
+Like an array :cppref:`vector::operator[]` can be used to access elements
 without bounds checking.
-Like a string, an ``at()`` function provides bounds checking
-and will throw an exception if an out of bounds index is used on the vector.
+Like a string, :cppref:`vector::at()` function provides bounds checking
+and will throw an exception if an out of bounds index is used on the ``vector``.
 
 .. code-block:: cpp
 
@@ -150,7 +150,7 @@ and will throw an exception if an out of bounds index is used on the vector.
    Why did the developers of the STL decide it was important to include both?
 
 Comparisons between vectors are also automatically handled by the class.
-In the case of a vector, ``operator==``, 
+In the case of a vector, :cppref:`vector::operator==`, 
 or equality comparison between two vectors ``a`` and ``b``,
 means the two vectors are equal if ``a.size() == b.size()``
 and each element in ``a`` compares equal with each element in ``b``
@@ -173,11 +173,17 @@ in the same position in the vector.
      return 0;
    }
 
+
+.. admonition:: Try This!
+
+   Create two int arrays containing ``{2, 4, 6, 8}`` and check them for equality.
+
+
 Adding data to a vector
 -----------------------
-How do we solve the out of range exceptin from a few examples ago?
-How do we dynamically add data to a vector?
-A simple way is to use the ``push_back()`` function.
+How do we solve the :cppref:`std::out_of_range` exception from a few examples ago?
+How do we dynamically add data to a ``vector``?
+A simple way is to use the :cppref:`vector::push_back()` function.
 
 .. code-block:: cpp
 
