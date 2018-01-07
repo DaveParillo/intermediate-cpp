@@ -7,6 +7,7 @@ Frequently asked questions (FAQ)
 .. toctree::
    :caption: Frequently asked questions (FAQ)
    :maxdepth: 1
+   :glob:
 
-   q1-why-not-an-ide.rst
+   ./q*
 
