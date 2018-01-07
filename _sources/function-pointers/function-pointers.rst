@@ -49,11 +49,23 @@ To declare a pointer to a function that returns an ``int`` and takes no paramete
 
 .. code-block:: cpp
 
-   int (*ptr)();
+   int (*pf)();
 
-The parentheses around ``(*ptr)`` are required due to operator precedence.
+The pointer variable is named ``pf``.
+The parentheses around ``(*pf)`` are required due to operator precedence.
+Without the parentheses:
 
-To declare a pointer to a function that returns an ``double`` and takes two parameters:
+.. code-block:: cpp
+
+   int *pf();     // not a pointer to a function
+
+   // same as above
+   int* pf();
+
+Instead, this declares a function that returns an ``int*`` and takes no parameters.
+
+To declare a pointer named ``func`` 
+pointing to a function that returns a ``double`` and takes two parameters:
 
 .. code-block:: cpp
 
@@ -70,7 +82,8 @@ you can assign functions to it:
    double pi      ()             { return 3.14159265;}
 
    int main () {
-     double (*func)(int x, int y) = add;
+     // declare func and assign add to it
+     double (*func)(int, int) = add;
 
      cout << (*func)(2,3); // prints 4
 
@@ -88,13 +101,13 @@ A downside to traditional function pointer initialization is
 that this doesn't look like the initialization syntax we are used to.
 This is a legacy of the C language C++ was originally based on.
 
-The C++11 ``using`` alias allows defining a name that refers to a previously defined type:
+The C++11 :cref:`type alias` allows defining a name that refers to a previously defined type:
 
 .. code-block:: cpp
 
-   double (*func)(int x, int y);          // old syntax
+   double (*func)(int, int);          // old syntax
 
-   using func = double(*)(int x, int y);  // new syntax
+   using func = double(*)(int, int);  // since C++11
 
 
 Example: Caesar ciphers
