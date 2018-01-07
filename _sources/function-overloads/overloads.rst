@@ -61,6 +61,7 @@ For example:
 - C defines 7 different functions just for absolute value 
 
   - ``abs``, ``llabs``, ``fabs``, ``fabsf``, etc.
+    see :cref:`abs`
 
 - and 13 different functions for different types of division operation
 
@@ -74,7 +75,7 @@ Another example: a family of functions to compute volume.
    :language: cpp
 
    #include <iostream>
-   #include <cmath>
+   #include <cmath>  // not all compilers define M_PI
 
    // volume of a cube
    double volume (const double a) {
@@ -93,13 +94,14 @@ Another example: a family of functions to compute volume.
 
    int main() {
      std::cout << "volume of a 2 x 2 x 2 cube: " 
-               << volume(2.0) << '\n'
+               << volume(2) << '\n'
 
                << "volume of a cylinder, radius 2, height 3: " 
-               << volume(2.0, 3.0) << '\n'
+               << volume(2, 3) << '\n'
 
                << "volume of a 2 x 3 x 4 cuboid: " 
-               << volume(2.0, 3.0, 4.0) << '\n';
+               << volume(2, 3, 4) << '\n';
+     return 0;
    }
 
 
