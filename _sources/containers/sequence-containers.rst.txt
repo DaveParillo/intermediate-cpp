@@ -60,9 +60,9 @@ A ``vector`` *is* ordered, however: by its index position.
 .. index:: 
    pair: sequence containers; vector
 
-``std::vector``
----------------
-The ``std::vector`` is a sequence container that simulates a dynamically sized array.
+std::vector
+-----------
+The :cref:`std::vector` is a sequence container that simulates a dynamically sized array.
 If you have taken a class in linear algebra, vector has nothing to do with mathematics,
 but is just about a sequential data structure.
 
@@ -78,8 +78,8 @@ Vectors usually occupy more space than static arrays,
 because more memory is allocated to handle future growth. 
 This way a vector does not need to reallocate each time an element is inserted, 
 but only when the additional memory is exhausted. 
-The total amount of allocated memory can be queried using ``capacity()`` function. 
-Starting in C++11, extra memory can be returned to the system via a call to ``shrink_to_fit()``. 
+The total amount of allocated memory can be queried using :cref:`vector::capacity()` function. 
+Starting in C++11, extra memory can be returned to the system via a call to :cref:`vector::shrink_to_fit()`. 
 
 Given a vector declared as:
 
@@ -121,9 +121,9 @@ This creates a vector of type ``int``, with size 4 and the first 3 values initia
 .. index:: 
    pair: sequence containers; array
 
-``std::array``
---------------
-The ``std::array`` is a container that encapsulates fixed size arrays.
+std::array
+----------
+The :cref:`std::array` is a container that encapsulates fixed size arrays.
 
 
 
@@ -132,9 +132,9 @@ The ``std::array`` is a container that encapsulates fixed size arrays.
 .. index:: 
    pair: sequence containers; list
 
-``std::list``
--------------
-The ``std::list`` is a sequence container that stores data in *nodes*.
+std::list
+---------
+The :cref:`std::list` is a sequence container that stores data in *nodes*.
 Each node in a list points to the next (and previous) node in the list.
 Each node is a separate object that exists to encapsulate a piece of data
 and to allow navigation to adjacent nodes.
@@ -196,36 +196,21 @@ A more compact way to graphically represent our doubly-linked list is like this:
 
    // doubly linked list
    digraph g {
-        node [fontname = "Bitstream Vera Sans", fontsize=14,
+       node [fontname = "Bitstream Vera Sans", fontsize=14,
              style=filled, fillcolor=lightblue,
-             shape=box, width=0.5, height=.25, label=""];
+             shape=box, width=0.5, height=.25];
 
 
-       a,b,d,e;
-       f [style=dotted];
-       node [style=none];
-       c [label=". . .", color=white];
+       head [style=dotted, fillcolor=white];
+       tail [style=dotted, fillcolor=white];
 
-       begin [shape=none, label="begin()"];
-       end [shape=none, label="end()"];
+       head -> a -> b -> tail [ arrowhead=vee, arrowsize=0.5];
+       tail -> b -> a -> head [ arrowhead=vee, arrowsize=0.5];
 
-       begin -> a;
-       a -> b -> c -> d -> e -> f [ arrowhead=vee, arrowsize=0.5];
-       e -> d -> c -> b -> a [ arrowhead=vee, arrowsize=0.5];
-       f -> end [dir=back];
-
-       node [style=invis] x,y;
-       node [shape=point] p1, p2;
-       edge [style=invis];
-       x -> a;
-       y -> f;
-       begin -> p1;
-       end -> p2;
-       p1 -> a ->f -> p2;
-       {rank=sink; p1 a b c d e f p2}
+      {rank=same; head a b tail}
    }
-
-A linked list that stores a sequence of ints can be trivially implemented using a ``struct``:
+   
+A linked list that stores a sequence of ``int``s can be trivially implemented using a ``struct``:
 
 .. code-block:: cpp
 
@@ -283,7 +268,7 @@ Obviously, no one would want to use such a list.
 Every trivial detail needs to be managed, and any program using it
 would be more likely to leak memory or fail suddenly due to some programming error.
 
-The ``std::list`` class hides all the implementation details and
+The :cref:`std::list` class hides all the implementation details and
 provides a list with many convenient features:
 
 .. code-block:: cpp
@@ -318,7 +303,7 @@ provides a list with many convenient features:
      cout << "\n\n";
    }
 
-The defining operations of a list are:
+The defining operations of a ``std::list`` are:
 
 push_back
    Add a new element to the end of the list
@@ -376,7 +361,7 @@ This means that a forward list can only be traversed in the direction of the tai
    c:ref:c -> tail:w [arrowhead=vee, arrowtail=dot, dir=both, tailclip=false];
 
 
-The defining operations of a forward_list are:
+The defining operations of a ``std::forward_list`` are:
 
 push_front
    Add a new element to the beginning of the list
@@ -406,7 +391,7 @@ a specific set of functions is provided.
 The stack pushes and pops the element from the back of the underlying container, 
 known as the top of the stack.
 
-The defining operations of a stack are:
+The defining operations of a ``std::stack`` are:
 
 push
    Add a new element to the top of the stack.
@@ -455,9 +440,9 @@ and ``std::deque`` can be adapted to create a stack.
 .. index:: 
    pair: sequence containers; queue
 
-``std::queue``
---------------
-The ``std::queue`` is a container adapter that gives the programmer the 
+std::queue
+----------
+The :cref:`std::queue` is a container adapter that gives the programmer the 
 functionality of a queue - specifically, a FIFO (first-in, first-out) data structure.
 
 The class template acts as a wrapper to the underlying container - only 
@@ -490,7 +475,7 @@ and pops them from the front.
    }
 
 
-The defining operations of a queue are:
+The defining operations of a ``std::queue`` are:
 
 push
    Add a new element to the back (end) of the queue.
@@ -543,7 +528,7 @@ insertion and deletion at either end of a deque never invalidates pointers
 or references to the rest of the elements.
 
 It's primary role in the standard library is to function as
-the default container underlying ``stad::stack`` and ``std::queue``.
+the default container underlying ``std::stack`` and ``std::queue``.
 
 
 -----
