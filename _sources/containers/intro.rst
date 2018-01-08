@@ -28,11 +28,9 @@ A sequence container stores a sequence of elements of a given type.
 The sequence containers can be further divided into two 'flavors':
 
 list-like sequences
-
     Things stored in a sequence
 
 stacks and queues
-
     Things listed in order to be processed
 
 As you might imagine, associative containers do not store
@@ -41,11 +39,9 @@ element to determine where in the container data should be stored.
 The associative containers can also be further divided into two 'flavors':
 
 sets
-
     Unique things
 
 maps
-
     Things stored with a unique ID
 
 All the STL containers provide similar advantages over arrays:
