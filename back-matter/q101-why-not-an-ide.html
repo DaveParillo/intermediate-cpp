@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>7. Containers &#8212; Intermediate Modern C++ Overview</title>
+    <title>Why not use an IDE? &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -96,8 +96,8 @@
     <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="7.1. Standard Template Library Containers" href="intro.html" />
-    <link rel="prev" title="6.3. The std::function template" href="../function-pointers/std_function.html" />
+    <link rel="next" title="What language should I learn?" href="q110-what-language.html" />
+    <link rel="prev" title="Frequently asked questions (FAQ)" href="faq.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -217,7 +217,7 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">7. Containers</a></li>
+<li><a class="reference internal" href="#">Why not use an IDE?</a></li>
 </ul>
 </ul>
 </li>
@@ -225,14 +225,14 @@
         
         
           
-  <li id="relations-prev" title="Previous Chapter - 6.3. The std::function template" data-toggle="tooltip">
-    <a href="../function-pointers/std_function.html" >
+  <li id="relations-prev" title="Previous Chapter - Frequently asked questions (FAQ)" data-toggle="tooltip">
+    <a href="faq.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - 7.1. Standard Template Library Containers' data-toggle="tooltip" >
-    <a href="intro.html" >
+  <li id="relations-next" title='Next Chapter - What language should I learn?' data-toggle="tooltip" >
+    <a href="q110-what-language.html" >
       <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
   </li>
@@ -262,28 +262,54 @@
 
 <div class="container" id="main-content">
   
-  <div class="section" id="containers">
-<h1>7. Containers<a class="headerlink" href="#containers" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Containers</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="intro.html">7.1. Standard Template Library Containers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="intro.html#ordered-and-sorted-containers">7.1.1. Ordered and sorted containers</a></li>
-</ul>
+  <div class="section" id="why-not-use-an-ide">
+<span id="index-0"></span><h1>Why not use an IDE?<a class="headerlink" href="#why-not-use-an-ide" title="Permalink to this headline">¶</a></h1>
+<p>You can use an Integrated Development Environment (IDE) if you feel strongly about it.
+An IDE can make you more productive in some environments.
+But I don’t recommend an IDE <em>ever</em> when learning a language.</p>
+<p>Why?</p>
+<p>Lots of reasons.</p>
+<ol class="arabic">
+<li><p class="first">When learning,
+you are still trying to commit the syntax and grammar of the new
+language to memory.
+If every other keystroke is &lt;CTRL&gt;-space and you let the tool
+autocomplete everything, you will never really master the language.</p>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="sequence-containers.html">7.2. Sequence Containers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sequence-containers.html#std-vector">7.2.1. <code class="docutils literal"><span class="pre">std::vector</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="sequence-containers.html#std-array">7.2.2. <code class="docutils literal"><span class="pre">std::array</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="sequence-containers.html#std-list">7.2.3. <code class="docutils literal"><span class="pre">std::list</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="sequence-containers.html#std-stack">7.2.4. std::stack</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sequence-containers.html#std-queue">7.2.5. <code class="docutils literal"><span class="pre">std::queue</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="sequence-containers.html#std-deque">7.2.6. std::deque</a></li>
-</ul>
+<li><p class="first">An IDE is not a ‘free lunch’.
+They are typically complex applications with loads of options that require
+as much learning as the modes and keyboard commands in vim.
+Unless you put in the time and effort to learn the IDE,
+you won’t realize most of the productivity gains anyways.</p>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="associative-containers.html">7.3. Section</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="associative-containers.html#subsection">7.3.1. Subsection</a></li>
-</ul>
+<li><p class="first">IDE’s typically only support one, or a few language really well.
+Microsoft Visual Studio is an exception.
+I would rate it as very good for Visual Basic, C#, and Web Development (including JavaScript).</p>
+<p>There are no ‘great’ C or C++ IDE’s.</p>
+<p>But even if you find a great IDE,
+if you work in a different language,
+then you need to potentially learn a completely different tool
+to work with the other language.</p>
 </li>
+<li><p class="first">IDE’s are great if you are working on a single, medium sized project
+for an extended period of time.
+Think more than 1,000 lines of code.</p>
+<p>On a project, the time it takes to setup a new project is worth the
+investment, because you’ll be working on it for potentially a long time.</p>
+<p>This is not mostly what we do in a classroom situation.</p>
+<p>We create lots of very small programs,
+because we are trying to distill new concepts down to the smallest
+program that will demonstrate the idea.</p>
+<p>In this environment, IDE’s get in the way,
+because it takes more time to make a new project in the IDE,
+than it does to just time <code class="docutils literal"><span class="pre">make</span> <span class="pre">my_program</span></code> on the command line or in vim.</p>
+</li>
+</ol>
+<hr class="docutils" />
+<div class="admonition-more-to-explore admonition">
+<p class="first admonition-title">More to Explore</p>
+<ul class="last simple">
+<li>Textbook: <a class="reference internal" href="../beginnings/make.html"><span class="doc">Command-line compiling</span></a></li>
 </ul>
 </div>
 </div>
@@ -291,19 +317,19 @@
 
   
       
-  <li id="relations-prev" class="navLink" title='Previous Section - 6.3. The std::function template' data-toggle="tooltip">
-    <a href="../function-pointers/std_function.html" >
+  <li id="relations-prev" class="navLink" title='Previous Section - Frequently asked questions (FAQ)' data-toggle="tooltip">
+    <a href="faq.html" >
       <i class='prevNav glyphicon glyphicon-chevron-left'></i>
     </a>
   </li>
-  <a class="navLinkBg" id="navLinkBgLeft"  href="../function-pointers/std_function.html" ></a>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="faq.html" ></a>
   
-  <li id="relations-next" class="navLink" title='Next Section - 7.1. Standard Template Library Containers' data-toggle="tooltip" >
-    <a href="intro.html" >
+  <li id="relations-next" class="navLink" title='Next Section - What language should I learn?' data-toggle="tooltip" >
+    <a href="q110-what-language.html" >
       <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
     </a>
   </li>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="intro.html" >Next Section - 7.1. Standard Template Library Containers</a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="q110-what-language.html" >Next Section - What language should I learn?</a>
 
 <script type="text/javascript">
 

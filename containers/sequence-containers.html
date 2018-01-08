@@ -221,12 +221,12 @@
 <li><a class="reference internal" href="#std-vector">7.2.1. <code class="docutils literal"><span class="pre">std::vector</span></code></a></li>
 <li><a class="reference internal" href="#std-array">7.2.2. <code class="docutils literal"><span class="pre">std::array</span></code></a></li>
 <li><a class="reference internal" href="#std-list">7.2.3. <code class="docutils literal"><span class="pre">std::list</span></code></a><ul>
-<li><a class="reference internal" href="#std-forward-list">7.2.3.1. <code class="docutils literal"><span class="pre">std::forward_list</span></code></a></li>
+<li><a class="reference internal" href="#std-forward-list">7.2.3.1. std::forward_list</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#std-stack">7.2.4. <code class="docutils literal"><span class="pre">std::stack</span></code></a></li>
+<li><a class="reference internal" href="#std-stack">7.2.4. std::stack</a></li>
 <li><a class="reference internal" href="#std-queue">7.2.5. <code class="docutils literal"><span class="pre">std::queue</span></code></a></li>
-<li><a class="reference internal" href="#std-deque">7.2.6. <code class="docutils literal"><span class="pre">std::deque</span></code></a></li>
+<li><a class="reference internal" href="#std-deque">7.2.6. std::deque</a></li>
 </ul>
 </li>
 </ul>
@@ -367,14 +367,59 @@ Starting in C++11, extra memory can be returned to the system via a call to <cod
 </div>
 <div class="section" id="std-list">
 <span id="index-3"></span><h2>7.2.3. <code class="docutils literal"><span class="pre">std::list</span></code><a class="headerlink" href="#std-list" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">std::list</span></code> is a sequence container that supports constant time insertion
-and removal of elements from anywhere in the container.
-Fast random access is not supported.
-It is usually implemented as a doubly-linked list.
-Compared to <code class="docutils literal"><span class="pre">std::forward_list</span></code> this container provides bidirectional iteration capability while being less space efficient.</p>
-<p>Addition, removal, and moving the elements within the list or across several lists
-does not invalidate the iterators or references.
-An iterator is invalidated only when the corresponding element is deleted.</p>
+<p>The <code class="docutils literal"><span class="pre">std::list</span></code> is a sequence container that stores data in <em>nodes</em>.
+Each node in a list points to the next (and previous) node in the list.
+Each node is a separate object that exists to encapsulate a piece of data
+and to allow navigation to adjacent nodes.</p>
+<img src="../_images/graphviz-e73208798d7a3c69da251018ae65518cd11359a3.png" alt="digraph list {
+   graph [
+      rankdir=LR;
+      //splines=ortho;
+      compound=true;
+      labelloc=b;
+      label=&quot;Linked list nodes&quot;;
+      ranksep = 1;
+   ]
+   node [fontname = &quot;Bitstream Vera Sans&quot;, fontsize=14,
+             style=filled, fillcolor=lightblue,
+             shape=record, width=0.5, height=.25, label=&quot;&quot;];
+
+
+  subgraph cluster_h {
+    labelloc=t
+    label=&quot;head&quot;
+    head [label=&quot; |next()| &quot;]
+  }
+
+  subgraph cluster_a {
+    labelloc=t
+    label=&quot;Node A&quot;
+    a [label=&quot;data|next()|prev()&quot;]
+  }
+
+    subgraph cluster_b {
+    labelloc=t
+    label=&quot;Node B&quot;
+     b [label=&quot;data|next()|prev()&quot;]
+  }
+
+  subgraph cluster_t {
+    labelloc=t
+    label=&quot;tail&quot;
+     tail [label=&quot; | | prev()&quot;]
+  }
+
+  head:m-&gt; a [lhead=cluster_a];
+
+  a -&gt; b [lhead=cluster_b];
+  a:s -&gt; head:s [lhead=cluster_h];
+
+  b -&gt; tail [lhead=cluster_t];
+  b:s -&gt; a:s [lhead=cluster_a];
+
+  tail:s -&gt; b:s [lhead=cluster_b];
+}" />
+<p>A more compact way to graphically represent our doubly-linked list is like this:</p>
 <img src="../_images/graphviz-042663427ba601af9a4cf876bb46b262146ed051.png" alt="// doubly linked list
 digraph g {
      node [fontname = &quot;Bitstream Vera Sans&quot;, fontsize=14,
@@ -405,26 +450,170 @@ digraph g {
     p1 -&gt; a -&gt;f -&gt; p2;
     {rank=sink; p1 a b c d e f p2}
 }" />
+<p>A linked list that stores a sequence of ints can be trivially implemented using a <code class="docutils literal"><span class="pre">struct</span></code>:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="k">struct</span> <span class="n">node</span> <span class="p">{</span>
+   <span class="kt">int</span> <span class="n">value</span><span class="p">;</span>
+   <span class="n">node</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+   <span class="n">node</span> <span class="o">*</span><span class="n">prev</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Creating a linked list from such a ‘home grown’ struct is not complicated,
+but it isn’t pretty either:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// create an empty list</span>
+<span class="n">node</span><span class="o">*</span> <span class="n">head</span> <span class="o">=</span> <span class="k">new</span> <span class="n">node</span><span class="p">;</span>
+<span class="n">node</span><span class="o">*</span> <span class="n">tail</span> <span class="o">=</span> <span class="k">new</span> <span class="n">node</span><span class="p">;</span>
+<span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">tail</span><span class="p">;</span>
+<span class="n">tail</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+
+<span class="c1">// insert node a into the list</span>
+<span class="n">node</span><span class="o">*</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">node</span><span class="p">;</span>
+<span class="n">a</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">=</span> <span class="mi">61</span><span class="p">;</span>
+<span class="n">a</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">tail</span><span class="p">;</span>
+<span class="n">a</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+<span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+<span class="n">tail</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+
+<span class="c1">// insert node b after node a</span>
+<span class="n">node</span><span class="o">*</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">node</span><span class="p">;</span>
+<span class="n">b</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">=</span> <span class="mi">62</span><span class="p">;</span>
+<span class="n">b</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">tail</span><span class="p">;</span>
+<span class="n">b</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+<span class="n">a</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+<span class="n">tail</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>At this point, we have created the basic structure shown in the previous diagram.
+Once we have such a list, we can access all of the elements,
+if we have a pointer to any one of them.
+For example, to print all of the elements, we could:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">node</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span><span class="p">;</span>
+  <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Which, given the list we created, will print <code class="docutils literal"><span class="pre">61</span> <span class="pre">62\0</span></code>.</p>
+<p>Obviously, no one would want to use such a list.
+Every trivial detail needs to be managed, and any program using it
+would be more likely to leak memory or fail suddenly due to some programming error.</p>
+<p>The <code class="docutils literal"><span class="pre">std::list</span></code> class hides all the implementation details and
+provides a list with many convenient features:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<span class="cp">#include &lt;list&gt;</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">print_list</span><span class="p">(</span><span class="k">const</span> <span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span> <span class="p">};</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;size: &quot;</span>  <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;front: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">front</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;back: &quot;</span>  <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">back</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">;</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;push_back 13: &quot;</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="n">list</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;size: &quot;</span>  <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;back() &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">back</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+  <span class="n">print_list</span><span class="p">(</span><span class="n">list</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">print_list</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">list</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;list contains: &quot;</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="nl">i</span><span class="p">:</span> <span class="n">list</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The defining operations of a list are:</p>
+<dl class="docutils">
+<dt>push_back</dt>
+<dd>Add a new element to the end of the list</dd>
+<dt>pop_back</dt>
+<dd>Remove an element from the end of the list.</dd>
+<dt>back</dt>
+<dd>Get the value of the element at the end of the list</dd>
+<dt>push_front</dt>
+<dd>Add a new element to the beginning of the list</dd>
+<dt>pop_front</dt>
+<dd>Remove an element from the beginning of the list.</dd>
+<dt>front</dt>
+<dd>Get the value of the element at the beginning of the list</dd>
+</dl>
+<p>Underneath, the standard library list is not very different from the <code class="docutils literal"><span class="pre">struct</span> <span class="pre">node</span></code> above.
+The primary characteristics are:</p>
+<ul class="simple">
+<li>All data is stored on the heap</li>
+<li>Each node in the list is a separate object</li>
+<li>Node traversal is accomplished by following pointers from one node to the next</li>
+<li>Access based on an index is not allowed.
+This kind of access, called <em>random  access</em> describes
+the ability to compute a location in memory using a starting address and an offset.
+Arrays and vectors support random access.
+Linked lists do not.</li>
+</ul>
 <div class="section" id="std-forward-list">
-<h3>7.2.3.1. <code class="docutils literal"><span class="pre">std::forward_list</span></code><a class="headerlink" href="#std-forward-list" title="Permalink to this headline">¶</a></h3>
-<p>Like <code class="docutils literal"><span class="pre">std::list</span></code>,
-the <code class="docutils literal"><span class="pre">std::forward_list</span></code> is a container that supports fast insertion and
-removal of elements from anywhere in the container.
-Fast random access is not supported.
-It is implemented as a singly-linked list and essentially does not have any overhead
-compared to its implementation in C.
-Compared to std::list this container provides more space efficient storage
-when bidirectional iteration is not needed.</p>
+<h3>7.2.3.1. std::forward_list<a class="headerlink" href="#std-forward-list" title="Permalink to this headline">¶</a></h3>
+<p>Like <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::list">std::list</a>,
+the <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::forward_list">std::forward_list</a> is a container that stores elements in <em>nodes</em>.
+A forward list only defines pointers to the next node in the list.
+This means that a forward list can only be traversed in the direction of the tail.</p>
+<img src="../_images/graphviz-ad5e88b9885d591c39982ca9ea4b2c38c1c5dcaa.png" alt="digraph list {
+rankdir=LR;
+node [fontname = &quot;Bitstream Vera Sans&quot;, fontsize=14,
+          style=filled, fillcolor=lightblue,
+          shape=record];
+
+head [shape=box];
+a [label=&quot;{ &lt;data&gt; 8 | &lt;ref&gt;  }&quot;, width=1.2]
+b [label=&quot;{ &lt;data&gt; 13 | &lt;ref&gt;  }&quot;];
+c [label=&quot;{ &lt;data&gt; 21 | &lt;ref&gt;  }&quot;];
+tail [shape=box];
+head:e -&gt; a:w     [arrowhead=vee];
+a:ref:c -&gt; b:data [arrowhead=vee, arrowtail=dot, dir=both, tailclip=false, arrowsize=1.2];
+b:ref:c -&gt; c:data [arrowhead=vee, arrowtail=dot, dir=both, tailclip=false];
+c:ref:c -&gt; tail:w [arrowhead=vee, arrowtail=dot, dir=both, tailclip=false];
+}" />
+<p>The defining operations of a forward_list are:</p>
+<dl class="docutils">
+<dt>push_front</dt>
+<dd>Add a new element to the beginning of the list</dd>
+<dt>pop_front</dt>
+<dd>Remove an element from the beginning of the list.</dd>
+<dt>front</dt>
+<dd>Get the value of the element at the beginning of the list</dd>
+</dl>
+<p>Compared to <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::list">std::list</a> this container provides more space efficient storage
+when bidirectional iteration is not needed.
+A very light-weight container,
+it does not have any overhead compared to its implementation in C.</p>
 </div>
 </div>
 <div class="section" id="std-stack">
-<span id="index-4"></span><h2>7.2.4. <code class="docutils literal"><span class="pre">std::stack</span></code><a class="headerlink" href="#std-stack" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">std::stack</span></code> is a container adapter that gives the programmer the
-functionality of a stack - specifically, a FILO (first-in, last-out) data structure.</p>
+<span id="index-4"></span><h2>7.2.4. std::stack<a class="headerlink" href="#std-stack" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::stack">std::stack</a> is a container adapter that gives the programmer the
+functionality of a stack - specifically, a Last-In-First-Out (LIFO) data structure.</p>
 <p>The class template acts as a wrapper to the underlying container - only
 a specific set of functions is provided.
 The stack pushes and pops the element from the back of the underlying container,
 known as the top of the stack.</p>
+<p>The defining operations of a stack are:</p>
+<dl class="docutils">
+<dt>push</dt>
+<dd>Add a new element to the top of the stack.</dd>
+<dt>pop</dt>
+<dd>Remove an element from the top of the stack.
+In some languages, but not <code class="docutils literal"><span class="pre">std::stack</span></code>, pop returns
+the element that is removed.</dd>
+<dt>top</dt>
+<dd>Get the value of the element at the top of the stack.</dd>
+</dl>
 <img src="../_images/graphviz-22ad81e748f27f59b324afbc4766c162c3961d51.png" alt="// shows push and pop
 digraph g {
     node [fontname = &quot;Bitstream Vera Sans&quot;, fontsize=14,
@@ -447,6 +636,8 @@ digraph g {
     pop:e -&gt; top:w [style=invis]
     top -&gt; a [style=invis, constraint=false];
 }" />
+<p>The STL containers <code class="docutils literal"><span class="pre">std::vector</span></code>, <code class="docutils literal"><span class="pre">std::list</span></code>,
+and <code class="docutils literal"><span class="pre">std::deque</span></code> can be adapted to create a stack.</p>
 </div>
 <div class="section" id="std-queue">
 <span id="index-5"></span><h2>7.2.5. <code class="docutils literal"><span class="pre">std::queue</span></code><a class="headerlink" href="#std-queue" title="Permalink to this headline">¶</a></h2>
@@ -477,6 +668,17 @@ and pops them from the front.</p>
     y -&gt; e [style=invis];
     {rank=sink; a b c d e}
 }" />
+<p>The defining operations of a queue are:</p>
+<dl class="docutils">
+<dt>push</dt>
+<dd>Add a new element to the back (end) of the queue.</dd>
+<dt>pop</dt>
+<dd>Remove an element from the front (beginning) of the queue.</dd>
+<dt>front</dt>
+<dd>Get the value of the element at the beginning of the queue.</dd>
+<dt>back</dt>
+<dd>Get the value of the element at the end of the queue.</dd>
+</dl>
 <img src="../_images/graphviz-73570158c11886e63adbb243da0343d4246ae45d.png" alt="// shows push and pop, enqueue / dequeue
 digraph g {
     node [fontname = &quot;Bitstream Vera Sans&quot;, fontsize=14,
@@ -499,26 +701,22 @@ digraph g {
 
     {rank=sink; o a b c d e z}
 }" />
+<p>The STL containers <code class="docutils literal"><span class="pre">std::list</span></code> and <code class="docutils literal"><span class="pre">std::deque</span></code> can be adapted to create a queue.</p>
 </div>
 <div class="section" id="std-deque">
-<span id="index-6"></span><h2>7.2.6. <code class="docutils literal"><span class="pre">std::deque</span></code><a class="headerlink" href="#std-deque" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">std::deque</span></code> (double-ended queue) is an indexed sequence container that
+<span id="index-6"></span><h2>7.2.6. std::deque<a class="headerlink" href="#std-deque" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::deque">std::deque</a> (double-ended queue) is an indexed sequence container that
 allows fast insertion and deletion at both its beginning and its end.
 In addition,
 insertion and deletion at either end of a deque never invalidates pointers
 or references to the rest of the elements.</p>
+<p>It’s primary role in the standard library is to function as
+the default container underlying <code class="docutils literal"><span class="pre">stad::stack</span></code> and <code class="docutils literal"><span class="pre">std::queue</span></code>.</p>
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">
 <p class="first admonition-title">More to Explore</p>
 <ul class="last simple">
 <li><a class="reference external" href="http://en.cppreference.com/w/cpp/container">Sequence containers</a></li>
-<li><a class="reference external" href="http://en.cppreference.com/w/cpp/container/vector">std::vector</a> and
-<a class="reference external" href="http://en.cppreference.com/w/cpp/container/array">std::array</a></li>
-<li><a class="reference external" href="http://en.cppreference.com/w/cpp/container/list">std::list</a> and
-<a class="reference external" href="http://en.cppreference.com/w/cpp/container/forward_list">std::forward_list</a></li>
-<li><a class="reference external" href="http://en.cppreference.com/w/cpp/container/stack">std::stack</a>,
-<a class="reference external" href="http://en.cppreference.com/w/cpp/container/queue">std::queue</a>, and
-<a class="reference external" href="http://en.cppreference.com/w/cpp/container/deque">std::deque</a></li>
 </ul>
 </div>
 </div>

@@ -134,15 +134,63 @@ The ``std::array`` is a container that encapsulates fixed size arrays.
 
 ``std::list``
 -------------
-The ``std::list`` is a sequence container that supports constant time insertion 
-and removal of elements from anywhere in the container. 
-Fast random access is not supported. 
-It is usually implemented as a doubly-linked list. 
-Compared to ``std::forward_list`` this container provides bidirectional iteration capability while being less space efficient.
+The ``std::list`` is a sequence container that stores data in *nodes*.
+Each node in a list points to the next (and previous) node in the list.
+Each node is a separate object that exists to encapsulate a piece of data
+and to allow navigation to adjacent nodes.
 
-Addition, removal, and moving the elements within the list or across several lists 
-does not invalidate the iterators or references. 
-An iterator is invalidated only when the corresponding element is deleted.
+.. graphviz::
+
+    digraph list {
+       graph [
+          rankdir=LR;
+          //splines=ortho;
+          compound=true;
+          labelloc=b;
+          label="Linked list nodes";
+          ranksep = 1;
+       ]
+       node [fontname = "Bitstream Vera Sans", fontsize=14,
+                 style=filled, fillcolor=lightblue,
+                 shape=record, width=0.5, height=.25, label=""];
+
+      
+      subgraph cluster_h {
+        labelloc=t
+        label="head"
+        head [label=" |next()| "]
+      }
+
+      subgraph cluster_a {
+        labelloc=t
+        label="Node A" 
+        a [label="data|next()|prev()"]
+      }
+
+        subgraph cluster_b {
+        labelloc=t
+        label="Node B" 
+         b [label="data|next()|prev()"]
+      }
+
+      subgraph cluster_t {
+        labelloc=t
+        label="tail"
+         tail [label=" | | prev()"]
+      }
+
+      head:m-> a [lhead=cluster_a];
+
+      a -> b [lhead=cluster_b];
+      a:s -> head:s [lhead=cluster_h];
+
+      b -> tail [lhead=cluster_t];
+      b:s -> a:s [lhead=cluster_a];
+
+      tail:s -> b:s [lhead=cluster_b];
+    }
+
+A more compact way to graphically represent our doubly-linked list is like this:
 
 .. graphviz::
 
@@ -177,31 +225,201 @@ An iterator is invalidated only when the corresponding element is deleted.
        {rank=sink; p1 a b c d e f p2}
    }
 
+A linked list that stores a sequence of ints can be trivially implemented using a ``struct``:
 
-``std::forward_list``
-.....................
-Like ``std::list``, 
-the ``std::forward_list`` is a container that supports fast insertion and 
-removal of elements from anywhere in the container. 
-Fast random access is not supported. 
-It is implemented as a singly-linked list and essentially does not have any overhead 
-compared to its implementation in C. 
-Compared to std::list this container provides more space efficient storage 
+.. code-block:: cpp
+
+   struct node {
+      int value;
+      node *next;
+      node *prev;
+   };
+
+Creating a linked list from such a 'home grown' struct is not complicated,
+but it isn't pretty either:
+
+.. code-block:: cpp
+
+   // create an empty list
+   node* head = new node;
+   node* tail = new node;
+   head->next = tail;
+   tail->prev = head;
+
+   // insert node a into the list
+   node* a = new node;
+   a->value = 61;
+   a->next = tail;
+   a->prev = head;
+   head->next = a;
+   tail->prev = a;
+
+   // insert node b after node a
+   node* b = new node;
+   b->value = 62;
+   b->next = tail;
+   b->prev = a;
+   a->next = b;
+   tail->prev = b;
+
+
+At this point, we have created the basic structure shown in the previous diagram.
+Once we have such a list, we can access all of the elements,
+if we have a pointer to any one of them.
+For example, to print all of the elements, we could:
+
+.. code-block:: cpp
+
+   node* p = head->next;
+   while (p->next != nullptr) {
+     std::cout << p->value << ' ';
+     p = p->next;
+   }
+
+
+Which, given the list we created, will print ``61 62\0``.
+
+Obviously, no one would want to use such a list.
+Every trivial detail needs to be managed, and any program using it
+would be more likely to leak memory or fail suddenly due to some programming error.
+
+The ``std::list`` class hides all the implementation details and
+provides a list with many convenient features:
+
+.. code-block:: cpp
+
+   #include <iostream>
+   #include <list>
+   using std::cout;
+
+   void print_list(const list<int>&);
+
+   int main () {
+     std::list<int> list = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+     cout << "size: "  << list.size() << '\n';
+     cout << "front: " << list.front() << '\n';
+     cout << "back: "  << list.back() << "\n\n";
+
+     cout << "push_back 13: " << '\n';
+     list.push_back(13);
+     cout << "size: "  << list.size() << '\n';
+     cout << "back() " << list.back() << '\n';
+
+     print_list(list);
+
+     return 0;
+   }
+
+   void print_list(const std::list<int>& list) {
+     cout << "list contains: " << '\n';
+     for(const int i: list) {
+       cout << i << " ";
+     }
+     cout << "\n\n";
+   }
+
+The defining operations of a list are:
+
+push_back
+   Add a new element to the end of the list
+
+pop_back
+   Remove an element from the end of the list.
+
+back
+   Get the value of the element at the end of the list
+
+push_front
+   Add a new element to the beginning of the list
+
+pop_front
+   Remove an element from the beginning of the list.
+
+front
+   Get the value of the element at the beginning of the list
+
+Underneath, the standard library list is not very different from the ``struct node`` above.
+The primary characteristics are:
+
+- All data is stored on the heap
+- Each node in the list is a separate object
+- Node traversal is accomplished by following pointers from one node to the next
+- Access based on an index is not allowed.
+  This kind of access, called *random  access* describes
+  the ability to compute a location in memory using a starting address and an offset.
+  Arrays and vectors support random access.
+  Linked lists do not.
+
+
+std::forward_list
+.................
+Like :cref:`std::list`, 
+the :cref:`std::forward_list` is a container that stores elements in *nodes*.
+A forward list only defines pointers to the next node in the list.
+This means that a forward list can only be traversed in the direction of the tail.
+
+.. digraph:: list
+
+   rankdir=LR;
+   node [fontname = "Bitstream Vera Sans", fontsize=14,
+             style=filled, fillcolor=lightblue,
+             shape=record];
+
+   head [shape=box];
+   a [label="{ <data> 8 | <ref>  }", width=1.2]
+   b [label="{ <data> 13 | <ref>  }"];
+   c [label="{ <data> 21 | <ref>  }"];
+   tail [shape=box];
+   head:e -> a:w     [arrowhead=vee];
+   a:ref:c -> b:data [arrowhead=vee, arrowtail=dot, dir=both, tailclip=false, arrowsize=1.2];
+   b:ref:c -> c:data [arrowhead=vee, arrowtail=dot, dir=both, tailclip=false];
+   c:ref:c -> tail:w [arrowhead=vee, arrowtail=dot, dir=both, tailclip=false];
+
+
+The defining operations of a forward_list are:
+
+push_front
+   Add a new element to the beginning of the list
+
+pop_front
+   Remove an element from the beginning of the list.
+
+front
+   Get the value of the element at the beginning of the list
+
+Compared to :cref:`std::list` this container provides more space efficient storage 
 when bidirectional iteration is not needed.
+A very light-weight container, 
+it does not have any overhead compared to its implementation in C. 
 
 
 .. index:: 
    pair: sequence containers; stack
 
-``std::stack``
---------------
-The ``std::stack`` is a container adapter that gives the programmer the 
-functionality of a stack - specifically, a FILO (first-in, last-out) data structure.
+std::stack
+----------
+The :cref:`std::stack` is a container adapter that gives the programmer the 
+functionality of a stack - specifically, a Last-In-First-Out (LIFO) data structure.
 
 The class template acts as a wrapper to the underlying container - only 
 a specific set of functions is provided. 
 The stack pushes and pops the element from the back of the underlying container, 
 known as the top of the stack.
+
+The defining operations of a stack are:
+
+push
+   Add a new element to the top of the stack.
+
+pop
+   Remove an element from the top of the stack.
+   In some languages, but not ``std::stack``, pop returns 
+   the element that is removed.
+
+top
+   Get the value of the element at the top of the stack.
+
+
 
 .. graphviz::
 
@@ -229,6 +447,9 @@ known as the top of the stack.
    }
 
 
+
+The STL containers ``std::vector``, ``std::list``, 
+and ``std::deque`` can be adapted to create a stack.
 
 
 .. index:: 
@@ -269,6 +490,19 @@ and pops them from the front.
    }
 
 
+The defining operations of a queue are:
+
+push
+   Add a new element to the back (end) of the queue.
+
+pop
+   Remove an element from the front (beginning) of the queue.
+
+front
+   Get the value of the element at the beginning of the queue.
+
+back
+   Get the value of the element at the end of the queue.
 
 .. graphviz::
 
@@ -295,16 +529,21 @@ and pops them from the front.
        {rank=sink; o a b c d e z}
    }
 
+The STL containers ``std::list`` and ``std::deque`` can be adapted to create a queue.
+
 .. index:: 
    pair: sequence containers; deque
 
-``std::deque``
---------------
-The ``std::deque`` (double-ended queue) is an indexed sequence container that 
+std::deque
+----------
+The :cref:`std::deque` (double-ended queue) is an indexed sequence container that 
 allows fast insertion and deletion at both its beginning and its end. 
 In addition, 
 insertion and deletion at either end of a deque never invalidates pointers 
 or references to the rest of the elements.
+
+It's primary role in the standard library is to function as
+the default container underlying ``stad::stack`` and ``std::queue``.
 
 
 -----
@@ -312,11 +551,4 @@ or references to the rest of the elements.
 .. admonition:: More to Explore
 
    - `Sequence containers <http://en.cppreference.com/w/cpp/container>`_
-   - `std::vector <http://en.cppreference.com/w/cpp/container/vector>`_ and 
-     `std::array <http://en.cppreference.com/w/cpp/container/array>`_
-   - `std::list <http://en.cppreference.com/w/cpp/container/list>`_ and
-     `std::forward_list <http://en.cppreference.com/w/cpp/container/forward_list>`_
-   - `std::stack <http://en.cppreference.com/w/cpp/container/stack>`_,
-     `std::queue <http://en.cppreference.com/w/cpp/container/queue>`_, and
-     `std::deque <http://en.cppreference.com/w/cpp/container/deque>`_
 

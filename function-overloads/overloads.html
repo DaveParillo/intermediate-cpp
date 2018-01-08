@@ -314,7 +314,8 @@ and every function name must be unique.
 For example:</p>
 <ul class="simple">
 <li>C defines 7 different functions just for absolute value<ul>
-<li><code class="docutils literal"><span class="pre">abs</span></code>, <code class="docutils literal"><span class="pre">llabs</span></code>, <code class="docutils literal"><span class="pre">fabs</span></code>, <code class="docutils literal"><span class="pre">fabsf</span></code>, etc.</li>
+<li><code class="docutils literal"><span class="pre">abs</span></code>, <code class="docutils literal"><span class="pre">llabs</span></code>, <code class="docutils literal"><span class="pre">fabs</span></code>, <code class="docutils literal"><span class="pre">fabsf</span></code>, etc.
+see <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=abs">abs</a></li>
 </ul>
 </li>
 <li>and 13 different functions for different types of division operation</li>
@@ -331,7 +332,7 @@ the absolute value: <code class="docutils literal"><span class="pre">abs</span><
     data-audio=''   
          >
 #include <iostream>
-#include <cmath>
+#include <cmath>  // not all compilers define M_PI
 
 // volume of a cube
 double volume (const double a) {
@@ -350,13 +351,14 @@ double volume (const double a, const double b, const double c) {
 
 int main() {
   std::cout << "volume of a 2 x 2 x 2 cube: "
-            << volume(2.0) << '\n'
+            << volume(2) << '\n'
 
             << "volume of a cylinder, radius 2, height 3: "
-            << volume(2.0, 3.0) << '\n'
+            << volume(2, 3) << '\n'
 
             << "volume of a 2 x 3 x 4 cuboid: "
-            << volume(2.0, 3.0, 4.0) << '\n';
+            << volume(2, 3, 4) << '\n';
+  return 0;
 }
 </textarea>
 </div>

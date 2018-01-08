@@ -84,7 +84,8 @@ Many programmers use ``#define`` instead
 Prefer ``const`` to ``#define`` 
 -------------------------------
 
-We also prefer :cref:`inline specifier` and :cref:`enum declaration` over :cref:`#define`.
+We also prefer :cref:`inline specifier` and :cref:`enum declaration` over 
+:cref:`define`.
 
 There are good reasons to avoid ``#define`` where alternatives exist.
 
@@ -169,7 +170,7 @@ Use it when no better alternative exists.
 Keyword: ``constexpr``
 ----------------------
 
-The keyword ``constexpr`` was added in C++11.
+The keyword :cref:`constexpr` was added in C++11.
 
 The fundamental difference between ``const`` and ``constexpr`` is that
 ``constexpr`` must be able to be determined at compile time.
@@ -222,7 +223,7 @@ is not able to be evaluated at compile time,
 therefore, it won't compile as a ``constexpr`` expression.
 You should still use it when you can.
 
-The rules for ``constexpr`` have changed in C++14.
+The rules for ``constexpr`` changed in C++14 and more in C++17.
 Although not available on the Mesa server, you should still
 `read the docs <http://en.cppreference.com/w/cpp/language/constexpr>`_
 and be aware of what is and is not a valid constant expression

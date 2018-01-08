@@ -331,7 +331,8 @@ But you don’t see it nearly as often in C
 Many programmers use <code class="docutils literal"><span class="pre">#define</span></code> instead</p>
 <div class="section" id="prefer-const-to-define">
 <span id="index-2"></span><h2>3.2.1. Prefer <code class="docutils literal"><span class="pre">const</span></code> to <code class="docutils literal"><span class="pre">#define</span></code><a class="headerlink" href="#prefer-const-to-define" title="Permalink to this headline">¶</a></h2>
-<p>We also prefer <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=inline specifier">inline specifier</a> and <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=enum declaration">enum declaration</a> over <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=#define">#define</a>.</p>
+<p>We also prefer <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=inline specifier">inline specifier</a> and <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=enum declaration">enum declaration</a> over
+<a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=define">define</a>.</p>
 <p>There are good reasons to avoid <code class="docutils literal"><span class="pre">#define</span></code> where alternatives exist.</p>
 <p><code class="docutils literal"><span class="pre">#define</span></code> is parsed by the <em>preprocessor</em>, not the compiler.
 This mean that effectively, all <code class="docutils literal"><span class="pre">#define</span></code> directives are literally strings.
@@ -394,7 +395,7 @@ It’s not.</p>
 </div>
 <div class="section" id="keyword-constexpr">
 <span id="index-4"></span><h2>3.2.2. Keyword: <code class="docutils literal"><span class="pre">constexpr</span></code><a class="headerlink" href="#keyword-constexpr" title="Permalink to this headline">¶</a></h2>
-<p>The keyword <code class="docutils literal"><span class="pre">constexpr</span></code> was added in C++11.</p>
+<p>The keyword <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=constexpr">constexpr</a> was added in C++11.</p>
 <p>The fundamental difference between <code class="docutils literal"><span class="pre">const</span></code> and <code class="docutils literal"><span class="pre">constexpr</span></code> is that
 <code class="docutils literal"><span class="pre">constexpr</span></code> must be able to be determined at compile time.
 So while this is OK:</p>
@@ -434,7 +435,7 @@ any function more complex than <code class="docutils literal"><span class="pre">
 is not able to be evaluated at compile time,
 therefore, it won’t compile as a <code class="docutils literal"><span class="pre">constexpr</span></code> expression.
 You should still use it when you can.</p>
-<p>The rules for <code class="docutils literal"><span class="pre">constexpr</span></code> have changed in C++14.
+<p>The rules for <code class="docutils literal"><span class="pre">constexpr</span></code> changed in C++14 and more in C++17.
 Although not available on the Mesa server, you should still
 <a class="reference external" href="http://en.cppreference.com/w/cpp/language/constexpr">read the docs</a>
 and be aware of what is and is not a valid constant expression

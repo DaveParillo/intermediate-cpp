@@ -294,11 +294,21 @@ This means every function has an address.</p>
 execution jumps to the <em>address</em> of the function being called.
 We can make use of this to store the address of the function.</p>
 <p>To declare a pointer to a function that returns an <code class="docutils literal"><span class="pre">int</span></code> and takes no parameters:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">ptr</span><span class="p">)();</span>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">pf</span><span class="p">)();</span>
 </pre></div>
 </div>
-<p>The parentheses around <code class="docutils literal"><span class="pre">(*ptr)</span></code> are required due to operator precedence.</p>
-<p>To declare a pointer to a function that returns an <code class="docutils literal"><span class="pre">double</span></code> and takes two parameters:</p>
+<p>The pointer variable is named <code class="docutils literal"><span class="pre">pf</span></code>.
+The parentheses around <code class="docutils literal"><span class="pre">(*pf)</span></code> are required due to operator precedence.
+Without the parentheses:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span> <span class="o">*</span><span class="nf">pf</span><span class="p">();</span>     <span class="c1">// not a pointer to a function</span>
+
+<span class="c1">// same as above</span>
+<span class="kt">int</span><span class="o">*</span> <span class="nf">pf</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Instead, this declares a function that returns an <code class="docutils literal"><span class="pre">int*</span></code> and takes no parameters.</p>
+<p>To declare a pointer named <code class="docutils literal"><span class="pre">func</span></code>
+pointing to a function that returns a <code class="docutils literal"><span class="pre">double</span></code> and takes two parameters:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="kt">double</span> <span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -309,7 +319,8 @@ you can assign functions to it:</p>
 <span class="kt">double</span> <span class="nf">pi</span>      <span class="p">()</span>             <span class="p">{</span> <span class="k">return</span> <span class="mf">3.14159265</span><span class="p">;}</span>
 
 <span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
-  <span class="kt">double</span> <span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">add</span><span class="p">;</span>
+  <span class="c1">// declare func and assign add to it</span>
+  <span class="kt">double</span> <span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">)</span> <span class="o">=</span> <span class="n">add</span><span class="p">;</span>
 
   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="c1">// prints 4</span>
 
@@ -327,10 +338,10 @@ you can assign functions to it:</p>
 <p>A downside to traditional function pointer initialization is
 that this doesn’t look like the initialization syntax we are used to.
 This is a legacy of the C language C++ was originally based on.</p>
-<p>The C++11 <code class="docutils literal"><span class="pre">using</span></code> alias allows defining a name that refers to a previously defined type:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">double</span> <span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">);</span>          <span class="c1">// old syntax</span>
+<p>The C++11 <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=type alias">type alias</a> allows defining a name that refers to a previously defined type:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">double</span> <span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>          <span class="c1">// old syntax</span>
 
-<span class="k">using</span> <span class="n">func</span> <span class="o">=</span> <span class="kt">double</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">);</span>  <span class="c1">// new syntax</span>
+<span class="k">using</span> <span class="n">func</span> <span class="o">=</span> <span class="kt">double</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>  <span class="c1">// since C++11</span>
 </pre></div>
 </div>
 <div class="section" id="example-caesar-ciphers">
