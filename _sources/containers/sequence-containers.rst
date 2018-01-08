@@ -403,9 +403,7 @@ pop
 
 top
    Get the value of the element at the top of the stack.
-
-
-
+   
 .. graphviz::
 
    // shows push and pop
@@ -431,7 +429,110 @@ top
        top -> a [style=invis, constraint=false];
    }
 
+.. code-block:: cpp
 
+   #include <iostream>
+   #include <stack>
+   #include <string>
+   using std::cout;
+   using std::stack;
+
+   #define StackContainer typename
+
+   // remove all elements from a stack and print them out
+   template <StackContainer C>
+   void pop_all(C& s) {
+     while(!s.empty()) {
+       cout << s.top() << " ";
+       s.pop();
+     }
+     cout << "\npopped all from stack\n";
+   }
+
+   int main () {
+     stack<std::string> strings;
+     cout << "push strings onto stack...\n";
+     strings.push("one");
+     strings.push("two");
+     strings.push("three");
+     strings.push("four");
+     strings.push("five");
+
+     cout << "size of stack before: " << strings.size() << '\n';
+     pop_all (strings);
+     cout << "size of stack after: " << strings.size() << '\n';
+     if (strings.empty()) {
+       cout << "stack is empty.\n";
+     }
+
+
+     return 0;
+   }
+
+which returns:
+
+   push strings onto stack...
+   size of stack before: 5
+   five four three two one
+   popped all from stack
+   size of stack after: 0
+   stack is empty.
+       
+It is also possible to initialize a stack from a vector, list or array:
+
+.. code-block:: cpp
+
+   #include <iostream>
+   #include <stack>
+   #include <list>
+   using std::cout;
+   using std::stack;
+
+   #define StackContainer typename
+
+   template <StackContainer C>
+   void pop_all(C& s) {
+     while(!s.empty()) {
+       cout << s.top() << " ";
+       s.pop();
+     }
+     cout << "\npopped all from stack\n";
+   }
+
+   int main () {
+     cout << "initialize stack from list:\n";
+     std::list<int> tmp = { 1, 2, 3, 4, 5 };
+     stack<int, std::list<int>> numbers(tmp);
+
+     cout << "list has " << tmp.size() << " entries\n";
+     pop_all (numbers);
+     if (numbers.empty()) {
+       cout << "stack is empty.\n";
+     }
+
+     return 0;
+   }
+
+which returns:
+
+   initialize stack from list:
+   list has 5 entries
+   5 4 3 2 1
+   popped all from stack
+   stack is empty.
+
+Note that the elements from the list are pushed onto the stack in the order
+they are retrieved from the list.
+The number ``1`` is pushed first, so when iniitialization is complete,
+it is on the bottom of the stack.
+   
+Stack elements **cannot** be accessed directly in the way
+you are used to with other sequential containers like
+arrays, vectors, and lists.
+To 'visit' each element in a ``stack``, the items need to be popped off.
+
+If you think you need to visit all the elements in a ``stack``, 
+then you probably should not be using a ``stack``.
 
 The STL containers ``std::vector``, ``std::list``, 
 and ``std::deque`` can be adapted to create a stack.
