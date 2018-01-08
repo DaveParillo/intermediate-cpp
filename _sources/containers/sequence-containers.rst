@@ -116,6 +116,59 @@ This creates a vector of type ``int``, with size 4 and the first 3 values initia
      pointers:f5 -> values:f5;
    }
 
+The data layout of a vector makes it easy to pass a vector to a legacy C
+function that expects a raw array.
+This is something that comes up more often than you might expect.
+The book *Effective STL* has a good discussion of this as Item #16.
+
+Given a legacy C function that expects a raw array:
+
+.. code-block:: cpp
+
+  void print_sum (const int* values, size_t array_size) {
+    int sum = 0;
+    for (size_t i = 0; i < array_size; ++i) {
+      sum += values[i];
+    }
+    printf("Sum of ints in the array is %d\n", sum);
+  }
+
+We expect to be able to pass in an array and print the sum:
+
+.. code-block:: cpp
+
+   int main() {
+
+     int data[] = { -30, 102, 55, -19, 0, 222, -3000, 4000, 8, -2 };
+     const int numValues = sizeof data / sizeof(int);
+
+     print_sum (data, num_values);
+
+     return 0;
+   }
+
+We can pass a ``vector`` to this same legacy function:
+
+.. code-block:: cpp
+
+   int main() {
+     int data[] = { -30, 102, 55, -19, 0, 222, -3000, 4000, 8, -2 };
+     const int num_values = sizeof data / sizeof(int);
+
+     print_sum (data, num_values);
+
+     std::vector<int> v;
+     v.insert (v.begin(), data, data + num_values);	// insert the ints in data
+                                                    // into v at the front
+
+     print_sum (&v[0], v.size());   // ok, unless v is empty
+
+     if (!v.empty()) {              // safer
+       print_sum (&v[0], v.size()); //&v[0] is better than v.begin()
+     }
+
+     return 0;
+   }
 
 
 .. index:: 
@@ -124,10 +177,54 @@ This creates a vector of type ``int``, with size 4 and the first 3 values initia
 std::array
 ----------
 The :cref:`std::array` is a container that encapsulates fixed size arrays.
+Since it is literally a wrapper around a raw array,
+the size of the ``std::array`` must be defined when declared.
 
+.. code-block:: cpp
 
+   std::array <int, 12> days_per_month;
 
+The ``std::array`` class is very lightweight and has effectively no
+costs over a raw array.
+Additionally, ``std::array`` provides convenience functions such as:
 
+:cref:`array::at()`
+   range checked access
+
+:cref:`array::front()` and :cref:`array::back()`
+   access to the first and last elements
+
+:cref:`array::size()`
+   return the number of elements
+
+:cref:`array::empty()`
+   check if the container is empty
+
+Unlike a raw array, ``std::array`` cannot infer its size if
+declared with an initializer list:
+
+.. code-block:: cpp
+
+   #include <array>
+   #include <iostream>
+   using std::cout;
+
+   int main() {
+     // compile error: array template parameter missing:
+     //std::array<char> letters = {{'h', 'o', 'w', 'd', 'y', '!'}};
+
+     std::array<char, 6> letters = {{'h', 'o', 'w', 'd', 'y', '!'}};
+
+     if (!letters.empty()) {
+       cout << "The first character is: " << letters.front() << '\n';
+       cout << "The last character is: " << letters.back() << '\n';
+
+       for (const auto& c: letters) {
+         cout << c;
+       }
+       cout << std::endl;
+     }
+   }
 
 .. index:: 
    pair: sequence containers; list
@@ -281,14 +378,14 @@ provides a list with many convenient features:
 
    int main () {
      std::list<int> list = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-     cout << "size: "  << list.size() << '\n';
-     cout << "front: " << list.front() << '\n';
-     cout << "back: "  << list.back() << "\n\n";
+     cout << "size: "  << list.size();
+     cout << "\nfront: " << list.front();
+     cout << "\nback: "  << list.back();
 
-     cout << "push_back 13: " << '\n';
+     cout << "\n\npush_back 13: ";
      list.push_back(13);
-     cout << "size: "  << list.size() << '\n';
-     cout << "back() " << list.back() << '\n';
+     cout << "\nsize: "  << list.size();
+     cout << "\nback() " << list.back();
 
      print_list(list);
 
@@ -296,7 +393,11 @@ provides a list with many convenient features:
    }
 
    void print_list(const std::list<int>& list) {
-     cout << "list contains: " << '\n';
+     if (list.empty()) {
+       cout << "list is empty.\n";
+     } else {
+       cout << "list contains:\n";
+     }
      for(const int i: list) {
        cout << i << " ";
      }
@@ -323,11 +424,33 @@ pop_front
 front
    Get the value of the element at the beginning of the list
 
-Underneath, the standard library list is not very different from the ``struct node`` above.
+
+.. note:: empty() vs. size() == 0
+
+   In most containers, calling ``size()`` is constant time.
+
+   That is it takes the same amount of time regardless of
+   the number items in the container.
+
+   Not so for lists.
+
+   There are situations where a list cannot determine the size
+   without traversing the range and counting them.
+
+   In general, never assume ``size()`` is as efficient as ``empty()``.
+
+   If you **really** want to know if a container is empty (or not),
+   then call ``empty()``.
+
+   If you **really** want to know the number of elements in a container,
+   then call ``size()``.
+
+   See *Effective STL*, Item #4 for more details.
+
+Underneath, the standard library ``list`` is not very different from the ``struct node`` above.
 The primary characteristics are:
 
 - All data is stored on the heap
-- Each node in the list is a separate object
 - Node traversal is accomplished by following pointers from one node to the next
 - Access based on an index is not allowed.
   This kind of access, called *random  access* describes
@@ -521,7 +644,7 @@ which returns:
    popped all from stack
    stack is empty.
 
-Note that the elements from the list are pushed onto the stack in the order
+Notice the elements from the list are pushed onto the stack in the order
 they are retrieved from the list.
 The number ``1`` is pushed first, so when iniitialization is complete,
 it is on the bottom of the stack.
@@ -613,6 +736,27 @@ back
        front -> z [style=dotted, dir=back];
 
        {rank=sink; o a b c d e z}
+   }
+
+
+Minor modifications change pop_all from a function
+performing ``stack`` operations to one
+performaing ``queue`` operations:
+
+.. code-block:: cpp
+
+   #include <iostream>
+   #include <queue>
+
+   #define QueueContainer typename
+
+   template <QueueContainer C>
+   void pop_all(C& q) {
+     while(!q.empty()) {
+       std::cout << q.front() << " ";
+       q.pop();
+     }
+     std::cout << "\npopped all from queue\n";
    }
 
 The STL containers ``std::list`` and ``std::deque`` can be adapted to create a queue.
