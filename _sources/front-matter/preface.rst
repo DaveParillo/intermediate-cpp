@@ -51,6 +51,17 @@ Perhaps a short story would help make the point more clearly:
 
    He did not intend to write a humor book, but that was the result.
 
+   Some of the his classic translations from the section *Idiotisms and Proverbs*:
+
+   It want to beat the iron during it is hot.
+      *Strike while the iron is hot*
+   
+   A horse baared don't look him the tooth.
+      *Don't look a gift horse in the mouth.*
+      
+   The stone as roll not heap up not foam.
+      *A rolling stone gathers no moss.*
+
    .. epigraph::
 
       Nobody can add to the absurdity of this book, 
@@ -66,12 +77,12 @@ English As She Is Spoke, they still fail their readers.
 That is, they fail to teach C++ as C++.
 C++ is not C, Python, Java, Visual Basic, or anything else.
 
-Good, idiomatic C++ embodies the philosophy behind the C++ Core Guidelines\ [2]_\ ,
+Good, idiomatic, C++ embodies the philosophy behind the C++ Core Guidelines\ [2]_\ ,
 the first few of which are:
 
 - Ideas are expressed in code
 - Code in ISO Standard C++
-- Express intent
+- Prefer compile-time checking to run-time checking
 
 The goal of this book is to describe the current version of the language
 in a clear, concise style, supplemented by meaningful activities
