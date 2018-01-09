@@ -60,8 +60,8 @@ A ``vector`` *is* ordered, however: by its index position.
 .. index:: 
    pair: sequence containers; vector
 
-std::vector
------------
+The vector class
+----------------
 The :cref:`std::vector` is a sequence container that simulates a dynamically sized array.
 If you have taken a class in linear algebra, vector has nothing to do with mathematics,
 but is just about a sequential data structure.
@@ -85,41 +85,37 @@ Given a vector declared as:
 
 .. code-block:: cpp
 
-   std::vector<int> v(4) = {3, 1, 4};
+   std::vector<int> v(6) = {2, 7, 1, 8};
 
-This creates a vector of type ``int``, with size 4 and the first 3 values initialized.
-
-
+This creates a vector of type ``int``, with size 6 and the first 4 values initialized:
 
 .. graphviz:: 
+   :alt: A vector of type int
 
    digraph {
-     node [shape=plaintext, fontsize=14];
-     "Pointers:" -> "Values:" -> "Indices:" [color=white];
+     graph [fontname = "Bitstream Vera Sans", 
+            labelloc=b,
+            label="A vector of type int"
+     ];
+     node [fontname = "Bitstream Vera Sans", fontsize=14, shape=plaintext];
+     "Indices:" -> "Values:" [color=white];
+     "uninitialized values";
 
-     node [shape=record, fontcolor=black, fontsize=14, width=4.75, fixedsize=true];
-     pointers [label="<f0> v | <f1> v+1 | <f2> v+2 | <f3> v+3 | <f4> v+4 | <f5> v+5", color=white];
-     values [label="<f0> v[0] | <f1> v[1] | <f2> v[2] | <f3> v[3] | <f4> v[4] | <f5> v[5]", 
+     node [shape=record, width=4.75, fixedsize=true];
+     indices [label="v[0] | v[1] | v[2] | v[3]| v[4] | v[5]", color=white];
+     values [label="<f0> 2 | <f1> 7 | <f2> 1 | <f3> 8 | <f4> ? | <f5> ? ", 
              color=black, fillcolor=lightblue, style=filled];
-     indices [label="0 | 1 | 2 | 3| 4 | 5", color=white];
 
-     { rank=same; "Pointers:"; pointers }
+     values:f4,values:f5 -> "uninitialized values" [dir=back];
      { rank=same; "Values:"; values }
      { rank=same; "Indices:"; indices }
-
-     edge [color=black];
-     pointers:f0 -> values:f0;
-     pointers:f1 -> values:f1;
-     pointers:f2 -> values:f2;
-     pointers:f3 -> values:f3;
-     pointers:f4 -> values:f4;
-     pointers:f5 -> values:f5;
    }
 
 The data layout of a vector makes it easy to pass a vector to a legacy C
 function that expects a raw array.
 This is something that comes up more often than you might expect.
-The book *Effective STL* has a good discussion of this as Item #16.
+The book *Effective STL* has a good discussion of 
+passing string and vector objects to legacy C functions\ [1]_\ .
 
 Given a legacy C function that expects a raw array:
 
@@ -174,8 +170,8 @@ We can pass a ``vector`` to this same legacy function:
 .. index:: 
    pair: sequence containers; array
 
-std::array
-----------
+The array class
+---------------
 The :cref:`std::array` is a container that encapsulates fixed size arrays.
 Since it is literally a wrapper around a raw array,
 the size of the ``std::array`` must be defined when declared.
@@ -229,14 +225,15 @@ declared with an initializer list:
 .. index:: 
    pair: sequence containers; list
 
-std::list
----------
+The list class
+--------------
 The :cref:`std::list` is a sequence container that stores data in *nodes*.
 Each node in a list points to the next (and previous) node in the list.
 Each node is a separate object that exists to encapsulate a piece of data
 and to allow navigation to adjacent nodes.
 
 .. graphviz::
+   :alt: Linked list nodes
 
     digraph list {
        graph [
@@ -246,7 +243,7 @@ and to allow navigation to adjacent nodes.
           labelloc=b;
           label="Linked list nodes";
           ranksep = 1;
-       ]
+       ];
        node [fontname = "Bitstream Vera Sans", fontsize=14,
                  style=filled, fillcolor=lightblue,
                  shape=record, width=0.5, height=.25, label=""];
@@ -290,6 +287,7 @@ and to allow navigation to adjacent nodes.
 A more compact way to graphically represent our doubly-linked list is like this:
 
 .. graphviz::
+   :alt: A compact linked list diagram
 
    // doubly linked list
    digraph g {
@@ -307,18 +305,35 @@ A more compact way to graphically represent our doubly-linked list is like this:
       {rank=same; head a b tail}
    }
    
-A linked list that stores a sequence of ``int``s can be trivially implemented using a ``struct``:
+A linked list that stores a sequence of ``int``\s can be trivially implemented using a ``struct``:
 
 .. code-block:: cpp
 
    struct node {
       int value;
-      node *next;
-      node *prev;
+      node* next;
+      node* prev;
    };
 
-Creating a linked list from such a 'home grown' struct is not complicated,
+The node struct contains a single value it 'owns',
+plus pointers to adjacent nodes.
+
+Creating a linked list from such a 'home grown' ``struct`` is not complicated,
 but it isn't pretty either:
+
+.. sidebar:: An empty list
+
+    .. digraph:: empty
+       
+       graph [
+          nodesep=1,
+       ];
+       node [fontname = "Bitstream Vera Sans", fontsize=14,
+             style=dotted, 
+             shape=box, width=0.5, height=.25];
+
+       head -> tail [constraint=false];
+       tail-> head [constraint=false];
 
 .. code-block:: cpp
 
@@ -328,6 +343,26 @@ but it isn't pretty either:
    head->next = tail;
    tail->prev = head;
 
+
+.. sidebar:: Insert node 'a' to our list
+
+    .. digraph:: node_a
+
+        graph [
+           rankdir=LR,
+           nodesep=1
+        ];
+        node [fontname = "Bitstream Vera Sans", fontsize=14,
+              style=filled, fillcolor=lightblue, 
+              shape=box, width=0.5, height=.25];
+
+        head,tail [style=dotted, fillcolor=white];
+
+        head,tail-> a
+        a -> head, tail
+
+.. code-block:: cpp
+
    // insert node a into the list
    node* a = new node;
    a->value = 61;
@@ -335,6 +370,25 @@ but it isn't pretty either:
    a->prev = head;
    head->next = a;
    tail->prev = a;
+
+.. sidebar:: Insert node 'b' after a
+
+    .. digraph:: node_b
+
+       graph [
+           rankdir=LR,
+           nodesep=1
+        ];
+        node [fontname = "Bitstream Vera Sans", fontsize=14,
+              style=filled, fillcolor=lightblue, 
+              shape=box, width=0.5, height=.25];
+
+        head,tail [style=dotted, fillcolor=white];
+
+        head -> a -> b -> tail;
+        tail -> b -> a -> head;
+
+.. code-block:: cpp
 
    // insert node b after node a
    node* b = new node;
@@ -344,8 +398,7 @@ but it isn't pretty either:
    a->next = b;
    tail->prev = b;
 
-
-At this point, we have created the basic structure shown in the previous diagram.
+At this point, we have created the basic structure shown in the first list diagram.
 Once we have such a list, we can access all of the elements,
 if we have a pointer to any one of them.
 For example, to print all of the elements, we could:
@@ -445,7 +498,7 @@ front
    If you **really** want to know the number of elements in a container,
    then call ``size()``.
 
-   See *Effective STL*, Item #4 for more details.
+   See *Effective STL*, for more details\ [2]_\ .
 
 Underneath, the standard library ``list`` is not very different from the ``struct node`` above.
 The primary characteristics are:
@@ -504,8 +557,8 @@ it does not have any overhead compared to its implementation in C.
 .. index:: 
    pair: sequence containers; stack
 
-std::stack
-----------
+The stack class
+---------------
 The :cref:`std::stack` is a container adapter that gives the programmer the 
 functionality of a stack - specifically, a Last-In-First-Out (LIFO) data structure.
 
@@ -528,9 +581,15 @@ top
    Get the value of the element at the top of the stack.
    
 .. graphviz::
+   :alt: std::stack elements
 
    // shows push and pop
    digraph g {
+       graph [
+          rankdir=LR;
+          labelloc=b;
+          label="std::stack elements";
+       ];
        node [fontname = "Bitstream Vera Sans", fontsize=14,
              style=filled, fillcolor=lightblue,
              shape=box, width=0.5, height=.25, label=""];
@@ -545,11 +604,11 @@ top
        pop [shape=none, label="pop()"];
 
        a -> b -> c -> d -> e [dir=none, arrowhead=vee];
-       push -> a:w [style=dotted];
-       pop -> a:e [dir=back,style=dotted];
+       push -> a [style=dotted];
+       pop -> a [dir=back,style=dotted];
 
        pop:e -> top:w [style=invis]   
-       top -> a [style=invis, constraint=false];
+       top -> a [style=dotted, dir=back, constraint=false];
    }
 
 .. code-block:: cpp
@@ -593,6 +652,8 @@ top
    }
 
 which returns:
+
+.. code-block:: none
 
    push strings onto stack...
    size of stack before: 5
@@ -638,6 +699,8 @@ It is also possible to initialize a stack from a vector, list or array:
 
 which returns:
 
+.. code-block:: none
+
    initialize stack from list:
    list has 5 entries
    5 4 3 2 1
@@ -658,14 +721,14 @@ If you think you need to visit all the elements in a ``stack``,
 then you probably should not be using a ``stack``.
 
 The STL containers ``std::vector``, ``std::list``, 
-and ``std::deque`` can be adapted to create a stack.
+and ``std::deque`` can be adapted to create a ``stack``.
 
 
 .. index:: 
    pair: sequence containers; queue
 
-std::queue
-----------
+The queue class
+---------------
 The :cref:`std::queue` is a container adapter that gives the programmer the 
 functionality of a queue - specifically, a FIFO (first-in, first-out) data structure.
 
@@ -675,8 +738,13 @@ The queue pushes elements on the back of the underlying container,
 and pops them from the front.
 
 .. graphviz::
+   :alt: std::queue elements
 
    digraph g {
+       graph [
+          labelloc=b;
+          label="std::queue elements";
+       ];
        node [fontname = "Bitstream Vera Sans", fontsize=14,
              style=filled, fillcolor=lightblue,
              shape=box, width=0.5, height=.25, label=""];
@@ -714,9 +782,14 @@ back
    Get the value of the element at the end of the queue.
 
 .. graphviz::
+   :alt: std::queue operations
 
    // shows push and pop, enqueue / dequeue
    digraph g {
+       graph [
+          labelloc=b;
+          label="std::queue operations";
+       ];
        node [fontname = "Bitstream Vera Sans", fontsize=14,
              style=filled, fillcolor=lightblue,
              shape=box, width=0.5, height=.25, label=""];
@@ -739,9 +812,9 @@ back
    }
 
 
-Minor modifications change pop_all from a function
-performing ``stack`` operations to one
-performaing ``queue`` operations:
+Minor modifications change ``pop_all()`` from a function
+performing ``stack`` operations into one
+performing ``queue`` operations:
 
 .. code-block:: cpp
 
@@ -764,12 +837,12 @@ The STL containers ``std::list`` and ``std::deque`` can be adapted to create a q
 .. index:: 
    pair: sequence containers; deque
 
-std::deque
-----------
+The deque class
+---------------
 The :cref:`std::deque` (double-ended queue) is an indexed sequence container that 
 allows fast insertion and deletion at both its beginning and its end. 
 In addition, 
-insertion and deletion at either end of a deque never invalidates pointers 
+insertion and deletion at either end of a ``deque`` never invalidates pointers 
 or references to the rest of the elements.
 
 It's primary role in the standard library is to function as
@@ -781,4 +854,9 @@ the default container underlying ``std::stack`` and ``std::queue``.
 .. admonition:: More to Explore
 
    - `Sequence containers <http://en.cppreference.com/w/cpp/container>`_
+
+.. topic:: Footnotes
+
+   .. [1] Effective STL (Item #16) by Scott Meyers (Addison-Wesley Professional).  Copyright 2001 Scott Meyers, 978-0-201-74962-5.
+   .. [2] Effective STL (Item #4).
 
