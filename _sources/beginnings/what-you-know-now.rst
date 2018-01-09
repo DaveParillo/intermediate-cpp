@@ -23,7 +23,7 @@ material presented in the vast majority of first semester C and C++ courses.
 
 The remaining sections list the things students should already have mastered
 before proceeding with the material in this text.
-There are some practice problems available you can use to check your knowledge.
+There are some practice problems available which you can use to check your knowledge.
 
 
 Source files and header files
@@ -280,7 +280,7 @@ Most people should be familiar with the ``static_cast`` form:
     
    auto almost_pi = static_cast<int>(3.14159);
 
-Some people may have also (or only learned) the C-style cast:
+Some people may have also learned the C-style cast:
 
 .. code-block:: cpp
     
@@ -421,7 +421,8 @@ User-defined types
 Although you may not have done any object oriented programming yourself,
 you probably have used objects, even if you weren't aware of it.
 The C++ standard provides many classes.
-Two of the oldest handle stream formatted input and output: :cref:`std::cin` and :cref:`std::cout`.
+Two of the oldest classes handle stream formatted input and output:
+:cref:`std::cin` and :cref:`std::cout`.
 
 You should have already encountered code like:
 

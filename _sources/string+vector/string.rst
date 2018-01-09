@@ -212,15 +212,15 @@ What type is ``my_string``?
 
 This is one of those situations where :cref:`auto` may not be deducing the type
 you actually want.
-There are several simple ways to to still use auto and get the type
-deduced to be a std::string.
+There are several simple ways to use auto *and* get the type
+deduced to be a ``std::string``.
 
 In C++14, you can simply append a ``s`` to the end of the string literal.
 This identifies the literal as type std::string.
 
 .. code-block:: cpp
 
-   auto my_string = "Howdy!"s;
+   auto my_string = "Howdy!"s;    // preferred
 
 Alternatively, you can call the string constructor explicitly, which
 works for C++ versions older than C++14.

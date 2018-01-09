@@ -12,20 +12,20 @@
 Using string and vector
 =======================
 
-While many useful things can get done using the
+Many useful things get done using the
 standard fundamental types.
 Often, however, we need to group a set of related types together.
 In order to group them together, 
 we need some sort of **container**.
 
-There are two of these containers you should learn first:
-:cref:`std::string`` and :cref:`std::vector`.
+Two of these containers you should learn first:
+:cref:`std::string` and :cref:`std::vector`.
 They come with many useful functions that help solve many common problems.
-WHile there is some cost in using them,
-often the cost is worth then benefits in terms of
-reduced development time, code clarity, and other benefits.
+While there is some cost in using them,
+often the cost is worth the benefits in terms of
+reduced development time, code clarity, and other advantages.
 
-Both string and vector are *container classes*.
+Both ``string`` and ``vector`` are *container classes*.
 That is, 
 their primary job is to make it easy to work with the 
 data stored inside the container.
