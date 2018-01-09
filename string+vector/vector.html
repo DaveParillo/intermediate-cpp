@@ -303,12 +303,12 @@ from the previous section, with one minor addition:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>When a vector is created, you must declare what type
+<p>When a <code class="docutils literal"><span class="pre">vector</span></code> is created, you must declare what type
 of data the vector can store.
-The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=&lt;int&gt;">&lt;int&gt;</a> and <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=&lt;std::string&gt;">&lt;std::string&gt;</a> represent the <em>template parameters</em>
+The <code class="docutils literal"><span class="pre">&lt;int&gt;</span></code> and <code class="docutils literal"><span class="pre">&lt;std::string&gt;</span></code> represent the <em>template parameters</em>
 passed to the <code class="docutils literal"><span class="pre">vector</span></code>.
 It is these template parameters that allow the vector class to serve
-as a container for (almost any type).
+as a container for (almost) any type.
 There are some limits we will cover later,
 but for now, know that any normal type you already have learned about
 can be stored in a vector.</p>
@@ -355,9 +355,9 @@ Explicitly initialize with a default value, if that is what you want:</p>
 </pre></div>
 </div>
 <p>A vector comes with a rich assortment of convenience functions.
-Like an array <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=vector::operator[]">vector::operator[]</a> can be used to access elements
+Like an array, the <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=vector::operator[]">vector::operator[]</a> can be used to access elements
 without bounds checking.
-Like a string, <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=vector::at()">vector::at()</a> function provides bounds checking
+Like a string, the <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=vector::at()">vector::at()</a> function provides bounds checking
 and will throw an exception if an out of bounds index is used on the <code class="docutils literal"><span class="pre">vector</span></code>.</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;vector&gt;</span>
 <span class="cp">#include &lt;iostream&gt;</span>

@@ -53,12 +53,12 @@ from the previous section, with one minor addition:
      return 0;
    }
 
-When a vector is created, you must declare what type
+When a ``vector`` is created, you must declare what type
 of data the vector can store.
-The :cref:`<int>` and :cref:`<std::string>` represent the *template parameters*
+The ``<int>`` and ``<std::string>`` represent the *template parameters*
 passed to the ``vector``.
 It is these template parameters that allow the vector class to serve
-as a container for (almost any type).
+as a container for (almost) any type.
 There are some limits we will cover later,
 but for now, know that any normal type you already have learned about
 can be stored in a vector.
@@ -114,9 +114,9 @@ Explicitly initialize with a default value, if that is what you want:
    std::vector<int> v(4, -1);
 
 A vector comes with a rich assortment of convenience functions.
-Like an array :cref:`vector::operator[]` can be used to access elements
+Like an array, the :cref:`vector::operator[]` can be used to access elements
 without bounds checking.
-Like a string, :cref:`vector::at()` function provides bounds checking
+Like a string, the :cref:`vector::at()` function provides bounds checking
 and will throw an exception if an out of bounds index is used on the ``vector``.
 
 .. code-block:: cpp
