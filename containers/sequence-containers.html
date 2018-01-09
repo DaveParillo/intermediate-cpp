@@ -360,10 +360,99 @@ Starting in C++11, extra memory can be returned to the system via a call to <a c
   pointers:f4 -&gt; values:f4;
   pointers:f5 -&gt; values:f5;
 }" />
+<p>The data layout of a vector makes it easy to pass a vector to a legacy C
+function that expects a raw array.
+This is something that comes up more often than you might expect.
+The book <em>Effective STL</em> has a good discussion of this as Item #16.</p>
+<p>Given a legacy C function that expects a raw array:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">print_sum</span> <span class="p">(</span><span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="n">values</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">array_size</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array_size</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+  <span class="p">}</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Sum of ints in the array is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We expect to be able to pass in an array and print the sum:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="kt">int</span> <span class="n">data</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="o">-</span><span class="mi">19</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">222</span><span class="p">,</span> <span class="o">-</span><span class="mi">3000</span><span class="p">,</span> <span class="mi">4000</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span> <span class="p">};</span>
+  <span class="k">const</span> <span class="kt">int</span> <span class="n">numValues</span> <span class="o">=</span> <span class="k">sizeof</span> <span class="n">data</span> <span class="o">/</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+
+  <span class="n">print_sum</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">num_values</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We can pass a <code class="docutils literal"><span class="pre">vector</span></code> to this same legacy function:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">data</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="o">-</span><span class="mi">19</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">222</span><span class="p">,</span> <span class="o">-</span><span class="mi">3000</span><span class="p">,</span> <span class="mi">4000</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span> <span class="p">};</span>
+  <span class="k">const</span> <span class="kt">int</span> <span class="n">num_values</span> <span class="o">=</span> <span class="k">sizeof</span> <span class="n">data</span> <span class="o">/</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+
+  <span class="n">print_sum</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">num_values</span><span class="p">);</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+  <span class="n">v</span><span class="p">.</span><span class="n">insert</span> <span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">data</span><span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">num_values</span><span class="p">);</span>     <span class="c1">// insert the ints in data</span>
+                                                 <span class="c1">// into v at the front</span>
+
+  <span class="n">print_sum</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>   <span class="c1">// ok, unless v is empty</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">v</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>              <span class="c1">// safer</span>
+    <span class="n">print_sum</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">());</span> <span class="c1">//&amp;v[0] is better than v.begin()</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="std-array">
 <span id="index-2"></span><h2>7.2.2. std::array<a class="headerlink" href="#std-array" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::array">std::array</a> is a container that encapsulates fixed size arrays.</p>
+<p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::array">std::array</a> is a container that encapsulates fixed size arrays.
+Since it is literally a wrapper around a raw array,
+the size of the <code class="docutils literal"><span class="pre">std::array</span></code> must be defined when declared.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">array</span> <span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">12</span><span class="o">&gt;</span> <span class="n">days_per_month</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">std::array</span></code> class is very lightweight and has effectively no
+costs over a raw array.
+Additionally, <code class="docutils literal"><span class="pre">std::array</span></code> provides convenience functions such as:</p>
+<dl class="docutils">
+<dt><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=array::at()">array::at()</a></dt>
+<dd>range checked access</dd>
+<dt><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=array::front()">array::front()</a> and <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=array::back()">array::back()</a></dt>
+<dd>access to the first and last elements</dd>
+<dt><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=array::size()">array::size()</a></dt>
+<dd>return the number of elements</dd>
+<dt><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=array::empty()">array::empty()</a></dt>
+<dd>check if the container is empty</dd>
+</dl>
+<p>Unlike a raw array, <code class="docutils literal"><span class="pre">std::array</span></code> cannot infer its size if
+declared with an initializer list:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;array&gt;</span>
+<span class="cp">#include &lt;iostream&gt;</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// compile error: array template parameter missing:</span>
+  <span class="c1">//std::array&lt;char&gt; letters = {{&#39;h&#39;, &#39;o&#39;, &#39;w&#39;, &#39;d&#39;, &#39;y&#39;, &#39;!&#39;}};</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="mi">6</span><span class="o">&gt;</span> <span class="n">letters</span> <span class="o">=</span> <span class="p">{{</span><span class="sc">&#39;h&#39;</span><span class="p">,</span> <span class="sc">&#39;o&#39;</span><span class="p">,</span> <span class="sc">&#39;w&#39;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="sc">&#39;y&#39;</span><span class="p">,</span> <span class="sc">&#39;!&#39;</span><span class="p">}};</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">letters</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;The first character is: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">letters</span><span class="p">.</span><span class="n">front</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;The last character is: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">letters</span><span class="p">.</span><span class="n">back</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">c</span><span class="p">:</span> <span class="n">letters</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">c</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="std-list">
 <span id="index-3"></span><h2>7.2.3. std::list<a class="headerlink" href="#std-list" title="Permalink to this headline">¶</a></h2>
@@ -493,14 +582,14 @@ provides a list with many convenient features:</p>
 
 <span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
   <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span> <span class="p">};</span>
-  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;size: &quot;</span>  <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
-  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;front: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">front</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
-  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;back: &quot;</span>  <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">back</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;size: &quot;</span>  <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">front: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">back: &quot;</span>  <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
 
-  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;push_back 13: &quot;</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n\n</span><span class="s">push_back 13: &quot;</span><span class="p">;</span>
   <span class="n">list</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
-  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;size: &quot;</span>  <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
-  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;back() &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">back</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">size: &quot;</span>  <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">back() &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
 
   <span class="n">print_list</span><span class="p">(</span><span class="n">list</span><span class="p">);</span>
 
@@ -508,7 +597,11 @@ provides a list with many convenient features:</p>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">print_list</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">list</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;list contains: &quot;</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">list</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;list is empty.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;list contains:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
   <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="nl">i</span><span class="p">:</span> <span class="n">list</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span><span class="p">;</span>
   <span class="p">}</span>
@@ -531,11 +624,26 @@ provides a list with many convenient features:</p>
 <dt>front</dt>
 <dd>Get the value of the element at the beginning of the list</dd>
 </dl>
-<p>Underneath, the standard library list is not very different from the <code class="docutils literal"><span class="pre">struct</span> <span class="pre">node</span></code> above.
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>empty() vs. size() == 0</p>
+<p>In most containers, calling <code class="docutils literal"><span class="pre">size()</span></code> is constant time.</p>
+<p>That is it takes the same amount of time regardless of
+the number items in the container.</p>
+<p>Not so for lists.</p>
+<p>There are situations where a list cannot determine the size
+without traversing the range and counting them.</p>
+<p>In general, never assume <code class="docutils literal"><span class="pre">size()</span></code> is as efficient as <code class="docutils literal"><span class="pre">empty()</span></code>.</p>
+<p>If you <strong>really</strong> want to know if a container is empty (or not),
+then call <code class="docutils literal"><span class="pre">empty()</span></code>.</p>
+<p>If you <strong>really</strong> want to know the number of elements in a container,
+then call <code class="docutils literal"><span class="pre">size()</span></code>.</p>
+<p class="last">See <em>Effective STL</em>, Item #4 for more details.</p>
+</div>
+<p>Underneath, the standard library <code class="docutils literal"><span class="pre">list</span></code> is not very different from the <code class="docutils literal"><span class="pre">struct</span> <span class="pre">node</span></code> above.
 The primary characteristics are:</p>
 <ul class="simple">
 <li>All data is stored on the heap</li>
-<li>Each node in the list is a separate object</li>
 <li>Node traversal is accomplished by following pointers from one node to the next</li>
 <li>Access based on an index is not allowed.
 This kind of access, called <em>random  access</em> describes
@@ -621,6 +729,103 @@ digraph g {
     pop:e -&gt; top:w [style=invis]
     top -&gt; a [style=invis, constraint=false];
 }" />
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<span class="cp">#include &lt;stack&gt;</span>
+<span class="cp">#include &lt;string&gt;</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="p">;</span>
+
+<span class="cp">#define StackContainer typename</span>
+
+<span class="c1">// remove all elements from a stack and print them out</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="n">StackContainer</span> <span class="n">C</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">pop_all</span><span class="p">(</span><span class="n">C</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">s</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span><span class="p">;</span>
+    <span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">popped all from stack</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="n">stack</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">strings</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;push strings onto stack...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="n">strings</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="s">&quot;one&quot;</span><span class="p">);</span>
+  <span class="n">strings</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="s">&quot;two&quot;</span><span class="p">);</span>
+  <span class="n">strings</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="s">&quot;three&quot;</span><span class="p">);</span>
+  <span class="n">strings</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="s">&quot;four&quot;</span><span class="p">);</span>
+  <span class="n">strings</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="s">&quot;five&quot;</span><span class="p">);</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;size of stack before: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">strings</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="n">pop_all</span> <span class="p">(</span><span class="n">strings</span><span class="p">);</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;size of stack after: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">strings</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">strings</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;stack is empty.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>which returns:</p>
+<blockquote>
+<div>push strings onto stack…
+size of stack before: 5
+five four three two one
+popped all from stack
+size of stack after: 0
+stack is empty.</div></blockquote>
+<p>It is also possible to initialize a stack from a vector, list or array:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<span class="cp">#include &lt;stack&gt;</span>
+<span class="cp">#include &lt;list&gt;</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="p">;</span>
+
+<span class="cp">#define StackContainer typename</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="n">StackContainer</span> <span class="n">C</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">pop_all</span><span class="p">(</span><span class="n">C</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">s</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span><span class="p">;</span>
+    <span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">popped all from stack</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;initialize stack from list:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">tmp</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span> <span class="p">};</span>
+  <span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">numbers</span><span class="p">(</span><span class="n">tmp</span><span class="p">);</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;list has &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">tmp</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; entries</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="n">pop_all</span> <span class="p">(</span><span class="n">numbers</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;stack is empty.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>which returns:</p>
+<blockquote>
+<div>initialize stack from list:
+list has 5 entries
+5 4 3 2 1
+popped all from stack
+stack is empty.</div></blockquote>
+<p>Notice the elements from the list are pushed onto the stack in the order
+they are retrieved from the list.
+The number <code class="docutils literal"><span class="pre">1</span></code> is pushed first, so when iniitialization is complete,
+it is on the bottom of the stack.</p>
+<p>Stack elements <strong>cannot</strong> be accessed directly in the way
+you are used to with other sequential containers like
+arrays, vectors, and lists.
+To ‘visit’ each element in a <code class="docutils literal"><span class="pre">stack</span></code>, the items need to be popped off.</p>
+<p>If you think you need to visit all the elements in a <code class="docutils literal"><span class="pre">stack</span></code>,
+then you probably should not be using a <code class="docutils literal"><span class="pre">stack</span></code>.</p>
 <p>The STL containers <code class="docutils literal"><span class="pre">std::vector</span></code>, <code class="docutils literal"><span class="pre">std::list</span></code>,
 and <code class="docutils literal"><span class="pre">std::deque</span></code> can be adapted to create a stack.</p>
 </div>
@@ -686,6 +891,24 @@ digraph g {
 
     {rank=sink; o a b c d e z}
 }" />
+<p>Minor modifications change pop_all from a function
+performing <code class="docutils literal"><span class="pre">stack</span></code> operations to one
+performaing <code class="docutils literal"><span class="pre">queue</span></code> operations:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<span class="cp">#include &lt;queue&gt;</span>
+
+<span class="cp">#define QueueContainer typename</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="n">QueueContainer</span> <span class="n">C</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">pop_all</span><span class="p">(</span><span class="n">C</span><span class="o">&amp;</span> <span class="n">q</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span><span class="p">;</span>
+    <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">popped all from queue</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <p>The STL containers <code class="docutils literal"><span class="pre">std::list</span></code> and <code class="docutils literal"><span class="pre">std::deque</span></code> can be adapted to create a queue.</p>
 </div>
 <div class="section" id="std-deque">
@@ -740,7 +963,7 @@ the default container underlying <code class="docutils literal"><span class="pre
       
     </p>
     <p>
-        &copy; Copyright 2017 Dave Parillo.
+        &copy; Copyright 2017-2018 Dave Parillo.
       Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
     </p>
   </div>

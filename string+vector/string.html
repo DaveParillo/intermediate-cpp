@@ -441,11 +441,11 @@ Declarations like this are a common source of confusion for new programmers:</p>
     </div>
     <p>This is one of those situations where <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=auto">auto</a> may not be deducing the type
 you actually want.
-There are several simple ways to to still use auto and get the type
-deduced to be a std::string.</p>
+There are several simple ways to use auto <em>and</em> get the type
+deduced to be a <code class="docutils literal"><span class="pre">std::string</span></code>.</p>
 <p>In C++14, you can simply append a <code class="docutils literal"><span class="pre">s</span></code> to the end of the string literal.
 This identifies the literal as type std::string.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">auto</span> <span class="n">my_string</span> <span class="o">=</span> <span class="s">&quot;Howdy!&quot;</span><span class="n">s</span><span class="p">;</span>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="k">auto</span> <span class="n">my_string</span> <span class="o">=</span> <span class="s">&quot;Howdy!&quot;</span><span class="n">s</span><span class="p">;</span>    <span class="c1">// preferred</span>
 </pre></div>
 </div>
 <p>Alternatively, you can call the string constructor explicitly, which
@@ -566,7 +566,7 @@ and capabilities available.</p>
       
     </p>
     <p>
-        &copy; Copyright 2017 Dave Parillo.
+        &copy; Copyright 2017-2018 Dave Parillo.
       Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
     </p>
   </div>
