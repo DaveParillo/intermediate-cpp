@@ -33,33 +33,33 @@ Lots of reasons.
    Unless you put in the time and effort to learn the IDE, 
    you won't realize most of the productivity gains anyways.
 
-#. IDE's typically only support one, or a few language really well.
+#. IDEs typically only support one, or a few language really well.
    Microsoft Visual Studio is an exception.
    I would rate it as very good for Visual Basic, C#, and Web Development (including JavaScript).
 
-   There are no 'great' C or C++ IDE's.
+   There are no 'great' C or C++ IDEs.
 
    But even if you find a great IDE, 
    if you work in a different language,
    then you need to potentially learn a completely different tool
    to work with the other language.
 
-#. IDE's are great if you are working on a single, medium sized project
+#. IDEs are great if you are working on a single, medium sized project
    for an extended period of time.
    Think more than 1,000 lines of code.
  
    On a project, the time it takes to setup a new project is worth the
    investment, because you'll be working on it for potentially a long time.
 
-   This is not mostly what we do in a classroom situation.
+   This is not what we do in the classroom.
 
    We create lots of very small programs,
    because we are trying to distill new concepts down to the smallest
    program that will demonstrate the idea.
 
-   In this environment, IDE's get in the way, 
+   In this environment, IDEs get in the way, 
    because it takes more time to make a new project in the IDE,
-   than it does to just time ``make my_program`` on the command line or in vim.
+   than it does to just type ``make my_program`` on the command line or in vim.
 
 
 -----
