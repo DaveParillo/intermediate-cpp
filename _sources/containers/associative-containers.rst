@@ -141,39 +141,62 @@ the children are commonly referred to as the **left** and **right** nodes.
 
 .. digraph:: larger
 
-   splines=line
-   style=invis
-   edge [weight=1]
-   LLL
-   LLM [style=invis]
-   LLR
-   LL->LLL
-   LL->LLM [style=invis weight=100]
-   LL->LLR
-   LM [style=invis]
-   LRL
-   LRM [style=invis]
-   LRR
-   LR->LRL
-   LR->LRM [style=invis weight=100]
-   LR->LRR
-   L->LL
-   L->LM [style=invis weight=100]
-   L->LR
-   M [style=invis]
-   RLL
-   RLM [style=invis]
-   RLR
-   RL->RLL
-   RL->RLM [style=invis weight=100]
-  RL->RLR
-   RM [style=invis]
-   R->RL
-   R->RM [style=invis weight=100]
-   R->RR
-   0->L
-   0->M [style=invis weight=100]
-   0->R
+   graph[nodesep=0.25, ranksep=0.3, splines=line];
+   node [fontname = "Bitstream Vera Sans", fontsize=14,
+         style=filled, fillcolor=lightblue,
+         shape=circle, fixedsize=true, width=0.3];
+   edge [weight=1, arrowsize=0.5];
+
+   a, b, am, c, d, bm, e, f, cm, g, h, dm, i, j, em, k, l, fm, m;
+   am, bm, cm, dm, em, fm [style=invis, label=""];
+
+   a->b,c;
+   b->d [weight=2]; // nudge b: trees b & c are not balanced
+   b->e;
+   c->f,g;
+   d->h,i;
+   e->j,k;
+   f->l,m;
+
+   edge [style=invis, weight=100];
+   d->dm; 
+   e->em;
+   b->bm;
+   f->fm;
+   c->cm;
+   a->am;
+   
+.. graphviz::
+
+   graph calc {
+      graph[nodesep=0.25, ranksep=0.3, splines=line];
+      node [fontname = "Bitstream Vera Sans", fontsize=14,
+            style=filled, fillcolor=lightblue,
+            shape=circle, fixedsize=true, width=0.3];
+      // layout all nodes 1 row at a time
+      // order matters on each line, but not the order of lines
+      "+";
+      "/", am, "**";
+      "1", dm, "2";
+      "*", bm, "3", "4", cm, "5";
+
+      // make 'mid' nodes invisible
+      am, bm, cm, dm [style=dotted, label=""];
+
+      // layout all visible edges as parent -> left_child, right_child
+      "+" -- "/","**";
+      "/" -- "*","3"
+      "**"-- "4","5";
+      "*" -- "1","2";
+
+      // link mid nodes with a larger weight:
+      edge [style=dotted, weight=10];
+      "+" -- am;
+      "/" -- bm;
+      "**"-- cm;
+      "*" -- dm;
+   }
+   
 
 .. digraph:: g
 
