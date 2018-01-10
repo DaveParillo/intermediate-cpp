@@ -227,8 +227,8 @@ declared with an initializer list:
 
 The list class
 --------------
-The :cref:`std::list` is a sequence container that stores data in *nodes*.
-Each node in a list points to the next (and previous) node in the list.
+The :cref:`std::list` is a sequence container that stores data in :term:`nodes <node>`.
+Each :term:`node` in a :term:`list` points to the next (and previous) node in the :term:`list`.
 Each node is a separate object that exists to encapsulate a piece of data
 and to allow navigation to adjacent nodes.
 
@@ -284,7 +284,7 @@ and to allow navigation to adjacent nodes.
       tail:s -> b:s [lhead=cluster_b];
     }
 
-A more compact way to graphically represent our doubly-linked list is like this:
+A more compact way to graphically represent our :term:`doubly linked list` is like this:
 
 .. graphviz::
    :alt: A compact linked list diagram
@@ -305,7 +305,7 @@ A more compact way to graphically represent our doubly-linked list is like this:
       {rank=same; head a b tail}
    }
    
-A linked list that stores a sequence of ``int``\s can be trivially implemented using a ``struct``:
+A :term:`linked list` that stores a sequence of ``int``\s can be trivially implemented using a ``struct``:
 
 .. code-block:: cpp
 
@@ -315,10 +315,10 @@ A linked list that stores a sequence of ``int``\s can be trivially implemented u
       node* prev;
    };
 
-The node struct contains a single value it 'owns',
+The ``struct node`` contains a single value it 'owns',
 plus pointers to adjacent nodes.
 
-Creating a linked list from such a 'home grown' ``struct`` is not complicated,
+Creating a :term:`linked list` from such a 'home grown' ``struct`` is not complicated,
 but it isn't pretty either:
 
 .. sidebar:: An empty list
@@ -457,7 +457,7 @@ provides a list with many convenient features:
      cout << "\n\n";
    }
 
-The defining operations of a ``std::list`` are:
+The defining operations of a :cref:`std::list` are:
 
 push_back
    Add a new element to the end of the list
@@ -515,8 +515,8 @@ The primary characteristics are:
 std::forward_list
 .................
 Like :cref:`std::list`, 
-the :cref:`std::forward_list` is a container that stores elements in *nodes*.
-A forward list only defines pointers to the next node in the list.
+the :cref:`std::forward_list` is a container that stores elements in :term:`nodes <node>`
+A :term:`forward list <singly linked list>` only defines pointers to the next node in the list.
 This means that a forward list can only be traversed in the direction of the tail.
 
 .. digraph:: list
@@ -537,7 +537,7 @@ This means that a forward list can only be traversed in the direction of the tai
    c:ref:c -> tail:w [arrowhead=vee, arrowtail=dot, dir=both, tailclip=false];
 
 
-The defining operations of a ``std::forward_list`` are:
+The defining operations of a :cref:`std::forward_list` are:
 
 push_front
    Add a new element to the beginning of the list
@@ -567,7 +567,7 @@ a specific set of functions is provided.
 The stack pushes and pops the element from the back of the underlying container, 
 known as the top of the stack.
 
-The defining operations of a ``std::stack`` are:
+The defining operations of a :cref:`std::stack` are:
 
 push
    Add a new element to the top of the stack.
@@ -767,7 +767,7 @@ and pops them from the front.
    }
 
 
-The defining operations of a ``std::queue`` are:
+The defining operations of a :cref:`std::queue` are:
 
 push
    Add a new element to the back (end) of the queue.
