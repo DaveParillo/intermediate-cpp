@@ -36,6 +36,8 @@ the last things thrown in the closet are on the top of the pile.
 
 .. image:: closet-messy.png
    :alt: An unsorted closet
+   :scale: 50 %
+   :align: center
 
 This makes getting things back out slow.
 If we only ever wan to to access the last item we added, 
@@ -71,6 +73,8 @@ For large ``vector``\s, this save a lot of time.
 
 .. image:: closet-neat.png
    :alt: A sorted closet
+   :scale: 50 %
+   :align: center
 
 But if we want to keep the vector sorted,
 because elements are added or removed frequently,
@@ -116,8 +120,82 @@ the children are commonly referred to as the **left** and **right** nodes.
                  shape=record, width=0.5, height=.5]
 
    root -> left,right
+   left -> root
+   right -> root
 
 
+.. digraph:: t
+   
+   // from graphviz faq
+
+   a -> b0
+   xb [label="",width=.1,style=invis]
+   a -> xb [style=invis]
+   a -> b1
+   {rank=same b0 -> xb -> b1 [style=invis]}
+   b0 -> c0
+   xc [label="",width=.1,style=invis]
+   b0 -> xc [style=invis]
+   b0 -> c1
+   {rank=same c0 -> xc -> c1 [style=invis]}
+
+.. digraph:: larger
+
+   splines=line
+   style=invis
+   edge [weight=1]
+   LLL
+   LLM [style=invis]
+   LLR
+   LL->LLL
+   LL->LLM [style=invis weight=100]
+   LL->LLR
+   LM [style=invis]
+   LRL
+   LRM [style=invis]
+   LRR
+   LR->LRL
+   LR->LRM [style=invis weight=100]
+   LR->LRR
+   L->LL
+   L->LM [style=invis weight=100]
+   L->LR
+   M [style=invis]
+   RLL
+   RLM [style=invis]
+   RLR
+   RL->RLL
+   RL->RLM [style=invis weight=100]
+  RL->RLR
+   RM [style=invis]
+   R->RL
+   R->RM [style=invis weight=100]
+   R->RR
+   0->L
+   0->M [style=invis weight=100]
+   0->R
+
+.. digraph:: g
+
+   node [shape = record, height=.1];
+   node0[label = "<f0> |<f1> G|<f2> "];
+   node1[label = "<f0> |<f1> E|<f2> "];
+   node2[label = "<f0> |<f1> B|<f2> "];
+   node3[label = "<f0> |<f1> F|<f2> "];
+   node4[label = "<f0> |<f1> R|<f2> "];
+   node5[label = "<f0> |<f1> H|<f2> "];
+   node6[label = "<f0> |<f1> Y|<f2> "];
+   node7[label = "<f0> |<f1> A|<f2> "];
+   node8[label = "<f0> |<f1> C|<f2> "];
+
+   "node0": f2->"node4":f1;
+   "node0": f0->"node1":f1;
+   "node1": f0->"node2":f1;
+   "node1": f2->"node3":f1;
+   "node2": f2->"node8":f1;
+   "node2": f0->"node7":f1;
+   "node4": f2->"node6":f1;
+   "node4": f0->"node5":f1;
 
 
 
