@@ -75,9 +75,9 @@ Any callers can use this function and rest assured that their data cannot change
 The more time you spend programming, 
 the more you will appreciate how powerful that guarantee is.
 
-C99 added the ``const`` keyword, so now it's in both languages
-But you don't see it nearly as often in C
-Many programmers use ``#define`` instead
+C99 added the ``const`` keyword, so now it's in both languages,
+but you don't see it nearly as often in C.
+Many programmers use ``#define`` instead.
 
 .. index:: const vs define
 
@@ -91,8 +91,8 @@ There are good reasons to avoid ``#define`` where alternatives exist.
 
 ``#define`` is parsed by the *preprocessor*, not the compiler.
 This mean that effectively, all ``#define`` directives are literally strings.
-Fundamentally they are no different from any other pre-processor directive (``#include``, ``#ifdef``, etc.).
-Except that people commonly use ``#define`` as a placeholder for a numeric :term:`type`,
+Fundamentally they are no different from any other pre-processor directive (``#include``, ``#ifdef``, etc.),
+except that people commonly use ``#define`` as a placeholder for a numeric :term:`type`,
 or a function.
 
 For example:
@@ -123,7 +123,7 @@ certain debugging compiler switches, such as ``-g3``.
 Function-like macros using ``#define``
 ......................................
 
-If you use ``#define`` to create a function-like macro unexpected behaviors are possible.
+If you use ``#define`` to create a function-like macro, then unexpected behaviors are possible.
 For example, 
 a macro to call some function ``f()`` with the larger of either ``a`` or ``b``:
 
@@ -159,7 +159,7 @@ In this case, the value of ``b`` affects whether ``a`` is incremented once or tw
 
 Step through `example 17 <http://pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0A%23define%20CALL_WITH_MAX%28a,b%29%20f%28%28a%29%20%3E%20%28b%29%20%3F%20%28a%29%20%3A%20%28b%29%29%0A%0Aint%20f%28const%20int%20x%29%20%7B%0A%20%20return%20x%3B%0A%7D%0Aint%20main%28%29%20%7B%0A%20%20int%20a%20%3D%20-5%3B%20%0A%20%20const%20int%20b%20%3D%200%3B%0A%0A%20%20for%20%28int%20i%20%3D%201%3B%20i%20%3C%2011%3B%20%2B%2Bi%29%20%7B%0A%20%20%20%20CALL_WITH_MAX%28%2B%2Ba,%20b%29%3B%0A%20%20%20%20std%3A%3Acout%20%3C%3C%20i%20%3C%3C%20%22,%20a%3A%20%22%20%3C%3C%20a%20%3C%3C%20'%5Cn'%3B%0A%20%20%7D%0A%20%20a%20%3D%20-5%3B%20%0A%20%20for%20%28int%20i%20%3D%201%3B%20i%20%3C%2011%3B%20%2B%2Bi%29%20%7B%0A%20%20%20%20CALL_WITH_MAX%28%2B%2Ba,%20b%2B10%29%3B%0A%20%20%20%20std%3A%3Acout%20%3C%3C%20i%20%3C%3C%20%22,%20a%3A%20%22%20%3C%3C%20a%20%3C%3C%20'%5Cn'%3B%0A%20%20%7D%0A%7D&curInstr=63&mode=display&origin=opt-frontend.js&py=cpp&rawInputLstJSON=%5B%5D>`_ and see for yourself.
 
-``#define`` may seem like a shortcut
+``#define`` may seem like a shortcut.
 It's not.
 
 Use it when no better alternative exists.
