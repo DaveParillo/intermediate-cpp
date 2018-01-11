@@ -116,46 +116,40 @@ the children are commonly referred to as the **left** and **right** nodes.
        ];
 
    node [fontname = "Bitstream Vera Sans", fontsize=14,
-                 style=filled, fillcolor=lightblue,
-                 shape=record, width=0.5, height=.5]
+                 style=filled, fillcolor=lightblue]
 
-   root -> left,right
-   left -> root
-   right -> root
+   root -> left,right [dir=none];
 
+Yes, programmers draw trees upside-down.
+The :term:`root` is above the branches.
 
-.. digraph:: t
-   
-   // from graphviz faq
-
-   a -> b0
-   xb [label="",width=.1,style=invis]
-   a -> xb [style=invis]
-   a -> b1
-   {rank=same b0 -> xb -> b1 [style=invis]}
-   b0 -> c0
-   xc [label="",width=.1,style=invis]
-   b0 -> xc [style=invis]
-   b0 -> c1
-   {rank=same c0 -> xc -> c1 [style=invis]}
+The :term:`height` of a tree is the count of the nodes along the longest path in a tree
+from the :term:`root` to a :term:`leaf`.
 
 .. digraph:: larger
+   :alt: A tree of height 4
 
-   graph[nodesep=0.25, ranksep=0.3, splines=line];
+   graph [
+          nodesep=0.25, ranksep=0.3, splines=line;
+          labelloc=b;
+          label="A simple binary tree";
+       ];
    node [fontname = "Bitstream Vera Sans", fontsize=14,
          style=filled, fillcolor=lightblue,
          shape=circle, fixedsize=true, width=0.3];
-   edge [weight=1, arrowsize=0.5];
+   edge [weight=1, arrowsize=0.5, dir=none];
 
    a, b, am, c, d, bm, e, f, cm, g, h, dm, i, j, em, k, l, fm, m;
    am, bm, cm, dm, em, fm [style=invis, label=""];
 
-   a->b,c;
+   a->b [color=red, penwidth=2, dir=forward];
+   a->c;
    b->d [weight=2]; // nudge b: trees b & c are not balanced
-   b->e;
+   b->e [color=red, penwidth=2, dir=forward];
    c->f,g;
    d->h,i;
-   e->j,k;
+   e->j [color=red, penwidth=2, dir=forward];
+   e->k;
    f->l,m;
 
    edge [style=invis, weight=100];
@@ -166,59 +160,63 @@ the children are commonly referred to as the **left** and **right** nodes.
    c->cm;
    a->am;
    
-.. graphviz::
+Although there are many different types of trees, 
+we need only worry about :term:`binary trees <binary tree>`.
+A :term:`binary tree` is a tree in which no node has more than 2 children.
+Child values of 0, 1, or 2 are valid:
 
-   graph calc {
-      graph[nodesep=0.25, ranksep=0.3, splines=line];
-      node [fontname = "Bitstream Vera Sans", fontsize=14,
-            style=filled, fillcolor=lightblue,
-            shape=circle, fixedsize=true, width=0.3];
-      // layout all nodes 1 row at a time
-      // order matters on each line, but not the order of lines
-      "+";
-      "/", am, "**";
-      "1", dm, "2";
-      "*", bm, "3", "4", cm, "5";
+.. graph:: example_trees
 
-      // make 'mid' nodes invisible
-      am, bm, cm, dm [style=dotted, label=""];
-
-      // layout all visible edges as parent -> left_child, right_child
-      "+" -- "/","**";
-      "/" -- "*","3"
-      "**"-- "4","5";
-      "*" -- "1","2";
-
-      // link mid nodes with a larger weight:
-      edge [style=dotted, weight=10];
-      "+" -- am;
-      "/" -- bm;
-      "**"-- cm;
-      "*" -- dm;
-   }
    
+.. graph g {
+   graph [
+           overlap = false;
+           color=white;
+           labelloc=b;
+          ranksep=0.25
+        ];
 
-.. digraph:: g
+    node [shape=circle, height=0.1, label="",
+                  style=filled, fillcolor=lightblue];
 
-   node [shape = record, height=.1];
-   node0[label = "<f0> |<f1> G|<f2> "];
-   node1[label = "<f0> |<f1> E|<f2> "];
-   node2[label = "<f0> |<f1> B|<f2> "];
-   node3[label = "<f0> |<f1> F|<f2> "];
-   node4[label = "<f0> |<f1> R|<f2> "];
-   node5[label = "<f0> |<f1> H|<f2> "];
-   node6[label = "<f0> |<f1> Y|<f2> "];
-   node7[label = "<f0> |<f1> A|<f2> "];
-   node8[label = "<f0> |<f1> C|<f2> "];
 
-   "node0": f2->"node4":f1;
-   "node0": f0->"node1":f1;
-   "node1": f0->"node2":f1;
-   "node1": f2->"node3":f1;
-   "node2": f2->"node8":f1;
-   "node2": f0->"node7":f1;
-   "node4": f2->"node6":f1;
-   "node4": f0->"node5":f1;
+    subgraph cluster_0 {
+      one;
+    }
+
+    subgraph cluster_1 {
+      a -- b;
+      c [style=invis];
+      a --c [style=invis];
+    }
+
+    subgraph cluster_2 {
+      e [style=invis];
+      d -- e [style=invis];
+      d -- f;
+    }
+
+
+    subgraph cluster_3 {
+      root -- left,right;
+    }
+
+   subgraph cluster_4 {
+      m1, l, m,n1, n2,n, o1,o2,o3,o,p1,p2,p3,p4,p,q1,q2,q3,q4,q5,q,r1,r2,r3,r4,r5,r6,r;
+      //m1, n1, n2, o1,o2,o3,p1,p2,p3,p4,q1,q2,q3,q4,q5,r1,r2,r3,r4,r5,r6 [style=dotted];
+      l -- m --n -- o -- p -- q -- r;
+      edge [weight=10, style=dotted];
+      l -- m1
+      m -- n1 -- o1
+   
+    }
+
+
+    edge [style=invis];
+    c -- root;
+
+    }
+
 
 
 
