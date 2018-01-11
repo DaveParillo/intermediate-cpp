@@ -135,7 +135,6 @@ Glossary
       too large.
       
    binary tree
-
       A non-linear data structure with a set of nodes which is either empty, 
       or else has a root node together two binary trees, called the left and right
       :term:`subtrees <subtree>`, which are disjoint from each
