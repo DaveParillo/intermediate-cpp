@@ -163,22 +163,23 @@ from the :term:`root` to a :term:`leaf`.
 Although there are many different types of trees, 
 we need only worry about :term:`binary trees <binary tree>`.
 A :term:`binary tree` is a tree in which no node has more than 2 children.
-Child values of 0, 1, or 2 are valid:
+Child values of 0, 1, or 2 are valid.
 
-.. graph:: example_trees
+All of these are valid :term:`binary trees <binary tree>`:
 
-   
 .. graph g {
-   graph [
-           overlap = false;
-           color=white;
-           labelloc=b;
-          ranksep=0.25
-        ];
+   :alt: example binary trees
+
+   graph [color=white;
+          labelloc=b;
+          ranksep=0.25;
+          labelloc=b;
+          label="Example binary trees";
+    ];
 
     node [shape=circle, height=0.1, label="",
-                  style=filled, fillcolor=lightblue];
-
+                  style=filled, fillcolor=lightblue
+    ];
 
     subgraph cluster_0 {
       one;
@@ -187,7 +188,7 @@ Child values of 0, 1, or 2 are valid:
     subgraph cluster_1 {
       a -- b;
       c [style=invis];
-      a --c [style=invis];
+      a -- c [style=invis];
     }
 
     subgraph cluster_2 {
@@ -196,29 +197,104 @@ Child values of 0, 1, or 2 are valid:
       d -- f;
     }
 
-
     subgraph cluster_3 {
-      root -- left,right;
+      root -- left;
+      root -- right;
     }
 
-   subgraph cluster_4 {
-      m1, l, m,n1, n2,n, o1,o2,o3,o,p1,p2,p3,p4,p,q1,q2,q3,q4,q5,q,r1,r2,r3,r4,r5,r6,r;
-      //m1, n1, n2, o1,o2,o3,p1,p2,p3,p4,q1,q2,q3,q4,q5,r1,r2,r3,r4,r5,r6 [style=dotted];
+    subgraph cluster_4 {
       l -- m --n -- o -- p -- q -- r;
-      edge [weight=10, style=dotted];
-      l -- m1
-      m -- n1 -- o1
+      node [style=invis];
+      edge [weight=2, style=invis];
+      c1 -- c2 -- c3 -- c4 --c5 --c6 -- c7 [constraint=false];
+      c1 -- l
+      c2 -- m
+      c3 -- n
+      c4 -- o
+      c5 -- p
+      c6 -- q
+      c7 -- r
    
+      {rank=same; c1 c2 c3 c4 c5 c6 c7};
     }
 
+    subgraph cluster_5 {
+      1, 2, m1, 3, 4, m2, 5, m3, 7, 8, m5, 9, 10, m9, 11, m10, 12;
+      m1, m2, m3, m5, m9, m10 [style=invis];
+
+      1 -- 2,3;
+      2 -- 4,5;
+      3 -- 7;
+      5 -- 8,9;
+      9 -- 10;
+      10 -- 11,12;
+      edge [weight=2, style=invis];
+      1 -- m1;
+      2 -- m2;
+      3 -- m3;
+      5 -- m5;
+      9 -- m9;
+      10 -- m10;
+    }
 
     edge [style=invis];
     c -- root;
+    f -- 1;
 
-    }
+A :term:`balanced tree <balance tree>`
+(one with the roughly equal numbers of nodes
+in each :term:`subtree`), 
+provides the tidy room we need to ensure
+reasonably fast inserts **and** retrievals.
+A tree must be both balanced and sorted 
+for us to gain benefits from a tree.
+
+When a tree is balanced and sorted,
+inserts are at most :math`log_2 x` and
+retrievals are at most :math`log_2 x`.
+Binary trees provide a way for us to 'formalize'
+our half-splitting solution.
+
+Unbalanced trees are not much more than fancy 
+:term:`linked lists <linked list>`.
+The performance of unbalanced trees degrades
+back to the messy room,
+with all of the problems and none of the benefits.
+
+Balanced trees are the data structures
+that support both sets and maps.
+
+The set class
+-------------
+A :term:`set` refers to any data structure in which
+every member of the set is unique.
+The integers define a set, because every number is unique.
+The values ``{3, 1, 4, 1, 5, 9}`` do **not** define a proper set,
+because the value ``1`` is repeated.
+
+In C++, a :cref:`std::set` must also be sorted.
+Like ``std::vector``, a ``set`` is a generic class.
+
+.. code-block:: cpp
+
+   // TBD
 
 
 
+
+
+
+Sets of any type can created as long as the type is
+:term:`comparable`.
+The comparison operator (:term:`comparator`) 
+used in sets by default is ``operator <``.
+Any type used in a :cref:`std::set`
+should overload ``operator <``.
+
+
+
+The map class
+-------------
 
 -----
 
