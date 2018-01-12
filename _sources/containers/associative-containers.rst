@@ -52,7 +52,7 @@ then this becomes increasingly less likely as the size grows.
 We might sometimes get very unlucky and not find the element until the access
 the last element.
 Over many searches, on average, 
-we will have to examine :math:`N / 2` elements.
+we will have to examine :math:`N \over 2` elements.
 
 It's easy to see that the more elements are added, 
 the longer searches will take.
@@ -61,10 +61,10 @@ We need a tidy closet.
 
 We could sort the ``vector``, which would speed up our search.
 The basic idea is to sort the vector, 
-then examine the value at position :math:`N / 2`.
+then examine the value at position :math:`N \over 2`.
 If the value found is greater than the value we are looking for,
-then examine the value at position :math:`N / 4`,
-else examine the value at position :math:`3N / 4`.
+then examine the value at position :math:`N \over 4`,
+else examine the value at position :math:`3N \over 4`.
 
 At each step,
 we eliminate the number of remaining elements we need
@@ -81,9 +81,9 @@ because elements are added or removed frequently,
 now adding data to our vector, which used to be fast,
 is now slow.
 We can either use :cref:`vector::push_back` followed by :cref:`vector::sort`,
-or use :cref:vector::insert`.
+or use :cref:`vector::insert`.
 *Every* insert is now a search and we are back to the original problem.
-On average, it will take :math`N / 2` comparisons to add new data.
+On average, it will take :math:`N \over 2` comparisons to add new data.
 
 How can we solve this problem?
 
@@ -124,7 +124,7 @@ Yes, programmers draw trees upside-down.
 The :term:`root` is above the branches.
 
 The :term:`height` of a tree is the count of the nodes along the longest path in a tree
-from the :term:`root` to a :term:`leaf`.
+from the :term:`root` to a :term:`leaf node`.
 
 .. digraph:: larger
    :alt: A tree of height 4
@@ -167,13 +167,14 @@ Child values of 0, 1, or 2 are valid.
 
 All of these are valid :term:`binary trees <binary tree>`:
 
-.. graph g {
+.. graph:: example_trees
    :alt: example binary trees
 
    graph [color=white;
           labelloc=b;
           ranksep=0.25;
           labelloc=b;
+          fontsize=14;
           label="Example binary trees";
     ];
 
@@ -182,28 +183,33 @@ All of these are valid :term:`binary trees <binary tree>`:
     ];
 
     subgraph cluster_0 {
+      label="";
       one;
     }
 
     subgraph cluster_1 {
+      label="";
       a -- b;
       c [style=invis];
       a -- c [style=invis];
     }
 
     subgraph cluster_2 {
+      label="";
       e [style=invis];
       d -- e [style=invis];
       d -- f;
     }
 
     subgraph cluster_3 {
+      label="";
       root -- left;
       root -- right;
     }
 
     subgraph cluster_4 {
-      l -- m --n -- o -- p -- q -- r;
+      label="";
+      l -- m -- n -- o -- p -- q -- r;
       node [style=invis];
       edge [weight=2, style=invis];
       c1 -- c2 -- c3 -- c4 --c5 --c6 -- c7 [constraint=false];
@@ -219,6 +225,7 @@ All of these are valid :term:`binary trees <binary tree>`:
     }
 
     subgraph cluster_5 {
+      label="";
       1, 2, m1, 3, 4, m2, 5, m3, 7, 8, m5, 9, 10, m9, 11, m10, 12;
       m1, m2, m3, m5, m9, m10 [style=invis];
 
@@ -241,7 +248,8 @@ All of these are valid :term:`binary trees <binary tree>`:
     c -- root;
     f -- 1;
 
-A :term:`balanced tree <balance tree>`
+
+A :term:`balanced tree`
 (one with the roughly equal numbers of nodes
 in each :term:`subtree`), 
 provides the tidy room we need to ensure
@@ -250,8 +258,7 @@ A tree must be both balanced and sorted
 for us to gain benefits from a tree.
 
 When a tree is balanced and sorted,
-inserts are at most :math`log_2 x` and
-retrievals are at most :math`log_2 x`.
+the cost of both inserts and retrievals are at *most* :math:`log_2{x}`.
 Binary trees provide a way for us to 'formalize'
 our half-splitting solution.
 
@@ -295,6 +302,8 @@ should overload ``operator <``.
 
 The map class
 -------------
+
+TBD
 
 -----
 
