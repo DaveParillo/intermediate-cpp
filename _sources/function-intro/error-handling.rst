@@ -15,12 +15,13 @@ Error handling involves:
 
 - Detecting an error
 - Transmitting information about an error to some handler code
-- Preserve the state of a program in a valid state
-- Avoid resource leaks
+- Preserving the valid state of a program
+- Avoiding resource leaks
 
 Returning values
 ----------------
 
+TBD.
 
 
 .. index:: exceptions
@@ -96,52 +97,52 @@ Standard exceptions
 
 The standard exceptions in C++ are organized in a class hierarchy.
 
-- ``std::exception`` is the base class for all exceptions
-- Children of ``std::exception`` 
+- :cref:`std::exception` is the base class for all exceptions
+- Classes derived from :cref:`std::exception` 
 
-  - ``std::bad_alloc``: thrown by ``new`` and other memory allocation errors 
-  - ``std::bad_cast``: thrown by ``dynamic_cast`` and similar
-  - ``std::bad_typeid``: thrown by ``typeid``  
-  - ``std::bad_exception``: runtime unexpected or pointer exceptions
-  - ``std::logic_error``: exceptions that *should* be detected by reading the code 
-  - ``std::runtime_error``: exceptions that theoretically can't be detected by reading the code
-  - ``std::logic_error``, and ``std::runtime_error`` are also exception bases
+  - :cref:`std::bad_alloc`: thrown by ``new`` and other memory allocation errors 
+  - :cref:`std::bad_cast`: thrown by ``dynamic_cast`` and similar
+  - :cref:`std::bad_typeid`: thrown by ``typeid``  
+  - :cref:`std::bad_exception`: runtime unexpected or pointer exceptions
+  - :cref:`std::logic_error`: exceptions that *should* be detected by reading the code 
+  - :cref:`std::runtime_error`: exceptions that theoretically can't be detected by reading the code
+  - :cref:`std::logic_error`, and ``std::runtime_error`` are also exception bases
 
-- Children of ``std::logic_error``
+- Classes derived from :cref:`std::logic_error`
 
-  - ``std::domain_error``: invalid mathematical domain
-  - ``std::invalid_argument``: bad parameters or arguments used
-  - ``std::length_error``: Thrown when a std::string is too large
-  - ``std::out_of_range``: Used for range checked access, vector.at(x)
+  - :cref:`std::domain_error`: invalid mathematical domain
+  - :cref:`std::invalid_argument`: bad parameters or arguments used
+  - :cref:`std::length_error`: Thrown when a std::string is too large
+  - :cref:`std::out_of_range`: Used for range checked access, vector.at(x)
 
-- Children of ``std::runtime_error``
+- Classes derived from :cref:`std::runtime_error`
 
-  - ``std::overflow_error``: mathematical overflow
-  - ``std::range_error``: Thrown when storing an out of range value
-  - ``std::underflow_error``: mathematical underflow
+  - :cref:`std::overflow_error`: mathematical overflow
+  - :cref:`std::range_error`: Thrown when storing an out of range value
+  - :cref:`std::underflow_error`: mathematical underflow
 
 Using exceptions
 ................
 
 C++ exceptions are designed to support *error handling*.
 
-Use ``throw`` only to signal an error 
+Use ``throw`` only to signal an error.
 Use ``catch`` only to specify error handling actions when 
 you know you can handle it.
 Possibly by translating it to another type and re-throwing an exception of that type.
 For example, catching a ``bad_alloc`` and re-throwing a ``no_space_for_file_buffers`` exception.
 
-**Do not** use throw to catch a coding error in usage of a function. 
+**Do not** use ``throw`` to catch a coding error in usage of a function. 
 Instead, use assert or other mechanism to either stop the program or log the error.
 
-**Do not** use throw if you discover unexpected violation of an invariant of your component.
-Instead, use assert or other mechanism to terminate the program. 
+**Do not** use ``throw`` if you discover an unexpected violation of an invariant of your component.
+Instead, use ``assert`` or other mechanism to terminate the program. 
 Throwing an exception will not cure memory corruption and may lead to further corruption of important user data.
 
 Use ``try`` and ``catch`` blocks
 if the logic is more clear than checking a condition and returning a value.
 For example,
-If you need to propagate errors several levels up the stack:
+if you need to propagate errors several levels up the stack:
 
 .. code-block:: cpp
 
@@ -223,6 +224,6 @@ an ``error_code`` member to the exception object it didn't used to have.
 
    - `CPP Core Guidelines: Error Handling <https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#S-errors>`_
    - `ISO C++ FAQ Exceptions <https://isocpp.org/wiki/faq/exceptions>`_
-   - `Top 15 exception hadling mistakes to avoid <http://www.acodersjourney.com/2016/08/top-15-c-exception-handling-mistakes-avoid/>`_
+   - `Top 15 exception handling mistakes to avoid <http://www.acodersjourney.com/2016/08/top-15-c-exception-handling-mistakes-avoid/>`_
 
 

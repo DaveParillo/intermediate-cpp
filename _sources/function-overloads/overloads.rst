@@ -63,7 +63,7 @@ For example:
   - ``abs``, ``llabs``, ``fabs``, ``fabsf``, etc.
     see :cref:`abs`
 
-- and 13 different functions for different types of division operation
+- and 13 different functions for different types of division operations
 
 This just adds to the amount of stuff programmers have to commit to memory.
 In C++, you only have to remember a single function to compute
@@ -133,10 +133,10 @@ how to call this function.
 So four is probably too many parameters, 
 simply because future usage errors are likely.
 
-Keep in mind that more parameters equals more complexity.
+Keep in mind that more parameters equal more complexity.
 Limit the number of parameters you need in a given method, 
 or use a ``struct`` to combine parameters.
-Also, be wary of overloads with the same number of parameters and different types
+Also, be wary of overloads with the same number of parameters and different types.
 For example:
 
 .. code-block:: cpp

@@ -13,8 +13,8 @@
 Function templates
 ==================
 
-Function overloads allow programmers with the same name,
-that may or may not do the same thing.
+Function overloads allow programmers to reuse function names.
+Functions with the same name may or may not accomplish the same task.
 
 What if our functions actually are intended to do exactly the same thing,
 but merely on different types?
@@ -85,7 +85,7 @@ The identifier ``T`` is traditional,
 but any valid variable name could be used.
 In introductory template tutorials ``AnyType`` is not uncommon.
 
-Templates are completely specified in header files normally.
+Templates are normally completely specified in header files.
 Because templates are neither declarations, nor definitions,
 it is an error to write a template in a cpp source file and then
 try to use it in another source file.
@@ -116,7 +116,7 @@ Multiple template parameters
 
 A ``sum`` function that only adds numbers of the same type is not particularly useful.
 Templates also allow defining multiple types to be used in a template
-with each parameter having potentially a different type.
+with each parameter potentially having a different type.
 
 .. code-block:: cpp
 
