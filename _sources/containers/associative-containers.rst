@@ -132,7 +132,7 @@ from the :term:`root` to a :term:`leaf node`.
    graph [
           nodesep=0.25, ranksep=0.3, splines=line;
           labelloc=b;
-          label="A simple binary tree";
+          label="A tree of height 4";
        ];
    node [fontname = "Bitstream Vera Sans", fontsize=14,
          style=filled, fillcolor=lightblue,
