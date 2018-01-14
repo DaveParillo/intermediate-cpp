@@ -39,11 +39,24 @@ the last things thrown in the closet are on the top of the pile.
    :scale: 50 %
    :align: center
 
-This makes getting things back out slow.
-If we only ever wan to to access the last item we added, 
+This makes getting a specific item from the closet slow.
+If we only ever want to to access the last item we added, 
 then we know exactly where to go.
 But if we want to find some arbitrary item,
 we have to search the vector 1 element at a time until we find it.
+
+.. code-block:: cpp
+
+   vector<int> messy_closet (1000000);  // a fairly big vector
+   
+   // modify closet . . . 
+
+   cout << "Go get some coffee while I work on this. . . \n";
+   for (const auto& v: messy_closet) {
+     if (v == search_val) {
+       do_something(v);
+     }
+   }
 
 Sometimes we may get lucky and find the desired element at index position 0.
 If the data added to the vector is random, 
@@ -69,7 +82,7 @@ else examine the value at position :math:`3N \over 4`.
 At each step,
 we eliminate the number of remaining elements we need
 to search in our ``vector`` by half.
-For large ``vector``\s, this save a lot of time.
+For a large ``vector``, this saves a lot of time.
 
 .. image:: closet-neat.png
    :alt: A sorted closet
@@ -163,7 +176,8 @@ from the :term:`root` to a :term:`leaf node`.
 Although there are many different types of trees, 
 we need only worry about :term:`binary trees <binary tree>`.
 A :term:`binary tree` is a tree in which no node has more than 2 children.
-Child values of 0, 1, or 2 are valid.
+Any tree node may have 0, 1, or 2 children.
+A tree node with no children is a :term:`leaf node`.
 
 All of these are valid :term:`binary trees <binary tree>`:
 
@@ -258,7 +272,7 @@ A tree must be both balanced and sorted
 for us to gain benefits from a tree.
 
 When a tree is balanced and sorted,
-the cost of both inserts and retrievals are at *most* :math:`log_2{x}`.
+the cost of both inserts and retrievals are on average :math:`log_2{N}`.
 Binary trees provide a way for us to 'formalize'
 our half-splitting solution.
 
@@ -271,43 +285,10 @@ with all of the problems and none of the benefits.
 Balanced trees are the data structures
 that support both sets and maps.
 
-The set class
--------------
-A :term:`set` refers to any data structure in which
-every member of the set is unique.
-The integers define a set, because every number is unique.
-The values ``{3, 1, 4, 1, 5, 9}`` do **not** define a proper set,
-because the value ``1`` is repeated.
-
-In C++, a :cref:`std::set` must also be sorted.
-Like ``std::vector``, a ``set`` is a generic class.
-
-.. code-block:: cpp
-
-   // TBD
-
-
-
-
-
-
-Sets of any type can created as long as the type is
-:term:`comparable`.
-The comparison operator (:term:`comparator`) 
-used in sets by default is ``operator <``.
-Any type used in a :cref:`std::set`
-should overload ``operator <``.
-
-
-
-The map class
--------------
-
-TBD
-
 -----
 
 .. admonition:: More to Explore
 
-   TBD
+   - `STL containers library <http://en.cppreference.com/w/cpp/container>`_
+   - `Visualgo: binary heap <https://visualgo.net/en/heap?slide=1>`_
 

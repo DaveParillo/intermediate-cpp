@@ -853,7 +853,8 @@ the default container underlying ``std::stack`` and ``std::queue``.
 
 .. admonition:: More to Explore
 
-   - `Sequence containers <http://en.cppreference.com/w/cpp/container>`_
+   - `STL containers library <http://en.cppreference.com/w/cpp/container>`_
+   - `Visualgo: lists <https://visualgo.net/en/list?slide=1>`_
 
 .. topic:: Footnotes
 

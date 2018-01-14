@@ -8,5 +8,7 @@ Containers
    intro.rst
    sequence-containers.rst
    associative-containers.rst
+   set.rst
+   map.rst
 
 
