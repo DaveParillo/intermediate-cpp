@@ -236,7 +236,7 @@ that the ``address of`` operator ``&`` allows us to pass by reference:
 In function ``by_value`` the statement ``x = 99;`` changes the copy provided.
 The value of ``x`` is printed, but is destroyed when ``x`` goes out of scope on line 6.
 
-And no special character is needed of you want to use a function that takes a reference:
+No special character is needed if you want to use a function that takes a reference:
 
 .. code-block:: cpp
 
@@ -322,9 +322,9 @@ If we pass in only ``p``, what happens?
    Some programmers consider passing by non-const reference bad style,
    because the call syntax is the same as pass by value.
    When a variable is passed into a function by non-const reference
-   there is no visual indication to the programmer on what to expect.
+   there is no visual indication to the programmer of what to expect.
    Without reading additional documentation or
-   actually reading the source code, if available,
+   reading the source code, 
    there is no way to know if the function will change its parameter or not.
 
    .. code-block:: cpp
@@ -457,7 +457,7 @@ at a location 96 positions past the end of the array.
 Nor will it inform you that on line 5, we just wrote to a location
 7 positions before the beginning of the array.
 
-Most pointer examples you will see will never attempt to use ``operator[]``
+Most pointer examples you see will never attempt to use ``operator[]``
 to index a pointer that is not an array.
 This is a good thing, but as you might expect, if you make a mistake,
 the compiler has nothing to offer:
@@ -469,7 +469,7 @@ the compiler has nothing to offer:
 
    int x = p[99] + 2;
 
-Even with all compiler warnings enabled, most compilers will emit anything at all.
+Even with all compiler warnings enabled, most compilers will emit nothing at all.
 No compiler will inform you that
 we just accessed a piece of memory 98 ``ints`` past the one you own.
 Whatever is stored there, we then added 2 to it
@@ -510,7 +510,7 @@ From the standard:
       }
 
    Although the standard does not strictly *prohibit* this syntax,
-   doesn't mean you should.
+   doesn't mean you should use it.
 
 This pitfall is only a problem when using arrays of type ``int`` with easily confused variable names. 
 The lesson: use variables appropriate for the scope.
@@ -577,7 +577,7 @@ Pointers to pointers
 --------------------
 A pointer can point to any memory address within the scope of the program,
 which includes pointers themselves.
-Each new pointer justs ands another to the chain of pointers.
+Each new pointer just adds another to the chain of pointers.
 The language does not impose a strict limit.
 The only limit is your sanity...
 
@@ -665,7 +665,7 @@ or equivalently:
 
 The name of the variable ``argc`` stands for 'argument count'. 
 ``argc`` contains the number of arguments passed to the program. 
-The name of the variable ``argv`` stands for "argument vector``". 
+The name of the variable ``argv`` stands for 'argument vector'. 
 A vector is a one-dimensional array, and ``argv`` is a one-dimensional array of strings. 
 Each string is one of the arguments that was passed to the program.
 These names are used by convention, although technically,
@@ -681,6 +681,8 @@ so ``argv`` is a pointer to a ``char`` array.
 Or we can say ``argv`` is a pointer to a pointer to a ``char``.
 
 When we compile a program like this:
+
+.. code-block:: none
 
    /usr/bin/gcc -o myprog myprog.cpp
 
@@ -760,7 +762,7 @@ array index operators, or a combination.
       return 0;
     }
 
-How this is typically used is to provide an ability
+Typically, this is used to provide an ability
 to change the behavior of programs using command line 'switches'
 specified by the user when the program is run.
 The following example takes 3 arguments:
@@ -855,9 +857,9 @@ Where ``const`` appears controls what is held constant:
 You may find it helpful to read pointer declarations from right to left.
 
 - In ``p1``, nothing is constant.  Either the pointer or the value pointed to can change.
-- In ``p2``, The pointer can change,  but the value pointed to is constant.
+- In ``p2``, the pointer can change,  but the value pointed to is constant.
   You can't use this pointer to change the value of x.
-- In ``p3``, The pointer is constant,  but the value pointed to can change.
+- In ``p3``, the pointer is constant,  but the value pointed to can change.
   You can use this pointer to change the value of x, but can't point to a different variable.
 - In ``p4``, both are held constant.
 
@@ -976,7 +978,7 @@ Consider the following code example, from Effective Modern C++:
 -----------------
 
 A *void pointer* is a
-pointer to some memory the compiler doesn't know the type of.
+pointer to some memory, but the compiler doesn't know the type.
 
 It is about as close to a raw machine address as you can get in C++.
 

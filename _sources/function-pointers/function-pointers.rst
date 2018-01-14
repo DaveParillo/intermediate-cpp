@@ -12,12 +12,13 @@ Function pointers
 =================
 
 In C++ you can point to anything with an address:
+
 - Global variables
 - Stack and free store variables
 - Functions
 
 Recall that when called, 
-an activation record for a function is pushed onto the execution stack
+an :term:`activation record` for a function is pushed onto the :term:`runtime stack`.
 This means every function has an address.
 
 Consider the following code:
@@ -121,10 +122,10 @@ A related variation called ROT47 extends the idea of ROT13 to include numbers an
 
 Suppose we want to create a program that allows users to run either ROT13 or ROT47?
 There are many ways to implement such a program.
-This example demonstrates using function pointers to dynamically 
-control at run time which function is called within a loop.
+This example demonstrates how to use function pointers to dynamically 
+control at which function is called within a loop at runtime.
 
-Often when writing a program, it is useful to start at 'the top'.
+Often, when writing a program, it is useful to start at 'the top'.
 Suppose we want a simple command line program that takes
 4 basic inputs:
 
@@ -163,7 +164,8 @@ First we declare our interfaces:
 .. literalinclude:: caesar/caesar.h
    :language: cpp
 
-The using declaration exists only to simplify our use of our function pointer.
+The `using declaration <http://en.cppreference.com/w/cpp/language/type_alias>`_
+exists only to simplify our use of our function pointer.
 Any place you see the word ``transform``,
 you can literally replace it with 
 ``char (*)(const unsigned char c)``
@@ -185,8 +187,8 @@ And now we have a decent set of functions we can call from a small main program:
 .. literalinclude:: caesar/main.cpp
    :language: cpp
    
-Note we did not use the function call operator, ``operator()`` when 
-assigning values to handler.  
+Note, we did not use the function call operator, ``operator()`` when 
+assigning values to ``handler``.  
 The name ``rot13`` points to the address where the function ``rot13`` 
 is stored.
 

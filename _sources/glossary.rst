@@ -294,14 +294,14 @@ Glossary
 
    compile-time error
       Errors detected by the compiler.
-      Compare to :term:`run-time error`, :term:`link error`,
+      Compare to :term:`runtime error`, :term:`link error`,
       and :term:`semantic error`.
 
    compile-time polymorphism
       A form of :term:`polymorphism` known as Overloading.
       Overloaded methods have the same names, but different signatures
       as a method available elsewhere in the class.
-      Compare to :term:`run-time polymorphism`.
+      Compare to :term:`runtime polymorphism`.
 
    complete binary tree
       A binary tree where the nodes are filled in row by row, with the
@@ -842,7 +842,7 @@ Glossary
       After compiling, a link error occurs when each compilation unit compiles correctly, 
       but in the next stage, the linker is unable to combine all 
       the object code into a single valid executable file.
-      Compare to :term:`compile-time error`, :term:`run-time error`, 
+      Compare to :term:`compile-time error`, :term:`runtime error`, 
       and :term:`semantic error`.
 
 
@@ -1048,7 +1048,7 @@ Glossary
       term meaning *one name, many forms*.
       It describes the ability of software to change its behavior
       dynamically.  Two basic forms exist:
-      :term:`run-time polymorphism` and :term:`compile-time polymorphism`.
+      :term:`runtime polymorphism` and :term:`compile-time polymorphism`.
 
    portability
       A property of a program that can run on more than one kind of computer.
@@ -1258,12 +1258,12 @@ Glossary
       :term:`garbage collector <garbage collection>`,
       and it conducts the execution of the program.
 
-   run-time error
+   runtime error
       Errors encountered during program execution.
       Compare to :term:`compile-time error`, :term:`link error`, 
       and :term:`semantic error`.
 
-   run-time polymorphism
+   runtime polymorphism
       A form of :term:`polymorphism` known as Overriding.
       Overridden methods are those which implement a new method
       with the same signature as a method inherited from its
@@ -1301,7 +1301,7 @@ Glossary
       An error in a program that makes it do something other than what the
       programmer intended.
       Compare to :term:`compile-time error`, :term:`link error`, 
-      and :term:`run-time error`.
+      and :term:`runtime error`.
 
 
    semantics
@@ -1464,6 +1464,23 @@ Glossary
       A binary relation on a set where every pair of distinct elements
       in the set are :term:`comparable` (that is, one can determine
       which of the pair is greater than the other).
+
+   trailing return type
+      A C++11 language feature that allows a function or lambda expression
+      to defer evaluating the function return type.  Example:
+
+      .. code-block:: cpp
+
+         template<class T>
+         auto mul(T a, T b) -> decltype(a*b){
+           return a*b;
+         }
+
+      or
+
+      .. code-block:: cpp
+
+         [](double x, double y) -> int {return x*y;}
 
    transitive
       In set notation, relation :math:`R` is transitive if whenever

@@ -18,7 +18,7 @@ A *lambda expression*, or simply *lambda*,
 provides a means to define an anonymous function right at the location
 where it is invoked or passed as an argument to a function.
 
-It happens that often it is more convenient to write a very short function
+Often, it is more convenient to write a very short function
 'in line' where the function is used rather than:
 
 #. Write a separate function with a name
@@ -32,14 +32,14 @@ This fact makes lambdas particularly useful since
 any place a function pointer can be used, a lambda expression can be used instead.
 
 Suppose we want to count the number of short strings in a vector.
-There is a count_if function in the STL we can use to get the job done.
-The ``count_if`` function expects 3 parameters:
+There is a 'count if' function in the STL we can use to get the job done.
+The :cref:`std::count_if` function expects 3 parameters:
 
-- A pointer to the first element to examine in the vector
-- A pointer to one past the last element to examine in the vector
+- A pointer to the first element to examine in the ``vector``
+- A pointer to one past the last element to examine in the ``vector``
 - A pointer to a function that will determine if the element should be counted
 
-The last parameter is commonly called a :term:`predicate function`
+The last parameter is commonly called a :term:`predicate function`.
 A predicate function is a fancy name for a function that returns a ``bool``.
 
 We could implement this using the techniques we have already learned:
@@ -51,27 +51,27 @@ We could implement this using the techniques we have already learned:
    }
 
    size_t num_short_strings(const vector<string>& v) {
-     const string* begin = v.data(); // must be const
+     const string* begin = v.data();            // must be const
      const auto end = begin + v.size();
      return count_if(begin, end, less_than_5);
    }
 
 While it is easy to write as many functions like this as we need:
-less_than_10, greater_than_15, etc.,
+``less_than_10``, ``greater_than_15``, etc.,
 it's clear this would get tedious quickly.
 Nor it is very flexible.
 Each time we want to compare a different value, or use a different comparator,
 we need to add a new function and recompile the program!
 
 In addition,
-if less_than_5 is never used anywhere else, it seems like a bad idea to have
+if ``less_than_5`` is never used anywhere else, it seems like a bad idea to have
 this special-case function elevated to the status equivalent to all other functions. 
 Conceptually, it doesn't deserve
 to have the status of a full-fledged function with its own name, 
 callable from anywhere. 
 
-Our goal is to void writing a new function for every little comparison we want to make.
-One obvious solution is to add a parameter to our 'less_than_5' function:
+Our goal is to avoid writing a new function for every little comparison we want to make.
+One obvious solution is to add a parameter to our ``less_than_5`` function:
 
 .. code-block:: cpp
 
@@ -79,9 +79,9 @@ One obvious solution is to add a parameter to our 'less_than_5' function:
      return str.size() < size;
    }
 
-Unfortunately, we can't use this function in ``std::count_if``.
+Unfortunately, we can't use this function in :cref:`std::count_if`.
 The new version of the function is arguably more generic,
-but we can't use our 'improved' less_than in count_if.
+but we can't use our 'improved' ``less_than`` in ``count_if``.
 A predicate must be a :term:`unary function`.
 In other words, it can take only 1 parameter, no more.
 The 'improved' function is less useful than the old,
@@ -93,7 +93,6 @@ Starting in C++11, a new language feature was added just for this kind of proble
 lambda expressions.
 Depending on where you go, you'll also see these referred to as
 closures, lambda functions, function literals, or just lambdas.
-All equivalent names for the same concept.
 
 A lambda allows us to omit the separate function definition entirely and use it
 within the ``num_short_strings`` function as an inline parameter to ``count_if``:
@@ -139,7 +138,7 @@ being able to pass in a value, rather than hard code the value ``5``:
                      [&sz](string x) { return (x.size() < sz); });
    }
 
-The parameter is optional, but many useful standard algorithm that operate
+The parameter is optional, but many useful standard algorithms that operate
 on containers expect to be able to pass each container element one at a time
 to a function that will use it.
 This is exactly what ``count_if`` does.
@@ -259,7 +258,7 @@ we have a problem: where to specify the return type.
 It can't come before the capture clause,
 which is where return types are defined for normal functions.
 
-In a lambda, the only option is to specify a *trailing return type*.
+In a lambda, the only option is to specify a :term:`trailing return type`.
 It can be used with ordinary functions also, but
 they are most commonly seen in lambda expressions and function templates.
 

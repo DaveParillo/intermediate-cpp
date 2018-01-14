@@ -295,7 +295,7 @@ at least those common to both C and C++, and legal identifier names
 for functions and variables.
 
 
-.. reveal:: reveal-skill-check-types
+.. reveal:: reveal-skill-check-what-you-know-now
    :showtitle: Show Skill Check
    :hidetitle: Hide Skill Check
 
@@ -518,22 +518,24 @@ to perform tasks perhaps as complex as:
    
    .. parsonsprob:: parson_loop_1
       :adaptive:
-      :noindent:
+      :language: c
 
       When assembled in its proper order, the following program segment 
       prints 'Odd numbers:' followed by all the odd numbers from 1 - 100, one per line.
       -----
       int main () {
       =====
-      std::cout << "Odd numbers:\n";
+        std::cout << "Odd numbers:\n";
       =====
-      for(int num=1; num<=100; ++num) {
+        for(int num=1; num<=100; ++num) {
       =====
-      if(num % 2 != 0)
+          if(num * 2 == 0)  #distractor
       =====
-      std::cout << '\t' << num << '\n';
+          if(num % 2 != 0)
       =====
-      }
+            std::cout << '\t' << num << '\n';
+      =====
+        }
       }
 
 Fixing errors in code
@@ -543,7 +545,7 @@ You should know the difference between basic types of errors:
 
 * :term:`Compile-time errors <compile-time error>`
 * Link-time (linker) errors 
-* :term:`Run-time errors <run-time error>`
+* :term:`Runtime errors <runtime error>`
 * :term:`Semantic errors <semantic error>`
 
 I expect some basic experience using a debugger in whatever 
