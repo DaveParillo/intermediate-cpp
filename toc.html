@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/matrixeq.css" type="text/css" />
     <link rel="stylesheet" href="_static/clickable.css" type="text/css" />
     <link rel="stylesheet" href="_static/tabbedstuff.css" type="text/css" />
     <link rel="stylesheet" href="_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="_static/webgldemo.css" type="text/css" />
+    <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="_static/webglinteractive.css" type="text/css" />
     <link rel="stylesheet" href="_static/parsons.css" type="text/css" />
     <link rel="stylesheet" href="_static/lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="_static/pytutor.css" type="text/css" />
@@ -39,11 +43,20 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/matrixeq.js"></script>
     <script type="text/javascript" src="_static/clickable.js"></script>
     <script type="text/javascript" src="_static/timedclickable.js"></script>
     <script type="text/javascript" src="_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="_static/fitb.js"></script>
     <script type="text/javascript" src="_static/timedfitb.js"></script>
+    <script type="text/javascript" src="_static/codemirror.js"></script>
+    <script type="text/javascript" src="_static/xml.js"></script>
+    <script type="text/javascript" src="_static/css.js"></script>
+    <script type="text/javascript" src="_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="_static/javascript.js"></script>
+    <script type="text/javascript" src="_static/webglinteractive.js"></script>
+    <script type="text/javascript" src="_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="_static/Blob.js"></script>
     <script type="text/javascript" src="_static/reveal.js"></script>
     <script type="text/javascript" src="_static/lib/prettify.js"></script>
     <script type="text/javascript" src="_static/lib/hammer.min.js"></script>
@@ -546,21 +559,23 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="containers/sequence-containers.html">7.2. Sequence Containers</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="containers/sequence-containers.html#std-vector">7.2.1. std::vector</a></li>
-<li class="toctree-l3"><a class="reference internal" href="containers/sequence-containers.html#std-array">7.2.2. std::array</a></li>
-<li class="toctree-l3"><a class="reference internal" href="containers/sequence-containers.html#std-list">7.2.3. std::list</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="containers/sequence-containers.html#the-vector-class">7.2.1. The vector class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="containers/sequence-containers.html#the-array-class">7.2.2. The array class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="containers/sequence-containers.html#the-list-class">7.2.3. The list class</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="containers/sequence-containers.html#std-forward-list">7.2.3.1. std::forward_list</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="containers/sequence-containers.html#std-stack">7.2.4. std::stack</a></li>
-<li class="toctree-l3"><a class="reference internal" href="containers/sequence-containers.html#std-queue">7.2.5. std::queue</a></li>
-<li class="toctree-l3"><a class="reference internal" href="containers/sequence-containers.html#std-deque">7.2.6. std::deque</a></li>
+<li class="toctree-l3"><a class="reference internal" href="containers/sequence-containers.html#the-stack-class">7.2.4. The stack class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="containers/sequence-containers.html#the-queue-class">7.2.5. The queue class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="containers/sequence-containers.html#the-deque-class">7.2.6. The deque class</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="containers/associative-containers.html">7.3. Section</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="containers/associative-containers.html#subsection">7.3.1. Subsection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="containers/associative-containers.html">7.3. Motivation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="containers/associative-containers.html#the-tree-adt">7.3.1. The tree ADT</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="containers/set.html">7.4. The set class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="containers/map.html">7.5. The map class</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="iterators/toctree.html">8. Iterators</a><ul>

@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrixeq.css" type="text/css" />
     <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
     <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
     <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
@@ -39,11 +43,20 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js"></script>
     <script type="text/javascript" src="../_static/clickable.js"></script>
     <script type="text/javascript" src="../_static/timedclickable.js"></script>
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
     <script type="text/javascript" src="../_static/lib/prettify.js"></script>
     <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
@@ -269,8 +282,8 @@
   
   <div class="section" id="function-templates">
 <span id="index-0"></span><h1>4.2. Function templates<a class="headerlink" href="#function-templates" title="Permalink to this headline">¶</a></h1>
-<p>Function overloads allow programmers with the same name,
-that may or may not do the same thing.</p>
+<p>Function overloads allow programmers to reuse function names.
+Functions with the same name may or may not accomplish the same task.</p>
 <p>What if our functions actually are intended to do exactly the same thing,
 but merely on different types?</p>
 <p>Function overloads allow us to write functions with the same names and different
@@ -281,7 +294,7 @@ even if it’s only to call another function.</p>
 <div data-childcomponent="ac-sum-without-templates" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac-sum-without-templates data-lang="cpp" 
-      data-timelimit=25000  
+      data-timelimit=25000   
     data-audio=''   
          >
 #include <iostream>
@@ -317,7 +330,7 @@ For example:</p>
 <div data-childcomponent="ac-sum-with-templates" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac-sum-with-templates data-lang="cpp" 
-      data-timelimit=25000  
+      data-timelimit=25000   
     data-audio=''   
          >
 #include <iostream>
@@ -341,7 +354,7 @@ Whether you use ‘typedef’ or ‘class’ is a matter of preference.</p>
 <p>The identifier <code class="docutils literal"><span class="pre">T</span></code> is traditional,
 but any valid variable name could be used.
 In introductory template tutorials <code class="docutils literal"><span class="pre">AnyType</span></code> is not uncommon.</p>
-<p>Templates are completely specified in header files normally.
+<p>Templates are normally completely specified in header files.
 Because templates are neither declarations, nor definitions,
 it is an error to write a template in a cpp source file and then
 try to use it in another source file.</p>
@@ -365,7 +378,7 @@ not very different from a non-templated function.</p>
 <h2>4.2.2. Multiple template parameters<a class="headerlink" href="#multiple-template-parameters" title="Permalink to this headline">¶</a></h2>
 <p>A <code class="docutils literal"><span class="pre">sum</span></code> function that only adds numbers of the same type is not particularly useful.
 Templates also allow defining multiple types to be used in a template
-with each parameter having potentially a different type.</p>
+with each parameter potentially having a different type.</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
 
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="o">&gt;</span>

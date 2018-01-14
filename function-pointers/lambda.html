@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrixeq.css" type="text/css" />
     <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
     <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
     <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
@@ -39,11 +43,20 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js"></script>
     <script type="text/javascript" src="../_static/clickable.js"></script>
     <script type="text/javascript" src="../_static/timedclickable.js"></script>
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
     <script type="text/javascript" src="../_static/lib/prettify.js"></script>
     <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
@@ -271,7 +284,7 @@
 <p>A <em>lambda expression</em>, or simply <em>lambda</em>,
 provides a means to define an anonymous function right at the location
 where it is invoked or passed as an argument to a function.</p>
-<p>It happens that often it is more convenient to write a very short function
+<p>Often, it is more convenient to write a very short function
 ‘in line’ where the function is used rather than:</p>
 <ol class="arabic simple">
 <li>Write a separate function with a name</li>
@@ -284,14 +297,14 @@ it turns out that many facilities in the STL take function pointers as arguments
 This fact makes lambdas particularly useful since
 any place a function pointer can be used, a lambda expression can be used instead.</p>
 <p>Suppose we want to count the number of short strings in a vector.
-There is a count_if function in the STL we can use to get the job done.
-The <code class="docutils literal"><span class="pre">count_if</span></code> function expects 3 parameters:</p>
+There is a ‘count if’ function in the STL we can use to get the job done.
+The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::count_if">std::count_if</a> function expects 3 parameters:</p>
 <ul class="simple">
-<li>A pointer to the first element to examine in the vector</li>
-<li>A pointer to one past the last element to examine in the vector</li>
+<li>A pointer to the first element to examine in the <code class="docutils literal"><span class="pre">vector</span></code></li>
+<li>A pointer to one past the last element to examine in the <code class="docutils literal"><span class="pre">vector</span></code></li>
 <li>A pointer to a function that will determine if the element should be counted</li>
 </ul>
-<p>The last parameter is commonly called a <a class="reference internal" href="../glossary.html#term-predicate-function"><span class="xref std std-term">predicate function</span></a>
+<p>The last parameter is commonly called a <a class="reference internal" href="../glossary.html#term-predicate-function"><span class="xref std std-term">predicate function</span></a>.
 A predicate function is a fancy name for a function that returns a <code class="docutils literal"><span class="pre">bool</span></code>.</p>
 <p>We could implement this using the techniques we have already learned:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="kt">bool</span> <span class="nf">less_than_5</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
@@ -299,34 +312,34 @@ A predicate function is a fancy name for a function that returns a <code class="
 <span class="p">}</span>
 
 <span class="kt">size_t</span> <span class="nf">num_short_strings</span><span class="p">(</span><span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&amp;</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">const</span> <span class="n">string</span><span class="o">*</span> <span class="n">begin</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">data</span><span class="p">();</span> <span class="c1">// must be const</span>
+  <span class="k">const</span> <span class="n">string</span><span class="o">*</span> <span class="n">begin</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">data</span><span class="p">();</span>            <span class="c1">// must be const</span>
   <span class="k">const</span> <span class="k">auto</span> <span class="n">end</span> <span class="o">=</span> <span class="n">begin</span> <span class="o">+</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
   <span class="k">return</span> <span class="n">count_if</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">less_than_5</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>While it is easy to write as many functions like this as we need:
-less_than_10, greater_than_15, etc.,
+<code class="docutils literal"><span class="pre">less_than_10</span></code>, <code class="docutils literal"><span class="pre">greater_than_15</span></code>, etc.,
 it’s clear this would get tedious quickly.
 Nor it is very flexible.
 Each time we want to compare a different value, or use a different comparator,
 we need to add a new function and recompile the program!</p>
 <p>In addition,
-if less_than_5 is never used anywhere else, it seems like a bad idea to have
+if <code class="docutils literal"><span class="pre">less_than_5</span></code> is never used anywhere else, it seems like a bad idea to have
 this special-case function elevated to the status equivalent to all other functions.
 Conceptually, it doesn’t deserve
 to have the status of a full-fledged function with its own name,
 callable from anywhere.</p>
-<p>Our goal is to void writing a new function for every little comparison we want to make.
-One obvious solution is to add a parameter to our ‘less_than_5’ function:</p>
+<p>Our goal is to avoid writing a new function for every little comparison we want to make.
+One obvious solution is to add a parameter to our <code class="docutils literal"><span class="pre">less_than_5</span></code> function:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="kt">bool</span> <span class="nf">less_than</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="n">str</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Unfortunately, we can’t use this function in <code class="docutils literal"><span class="pre">std::count_if</span></code>.
+<p>Unfortunately, we can’t use this function in <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::count_if">std::count_if</a>.
 The new version of the function is arguably more generic,
-but we can’t use our ‘improved’ less_than in count_if.
+but we can’t use our ‘improved’ <code class="docutils literal"><span class="pre">less_than</span></code> in <code class="docutils literal"><span class="pre">count_if</span></code>.
 A predicate must be a <a class="reference internal" href="../glossary.html#term-unary-function"><span class="xref std std-term">unary function</span></a>.
 In other words, it can take only 1 parameter, no more.
 The ‘improved’ function is less useful than the old,
@@ -336,8 +349,7 @@ to a function that can only take 1 parameter.</p>
 <p>Starting in C++11, a new language feature was added just for this kind of problem:
 lambda expressions.
 Depending on where you go, you’ll also see these referred to as
-closures, lambda functions, function literals, or just lambdas.
-All equivalent names for the same concept.</p>
+closures, lambda functions, function literals, or just lambdas.</p>
 <p>A lambda allows us to omit the separate function definition entirely and use it
 within the <code class="docutils literal"><span class="pre">num_short_strings</span></code> function as an inline parameter to <code class="docutils literal"><span class="pre">count_if</span></code>:</p>
 <div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -377,7 +389,7 @@ being able to pass in a value, rather than hard code the value <code class="docu
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The parameter is optional, but many useful standard algorithm that operate
+<p>The parameter is optional, but many useful standard algorithms that operate
 on containers expect to be able to pass each container element one at a time
 to a function that will use it.
 This is exactly what <code class="docutils literal"><span class="pre">count_if</span></code> does.</p>
@@ -491,7 +503,7 @@ then the return type must be specified.</p>
 we have a problem: where to specify the return type.
 It can’t come before the capture clause,
 which is where return types are defined for normal functions.</p>
-<p>In a lambda, the only option is to specify a <em>trailing return type</em>.
+<p>In a lambda, the only option is to specify a <a class="reference internal" href="../glossary.html#term-trailing-return-type"><span class="xref std std-term">trailing return type</span></a>.
 It can be used with ordinary functions also, but
 they are most commonly seen in lambda expressions and function templates.</p>
 <p>A trailing return type is <code class="docutils literal"><span class="pre">operator-&gt;</span></code>, followed by the return type.

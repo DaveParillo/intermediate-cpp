@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrixeq.css" type="text/css" />
     <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
     <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
     <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
@@ -39,11 +43,20 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js"></script>
     <script type="text/javascript" src="../_static/clickable.js"></script>
     <script type="text/javascript" src="../_static/timedclickable.js"></script>
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
     <script type="text/javascript" src="../_static/lib/prettify.js"></script>
     <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
@@ -318,7 +331,7 @@ in addition to the declaration that appears in the function definition.</li>
 <p>Option (b) is generally preferred,
 and is the only option when the function is used in a different file.</p>
 <p>To make sure that all declarations of a function are consistent,
-the usual practice is to put them in an include file.
+the usual practice is to put them in an <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=include">include</a> file.
 For example, if the <code class="docutils literal"><span class="pre">area</span></code> function is used in a lot of places,
 we might put it in its own file <code class="docutils literal"><span class="pre">area.cpp</span></code>:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &quot;area.h&quot;</span>
@@ -347,7 +360,7 @@ they both introduce a new name and its type into a <a class="reference internal"
 <a class="reference internal" href="../glossary.html#term-header-guard"><span class="xref std std-term">header guard</span></a> or <em>include guard</em>.
 They ensure the functions in include files are defined only once.</p>
 <p>By convention, the documentation for functions is primarily in the include file.
-The idea is that area.h is the public interface of this module,
+The idea is that <code class="docutils literal"><span class="pre">area.h</span></code> is the public interface of this module,
 and so the explanation of how to use the function should be there.
 The reason <code class="docutils literal"><span class="pre">area.cpp</span></code> includes <code class="docutils literal"><span class="pre">area.h</span></code> is to get the compiler to
 verify that the declarations in the two files match.</p>
@@ -445,7 +458,7 @@ Each call thereafter, <code class="docutils literal"><span class="pre">count</sp
 <p>As with any kind of abstraction, there are two goals to making a function:</p>
 <ul>
 <li><p class="first"><strong>Encapsulation</strong>:
-If you have some task to carry out that is simple do describe from the outside,
+If you have some task to carry out that is simple to describe from the outside,
 but messy to understand from the inside,
 then wrapping it in a function lets the caller carry out this task without having to know the details.</p>
 <p>This is also useful if you want to change the implementation later.</p>
@@ -461,7 +474,7 @@ if there is no succinct way to describe what this block of code is doing).</p>
 <p>Both of these goals may be trumped by the goal of making your code <strong>clear</strong>.
 If you can’t describe what a function is doing in a single, simple sentence,
 this is a sign that maybe you need to restructure your code.
-Having a function that does more than one thing (or does different thing depending on its arguments)
+Having a function that does more than one thing (or does different things depending on its arguments)
 is likely to lead to confusion.</p>
 <p>So, for example, this is not a good function definition:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// This code is an anti-pattern.</span>
@@ -538,11 +551,11 @@ and have the advantage of working on any <a class="reference internal" href="../
 </div>
 <div class="section" id="the-call-stack">
 <span id="index-3"></span><h2>3.1.4. The call stack<a class="headerlink" href="#the-call-stack" title="Permalink to this headline">¶</a></h2>
-<p>Several things happen when a function is called.
-Since a function can be called from many places,
-and more than one function can be ‘active’ at any one time,
-the CPU needs to store its previous state to know where to go back.
-It also needs to allocate space for function arguments and local variables.</p>
+<p>Functions are routinely called from many places
+and more than one function can be ‘active’ at any one time.
+The CPU needs a mechanism to keep track of every function call,
+all function parameters, and local variables,
+so that the CPU can execute each instruction in its proper order.</p>
 <p>Some of this information will be stored in <strong>registers</strong>,
 memory locations built into the CPU itself,
 but most will go on the <a class="reference internal" href="../glossary.html#term-stack"><span class="xref std std-term">stack</span></a>,
@@ -837,7 +850,7 @@ What if the function signatures were changed to accept a pass-by-reference param
 <span class="cp">#endif</span>
 </pre></div>
 </div>
-<p>Given that the names of these function provide no insight to their purpose,
+<p>Given that the names of these functions provide no insight to their purpose,
 there is no way to know without inspecting the source if
 the variable x is modified when passed to these functions.</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &quot;side-effects.h&quot;</span>
@@ -874,7 +887,7 @@ clearly states that the function may modify the parameter.</p>
 <li><p class="first">Keep functions short</p>
 <ul>
 <li><p class="first">A function should do <em>one</em> thing well</p>
-<p>If you see a function doing more then one thing
+<p>If you see a function doing more than one thing
 consider breaking it up into multiple functions</p>
 </li>
 <li><p class="first">Is this (slightly) more work?</p>

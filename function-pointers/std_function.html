@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrixeq.css" type="text/css" />
     <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
     <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
     <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
@@ -39,11 +43,20 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js"></script>
     <script type="text/javascript" src="../_static/clickable.js"></script>
     <script type="text/javascript" src="../_static/timedclickable.js"></script>
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
     <script type="text/javascript" src="../_static/lib/prettify.js"></script>
     <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
@@ -264,10 +277,10 @@
   
   <div class="section" id="the-std-function-template">
 <span id="index-0"></span><h1>6.3. The std::function template<a class="headerlink" href="#the-std-function-template" title="Permalink to this headline">¶</a></h1>
-<p>The <code class="docutils literal"><span class="pre">std::function</span></code> wrapper provided a standard way to pass around lambda expressions,
+<p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::function">std::function</a> wrapper provides a standard way to pass around lambda expressions,
 function pointers, and function objects.
 Introduced in C++11, its facilities are accessed from <code class="docutils literal"><span class="pre">#include</span> <span class="pre">&lt;functional&gt;</span></code>.
-The primary goal of std::function is clarity:
+The primary goal of <code class="docutils literal"><span class="pre">std::function</span></code> is clarity:
 to simplify and standardize the way function pointers are moved within a program.</p>
 <p>Starting with a simple function:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">print_num</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
@@ -297,7 +310,7 @@ The syntax is messy:</p>
 and the parameters look like a traditional function declaration.</li>
 <li>The name of the variable follows the type</li>
 </ul>
-<p>We can store any function like entity using the same consistent syntax:</p>
+<p>We can store any function-like entity using a consistent syntax:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;functional&gt;</span>
 <span class="cp">#include &lt;iostream&gt;</span>
 

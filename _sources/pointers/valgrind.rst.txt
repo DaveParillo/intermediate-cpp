@@ -14,7 +14,7 @@
 Pointer debugging
 =================
 
-All the techniques described in section ref:`Debugging` applies
+All the techniques described in section :doc:`../beginnings/debugging` applies
 when debugging pointers.
 What can make debugging pointer errors more difficult is that 
 when things go wrong with a pointer, often memory is corrupted
@@ -28,7 +28,7 @@ Tools are your friends.
    The debugging section has a brief overview of the gdb debugger
    and links to more information.
 
-#. Consider a dynamic memory checker such as valgrind.
+#. Consider a dynamic memory checker such as ``valgrind``.
 
 .. index::
    pair: debugging; valgrind
@@ -38,9 +38,9 @@ Valgrind
 
 The ``valgrind`` program can be used to detect some (but not all) common errors in C and C++ programs 
 that use pointers and dynamic storage allocation. 
-In addition to basic memory checking, valgrind can find many bugs related to
+In addition to basic memory checking, ``valgrind`` can find many bugs related to
 uninitialized variables and undefinded behavior.
-You can run valgrind on your program by putting valgrind at the start of the command line::
+You can run ``valgrind`` on your program by putting ``valgrind`` at the start of the command line::
 
   valgrind ./my-program 
 
@@ -64,7 +64,7 @@ You can also turn on more tests, e.g.::
 
 See ``valgrind --help`` or ``man valgrind`` for more information about the (many) options, 
 or look at the documentation at http://valgrind.org/ for detailed information about what the output means. 
-If you want to run valgrind on your own machine, 
+If you want to run ``valgrind`` on your own machine, 
 you may be able to find a version that works at http://valgrind.org. 
 Unfortunately, this is only likely to work if you are running a Unix-like 
 operating system (which includes Linux and MacOS X, but not Windows).
@@ -101,7 +101,7 @@ your output looks like this::
     ==1229==    by 0x41CB9D2: (below main) (in /lib/libc-2.18.so)
 
 
-In order to get valgrind to report line numbers related to errors 
+In order to get ``valgrind`` to report line numbers related to errors 
 in calls to library functions, you need to add the command line argument
 ``--track-origins=yes``, like this:
 
@@ -166,8 +166,8 @@ in calls to library functions, you need to add the command line argument
       ==1302== ERROR SUMMARY: 20 errors from 4 contexts (suppressed: 0 from 0)
 
 There can be a lot of noise in the output,
-especially when templates are involved, if you look at the last line in each group, 
-foo.cpp, line 3 is called out each time.
+especially when templates are involved. 
+If you look at the last line in each group, ``foo.cpp, line 3`` is called out each time.
 And that is exactly where the error lies.
 
 

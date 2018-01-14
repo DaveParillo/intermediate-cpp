@@ -25,7 +25,7 @@ You'd like to be able to use auto to simply:
 
 Starting in C++17, this syntax works much more often than in previous version of the standard,
 because the rules for deducing types have expanded.
-Earlier version of C++, need to resort to a **trailing return type**
+Earlier version of C++, need to resort to a **trailing return type**.
 
 Even in C++17, depending on what a function does, return type deduction may not always work.
 If it is possible for our function to return different types,

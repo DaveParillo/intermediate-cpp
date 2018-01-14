@@ -144,8 +144,8 @@ and will throw an exception if an out of bounds index is used on the ``vector``.
 
 .. admonition:: Something to consider
 
-   What is the difference between a std::string and 
-   std::vector<char>?
+   What is the difference between a ``std::string`` and 
+   ``std::vector<char>``?
 
    Why did the developers of the STL decide it was important to include both?
 

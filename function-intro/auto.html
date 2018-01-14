@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrixeq.css" type="text/css" />
     <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
     <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
     <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
@@ -39,11 +43,20 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js"></script>
     <script type="text/javascript" src="../_static/clickable.js"></script>
     <script type="text/javascript" src="../_static/timedclickable.js"></script>
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
     <script type="text/javascript" src="../_static/lib/prettify.js"></script>
     <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
@@ -264,7 +277,7 @@
   
   <div class="section" id="keyword-auto">
 <span id="index-0"></span><h1>3.3. Keyword: <code class="docutils literal"><span class="pre">auto</span></code><a class="headerlink" href="#keyword-auto" title="Permalink to this headline">¶</a></h1>
-<p>In C++11, the <code class="docutils literal"><span class="pre">auto</span></code> keyword meaning has changed significantly from
+<p>In C++11, the <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=auto specifier">auto specifier</a> meaning has changed significantly from
 it’s definition prior to C++11.
 Prior to C++11, <code class="docutils literal"><span class="pre">auto</span></code> designated variables assigned to the
 <a class="reference external" href="http://en.cppreference.com/w/c/language/storage_duration">automatic storage class duration</a>.
@@ -274,7 +287,7 @@ Because it was the default storage duration for variables in a block,
 it was rarely, if ever, used.
 It is still the default storage duration for block variables,
 but no C++11 keyword is reserved for this behavior.</p>
-<p>Since C++11, <code class="docutils literal"><span class="pre">auto</span></code> instructs the compiler to automatically deduce the type
+<p>Since C++11, <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=auto specifier">auto specifier</a> instructs the compiler to automatically deduce the type
 of a variable based on the initializer used.</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="k">auto</span> <span class="n">new_variable</span> <span class="o">=</span> <span class="n">initial_value</span><span class="p">;</span>
 </pre></div>
@@ -360,9 +373,9 @@ You can’t declare the type of a lambda yourself because the type of a
 </div>
 <p>In this case, the compiler already knows the type stored in the <code class="docutils literal"><span class="pre">vector</span></code> numbers.
 It doesn’t need to be told again.</p>
-<p>When first introduced to auto, many programmers balk.
+<p>When first introduced to <code class="docutils literal"><span class="pre">auto</span></code>, many programmers balk.
 It <em>feels</em> sloppy and imprecise, and it <em>seems</em> as if we are sacrificing clarity.
-In fact using auto is just as strongly typed as a manual declaration
+In fact using <code class="docutils literal"><span class="pre">auto</span></code> is just as strongly typed as a manual declaration
 and it aids clarity because it forces delaying variable
 declaration until you have a value to initialize it with.</p>
 <div class="admonition-guideline admonition">

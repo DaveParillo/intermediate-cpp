@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/matrixeq.css" type="text/css" />
     <link rel="stylesheet" href="_static/clickable.css" type="text/css" />
     <link rel="stylesheet" href="_static/tabbedstuff.css" type="text/css" />
     <link rel="stylesheet" href="_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="_static/webgldemo.css" type="text/css" />
+    <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="_static/webglinteractive.css" type="text/css" />
     <link rel="stylesheet" href="_static/parsons.css" type="text/css" />
     <link rel="stylesheet" href="_static/lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="_static/pytutor.css" type="text/css" />
@@ -39,11 +43,20 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/matrixeq.js"></script>
     <script type="text/javascript" src="_static/clickable.js"></script>
     <script type="text/javascript" src="_static/timedclickable.js"></script>
     <script type="text/javascript" src="_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="_static/fitb.js"></script>
     <script type="text/javascript" src="_static/timedfitb.js"></script>
+    <script type="text/javascript" src="_static/codemirror.js"></script>
+    <script type="text/javascript" src="_static/xml.js"></script>
+    <script type="text/javascript" src="_static/css.js"></script>
+    <script type="text/javascript" src="_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="_static/javascript.js"></script>
+    <script type="text/javascript" src="_static/webglinteractive.js"></script>
+    <script type="text/javascript" src="_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="_static/Blob.js"></script>
     <script type="text/javascript" src="_static/reveal.js"></script>
     <script type="text/javascript" src="_static/lib/prettify.js"></script>
     <script type="text/javascript" src="_static/lib/hammer.min.js"></script>
@@ -491,13 +504,13 @@ as the number of elements increases.</dd>
 low-level language all at once, in preparation for later execution.</dd>
 <dt id="term-compile-time-error">compile-time error</dt>
 <dd>Errors detected by the compiler.
-Compare to <a class="reference internal" href="#term-run-time-error"><span class="xref std std-term">run-time error</span></a>, <a class="reference internal" href="#term-link-error"><span class="xref std std-term">link error</span></a>,
+Compare to <a class="reference internal" href="#term-206"><span class="xref std std-term">runtime error</span></a>, <a class="reference internal" href="#term-link-error"><span class="xref std std-term">link error</span></a>,
 and <a class="reference internal" href="#term-semantic-error"><span class="xref std std-term">semantic error</span></a>.</dd>
 <dt id="term-compile-time-polymorphism">compile-time polymorphism</dt>
 <dd>A form of <a class="reference internal" href="#term-polymorphism"><span class="xref std std-term">polymorphism</span></a> known as Overloading.
 Overloaded methods have the same names, but different signatures
 as a method available elsewhere in the class.
-Compare to <a class="reference internal" href="#term-run-time-polymorphism"><span class="xref std std-term">run-time polymorphism</span></a>.</dd>
+Compare to <a class="reference internal" href="#term-runtime-polymorphism"><span class="xref std std-term">runtime polymorphism</span></a>.</dd>
 <dt id="term-complete-binary-tree">complete binary tree</dt>
 <dd>A binary tree where the nodes are filled in row by row, with the
 bottom row filled in left to right.
@@ -955,7 +968,7 @@ of another collision resolution method called
 <dd>After compiling, a link error occurs when each compilation unit compiles correctly,
 but in the next stage, the linker is unable to combine all
 the object code into a single valid executable file.
-Compare to <a class="reference internal" href="#term-compile-time-error"><span class="xref std std-term">compile-time error</span></a>, <a class="reference internal" href="#term-run-time-error"><span class="xref std std-term">run-time error</span></a>,
+Compare to <a class="reference internal" href="#term-compile-time-error"><span class="xref std std-term">compile-time error</span></a>, <a class="reference internal" href="#term-206"><span class="xref std std-term">runtime error</span></a>,
 and <a class="reference internal" href="#term-semantic-error"><span class="xref std std-term">semantic error</span></a>.</dd>
 <dt id="term-linked-list">linked list</dt>
 <dd>An implementation for the list ADT that uses
@@ -1118,7 +1131,7 @@ pointer is stored.</dd>
 term meaning <em>one name, many forms</em>.
 It describes the ability of software to change its behavior
 dynamically.  Two basic forms exist:
-<a class="reference internal" href="#term-run-time-polymorphism"><span class="xref std std-term">run-time polymorphism</span></a> and <a class="reference internal" href="#term-compile-time-polymorphism"><span class="xref std std-term">compile-time polymorphism</span></a>.</dd>
+<a class="reference internal" href="#term-runtime-polymorphism"><span class="xref std std-term">runtime polymorphism</span></a> and <a class="reference internal" href="#term-compile-time-polymorphism"><span class="xref std std-term">compile-time polymorphism</span></a>.</dd>
 <dt id="term-pop">pop</dt>
 <dd>A specialized term used to indicate removing an <a class="reference internal" href="#term-element"><span class="xref std std-term">element</span></a>
 from a <a class="reference internal" href="#term-stack"><span class="xref std std-term">stack</span></a>.</dd>
@@ -1287,16 +1300,6 @@ reflexive if <span class="math">\(aRa\)</span> for all <span class="math">\(a \i
 <dd>In a <a class="reference internal" href="#term-tree"><span class="xref std std-term">tree</span></a>, the topmost <a class="reference internal" href="#term-node"><span class="xref std std-term">node</span></a> of the tree.
 All other nodes in the tree are <a class="reference internal" href="#term-descendant"><span class="xref std std-term">descendants</span></a>
 of the root.</dd>
-<dt id="term-run-time-error">run-time error</dt>
-<dd>Errors encountered during program execution.
-Compare to <a class="reference internal" href="#term-compile-time-error"><span class="xref std std-term">compile-time error</span></a>, <a class="reference internal" href="#term-link-error"><span class="xref std std-term">link error</span></a>,
-and <a class="reference internal" href="#term-semantic-error"><span class="xref std std-term">semantic error</span></a>.</dd>
-<dt id="term-run-time-polymorphism">run-time polymorphism</dt>
-<dd>A form of <a class="reference internal" href="#term-polymorphism"><span class="xref std std-term">polymorphism</span></a> known as Overriding.
-Overridden methods are those which implement a new method
-with the same signature as a method inherited from its
-base class.
-Compare to <a class="reference internal" href="#term-compile-time-polymorphism"><span class="xref std std-term">compile-time polymorphism</span></a>.</dd>
 <dt id="term-runtime-environment">runtime environment</dt>
 <dd>The environment in which a program (of a particular programming
 language) executes.
@@ -1305,8 +1308,18 @@ The runtime environment handles such activities as managing the
 <a class="reference internal" href="#term-garbage-collection"><span class="xref std std-term">garbage collector</span></a>,
 and it conducts the execution of the program.</dd>
 <dt id="term-runtime-error">runtime error</dt>
+<dd>Errors encountered during program execution.
+Compare to <a class="reference internal" href="#term-compile-time-error"><span class="xref std std-term">compile-time error</span></a>, <a class="reference internal" href="#term-link-error"><span class="xref std std-term">link error</span></a>,
+and <a class="reference internal" href="#term-semantic-error"><span class="xref std std-term">semantic error</span></a>.</dd>
+<dt id="term-206">runtime error</dt>
 <dd>An error that does not occur until the program has started to execute
 but that prevents the program from continuing.</dd>
+<dt id="term-runtime-polymorphism">runtime polymorphism</dt>
+<dd>A form of <a class="reference internal" href="#term-polymorphism"><span class="xref std std-term">polymorphism</span></a> known as Overriding.
+Overridden methods are those which implement a new method
+with the same signature as a method inherited from its
+base class.
+Compare to <a class="reference internal" href="#term-compile-time-polymorphism"><span class="xref std std-term">compile-time polymorphism</span></a>.</dd>
 <dt id="term-runtime-stack">runtime stack</dt>
 <dd>The place where an <a class="reference internal" href="#term-activation-record"><span class="xref std std-term">activation record</span></a> is stored when a
 subroutine is called during a program’s runtime.</dd>
@@ -1331,7 +1344,7 @@ probe sequence is determined in part by a second hash function.</dd>
 <dd>An error in a program that makes it do something other than what the
 programmer intended.
 Compare to <a class="reference internal" href="#term-compile-time-error"><span class="xref std std-term">compile-time error</span></a>, <a class="reference internal" href="#term-link-error"><span class="xref std std-term">link error</span></a>,
-and <a class="reference internal" href="#term-run-time-error"><span class="xref std std-term">run-time error</span></a>.</dd>
+and <a class="reference internal" href="#term-206"><span class="xref std std-term">runtime error</span></a>.</dd>
 <dt id="term-semantics">semantics</dt>
 <dd>The meaning of a program.</dd>
 <dt id="term-separate-chaining">separate chaining</dt>
@@ -1464,6 +1477,20 @@ analogous to a word in a natural language.</dd>
 <dd>A binary relation on a set where every pair of distinct elements
 in the set are <a class="reference internal" href="#term-comparable"><span class="xref std std-term">comparable</span></a> (that is, one can determine
 which of the pair is greater than the other).</dd>
+<dt id="term-trailing-return-type">trailing return type</dt>
+<dd><p class="first">A C++11 language feature that allows a function or lambda expression
+to defer evaluating the function return type.  Example:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">auto</span> <span class="n">mul</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">b</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">decltype</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="p">){</span>
+  <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="last highlight-cpp"><div class="highlight"><pre><span class="p">[](</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">;}</span>
+</pre></div>
+</div>
+</dd>
 <dt id="term-transitive">transitive</dt>
 <dd>In set notation, relation <span class="math">\(R\)</span> is transitive if whenever
 <span class="math">\(aRb\)</span> and <span class="math">\(bRc\)</span>, then <span class="math">\(aRc\)</span>, for all

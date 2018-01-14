@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrixeq.css" type="text/css" />
     <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
     <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
     <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
@@ -39,11 +43,20 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js"></script>
     <script type="text/javascript" src="../_static/clickable.js"></script>
     <script type="text/javascript" src="../_static/timedclickable.js"></script>
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
     <script type="text/javascript" src="../_static/lib/prettify.js"></script>
     <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
@@ -96,7 +109,7 @@
     <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="7.3. Section" href="associative-containers.html" />
+    <link rel="next" title="7.3. Motivation" href="associative-containers.html" />
     <link rel="prev" title="7.1. Standard Template Library Containers" href="intro.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -218,15 +231,15 @@
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
 <li><a class="reference internal" href="#">7.2. Sequence Containers</a><ul>
-<li><a class="reference internal" href="#std-vector">7.2.1. std::vector</a></li>
-<li><a class="reference internal" href="#std-array">7.2.2. std::array</a></li>
-<li><a class="reference internal" href="#std-list">7.2.3. std::list</a><ul>
+<li><a class="reference internal" href="#the-vector-class">7.2.1. The vector class</a></li>
+<li><a class="reference internal" href="#the-array-class">7.2.2. The array class</a></li>
+<li><a class="reference internal" href="#the-list-class">7.2.3. The list class</a><ul>
 <li><a class="reference internal" href="#std-forward-list">7.2.3.1. std::forward_list</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#std-stack">7.2.4. std::stack</a></li>
-<li><a class="reference internal" href="#std-queue">7.2.5. std::queue</a></li>
-<li><a class="reference internal" href="#std-deque">7.2.6. std::deque</a></li>
+<li><a class="reference internal" href="#the-stack-class">7.2.4. The stack class</a></li>
+<li><a class="reference internal" href="#the-queue-class">7.2.5. The queue class</a></li>
+<li><a class="reference internal" href="#the-deque-class">7.2.6. The deque class</a></li>
 </ul>
 </li>
 </ul>
@@ -242,7 +255,7 @@
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - 7.3. Section' data-toggle="tooltip" >
+  <li id="relations-next" title='Next Chapter - 7.3. Motivation' data-toggle="tooltip" >
     <a href="associative-containers.html" >
       <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
@@ -315,8 +328,8 @@ either directly or through iterators (objects with properties similar to pointer
 For example, a vector may contain the values <code class="docutils literal"><span class="pre">{3,</span> <span class="pre">1,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">5,</span> <span class="pre">9}</span></code>,
 which clearly are not in the <a class="reference internal" href="../glossary.html#term-natural-order"><span class="xref std std-term">natural order</span></a> for integers.
 A <code class="docutils literal"><span class="pre">vector</span></code> <em>is</em> ordered, however: by its index position.</p>
-<div class="section" id="std-vector">
-<span id="index-1"></span><h2>7.2.1. std::vector<a class="headerlink" href="#std-vector" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-vector-class">
+<span id="index-1"></span><h2>7.2.1. The vector class<a class="headerlink" href="#the-vector-class" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::vector">std::vector</a> is a sequence container that simulates a dynamically sized array.
 If you have taken a class in linear algebra, vector has nothing to do with mathematics,
 but is just about a sequential data structure.</p>
@@ -334,36 +347,16 @@ but only when the additional memory is exhausted.
 The total amount of allocated memory can be queried using <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=vector::capacity()">vector::capacity()</a> function.
 Starting in C++11, extra memory can be returned to the system via a call to <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=vector::shrink_to_fit()">vector::shrink_to_fit()</a>.</p>
 <p>Given a vector declared as:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">};</span>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">};</span>
 </pre></div>
 </div>
-<p>This creates a vector of type <code class="docutils literal"><span class="pre">int</span></code>, with size 4 and the first 3 values initialized.</p>
-<img src="../_images/graphviz-7f92151fc467d2920803f81acafc58fea9c797a6.png" alt="digraph {
-  node [shape=plaintext, fontsize=14];
-  &quot;Pointers:&quot; -&gt; &quot;Values:&quot; -&gt; &quot;Indices:&quot; [color=white];
-
-  node [shape=record, fontcolor=black, fontsize=14, width=4.75, fixedsize=true];
-  pointers [label=&quot;&lt;f0&gt; v | &lt;f1&gt; v+1 | &lt;f2&gt; v+2 | &lt;f3&gt; v+3 | &lt;f4&gt; v+4 | &lt;f5&gt; v+5&quot;, color=white];
-  values [label=&quot;&lt;f0&gt; v[0] | &lt;f1&gt; v[1] | &lt;f2&gt; v[2] | &lt;f3&gt; v[3] | &lt;f4&gt; v[4] | &lt;f5&gt; v[5]&quot;,
-          color=black, fillcolor=lightblue, style=filled];
-  indices [label=&quot;0 | 1 | 2 | 3| 4 | 5&quot;, color=white];
-
-  { rank=same; &quot;Pointers:&quot;; pointers }
-  { rank=same; &quot;Values:&quot;; values }
-  { rank=same; &quot;Indices:&quot;; indices }
-
-  edge [color=black];
-  pointers:f0 -&gt; values:f0;
-  pointers:f1 -&gt; values:f1;
-  pointers:f2 -&gt; values:f2;
-  pointers:f3 -&gt; values:f3;
-  pointers:f4 -&gt; values:f4;
-  pointers:f5 -&gt; values:f5;
-}" />
+<p>This creates a vector of type <code class="docutils literal"><span class="pre">int</span></code>, with size 6 and the first 4 values initialized:</p>
+<img src="../_images/graphviz-32055756d044612d78374677f3c033bad859b6bc.png" alt="A vector of type int" />
 <p>The data layout of a vector makes it easy to pass a vector to a legacy C
 function that expects a raw array.
 This is something that comes up more often than you might expect.
-The book <em>Effective STL</em> has a good discussion of this as Item #16.</p>
+The book <em>Effective STL</em> has a good discussion of
+passing string and vector objects to legacy C functions<a class="footnote-reference" href="#id3" id="id1">[1]</a>.</p>
 <p>Given a legacy C function that expects a raw array:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">print_sum</span> <span class="p">(</span><span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="n">values</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">array_size</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -408,8 +401,8 @@ The book <em>Effective STL</em> has a good discussion of this as Item #16.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="std-array">
-<span id="index-2"></span><h2>7.2.2. std::array<a class="headerlink" href="#std-array" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-array-class">
+<span id="index-2"></span><h2>7.2.2. The array class<a class="headerlink" href="#the-array-class" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::array">std::array</a> is a container that encapsulates fixed size arrays.
 Since it is literally a wrapper around a raw array,
 the size of the <code class="docutils literal"><span class="pre">std::array</span></code> must be defined when declared.</p>
@@ -454,101 +447,92 @@ declared with an initializer list:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="std-list">
-<span id="index-3"></span><h2>7.2.3. std::list<a class="headerlink" href="#std-list" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::list">std::list</a> is a sequence container that stores data in <em>nodes</em>.
-Each node in a list points to the next (and previous) node in the list.
+<div class="section" id="the-list-class">
+<span id="index-3"></span><h2>7.2.3. The list class<a class="headerlink" href="#the-list-class" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::list">std::list</a> is a sequence container that stores data in <a class="reference internal" href="../glossary.html#term-node"><span class="xref std std-term">nodes</span></a>.
+Each <a class="reference internal" href="../glossary.html#term-node"><span class="xref std std-term">node</span></a> in a <a class="reference internal" href="../glossary.html#term-list"><span class="xref std std-term">list</span></a> points to the next (and previous) node in the <a class="reference internal" href="../glossary.html#term-list"><span class="xref std std-term">list</span></a>.
 Each node is a separate object that exists to encapsulate a piece of data
 and to allow navigation to adjacent nodes.</p>
-<img src="../_images/graphviz-e73208798d7a3c69da251018ae65518cd11359a3.png" alt="digraph list {
-   graph [
-      rankdir=LR;
-      //splines=ortho;
-      compound=true;
-      labelloc=b;
-      label=&quot;Linked list nodes&quot;;
-      ranksep = 1;
-   ]
-   node [fontname = &quot;Bitstream Vera Sans&quot;, fontsize=14,
-             style=filled, fillcolor=lightblue,
-             shape=record, width=0.5, height=.25, label=&quot;&quot;];
-
-
-  subgraph cluster_h {
-    labelloc=t
-    label=&quot;head&quot;
-    head [label=&quot; |next()| &quot;]
-  }
-
-  subgraph cluster_a {
-    labelloc=t
-    label=&quot;Node A&quot;
-    a [label=&quot;data|next()|prev()&quot;]
-  }
-
-    subgraph cluster_b {
-    labelloc=t
-    label=&quot;Node B&quot;
-     b [label=&quot;data|next()|prev()&quot;]
-  }
-
-  subgraph cluster_t {
-    labelloc=t
-    label=&quot;tail&quot;
-     tail [label=&quot; | | prev()&quot;]
-  }
-
-  head:m-&gt; a [lhead=cluster_a];
-
-  a -&gt; b [lhead=cluster_b];
-  a:s -&gt; head:s [lhead=cluster_h];
-
-  b -&gt; tail [lhead=cluster_t];
-  b:s -&gt; a:s [lhead=cluster_a];
-
-  tail:s -&gt; b:s [lhead=cluster_b];
-}" />
-<p>A more compact way to graphically represent our doubly-linked list is like this:</p>
-<img src="../_images/graphviz-e7ed645b41c1a4c7e7d1829fd16c699699e9ffef.png" alt="// doubly linked list
-digraph g {
-    node [fontname = &quot;Bitstream Vera Sans&quot;, fontsize=14,
-          style=filled, fillcolor=lightblue,
-          shape=box, width=0.5, height=.25];
-
-
-    head [style=dotted, fillcolor=white];
-    tail [style=dotted, fillcolor=white];
-
-    head -&gt; a -&gt; b -&gt; tail [ arrowhead=vee, arrowsize=0.5];
-    tail -&gt; b -&gt; a -&gt; head [ arrowhead=vee, arrowsize=0.5];
-
-   {rank=same; head a b tail}
-}" />
-<p>A linked list that stores a sequence of <code class="docutils literal"><span class="pre">int``s</span> <span class="pre">can</span> <span class="pre">be</span> <span class="pre">trivially</span> <span class="pre">implemented</span> <span class="pre">using</span> <span class="pre">a</span> <span class="pre">``struct</span></code>:</p>
+<img src="../_images/graphviz-f1e5900cec0a6b0f50d443567c3342bfd4edd9be.png" alt="Linked list nodes" />
+<p>A more compact way to graphically represent our <a class="reference internal" href="../glossary.html#term-doubly-linked-list"><span class="xref std std-term">doubly linked list</span></a> is like this:</p>
+<img src="../_images/graphviz-e7ed645b41c1a4c7e7d1829fd16c699699e9ffef.png" alt="A compact linked list diagram" />
+<p>A <a class="reference internal" href="../glossary.html#term-linked-list"><span class="xref std std-term">linked list</span></a> that stores a sequence of <code class="docutils literal"><span class="pre">int</span></code>s can be trivially implemented using a <code class="docutils literal"><span class="pre">struct</span></code>:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="k">struct</span> <span class="n">node</span> <span class="p">{</span>
    <span class="kt">int</span> <span class="n">value</span><span class="p">;</span>
-   <span class="n">node</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
-   <span class="n">node</span> <span class="o">*</span><span class="n">prev</span><span class="p">;</span>
+   <span class="n">node</span><span class="o">*</span> <span class="n">next</span><span class="p">;</span>
+   <span class="n">node</span><span class="o">*</span> <span class="n">prev</span><span class="p">;</span>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>Creating a linked list from such a ‘home grown’ struct is not complicated,
+<p>The <code class="docutils literal"><span class="pre">struct</span> <span class="pre">node</span></code> contains a single value it ‘owns’,
+plus pointers to adjacent nodes.</p>
+<p>Creating a <a class="reference internal" href="../glossary.html#term-linked-list"><span class="xref std std-term">linked list</span></a> from such a ‘home grown’ <code class="docutils literal"><span class="pre">struct</span></code> is not complicated,
 but it isn’t pretty either:</p>
+<div class="sidebar">
+<p class="first sidebar-title">An empty list</p>
+<img src="../_images/graphviz-b9edd4354cb671704b3953421891d07d78e49e33.png" alt="digraph empty {
+graph [
+   nodesep=1,
+];
+node [fontname = &quot;Bitstream Vera Sans&quot;, fontsize=14,
+      style=dotted,
+      shape=box, width=0.5, height=.25];
+
+head -&gt; tail [constraint=false];
+tail-&gt; head [constraint=false];
+}" />
+</div>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// create an empty list</span>
 <span class="n">node</span><span class="o">*</span> <span class="n">head</span> <span class="o">=</span> <span class="k">new</span> <span class="n">node</span><span class="p">;</span>
 <span class="n">node</span><span class="o">*</span> <span class="n">tail</span> <span class="o">=</span> <span class="k">new</span> <span class="n">node</span><span class="p">;</span>
 <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">tail</span><span class="p">;</span>
 <span class="n">tail</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="sidebar">
+<p class="first sidebar-title">Insert node ‘a’ to our list</p>
+<img src="../_images/graphviz-e85a24069e7e5fdabd95aff46a463af229c69a4b.png" alt="digraph node_a {
+graph [
+   rankdir=LR,
+   nodesep=1
+];
+node [fontname = &quot;Bitstream Vera Sans&quot;, fontsize=14,
+      style=filled, fillcolor=lightblue,
+      shape=box, width=0.5, height=.25];
 
-<span class="c1">// insert node a into the list</span>
+head,tail [style=dotted, fillcolor=white];
+
+head,tail-&gt; a
+a -&gt; head, tail
+}" />
+</div>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// insert node a into the list</span>
 <span class="n">node</span><span class="o">*</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">node</span><span class="p">;</span>
 <span class="n">a</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">=</span> <span class="mi">61</span><span class="p">;</span>
 <span class="n">a</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">tail</span><span class="p">;</span>
 <span class="n">a</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
 <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
 <span class="n">tail</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="sidebar">
+<p class="first sidebar-title">Insert node ‘b’ after a</p>
+<img src="../_images/graphviz-d107a98f3c7c9a0a39ca812f547428efff76df01.png" alt="digraph node_b {
+graph [
+    rankdir=LR,
+    nodesep=1
+ ];
+ node [fontname = &quot;Bitstream Vera Sans&quot;, fontsize=14,
+       style=filled, fillcolor=lightblue,
+       shape=box, width=0.5, height=.25];
 
-<span class="c1">// insert node b after node a</span>
+ head,tail [style=dotted, fillcolor=white];
+
+ head -&gt; a -&gt; b -&gt; tail;
+ tail -&gt; b -&gt; a -&gt; head;
+}" />
+</div>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// insert node b after node a</span>
 <span class="n">node</span><span class="o">*</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">node</span><span class="p">;</span>
 <span class="n">b</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">=</span> <span class="mi">62</span><span class="p">;</span>
 <span class="n">b</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">tail</span><span class="p">;</span>
@@ -557,7 +541,7 @@ but it isn’t pretty either:</p>
 <span class="n">tail</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>At this point, we have created the basic structure shown in the previous diagram.
+<p>At this point, we have created the basic structure shown in the first list diagram.
 Once we have such a list, we can access all of the elements,
 if we have a pointer to any one of them.
 For example, to print all of the elements, we could:</p>
@@ -609,7 +593,7 @@ provides a list with many convenient features:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The defining operations of a <code class="docutils literal"><span class="pre">std::list</span></code> are:</p>
+<p>The defining operations of a <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::list">std::list</a> are:</p>
 <dl class="docutils">
 <dt>push_back</dt>
 <dd>Add a new element to the end of the list</dd>
@@ -638,7 +622,7 @@ without traversing the range and counting them.</p>
 then call <code class="docutils literal"><span class="pre">empty()</span></code>.</p>
 <p>If you <strong>really</strong> want to know the number of elements in a container,
 then call <code class="docutils literal"><span class="pre">size()</span></code>.</p>
-<p class="last">See <em>Effective STL</em>, Item #4 for more details.</p>
+<p class="last">See <em>Effective STL</em>, for more details<a class="footnote-reference" href="#id4" id="id2">[2]</a>.</p>
 </div>
 <p>Underneath, the standard library <code class="docutils literal"><span class="pre">list</span></code> is not very different from the <code class="docutils literal"><span class="pre">struct</span> <span class="pre">node</span></code> above.
 The primary characteristics are:</p>
@@ -654,8 +638,8 @@ Linked lists do not.</li>
 <div class="section" id="std-forward-list">
 <h3>7.2.3.1. std::forward_list<a class="headerlink" href="#std-forward-list" title="Permalink to this headline">¶</a></h3>
 <p>Like <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::list">std::list</a>,
-the <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::forward_list">std::forward_list</a> is a container that stores elements in <em>nodes</em>.
-A forward list only defines pointers to the next node in the list.
+the <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::forward_list">std::forward_list</a> is a container that stores elements in <a class="reference internal" href="../glossary.html#term-node"><span class="xref std std-term">nodes</span></a>
+A <a class="reference internal" href="../glossary.html#term-singly-linked-list"><span class="xref std std-term">forward list</span></a> only defines pointers to the next node in the list.
 This means that a forward list can only be traversed in the direction of the tail.</p>
 <img src="../_images/graphviz-ad5e88b9885d591c39982ca9ea4b2c38c1c5dcaa.png" alt="digraph list {
 rankdir=LR;
@@ -673,7 +657,7 @@ a:ref:c -&gt; b:data [arrowhead=vee, arrowtail=dot, dir=both, tailclip=false, ar
 b:ref:c -&gt; c:data [arrowhead=vee, arrowtail=dot, dir=both, tailclip=false];
 c:ref:c -&gt; tail:w [arrowhead=vee, arrowtail=dot, dir=both, tailclip=false];
 }" />
-<p>The defining operations of a <code class="docutils literal"><span class="pre">std::forward_list</span></code> are:</p>
+<p>The defining operations of a <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::forward_list">std::forward_list</a> are:</p>
 <dl class="docutils">
 <dt>push_front</dt>
 <dd>Add a new element to the beginning of the list</dd>
@@ -688,15 +672,15 @@ A very light-weight container,
 it does not have any overhead compared to its implementation in C.</p>
 </div>
 </div>
-<div class="section" id="std-stack">
-<span id="index-4"></span><h2>7.2.4. std::stack<a class="headerlink" href="#std-stack" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-stack-class">
+<span id="index-4"></span><h2>7.2.4. The stack class<a class="headerlink" href="#the-stack-class" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::stack">std::stack</a> is a container adapter that gives the programmer the
 functionality of a stack - specifically, a Last-In-First-Out (LIFO) data structure.</p>
 <p>The class template acts as a wrapper to the underlying container - only
 a specific set of functions is provided.
 The stack pushes and pops the element from the back of the underlying container,
 known as the top of the stack.</p>
-<p>The defining operations of a <code class="docutils literal"><span class="pre">std::stack</span></code> are:</p>
+<p>The defining operations of a <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::stack">std::stack</a> are:</p>
 <dl class="docutils">
 <dt>push</dt>
 <dd>Add a new element to the top of the stack.</dd>
@@ -707,28 +691,7 @@ the element that is removed.</dd>
 <dt>top</dt>
 <dd>Get the value of the element at the top of the stack.</dd>
 </dl>
-<img src="../_images/graphviz-22ad81e748f27f59b324afbc4766c162c3961d51.png" alt="// shows push and pop
-digraph g {
-    node [fontname = &quot;Bitstream Vera Sans&quot;, fontsize=14,
-          style=filled, fillcolor=lightblue,
-          shape=box, width=0.5, height=.25, label=&quot;&quot;];
-
-
-    a,b,d,e;
-    node [style=none];
-    c [label=&quot;. . .&quot;, color=white];
-
-    top [shape=none, label=&quot;top()&quot;];
-    push [shape=none, label=&quot;push()&quot;];
-    pop [shape=none, label=&quot;pop()&quot;];
-
-    a -&gt; b -&gt; c -&gt; d -&gt; e [dir=none, arrowhead=vee];
-    push -&gt; a:w [style=dotted];
-    pop -&gt; a:e [dir=back,style=dotted];
-
-    pop:e -&gt; top:w [style=invis]
-    top -&gt; a [style=invis, constraint=false];
-}" />
+<img src="../_images/graphviz-53f44b1e7609409769287b459c1d9bd0772c58d9.png" alt="std::stack elements" />
 <div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
 <span class="cp">#include &lt;stack&gt;</span>
 <span class="cp">#include &lt;string&gt;</span>
@@ -769,13 +732,14 @@ digraph g {
 </pre></div>
 </div>
 <p>which returns:</p>
-<blockquote>
-<div>push strings onto stack…
+<div class="highlight-none"><div class="highlight"><pre>push strings onto stack...
 size of stack before: 5
 five four three two one
 popped all from stack
 size of stack after: 0
-stack is empty.</div></blockquote>
+stack is empty.
+</pre></div>
+</div>
 <p>It is also possible to initialize a stack from a vector, list or array:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
 <span class="cp">#include &lt;stack&gt;</span>
@@ -810,12 +774,13 @@ stack is empty.</div></blockquote>
 </pre></div>
 </div>
 <p>which returns:</p>
-<blockquote>
-<div>initialize stack from list:
+<div class="highlight-none"><div class="highlight"><pre>initialize stack from list:
 list has 5 entries
 5 4 3 2 1
 popped all from stack
-stack is empty.</div></blockquote>
+stack is empty.
+</pre></div>
+</div>
 <p>Notice the elements from the list are pushed onto the stack in the order
 they are retrieved from the list.
 The number <code class="docutils literal"><span class="pre">1</span></code> is pushed first, so when iniitialization is complete,
@@ -827,38 +792,18 @@ To ‘visit’ each element in a <code class="docutils literal"><span class="pre
 <p>If you think you need to visit all the elements in a <code class="docutils literal"><span class="pre">stack</span></code>,
 then you probably should not be using a <code class="docutils literal"><span class="pre">stack</span></code>.</p>
 <p>The STL containers <code class="docutils literal"><span class="pre">std::vector</span></code>, <code class="docutils literal"><span class="pre">std::list</span></code>,
-and <code class="docutils literal"><span class="pre">std::deque</span></code> can be adapted to create a stack.</p>
+and <code class="docutils literal"><span class="pre">std::deque</span></code> can be adapted to create a <code class="docutils literal"><span class="pre">stack</span></code>.</p>
 </div>
-<div class="section" id="std-queue">
-<span id="index-5"></span><h2>7.2.5. std::queue<a class="headerlink" href="#std-queue" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-queue-class">
+<span id="index-5"></span><h2>7.2.5. The queue class<a class="headerlink" href="#the-queue-class" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::queue">std::queue</a> is a container adapter that gives the programmer the
 functionality of a queue - specifically, a FIFO (first-in, first-out) data structure.</p>
 <p>The class template acts as a wrapper to the underlying container - only
 a specific set of functions is provided.
 The queue pushes elements on the back of the underlying container,
 and pops them from the front.</p>
-<img src="../_images/graphviz-8e680e352de0c7286cce99ce3afc0583b4ec8f7c.png" alt="digraph g {
-    node [fontname = &quot;Bitstream Vera Sans&quot;, fontsize=14,
-          style=filled, fillcolor=lightblue,
-          shape=box, width=0.5, height=.25, label=&quot;&quot;];
-
-    a,b,d,e;
-    node [style=none];
-    c [label=&quot;. . .&quot;, color=white];
-
-    back [shape=none, label=&quot;back()&quot;];
-    front [shape=none, label=&quot;front()&quot;];
-
-    a -&gt; b -&gt; c -&gt; d -&gt; e [ arrowhead=vee];
-    back -&gt; a:w [dir=back];
-    e:e -&gt; front;
-
-    node [style=invis] x,y;
-    x -&gt; a [style=invis];
-    y -&gt; e [style=invis];
-    {rank=sink; a b c d e}
-}" />
-<p>The defining operations of a <code class="docutils literal"><span class="pre">std::queue</span></code> are:</p>
+<img src="../_images/graphviz-bb38699a9df85e4cb0ec12d918e23784fd524110.png" alt="std::queue elements" />
+<p>The defining operations of a <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::queue">std::queue</a> are:</p>
 <dl class="docutils">
 <dt>push</dt>
 <dd>Add a new element to the back (end) of the queue.</dd>
@@ -869,31 +814,10 @@ and pops them from the front.</p>
 <dt>back</dt>
 <dd>Get the value of the element at the end of the queue.</dd>
 </dl>
-<img src="../_images/graphviz-73570158c11886e63adbb243da0343d4246ae45d.png" alt="// shows push and pop, enqueue / dequeue
-digraph g {
-    node [fontname = &quot;Bitstream Vera Sans&quot;, fontsize=14,
-          style=filled, fillcolor=lightblue,
-          shape=box, width=0.5, height=.25, label=&quot;&quot;];
-
-
-    o,z [style=dotted];
-    a,b,d,e;
-    node [style=none];
-    c [label=&quot;. . .&quot;, color=white];
-
-    back [shape=none, label=&quot;push()&quot;];
-    front [shape=none, label=&quot;pop()&quot;];
-
-    o -&gt; a -&gt; b -&gt; c -&gt; d -&gt; e [ arrowhead=vee];
-    e -&gt; z [ arrowhead=none];
-    back -&gt; o [style=dotted];
-    front -&gt; z [style=dotted, dir=back];
-
-    {rank=sink; o a b c d e z}
-}" />
-<p>Minor modifications change pop_all from a function
-performing <code class="docutils literal"><span class="pre">stack</span></code> operations to one
-performaing <code class="docutils literal"><span class="pre">queue</span></code> operations:</p>
+<img src="../_images/graphviz-72ea84c5fb609644970bff92a80ca87ceabe6cf6.png" alt="std::queue operations" />
+<p>Minor modifications change <code class="docutils literal"><span class="pre">pop_all()</span></code> from a function
+performing <code class="docutils literal"><span class="pre">stack</span></code> operations into one
+performing <code class="docutils literal"><span class="pre">queue</span></code> operations:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
 <span class="cp">#include &lt;queue&gt;</span>
 
@@ -911,12 +835,12 @@ performaing <code class="docutils literal"><span class="pre">queue</span></code>
 </div>
 <p>The STL containers <code class="docutils literal"><span class="pre">std::list</span></code> and <code class="docutils literal"><span class="pre">std::deque</span></code> can be adapted to create a queue.</p>
 </div>
-<div class="section" id="std-deque">
-<span id="index-6"></span><h2>7.2.6. std::deque<a class="headerlink" href="#std-deque" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-deque-class">
+<span id="index-6"></span><h2>7.2.6. The deque class<a class="headerlink" href="#the-deque-class" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::deque">std::deque</a> (double-ended queue) is an indexed sequence container that
 allows fast insertion and deletion at both its beginning and its end.
 In addition,
-insertion and deletion at either end of a deque never invalidates pointers
+insertion and deletion at either end of a <code class="docutils literal"><span class="pre">deque</span></code> never invalidates pointers
 or references to the rest of the elements.</p>
 <p>It’s primary role in the standard library is to function as
 the default container underlying <code class="docutils literal"><span class="pre">std::stack</span></code> and <code class="docutils literal"><span class="pre">std::queue</span></code>.</p>
@@ -924,8 +848,24 @@ the default container underlying <code class="docutils literal"><span class="pre
 <div class="admonition-more-to-explore admonition">
 <p class="first admonition-title">More to Explore</p>
 <ul class="last simple">
-<li><a class="reference external" href="http://en.cppreference.com/w/cpp/container">Sequence containers</a></li>
+<li><a class="reference external" href="http://en.cppreference.com/w/cpp/container">STL containers library</a></li>
+<li><a class="reference external" href="https://visualgo.net/en/list?slide=1">Visualgo: lists</a></li>
 </ul>
+</div>
+<div class="topic">
+<p class="topic-title first">Footnotes</p>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Effective STL (Item #16) by Scott Meyers (Addison-Wesley Professional).  Copyright 2001 Scott Meyers, 978-0-201-74962-5.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Effective STL (Item #4).</td></tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -940,12 +880,12 @@ the default container underlying <code class="docutils literal"><span class="pre
   </li>
   <a class="navLinkBg" id="navLinkBgLeft"  href="intro.html" ></a>
   
-  <li id="relations-next" class="navLink" title='Next Section - 7.3. Section' data-toggle="tooltip" >
+  <li id="relations-next" class="navLink" title='Next Section - 7.3. Motivation' data-toggle="tooltip" >
     <a href="associative-containers.html" >
       <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
     </a>
   </li>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="associative-containers.html" >Next Section - 7.3. Section</a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="associative-containers.html" >Next Section - 7.3. Motivation</a>
 
 <script type="text/javascript">
 

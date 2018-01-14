@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrixeq.css" type="text/css" />
     <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
     <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
     <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
@@ -39,11 +43,20 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js"></script>
     <script type="text/javascript" src="../_static/clickable.js"></script>
     <script type="text/javascript" src="../_static/timedclickable.js"></script>
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
     <script type="text/javascript" src="../_static/lib/prettify.js"></script>
     <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
@@ -275,12 +288,12 @@ Another way to say this is our variables have <em>automatic storage duration</em
 Variables exist only as long as the scope in which they were created.
 Sometimes, we need to create objects with dynamic storage duration,
 that is, objects whose lifetime is not limited by the scope in which they were created.</p>
-<p>One way to do this is to use the <code class="docutils literal"><span class="pre">new</span></code> keyword to create objects on the <a class="reference internal" href="../glossary.html#term-free-store"><span class="xref std std-term">free store</span></a>.
+<p>One way to do this is to use the <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=operator new">operator new</a> to create objects on the <a class="reference internal" href="../glossary.html#term-free-store"><span class="xref std std-term">free store</span></a>.
 The free store is a system-provided memory pool for variables whose lifetime is
 directly managed by the programmer.
-Compare to our experiences so far where variables were <em>automatically</em>
+Compare this to our experiences so far where variables were <em>automatically</em>
 managed by the system, not by the programmer.</p>
-<p>The new operator takes a type and (optionally) a set of initializers for that type as its arguments.
+<p>The <code class="docutils literal"><span class="pre">new</span></code> operator takes a type and (optionally) a set of initializers for that type as its arguments.
 It returns a pointer to an (optionally) initialized object of its type:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="k">struct</span> <span class="n">Point</span> <span class="p">{</span>
      <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// member values is a C++11 feature</span>
@@ -300,20 +313,17 @@ It returns a pointer to an (optionally) initialized object of its type:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<dl class="docutils">
-<dt>Step though</dt>
-<dd><a class="reference external" href="http://pythontutor.com/cpp.html#code=struct%20Point%20%7B%0A%20%20double%20x%20%3D%200%3B%20%20//%20member%20values%20is%20a%20C%2B%2B11%20feature%0A%20%20double%20y%20%3D%200%3B%0A%7D%3B%0A%0Aint%20main%28%29%20%7B%0A%20int*%20p1%20%3D%20new%20int%3B%20%20%20%20%20//%20allocate%201%20uninitialized%20int%0A%20int*%20p2%20%3D%20new%20int%5B3%5D%3B%20%20//%20allocate%203%20uninitialized%20ints%0A%20int*%20p3%20%3D%20new%20int%285%29%3B%20%20//%20allocate%201%20int%20initialized%20to%205%0A%20int*%20p4%20%3D%20new%20int%7B5%7D%3B%20%20//%20allocate%201%20int%20initialized%20to%205,%20C%2B%2B11%20or%20later%0A%20int*%20p5%20%3D%20new%20int%28%29%3B%20%20%20//%20allocate%201%20int%20initialized%20to%200%0A%0A%20Point*%20pt1%20%3D%20new%20Point%3B%20%20%20%20%20%20%20%20%20%20//%20allocate%20a%20default%20constructed%20Point%20%0A%20Point*%20pt2%20%3D%20new%20Point%28%29%3B%20%20%20%20%20%20%20%20//%20allocate%20a%20default%20constructed%20Point%20%0A%20Point*%20pt3%20%3D%20new%20Point%5B3%5D%3B%20%20%20%20%20%20%20//%20allocate%203%20default%20constructed%20Points%0A%7D&amp;mode=display&amp;origin=opt-frontend.js&amp;py=cpp&amp;rawInputLstJSON=%5B%5D">example 1 here</a></dd>
-</dl>
+<p>Step through <a class="reference external" href="http://pythontutor.com/cpp.html#code=struct%20Point%20%7B%0A%20%20double%20x%20%3D%200%3B%20%20//%20member%20values%20is%20a%20C%2B%2B11%20feature%0A%20%20double%20y%20%3D%200%3B%0A%7D%3B%0A%0Aint%20main%28%29%20%7B%0A%20int*%20p1%20%3D%20new%20int%3B%20%20%20%20%20//%20allocate%201%20uninitialized%20int%0A%20int*%20p2%20%3D%20new%20int%5B3%5D%3B%20%20//%20allocate%203%20uninitialized%20ints%0A%20int*%20p3%20%3D%20new%20int%285%29%3B%20%20//%20allocate%201%20int%20initialized%20to%205%0A%20int*%20p4%20%3D%20new%20int%7B5%7D%3B%20%20//%20allocate%201%20int%20initialized%20to%205,%20C%2B%2B11%20or%20later%0A%20int*%20p5%20%3D%20new%20int%28%29%3B%20%20%20//%20allocate%201%20int%20initialized%20to%200%0A%0A%20Point*%20pt1%20%3D%20new%20Point%3B%20%20%20%20%20%20%20%20%20%20//%20allocate%20a%20default%20constructed%20Point%20%0A%20Point*%20pt2%20%3D%20new%20Point%28%29%3B%20%20%20%20%20%20%20%20//%20allocate%20a%20default%20constructed%20Point%20%0A%20Point*%20pt3%20%3D%20new%20Point%5B3%5D%3B%20%20%20%20%20%20%20//%20allocate%203%20default%20constructed%20Points%0A%7D&amp;mode=display&amp;origin=opt-frontend.js&amp;py=cpp&amp;rawInputLstJSON=%5B%5D">example 1 here</a>.</p>
 <p>In all of the above cases,
 since the <code class="docutils literal"><span class="pre">new</span></code> operator returns a pointer to an object of its type,
 the initialization could use <code class="docutils literal"><span class="pre">auto</span></code>.</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="k">auto</span> <span class="n">pt1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">new</span></code> operator allocates memory.
+<p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=operator new">operator new</a> allocates memory.
 When finished with the free-store memory,
 we return it to the pool of available memory using
-the <code class="docutils literal"><span class="pre">delete</span></code> operator:</p>
+the <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=operator delete">operator delete</a>:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="k">struct</span> <span class="n">Point</span> <span class="p">{</span>
      <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// member values is a C++11 feature</span>
      <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -348,31 +358,38 @@ the <code class="docutils literal"><span class="pre">delete</span></code> operat
 or not deleting the pointer at all.</p>
 <p>Deleting the same pointer twice is a problem because it leads to undefined
 or unpredictable behavior.
-The problem rarely arises in very small or short programs,
-however, in larger programs, strange or unpredictable events may happen
-long after the code that actually does the double delete was written.
+The problem rarely arises in very small or short programs.
+However, in larger programs, strange or unpredictable events may happen
+long after the statements that perform the double delete are executed.
 Programs that free memory twice have created real-world
 <a class="reference external" href="http://www.kb.cert.org/vuls/id/650937">security vulnerabilities</a>.</p>
 <p>Simply choosing to never delete a pointer on the theory that
-“well, at least my program won’t crash”, is not a good idea either.
+“well, at least my program won’t crash” is not a good idea either.
 All computers have a finite amount of memory.
 Depending on how long your program needs to run,
 never returning unused memory back to the memory <em>pool</em> is
 referred to as a <a class="reference internal" href="../glossary.html#term-memory-leak"><span class="xref std std-term">memory leak</span></a>.
-Also recall computer are <em>fast</em>.
+Also, remember that computers are <em>fast</em>.
 Depending on what your program does,
 even a short program can run out of memory before accomplishing all of its goals.</p>
 <div class="section" id="stl-memory-management">
 <span id="index-1"></span><h2>5.2.1. STL memory management<a class="headerlink" href="#stl-memory-management" title="Permalink to this headline">¶</a></h2>
-<p>When memory is allocated using <code class="docutils literal"><span class="pre">new</span></code>,
-eventually it must be recovered using <code class="docutils literal"><span class="pre">delete</span></code>.
+<p>When memory is allocated using <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=operator new">operator new</a>,
+eventually it must be recovered using <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=operator delete">operator delete</a>.
 When only a few lines of code are requesting memory,
 this is not a major problem.
 However, real world programs often request hundreds or thousands
-blocks of memory.
+of blocks of memory.
 Keeping track of all this memory and when it should be freed can be labor intensive.
-Moreover, the consequences of an error are high: program crash or corrupted data.</p>
-<p>Given that memory management is such a problem,
+Moreover, the consequences of an error are high: program crashes or corrupted data.</p>
+<p>Many languages, such as Java, Python, Ruby, and JavaScript take this problem
+completely out of the hands of programmers.
+In these languages, memory is never explicitly deleted by the program.
+Rather it is managed by a <a class="reference internal" href="../glossary.html#term-garbage-collection"><span class="xref std std-term">garbage collector</span></a>,
+which is responsible for cleaning up after the program
+(removing its <a class="reference internal" href="../glossary.html#term-garbage"><span class="xref std std-term">garbage</span></a>).</p>
+<p>C++ does not provide a garbage collection mechanism by default.
+Given that memory management is such a problem,
 does the STL provide any resources to help solve it?</p>
 <p>Yes.</p>
 <p>The C++ Standard Template Library provides a family of classes to help solve these problems.
@@ -386,14 +403,14 @@ automatically delete the encapsulated object when the smart pointer goes out of 
 The smart pointer is defined in such a way that it can be used
 syntactically almost exactly like a raw pointer.</p>
 <p>One of the earliest so-called ‘smart pointers’ was <code class="docutils literal"><span class="pre">auto_ptr</span></code>.
-Much online documentation and text books still refer to it and recommend it.
-auto-ptr was officially deprecated in C++11 and removed in C++17.
-Generally, where old texts refer to auto_ptr, use <code class="docutils literal"><span class="pre">unique_ptr</span></code> instead.</p>
+Much online documentation and many text books still refer to and recommend <code class="docutils literal"><span class="pre">auto_ptr</span></code>.
+The <code class="docutils literal"><span class="pre">auto_ptr</span></code> function was officially deprecated in C++11 and removed in C++17.
+Generally, where old texts refer to <code class="docutils literal"><span class="pre">auto_ptr</span></code>, use <code class="docutils literal"><span class="pre">unique_ptr</span></code> instead.</p>
 <div class="section" id="class-std-unique-ptr">
 <h3>5.2.1.1. Class <code class="docutils literal"><span class="pre">std::unique_ptr</span></code><a class="headerlink" href="#class-std-unique-ptr" title="Permalink to this headline">¶</a></h3>
-<p>A <code class="docutils literal"><span class="pre">std::unique_ptr</span></code> is a smart pointer that owns and manages another object through a pointer
-and disposes of that object when the unique_ptr goes out of scope.
-A unique_ptr is a very lightweight wrapper around a pointer.
+<p>A <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::unique_ptr">std::unique_ptr</a> is a so-called ‘smart pointer’ that owns and manages another object through a pointer
+and disposes of that object when the <code class="docutils literal"><span class="pre">unique_ptr</span></code> goes out of scope.
+A <code class="docutils literal"><span class="pre">unique_ptr</span></code> is a very lightweight wrapper around a pointer.
 The basic syntax is:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// older C++11 syntax</span>
 <span class="c1">// clunky and repetitive</span>
@@ -436,14 +453,15 @@ Our earlier examples can be changed to:</p>
 <span class="c1">// std::cout &lt;&lt; p.x &lt;&lt; &#39; &#39; &lt;&lt; p.y &lt;&lt; &#39;\n&#39;;</span>
 </pre></div>
 </div>
-<p>What makes a unique_ptr <em>unique</em>?</p>
+<p>What makes a <code class="docutils literal"><span class="pre">unique_ptr</span></code> <em>unique</em>?</p>
 <p>An object stored within a unique pointer <strong>uniquely owns</strong> its pointer.
 In other words, an object is ‘owned’ by exactly one unique_ptr.
 Unlike raw pointers, a unique pointer cannot be copied or assigned to another variable,
-even another unique pointer.</p>
+even another <code class="docutils literal"><span class="pre">unique</span> <span class="pre">pointer</span></code>.</p>
 <p>No two unique pointers can ever contain the same raw pointer value.
 This solves the ‘double delete’ problem if both go out of scope.
-The result is that some operations you <strong>can</strong> perform on raw pointers are not allowed:</p>
+The result is that some operations you <strong>can</strong> perform on raw pointers
+are not allowed on <code class="docutils literal"><span class="pre">unique_ptr</span></code>:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="k">auto</span> <span class="n">x</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span><span class="p">();</span>
 <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">y</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">};</span>     <span class="c1">// error - copy construction not allowed</span>
 
@@ -453,6 +471,10 @@ The result is that some operations you <strong>can</strong> perform on raw point
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Although copying unique pointers is not allowed,
+you can <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=unique_ptr::release()">unique_ptr::release()</a> the pointer and assign it to a
+raw pointer,
+or transfer ownership to a different <code class="docutils literal"><span class="pre">unique_ptr</span></code>.</p>
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">
 <p class="first admonition-title">More to Explore</p>

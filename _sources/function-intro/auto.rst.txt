@@ -11,7 +11,7 @@
 Keyword: ``auto``
 =================
 
-In C++11, the ``auto`` keyword meaning has changed significantly from
+In C++11, the :cref:`auto specifier` meaning has changed significantly from
 it's definition prior to C++11.
 Prior to C++11, ``auto`` designated variables assigned to the 
 `automatic storage class duration <http://en.cppreference.com/w/c/language/storage_duration>`_.
@@ -22,7 +22,7 @@ it was rarely, if ever, used.
 It is still the default storage duration for block variables,
 but no C++11 keyword is reserved for this behavior.
 
-Since C++11, ``auto`` instructs the compiler to automatically deduce the type
+Since C++11, :cref:`auto specifier` instructs the compiler to automatically deduce the type
 of a variable based on the initializer used.
 
 .. code-block:: cpp
@@ -132,9 +132,9 @@ You can't declare the type of a lambda yourself because the type of a
 In this case, the compiler already knows the type stored in the ``vector`` numbers.
 It doesn't need to be told again.
 
-When first introduced to auto, many programmers balk.
+When first introduced to ``auto``, many programmers balk.
 It *feels* sloppy and imprecise, and it *seems* as if we are sacrificing clarity.
-In fact using auto is just as strongly typed as a manual declaration
+In fact using ``auto`` is just as strongly typed as a manual declaration
 and it aids clarity because it forces delaying variable
 declaration until you have a value to initialize it with.
 

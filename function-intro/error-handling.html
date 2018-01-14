@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrixeq.css" type="text/css" />
     <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
     <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
     <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
@@ -39,11 +43,20 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js"></script>
     <script type="text/javascript" src="../_static/clickable.js"></script>
     <script type="text/javascript" src="../_static/timedclickable.js"></script>
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
     <script type="text/javascript" src="../_static/lib/prettify.js"></script>
     <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
@@ -277,11 +290,12 @@
 <ul class="simple">
 <li>Detecting an error</li>
 <li>Transmitting information about an error to some handler code</li>
-<li>Preserve the state of a program in a valid state</li>
-<li>Avoid resource leaks</li>
+<li>Preserving the valid state of a program</li>
+<li>Avoiding resource leaks</li>
 </ul>
 <div class="section" id="returning-values">
 <h2>3.4.1. Returning values<a class="headerlink" href="#returning-values" title="Permalink to this headline">¶</a></h2>
+<p>TBD.</p>
 </div>
 <div class="section" id="exceptions">
 <span id="index-1"></span><h2>3.4.2. Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h2>
@@ -344,28 +358,28 @@ If you use this, then you should be prepared to really handle <em>anything</em>.
 <span id="index-2"></span><h3>3.4.2.1. Standard exceptions<a class="headerlink" href="#standard-exceptions" title="Permalink to this headline">¶</a></h3>
 <p>The standard exceptions in C++ are organized in a class hierarchy.</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">std::exception</span></code> is the base class for all exceptions</li>
-<li>Children of <code class="docutils literal"><span class="pre">std::exception</span></code><ul>
-<li><code class="docutils literal"><span class="pre">std::bad_alloc</span></code>: thrown by <code class="docutils literal"><span class="pre">new</span></code> and other memory allocation errors</li>
-<li><code class="docutils literal"><span class="pre">std::bad_cast</span></code>: thrown by <code class="docutils literal"><span class="pre">dynamic_cast</span></code> and similar</li>
-<li><code class="docutils literal"><span class="pre">std::bad_typeid</span></code>: thrown by <code class="docutils literal"><span class="pre">typeid</span></code></li>
-<li><code class="docutils literal"><span class="pre">std::bad_exception</span></code>: runtime unexpected or pointer exceptions</li>
-<li><code class="docutils literal"><span class="pre">std::logic_error</span></code>: exceptions that <em>should</em> be detected by reading the code</li>
-<li><code class="docutils literal"><span class="pre">std::runtime_error</span></code>: exceptions that theoretically can’t be detected by reading the code</li>
-<li><code class="docutils literal"><span class="pre">std::logic_error</span></code>, and <code class="docutils literal"><span class="pre">std::runtime_error</span></code> are also exception bases</li>
+<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::exception">std::exception</a> is the base class for all exceptions</li>
+<li>Classes derived from <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::exception">std::exception</a><ul>
+<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::bad_alloc">std::bad_alloc</a>: thrown by <code class="docutils literal"><span class="pre">new</span></code> and other memory allocation errors</li>
+<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::bad_cast">std::bad_cast</a>: thrown by <code class="docutils literal"><span class="pre">dynamic_cast</span></code> and similar</li>
+<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::bad_typeid">std::bad_typeid</a>: thrown by <code class="docutils literal"><span class="pre">typeid</span></code></li>
+<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::bad_exception">std::bad_exception</a>: runtime unexpected or pointer exceptions</li>
+<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::logic_error">std::logic_error</a>: exceptions that <em>should</em> be detected by reading the code</li>
+<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::runtime_error">std::runtime_error</a>: exceptions that theoretically can’t be detected by reading the code</li>
+<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::logic_error">std::logic_error</a>, and <code class="docutils literal"><span class="pre">std::runtime_error</span></code> are also exception bases</li>
 </ul>
 </li>
-<li>Children of <code class="docutils literal"><span class="pre">std::logic_error</span></code><ul>
-<li><code class="docutils literal"><span class="pre">std::domain_error</span></code>: invalid mathematical domain</li>
-<li><code class="docutils literal"><span class="pre">std::invalid_argument</span></code>: bad parameters or arguments used</li>
-<li><code class="docutils literal"><span class="pre">std::length_error</span></code>: Thrown when a std::string is too large</li>
-<li><code class="docutils literal"><span class="pre">std::out_of_range</span></code>: Used for range checked access, vector.at(x)</li>
+<li>Classes derived from <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::logic_error">std::logic_error</a><ul>
+<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::domain_error">std::domain_error</a>: invalid mathematical domain</li>
+<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::invalid_argument">std::invalid_argument</a>: bad parameters or arguments used</li>
+<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::length_error">std::length_error</a>: Thrown when a std::string is too large</li>
+<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::out_of_range">std::out_of_range</a>: Used for range checked access, vector.at(x)</li>
 </ul>
 </li>
-<li>Children of <code class="docutils literal"><span class="pre">std::runtime_error</span></code><ul>
-<li><code class="docutils literal"><span class="pre">std::overflow_error</span></code>: mathematical overflow</li>
-<li><code class="docutils literal"><span class="pre">std::range_error</span></code>: Thrown when storing an out of range value</li>
-<li><code class="docutils literal"><span class="pre">std::underflow_error</span></code>: mathematical underflow</li>
+<li>Classes derived from <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::runtime_error">std::runtime_error</a><ul>
+<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::overflow_error">std::overflow_error</a>: mathematical overflow</li>
+<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::range_error">std::range_error</a>: Thrown when storing an out of range value</li>
+<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::underflow_error">std::underflow_error</a>: mathematical underflow</li>
 </ul>
 </li>
 </ul>
@@ -373,20 +387,20 @@ If you use this, then you should be prepared to really handle <em>anything</em>.
 <div class="section" id="using-exceptions">
 <h3>3.4.2.2. Using exceptions<a class="headerlink" href="#using-exceptions" title="Permalink to this headline">¶</a></h3>
 <p>C++ exceptions are designed to support <em>error handling</em>.</p>
-<p>Use <code class="docutils literal"><span class="pre">throw</span></code> only to signal an error
+<p>Use <code class="docutils literal"><span class="pre">throw</span></code> only to signal an error.
 Use <code class="docutils literal"><span class="pre">catch</span></code> only to specify error handling actions when
 you know you can handle it.
 Possibly by translating it to another type and re-throwing an exception of that type.
 For example, catching a <code class="docutils literal"><span class="pre">bad_alloc</span></code> and re-throwing a <code class="docutils literal"><span class="pre">no_space_for_file_buffers</span></code> exception.</p>
-<p><strong>Do not</strong> use throw to catch a coding error in usage of a function.
+<p><strong>Do not</strong> use <code class="docutils literal"><span class="pre">throw</span></code> to catch a coding error in usage of a function.
 Instead, use assert or other mechanism to either stop the program or log the error.</p>
-<p><strong>Do not</strong> use throw if you discover unexpected violation of an invariant of your component.
-Instead, use assert or other mechanism to terminate the program.
+<p><strong>Do not</strong> use <code class="docutils literal"><span class="pre">throw</span></code> if you discover an unexpected violation of an invariant of your component.
+Instead, use <code class="docutils literal"><span class="pre">assert</span></code> or other mechanism to terminate the program.
 Throwing an exception will not cure memory corruption and may lead to further corruption of important user data.</p>
 <p>Use <code class="docutils literal"><span class="pre">try</span></code> and <code class="docutils literal"><span class="pre">catch</span></code> blocks
 if the logic is more clear than checking a condition and returning a value.
 For example,
-If you need to propagate errors several levels up the stack:</p>
+if you need to propagate errors several levels up the stack:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">f1</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">try</span> <span class="p">{</span>
     <span class="n">f2</span><span class="p">();</span>
@@ -449,7 +463,7 @@ an <code class="docutils literal"><span class="pre">error_code</span></code> mem
 <ul class="last simple">
 <li><a class="reference external" href="https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#S-errors">CPP Core Guidelines: Error Handling</a></li>
 <li><a class="reference external" href="https://isocpp.org/wiki/faq/exceptions">ISO C++ FAQ Exceptions</a></li>
-<li><a class="reference external" href="http://www.acodersjourney.com/2016/08/top-15-c-exception-handling-mistakes-avoid/">Top 15 exception hadling mistakes to avoid</a></li>
+<li><a class="reference external" href="http://www.acodersjourney.com/2016/08/top-15-c-exception-handling-mistakes-avoid/">Top 15 exception handling mistakes to avoid</a></li>
 </ul>
 </div>
 </div>

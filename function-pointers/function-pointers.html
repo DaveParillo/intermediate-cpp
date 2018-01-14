@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrixeq.css" type="text/css" />
     <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
     <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
     <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
@@ -39,11 +43,20 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js"></script>
     <script type="text/javascript" src="../_static/clickable.js"></script>
     <script type="text/javascript" src="../_static/timedclickable.js"></script>
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
     <script type="text/javascript" src="../_static/lib/prettify.js"></script>
     <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
@@ -267,12 +280,14 @@
   
   <div class="section" id="function-pointers">
 <span id="index-0"></span><h1>6.1. Function pointers<a class="headerlink" href="#function-pointers" title="Permalink to this headline">¶</a></h1>
-<p>In C++ you can point to anything with an address:
-- Global variables
-- Stack and free store variables
-- Functions</p>
+<p>In C++ you can point to anything with an address:</p>
+<ul class="simple">
+<li>Global variables</li>
+<li>Stack and free store variables</li>
+<li>Functions</li>
+</ul>
 <p>Recall that when called,
-an activation record for a function is pushed onto the execution stack
+an <a class="reference internal" href="../glossary.html#term-activation-record"><span class="xref std std-term">activation record</span></a> for a function is pushed onto the <a class="reference internal" href="../glossary.html#term-runtime-stack"><span class="xref std std-term">runtime stack</span></a>.
 This means every function has an address.</p>
 <p>Consider the following code:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
@@ -353,9 +368,9 @@ used in ancient Rome to obscure communication between Julius Caesar and his gene
 A related variation called ROT47 extends the idea of ROT13 to include numbers and common symbols.</p>
 <p>Suppose we want to create a program that allows users to run either ROT13 or ROT47?
 There are many ways to implement such a program.
-This example demonstrates using function pointers to dynamically
-control at run time which function is called within a loop.</p>
-<p>Often when writing a program, it is useful to start at ‘the top’.
+This example demonstrates how to use function pointers to dynamically
+control at which function is called within a loop at runtime.</p>
+<p>Often, when writing a program, it is useful to start at ‘the top’.
 Suppose we want a simple command line program that takes
 4 basic inputs:</p>
 <dl class="docutils">
@@ -445,7 +460,8 @@ one character at a time.</p>
 <span class="kt">void</span> <span class="nf">render_text</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span><span class="p">,</span> <span class="n">transform</span> <span class="n">handler</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The using declaration exists only to simplify our use of our function pointer.
+<p>The <a class="reference external" href="http://en.cppreference.com/w/cpp/language/type_alias">using declaration</a>
+exists only to simplify our use of our function pointer.
 Any place you see the word <code class="docutils literal"><span class="pre">transform</span></code>,
 you can literally replace it with
 <code class="docutils literal"><span class="pre">char</span> <span class="pre">(*)(const</span> <span class="pre">unsigned</span> <span class="pre">char</span> <span class="pre">c)</span></code>
@@ -522,8 +538,8 @@ is not an <code class="docutils literal"><span class="pre">unsigned</span> <span
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Note we did not use the function call operator, <code class="docutils literal"><span class="pre">operator()</span></code> when
-assigning values to handler.
+<p>Note, we did not use the function call operator, <code class="docutils literal"><span class="pre">operator()</span></code> when
+assigning values to <code class="docutils literal"><span class="pre">handler</span></code>.
 The name <code class="docutils literal"><span class="pre">rot13</span></code> points to the address where the function <code class="docutils literal"><span class="pre">rot13</span></code>
 is stored.</p>
 <hr class="docutils" />

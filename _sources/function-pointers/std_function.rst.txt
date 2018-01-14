@@ -10,10 +10,10 @@
 
 The std::function template
 ==========================
-The ``std::function`` wrapper provided a standard way to pass around lambda expressions,
+The :cref:`std::function` wrapper provides a standard way to pass around lambda expressions,
 function pointers, and function objects.
 Introduced in C++11, its facilities are accessed from ``#include <functional>``.
-The primary goal of std::function is clarity:
+The primary goal of ``std::function`` is clarity:
 to simplify and standardize the way function pointers are moved within a program.
 
 Starting with a simple function:
@@ -50,7 +50,7 @@ This syntax is more consistent with other declarations:
   and the parameters look like a traditional function declaration.
 - The name of the variable follows the type
 
-We can store any function like entity using the same consistent syntax:
+We can store any function-like entity using a consistent syntax:
 
 .. code-block:: cpp
 

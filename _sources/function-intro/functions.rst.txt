@@ -65,7 +65,7 @@ Option (b) is generally preferred,
 and is the only option when the function is used in a different file.
 
 To make sure that all declarations of a function are consistent, 
-the usual practice is to put them in an include file. 
+the usual practice is to put them in an :cref:`include` file. 
 For example, if the ``area`` function is used in a lot of places, 
 we might put it in its own file ``area.cpp``:
 
@@ -103,7 +103,7 @@ The ``#ifndef``, ``#define``, and ``#endif`` together form a pattern called a
 They ensure the functions in include files are defined only once.
 
 By convention, the documentation for functions is primarily in the include file.
-The idea is that area.h is the public interface of this module, 
+The idea is that ``area.h`` is the public interface of this module, 
 and so the explanation of how to use the function should be there.
 The reason ``area.cpp`` includes ``area.h`` is to get the compiler to 
 verify that the declarations in the two files match.
@@ -211,7 +211,7 @@ When to write a function
 As with any kind of abstraction, there are two goals to making a function:
 
 - **Encapsulation**: 
-  If you have some task to carry out that is simple do describe from the outside, 
+  If you have some task to carry out that is simple to describe from the outside, 
   but messy to understand from the inside, 
   then wrapping it in a function lets the caller carry out this task without having to know the details. 
 
@@ -226,7 +226,7 @@ As with any kind of abstraction, there are two goals to making a function:
 Both of these goals may be trumped by the goal of making your code **clear**. 
 If you can’t describe what a function is doing in a single, simple sentence, 
 this is a sign that maybe you need to restructure your code. 
-Having a function that does more than one thing (or does different thing depending on its arguments) 
+Having a function that does more than one thing (or does different things depending on its arguments) 
 is likely to lead to confusion.
 
 So, for example, this is not a good function definition:
@@ -317,11 +317,11 @@ Your future co-workers will thank you.
 The call stack
 --------------
 
-Several things happen when a function is called. 
-Since a function can be called from many places, 
-and more than one function can be 'active' at any one time,
-the CPU needs to store its previous state to know where to go back. 
-It also needs to allocate space for function arguments and local variables.
+Functions are routinely called from many places
+and more than one function can be 'active' at any one time.
+The CPU needs a mechanism to keep track of every function call,
+all function parameters, and local variables,
+so that the CPU can execute each instruction in its proper order.
 
 Some of this information will be stored in **registers**, 
 memory locations built into the CPU itself, 
@@ -643,7 +643,7 @@ General function writing guidelines
 
       #endif
 
-   Given that the names of these function provide no insight to their purpose,
+   Given that the names of these functions provide no insight to their purpose,
    there is no way to know without inspecting the source if
    the variable x is modified when passed to these functions.
 
@@ -683,7 +683,7 @@ General function writing guidelines
 
    - A function should do *one* thing well
 
-     If you see a function doing more then one thing
+     If you see a function doing more than one thing
      consider breaking it up into multiple functions
 
    - Is this (slightly) more work?

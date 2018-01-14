@@ -33,6 +33,8 @@ ActiveCode.prototype.init = function(opts) {
     this.includes = $(orig).data('include');
     this.hidecode = $(orig).data('hidecode');
     this.runButton = null;
+    this.enabledownload = $(orig).data('enabledownload');
+    this.downloadButton = null;
     this.saveButton = null;
     this.loadButton = null;
     this.outerDiv = null;
@@ -150,6 +152,16 @@ ActiveCode.prototype.createControls = function () {
     $(butt).click(this.runProg.bind(this));
     $(butt).attr("type","button")
 
+    if (this.enabledownload || eBookConfig.downloadsEnabled) {
+      var butt = document.createElement("button");
+      $(butt).text("Download");
+      $(butt).addClass("btn save-button");
+      ctrlDiv.appendChild(butt);
+      this.downloadButton = butt;
+      $(butt).click(this.downloadFile.bind(this, this.language));
+      $(butt).attr("type","button")
+    }
+
     if (! this.hidecode) {
         var butt = document.createElement("button");
         $(butt).text("Load History");
@@ -162,7 +174,6 @@ ActiveCode.prototype.createControls = function () {
             this.addHistoryScrubber(true);
         }
     }
-
 
     if ($(this.origElem).data('gradebutton') && ! this.graderactive) {
         butt = document.createElement("button");
@@ -381,6 +392,42 @@ ActiveCode.prototype.disableSaveLoad = function() {
     $(this.saveButton).attr('title','Login to save your code');
     $(this.loadButton).addClass('disabled');
     $(this.loadButton).attr('title','Login to load your code');
+};
+
+var languageExtensions = { python:     'py',
+                           html:       'html',
+                           javascript: 'js',
+                           java:       'java',
+                           python2:    'py',
+                           python3:    'py'};
+
+ActiveCode.prototype.downloadFile = function (lang) {
+  var fnb = this.divid;
+  var d = new Date();
+  var fileName = fnb + '_' + d.toJSON()
+                              .substring(0,10) // reverse date format
+                              .split('-')
+                              .join('') + '.' + languageExtensions[lang];
+  var code = this.editor.getValue();
+
+  if ('Blob' in window) {
+      var textToWrite = code.replace(/\n/g, '\r\n');
+      var textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' });
+
+      if ('msSaveOrOpenBlob' in navigator) {
+        navigator.msSaveOrOpenBlob(textFileAsBlob, fileName);
+      } else {
+        var downloadLink = document.createElement('a');
+        downloadLink.download = fileName;
+        downloadLink.innerHTML = 'Download File';
+        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+        downloadLink.style.display = 'none';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+      }
+  } else {
+    alert('Your browser does not support the HTML5 Blob.');
+  }
 };
 
 ActiveCode.prototype.addCaption = function() {
@@ -1578,7 +1625,7 @@ LiveCode.prototype.runProg = function() {
     var __ret = this.manage_scrubber(scrubber_dfd, history_dfd, saveCode);
     history_dfd = __ret.history_dfd;
     saveCode = __ret.saveCode;
-    
+
     var paramlist = ['compileargs','linkargs','runargs','interpreterargs'];
     var paramobj = {}
     for (param of paramlist) {
@@ -1594,7 +1641,7 @@ LiveCode.prototype.runProg = function() {
     if (! this.sourcefile ) {
         this.sourcefile = sfilemap[this.language];
     }
-    
+
     $(this.output).html("Compiling and Running your Code Now...");
 
     var files = [];

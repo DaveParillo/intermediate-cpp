@@ -18,13 +18,13 @@ Variables exist only as long as the scope in which they were created.
 Sometimes, we need to create objects with dynamic storage duration, 
 that is, objects whose lifetime is not limited by the scope in which they were created.
 
-One way to do this is to use the ``new`` keyword to create objects on the :term:`free store`.
+One way to do this is to use the :cref:`operator new` to create objects on the :term:`free store`.
 The free store is a system-provided memory pool for variables whose lifetime is 
 directly managed by the programmer.
-Compare to our experiences so far where variables were *automatically*
+Compare this to our experiences so far where variables were *automatically*
 managed by the system, not by the programmer.
 
-The new operator takes a type and (optionally) a set of initializers for that type as its arguments.
+The ``new`` operator takes a type and (optionally) a set of initializers for that type as its arguments.
 It returns a pointer to an (optionally) initialized object of its type:
 
 .. code-block:: cpp
@@ -46,8 +46,7 @@ It returns a pointer to an (optionally) initialized object of its type:
      Point* pt3 = new Point[3];       // allocate 3 default constructed Points
    }
 
-Step though
-   `example 1 here <http://pythontutor.com/cpp.html#code=struct%20Point%20%7B%0A%20%20double%20x%20%3D%200%3B%20%20//%20member%20values%20is%20a%20C%2B%2B11%20feature%0A%20%20double%20y%20%3D%200%3B%0A%7D%3B%0A%0Aint%20main%28%29%20%7B%0A%20int*%20p1%20%3D%20new%20int%3B%20%20%20%20%20//%20allocate%201%20uninitialized%20int%0A%20int*%20p2%20%3D%20new%20int%5B3%5D%3B%20%20//%20allocate%203%20uninitialized%20ints%0A%20int*%20p3%20%3D%20new%20int%285%29%3B%20%20//%20allocate%201%20int%20initialized%20to%205%0A%20int*%20p4%20%3D%20new%20int%7B5%7D%3B%20%20//%20allocate%201%20int%20initialized%20to%205,%20C%2B%2B11%20or%20later%0A%20int*%20p5%20%3D%20new%20int%28%29%3B%20%20%20//%20allocate%201%20int%20initialized%20to%200%0A%0A%20Point*%20pt1%20%3D%20new%20Point%3B%20%20%20%20%20%20%20%20%20%20//%20allocate%20a%20default%20constructed%20Point%20%0A%20Point*%20pt2%20%3D%20new%20Point%28%29%3B%20%20%20%20%20%20%20%20//%20allocate%20a%20default%20constructed%20Point%20%0A%20Point*%20pt3%20%3D%20new%20Point%5B3%5D%3B%20%20%20%20%20%20%20//%20allocate%203%20default%20constructed%20Points%0A%7D&mode=display&origin=opt-frontend.js&py=cpp&rawInputLstJSON=%5B%5D>`_
+Step through `example 1 here <http://pythontutor.com/cpp.html#code=struct%20Point%20%7B%0A%20%20double%20x%20%3D%200%3B%20%20//%20member%20values%20is%20a%20C%2B%2B11%20feature%0A%20%20double%20y%20%3D%200%3B%0A%7D%3B%0A%0Aint%20main%28%29%20%7B%0A%20int*%20p1%20%3D%20new%20int%3B%20%20%20%20%20//%20allocate%201%20uninitialized%20int%0A%20int*%20p2%20%3D%20new%20int%5B3%5D%3B%20%20//%20allocate%203%20uninitialized%20ints%0A%20int*%20p3%20%3D%20new%20int%285%29%3B%20%20//%20allocate%201%20int%20initialized%20to%205%0A%20int*%20p4%20%3D%20new%20int%7B5%7D%3B%20%20//%20allocate%201%20int%20initialized%20to%205,%20C%2B%2B11%20or%20later%0A%20int*%20p5%20%3D%20new%20int%28%29%3B%20%20%20//%20allocate%201%20int%20initialized%20to%200%0A%0A%20Point*%20pt1%20%3D%20new%20Point%3B%20%20%20%20%20%20%20%20%20%20//%20allocate%20a%20default%20constructed%20Point%20%0A%20Point*%20pt2%20%3D%20new%20Point%28%29%3B%20%20%20%20%20%20%20%20//%20allocate%20a%20default%20constructed%20Point%20%0A%20Point*%20pt3%20%3D%20new%20Point%5B3%5D%3B%20%20%20%20%20%20%20//%20allocate%203%20default%20constructed%20Points%0A%7D&mode=display&origin=opt-frontend.js&py=cpp&rawInputLstJSON=%5B%5D>`_.
 
 In all of the above cases,
 since the ``new`` operator returns a pointer to an object of its type,
@@ -57,10 +56,10 @@ the initialization could use ``auto``.
 
    auto pt1 = new Point;
 
-The ``new`` operator allocates memory.
+The :cref:`operator new` allocates memory.
 When finished with the free-store memory,
 we return it to the pool of available memory using 
-the ``delete`` operator:
+the :cref:`operator delete`:
 
 .. code-block:: cpp
 
@@ -99,19 +98,19 @@ or not deleting the pointer at all.
 
 Deleting the same pointer twice is a problem because it leads to undefined
 or unpredictable behavior.
-The problem rarely arises in very small or short programs,
-however, in larger programs, strange or unpredictable events may happen
-long after the code that actually does the double delete was written.
+The problem rarely arises in very small or short programs.
+However, in larger programs, strange or unpredictable events may happen
+long after the statements that perform the double delete are executed.
 Programs that free memory twice have created real-world
 `security vulnerabilities <http://www.kb.cert.org/vuls/id/650937>`_.
 
 Simply choosing to never delete a pointer on the theory that 
-"well, at least my program won't crash", is not a good idea either.
+"well, at least my program won't crash" is not a good idea either.
 All computers have a finite amount of memory.
 Depending on how long your program needs to run, 
 never returning unused memory back to the memory *pool* is
 referred to as a :term:`memory leak`.
-Also recall computer are *fast*.
+Also, remember that computers are *fast*.
 Depending on what your program does, 
 even a short program can run out of memory before accomplishing all of its goals.
 
@@ -120,15 +119,23 @@ even a short program can run out of memory before accomplishing all of its goals
 
 STL memory management
 ---------------------
-When memory is allocated using ``new``,
-eventually it must be recovered using ``delete``.
+When memory is allocated using :cref:`operator new`,
+eventually it must be recovered using :cref:`operator delete`.
 When only a few lines of code are requesting memory,
 this is not a major problem.
 However, real world programs often request hundreds or thousands
-blocks of memory.
+of blocks of memory.
 Keeping track of all this memory and when it should be freed can be labor intensive.
-Moreover, the consequences of an error are high: program crash or corrupted data.
+Moreover, the consequences of an error are high: program crashes or corrupted data.
 
+Many languages, such as Java, Python, Ruby, and JavaScript take this problem 
+completely out of the hands of programmers.
+In these languages, memory is never explicitly deleted by the program.
+Rather it is managed by a :term:`garbage collector <garbage collection>`,
+which is responsible for cleaning up after the program
+(removing its :term:`garbage`).
+
+C++ does not provide a garbage collection mechanism by default.
 Given that memory management is such a problem, 
 does the STL provide any resources to help solve it?
 
@@ -147,16 +154,16 @@ The smart pointer is defined in such a way that it can be used
 syntactically almost exactly like a raw pointer. 
 
 One of the earliest so-called 'smart pointers' was ``auto_ptr``.
-Much online documentation and text books still refer to it and recommend it.
-auto-ptr was officially deprecated in C++11 and removed in C++17.
-Generally, where old texts refer to auto_ptr, use ``unique_ptr`` instead.
+Much online documentation and many text books still refer to and recommend ``auto_ptr``.
+The ``auto_ptr`` function was officially deprecated in C++11 and removed in C++17.
+Generally, where old texts refer to ``auto_ptr``, use ``unique_ptr`` instead.
 
 
 Class ``std::unique_ptr``
 .........................
-A ``std::unique_ptr`` is a smart pointer that owns and manages another object through a pointer 
-and disposes of that object when the unique_ptr goes out of scope.
-A unique_ptr is a very lightweight wrapper around a pointer.
+A :cref:`std::unique_ptr` is a so-called 'smart pointer' that owns and manages another object through a pointer 
+and disposes of that object when the ``unique_ptr`` goes out of scope.
+A ``unique_ptr`` is a very lightweight wrapper around a pointer.
 The basic syntax is:
 
 .. code-block:: cpp
@@ -206,16 +213,17 @@ Once declared, a unique pointer can be manipulated using the same syntax as a ra
      // std::cout << p.x << ' ' << p.y << '\n';
      
 
-What makes a unique_ptr *unique*?
+What makes a ``unique_ptr`` *unique*?
 
 An object stored within a unique pointer **uniquely owns** its pointer.
 In other words, an object is 'owned' by exactly one unique_ptr.
 Unlike raw pointers, a unique pointer cannot be copied or assigned to another variable,
-even another unique pointer.
+even another ``unique pointer``.
 
 No two unique pointers can ever contain the same raw pointer value.
 This solves the 'double delete' problem if both go out of scope.
-The result is that some operations you **can** perform on raw pointers are not allowed:
+The result is that some operations you **can** perform on raw pointers 
+are not allowed on ``unique_ptr``:
 
 .. code-block:: cpp
 
@@ -227,7 +235,10 @@ The result is that some operations you **can** perform on raw pointers are not a
        z = x;                            // error - copy assignment not allowed
      }
 
-
+Although copying unique pointers is not allowed, 
+you can :cref:`unique_ptr::release()` the pointer and assign it to a 
+raw pointer,
+or transfer ownership to a different ``unique_ptr``.
 
 -----
 

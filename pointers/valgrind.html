@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrixeq.css" type="text/css" />
     <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
     <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
     <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
@@ -39,11 +43,20 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js"></script>
     <script type="text/javascript" src="../_static/clickable.js"></script>
     <script type="text/javascript" src="../_static/timedclickable.js"></script>
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
     <script type="text/javascript" src="../_static/lib/prettify.js"></script>
     <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
@@ -267,7 +280,7 @@
   
   <div class="section" id="pointer-debugging">
 <span id="index-0"></span><h1>5.3. Pointer debugging<a class="headerlink" href="#pointer-debugging" title="Permalink to this headline">¶</a></h1>
-<p>All the techniques described in section ref:<cite>Debugging</cite> applies
+<p>All the techniques described in section <a class="reference internal" href="../beginnings/debugging.html"><span class="doc">Debugging</span></a> applies
 when debugging pointers.
 What can make debugging pointer errors more difficult is that
 when things go wrong with a pointer, often memory is corrupted
@@ -279,16 +292,16 @@ which limits what you can get done with <code class="docutils literal"><span cla
 <p>The debugging section has a brief overview of the gdb debugger
 and links to more information.</p>
 </li>
-<li><p class="first">Consider a dynamic memory checker such as valgrind.</p>
+<li><p class="first">Consider a dynamic memory checker such as <code class="docutils literal"><span class="pre">valgrind</span></code>.</p>
 </li>
 </ol>
 <div class="section" id="valgrind">
 <span id="index-1"></span><h2>5.3.1. Valgrind<a class="headerlink" href="#valgrind" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal"><span class="pre">valgrind</span></code> program can be used to detect some (but not all) common errors in C and C++ programs
 that use pointers and dynamic storage allocation.
-In addition to basic memory checking, valgrind can find many bugs related to
+In addition to basic memory checking, <code class="docutils literal"><span class="pre">valgrind</span></code> can find many bugs related to
 uninitialized variables and undefinded behavior.
-You can run valgrind on your program by putting valgrind at the start of the command line:</p>
+You can run <code class="docutils literal"><span class="pre">valgrind</span></code> on your program by putting <code class="docutils literal"><span class="pre">valgrind</span></code> at the start of the command line:</p>
 <div class="highlight-default"><div class="highlight"><pre><span class="n">valgrind</span> <span class="o">./</span><span class="n">my</span><span class="o">-</span><span class="n">program</span>
 </pre></div>
 </div>
@@ -311,7 +324,7 @@ or failing to free blocks.</p>
 </div>
 <p>See <code class="docutils literal"><span class="pre">valgrind</span> <span class="pre">--help</span></code> or <code class="docutils literal"><span class="pre">man</span> <span class="pre">valgrind</span></code> for more information about the (many) options,
 or look at the documentation at <a class="reference external" href="http://valgrind.org/">http://valgrind.org/</a> for detailed information about what the output means.
-If you want to run valgrind on your own machine,
+If you want to run <code class="docutils literal"><span class="pre">valgrind</span></code> on your own machine,
 you may be able to find a version that works at <a class="reference external" href="http://valgrind.org">http://valgrind.org</a>.
 Unfortunately, this is only likely to work if you are running a Unix-like
 operating system (which includes Linux and MacOS X, but not Windows).</p>
@@ -341,7 +354,7 @@ your output looks like this:</p>
 <span class="o">==</span><span class="mi">1229</span><span class="o">==</span>    <span class="n">by</span> <span class="mh">0x41CB9D2</span><span class="p">:</span> <span class="p">(</span><span class="n">below</span> <span class="n">main</span><span class="p">)</span> <span class="p">(</span><span class="ow">in</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libc</span><span class="o">-</span><span class="mf">2.18</span><span class="o">.</span><span class="n">so</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>In order to get valgrind to report line numbers related to errors
+<p>In order to get <code class="docutils literal"><span class="pre">valgrind</span></code> to report line numbers related to errors
 in calls to library functions, you need to add the command line argument
 <code class="docutils literal"><span class="pre">--track-origins=yes</span></code>, like this:</p>
 <div class="highlight-none"><div class="highlight"><pre>$ valgrind --track-origins=yes ./foo
@@ -403,8 +416,8 @@ sum: 134514654
 
     </div>
     <p>There can be a lot of noise in the output,
-especially when templates are involved, if you look at the last line in each group,
-foo.cpp, line 3 is called out each time.
+especially when templates are involved.
+If you look at the last line in each group, <code class="docutils literal"><span class="pre">foo.cpp,</span> <span class="pre">line</span> <span class="pre">3</span></code> is called out each time.
 And that is exactly where the error lies.</p>
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">

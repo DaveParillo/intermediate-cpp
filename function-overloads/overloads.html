@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrixeq.css" type="text/css" />
     <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
     <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
     <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
@@ -39,11 +43,20 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js"></script>
     <script type="text/javascript" src="../_static/clickable.js"></script>
     <script type="text/javascript" src="../_static/timedclickable.js"></script>
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
     <script type="text/javascript" src="../_static/lib/prettify.js"></script>
     <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
@@ -279,7 +292,7 @@ For example:</p>
 <div data-childcomponent="ac-overload-1" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac-overload-1 data-lang="cpp" 
-      data-timelimit=25000  
+      data-timelimit=25000   
     data-audio=''   
          >
 #include <iostream>
@@ -318,7 +331,7 @@ For example:</p>
 see <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=abs">abs</a></li>
 </ul>
 </li>
-<li>and 13 different functions for different types of division operation</li>
+<li>and 13 different functions for different types of division operations</li>
 </ul>
 <p>This just adds to the amount of stuff programmers have to commit to memory.
 In C++, you only have to remember a single function to compute
@@ -328,7 +341,7 @@ the absolute value: <code class="docutils literal"><span class="pre">abs</span><
 <div data-childcomponent="ac-volume" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac-volume data-lang="cpp" 
-      data-timelimit=25000  
+      data-timelimit=25000   
     data-audio=''   
          >
 #include <iostream>
@@ -380,10 +393,10 @@ It is primarily a question of <em>clarity</em> and <em>design</em>.</p>
 how to call this function.
 So four is probably too many parameters,
 simply because future usage errors are likely.</p>
-<p>Keep in mind that more parameters equals more complexity.
+<p>Keep in mind that more parameters equal more complexity.
 Limit the number of parameters you need in a given method,
 or use a <code class="docutils literal"><span class="pre">struct</span></code> to combine parameters.
-Also, be wary of overloads with the same number of parameters and different types
+Also, be wary of overloads with the same number of parameters and different types.
 For example:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span> <span class="nf">operate</span> <span class="p">(</span><span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">);</span>
 <span class="kt">int</span> <span class="nf">operate</span> <span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">b</span><span class="p">);</span>

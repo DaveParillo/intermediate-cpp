@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrixeq.css" type="text/css" />
     <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
     <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
     <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
@@ -39,11 +43,20 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js"></script>
     <script type="text/javascript" src="../_static/clickable.js"></script>
     <script type="text/javascript" src="../_static/timedclickable.js"></script>
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
     <script type="text/javascript" src="../_static/lib/prettify.js"></script>
     <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
@@ -475,7 +488,7 @@ that the <code class="docutils literal"><span class="pre">address</span> <span c
 </td></tr></table></div>
 <p>In function <code class="docutils literal"><span class="pre">by_value</span></code> the statement <code class="docutils literal"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">99;</span></code> changes the copy provided.
 The value of <code class="docutils literal"><span class="pre">x</span></code> is printed, but is destroyed when <code class="docutils literal"><span class="pre">x</span></code> goes out of scope on line 6.</p>
-<p>And no special character is needed of you want to use a function that takes a reference:</p>
+<p>No special character is needed if you want to use a function that takes a reference:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
 
 <span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
@@ -552,9 +565,9 @@ In C++, we achieve these goals using <em>pointers</em>.</p>
 <p>Some programmers consider passing by non-const reference bad style,
 because the call syntax is the same as pass by value.
 When a variable is passed into a function by non-const reference
-there is no visual indication to the programmer on what to expect.
+there is no visual indication to the programmer of what to expect.
 Without reading additional documentation or
-actually reading the source code, if available,
+reading the source code,
 there is no way to know if the function will change its parameter or not.</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">func</span> <span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">);</span>
 
@@ -668,7 +681,7 @@ arrays are not expected, but pointers are:</p>
 at a location 96 positions past the end of the array.
 Nor will it inform you that on line 5, we just wrote to a location
 7 positions before the beginning of the array.</p>
-<p>Most pointer examples you will see will never attempt to use <code class="docutils literal"><span class="pre">operator[]</span></code>
+<p>Most pointer examples you see will never attempt to use <code class="docutils literal"><span class="pre">operator[]</span></code>
 to index a pointer that is not an array.
 This is a good thing, but as you might expect, if you make a mistake,
 the compiler has nothing to offer:</p>
@@ -678,7 +691,7 @@ the compiler has nothing to offer:</p>
 <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">99</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>Even with all compiler warnings enabled, most compilers will emit anything at all.
+<p>Even with all compiler warnings enabled, most compilers will emit nothing at all.
 No compiler will inform you that
 we just accessed a piece of memory 98 <code class="docutils literal"><span class="pre">ints</span></code> past the one you own.
 Whatever is stored there, we then added 2 to it
@@ -701,7 +714,7 @@ then  <code class="docutils literal"><span class="pre">a[i]</span></code> must b
 <div data-childcomponent="ac-array-index-1" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac-array-index-1 data-lang="cpp" 
-      data-timelimit=25000  
+      data-timelimit=25000   
     data-audio=''   
          >
 #include <iostream>
@@ -720,7 +733,7 @@ int main() {
 </textarea>
 </div>
 <p class="last">Although the standard does not strictly <em>prohibit</em> this syntax,
-doesn’t mean you should.</p>
+doesn’t mean you should use it.</p>
 </div>
 <p>This pitfall is only a problem when using arrays of type <code class="docutils literal"><span class="pre">int</span></code> with easily confused variable names.
 The lesson: use variables appropriate for the scope.
@@ -738,7 +751,7 @@ the C string as a loop exit condition:</p>
 <div data-childcomponent="ac-c-copy-idiom" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac-c-copy-idiom data-lang="c" 
-      data-timelimit=25000  
+      data-timelimit=25000   
     data-audio=''   
          >
 #include <stdio.h>
@@ -781,7 +794,7 @@ What happens?</p>
 <h2>5.1.5. Pointers to pointers<a class="headerlink" href="#pointers-to-pointers" title="Permalink to this headline">¶</a></h2>
 <p>A pointer can point to any memory address within the scope of the program,
 which includes pointers themselves.
-Each new pointer justs ands another to the chain of pointers.
+Each new pointer just adds another to the chain of pointers.
 The language does not impose a strict limit.
 The only limit is your sanity…</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
@@ -859,7 +872,7 @@ Given:</p>
 </div>
 <p>The name of the variable <code class="docutils literal"><span class="pre">argc</span></code> stands for ‘argument count’.
 <code class="docutils literal"><span class="pre">argc</span></code> contains the number of arguments passed to the program.
-The name of the variable <code class="docutils literal"><span class="pre">argv</span></code> stands for “argument vector``”.
+The name of the variable <code class="docutils literal"><span class="pre">argv</span></code> stands for ‘argument vector’.
 A vector is a one-dimensional array, and <code class="docutils literal"><span class="pre">argv</span></code> is a one-dimensional array of strings.
 Each string is one of the arguments that was passed to the program.
 These names are used by convention, although technically,
@@ -872,8 +885,9 @@ program executed in <code class="docutils literal"><span class="pre">argv[0]</sp
 so <code class="docutils literal"><span class="pre">argv</span></code> is a pointer to a <code class="docutils literal"><span class="pre">char</span></code> array.
 Or we can say <code class="docutils literal"><span class="pre">argv</span></code> is a pointer to a pointer to a <code class="docutils literal"><span class="pre">char</span></code>.</p>
 <p>When we compile a program like this:</p>
-<blockquote>
-<div>/usr/bin/gcc -o myprog myprog.cpp</div></blockquote>
+<div class="highlight-none"><div class="highlight"><pre>/usr/bin/gcc -o myprog myprog.cpp
+</pre></div>
+</div>
 <p>The gcc program receives the arguments passed to main:</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">argc</span></code> contains 4</li>
@@ -944,7 +958,7 @@ array index operators, or a combination.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>How this is typically used is to provide an ability
+<p>Typically, this is used to provide an ability
 to change the behavior of programs using command line ‘switches’
 specified by the user when the program is run.
 The following example takes 3 arguments:</p>
@@ -1028,9 +1042,9 @@ Where <code class="docutils literal"><span class="pre">const</span></code> appea
 <p>You may find it helpful to read pointer declarations from right to left.</p>
 <ul class="simple">
 <li>In <code class="docutils literal"><span class="pre">p1</span></code>, nothing is constant.  Either the pointer or the value pointed to can change.</li>
-<li>In <code class="docutils literal"><span class="pre">p2</span></code>, The pointer can change,  but the value pointed to is constant.
+<li>In <code class="docutils literal"><span class="pre">p2</span></code>, the pointer can change,  but the value pointed to is constant.
 You can’t use this pointer to change the value of x.</li>
-<li>In <code class="docutils literal"><span class="pre">p3</span></code>, The pointer is constant,  but the value pointed to can change.
+<li>In <code class="docutils literal"><span class="pre">p3</span></code>, the pointer is constant,  but the value pointed to can change.
 You can use this pointer to change the value of x, but can’t point to a different variable.</li>
 <li>In <code class="docutils literal"><span class="pre">p4</span></code>, both are held constant.</li>
 </ul>
@@ -1133,7 +1147,7 @@ Consider the following code example, from Effective Modern C++:</p>
 <div class="section" id="void-pointers">
 <h2>5.1.8. <code class="docutils literal"><span class="pre">void</span></code> pointers<a class="headerlink" href="#void-pointers" title="Permalink to this headline">¶</a></h2>
 <p>A <em>void pointer</em> is a
-pointer to some memory the compiler doesn’t know the type of.</p>
+pointer to some memory, but the compiler doesn’t know the type.</p>
 <p>It is about as close to a raw machine address as you can get in C++.</p>
 <p>Legitimate uses are
 calls between functions in different languages or
