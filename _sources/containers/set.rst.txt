@@ -125,7 +125,20 @@ The :cref:`set::erase` function function is used to remove an element from a ``s
      it = x.find(8);
      assert ( it == x.end() );  // this should be true
 
+Variations on std::set
+----------------------
+The STL provides 3 alternate forms of :cref:`std::set` class:
 
+multiset
+   A ``set`` in which duplicate keys are allowed.
+
+unordered_set
+   A ``set`` of unique objects stored based on the object :term:`hash function`.
+   Added in C++11.
+  
+unordered_multiset
+   An ``unordered_set`` in which duplicate keys are allowed.
+  
 
 -----
 

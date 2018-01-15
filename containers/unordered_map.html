@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>7. Containers &#8212; Intermediate Modern C++ Overview</title>
+    <title>7.6. Hashing concepts &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -109,8 +109,8 @@
     <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="7.1. Standard Template Library Containers" href="intro.html" />
-    <link rel="prev" title="6.3. The std::function template" href="../function-pointers/std_function.html" />
+    <link rel="next" title="8. Iterators" href="../iterators/toctree.html" />
+    <link rel="prev" title="7.5. The map class" href="map.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -230,7 +230,7 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">7. Containers</a></li>
+<li><a class="reference internal" href="#">7.6. Hashing concepts</a></li>
 </ul>
 </ul>
 </li>
@@ -238,14 +238,14 @@
         
         
           
-  <li id="relations-prev" title="Previous Chapter - 6.3. The std::function template" data-toggle="tooltip">
-    <a href="../function-pointers/std_function.html" >
+  <li id="relations-prev" title="Previous Chapter - 7.5. The map class" data-toggle="tooltip">
+    <a href="map.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - 7.1. Standard Template Library Containers' data-toggle="tooltip" >
-    <a href="intro.html" >
+  <li id="relations-next" title='Next Chapter - 8. Iterators' data-toggle="tooltip" >
+    <a href="../iterators/toctree.html" >
       <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
   </li>
@@ -275,39 +275,87 @@
 
 <div class="container" id="main-content">
   
-  <div class="section" id="containers">
-<h1>7. Containers<a class="headerlink" href="#containers" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Containers</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="intro.html">7.1. Standard Template Library Containers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="intro.html#ordered-and-sorted-containers">7.1.1. Ordered and sorted containers</a></li>
+  <div class="section" id="hashing-concepts">
+<span id="index-0"></span><h1>7.6. Hashing concepts<a class="headerlink" href="#hashing-concepts" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference internal" href="associative-containers.html"><span class="doc">Previously</span></a>,
+we asserted that a <a class="reference internal" href="../glossary.html#term-map"><span class="xref std std-term">map</span></a> refers to any data structure that ‘maps’ <a class="reference internal" href="../glossary.html#term-key"><span class="xref std std-term">keys</span></a> to values.
+They have an advantage over sequential containers
+in that the cost of searches grows much more slowly:
+<span class="math">\(log_2 {N}\)</span> for maps versus <span class="math">\(N \over 2\)</span> for the sequential containers.</p>
+<p>Is there a way to access elements in a tree that does not become more costly
+as the number of elements grows?
+We need to:</p>
+<ul class="simple">
+<li>Store data in some kind of <em>indexable data structure</em>:
+something we can access using an index, such as a <code class="docutils literal"><span class="pre">vector</span></code>.</li>
+<li>Compute a value that will result in the index where are data is stored.</li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="sequence-containers.html">7.2. Sequence Containers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sequence-containers.html#the-vector-class">7.2.1. The vector class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sequence-containers.html#the-array-class">7.2.2. The array class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sequence-containers.html#the-list-class">7.2.3. The list class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sequence-containers.html#the-stack-class">7.2.4. The stack class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sequence-containers.html#the-queue-class">7.2.5. The queue class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sequence-containers.html#the-deque-class">7.2.6. The deque class</a></li>
+<p>This is exactly what the unordered containers do.</p>
+<p>The unordered containers all depend on <a class="reference internal" href="../glossary.html#term-hashing"><span class="xref std std-term">hashing</span></a> to find elements.
+<a class="reference internal" href="../glossary.html#term-hashing"><span class="xref std std-term">Hashing</span></a> is a search method that uses a
+<a class="reference internal" href="../glossary.html#term-hash-function"><span class="xref std std-term">hash function</span></a> to convert a <a class="reference internal" href="../glossary.html#term-key"><span class="xref std std-term">key</span></a> into a position within a
+<a class="reference internal" href="../glossary.html#term-hash-table"><span class="xref std std-term">hash table</span></a>.</p>
+<p>Often the <a class="reference internal" href="../glossary.html#term-backing-storage"><span class="xref std std-term">backing storage</span></a> for an <code class="docutils literal"><span class="pre">unordered_map</span></code> is an array.
+Each indexed location within the array is called a <a class="reference internal" href="../glossary.html#term-bucket"><span class="xref std std-term">bucket</span></a>.
+Each <a class="reference internal" href="../glossary.html#term-bucket"><span class="xref std std-term">bucket</span></a> provides access to one or more map entries
+(<a class="reference internal" href="../glossary.html#term-key-value-pair"><span class="xref std std-term">key-value pairs</span></a>).</p>
+<img src="../_images/graphviz-a533d55bab8f2c54ffe999d3857ca0e99ef49c46.png" alt="Fruit inventory hash table" />
+<p>In order to use a type as a <a class="reference internal" href="../glossary.html#term-key"><span class="xref std std-term">key</span></a> in an unordered container,
+the type must override 3 functions:</p>
+<ul class="simple">
+<li>override <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::hash">std::hash</a></li>
+<li>override <code class="docutils literal"><span class="pre">operator==</span></code></li>
+<li>override <code class="docutils literal"><span class="pre">operator&lt;</span></code></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="associative-containers.html">7.3. Motivation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="associative-containers.html#the-tree-adt">7.3.1. The tree ADT</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="set.html">7.4. The set class</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="set.html#variations-on-std-set">7.4.1. Variations on std::set</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="map.html">7.5. The map class</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="map.html#selected-map-functions">7.5.1. Selected map functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="map.html#map-structure">7.5.2. Map structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="map.html#variations-on-std-map">7.5.3. Variations on std::map</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="unordered_map.html">7.6. Hashing concepts</a></li>
+<p>before the <a class="reference internal" href="../glossary.html#term-key"><span class="xref std std-term">key</span></a> type will compile when added to an unordered container.</p>
+<p>Consider the following <a class="reference internal" href="../glossary.html#term-hash-table"><span class="xref std std-term">hash table</span></a>:</p>
+<img src="../_images/graphviz-6db101ce915e1d97817833a2579e3dbc98933c28.png" alt="Simple hash table" />
+<p>How does the software find the value <code class="docutils literal"><span class="pre">34</span></code> in this data structure?</p>
+<p>The <code class="docutils literal"><span class="pre">hash</span></code> override is used to compute the bucket.
+In this case the bucket is at index position <code class="docutils literal"><span class="pre">8</span></code>.</p>
+<p>Each element in the list stored in the bucket is evaluated using
+<code class="docutils literal"><span class="pre">operator==</span></code>.
+As soon as <code class="docutils literal"><span class="pre">operator==</span></code> evaluates to <code class="docutils literal"><span class="pre">true</span></code> the value is returned.</p>
+<p>The <code class="docutils literal"><span class="pre">operator&lt;</span></code> function is used when adding new elements to buckets.
+New elements are kept sorted when added in order to reduce the time it takes to extract values from buckets.
+It should be clear that the performance of this data structure is
+highly dependent upon the quality of the <a class="reference internal" href="../glossary.html#term-hash-function"><span class="xref std std-term">hash function</span></a>.
+Always returning <code class="docutils literal"><span class="pre">42</span></code> is a <em>legitimate</em> value for a hash,
+but an extremely poor one,
+because your <a class="reference internal" href="../glossary.html#term-hash-table"><span class="xref std std-term">hash table</span></a> is no better than a <a class="reference internal" href="../glossary.html#term-linked-list"><span class="xref std std-term">linked list</span></a>.</p>
+<p>All of the built in fundamental types and some other library types such as <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::string">std::string</a>
+already have hash overrides defined.
+If you define your own <code class="docutils literal"><span class="pre">struct</span></code> or <code class="docutils literal"><span class="pre">class</span></code>, you need to write your own override.
+Consider a <code class="docutils literal"><span class="pre">struct</span> <span class="pre">Point</span></code>:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="k">struct</span> <span class="n">Point</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">namespace</span> <span class="n">std</span> <span class="p">{</span>   <span class="c1">// must override std::hash</span>
+  <span class="k">template</span> <span class="o">&lt;&gt;</span>
+  <span class="k">struct</span> <span class="n">hash</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span>
+  <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="k">operator</span><span class="p">()(</span><span class="k">const</span> <span class="n">Point</span><span class="o">&amp;</span> <span class="n">p</span><span class="p">)</span> <span class="k">const</span>
+    <span class="p">{</span>
+      <span class="k">return</span> <span class="p">((</span><span class="n">std</span><span class="o">::</span><span class="n">hash</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">()(</span><span class="mi">7919</span><span class="p">)</span>
+            <span class="o">^</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">hash</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">()(</span><span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="o">^</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">hash</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">()(</span><span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The override must be a function template,
+although in this case, no template parameter is needed.
+The template declaration <code class="docutils literal"><span class="pre">template</span> <span class="pre">&lt;&gt;</span></code> is perfectly valid.</p>
+<p>A <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::hash">std::hash</a> override must be defined as a function object that takes the type as a parameter
+and returns a <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::size_t">std::size_t</a>.</p>
+<hr class="docutils" />
+<div class="admonition-more-to-explore admonition">
+<p class="first admonition-title">More to Explore</p>
+<ul class="last simple">
+<li><a class="reference external" href="http://www.partow.net/programming/hashfunctions/">General purpose hash function algorithms</a></li>
 </ul>
 </div>
 </div>
@@ -315,19 +363,19 @@
 
   
       
-  <li id="relations-prev" class="navLink" title='Previous Section - 6.3. The std::function template' data-toggle="tooltip">
-    <a href="../function-pointers/std_function.html" >
+  <li id="relations-prev" class="navLink" title='Previous Section - 7.5. The map class' data-toggle="tooltip">
+    <a href="map.html" >
       <i class='prevNav glyphicon glyphicon-chevron-left'></i>
     </a>
   </li>
-  <a class="navLinkBg" id="navLinkBgLeft"  href="../function-pointers/std_function.html" ></a>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="map.html" ></a>
   
-  <li id="relations-next" class="navLink" title='Next Section - 7.1. Standard Template Library Containers' data-toggle="tooltip" >
-    <a href="intro.html" >
+  <li id="relations-next" class="navLink" title='Next Section - 8. Iterators' data-toggle="tooltip" >
+    <a href="../iterators/toctree.html" >
       <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
     </a>
   </li>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="intro.html" >Next Section - 7.1. Standard Template Library Containers</a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="../iterators/toctree.html" >Next Section - 8. Iterators</a>
 
 <script type="text/javascript">
 

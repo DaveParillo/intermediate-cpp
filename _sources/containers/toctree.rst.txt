@@ -10,5 +10,6 @@ Containers
    associative-containers.rst
    set.rst
    map.rst
+   unordered_map.rst
 
 

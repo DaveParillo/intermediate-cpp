@@ -230,7 +230,10 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">7.4. The set class</a></li>
+<li><a class="reference internal" href="#">7.4. The set class</a><ul>
+<li><a class="reference internal" href="#variations-on-std-set">7.4.1. Variations on std::set</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -372,6 +375,18 @@ returned from find:</p>
 <span class="n">assert</span> <span class="p">(</span> <span class="n">it</span> <span class="o">==</span> <span class="n">x</span><span class="p">.</span><span class="n">end</span><span class="p">()</span> <span class="p">);</span>  <span class="c1">// this should be true</span>
 </pre></div>
 </div>
+<div class="section" id="variations-on-std-set">
+<h2>7.4.1. Variations on std::set<a class="headerlink" href="#variations-on-std-set" title="Permalink to this headline">¶</a></h2>
+<p>The STL provides 3 alternate forms of <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::set">std::set</a> class:</p>
+<dl class="docutils">
+<dt>multiset</dt>
+<dd>A <code class="docutils literal"><span class="pre">set</span></code> in which duplicate keys are allowed.</dd>
+<dt>unordered_set</dt>
+<dd>A <code class="docutils literal"><span class="pre">set</span></code> of unique objects stored based on the object <a class="reference internal" href="../glossary.html#term-hash-function"><span class="xref std std-term">hash function</span></a>.
+Added in C++11.</dd>
+<dt>unordered_multiset</dt>
+<dd>An <code class="docutils literal"><span class="pre">unordered_set</span></code> in which duplicate keys are allowed.</dd>
+</dl>
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">
 <p class="first admonition-title">More to Explore</p>
@@ -379,6 +394,7 @@ returned from find:</p>
 <li><a class="reference external" href="http://en.cppreference.com/w/cpp/container">STL containers library</a></li>
 <li><a class="reference external" href="https://visualgo.net/en/heap?slide=1">Visualgo: binary heap</a></li>
 </ul>
+</div>
 </div>
 </div>
 
