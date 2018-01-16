@@ -381,7 +381,7 @@ insert
 
 .. activecode:: ac_iterator_insert
    :language: cpp
-   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++1z']
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
 
    #include <iostream>
    #include <vector>
