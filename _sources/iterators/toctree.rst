@@ -5,4 +5,5 @@ Iterators
    :caption: Iterators
    :maxdepth: 2
 
-   foo.rst
+   iterators.rst
+

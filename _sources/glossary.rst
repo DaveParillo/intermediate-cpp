@@ -434,6 +434,7 @@ Glossary
       this design knowledge to be passed on to new programmers more quickly.
       Examples are :term:`Composite design pattern`,
       :term:`flyweight`,
+      :term:`iterator`,
       :term:`strategy`, and
       :term:`visitor`.
 
@@ -774,8 +775,13 @@ Glossary
       In a tree, any node that has at least one non-empty
       :term:`child` is an  internal node.
 
+   iterable
+      A :term:`container` in which each element
+      can be visited using an :term:`iterator`.
+
    iterator
-      In a :term:`container` such as a List, a separate class that
+      In a :term:`container` such as a :cref:`std::vector`
+      or :cref:`std::set`, a separate class that
       indicates position within the container, with support for
       :term:`traversing <traversal>` through all
       :term:`elements <element>` in the container.
@@ -1488,6 +1494,7 @@ Glossary
       :math:`a, b, c \in \mathbf{S}`.
 
    traversal
+   traverse
       Any process for visiting all of the objects in a collection
       (such as a :term:`tree` or :term:`list`) in some order.
 
