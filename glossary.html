@@ -504,7 +504,7 @@ as the number of elements increases.</dd>
 low-level language all at once, in preparation for later execution.</dd>
 <dt id="term-compile-time-error">compile-time error</dt>
 <dd>Errors detected by the compiler.
-Compare to <a class="reference internal" href="#term-206"><span class="xref std std-term">runtime error</span></a>, <a class="reference internal" href="#term-link-error"><span class="xref std std-term">link error</span></a>,
+Compare to <a class="reference internal" href="#term-207"><span class="xref std std-term">runtime error</span></a>, <a class="reference internal" href="#term-link-error"><span class="xref std std-term">link error</span></a>,
 and <a class="reference internal" href="#term-semantic-error"><span class="xref std std-term">semantic error</span></a>.</dd>
 <dt id="term-compile-time-polymorphism">compile-time polymorphism</dt>
 <dd>A form of <a class="reference internal" href="#term-polymorphism"><span class="xref std std-term">polymorphism</span></a> known as Overloading.
@@ -620,6 +620,7 @@ for combining software components, and design patterns allow
 this design knowledge to be passed on to new programmers more quickly.
 Examples are <a class="reference internal" href="#term-composite-design-pattern"><span class="xref std std-term">Composite design pattern</span></a>,
 <a class="reference internal" href="#term-flyweight"><span class="xref std std-term">flyweight</span></a>,
+<a class="reference internal" href="#term-iterator"><span class="xref std std-term">iterator</span></a>,
 <a class="reference internal" href="#term-strategy"><span class="xref std std-term">strategy</span></a>, and
 <a class="reference internal" href="#term-visitor"><span class="xref std std-term">visitor</span></a>.</dd>
 <dt id="term-dictionary">dictionary</dt>
@@ -908,8 +909,12 @@ This is often done to simplify memory management.</dd>
 <dt id="term-internal-node">internal node</dt>
 <dd>In a tree, any node that has at least one non-empty
 <a class="reference internal" href="#term-child"><span class="xref std std-term">child</span></a> is an  internal node.</dd>
+<dt id="term-iterable">iterable</dt>
+<dd>A <a class="reference internal" href="#term-container"><span class="xref std std-term">container</span></a> in which each element
+can be visited using an <a class="reference internal" href="#term-iterator"><span class="xref std std-term">iterator</span></a>.</dd>
 <dt id="term-iterator">iterator</dt>
-<dd>In a <a class="reference internal" href="#term-container"><span class="xref std std-term">container</span></a> such as a List, a separate class that
+<dd>In a <a class="reference internal" href="#term-container"><span class="xref std std-term">container</span></a> such as a <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::vector">std::vector</a>
+or <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::set">std::set</a>, a separate class that
 indicates position within the container, with support for
 <a class="reference internal" href="#term-traversal"><span class="xref std std-term">traversing</span></a> through all
 <a class="reference internal" href="#term-element"><span class="xref std std-term">elements</span></a> in the container.</dd>
@@ -968,7 +973,7 @@ of another collision resolution method called
 <dd>After compiling, a link error occurs when each compilation unit compiles correctly,
 but in the next stage, the linker is unable to combine all
 the object code into a single valid executable file.
-Compare to <a class="reference internal" href="#term-compile-time-error"><span class="xref std std-term">compile-time error</span></a>, <a class="reference internal" href="#term-206"><span class="xref std std-term">runtime error</span></a>,
+Compare to <a class="reference internal" href="#term-compile-time-error"><span class="xref std std-term">compile-time error</span></a>, <a class="reference internal" href="#term-207"><span class="xref std std-term">runtime error</span></a>,
 and <a class="reference internal" href="#term-semantic-error"><span class="xref std std-term">semantic error</span></a>.</dd>
 <dt id="term-linked-list">linked list</dt>
 <dd>An implementation for the list ADT that uses
@@ -1311,7 +1316,7 @@ and it conducts the execution of the program.</dd>
 <dd>Errors encountered during program execution.
 Compare to <a class="reference internal" href="#term-compile-time-error"><span class="xref std std-term">compile-time error</span></a>, <a class="reference internal" href="#term-link-error"><span class="xref std std-term">link error</span></a>,
 and <a class="reference internal" href="#term-semantic-error"><span class="xref std std-term">semantic error</span></a>.</dd>
-<dt id="term-206">runtime error</dt>
+<dt id="term-207">runtime error</dt>
 <dd>An error that does not occur until the program has started to execute
 but that prevents the program from continuing.</dd>
 <dt id="term-runtime-polymorphism">runtime polymorphism</dt>
@@ -1344,7 +1349,7 @@ probe sequence is determined in part by a second hash function.</dd>
 <dd>An error in a program that makes it do something other than what the
 programmer intended.
 Compare to <a class="reference internal" href="#term-compile-time-error"><span class="xref std std-term">compile-time error</span></a>, <a class="reference internal" href="#term-link-error"><span class="xref std std-term">link error</span></a>,
-and <a class="reference internal" href="#term-206"><span class="xref std std-term">runtime error</span></a>.</dd>
+and <a class="reference internal" href="#term-207"><span class="xref std std-term">runtime error</span></a>.</dd>
 <dt id="term-semantics">semantics</dt>
 <dd>The meaning of a program.</dd>
 <dt id="term-separate-chaining">separate chaining</dt>
@@ -1495,7 +1500,7 @@ to defer evaluating the function return type.  Example:</p>
 <dd>In set notation, relation <span class="math">\(R\)</span> is transitive if whenever
 <span class="math">\(aRb\)</span> and <span class="math">\(bRc\)</span>, then <span class="math">\(aRc\)</span>, for all
 <span class="math">\(a, b, c \in \mathbf{S}\)</span>.</dd>
-<dt id="term-traversal">traversal</dt>
+<dt id="term-traversal">traversal<dt id="term-traverse">traverse</dt>
 <dd>Any process for visiting all of the objects in a collection
 (such as a <a class="reference internal" href="#term-tree"><span class="xref std std-term">tree</span></a> or <a class="reference internal" href="#term-list"><span class="xref std std-term">list</span></a>) in some order.</dd>
 <dt id="term-tree">tree</dt>

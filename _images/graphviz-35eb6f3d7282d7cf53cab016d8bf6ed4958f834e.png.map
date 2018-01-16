@@ -1,0 +1,8 @@
+<map id="iter_categories" name="iter_categories">
+<area shape="rect" id="node1" href="http://en.cppreference.com/w/cpp/concept/InputIterator" title="Input Iterator" alt="" coords="39,5,140,36"/>
+<area shape="rect" id="node2" href="http://en.cppreference.com/w/cpp/concept/ForwardIterator" title="Forward Iterator" alt="" coords="29,65,150,96"/>
+<area shape="rect" id="node6" href="http://en.cppreference.com/w/cpp/concept/OutputIterator" title="Output Iterator" alt="" coords="259,125,371,156"/>
+<area shape="rect" id="node3" href="http://en.cppreference.com/w/cpp/concept/BidirectionalIterator" title="Bidirectional Iterator" alt="" coords="16,125,163,156"/>
+<area shape="rect" id="node4" href="http://en.cppreference.com/w/cpp/concept/RandomAccessIterator" title="RandomAccess Iterator" alt="" coords="5,185,173,216"/>
+<area shape="rect" id="node5" href="http://en.cppreference.com/w/cpp/concept/ContiguousIterator" title="Contiguous Iterator" alt="" coords="19,245,160,276"/>
+</map>
