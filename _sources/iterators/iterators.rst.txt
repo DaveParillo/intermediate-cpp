@@ -381,7 +381,7 @@ insert
 
 .. activecode:: ac_iterator_insert
    :language: cpp
-   :compileargs: -Wall, -Wextra, -pedantic, -std=c++14
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++1z']
 
    #include <iostream>
    #include <vector>
@@ -424,7 +424,7 @@ erase
 
 .. activecode:: ac_iterator_erase
    :language: cpp
-   :compileargs: -Wall, -Wextra, -pedantic, -std=c++14
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
 
    #include <vector>
    #include <iostream>
