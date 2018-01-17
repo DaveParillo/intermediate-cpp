@@ -13,6 +13,7 @@ Motivation
 ==========
 If sequence containers like :cref:`vector` are so great,
 then why would we need anything else?
+
 In a word: search.
 
 When we have millions a elements in a data structure and need to find
@@ -62,7 +63,7 @@ Sometimes we may get lucky and find the desired element at index position 0.
 If the data added to the vector is random, 
 then this becomes increasingly less likely as the size grows.
 
-We might sometimes get very unlucky and not find the element until the access
+We might sometimes get very unlucky and not find the element until we access
 the last element.
 Over many searches, on average, 
 we will have to examine :math:`N \over 2` elements.
@@ -89,13 +90,12 @@ For a large ``vector``, this saves a lot of time.
    :scale: 50 %
    :align: center
 
-But if we want to keep the vector sorted,
-because elements are added or removed frequently,
-now adding data to our vector, which used to be fast,
-is now slow.
+This technique requires that we keep the vector sorted.
+If elements are added or removed frequently,
+then adding data to our vector, which used to be fast, is now slow.
 We can either use :cref:`vector::push_back` followed by :cref:`vector::sort`,
 or use :cref:`vector::insert`.
-*Every* insert is now a search and we are back to the original problem.
+*Every* addition becomes a search and we are back to the original problem.
 On average, it will take :math:`N \over 2` comparisons to add new data.
 
 How can we solve this problem?

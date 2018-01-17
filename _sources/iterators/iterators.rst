@@ -132,7 +132,7 @@ Forgetting this is a common source of error.
 
 Basic iterator operations
 -------------------------
-Iterators in C++ by design feel as if you are using pointers.
+By design, iterators in C++ feel as if you are using pointers.
 Most iterators support the same operations as pointers.
 
 +--------------+--------------------------------------------------------+
@@ -234,7 +234,7 @@ Non-mutable iterators are called *constant iterators*.
 :cref:`Contiguous Iterator`
    :cref:`RandomAccessIterator`, plus the container make a continuous storage guarantee.
    This category was added in C++17.
-   Before C++17 iterators of containers like :cref:`std::vector` and :cref:`std::array`
+   Before C++17, iterators of containers like :cref:`std::vector` and :cref:`std::array`
    were often treated as a separate category.
    This category simply formalizes what was happening in practice.
 
@@ -458,4 +458,4 @@ erase
 .. admonition:: More to Explore
 
   - `Iterator Library <http://en.cppreference.com/w/cpp/iterator>`_ at cppreference.com
-
+  - C++ Concepts: `Iterator <http://en.cppreference.com/w/cpp/concept/Iterator>`_
