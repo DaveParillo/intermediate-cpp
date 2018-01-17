@@ -7,6 +7,7 @@ cd build/intermediate-cpp/
 git init
 git remote add book https://DaveParillo@github.com/DaveParillo/intermediate-cpp.git
 git pull --depth=1 book gh-pages
+rm -rf *
 
 cd ../..
 runestone build
