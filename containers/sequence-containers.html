@@ -288,46 +288,11 @@
   
   <div class="section" id="sequence-containers">
 <span id="index-0"></span><h1>7.2. Sequence Containers<a class="headerlink" href="#sequence-containers" title="Permalink to this headline">¶</a></h1>
-<p>If a program needs to manage a collection of closely related things,
-numbers, bank accounts, students, fruit,
-then the simplest approach is to put them in a container.
-You should already be familiar with arrays,
-which are part of the language.
-In an <a class="reference internal" href="../string+vector/vector.html"><span class="doc">earlier section</span></a>,
-we briefly introduced vector.
-This chapter takes a closer look.</p>
-<p>Like a raw array and <code class="docutils literal"><span class="pre">vector</span></code>, all of the containers in this chapter
+<p>Like a raw array and <code class="docutils literal"><span class="pre">vector</span></code>, all of the containers in this section
 store a sequence of elements of a given type.
-All the STL containers provide similar advantages over arrays:</p>
-<ul class="simple">
-<li>Add and remove data dynamically</li>
-<li>Bounds checking</li>
-<li>Work with data at a higher level of abstraction</li>
-<li>Manage subsets of data as a unit</li>
-</ul>
-<p>Although all of the ‘sequence containers’ in the STL
-share some core characteristics,
-the different containers have different designs,
-and have different trade-offs (costs).
-This allows them to excel is specific niches,
-where an ‘all-purpose’ might fall short.</p>
-<p>All containers support the same basic operations:</p>
-<ul class="simple">
-<li>Add objects to the container<ul>
-<li>And remove objects from it</li>
-</ul>
-</li>
-<li>Find out if an object is in the container (or a group of objects)</li>
-<li>Retrieve an object without removing it</li>
-<li>Walk through the container, looking at each object in turn</li>
-</ul>
-<p>The container manages the storage space that is allocated for its elements and
-provides member functions to access them,
-either directly or through iterators (objects with properties similar to pointers).</p>
-<p>We normally do not think of the sequence containers as having an order.
-For example, a vector may contain the values <code class="docutils literal"><span class="pre">{3,</span> <span class="pre">1,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">5,</span> <span class="pre">9}</span></code>,
-which clearly are not in the <a class="reference internal" href="../glossary.html#term-natural-order"><span class="xref std std-term">natural order</span></a> for integers.
-A <code class="docutils literal"><span class="pre">vector</span></code> <em>is</em> ordered, however: by its index position.</p>
+Although all sequence containers store data sequentially,
+it does not mean that the data is stored in a contiguous memory block.
+Nor do all containers allow elements to be accessed by index using <code class="docutils literal"><span class="pre">operator[]</span></code>.</p>
 <div class="section" id="the-vector-class">
 <span id="index-1"></span><h2>7.2.1. The vector class<a class="headerlink" href="#the-vector-class" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::vector">std::vector</a> is a sequence container that simulates a dynamically sized array.
