@@ -294,7 +294,7 @@ immediately called it using ``operator()``.
 
    - From: cppreference.com: 
 
-     - C++ `lambda expressions <http://en.cppreference.com/w/cpp/language/lambda>`_. 
+     - C++ `lambda expressions <http://en.cppreference.com/w/cpp/language/lambda>`_ . 
      - `std::count and std::count_if <http://en.cppreference.com/w/cpp/algorithm/count>`_.
 
    - `Descriptions of lambda expressions` <https://msdn.microsoft.com/en-us/library/dd293608.aspx>`_ from Microsoft's MSDN

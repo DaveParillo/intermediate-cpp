@@ -334,7 +334,7 @@ traditional for loops using an index are not possible:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Sets of any type can created as long as the type is
+<p>Sets of any type can be created as long as the type is
 <a class="reference internal" href="../glossary.html#term-comparable"><span class="xref std std-term">comparable</span></a>.
 The comparison operator (<a class="reference internal" href="../glossary.html#term-comparator"><span class="xref std std-term">comparator</span></a>)
 used in sets by default is <code class="docutils literal"><span class="pre">operator</span> <span class="pre">&lt;</span></code>.
@@ -363,7 +363,7 @@ returned from find:</p>
 <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">it</span><span class="p">;</span>         <span class="c1">// print the value returned from find()</span>
 </pre></div>
 </div>
-<p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=set::erase">set::erase</a> function function is used to remove an element from a <code class="docutils literal"><span class="pre">set</span></code>.
+<p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=set::erase">set::erase</a> function is used to remove an element from a <code class="docutils literal"><span class="pre">set</span></code>.
 <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=set::erase">set::erase</a> takes an iterator as the position in the <code class="docutils literal"><span class="pre">set</span></code> to remove:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">x</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">};</span>
 <span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>

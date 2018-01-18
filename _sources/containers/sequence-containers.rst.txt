@@ -421,22 +421,22 @@ provides a list with many convenient features:
 The defining operations of a :cref:`std::list` are:
 
 push_back
-   Add a new element to the end of the list
+   Add a new element to the end of the list.
 
 pop_back
    Remove an element from the end of the list.
 
 back
-   Get the value of the element at the end of the list
+   Get the value of the element at the end of the list.
 
 push_front
-   Add a new element to the beginning of the list
+   Add a new element to the beginning of the list.
 
 pop_front
    Remove an element from the beginning of the list.
 
 front
-   Get the value of the element at the beginning of the list
+   Get the value of the element at the beginning of the list.
 
 
 .. note:: empty() vs. size() == 0
@@ -501,13 +501,13 @@ This means that a forward list can only be traversed in the direction of the tai
 The defining operations of a :cref:`std::forward_list` are:
 
 push_front
-   Add a new element to the beginning of the list
+   Add a new element to the beginning of the list.
 
 pop_front
    Remove an element from the beginning of the list.
 
 front
-   Get the value of the element at the beginning of the list
+   Get the value of the element at the beginning of the list.
 
 Compared to :cref:`std::list` this container provides more space efficient storage 
 when bidirectional iteration is not needed.
@@ -535,8 +535,6 @@ push
 
 pop
    Remove an element from the top of the stack.
-   In some languages, but not ``std::stack``, pop returns 
-   the element that is removed.
 
 top
    Get the value of the element at the top of the stack.

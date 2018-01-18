@@ -88,6 +88,10 @@ Glossary
       non-printing characters (such as carrage return).
       Now largely replaced by UTF-8 encoding.
 
+   associative container
+      A set of sorted data structures that can be quickly searched.
+      ``map`` and ``set`` are examples.
+
    attribute
       In :term:`object-oriented programming <object-oriented programming paradigm>`,
       a synonym for :term:`data member`.
@@ -1309,7 +1313,6 @@ Glossary
       Compare to :term:`compile-time error`, :term:`link error`, 
       and :term:`runtime error`.
 
-
    semantics
       The meaning of a program.
 
@@ -1323,6 +1326,11 @@ Glossary
       A sequence is also sometimes called a :term:`tuple` or a
       :term:`vector`.
 
+   sequence container
+      A container in which elements can be accessed sequentially.
+      The underlying data may be a contiguous block of memory, as with ``vector`` and
+      ``array``, or may be non-contiguous memory, as with ``list``.
+      
    sequential tree representation
       A representation that stores a series of node values with the
       minimum information needed to reconstruct the tree structure.

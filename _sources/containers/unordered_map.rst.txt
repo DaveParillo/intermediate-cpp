@@ -15,7 +15,7 @@ Hashing concepts
 :doc:`Previously <associative-containers>`, 
 we asserted that a :term:`map` refers to any data structure that 'maps' :term:`keys <key>` to values.
 They have an advantage over sequential containers 
-in that the cost of searches grows much more slowly: 
+in that the cost of searches grows more slowly: 
 :math:`log_2 {N}` for maps versus :math:`N \over 2` for the sequential containers.
 
 Is there a way to access elements in a tree that does not become more costly
@@ -32,6 +32,8 @@ The unordered containers all depend on :term:`hashing` to find elements.
 :term:`Hashing <hashing>` is a search method that uses a 
 :term:`hash function` to convert a :term:`key` into a position within a
 :term:`hash table`. 
+
+
 
 Often the :term:`backing storage` for an ``unordered_map`` is an array.
 Each indexed location within the array is called a :term:`bucket`.

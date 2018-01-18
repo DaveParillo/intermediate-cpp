@@ -281,8 +281,8 @@
   <div class="section" id="motivation">
 <span id="index-0"></span><h1>7.3. Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h1>
 <p>If sequence containers like <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=vector">vector</a> are so great,
-then why would we need anything else?
-In a word: search.</p>
+then why would we need anything else?</p>
+<p>In a word: search.</p>
 <p>When we have millions a elements in a data structure and need to find
 just one element, or a specific range or elements,
 we <em>could</em> use a <code class="docutils literal"><span class="pre">vector</span></code>.</p>
@@ -319,7 +319,7 @@ we have to search the vector 1 element at a time until we find it.</p>
 <p>Sometimes we may get lucky and find the desired element at index position 0.
 If the data added to the vector is random,
 then this becomes increasingly less likely as the size grows.</p>
-<p>We might sometimes get very unlucky and not find the element until the access
+<p>We might sometimes get very unlucky and not find the element until we access
 the last element.
 Over many searches, on average,
 we will have to examine <span class="math">\(N \over 2\)</span> elements.</p>
@@ -337,13 +337,12 @@ we eliminate the number of remaining elements we need
 to search in our <code class="docutils literal"><span class="pre">vector</span></code> by half.
 For a large <code class="docutils literal"><span class="pre">vector</span></code>, this saves a lot of time.</p>
 <a class="reference internal image-reference" href="../_images/closet-neat.png"><img alt="A sorted closet" class="align-center" src="../_images/closet-neat.png" style="width: 332.0px; height: 372.5px;" /></a>
-<p>But if we want to keep the vector sorted,
-because elements are added or removed frequently,
-now adding data to our vector, which used to be fast,
-is now slow.
+<p>This technique requires that we keep the vector sorted.
+If elements are added or removed frequently,
+then adding data to our vector, which used to be fast, is now slow.
 We can either use <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=vector::push_back">vector::push_back</a> followed by <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=vector::sort">vector::sort</a>,
 or use <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=vector::insert">vector::insert</a>.
-<em>Every</em> insert is now a search and we are back to the original problem.
+<em>Every</em> addition becomes a search and we are back to the original problem.
 On average, it will take <span class="math">\(N \over 2\)</span> comparisons to add new data.</p>
 <p>How can we solve this problem?</p>
 <p>Can we make an <a class="reference internal" href="../glossary.html#term-adt"><span class="xref std std-term">ADT</span></a> whose performance does not degrade

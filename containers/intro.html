@@ -281,7 +281,7 @@
   <div class="section" id="standard-template-library-containers">
 <span id="index-0"></span><h1>7.1. Standard Template Library Containers<a class="headerlink" href="#standard-template-library-containers" title="Permalink to this headline">¶</a></h1>
 <p>If a program needs to manage a collection of closely related things,
-numbers, bank accounts, students, fruit,
+numbers, bank accounts, students, or even fruit,
 then the simplest approach is to put them in a container.
 You should already be familiar with raw arrays,
 which are part of the language
@@ -291,7 +291,7 @@ There are two broad categories of STL containers:
 In an <a class="reference internal" href="../string+vector/vector.html"><span class="doc">earlier section</span></a>,
 we briefly introduced <code class="docutils literal"><span class="pre">std::vector</span></code>.
 A vector is an example of a sequence container.</p>
-<p>A sequence container stores a sequence of elements of a given type.
+<p>A <a class="reference internal" href="../glossary.html#term-sequence-container"><span class="xref std std-term">sequence container</span></a> stores a sequence of elements of a given type.
 The sequence containers can be further divided into two ‘flavors’:</p>
 <dl class="docutils">
 <dt>list-like sequences</dt>
@@ -299,8 +299,9 @@ The sequence containers can be further divided into two ‘flavors’:</p>
 <dt>stacks and queues</dt>
 <dd>Things listed in order to be processed</dd>
 </dl>
-<p>As you might imagine, associative containers do not store
-elements in sequential order, but rather use a container
+<p>As you might imagine, <a class="reference internal" href="../glossary.html#term-associative-container"><span class="xref std std-term">associative containers</span></a>
+do not store elements in sequential order,
+but rather use a container
 element to determine where in the container data should be stored.
 The associative containers can also be further divided into two ‘flavors’:</p>
 <dl class="docutils">
@@ -319,7 +320,7 @@ The associative containers can also be further divided into two ‘flavors’:</
 <p>Although all of the containers in the STL
 share some core characteristics,
 the different containers have different designs,
-and have different trade-offs (costs).
+and have different trade-offs or costs.
 This allows them to excel in specific situations,
 where an ‘all-purpose’ container might fall short.</p>
 <p>All containers support the same basic operations:</p>
@@ -354,12 +355,18 @@ is <em>ordered</em>, but <em>unsorted</em>.</p>
 the sort order.
 All of the sorted containers define a default sort order,
 determined by the <code class="docutils literal"><span class="pre">operator&lt;</span></code> for the element type.</p>
-<p>Containers can <em>never</em> be both sorted and unordered.</p>
+<p>Containers can <em>never</em> be both sorted and unordered,
+because sorting of any kind is by definition an ordering.</p>
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">
 <p class="first admonition-title">More to Explore</p>
 <ul class="last simple">
-<li><a class="reference external" href="http://en.cppreference.com/w/cpp/container">Sequence containers</a></li>
+<li>C++ Concepts:<ul>
+<li><a class="reference external" href="http://en.cppreference.com/w/cpp/concept/Container">Containers</a></li>
+<li><a class="reference external" href="http://en.cppreference.com/w/cpp/concept/SequenceContainer">Sequence Containers</a></li>
+<li><a class="reference external" href="http://en.cppreference.com/w/cpp/concept/AssociativeContainer">Associative Containers</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>

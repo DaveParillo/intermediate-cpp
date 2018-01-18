@@ -74,7 +74,7 @@ traditional for loops using an index are not possible:
      }
 
 
-Sets of any type can created as long as the type is
+Sets of any type can be created as long as the type is
 :term:`comparable`.
 The comparison operator (:term:`comparator`) 
 used in sets by default is ``operator <``.
@@ -111,7 +111,7 @@ returned from find:
      auto it = x.find(8);
      std::cout << *it;         // print the value returned from find()
 
-The :cref:`set::erase` function function is used to remove an element from a ``set``.
+The :cref:`set::erase` function is used to remove an element from a ``set``.
 :cref:`set::erase` takes an iterator as the position in the ``set`` to remove:
 
 .. code-block:: cpp

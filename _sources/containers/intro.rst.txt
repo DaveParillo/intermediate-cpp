@@ -13,7 +13,7 @@ Standard Template Library Containers
 ====================================
 
 If a program needs to manage a collection of closely related things,
-numbers, bank accounts, students, fruit, 
+numbers, bank accounts, students, or even fruit, 
 then the simplest approach is to put them in a container.
 You should already be familiar with raw arrays,
 which are part of the language 
@@ -24,7 +24,7 @@ In an :doc:`earlier section <../string+vector/vector>`,
 we briefly introduced ``std::vector``.
 A vector is an example of a sequence container.
 
-A sequence container stores a sequence of elements of a given type.
+A :term:`sequence container` stores a sequence of elements of a given type.
 The sequence containers can be further divided into two 'flavors':
 
 list-like sequences
@@ -33,8 +33,9 @@ list-like sequences
 stacks and queues
     Things listed in order to be processed
 
-As you might imagine, associative containers do not store
-elements in sequential order, but rather use a container
+As you might imagine, :term:`associative containers <associative container>` 
+do not store elements in sequential order, 
+but rather use a container
 element to determine where in the container data should be stored.
 The associative containers can also be further divided into two 'flavors':
 
@@ -54,7 +55,7 @@ All the STL containers provide similar advantages over arrays:
 Although all of the containers in the STL
 share some core characteristics,
 the different containers have different designs,
-and have different trade-offs (costs).
+and have different trade-offs or costs.
 This allows them to excel in specific situations,
 where an 'all-purpose' container might fall short.
 
@@ -94,12 +95,17 @@ the sort order.
 All of the sorted containers define a default sort order, 
 determined by the ``operator<`` for the element type.
 
-Containers can *never* be both sorted and unordered.
+Containers can *never* be both sorted and unordered,
+because sorting of any kind is by definition an ordering.
 
 
 -----
 
 .. admonition:: More to Explore
 
-   - `Sequence containers <http://en.cppreference.com/w/cpp/container>`_
+   - C++ Concepts: 
+     
+     - `Containers <http://en.cppreference.com/w/cpp/concept/Container>`_
+     - `Sequence Containers <http://en.cppreference.com/w/cpp/concept/SequenceContainer>`_
+     - `Associative Containers <http://en.cppreference.com/w/cpp/concept/AssociativeContainer>`_
 

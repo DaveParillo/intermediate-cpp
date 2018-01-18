@@ -332,6 +332,9 @@ Standard ASCII uses an 8-bit code to represent upper and lower
 case letters, digits, some punctuation, and some number of
 non-printing characters (such as carrage return).
 Now largely replaced by UTF-8 encoding.</dd>
+<dt id="term-associative-container">associative container</dt>
+<dd>A set of sorted data structures that can be quickly searched.
+<code class="docutils literal"><span class="pre">map</span></code> and <code class="docutils literal"><span class="pre">set</span></code> are examples.</dd>
 <dt id="term-attribute">attribute</dt>
 <dd>In <a class="reference internal" href="#term-object-oriented-programming-paradigm"><span class="xref std std-term">object-oriented programming</span></a>,
 a synonym for <a class="reference internal" href="#term-data-member"><span class="xref std std-term">data member</span></a>.</dd>
@@ -504,7 +507,7 @@ as the number of elements increases.</dd>
 low-level language all at once, in preparation for later execution.</dd>
 <dt id="term-compile-time-error">compile-time error</dt>
 <dd>Errors detected by the compiler.
-Compare to <a class="reference internal" href="#term-207"><span class="xref std std-term">runtime error</span></a>, <a class="reference internal" href="#term-link-error"><span class="xref std std-term">link error</span></a>,
+Compare to <a class="reference internal" href="#term-208"><span class="xref std std-term">runtime error</span></a>, <a class="reference internal" href="#term-link-error"><span class="xref std std-term">link error</span></a>,
 and <a class="reference internal" href="#term-semantic-error"><span class="xref std std-term">semantic error</span></a>.</dd>
 <dt id="term-compile-time-polymorphism">compile-time polymorphism</dt>
 <dd>A form of <a class="reference internal" href="#term-polymorphism"><span class="xref std std-term">polymorphism</span></a> known as Overloading.
@@ -973,7 +976,7 @@ of another collision resolution method called
 <dd>After compiling, a link error occurs when each compilation unit compiles correctly,
 but in the next stage, the linker is unable to combine all
 the object code into a single valid executable file.
-Compare to <a class="reference internal" href="#term-compile-time-error"><span class="xref std std-term">compile-time error</span></a>, <a class="reference internal" href="#term-207"><span class="xref std std-term">runtime error</span></a>,
+Compare to <a class="reference internal" href="#term-compile-time-error"><span class="xref std std-term">compile-time error</span></a>, <a class="reference internal" href="#term-208"><span class="xref std std-term">runtime error</span></a>,
 and <a class="reference internal" href="#term-semantic-error"><span class="xref std std-term">semantic error</span></a>.</dd>
 <dt id="term-linked-list">linked list</dt>
 <dd>An implementation for the list ADT that uses
@@ -1316,7 +1319,7 @@ and it conducts the execution of the program.</dd>
 <dd>Errors encountered during program execution.
 Compare to <a class="reference internal" href="#term-compile-time-error"><span class="xref std std-term">compile-time error</span></a>, <a class="reference internal" href="#term-link-error"><span class="xref std std-term">link error</span></a>,
 and <a class="reference internal" href="#term-semantic-error"><span class="xref std std-term">semantic error</span></a>.</dd>
-<dt id="term-207">runtime error</dt>
+<dt id="term-208">runtime error</dt>
 <dd>An error that does not occur until the program has started to execute
 but that prevents the program from continuing.</dd>
 <dt id="term-runtime-polymorphism">runtime polymorphism</dt>
@@ -1349,7 +1352,7 @@ probe sequence is determined in part by a second hash function.</dd>
 <dd>An error in a program that makes it do something other than what the
 programmer intended.
 Compare to <a class="reference internal" href="#term-compile-time-error"><span class="xref std std-term">compile-time error</span></a>, <a class="reference internal" href="#term-link-error"><span class="xref std std-term">link error</span></a>,
-and <a class="reference internal" href="#term-207"><span class="xref std std-term">runtime error</span></a>.</dd>
+and <a class="reference internal" href="#term-208"><span class="xref std std-term">runtime error</span></a>.</dd>
 <dt id="term-semantics">semantics</dt>
 <dd>The meaning of a program.</dd>
 <dt id="term-separate-chaining">separate chaining</dt>
@@ -1360,6 +1363,10 @@ and <a class="reference internal" href="#term-207"><span class="xref std std-ter
 which may contain duplicate-valued elements.
 A sequence is also sometimes called a <a class="reference internal" href="#term-tuple"><span class="xref std std-term">tuple</span></a> or a
 <a class="reference internal" href="#term-vector"><span class="xref std std-term">vector</span></a>.</dd>
+<dt id="term-sequence-container">sequence container</dt>
+<dd>A container in which elements can be accessed sequentially.
+The underlying data may be a contiguous block of memory, as with <code class="docutils literal"><span class="pre">vector</span></code> and
+<code class="docutils literal"><span class="pre">array</span></code>, or may be non-contiguous memory, as with <code class="docutils literal"><span class="pre">list</span></code>.</dd>
 <dt id="term-sequential-tree-representation">sequential tree representation</dt>
 <dd>A representation that stores a series of node values with the
 minimum information needed to reconstruct the tree structure.
