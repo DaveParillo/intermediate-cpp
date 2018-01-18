@@ -372,6 +372,8 @@ int main () {
 }
 </textarea>
 </div>
+<p>The current textbook compiler does not support C++14.
+This valid code fails to compile:</p>
 
 <div data-childcomponent="ac_begin_compiler_test_1y" class="runestone explainer ac_section alert alert-warning">
 
@@ -413,6 +415,38 @@ int main()
 }
 </textarea>
 </div>
+<p>If you run it on <a class="reference external" href="http://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique">cppreference.com</a>
+then you can see the output.</p>
+<p>The textbook compiler does not know that <code class="docutils literal"><span class="pre">-std=c++1z</span></code>, much less c++17 is an option:</p>
+
+<div data-childcomponent="ac_begin_compiler_test_1z" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac_begin_compiler_test_1z data-lang="cpp" 
+      data-timelimit=25000   
+    data-audio=''   
+    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++1z']"     >
+ #include <iostream>
+ #include <memory>
+
+ template <typename T>
+ auto get_value(T t) {                   // auto return type deduction: c++14
+     if constexpr (std::is_pointer_v<T>) // constexpr-if: C++17
+         return *t;
+     else
+         return t;
+ }
+
+ int main()
+ {
+      auto pi = std::make_unique<int>(9);  // make_unique: C++14
+      int i = 9;
+
+      std::cout << get_value(pi.get()) << "\n";
+      std::cout << get_value(i) << "\n";
+ }
+</textarea>
+</div>
+<p>And now we know what our capabilities are.</p>
 </div>
 <div class="section" id="gnu-linux-or-unix-in-general">
 <h2>1.4.2. GNU/Linux (or Unix) in general<a class="headerlink" href="#gnu-linux-or-unix-in-general" title="Permalink to this headline">¶</a></h2>

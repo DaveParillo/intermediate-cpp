@@ -114,6 +114,8 @@ A simple test for a modern C++ compiler:
      return 0;
    }
 
+The current textbook compiler does not support C++14.
+This valid code fails to compile:
 
 .. activecode:: ac_begin_compiler_test_1y
    :language: cpp
@@ -151,7 +153,41 @@ A simple test for a modern C++ compiler:
            std::cout << "     " << v3[i] << '\n';
        }
    }
-   
+
+.. **
+
+If you run it on `cppreference.com <http://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique>`_
+then you can see the output.
+
+The textbook compiler does not know that ``-std=c++1z``, much less c++17 is an option:
+
+.. activecode:: ac_begin_compiler_test_1z
+   :language: cpp
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++1z']
+
+    #include <iostream>
+    #include <memory>
+
+    template <typename T>
+    auto get_value(T t) {                   // auto return type deduction: c++14
+        if constexpr (std::is_pointer_v<T>) // constexpr-if: C++17
+            return *t;
+        else
+            return t;
+    }
+
+    int main()
+    {
+         auto pi = std::make_unique<int>(9);  // make_unique: C++14
+         int i = 9;
+         
+         std::cout << get_value(pi.get()) << "\n";
+         std::cout << get_value(i) << "\n";
+    }
+
+.. **
+
+And now we know what our capabilities are.
 
 GNU/Linux (or Unix) in general
 ------------------------------
