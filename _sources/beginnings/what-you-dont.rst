@@ -94,6 +94,104 @@ Generally, C++ gives programmers many choices and it is true
 that some choices are preferred over others.
 We will try to make preferred programming choices clear.
 
+A simple test for a modern C++ compiler:
+
+.. activecode:: ac_begin_compiler_test
+   :language: cpp
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+
+   // A simple test for C++11 compiler
+   // compiled with: -Wall -Wextra -pedantic -std=c++11
+   
+   #include <iostream>
+
+   // test C++11 features
+   int main () {
+     int test[] = { 1, 2, 3, 5, 8 };  // can we use an initializer list?
+     for (auto i: test) {             // can we use a range-for loop?
+       std::cout << "i is " << i << '\n';
+     }
+     return 0;
+   }
+
+The current textbook compiler does not support C++14.
+This valid code fails to compile:
+
+.. activecode:: ac_begin_compiler_test_1y
+   :language: cpp
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++1y']
+
+   // A simple test for 'make_unique' support
+   // compiled with: -Wall -Wextra -pedantic -std=c++1y
+   
+   #include <iostream>
+   #include <memory>
+    
+   struct point
+   {
+       int x, y;
+       point() : x(0), y(0) { }
+       point(int x, int y) :x(x), y(y) { }
+   };
+   std::ostream& operator<<(std::ostream& os, const point& p) {
+       return os << '{' << "x:" << p.x << " y:" << p.y << '}';
+   }
+    
+   int main()
+   {
+       // Use the default constructor.
+       std::unique_ptr<point> p1 = std::make_unique<point>();
+       // Use the constructor that matches these arguments
+       std::unique_ptr<point> p2 = std::make_unique<point>(1, 2);
+       // Create a unique_ptr to an array of 5 elements
+       std::unique_ptr<point[]> p3 = std::make_unique<point[]>(5);
+    
+       std::cout << "make_unique<point>():      " << *p1 << '\n'
+                 << "make_unique<point>(1,2): " << *p2 << '\n'
+                 << "make_unique<point[]>(5):   " << '\n';
+       for (int i = 0; i < 5; i++) {
+           std::cout << "     " << p3[i] << '\n';
+       }
+   }
+
+.. **
+
+If you run it on `cppreference.com <http://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique>`_
+then you can see the output.
+
+The textbook compiler does not know that ``-std=c++1z``, much less c++17 is an option:
+
+.. activecode:: ac_begin_compiler_test_1z
+   :language: cpp
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++1z']
+
+   // A simple test for C++17 support
+   // compiled with: -Wall -Wextra -pedantic -std=c++1z
+
+    #include <iostream>
+    #include <memory>
+
+    template <typename T>
+    auto get_value(T t) {                   // auto return type deduction: c++14
+        if constexpr (std::is_pointer_v<T>) // constexpr-if: C++17
+            return *t;
+        else
+            return t;
+    }
+
+    int main()
+    {
+         auto pi = std::make_unique<int>(9);
+         int i = 9;
+         
+         std::cout << get_value(pi.get()) << "\n";
+         std::cout << get_value(i) << "\n";
+    }
+
+.. **
+
+And now we know what our capabilities are.
+
 GNU/Linux (or Unix) in general
 ------------------------------
 
@@ -156,6 +254,7 @@ Then ``argc`` would be set = ``4`` and array ``argv`` would contain::
 
    - `Using the getopt function <https://www.gnu.org/software/libc/manual/html_node/Using-Getopt.html>`_ - from gnu.org
    - Textbook: :doc:`../pointers/pointers`
+   - C++17: `constexpr if <http://en.cppreference.com/w/cpp/language/if>`_
 
 
 
