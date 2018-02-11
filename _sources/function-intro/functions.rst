@@ -127,8 +127,8 @@ Every other file that needs to use the ``area`` function uses an include directi
    #include "area.h"
 
    bool too_small (int x, int y) {
-     const int MIN_SIZE = 10;
-     return area(x, y) < MIN_SIZE; 
+     const int min_size = 10;
+     return area(x, y) < min_size; 
    }
 
 The ``#include`` on line 1 uses double quotes instead of angle brackets; 
@@ -176,6 +176,7 @@ current file, declare a function or variable ``static``, like this:
      }
    }
 
+   // local static function can only be called in this compilation unit
    static void helloHelper(void) {
      puts("hi!");
    }
@@ -203,6 +204,20 @@ for example:
 The first time ``counter`` is called, 
 the variable ``count`` is initialized to zero.
 Each call thereafter, ``count`` is increased by 1 and the new value is returned.
+
+Another appropriate use of static variable in functions:
+when defining a constant that should only be initialized once.
+For example, our earlier ``too_small`` function, could be:
+
+.. code-block:: cpp
+
+   #include "area.h"
+
+   bool too_small (int x, int y) {
+     static const int min_size = 10;
+     return area(x, y) < min_size; 
+   }
+
 
 
 When to write a function
@@ -633,15 +648,10 @@ General function writing guidelines
 
    .. code-block:: cpp
 
-      #ifndef CALL_STACK_H
-      #define CALL_STACK_H
-
-      // declare the interface here
+      #pragma once
 
       void dig(double& x);
       void deeper(double& x);
-
-      #endif
 
    Given that the names of these functions provide no insight to their purpose,
    there is no way to know without inspecting the source if
@@ -649,7 +659,7 @@ General function writing guidelines
 
    .. code-block:: cpp
 
-      #include "side-effects.h"
+      #include "call-stack.h"
       #include <iostream>
 
       int main() {
