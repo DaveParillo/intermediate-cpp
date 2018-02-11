@@ -279,6 +279,7 @@ asked on stack overflow:
 
 .. activecode:: ac-namespace-2
    :language: cpp
+   :compileargs: ['-Wall', '-Wextra', '-std=c++11']
 
    #include <iostream>
    #include <vector>
