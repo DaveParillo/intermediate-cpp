@@ -121,36 +121,36 @@ This valid code fails to compile:
    :language: cpp
    :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++1y']
 
-   // A simple test for modern C++ compiler
+   // A simple test for 'make_unique' support
    // compiled with: -Wall -Wextra -pedantic -std=c++1y
    
    #include <iostream>
    #include <memory>
     
-   struct Vec3
+   struct point
    {
-       int x, y, z;
-       Vec3() : x(0), y(0), z(0) { }
-       Vec3(int x, int y, int z) :x(x), y(y), z(z) { }
-       friend std::ostream& operator<<(std::ostream& os, Vec3& v) {
-           return os << '{' << "x:" << v.x << " y:" << v.y << " z:" << v.z  << '}';
-       }
+       int x, y;
+       point() : x(0), y(0) { }
+       point(int x, int y) :x(x), y(y) { }
    };
+   std::ostream& operator<<(std::ostream& os, const point& p) {
+       return os << '{' << "x:" << p.x << " y:" << p.y << '}';
+   }
     
    int main()
    {
        // Use the default constructor.
-       std::unique_ptr<Vec3> v1 = std::make_unique<Vec3>();
+       std::unique_ptr<point> p1 = std::make_unique<point>();
        // Use the constructor that matches these arguments
-       std::unique_ptr<Vec3> v2 = std::make_unique<Vec3>(0, 1, 2);
+       std::unique_ptr<point> p2 = std::make_unique<point>(1, 2);
        // Create a unique_ptr to an array of 5 elements
-       std::unique_ptr<Vec3[]> v3 = std::make_unique<Vec3[]>(5);
+       std::unique_ptr<point[]> p3 = std::make_unique<point[]>(5);
     
-       std::cout << "make_unique<Vec3>():      " << *v1 << '\n'
-                 << "make_unique<Vec3>(0,1,2): " << *v2 << '\n'
-                 << "make_unique<Vec3[]>(5):   " << '\n';
+       std::cout << "make_unique<point>():      " << *p1 << '\n'
+                 << "make_unique<point>(1,2): " << *p2 << '\n'
+                 << "make_unique<point[]>(5):   " << '\n';
        for (int i = 0; i < 5; i++) {
-           std::cout << "     " << v3[i] << '\n';
+           std::cout << "     " << p3[i] << '\n';
        }
    }
 
@@ -165,6 +165,9 @@ The textbook compiler does not know that ``-std=c++1z``, much less c++17 is an o
    :language: cpp
    :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++1z']
 
+   // A simple test for C++17 support
+   // compiled with: -Wall -Wextra -pedantic -std=c++1z
+
     #include <iostream>
     #include <memory>
 
@@ -178,7 +181,7 @@ The textbook compiler does not know that ``-std=c++1z``, much less c++17 is an o
 
     int main()
     {
-         auto pi = std::make_unique<int>(9);  // make_unique: C++14
+         auto pi = std::make_unique<int>(9);
          int i = 9;
          
          std::cout << get_value(pi.get()) << "\n";
@@ -251,6 +254,7 @@ Then ``argc`` would be set = ``4`` and array ``argv`` would contain::
 
    - `Using the getopt function <https://www.gnu.org/software/libc/manual/html_node/Using-Getopt.html>`_ - from gnu.org
    - Textbook: :doc:`../pointers/pointers`
+   - C++17: `constexpr if <http://en.cppreference.com/w/cpp/language/if>`_
 
 
 
