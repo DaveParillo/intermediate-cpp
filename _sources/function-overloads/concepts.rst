@@ -31,7 +31,7 @@ Concepts
 
 Without resorting to the 
 `experimental technical specification <http://en.cppreference.com/w/cpp/language/constraints>`_
-you can still get the readability improvements from concepts,
+you can still get some of the readability improvements from concepts,
 just by defining an alias for the type your template expects:
 
 .. code-block:: cpp
@@ -50,12 +50,65 @@ We haven't actually made any functional change here.
 We have simply made a change that allows our source code to 
 indicate our *intent*.
 
+Until the Concepts/Constraints Technical Specification is implemented, 
+expressing our intent is about all we can do.
+
+.. code-block:: cpp
+
+   #include <iostream>
+   #include <sstream>
+   #include <string>
+
+   #define Streamable typename
+
+   namespace mesa {
+     // T must overload operator >>
+     template <Streamable T>
+       T get(std::string prompt = "Enter a single value: ") {
+         while(true) {
+           std::cout << prompt;
+           std::string line;
+           std::getline(std::cin, line);
+
+           // If we can't stream into our type T
+           // then the input was not valid for that type.
+           std::istringstream buf(line);
+           T result;
+           if(buf >> result) {
+             // check for any extra input and reject input if found
+             char junk;
+             if(buf >> junk) {
+               std::cerr << "Unexpected character.\n";
+             } else {
+               return result;
+             }
+           } else {
+             std::cerr << "Not a valid input.\n";
+           }
+         }
+       }
+   }
+
+   int main() {
+     auto a = mesa::get<int>();
+     auto b = mesa::get<int>("Enter an integer: ");
+     auto c = mesa::get<float>("Enter a float: ");
+
+     std::cout << "Values: " << a << ", "
+                             << b << ", "
+                             << c << '\n';
+     return 0;
+   }
+
+
+
 .. index:: requires
 
 Keyword: ``requires``
 .....................
 
 A *requires clause* is an additional constraint on template arguments or a function.
+It is planned for release in C++20.
 
 -----
 
