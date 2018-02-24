@@ -25,7 +25,7 @@ You'd like to be able to use auto to simply:
 
 Starting in C++17, this syntax works much more often than in previous version of the standard,
 because the rules for deducing types have expanded.
-Earlier version of C++, need to resort to a **trailing return type**.
+Earlier version of C++ need to resort to a **trailing return type**.
 
 Even in C++17, depending on what a function does, return type deduction may not always work.
 If it is possible for our function to return different types,
@@ -51,16 +51,16 @@ Keyword: decltype
 
 Added in C++11,
 the ``decltype`` type specifier yields the **type** of a specified expression, object, or literal value. 
-We use decltype when we want to define a variable based on the result of an expression,
+We use :cref:`decltype` when we want to define a variable based on the result of an expression,
 but we don't want to use the expression to initialize the variables value.
 For example:
 
 .. code-block:: cpp
 
    int i = 42;
-   decltype(i) j = i * 2;
+   decltype(i) j = i * 2.0;
 
-Similarly, there is a symmetry between auto and decltype:
+Similarly, there is a symmetry between the :cref:`auto specifier` and :cref:`decltype`:
 
 .. code-block:: cpp
 
@@ -71,7 +71,7 @@ Similarly, there is a symmetry between auto and decltype:
 Trailing return type syntax
 ---------------------------
 
-Since auto and decltype are complimentary operators,
+Since the :cref:`auto specifier` and :cref:`decltype` are complimentary operators,
 they work well together to help write generic functions that avoid
 committing to a specific type.
 
@@ -90,23 +90,21 @@ The ``->`` is required to inform the compiler that a trailing return type follow
 Note that the return type is inserted after function parameters and
 before the function body.
 
-
-
 .. code-block:: cpp
 
-   auto f(bool val) -> float
+   auto f(const bool val) -> float
    {
-       if (val) return 123; // deduces return type int
-       else return 3.14f;   // error: deduces return type float
+       if (val) return 123; // return widens int to float
+       else return 3.14f;   // return type float
    }
 
 
 .. code-block:: cpp
 
    template<typename T, typename U>
-   auto add(T t, U u) -> decltype(t + u)
+   auto add(const& T rhs, const& U lhs) -> decltype(rhs + lhs)
    {
-       return t+u;
+       return rhs+lhs;
    }
 
 Calling this add function like so:
@@ -124,6 +122,20 @@ our result would overflow.
 Instead, the compiler used ``decltype`` to determine in this case, 
 the return type should be ``int``.
 
+Do trailing return types seem like a lot of trouble?
+Prior to C++11, when trailing return type syntax was introduced,
+you could use :cref:`decltype` and :cref:`declval` instead:
+
+.. code-block:: cpp
+
+   template<typename T, typename U>
+     decltype(std::declval<T>() + std::declval<U>()) 
+     add(const& T lhs, const& U rhs) {
+       return lhs + rhs;
+     }
+
+This get unreadable fairly quickly.
+For this reason, trailing return types are preferred.
 
 -----
 
