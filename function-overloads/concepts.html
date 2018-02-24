@@ -298,7 +298,7 @@ additional requirements on template arguments used as parameters.</p>
 <h2>4.3.1. Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline">¶</a></h2>
 <p>Without resorting to the
 <a class="reference external" href="http://en.cppreference.com/w/cpp/language/constraints">experimental technical specification</a>
-you can still get the readability improvements from concepts,
+you can still get some of the readability improvements from concepts,
 just by defining an alias for the type your template expects:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
 <span class="c1">// A &#39;concept&#39; for a numeric type</span>
@@ -314,10 +314,59 @@ just by defining an alias for the type your template expects:</p>
 <p>We haven’t actually made any functional change here.
 We have simply made a change that allows our source code to
 indicate our <em>intent</em>.</p>
+<p>Until the Concepts/Constraints Technical Specification is implemented,
+expressing our intent is about all we can do.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<span class="cp">#include &lt;sstream&gt;</span>
+<span class="cp">#include &lt;string&gt;</span>
+
+<span class="cp">#define Streamable typename</span>
+
+<span class="k">namespace</span> <span class="n">mesa</span> <span class="p">{</span>
+  <span class="c1">// T must overload operator &gt;&gt;</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="n">Streamable</span> <span class="n">T</span><span class="o">&gt;</span>
+    <span class="n">T</span> <span class="n">get</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">prompt</span> <span class="o">=</span> <span class="s">&quot;Enter a single value: &quot;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">while</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">prompt</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">line</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">,</span> <span class="n">line</span><span class="p">);</span>
+
+        <span class="c1">// If we can&#39;t stream into our type T</span>
+        <span class="c1">// then the input was not valid for that type.</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">istringstream</span> <span class="n">buf</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
+        <span class="n">T</span> <span class="n">result</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">buf</span> <span class="o">&gt;&gt;</span> <span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+          <span class="c1">// check for any extra input and reject input if found</span>
+          <span class="kt">char</span> <span class="n">junk</span><span class="p">;</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">buf</span> <span class="o">&gt;&gt;</span> <span class="n">junk</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Unexpected character.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+          <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+          <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Not a valid input.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">auto</span> <span class="n">a</span> <span class="o">=</span> <span class="n">mesa</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">();</span>
+  <span class="k">auto</span> <span class="n">b</span> <span class="o">=</span> <span class="n">mesa</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Enter an integer: &quot;</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">c</span> <span class="o">=</span> <span class="n">mesa</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Enter a float: &quot;</span><span class="p">);</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Values: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;, &quot;</span>
+                          <span class="o">&lt;&lt;</span> <span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;, &quot;</span>
+                          <span class="o">&lt;&lt;</span> <span class="n">c</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="keyword-requires">
 <span id="index-1"></span><h2>4.3.2. Keyword: <code class="docutils literal"><span class="pre">requires</span></code><a class="headerlink" href="#keyword-requires" title="Permalink to this headline">¶</a></h2>
-<p>A <em>requires clause</em> is an additional constraint on template arguments or a function.</p>
+<p>A <em>requires clause</em> is an additional constraint on template arguments or a function.
+It is planned for release in C++20.</p>
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">
 <p class="first admonition-title">More to Explore</p>
