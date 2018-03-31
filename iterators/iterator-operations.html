@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>8. Iterators &#8212; Intermediate Modern C++ Overview</title>
+    <title>8.3. Basic iterator operations &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -109,8 +109,8 @@
     <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="8.1. Background" href="background.html" />
-    <link rel="prev" title="7.6. Hashing concepts" href="../containers/unordered_map.html" />
+    <link rel="next" title="8.4. Using iterators" href="using.html" />
+    <link rel="prev" title="8.2. Iterator pattern" href="iterator-pattern.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -230,7 +230,10 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">8. Iterators</a></li>
+<li><a class="reference internal" href="#">8.3. Basic iterator operations</a><ul>
+<li><a class="reference internal" href="#iterator-categories">8.3.1. Iterator categories</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -238,14 +241,14 @@
         
         
           
-  <li id="relations-prev" title="Previous Chapter - 7.6. Hashing concepts" data-toggle="tooltip">
-    <a href="../containers/unordered_map.html" >
+  <li id="relations-prev" title="Previous Chapter - 8.2. Iterator pattern" data-toggle="tooltip">
+    <a href="iterator-pattern.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - 8.1. Background' data-toggle="tooltip" >
-    <a href="background.html" >
+  <li id="relations-next" title='Next Chapter - 8.4. Using iterators' data-toggle="tooltip" >
+    <a href="using.html" >
       <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
   </li>
@@ -275,42 +278,123 @@
 
 <div class="container" id="main-content">
   
-  <div class="section" id="iterators">
-<h1>8. Iterators<a class="headerlink" href="#iterators" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Iterators</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="background.html">8.1. Background</a></li>
-<li class="toctree-l1"><a class="reference internal" href="iterator-pattern.html">8.2. Iterator pattern</a></li>
-<li class="toctree-l1"><a class="reference internal" href="iterator-operations.html">8.3. Basic iterator operations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="iterator-operations.html#iterator-categories">8.3.1. Iterator categories</a></li>
+  <div class="section" id="basic-iterator-operations">
+<span id="index-0"></span><h1>8.3. Basic iterator operations<a class="headerlink" href="#basic-iterator-operations" title="Permalink to this headline">¶</a></h1>
+<p>By design, iterators in C++ feel as if you are using pointers.
+Most iterators support the same operations as pointers.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Operation</th>
+<th class="head">Result</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">p</span> <span class="pre">==</span> <span class="pre">q</span></code></td>
+<td><code class="docutils literal"><span class="pre">true</span></code> if and only if <code class="docutils literal"><span class="pre">p</span></code> and <code class="docutils literal"><span class="pre">q</span></code>
+point to the same element or both point to <code class="docutils literal"><span class="pre">end</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">p</span> <span class="pre">!=</span> <span class="pre">q</span></code></td>
+<td>negation of above</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">*p</span></code></td>
+<td>refers to the element pointed to by <code class="docutils literal"><span class="pre">p</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">*p</span> <span class="pre">=</span> <span class="pre">val</span></code></td>
+<td>writes <code class="docutils literal"><span class="pre">val</span></code> to the element pointed to by <code class="docutils literal"><span class="pre">p</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">val</span> <span class="pre">=</span> <span class="pre">*p</span></code></td>
+<td>reads from the element pointed to by <code class="docutils literal"><span class="pre">p</span></code> and
+writes to <code class="docutils literal"><span class="pre">val</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">++p</span></code></td>
+<td>increment the iterator, making it point to the next
+element in the container or to <code class="docutils literal"><span class="pre">end</span></code></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="iterator-categories">
+<span id="index-1"></span><h2>8.3.1. Iterator categories<a class="headerlink" href="#iterator-categories" title="Permalink to this headline">¶</a></h2>
+<p>Different containers need different capabilities from their iterators.</p>
+<p>Instead of being defined by specific types,
+each category of iterator is defined by the operations that can be performed on it.
+This definition means that any type that supports the necessary operations
+can be used as an iterator — for example,
+a pointer supports all of the operations required by <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Random Access Iterator">Random Access Iterator</a>,
+so a pointer can be used anywhere a <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Random Access Iterator">Random Access Iterator</a> is expected.</p>
+<p>All of the iterator categories (except <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Output Iterator">Output Iterator</a>) can be organized into a hierarchy,
+where more powerful iterator categories (e.g. <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Random Access Iterator">Random Access Iterator</a>)
+support the operations of less powerful categories (e.g. <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Input Iterator">Input Iterator</a>).
+If an iterator falls into one of these categories and also satisfies the
+requirements of <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Output Iterator">Output Iterator</a>,
+then it is called a <em>mutable iterator</em> and supports both input and output.
+Non-mutable iterators are called <em>constant iterators</em>.</p>
+<img src="../_images/graphviz-35eb6f3d7282d7cf53cab016d8bf6ed4958f834e.png" alt="Iterator categories" usemap="#iter_categories" />
+<map id="iter_categories" name="iter_categories">
+<area shape="rect" id="node1" href="http://en.cppreference.com/w/cpp/concept/InputIterator" title="Input Iterator" alt="" coords="39,5,140,36"/>
+<area shape="rect" id="node2" href="http://en.cppreference.com/w/cpp/concept/ForwardIterator" title="Forward Iterator" alt="" coords="29,65,150,96"/>
+<area shape="rect" id="node6" href="http://en.cppreference.com/w/cpp/concept/OutputIterator" title="Output Iterator" alt="" coords="259,125,371,156"/>
+<area shape="rect" id="node3" href="http://en.cppreference.com/w/cpp/concept/BidirectionalIterator" title="Bidirectional Iterator" alt="" coords="16,125,163,156"/>
+<area shape="rect" id="node4" href="http://en.cppreference.com/w/cpp/concept/RandomAccessIterator" title="RandomAccess Iterator" alt="" coords="5,185,173,216"/>
+<area shape="rect" id="node5" href="http://en.cppreference.com/w/cpp/concept/ContiguousIterator" title="Contiguous Iterator" alt="" coords="19,245,160,276"/>
+</map>
+<dl class="docutils">
+<dt><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Input Iterator">Input Iterator</a></dt>
+<dd>Read elements and increments using <code class="docutils literal"><span class="pre">operator++</span></code>, without multiple passes.
+Classes like <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::instream">std::instream</a> provide this iterator.</dd>
+<dt><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Forward Iterator">Forward Iterator</a></dt>
+<dd><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=InputIterator">InputIterator</a>, plus increment using <code class="docutils literal"><span class="pre">operator++</span></code>, with multiple passes.
+The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::forward_list">std::forward_list</a> container provides this iterator.</dd>
+<dt><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Bidirectional Iterator">Bidirectional Iterator</a></dt>
+<dd><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=ForwardIterator">ForwardIterator</a>, plus decrement using <code class="docutils literal"><span class="pre">operator--</span></code>
+Containers like <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::list">std::list</a>, <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::map">std::map</a>, and <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::set">std::set</a>
+provide this iterator.</dd>
+<dt><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Random Access Iterator">Random Access Iterator</a></dt>
+<dd><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=BidirectionalIterator">BidirectionalIterator</a>, plus access using <code class="docutils literal"><span class="pre">operator[]</span></code>
+Before C++17, containers like <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::vector">std::vector</a>, <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::array">std::array</a>, and <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::string">std::string</a>
+provided this iterator.
+It is still used for unordered collections like
+<a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::unordered_map">std::unordered_map</a> and <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::unordered_set">std::unordered_set</a></dd>
+<dt><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Contiguous Iterator">Contiguous Iterator</a></dt>
+<dd><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=RandomAccessIterator">RandomAccessIterator</a>, plus the container make a continuous storage guarantee.
+This category was added in C++17.
+Before C++17, iterators of containers like <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::vector">std::vector</a> and <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::array">std::array</a>
+were often treated as a separate category.
+This category simply formalizes what was happening in practice.</dd>
+<dt><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Output Iterator">Output Iterator</a></dt>
+<dd>More of a ‘sub category of all of the others.
+If the iterator allows writing to the element, it is also an <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=OutputIterator">OutputIterator</a></dd>
+</dl>
+<hr class="docutils" />
+<div class="admonition-more-to-explore admonition">
+<p class="first admonition-title">More to Explore</p>
+<ul class="last simple">
+<li><a class="reference external" href="http://en.cppreference.com/w/cpp/iterator">Iterator Library</a> at cppreference.com</li>
+<li>C++ Concepts: <a class="reference external" href="http://en.cppreference.com/w/cpp/concept/Iterator">Iterator</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="using.html">8.4. Using iterators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="using.html#limits-of-range-based-for-loops">8.4.1. Limits of Range-based for loops</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using.html#container-functions-that-require-iterators">8.4.2. Container functions that require iterators</a></li>
-</ul>
-</li>
-</ul>
+</div>
 </div>
 </div>
 
 
   
       
-  <li id="relations-prev" class="navLink" title='Previous Section - 7.6. Hashing concepts' data-toggle="tooltip">
-    <a href="../containers/unordered_map.html" >
+  <li id="relations-prev" class="navLink" title='Previous Section - 8.2. Iterator pattern' data-toggle="tooltip">
+    <a href="iterator-pattern.html" >
       <i class='prevNav glyphicon glyphicon-chevron-left'></i>
     </a>
   </li>
-  <a class="navLinkBg" id="navLinkBgLeft"  href="../containers/unordered_map.html" ></a>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="iterator-pattern.html" ></a>
   
-  <li id="relations-next" class="navLink" title='Next Section - 8.1. Background' data-toggle="tooltip" >
-    <a href="background.html" >
+  <li id="relations-next" class="navLink" title='Next Section - 8.4. Using iterators' data-toggle="tooltip" >
+    <a href="using.html" >
       <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
     </a>
   </li>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="background.html" >Next Section - 8.1. Background</a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="using.html" >Next Section - 8.4. Using iterators</a>
 
 <script type="text/javascript">
 

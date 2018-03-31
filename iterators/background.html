@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>8. Iterators &#8212; Intermediate Modern C++ Overview</title>
+    <title>8.1. Background &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -109,8 +109,8 @@
     <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="8.1. Background" href="background.html" />
-    <link rel="prev" title="7.6. Hashing concepts" href="../containers/unordered_map.html" />
+    <link rel="next" title="8.2. Iterator pattern" href="iterator-pattern.html" />
+    <link rel="prev" title="8. Iterators" href="toctree.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -230,7 +230,7 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">8. Iterators</a></li>
+<li><a class="reference internal" href="#">8.1. Background</a></li>
 </ul>
 </ul>
 </li>
@@ -238,14 +238,14 @@
         
         
           
-  <li id="relations-prev" title="Previous Chapter - 7.6. Hashing concepts" data-toggle="tooltip">
-    <a href="../containers/unordered_map.html" >
+  <li id="relations-prev" title="Previous Chapter - 8. Iterators" data-toggle="tooltip">
+    <a href="toctree.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - 8.1. Background' data-toggle="tooltip" >
-    <a href="background.html" >
+  <li id="relations-next" title='Next Chapter - 8.2. Iterator pattern' data-toggle="tooltip" >
+    <a href="iterator-pattern.html" >
       <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
   </li>
@@ -275,22 +275,62 @@
 
 <div class="container" id="main-content">
   
-  <div class="section" id="iterators">
-<h1>8. Iterators<a class="headerlink" href="#iterators" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Iterators</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="background.html">8.1. Background</a></li>
-<li class="toctree-l1"><a class="reference internal" href="iterator-pattern.html">8.2. Iterator pattern</a></li>
-<li class="toctree-l1"><a class="reference internal" href="iterator-operations.html">8.3. Basic iterator operations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="iterator-operations.html#iterator-categories">8.3.1. Iterator categories</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="using.html">8.4. Using iterators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="using.html#limits-of-range-based-for-loops">8.4.1. Limits of Range-based for loops</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using.html#container-functions-that-require-iterators">8.4.2. Container functions that require iterators</a></li>
-</ul>
-</li>
+  <div class="section" id="background">
+<span id="index-0"></span><h1>8.1. Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h1>
+<p>How can we visit each <a class="reference internal" href="../glossary.html#term-element"><span class="xref std std-term">element</span></a> in a <a class="reference internal" href="../glossary.html#term-container"><span class="xref std std-term">container</span></a>
+and remain ignorant of the underlying container implementation details?
+For example, given:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">array</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">names</span> <span class="o">=</span> <span class="p">{{</span><span class="s">&quot;Alice&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s">&quot;Bob&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s">&quot;Clara&quot;</span><span class="p">}};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span>
+                 <span class="n">ages</span>  <span class="o">=</span> <span class="p">{{</span><span class="s">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">27</span><span class="p">},</span> <span class="p">{</span><span class="s">&quot;Bob&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="s">&quot;Clara&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">}};</span>
+</pre></div>
+</div>
+<p>What options do we have for operating on each <a class="reference internal" href="../glossary.html#term-element"><span class="xref std std-term">element</span></a> in <code class="docutils literal"><span class="pre">names</span></code> and <code class="docutils literal"><span class="pre">ages</span></code>?
+A traditional <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=for loop">for loop</a> or <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=while loop">while loop</a> works for <code class="docutils literal"><span class="pre">names</span></code>:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">names</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">names</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Traditional loops using an <code class="docutils literal"><span class="pre">int</span></code> index do not work with containers
+that do not overload <code class="docutils literal"><span class="pre">operator[]</span></code>.
+We solve this problem by avoiding explicit indexing altogether.
+The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=range for loop">range for loop</a>
+provides a more readable equivalent to the traditional for loop:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="k">for</span> <span class="p">(</span><span class="n">string</span> <span class="nl">s</span><span class="p">:</span> <span class="n">names</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">s</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// better: avoids copying</span>
+<span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">s</span><span class="p">:</span> <span class="n">names</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">s</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The same syntax can be used for any STL container:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span>
+<span class="n">ages</span>  <span class="o">=</span> <span class="p">{{</span><span class="s">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">27</span><span class="p">},</span> <span class="p">{</span><span class="s">&quot;Bob&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="s">&quot;Clara&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">}};</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">a</span><span class="p">:</span> <span class="n">ages</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>When you need to loop over each element in a collection,
+the <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=range for loop">range for loop</a> has completely
+abstracted away the idea of moving from one element to the next.</p>
+<p>We say these containers are <a class="reference internal" href="../glossary.html#term-iterable"><span class="xref std std-term">iterable</span></a>.</p>
+<hr class="docutils" />
+<div class="admonition-more-to-explore admonition">
+<p class="first admonition-title">More to Explore</p>
+<ul class="last simple">
+<li><a class="reference external" href="http://en.cppreference.com/w/cpp/iterator">Iterator Library</a> at cppreference.com</li>
+<li>C++ Concepts: <a class="reference external" href="http://en.cppreference.com/w/cpp/concept/Iterator">Iterator</a></li>
 </ul>
 </div>
 </div>
@@ -298,19 +338,19 @@
 
   
       
-  <li id="relations-prev" class="navLink" title='Previous Section - 7.6. Hashing concepts' data-toggle="tooltip">
-    <a href="../containers/unordered_map.html" >
+  <li id="relations-prev" class="navLink" title='Previous Section - 8. Iterators' data-toggle="tooltip">
+    <a href="toctree.html" >
       <i class='prevNav glyphicon glyphicon-chevron-left'></i>
     </a>
   </li>
-  <a class="navLinkBg" id="navLinkBgLeft"  href="../containers/unordered_map.html" ></a>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="toctree.html" ></a>
   
-  <li id="relations-next" class="navLink" title='Next Section - 8.1. Background' data-toggle="tooltip" >
-    <a href="background.html" >
+  <li id="relations-next" class="navLink" title='Next Section - 8.2. Iterator pattern' data-toggle="tooltip" >
+    <a href="iterator-pattern.html" >
       <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
     </a>
   </li>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="background.html" >Next Section - 8.1. Background</a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="iterator-pattern.html" >Next Section - 8.2. Iterator pattern</a>
 
 <script type="text/javascript">
 

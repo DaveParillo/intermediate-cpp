@@ -5,5 +5,8 @@ Iterators
    :caption: Iterators
    :maxdepth: 2
 
-   iterators.rst
+   background.rst
+   iterator-pattern.rst
+   iterator-operations.rst
+   using.rst
 

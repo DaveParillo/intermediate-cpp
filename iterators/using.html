@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>8.1. Background &#8212; Intermediate Modern C++ Overview</title>
+    <title>8.4. Using iterators &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -110,7 +110,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="9. Algorithms" href="../algorithms/toctree.html" />
-    <link rel="prev" title="8. Iterators" href="toctree.html" />
+    <link rel="prev" title="8.3. Basic iterator operations" href="iterator-operations.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -230,17 +230,9 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">8.1. Background</a><ul>
-<li><a class="reference internal" href="#iterator-pattern">8.1.1. Iterator pattern</a></li>
-<li><a class="reference internal" href="#basic-iterator-operations">8.1.2. Basic iterator operations</a><ul>
-<li><a class="reference internal" href="#iterator-categories">8.1.2.1. Iterator categories</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#using-iterators">8.1.3. Using iterators</a><ul>
-<li><a class="reference internal" href="#limits-of-range-based-for-loops">8.1.3.1. Limits of Range-based for loops</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#container-functions-that-require-iterators">8.1.4. Container functions that require iterators</a></li>
+<li><a class="reference internal" href="#">8.4. Using iterators</a><ul>
+<li><a class="reference internal" href="#limits-of-range-based-for-loops">8.4.1. Limits of Range-based for loops</a></li>
+<li><a class="reference internal" href="#container-functions-that-require-iterators">8.4.2. Container functions that require iterators</a></li>
 </ul>
 </li>
 </ul>
@@ -250,8 +242,8 @@
         
         
           
-  <li id="relations-prev" title="Previous Chapter - 8. Iterators" data-toggle="tooltip">
-    <a href="toctree.html" >
+  <li id="relations-prev" title="Previous Chapter - 8.3. Basic iterator operations" data-toggle="tooltip">
+    <a href="iterator-operations.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
   </li>
@@ -287,172 +279,8 @@
 
 <div class="container" id="main-content">
   
-  <div class="section" id="background">
-<span id="index-0"></span><h1>8.1. Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h1>
-<p>How can we visit each <a class="reference internal" href="../glossary.html#term-element"><span class="xref std std-term">element</span></a> in a <a class="reference internal" href="../glossary.html#term-container"><span class="xref std std-term">container</span></a>
-and remain ignorant of the underlying container implementation details?
-For example, given:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="n">array</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">names</span> <span class="o">=</span> <span class="p">{{</span><span class="s">&quot;Alice&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s">&quot;Bob&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s">&quot;Clara&quot;</span><span class="p">}};;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span>
-                 <span class="n">ages</span>  <span class="o">=</span> <span class="p">{{</span><span class="s">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">27</span><span class="p">},</span> <span class="p">{</span><span class="s">&quot;Bob&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="s">&quot;Clara&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">}};</span>
-</pre></div>
-</div>
-<p>What options do we have for operating on each <a class="reference internal" href="../glossary.html#term-element"><span class="xref std std-term">element</span></a> in <code class="docutils literal"><span class="pre">names</span></code> and <code class="docutils literal"><span class="pre">ages</span></code>?
-A traditional <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=for loop">for loop</a> or <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=while loop">while loop</a> works for <code class="docutils literal"><span class="pre">names</span></code>:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">names</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">names</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
-  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Traditional loops using an <code class="docutils literal"><span class="pre">int</span></code> index do not work with containers
-that do not overload <code class="docutils literal"><span class="pre">operator[]</span></code>.
-We solve this problem by avoiding explicit indexing altogether.
-The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=range for loop">range for loop</a>
-provides a more readable equivalent to the traditional for loop:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">for</span> <span class="p">(</span><span class="n">string</span> <span class="nl">s</span><span class="p">:</span> <span class="n">names</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">s</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c1">// better: avoids copying</span>
-<span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">s</span><span class="p">:</span> <span class="n">names</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">s</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>The same syntax can be used for any STL container:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span>
-<span class="n">ages</span>  <span class="o">=</span> <span class="p">{{</span><span class="s">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">27</span><span class="p">},</span> <span class="p">{</span><span class="s">&quot;Bob&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="s">&quot;Clara&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">}};</span>
-
-<span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">a</span><span class="p">:</span> <span class="n">ages</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>When you need to loop over each element in a collection,
-the <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=range for loop">range for loop</a> has completely
-abstracted away the idea of moving from one element to the next.</p>
-<p>We say these containers are <a class="reference internal" href="../glossary.html#term-iterable"><span class="xref std std-term">iterable</span></a>.</p>
-<div class="section" id="iterator-pattern">
-<h2>8.1.1. Iterator pattern<a class="headerlink" href="#iterator-pattern" title="Permalink to this headline">¶</a></h2>
-<p>A <a class="reference internal" href="../glossary.html#term-design-pattern"><span class="xref std std-term">design pattern</span></a> is a general repeatable solution
-to a commonly occurring problem in software design.
-A primary goal of design patterns is to quickly transfer the knowledge
-gained by expert designers to newer programmers.
-Another goal is to allow for efficient communication between
-programmers.
-Design patterns contribute to a shared vocabulary between programmers.</p>
-<p>Because design patterns represent general ideas about solving
-classes of problems, they are language independent.
-In the case of <a class="reference internal" href="../glossary.html#term-iterator"><span class="xref std std-term">iterators</span></a>,
-the idea has solutions in most modern languages, including C++.</p>
-<p>Each STL container class provides an <a class="reference internal" href="../glossary.html#term-iterator"><span class="xref std std-term">iterator</span></a> class
-that clients can use to retrieve the correct
-<a class="reference internal" href="../glossary.html#term-element"><span class="xref std std-term">element</span></a> from the <a class="reference internal" href="../glossary.html#term-container"><span class="xref std std-term">container</span></a>.</p>
-<img src="../_images/graphviz-dc90b741f6d58422d385efeea1b3aa02434e2ca3.png" alt="Container iterators" />
-<p>The element defined by <code class="docutils literal"><span class="pre">begin()</span></code> is part of the sequence.</p>
-<p>The element defined by <code class="docutils literal"><span class="pre">end()</span></code> is <strong>not part</strong> of the sequence.
-In C++, the <code class="docutils literal"><span class="pre">end</span></code> iterator is always one past the end of the sequence.
-Forgetting this is a common source of error.</p>
-</div>
-<div class="section" id="basic-iterator-operations">
-<h2>8.1.2. Basic iterator operations<a class="headerlink" href="#basic-iterator-operations" title="Permalink to this headline">¶</a></h2>
-<p>By design, iterators in C++ feel as if you are using pointers.
-Most iterators support the same operations as pointers.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="20%" />
-<col width="80%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Operation</th>
-<th class="head">Result</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">p</span> <span class="pre">==</span> <span class="pre">q</span></code></td>
-<td><code class="docutils literal"><span class="pre">true</span></code> if and only if <code class="docutils literal"><span class="pre">p</span></code> and <code class="docutils literal"><span class="pre">q</span></code>
-point to the same element or both point to <code class="docutils literal"><span class="pre">end</span></code></td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">p</span> <span class="pre">!=</span> <span class="pre">q</span></code></td>
-<td>negation of above</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">*p</span></code></td>
-<td>refers to the element pointed to by <code class="docutils literal"><span class="pre">p</span></code></td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">*p</span> <span class="pre">=</span> <span class="pre">val</span></code></td>
-<td>writes <code class="docutils literal"><span class="pre">val</span></code> to the element pointed to by <code class="docutils literal"><span class="pre">p</span></code></td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">val</span> <span class="pre">=</span> <span class="pre">*p</span></code></td>
-<td>reads from the element pointed to by <code class="docutils literal"><span class="pre">p</span></code> and
-writes to <code class="docutils literal"><span class="pre">val</span></code></td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">++p</span></code></td>
-<td>increment the iterator, making it point to the next
-element in the container or to <code class="docutils literal"><span class="pre">end</span></code></td>
-</tr>
-</tbody>
-</table>
-<div class="section" id="iterator-categories">
-<h3>8.1.2.1. Iterator categories<a class="headerlink" href="#iterator-categories" title="Permalink to this headline">¶</a></h3>
-<p>Different containers need different capabilities from their iterators.</p>
-<p>Instead of being defined by specific types,
-each category of iterator is defined by the operations that can be performed on it.
-This definition means that any type that supports the necessary operations
-can be used as an iterator — for example,
-a pointer supports all of the operations required by <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Random Access Iterator">Random Access Iterator</a>,
-so a pointer can be used anywhere a <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Random Access Iterator">Random Access Iterator</a> is expected.</p>
-<p>All of the iterator categories (except <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Output Iterator">Output Iterator</a>) can be organized into a hierarchy,
-where more powerful iterator categories (e.g. <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Random Access Iterator">Random Access Iterator</a>)
-support the operations of less powerful categories (e.g. <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Input Iterator">Input Iterator</a>).
-If an iterator falls into one of these categories and also satisfies the
-requirements of <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Output Iterator">Output Iterator</a>,
-then it is called a <em>mutable iterator</em> and supports both input and output.
-Non-mutable iterators are called <em>constant iterators</em>.</p>
-<img src="../_images/graphviz-35eb6f3d7282d7cf53cab016d8bf6ed4958f834e.png" alt="Iterator categories" usemap="#iter_categories" />
-<map id="iter_categories" name="iter_categories">
-<area shape="rect" id="node1" href="http://en.cppreference.com/w/cpp/concept/InputIterator" title="Input Iterator" alt="" coords="39,5,140,36"/>
-<area shape="rect" id="node2" href="http://en.cppreference.com/w/cpp/concept/ForwardIterator" title="Forward Iterator" alt="" coords="29,65,150,96"/>
-<area shape="rect" id="node6" href="http://en.cppreference.com/w/cpp/concept/OutputIterator" title="Output Iterator" alt="" coords="259,125,371,156"/>
-<area shape="rect" id="node3" href="http://en.cppreference.com/w/cpp/concept/BidirectionalIterator" title="Bidirectional Iterator" alt="" coords="16,125,163,156"/>
-<area shape="rect" id="node4" href="http://en.cppreference.com/w/cpp/concept/RandomAccessIterator" title="RandomAccess Iterator" alt="" coords="5,185,173,216"/>
-<area shape="rect" id="node5" href="http://en.cppreference.com/w/cpp/concept/ContiguousIterator" title="Contiguous Iterator" alt="" coords="19,245,160,276"/>
-</map>
-<dl class="docutils">
-<dt><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Input Iterator">Input Iterator</a></dt>
-<dd>Read elements and increments using <code class="docutils literal"><span class="pre">operator++</span></code>, without multiple passes.
-Classes like <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::instream">std::instream</a> provide this iterator.</dd>
-<dt><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Forward Iterator">Forward Iterator</a></dt>
-<dd><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=InputIterator">InputIterator</a>, plus increment using <code class="docutils literal"><span class="pre">operator++</span></code>, with multiple passes.
-The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::forward_list">std::forward_list</a> container provides this iterator.</dd>
-<dt><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Bidirectional Iterator">Bidirectional Iterator</a></dt>
-<dd><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=ForwardIterator">ForwardIterator</a>, plus decrement using <code class="docutils literal"><span class="pre">operator--</span></code>
-Containers like <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::list">std::list</a>, <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::map">std::map</a>, and <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::set">std::set</a>
-provide this iterator.</dd>
-<dt><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Random Access Iterator">Random Access Iterator</a></dt>
-<dd><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=BidirectionalIterator">BidirectionalIterator</a>, plus access using <code class="docutils literal"><span class="pre">operator[]</span></code>
-Before C++17, containers like <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::vector">std::vector</a>, <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::array">std::array</a>, and <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::string">std::string</a>
-provided this iterator.
-It is still used for unordered collections like
-<a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::unordered_map">std::unordered_map</a> and <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::unordered_set">std::unordered_set</a></dd>
-<dt><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Contiguous Iterator">Contiguous Iterator</a></dt>
-<dd><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=RandomAccessIterator">RandomAccessIterator</a>, plus the container make a continuous storage guarantee.
-This category was added in C++17.
-Before C++17, iterators of containers like <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::vector">std::vector</a> and <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::array">std::array</a>
-were often treated as a separate category.
-This category simply formalizes what was happening in practice.</dd>
-<dt><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Output Iterator">Output Iterator</a></dt>
-<dd>More of a ‘sub category of all of the others.
-If the iterator allows writing to the element, it is also an <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=OutputIterator">OutputIterator</a></dd>
-</dl>
-</div>
-</div>
-<div class="section" id="using-iterators">
-<h2>8.1.3. Using iterators<a class="headerlink" href="#using-iterators" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="using-iterators">
+<span id="index-0"></span><h1>8.4. Using iterators<a class="headerlink" href="#using-iterators" title="Permalink to this headline">¶</a></h1>
 <p>Assigning an iterator explicitly to a variable works much like any other type:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">nums</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">};</span>
 <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">it</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
@@ -518,7 +346,7 @@ When you don’t need an iterator, don’t use it:</p>
 Unless the container is a container of pointers, no dereferencing is needed.</dd>
 </dl>
 <div class="section" id="limits-of-range-based-for-loops">
-<h3>8.1.3.1. Limits of Range-based for loops<a class="headerlink" href="#limits-of-range-based-for-loops" title="Permalink to this headline">¶</a></h3>
+<h2>8.4.1. Limits of Range-based for loops<a class="headerlink" href="#limits-of-range-based-for-loops" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Range-for loop">Range-for loop</a>, while convenient, has limitations.</p>
 <p>Any situation in which you do not need or want to visit every element
 requires a traditional loop:</p>
@@ -536,36 +364,37 @@ possibly at different rates, then you need a traditional for loop:</p>
 </div>
 <p>If you need to <a class="reference internal" href="../glossary.html#term-traverse"><span class="xref std std-term">traverse</span></a> a container and remove items,
 then you need an explicit iterator so that you can call the container <code class="docutils literal"><span class="pre">erase</span></code> method:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">nums</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">};</span>
-
-<span class="c1">// Erase all even numbers</span>
-<span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">nums</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">it</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">it</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">it</span><span class="p">);</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="o">++</span><span class="n">it</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Things to note about this example:</p>
-<ul class="simple">
-<li><code class="docutils literal"><span class="pre">it</span></code> is not incremented in the for loop iteration expression</li>
-<li>If an element is erased, the current iterator is <em>invalidated</em>.
-Any further use would be an error in a <code class="docutils literal"><span class="pre">vector</span></code>.
-The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=vector::erase">vector::erase</a> function returns the iterator to the next element
-in the container.</li>
-</ul>
-</div>
+<p>See the erase example in the following section.</p>
 </div>
 <div class="section" id="container-functions-that-require-iterators">
-<h2>8.1.4. Container functions that require iterators<a class="headerlink" href="#container-functions-that-require-iterators" title="Permalink to this headline">¶</a></h2>
+<h2>8.4.2. Container functions that require iterators<a class="headerlink" href="#container-functions-that-require-iterators" title="Permalink to this headline">¶</a></h2>
 <p>Most container functions that use position information do not use an index like <code class="docutils literal"><span class="pre">operator[]</span></code>.
 Most of them express position using iterators.</p>
 <dl class="docutils">
 <dt>insert</dt>
 <dd>Inserts elements at the specified location in the container.</dd>
 </dl>
+<div id='tab_iterator_using_insert' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Example" >
+<p>Create a <code class="docutils literal"><span class="pre">vector&lt;int&gt;</span></code> and initialize it with 3 values:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">nums</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Insert a value at the beginning of the vector:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+<span class="n">it</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Insert 2 values at the beginning of the vector:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">it</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Insert one vector into another vector:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">fib</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">21</span><span class="p">};</span>
+<span class="n">nums</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">it</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">fib</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">fib</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run it" >
 
 <div data-childcomponent="ac_iterator_insert" class="runestone explainer ac_section alert alert-warning">
 
@@ -584,34 +413,70 @@ void print(const std::vector<int>& v) {
 }
 
 int main () {
-    std::vector<int> nums(3,100);
-    print(nums);
+  std::vector<int> nums(3,100);
+  print(nums);
 
-    auto it = nums.begin();
-    it = nums.insert(it, 200);
-    print(nums);
+  auto it = nums.begin();
+  it = nums.insert(it, 200);
+  print(nums);
 
-    nums.insert(it,2,300);
-    print(nums);
+  nums.insert(it,2,300);
+  print(nums);
 
-    // 'it' no longer valid, get a new one:
-    it = nums.begin();
+  // 'it' no longer valid, get a new one:
+  it = nums.begin();
 
-    std::vector<int> vec2(2,400);
-    nums.insert(it+2, vec2.begin(), vec2.end());
-    print(nums);
+  std::vector<int> fib {1, 1, 2, 3, 5, 8, 13, 21};
+  nums.insert(it+2, fib.begin(), fib.end());
+  print(nums);
 
-    int arr[] = { 501,502,503 };
-    nums.insert(nums.begin(), arr, arr+3);
-    print(nums);
+  int arr[] = { 501,502,503 };
+  nums.insert(nums.begin(), arr, arr+3);
+  print(nums);
 }
 </textarea>
 </div>
+</div>
+    </div>
+
 <dl class="docutils">
 <dt>erase</dt>
 <dd>Removes specified elements from the container.
 <code class="docutils literal"><span class="pre">erase</span></code> may remove a single element or a contiguous range of elements.</dd>
 </dl>
+<div id='tab_iterator_using_erase' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Example" >
+<p>Given a <code class="docutils literal"><span class="pre">vector&lt;int&gt;</span></code>:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">nums</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>We can erase the first element:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">nums</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>or erase a range of adjacent elements:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">nums</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="mi">5</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>or erase other elements:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// Erase all even numbers</span>
+<span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">nums</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">*</span> <span class="n">it</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">it</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">it</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="o">++</span><span class="n">it</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Things to note about this example:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">it</span></code> is not incremented in the for loop iteration expression</li>
+<li>If an element is erased, the current iterator is <em>invalidated</em>.
+Any further use would be an error in a <code class="docutils literal"><span class="pre">vector</span></code>.
+The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=vector::erase">vector::erase</a> function returns the iterator to the next element
+in the container.</li>
+</ul>
+</div><div data-component="tab" data-tabname="Run it" >
 
 <div data-childcomponent="ac_iterator_erase" class="runestone explainer ac_section alert alert-warning">
 
@@ -621,7 +486,6 @@ int main () {
     data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++11']"     >
 #include <vector>
 #include <iostream>
-
 
 void print(const std::vector<int>& v) {
   for (auto x: v) {
@@ -641,10 +505,24 @@ int main( ) {
   nums.erase(nums.begin()+2, nums.begin()+5);
   print(nums);
 
+  nums = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+  // Erase all even numbers
+  for (auto it = nums.begin(); it != nums.end(); ) {
+    if (* it % 2 == 0) {
+      it = nums.erase(it);
+    } else {
+      ++it;
+    }
+  }
+
   return 0;
 }
 </textarea>
 </div>
+</div>
+    </div>
+
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">
 <p class="first admonition-title">More to Explore</p>
@@ -659,12 +537,12 @@ int main( ) {
 
   
       
-  <li id="relations-prev" class="navLink" title='Previous Section - 8. Iterators' data-toggle="tooltip">
-    <a href="toctree.html" >
+  <li id="relations-prev" class="navLink" title='Previous Section - 8.3. Basic iterator operations' data-toggle="tooltip">
+    <a href="iterator-operations.html" >
       <i class='prevNav glyphicon glyphicon-chevron-left'></i>
     </a>
   </li>
-  <a class="navLinkBg" id="navLinkBgLeft"  href="toctree.html" ></a>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="iterator-operations.html" ></a>
   
   <li id="relations-next" class="navLink" title='Next Section - 9. Algorithms' data-toggle="tooltip" >
     <a href="../algorithms/toctree.html" >
