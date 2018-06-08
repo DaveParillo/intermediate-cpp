@@ -15,24 +15,30 @@ Do I need to know math?
 
 *Math* is a broad topic.
 
-For **most** programming activities, the answer is no (or very little).
-Nearly every programming statement, however,
+Nearly every programming statement in any language
 is either a *logic expression* or an *algebraic statement*.
-So a firm grasp of boolean expressions, basic (high school) algebra,
+A firm grasp of boolean expressions, basic (high school) algebra,
 and an ability to think through problems is critical.
+Programmers avoid this material at their peril.
 
-The final answer also depends on what kind of programs you write.
+Don't panic.
+Do most programmers spend their days working through advanced calculus problems?
+No.
+
+The final answer ultimately depends on what kind of programs you write.
 If you are writing game graphics or physics engines, 
 numerical modeling, 
 complex financial analysis, or something similar,
-then you may need to know some math.
+then yes, math is critical.
 
 If you spend a lot of time in a specialized domain like these,
 then you may find a physics degree as useful as a math or computer science degree.
+Otherwise, a solid understanding of what you learned in high school
+will suffice most of the time.
 
 **One last word:**
 
 In my experience, programmers who know more math,
-or who have specialized domain expertise in some field
-are more highly compensated than those who only know the basics.
+or who have specialized domain expertise
+are more highly compensated than those who don't
 
