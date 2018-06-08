@@ -1,0 +1,27 @@
+.. activecode:: ac_begin_compiler_test_1z
+   :language: cpp
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++1z']
+
+   // A simple test for C++17 support
+   // compiled with: -Wall -Wextra -pedantic -std=c++1z
+
+    #include <iostream>
+    #include <memory>
+
+    template <typename T>
+    auto get_value(T t) {                   // auto return type deduction: c++14
+        if constexpr (std::is_pointer_v<T>) // constexpr-if: C++17
+            return *t;
+        else
+            return t;
+    }
+
+    int main()
+    {
+         auto pi = std::make_unique<int>(9);
+         int i = 9;
+                 
+         std::cout << get_value(pi.get()) << "\n";
+         std::cout << get_value(i) << "\n";
+    }
+

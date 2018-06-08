@@ -1,0 +1,60 @@
+.. activecode:: ac_floats_2
+   :language: c
+
+   #include <stdio.h>
+   #include <math.h>
+   #include <values.h>
+
+   /* endianness testing */
+   const int EndianTest = 0x04030201;
+
+   #define LITTLE_ENDIAN() (*((const char *) &EndianTest) == 0x01)
+
+   /* extract nth LSB from object stored in lvalue x */
+   #define GET_BIT(x, n) ((((const char *) &x)[LITTLE_ENDIAN() ?\
+             (n) / CHARBITS :\
+             sizeof(x) - (n) / CHARBITS - 1] >> ((n) % CHARBITS)) & 0x01)
+
+   #define PUT_BIT(x, n) (putchar(GET_BIT((x), (n)) ? '1' : '0'))
+
+   void print_float_bits(float f) {
+     int i;
+
+     i = FLOATBITS - 1;
+     PUT_BIT(f, i);
+     putchar(' ');
+     for(i--; i >= 23; i--) {
+       PUT_BIT(f, i);
+     }
+     putchar(' ');
+     for(; i >= 0; i--) {
+       PUT_BIT(f, i);
+     }
+   }
+
+   void print_float(float f) {
+     printf("%2g = ", f);
+     print_float_bits(f);
+     putchar('\n');
+   }
+
+   int main(int argc, char** argv) {
+     float u = -1.0;
+     float v = u * 0.0;
+     float w = v * -1.0;
+     puts(" x = S   exp     mantissa");
+     print_float(u);
+     print_float(v);
+     print_float(w);
+     print_float(1.0);
+     print_float(0.1);
+     print_float(0.5);
+     print_float(2.0);
+     print_float(3.0);
+     print_float(6.0);
+     print_float(8.0);
+     print_float(13.0);
+     print_float(21.0);
+   }
+
+

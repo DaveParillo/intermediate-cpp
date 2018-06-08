@@ -1,0 +1,20 @@
+A simple test for a modern C++ compiler:
+
+.. activecode:: ac_begin_compiler_test
+   :language: cpp
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+
+   // A simple test for C++11 compiler
+   // compiled with: -Wall -Wextra -pedantic -std=c++11
+ 
+   #include <iostream>
+
+   // test C++11 features
+   int main () {
+     int test[] = { 1, 2, 3, 5, 8 };  // can we use an initializer list?
+     for (auto i: test) {             // can we use a range-for loop?
+       std::cout << "i is " << i << '\n';
+     }
+     return 0;
+   }
+

@@ -137,7 +137,15 @@ reside in every directory: ``.`` and ``..``.
   The only directory that does not contain a ``..`` file is the root directory: ``/``.
 
 
-In addition, the 
+In addition, the character ~ (tilde) is an abbreviation for the path to any user home directory.
+
+.. code-block:: none
+
+   ls ~alice/public_html
+
+Displays the contents of the public_html folder in her home directory,
+regardless of where her home directory actually is located.
+
 
 .. reveal:: reveal-skill-check-paths
    :showtitle: Show Skill Check

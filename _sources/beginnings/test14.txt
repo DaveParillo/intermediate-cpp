@@ -1,0 +1,45 @@
+The current textbook compiler does not support C++14.
+This valid code fails to compile:
+
+.. activecode:: ac_begin_compiler_test_1y
+   :language: cpp
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++1y']
+
+   // A simple test for 'make_unique' support
+   // compiled with: -Wall -Wextra -pedantic -std=c++1y
+       
+   #include <iostream>
+   #include <memory>
+        
+   struct point
+   {
+       int x, y;
+       point() : x(0), y(0) { }
+       point(int x, int y) :x(x), y(y) { }
+   };
+   std::ostream& operator<<(std::ostream& os, const point& p) {
+       return os << '{' << "x:" << p.x << " y:" << p.y << '}';
+   }
+      
+   int main()
+   {
+       // Use the default constructor.
+       std::unique_ptr<point> p1 = std::make_unique<point>();
+       // Use the constructor that matches these arguments
+       std::unique_ptr<point> p2 = std::make_unique<point>(1, 2);
+       // Create a unique_ptr to an array of 5 elements
+       std::unique_ptr<point[]> p3 = std::make_unique<point[]>(5);
+      
+       std::cout << "make_unique<point>():      " << *p1 << '\n'
+                 << "make_unique<point>(1,2): " << *p2 << '\n'
+                 << "make_unique<point[]>(5):   " << '\n';
+       for (int i = 0; i < 5; i++) {
+           std::cout << "     " << p3[i] << '\n';
+       }
+   }
+
+.. **
+
+If you run it on `cppreference.com <http://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique>`_
+then you can see the output.
+
