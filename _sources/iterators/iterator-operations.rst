@@ -96,7 +96,7 @@ Non-mutable iterators are called *constant iterators*.
 
 :cref:`Input Iterator`
    Read elements and increments using ``operator++``, without multiple passes.
-   Classes like :cref:`std::instream` provide this iterator.
+   Classes like :cref:`std::basic_istream` provide this iterator.
 
 
 :cref:`Forward Iterator`
@@ -127,6 +127,13 @@ Non-mutable iterators are called *constant iterators*.
 :cref:`Output Iterator`
    More of a 'sub category of all of the others.
    If the iterator allows writing to the element, it is also an :cref:`OutputIterator`
+   An output iterator can **only** be dereferenced on the left-hand side of an expression:
+
+   .. code-block:: cpp
+
+      vector<int> v = {1,2,3};
+      auto it = v.begin();
+      *it = 0;
 
 -----
 
