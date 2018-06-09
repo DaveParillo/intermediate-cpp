@@ -118,14 +118,15 @@ possibly at different rates, then you need a traditional for loop:
    }
 
 If you need to :term:`traverse` a container and remove items,
-then you need an explicit iterator so that you can call the container ``erase`` method:
+then you need an explicit iterator so that you can call the container ``erase`` method.
 
 See the erase example in the following section.
 
 Container functions that require iterators
 ------------------------------------------
-Most container functions that use position information do not use an index like ``operator[]``.
-Most of them express position using iterators.
+Most container functions that use position information do not 
+accept an integral position or an index like ``operator[]``.
+Position information is expressed using iterators.
 
 insert
    Inserts elements at the specified location in the container.
@@ -223,72 +224,32 @@ erase
 
       or erase a range of adjacent elements:
 
-      .. code-block:: cpp
-
-         nums.erase(nums.begin()+2, nums.begin()+5);
+      .. literalinclude:: using_erase.txt
+         :language: cpp
+         :dedent: 5
+         :lines: 23
 
       or erase other elements:
 
-      .. code-block:: cpp
+      .. literalinclude:: using_erase.txt
+         :language: cpp
+         :dedent: 5
+         :lines: 28-35
 
-         // Erase all even numbers 
-         for (auto it = nums.begin(); it != nums.end(); ) {
-           if (* it % 2 == 0) {
-             it = nums.erase(it);
-           } else {
-             ++it;
-           }
-         }
-
-      Things to note about this example:
+      Things to note about the last erase example:
 
       - ``it`` is not incremented in the for loop iteration expression
       - If an element is erased, the current iterator is *invalidated*.
         Any further use would be an error in a ``vector``.
+
         The :cref:`vector::erase` function returns the iterator to the next element
         in the container.
+      - If an element is **not** erased, *then* increment the iterator.
 
 
    .. tab:: Run it
 
-      .. activecode:: ac_iterator_erase
-         :language: cpp
-         :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
-
-         #include <vector>
-         #include <iostream>
-         
-         void print(const std::vector<int>& v) {
-           for (auto x: v) {
-             std::cout << ' ' << x;
-           }
-           std::cout << '\n';
-         }
-
-         int main( ) { 
-           std::vector<int> nums = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-           print(nums);
-         
-           nums.erase(nums.begin());
-           print(nums);
-         
-         
-           nums.erase(nums.begin()+2, nums.begin()+5);
-           print(nums);
-
-           nums = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-
-           // Erase all even numbers 
-           for (auto it = nums.begin(); it != nums.end(); ) {
-             if (* it % 2 == 0) {
-               it = nums.erase(it);
-             } else {
-               ++it;
-             }
-           }
-
-           return 0;
-         }
+      .. include:: using_erase.txt
 
 
 -----

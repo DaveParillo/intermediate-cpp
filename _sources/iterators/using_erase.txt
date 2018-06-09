@@ -1,0 +1,40 @@
+.. activecode:: ac_iterator_erase
+   :language: cpp
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+
+   #include <vector>
+   #include <iostream>
+   
+   void print(const std::vector<int>& v) {
+     for (auto x: v) {
+       std::cout << ' ' << x;
+     }
+     std::cout << '\n';
+   }
+
+   int main( ) { 
+     std::vector<int> nums = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+     print(nums);
+   
+     nums.erase(nums.begin());
+     print(nums);
+   
+   
+     nums.erase(nums.begin()+2, nums.begin()+5);
+     print(nums);
+
+     nums = {2, 7, 1, 8, 2, 8, 1, 8, 2, 8, 4, 5, 9};
+
+     // Erase all even numbers 
+     for (auto it = nums.begin(); it != nums.end(); ) {
+       if (*it % 2 == 0) {
+         it = nums.erase(it);
+       } else {
+         ++it;
+       }
+     }
+     print(nums);
+
+     return 0;
+   }
+
