@@ -21,5 +21,11 @@ TBD
 
 .. admonition:: More to Explore
 
-   TBD
+   - From cppreference.com
+
+     - Overview of the `algorithms <http://en.cppreference.com/w/cpp/algorithm>`_ library
+     - `std::find <http://en.cppreference.com/w/cpp/algorithm/find>`_ (and find_if), 
+       `std::count_if <http://en.cppreference.com/w/cpp/algorithm/count_if>`_
+     - `for_each <http://en.cppreference.com/w/cpp/algorithm/for_each>`_ and 
+       `make_heap <http://en.cppreference.com/w/cpp/algorithm/make_heap>`_
 

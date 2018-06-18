@@ -7,7 +7,7 @@
     License".
 
 .. index:: 
-   single: associative containers
+   single: trees
 
 Motivation
 ==========
@@ -48,7 +48,7 @@ we have to search the vector 1 element at a time until we find it.
 
 .. code-block:: cpp
 
-   vector<int> messy_closet (1000000);  // a fairly big vector
+   vector<int> messy_closet (1024 * 1024 * 1024);  // a fairly big vector
    
    // modify closet . . . 
 

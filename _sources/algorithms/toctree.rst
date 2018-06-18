@@ -5,4 +5,4 @@ Algorithms
    :caption: Algorithms
    :maxdepth: 2
 
-   foo.rst
+   intro.rst
