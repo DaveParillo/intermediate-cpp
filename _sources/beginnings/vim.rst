@@ -340,6 +340,10 @@ The ``make`` utility is described in more detail in the :doc:`make` section.
    - `Learning the vi Editor <https://en.wikibooks.org/wiki/Learning_the_vi_Editor>`_
    - `vi Reference <https://en.wikibooks.org/wiki/Learning_the_vi_Editor/vi_Reference>`_
    - `Vim Tips wiki <http://vim.wikia.com/wiki/Vim_Tips_Wiki>`_
+   - `vim.org <http://www.vim.org/>`_
+   - `vi reference cards <http://tnerual.eriogerg.free.fr/vim.html>`_ - available in several languages 
+   - `vi lovers home page <http://www.thomer.com/vi/vi.html>`_
+   - Swarthmore Dept. of Compter Science `vim tips and tricks page <https://www.cs.swarthmore.edu/help/vim/home.html>`_
 
    **Text editor downloads**
 
