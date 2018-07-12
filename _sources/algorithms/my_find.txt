@@ -1,0 +1,33 @@
+.. activecode:: ac-algorithm-my-find
+   :language: cpp
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+
+   #include <algorithm>
+   #include <iostream>
+   #include <vector>
+
+   // function to find 'x' in v
+   std::vector<int>::iterator 
+   find(std::vector<int>& v, int x) {
+     for(auto p = v.begin(); p != v.end(); ++p) {
+       if (x == *p) return p;
+     }
+     // did not find x
+     return v.end();
+   }
+            
+   int main () {
+     int value = 144;
+     std::vector<int> nums(999);
+     std::iota(nums.begin(), nums.end(), -72);
+     auto it = find(nums, value);
+     
+     if (it == nums.end()) {
+       std::cout << "Did not find " << value <<  '\n';
+     } else {
+       std::cout << "Found " << value << " at position "
+                 << (std::distance(nums.begin(), it)) << '\n';
+     }
+     return 0;
+   }
+

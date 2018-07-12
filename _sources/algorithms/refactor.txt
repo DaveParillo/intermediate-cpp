@@ -1,0 +1,37 @@
+.. activecode:: ac-algorithm-refactor-sum
+   :language: cpp
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+
+   #include <iostream>
+   #include <list>
+
+   // accumulate the sum of values in range [first, last)
+   template <typename InputIt, typename T>
+   // requires: InputIt is convertible to T when dereferenced
+   //        && InputIt is EqualityComparable
+   //        && T is Regular
+   T sum (InputIt first, InputIt last, T value) {
+     while (first != last) {
+       value = value + *first;
+       ++first;
+     }
+     return value;
+   }
+    
+   int main () {
+     float a[]  = {1,1,2,3,5,8,13,21,34};
+     float* end = a+sizeof(a)/sizeof(*a);
+     double d   = 0;
+
+     d = sum (a, end, d);
+     std::cout << "array sum  = " << d << '\n';
+
+     // now do list
+     d = 0;
+     std::list<float> b = {1,1,2,3,5,8,13,21,34};
+
+     d = sum (b.begin(), b.end(), d);
+     std::cout << "list sum  = " << d << '\n';
+     return 0;
+   }
+

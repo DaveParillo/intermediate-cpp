@@ -102,7 +102,7 @@ The algorithms are organized into broad categories:
 Algorithm operations                Example algorithms
 =================================== ==========================================================================
 Non-modifying sequence operations   :cref:`for_each`, :cref:`count_if`, :cref:`find_if`, :cref:`search`
-Modifying sequence operations       :cref:`copy_if`, :cref:`move`, :cref:`transform`, :cref:`generate`
+Modifying sequence operations       :cref:`copy_if`, :cref:`move`, :cref:`swap`, :cref:`transform`
 Partitioning operations             :cref:`is_partitioned`, :cref:`partition_copy`, :cref:`stable_partition`
 Sorting operations                  :cref:`is_sorted`, :cref:`sort`, :cref:`stable_partition`
 Binary search operations            :cref:`lower_bound`, :cref:`binary_search`, :cref:`equal_range`
@@ -125,7 +125,88 @@ C++17 adds 6 more.
 
 STL algorithms and loops
 ------------------------
-TBD
+Most STL algorithms are essentially wrappers around loops.
+They often take a range of elements and an operation that is performed on each element.
+Structurally, this makes them similar to loops.
+
+Most tasks you've written so far could be rewritten using algorithms.
+
+One way to think about STL algorithms is to consider them *named loops*.
+That is, a loop that is important and general enough
+to justify getting named and encapsulated in its own function.
+
+:cref:`iota` is a STL algorithm that fills a range ``[first, last)`` 
+with sequentially increasing values.
+This is the sort of algorithm that occurs often enough that it was decided
+to include it in the standard library 
+(but not until C++11).
+
+.. tabbed:: iota
+
+   .. tab:: Example: iota
+
+      The parameter ``value`` defines the start value.
+      This value is assigned to ``first``,
+      and both ``first`` and ``value`` are incremented.
+
+      .. literalinclude:: iota.txt
+         :language: cpp
+         :start-after: // possible
+         :end-before: void print
+         :dedent: 3
+         :linenos:
+
+      Note the order of operations on 5.
+
+      - First ``first`` is dereferenced and ``value`` is assigned.
+      - **Then** the iterator is incremented.
+
+   .. tab:: Run It
+
+      .. include:: iota.txt
+
+      
+Why prefer algorithms to hand-written loops?
+
+- Efficiency, for one.
+
+  Algorithms are often more efficient than the loops programmers produce.
+  The developers of the STL have had overt 20 years to consider how to make these
+  algorithms efficient.
+  Many algorithms have code to handle specific edge cases your initial implementations
+  might overlook.
+
+- Correctness
+
+  Writing loops is more subject to errors than algorithm calls.
+  As a programmer you have to worry about initializing the loop,
+  incrementing the loop, terminating the loop as well as the loop body.
+
+  When calling an algorithm, you only need to get the start and end
+  iterators correct.
+
+  Often you don't even need to care about the body - the algorithm takes care
+  of all the details for you. Sometimes a lambda or function pointer is expected.
+
+  The STL implementations have been carefully reviewed and tested in
+  many thousands of programs.
+  It is safe to say that any STL algorithm has been tested more thoroughly
+  than any comparable code you write yourself.
+
+
+- Maintainability
+
+  Algorithm calls result in clearer code.
+  The STL is designed around a simple consistent set of interfaces.
+  The more you use these interfaces, the more consistently
+  your own code will be structured.
+
+  When combined together, algorithms can eliminate lots of code
+  you other wise would have needed to write and
+  results in more straightforward than the corresponding explicit loops.
+
+  Code you use from the STL is code you don't need to maintain.
+  The less code you have to maintain, the cheaper and easier it is to maintain.
 
 
 -----

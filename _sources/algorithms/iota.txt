@@ -1,0 +1,35 @@
+.. activecode:: ac-algorithm-iota
+   :language: cpp
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+
+   #include <iomanip>
+   #include <iostream>
+   #include <vector>
+
+   // possible implementation for iota
+   template<typename ForwardIterator, typename T>
+   void iota(ForwardIterator first, 
+             ForwardIterator last, T value) {
+     while(first != last) {
+       *first++ = value;
+       ++value;
+     }
+   }
+
+   void print(const std::vector<int>& v) {
+     for (auto x: v) {
+       std::cout << std::setw(3) << x;
+     }
+     std::cout << '\n';
+   }
+            
+   int main () {
+     std::vector<int> nums(13);
+     std::cout << "Before iota:";
+     print(nums);
+     
+     iota(nums.begin(), nums.end(), -6);
+     std::cout << "After iota: ";
+     print(nums);
+   }
+

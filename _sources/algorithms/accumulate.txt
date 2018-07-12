@@ -1,0 +1,44 @@
+.. activecode:: ac-algorithm-refactor-accumulate
+   :language: cpp
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+
+   #include <cstddef>
+   #include <iostream>
+   #include <functional>
+   #include <vector>
+
+   // accumulate the sum of values in range [first, last)
+   // using the binary operation op
+   template <typename InputIt, typename T, typename BinaryOp>
+   // requires: InputIt is convertible to T when dereferenced
+   //        && InputIt is EqualityComparable
+   //        && T is Regular
+   T accumulate (InputIt first, 
+                 InputIt last, 
+                 T value,
+                 BinaryOp op) {
+     while (first != last) {
+       value = op(value, *first);
+       ++first;
+     }
+     return value;
+   }
+
+   // version that provides a default operation
+   template <typename InputIt, typename T>
+   T accumulate (InputIt first, InputIt last, T value) {
+     return accumulate(first, last, value, std::plus<T>());
+   }
+
+   int main () {
+     std::size_t sum = 0;
+     std::vector<std::size_t> x = {1,1,2,3,5,8,13,21,34};
+     sum = accumulate (x.begin(), x.end(), sum);
+     std::cout << "vector sum  = " << sum << '\n';
+
+     std::size_t product = 1;
+     product = accumulate (x.begin(), x.end(), product, std::multiplies<std::size_t>());
+     std::cout << "vector product  = " << product << '\n';
+     return 0;
+   }
+

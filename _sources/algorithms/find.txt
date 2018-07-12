@@ -1,0 +1,37 @@
+.. activecode:: ac-algorithm-std-find
+   :language: cpp
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+
+   #include <algorithm>
+   #include <iostream>
+   #include <vector>
+
+   // function to find 'x' between first and last
+   template<class InputIt, class T>
+   // requires: InputIt is Convertible to T when dereferenced
+   //        && InputIt is EqualityComparable
+   //        && T is Regular
+   InputIt my_find(InputIt first, InputIt last, const T& value)
+   {
+     for (; first != last; ++first) {
+       if (*first == value) {
+         return first;
+       }
+     }
+     return last;
+   }
+    
+   int main () {
+     int value = 144;
+     std::vector<int> nums(999);
+     std::iota(nums.begin(), nums.end(), -72);
+
+     auto it  = find(nums.begin(), nums.end(), value);
+     
+     if (it != nums.end()) {
+       std::cout << "my_find() found " << value << " at position "
+                 << (std::distance(nums.begin(), it)) << '\n';
+     }
+     return 0;
+   }
+
