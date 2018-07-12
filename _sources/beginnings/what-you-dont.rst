@@ -54,14 +54,18 @@ power of the *Standard Template Library* (STL).
 The STL was not developed until C++ had been used for more than 10 years.
 While it was incorporated into the first ISO version of the C++ standard (C++98),
 it took some time for many programmers to recognize the power and flexibility
-of :term:`generic programming`.
+of :term:`template programming <generic programming>`
+in addition to the  :term:`object oriented programming paradigm`
+C++ was originally designed to support.
 
-Unfortunately, some of you have "learned C++" mostly using an environment like
-CHide. CHide is not C++.
-It does not conform even to the C++98 version of the standard
-because it don't include the STL.
 
-C++ is actually a federation of several languages:
+.. index:: 
+   pair: graph; C++ evolution
+
+If the language or compiler you learned does not conform to at least the 
+C++98 version of the standard, then it's not C++.
+
+To add to the confusion, C++ is actually a federation of several languages:
 
 .. graphviz::
 
@@ -83,16 +87,21 @@ C++ is actually a federation of several languages:
    }
 
 Where 'Modern' C++ is C++11 and later.
-More specifically, the current version of the standard.
+More specifically, the **current** version of the standard.
 
 It is possible to write code in any of these languages
 compile it with a C++ compiler and call it a "C++ program".
 This course emphasizes 'modern' C++.
 Although there is emphasis on newer language features, 
 that does not mean that features released before 2011 should never be used.
+That would be impossible.
+
 Generally, C++ gives programmers many choices and it is true
 that some choices are preferred over others.
-We will try to make preferred programming choices clear.
+We will try to make preferred design and programming choices clear.
+
+You can test the level of support for the compiler you are using by
+attempting to compile these examples in your environment.
 
 .. tabbed:: tab_beginning_compiler_test
 
@@ -110,7 +119,7 @@ We will try to make preferred programming choices clear.
 
       .. include:: test17.txt
 
-And now we know what our capabilities are.
+And now we know what our textbook capabilities are.
 
 
 GNU/Linux (or Unix) in general

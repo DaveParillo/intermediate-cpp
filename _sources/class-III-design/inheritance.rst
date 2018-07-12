@@ -12,6 +12,10 @@
 Inheritance
 ===========
 
+
+.. index:: 
+   pair: graph; inheritance
+
 Normal paragraph text.
 
 .. graphviz::
@@ -66,6 +70,10 @@ Normal paragraph text.
      Dog -> Cat
    }
 
+
+   
+.. index:: 
+   pair: graph; inheritance hierarchy
 
 Another:
 

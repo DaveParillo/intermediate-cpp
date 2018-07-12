@@ -36,6 +36,10 @@ Given the C string:
 
    char[] howdy = "hi there!";
 
+   
+.. index:: 
+   pair: graph; char array
+
 In memory, ``howdy`` is automatically transformed into:
 
 .. graphviz::
@@ -72,6 +76,10 @@ and is used to indicate the end of the string.
     Forgetting to account for null, 
     or having a 'off by one error' is one of the most 
     common mistakes when working with C strings.
+
+    
+.. index:: 
+   pair: graph; c-string
 
 A C string may allocate more memory that the characters currently stored in it.
 An array declaration like this:

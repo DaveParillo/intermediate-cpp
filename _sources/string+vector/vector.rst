@@ -68,6 +68,10 @@ an uninitialized variable.
 It creates a fully formed vector with no elements stored in it yet.
 This is perfectly OK and normal.
 
+
+.. index:: 
+   pair: graph; vector
+
 Given a vector declared as:
 
 .. code-block:: cpp

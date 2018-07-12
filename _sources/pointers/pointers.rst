@@ -29,6 +29,8 @@ A pointer is simply a variable that stores an *address*:
 
 The value assigned to ``e_pointer`` is the *address of* the variable ``euler``.
 
+.. index:: 
+   pair: graph; call stack
 
 Declaring pointers
 ------------------
@@ -679,6 +681,9 @@ program executed in ``argv[0]``.
 We know that C strings are arrays of ``char``,
 so ``argv`` is a pointer to a ``char`` array.
 Or we can say ``argv`` is a pointer to a pointer to a ``char``.
+
+.. index:: 
+   pair: graph; command line arguments
 
 When we compile a program like this:
 

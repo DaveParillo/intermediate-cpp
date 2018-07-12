@@ -638,7 +638,7 @@ Glossary
    generic programming
       A computer programming style in which functions are written 
       using *placeholders for* types. In C++ this is accomplished
-      using templates.
+      using :term:templates<template>`.
       Templates are used to create actual functions for specific types
       as needed. 
 
@@ -975,6 +975,7 @@ Glossary
    object code
       The output of the compiler after it translates the program.
 
+   object-oriented programming
    object-oriented programming paradigm
       An approach to problem-solving where all computations are
       carried out using :term:`objects <object>`.
@@ -1250,6 +1251,23 @@ Glossary
       In set notation, binary relation :math:`R` on set :math:`S` is
       reflexive if :math:`aRa` for all :math:`a \in \mathbf{S}`.
 
+   regular type
+      A user defined :term:`type` that behaves like a 'regular'
+      built-in (fundamental) type.
+      Regular types support the following operations:
+
+      ========================= ====================
+       Operation                 Definition
+      ========================= ====================
+       Default constructor        T a;
+       Copy constructor           T a = b;
+       Destructor                 ~T (a);
+       Assignment                 a = b;
+       Equality                   a == b;
+       Inequality                 a != b;
+       Ordering                   a < b;
+      ========================= ====================
+
    relation
       In set notation, a relation :math:`R` over set
       :math:`\mathbf{S}` is a set of ordered pairs from
@@ -1457,7 +1475,7 @@ Glossary
       :term:`generic <generic programming>` functions and classes.
 
       A template by itself is not a class, type, function, or any other entity.
-      It defines a **recipie** for generating a class or function.
+      It defines a **recipe** for generating a class or function.
 
    test-driven development
       Test-driven development (TDD) is a software development process 

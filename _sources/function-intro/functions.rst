@@ -332,6 +332,11 @@ Your future co-workers will thank you.
 The call stack
 --------------
 
+
+.. index:: 
+   pair: graph; call stack
+
+
 Functions are routinely called from many places
 and more than one function can be 'active' at any one time.
 The CPU needs a mechanism to keep track of every function call,
