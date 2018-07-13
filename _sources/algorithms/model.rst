@@ -84,6 +84,10 @@ so we decide right away that it should be written as a free function:
 
       .. include:: my_find.txt
 
+      See this example running `step-by-step
+      <http://www.pythontutor.com/cpp.html#code=%23include%20%3Calgorithm%3E%0A%23include%20%3Ciostream%3E%0A%23include%20%3Cvector%3E%0A%0A//%20function%20to%20find%20'x'%20in%20v%0Astd%3A%3Avector%3Cint%3E%3A%3Aiterator%20%0Afind%28std%3A%3Avector%3Cint%3E%26%20v,%20int%20x%29%20%7B%0A%20%20for%28auto%20p%20%3D%20v.begin%28%29%3B%20p%20!%3D%20v.end%28%29%3B%20%2B%2Bp%29%20%7B%0A%20%20%20%20if%20%28x%20%3D%3D%20*p%29%20return%20p%3B%0A%20%20%7D%0A%20%20//%20did%20not%20find%20x%0A%20%20return%20v.end%28%29%3B%0A%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%0Aint%20main%20%28%29%20%7B%0A%20%20int%20value%20%3D%2031%3B%0A%20%20std%3A%3Avector%3Cint%3E%20nums%2899%29%3B%0A%20%20std%3A%3Aiota%28nums.begin%28%29,%20nums.end%28%29,%20-17%29%3B%0A%20%20auto%20it%20%3D%20find%28nums,%20value%29%3B%0A%20%20%20%20%20%0A%20%20if%20%28it%20%3D%3D%20nums.end%28%29%29%20%7B%0A%20%20%20%20std%3A%3Acout%20%3C%3C%20%22Did%20not%20find%20%22%20%3C%3C%20value%20%3C%3C%20%20'%5Cn'%3B%0A%20%20%7D%20else%20%7B%0A%20%20%20%20std%3A%3Acout%20%3C%3C%20%22Found%20%22%20%3C%3C%20value%20%3C%3C%20%22%20at%20position%20%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C%3C%20%28std%3A%3Adistance%28nums.begin%28%29,%20it%29%29%20%3C%3C%20'%5Cn'%3B%0A%20%20%7D%0A%20%20return%200%3B%0A%7D%0A&curInstr=4&mode=display&origin=opt-frontend.js&py=cpp&rawInputLstJSON=%5B%5D>`__
+
+
 While this seems easier at first,
 this version is not **nearly** as *generic*,
 or *general purpose* as a version that defines

@@ -42,8 +42,11 @@ The STL algorithms satisfy this goal using small,
 reusable functions that avoid writing repetitive code
 and define a consistent, portable interface.
 
+The :term:`abstractions <abstraction>` in the STL are primarily
+concerned with performing actions on data stored in STL containers.
 Consider that counting elements in a :term:`list` is not very different
 from counting elements in a :term:`vector`.
+
 
 .. index:: ISO C++ standard
    single: for_each
@@ -164,6 +167,9 @@ to include it in the standard library
    .. tab:: Run It
 
       .. include:: iota.txt
+
+      See this example running `step-by-step
+      <http://www.pythontutor.com/cpp.html#code=%23include%20%3Ciomanip%3E%0A%23include%20%3Ciostream%3E%0A%23include%20%3Cvector%3E%0A%0Atemplate%3Ctypename%20ForwardIterator,%20typename%20T%3E%0Avoid%20iota%28ForwardIterator%20first,%20%0A%20%20%20%20%20%20%20%20%20%20ForwardIterator%20last,%20T%20value%29%20%7B%0A%20%20while%28first%20!%3D%20last%29%20%7B%0A%20%20%20%20*first%2B%2B%20%3D%20value%3B%0A%20%20%20%20%2B%2Bvalue%3B%0A%20%20%7D%0A%7D%0A%0Avoid%20print%28const%20std%3A%3Avector%3Cint%3E%26%20v%29%20%7B%0A%20%20for%20%28auto%20x%3A%20v%29%20%7B%0A%20%20%20%20std%3A%3Acout%20%3C%3C%20std%3A%3Asetw%283%29%20%3C%3C%20x%3B%0A%20%20%7D%0A%20%20std%3A%3Acout%20%3C%3C%20'%5Cn'%3B%0A%7D%0A%0Aint%20main%20%28%29%20%7B%0A%20%20std%3A%3Avector%3Cint%3E%20nums%2813%29%3B%0A%20%20std%3A%3Acout%20%3C%3C%20%22Before%20iota%3A%22%3B%0A%20%20print%28nums%29%3B%0A%20%20%20%20%20%0A%20%20iota%28nums.begin%28%29,%20nums.end%28%29,%20-6%29%3B%0A%20%20std%3A%3Acout%20%3C%3C%20%22After%20iota%3A%20%22%3B%0A%20%20print%28nums%29%3B%0A%7D%0A&curInstr=35&mode=display&origin=opt-frontend.js&py=cpp&rawInputLstJSON=%5B%5D>`__
 
       
 Why prefer algorithms to hand-written loops?

@@ -112,6 +112,9 @@ We need several generic operations on **data**:
 
       .. include:: refactor.txt
 
+      See this example running `step-by-step
+      <http://www.pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0A%23include%20%3Clist%3E%0A%0A//%20accumulate%20the%20sum%20of%20values%20in%20range%20%5Bfirst,%20last%29%0Atemplate%20%3Ctypename%20InputIt,%20typename%20T%3E%0A//%20requires%3A%20InputIt%20is%20convertible%20to%20T%20when%20dereferenced%0A//%20%20%20%20%20%20%20%20%26%26%20InputIt%20is%20EqualityComparable%0A//%20%20%20%20%20%20%20%20%26%26%20T%20is%20Regular%0AT%20sum%20%28InputIt%20first,%20InputIt%20last,%20T%20value%29%20%7B%0A%20%20while%20%28first%20!%3D%20last%29%20%7B%0A%20%20%20%20value%20%3D%20value%20%2B%20*first%3B%0A%20%20%20%20%2B%2Bfirst%3B%0A%20%20%7D%0A%20%20return%20value%3B%0A%7D%0A%20%20%20%20%0Aint%20main%20%28%29%20%7B%0A%20%20float%20a%5B%5D%20%20%3D%20%7B1,1,2,3,5,8,13,21,34%7D%3B%0A%20%20float*%20end%20%3D%20a%2Bsizeof%28a%29/sizeof%28*a%29%3B%0A%20%20double%20d%20%20%20%3D%200%3B%0A%0A%20%20d%20%3D%20sum%20%28a,%20end,%20d%29%3B%0A%20%20std%3A%3Acout%20%3C%3C%20%22array%20sum%20%20%3D%20%22%20%3C%3C%20d%20%3C%3C%20'%5Cn'%3B%0A%0A%20%20//%20now%20do%20list%0A%20%20d%20%3D%200%3B%0A%20%20std%3A%3Alist%3Cfloat%3E%20b%20%3D%20%7B1,1,2,3,5,8,13,21,34%7D%3B%0A%0A%20%20d%20%3D%20sum%20%28b.begin%28%29,%20b.end%28%29,%20d%29%3B%0A%20%20std%3A%3Acout%20%3C%3C%20%22list%20sum%20%20%3D%20%22%20%3C%3C%20d%20%3C%3C%20'%5Cn'%3B%0A%20%20return%200%3B%0A%7D%0A&curInstr=4&mode=display&origin=opt-frontend.js&py=cpp&rawInputLstJSON=%5B%5D>`__
+
 Removing a final assumption
 ---------------------------
 Can we make ``sum`` even more generic?
@@ -159,6 +162,9 @@ to pass in a function pointer (or equivalent).
    .. tab:: Run It
 
       .. include:: accumulate.txt
+
+      See this example running `step-by-step
+      <http://www.pythontutor.com/cpp.html#code=%23include%20%3Ccstddef%3E%0A%23include%20%3Ciostream%3E%0A%23include%20%3Cfunctional%3E%0A%23include%20%3Cvector%3E%0A%0A//%20accumulate%20the%20sum%20of%20values%20in%20range%20%5Bfirst,%20last%29%0A//%20using%20the%20binary%20operation%20op%0Atemplate%20%3Ctypename%20InputIt,%20typename%20T,%20typename%20BinaryOp%3E%0A//%20requires%3A%20InputIt%20is%20convertible%20to%20T%20when%20dereferenced%0A//%20%20%20%20%20%20%20%20%26%26%20InputIt%20is%20EqualityComparable%0A//%20%20%20%20%20%20%20%20%26%26%20T%20is%20Regular%0AT%20accumulate%20%28InputIt%20first,%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20InputIt%20last,%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20T%20value,%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20BinaryOp%20op%29%20%7B%0A%20%20%20%20while%20%28first%20!%3D%20last%29%20%7B%0A%20%20%20%20%20%20value%20%3D%20op%28value,%20*first%29%3B%0A%20%20%20%20%20%20%2B%2Bfirst%3B%0A%20%20%20%20%7D%0A%20%20%20%20return%20value%3B%0A%20%20%7D%0A%0A//%20version%20that%20provides%20a%20default%20operation%0Atemplate%20%3Ctypename%20InputIt,%20typename%20T%3E%0AT%20accumulate%20%28InputIt%20first,%20InputIt%20last,%20T%20value%29%20%7B%0A%20%20return%20accumulate%28first,%20last,%20value,%20std%3A%3Aplus%3CT%3E%28%29%29%3B%0A%7D%0A%0Aint%20main%20%28%29%20%7B%0A%20%20std%3A%3Asize_t%20sum%20%3D%200%3B%0A%20%20std%3A%3Avector%3Cstd%3A%3Asize_t%3E%20x%20%3D%20%7B1,1,2,3,5,8,13,21,34%7D%3B%0A%20%20sum%20%3D%20accumulate%20%28x.begin%28%29,%20x.end%28%29,%20sum%29%3B%0A%20%20std%3A%3Acout%20%3C%3C%20%22vector%20sum%20%20%3D%20%22%20%3C%3C%20sum%20%3C%3C%20'%5Cn'%3B%0A%0A%20%20std%3A%3Asize_t%20product%20%3D%201%3B%0A%20%20product%20%3D%20accumulate%20%28x.begin%28%29,%20x.end%28%29,%20product,%20std%3A%3Amultiplies%3Cstd%3A%3Asize_t%3E%28%29%29%3B%0A%20%20std%3A%3Acout%20%3C%3C%20%22vector%20product%20%20%3D%20%22%20%3C%3C%20product%20%3C%3C%20'%5Cn'%3B%0A%20%20return%200%3B%0A%7D&curInstr=0&mode=display&origin=opt-frontend.js&py=cpp&rawInputLstJSON=%5B%5D>`__
 
 
 Note that 

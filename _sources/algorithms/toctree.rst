@@ -8,4 +8,5 @@ Algorithms
    intro.rst
    model.rst
    refactor.rst
+   copy.rst
 
