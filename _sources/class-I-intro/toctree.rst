@@ -5,5 +5,6 @@ Introduction to classes
    :caption: Introduction to classes
    :maxdepth: 2
 
-   classes.rst
+   intro.rst
+   constructors.rst
 
