@@ -55,7 +55,7 @@ The STL was not developed until C++ had been used for more than 10 years.
 While it was incorporated into the first ISO version of the C++ standard (C++98),
 it took some time for many programmers to recognize the power and flexibility
 of :term:`template programming <generic programming>`
-in addition to the  :term:`object oriented programming paradigm`
+in addition to the  :term:`object-oriented programming paradigm`
 C++ was originally designed to support.
 
 

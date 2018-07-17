@@ -12,7 +12,7 @@
 Hashing concepts
 ================
 
-:doc:`Previously <associative-containers>`, 
+:doc:`Previously <map>`, 
 we asserted that a :term:`map` refers to any data structure that 'maps' :term:`keys <key>` to values.
 They have an advantage over sequential containers 
 in that the cost of searches grows more slowly: 
