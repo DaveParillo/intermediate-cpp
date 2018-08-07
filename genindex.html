@@ -14,16 +14,16 @@
     <link rel="stylesheet" href="_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="_static/video.css" type="text/css" />
     <link rel="stylesheet" href="_static/webgldemo.css" type="text/css" />
-    <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="_static/webglinteractive.css" type="text/css" />
+    <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="_static/parsons.css" type="text/css" />
-    <link rel="stylesheet" href="_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="_static/js_lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="_static/pytutor.css" type="text/css" />
     <link rel="stylesheet" href="_static/modal-basic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="_static/datafile.css" type="text/css" />
     <link rel="stylesheet" href="_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="_static/accessibility.css" type="text/css" />
     <link rel="stylesheet" href="_static/dragndrop.css" type="text/css" />
     <link rel="stylesheet" href="_static/poll.css" type="text/css" />
     <link rel="stylesheet" href="_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
@@ -50,6 +50,7 @@
     <script type="text/javascript" src="_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="_static/fitb.js"></script>
     <script type="text/javascript" src="_static/timedfitb.js"></script>
+    <script type="text/javascript" src="_static/runestonevideo.js"></script>
     <script type="text/javascript" src="_static/codemirror.js"></script>
     <script type="text/javascript" src="_static/xml.js"></script>
     <script type="text/javascript" src="_static/css.js"></script>
@@ -59,8 +60,8 @@
     <script type="text/javascript" src="_static/FileSaver.min.js"></script>
     <script type="text/javascript" src="_static/Blob.js"></script>
     <script type="text/javascript" src="_static/reveal.js"></script>
-    <script type="text/javascript" src="_static/lib/prettify.js"></script>
-    <script type="text/javascript" src="_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="_static/js_lib/prettify.js"></script>
+    <script type="text/javascript" src="_static/js_lib/hammer.min.js"></script>
     <script type="text/javascript" src="_static/parsons.js"></script>
     <script type="text/javascript" src="_static/timedparsons.js"></script>
     <script type="text/javascript" src="_static/animationbase.js"></script>
@@ -76,19 +77,24 @@
     <script type="text/javascript" src="_static/codelens.js"></script>
     <script type="text/javascript" src="_static/jquery.highlight.js"></script>
     <script type="text/javascript" src="_static/bookfuncs.js"></script>
-    <script type="text/javascript" src="_static/codemirror.js"></script>
-    <script type="text/javascript" src="_static/xml.js"></script>
-    <script type="text/javascript" src="_static/css.js"></script>
-    <script type="text/javascript" src="_static/htmlmixed.js"></script>
     <script type="text/javascript" src="_static/python.js"></script>
-    <script type="text/javascript" src="_static/javascript.js"></script>
-    <script type="text/javascript" src="_static/activecode.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/CLDRPluralRuleParser.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.messagestore.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.fallbacks.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.language.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.parser.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.emitter.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
+    <script type="text/javascript" src="_static/activecode-i18n.en.js"></script>
     <script type="text/javascript" src="_static/skulpt.min.js"></script>
     <script type="text/javascript" src="_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="_static/activecode.js"></script>
     <script type="text/javascript" src="_static/clike.js"></script>
     <script type="text/javascript" src="_static/timed_activecode.js"></script>
-    <script type="text/javascript" src="_static/skulpt.min.js"></script>
-    <script type="text/javascript" src="_static/skulpt-stdlib.js"></script>
     <script type="text/javascript" src="_static/datafile.js"></script>
     <script type="text/javascript" src="_static/showEval.js"></script>
     <script type="text/javascript" src="_static/dragndrop.js"></script>
@@ -324,12 +330,14 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="glossary.html#term-abstract-data-type"><strong>abstract data type</strong></a>
 </li>
-      <li><a href="glossary.html#term-abstraction"><strong>abstraction</strong></a>
+      <li><a href="class-I-intro/abstraction.html#index-0">abstraction</a>, <a href="glossary.html#term-abstraction"><strong>[1]</strong></a>
 
       <ul>
         <li><a href="beginnings/types.html#index-0">fundamental types</a>
 </li>
       </ul></li>
+      <li><a href="algorithms/intro.html#index-1">accumulate</a>
+</li>
       <li><a href="glossary.html#term-activation-record"><strong>activation record</strong></a>
 </li>
       <li>
@@ -347,8 +355,16 @@
 </li>
       <li><a href="glossary.html#term-algorithm"><strong>algorithm</strong></a>
 </li>
-      <li><a href="algorithms/foo.html#index-0">algorithms</a>
+      <li><a href="algorithms/intro.html#index-0">algorithms</a>
+
+      <ul>
+        <li><a href="algorithms/intro.html#index-2">loops</a>
 </li>
+        <li><a href="algorithms/model.html#index-0">model</a>
+</li>
+        <li><a href="algorithms/copy.html#index-0">refactoring</a>, <a href="algorithms/refactor.html#index-0">[1]</a>
+</li>
+      </ul></li>
       <li><a href="glossary.html#term-ancestor"><strong>ancestor</strong></a>
 </li>
       <li>
@@ -365,10 +381,10 @@
         <li><a href="help/navhelp.html#index-3">help</a>
 </li>
       </ul></li>
-      <li><a href="glossary.html#term-anti-pattern"><strong>anti-pattern</strong></a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-anti-pattern"><strong>anti-pattern</strong></a>
+</li>
       <li>
     anti-patterns
 
@@ -380,7 +396,7 @@
     array
 
       <ul>
-        <li><a href="containers/sequence-containers.html#index-2">sequence containers</a>
+        <li><a href="containers/sequence-containers.html#index-3">sequence containers</a>
 </li>
       </ul></li>
       <li><a href="glossary.html#term-array-based-list"><strong>array-based list</strong></a>
@@ -393,7 +409,7 @@
     arrays
 
       <ul>
-        <li><a href="pointers/pointers.html#index-2">pointers</a>
+        <li><a href="pointers/pointers.html#index-3">pointers</a>
 </li>
       </ul></li>
       <li><a href="glossary.html#term-ascii-character-coding"><strong>ASCII character coding</strong></a>
@@ -402,7 +418,7 @@
 </li>
       <li><a href="glossary.html#term-associative-container"><strong>associative container</strong></a>
 </li>
-      <li><a href="containers/associative-containers.html#index-0">associative containers</a>
+      <li><a href="containers/trees.html#index-0">associative containers</a>
 
       <ul>
         <li><a href="containers/unordered_map.html#index-0">hashing concepts</a>
@@ -449,10 +465,12 @@
 </li>
       <li><a href="glossary.html#term-binary-tree"><strong>binary tree</strong></a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="algorithms/intro.html#index-1">binary_search</a>
+</li>
       <li><a href="glossary.html#term-binning"><strong>binning</strong></a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     Bjarne Stroustrup
 
@@ -470,18 +488,24 @@
 </li>
       <li><a href="glossary.html#term-bug"><strong>bug</strong></a>
 </li>
+      <li><a href="beginnings/make.html#index-1">build steps</a>
+
+      <ul>
+        <li><a href="beginnings/make.html#index-1">graph</a>
+</li>
+      </ul></li>
       <li>
     by reference
 
       <ul>
-        <li><a href="function-intro/functions.html#index-5">parameter passing</a>
+        <li><a href="function-intro/functions.html#index-6">parameter passing</a>
 </li>
       </ul></li>
       <li>
     by value
 
       <ul>
-        <li><a href="function-intro/functions.html#index-4">parameter passing</a>
+        <li><a href="function-intro/functions.html#index-5">parameter passing</a>
 </li>
       </ul></li>
   </ul></td>
@@ -499,13 +523,40 @@
       </ul></li>
       <li><a href="beginnings/make.html#index-1">c++ compiler</a>
 </li>
-      <li><a href="function-intro/functions.html#index-3">call stack</a>
+      <li>
+    C++ evolution
+
+      <ul>
+        <li><a href="beginnings/what-you-dont.html#index-1">graph</a>
 </li>
+      </ul></li>
+      <li>
+    c-string
+
+      <ul>
+        <li><a href="string+vector/string.html#index-1">graph</a>
+</li>
+      </ul></li>
+      <li><a href="function-intro/functions.html#index-3">call stack</a>
+
+      <ul>
+        <li><a href="function-intro/functions.html#index-4">graph</a>, <a href="pointers/pointers.html#index-1">[1]</a>
+</li>
+      </ul></li>
       <li><a href="glossary.html#term-ceiling"><strong>ceiling</strong></a>
 </li>
-      <li><a href="pointers/pointers.html#index-3">character arrays</a>
+      <li>
+    char array
+
+      <ul>
+        <li><a href="string+vector/string.html#index-0">graph</a>
+</li>
+      </ul></li>
+      <li><a href="pointers/pointers.html#index-4">character arrays</a>
 </li>
       <li><a href="glossary.html#term-child"><strong>child</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">clamp</a>
 </li>
       <li><a href="glossary.html#term-class"><strong>class</strong></a>
 
@@ -519,7 +570,16 @@
 </li>
       <li><a href="glossary.html#term-class-hierarchy"><strong>class hierarchy</strong></a>
 </li>
-      <li><a href="class-I-intro/classes.html#index-0">classes</a>
+      <li><a href="glossary.html#term-class-invariant"><strong>class invariant</strong></a>
+</li>
+      <li>
+    class members
+
+      <ul>
+        <li><a href="class-I-intro/pointers.html#index-0">pointers</a>
+</li>
+      </ul></li>
+      <li><a href="class-I-intro/intro.html#index-0">classes</a>
 
       <ul>
         <li><a href="class-III-design/composition.html#index-0">composition</a>
@@ -550,6 +610,13 @@
 </li>
       <li><a href="glossary.html#term-collision-resolution-policy"><strong>collision resolution policy</strong></a>
 </li>
+      <li>
+    command line arguments
+
+      <ul>
+        <li><a href="pointers/pointers.html#index-5">graph</a>
+</li>
+      </ul></li>
       <li><a href="glossary.html#term-comment"><strong>comment</strong></a>
 </li>
       <li>
@@ -563,12 +630,19 @@
         <li><a href="beginnings/what-you-know-now.html#index-0">introductory topics</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    compact list
+
+      <ul>
+        <li><a href="containers/sequence-containers.html#index-5">graph</a>
+</li>
+      </ul></li>
       <li><a href="glossary.html#term-comparable"><strong>comparable</strong></a>
 </li>
       <li><a href="glossary.html#term-comparator"><strong>comparator</strong></a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="glossary.html#term-comparison"><strong>comparison</strong></a>
 </li>
       <li><a href="glossary.html#term-compile"><strong>compile</strong></a>
@@ -578,7 +652,11 @@
       <li><a href="glossary.html#term-compile-time-polymorphism"><strong>compile-time polymorphism</strong></a>
 </li>
       <li><a href="beginnings/make.html#index-1">compiler</a>
+
+      <ul>
+        <li><a href="class-I-intro/interfaces.html#index-1">file extensions</a>
 </li>
+      </ul></li>
       <li>
     compiler arguments
 
@@ -617,10 +695,12 @@
       <ul>
         <li><a href="function-intro/constants.html#index-5">guidelines</a>
 </li>
-        <li><a href="pointers/pointers.html#index-4">pointers</a>
+        <li><a href="pointers/pointers.html#index-6">pointers</a>
 </li>
       </ul></li>
-      <li><a href="pointers/pointers.html#index-4">const pointers</a>
+      <li><a href="class-I-intro/const.html#index-0">const class functions</a>
+</li>
+      <li><a href="pointers/pointers.html#index-6">const pointers</a>
 </li>
       <li>
     const reference
@@ -635,7 +715,7 @@
 </li>
       <li><a href="function-intro/constants.html#index-4">constexpr</a>
 </li>
-      <li><a href="class-II-functions/constructors.html#index-0">constructors</a>
+      <li><a href="class-I-intro/constructors.html#index-0">constructors</a>, <a href="class-II-functions/constructors.html#index-0">[1]</a>
 </li>
       <li><a href="glossary.html#term-container"><strong>container</strong></a>
 </li>
@@ -647,7 +727,11 @@
         <li><a href="string+vector/intro.html#index-0">string and vector</a>
 </li>
       </ul></li>
+      <li><a href="algorithms/intro.html#index-1">copy(_if)</a>
+</li>
       <li><a href="glossary.html#term-cost"><strong>cost</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">count(_if)</a>
 </li>
       <li><a href="glossary.html#term-cpu"><strong>CPU</strong></a>
 </li>
@@ -703,7 +787,7 @@
     deque
 
       <ul>
-        <li><a href="containers/sequence-containers.html#index-6">sequence containers</a>
+        <li><a href="containers/sequence-containers.html#index-11">sequence containers</a>
 </li>
       </ul></li>
       <li><a href="glossary.html#term-dequeue"><strong>dequeue</strong></a>
@@ -715,6 +799,8 @@
       <li><a href="glossary.html#term-deserialization"><strong>deserialization</strong></a>
 </li>
       <li><a href="glossary.html#term-design-pattern"><strong>design pattern</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">destroy</a>
 </li>
       <li><a href="glossary.html#term-dictionary"><strong>dictionary</strong></a>
 </li>
@@ -758,10 +844,14 @@
 </li>
       <li><a href="glossary.html#term-enumeration"><strong>enumeration</strong></a>
 </li>
-      <li><a href="glossary.html#term-equivalence-class"><strong>equivalence class</strong></a>
+      <li><a href="algorithms/intro.html#index-1">equal</a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">equal_range</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-equivalence-class"><strong>equivalence class</strong></a>
+</li>
       <li><a href="glossary.html#term-equivalence-relation"><strong>equivalence relation</strong></a>
 </li>
       <li><a href="function-intro/error-handling.html#index-0">error-handling</a>
@@ -813,6 +903,17 @@
       </ul></li>
       <li><a href="glossary.html#term-fifo"><strong>FIFO</strong></a>
 </li>
+      <li>
+    file extensions
+
+      <ul>
+        <li><a href="class-I-intro/interfaces.html#index-1">compiler</a>
+</li>
+        <li><a href="class-I-intro/interfaces.html#index-1">header</a>
+</li>
+      </ul></li>
+      <li><a href="algorithms/intro.html#index-1">find(_if)</a>
+</li>
       <li><a href="glossary.html#term-fixed-length-coding"><strong>fixed-length coding</strong></a>
 </li>
       <li><a href="glossary.html#term-floor"><strong>floor</strong></a>
@@ -821,8 +922,12 @@
 </li>
       <li><a href="glossary.html#term-folding-method"><strong>folding method</strong></a>
 </li>
+      <li><a href="algorithms/intro.html#index-1">for_each</a>
+</li>
       <li><a href="glossary.html#term-free-block"><strong>free block</strong></a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="glossary.html#term-free-block-list"><strong>free block list</strong></a>
 </li>
       <li><a href="pointers/free-store.html#index-0">free store</a>, <a href="glossary.html#term-free-store"><strong>[1]</strong></a>
@@ -831,8 +936,6 @@
         <li><a href="pointers/free-store.html#index-0">pointers</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     frequently asked questions
 
@@ -859,7 +962,7 @@
       </ul></li>
       <li><a href="function-overloads/templates.html#index-0">function templates</a>
 </li>
-      <li><a href="function-intro/functions.html#index-6">function writing guidelines</a>
+      <li><a href="function-intro/functions.html#index-7">function writing guidelines</a>
 </li>
       <li>
     function-like macro
@@ -871,7 +974,7 @@
       <li><a href="function-intro/functions.html#index-0">functions</a>
 
       <ul>
-        <li><a href="function-intro/functions.html#index-4">passing parameters</a>
+        <li><a href="function-intro/functions.html#index-5">passing parameters</a>
 </li>
       </ul></li>
       <li><a href="glossary.html#term-fundamental-type"><strong>fundamental type</strong></a>
@@ -911,8 +1014,8 @@
       </ul></li>
       <li><a href="glossary.html#term-general-tree"><strong>general tree</strong></a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="algorithms/intro.html#index-1">generate</a>
+</li>
       <li><a href="glossary.html#term-generic-programming"><strong>generic programming</strong></a>
 </li>
       <li>
@@ -931,6 +1034,47 @@
         <li><a href="beginnings/version-control.html#index-1">vim</a>
 </li>
       </ul></li>
+      <li>
+    graph
+
+      <ul>
+        <li><a href="beginnings/what-you-dont.html#index-1">C++ evolution</a>
+</li>
+        <li><a href="algorithms/model.html#index-0">STL model</a>
+</li>
+        <li><a href="beginnings/make.html#index-1">build steps</a>
+</li>
+        <li><a href="string+vector/string.html#index-1">c-string</a>
+</li>
+        <li><a href="function-intro/functions.html#index-4">call stack</a>, <a href="pointers/pointers.html#index-1">[1]</a>
+</li>
+        <li><a href="string+vector/string.html#index-0">char array</a>
+</li>
+        <li><a href="pointers/pointers.html#index-5">command line arguments</a>
+</li>
+        <li><a href="containers/sequence-containers.html#index-5">compact list</a>
+</li>
+        <li><a href="class-III-design/inheritance.html#index-1">inheritance</a>
+</li>
+        <li><a href="class-III-design/inheritance.html#index-2">inheritance hierarchy</a>
+</li>
+        <li><a href="containers/sequence-containers.html#index-10">queue operations</a>
+</li>
+        <li><a href="containers/sequence-containers.html#index-7">std::forward_list</a>
+</li>
+        <li><a href="containers/sequence-containers.html#index-4">std::list</a>, <a href="containers/sequence-containers.html#index-6">[1]</a>
+</li>
+        <li><a href="containers/sequence-containers.html#index-9">std::queue</a>
+</li>
+        <li><a href="containers/sequence-containers.html#index-8">std::stack</a>
+</li>
+        <li><a href="containers/sequence-containers.html#index-2">std::vector</a>
+</li>
+        <li><a href="string+vector/vector.html#index-1">vector</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     guidelines
 
@@ -962,6 +1106,13 @@
       <li><a href="glossary.html#term-head"><strong>head</strong></a>
 </li>
       <li>
+    header
+
+      <ul>
+        <li><a href="class-I-intro/interfaces.html#index-1">file extensions</a>
+</li>
+      </ul></li>
+      <li>
     header files
 
       <ul>
@@ -972,10 +1123,10 @@
 </li>
       <li><a href="glossary.html#term-header-node"><strong>header node</strong></a>
 </li>
-      <li><a href="glossary.html#term-heap"><strong>heap</strong></a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-heap"><strong>heap</strong></a>
+</li>
       <li><a href="glossary.html#term-height"><strong>height</strong></a>
 </li>
       <li><a href="glossary.html#term-height-balanced"><strong>height balanced</strong></a>
@@ -1023,6 +1174,8 @@
       </ul></li>
       <li><a href="glossary.html#term-identifier"><strong>identifier</strong></a>
 </li>
+      <li><a href="algorithms/intro.html#index-1">includes</a>
+</li>
       <li>
     infinite loop
 
@@ -1038,7 +1191,18 @@
       <ul>
         <li><a href="class-III-design/inheritance.html#index-0">classes</a>
 </li>
+        <li><a href="class-III-design/inheritance.html#index-1">graph</a>
+</li>
       </ul></li>
+      <li>
+    inheritance hierarchy
+
+      <ul>
+        <li><a href="class-III-design/inheritance.html#index-2">graph</a>
+</li>
+      </ul></li>
+      <li><a href="algorithms/intro.html#index-1">inner_product</a>
+</li>
       <li><a href="glossary.html#term-inorder-traversal"><strong>inorder traversal</strong></a>
 </li>
       <li><a href="glossary.html#term-instance-variable"><strong>instance variable</strong></a>
@@ -1050,6 +1214,8 @@
 </li>
       </ul></li>
       <li><a href="help/navhelp.html#index-0">interactive tools</a>
+</li>
+      <li><a href="class-I-intro/interfaces.html#index-0">interfaces and implementation</a>
 </li>
       <li><a href="glossary.html#term-internal-fragmentation"><strong>internal fragmentation</strong></a>
 </li>
@@ -1084,6 +1250,20 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-invariants"><strong>invariants</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">iota</a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">is_heap</a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">is_partitioned</a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">is_permutation</a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">is_sorted</a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">ISO C++ standard</a>
+</li>
       <li><a href="glossary.html#term-iterable"><strong>iterable</strong></a>
 </li>
       <li><a href="glossary.html#term-iterator"><strong>iterator</strong></a>
@@ -1141,6 +1321,8 @@
 </li>
       <li><a href="glossary.html#term-level"><strong>level</strong></a>
 </li>
+      <li><a href="algorithms/intro.html#index-1">lexicographical_compare</a>
+</li>
       <li><a href="glossary.html#term-lifo"><strong>LIFO</strong></a>
 </li>
       <li><a href="glossary.html#term-linear-probing"><strong>linear probing</strong></a>
@@ -1149,8 +1331,6 @@
 </li>
       <li><a href="glossary.html#term-link-error"><strong>link error</strong></a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     link errors
 
@@ -1158,6 +1338,8 @@
         <li><a href="beginnings/debugging.html#index-2">debugging</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="glossary.html#term-linked-list"><strong>linked list</strong></a>
 </li>
       <li>
@@ -1170,7 +1352,7 @@
       <li><a href="glossary.html#term-list"><strong>list</strong></a>
 
       <ul>
-        <li><a href="containers/sequence-containers.html#index-3">sequence containers</a>
+        <li><a href="containers/sequence-containers.html#index-4">sequence containers</a>
 </li>
       </ul></li>
       <li><a href="glossary.html#term-local-variable"><strong>local variable</strong></a>
@@ -1179,7 +1361,16 @@
 </li>
       <li><a href="glossary.html#term-logical-form"><strong>logical form</strong></a>
 </li>
+      <li>
+    loops
+
+      <ul>
+        <li><a href="algorithms/intro.html#index-2">algorithms</a>
+</li>
+      </ul></li>
       <li><a href="glossary.html#term-low-level-language"><strong>low-level language</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">lower_bound</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1196,6 +1387,8 @@
         <li><a href="beginnings/make.html#index-2">introductory topics</a>
 </li>
       </ul></li>
+      <li><a href="algorithms/intro.html#index-1">make_heap</a>
+</li>
       <li><a href="glossary.html#term-map"><strong>map</strong></a>
 
       <ul>
@@ -1211,24 +1404,39 @@
         <li><a href="back-matter/faq.html#index-0">FAQ</a>
 </li>
       </ul></li>
+      <li><a href="algorithms/intro.html#index-1">max</a>
+</li>
       <li><a href="glossary.html#term-max-heap"><strong>max heap</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">max_element</a>
 </li>
       <li><a href="glossary.html#term-member"><strong>member</strong></a>
 </li>
       <li><a href="glossary.html#term-member-function"><strong>member function</strong></a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="glossary.html#term-memory-leak"><strong>memory leak</strong></a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="class-IV-memory/memory-management.html#index-0">memory management</a>, <a href="pointers/free-store.html#index-1">[1]</a>
 </li>
+      <li><a href="algorithms/intro.html#index-1">merge</a>
+</li>
       <li><a href="glossary.html#term-method"><strong>method</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">min</a>
 </li>
       <li><a href="glossary.html#term-min-heap"><strong>min heap</strong></a>
 </li>
       <li><a href="glossary.html#term-mod"><strong>mod</strong></a>
 </li>
+      <li>
+    model
+
+      <ul>
+        <li><a href="algorithms/model.html#index-0">algorithms</a>
+</li>
+      </ul></li>
       <li>
     modes
 
@@ -1245,6 +1453,8 @@
         <li><a href="beginnings/vim.html#index-2">vim</a>
 </li>
       </ul></li>
+      <li><a href="algorithms/intro.html#index-1">move</a>
+</li>
       <li><a href="glossary.html#term-multilist"><strong>multilist</strong></a>
 </li>
       <li><a href="iterators/iterator-operations.html#index-1">mutable iterator</a>
@@ -1278,6 +1488,8 @@
 </li>
       <li><a href="glossary.html#term-natural-order"><strong>natural order</strong></a>
 </li>
+      <li><a href="algorithms/intro.html#index-1">next_permutation</a>
+</li>
       <li><a href="glossary.html#term-node"><strong>node</strong></a>
 </li>
   </ul></td>
@@ -1289,6 +1501,8 @@
       <li><a href="glossary.html#term-object"><strong>object</strong></a>
 </li>
       <li><a href="glossary.html#term-object-code"><strong>object code</strong></a>
+</li>
+      <li><a href="glossary.html#term-object-oriented-programming"><strong>object-oriented programming</strong></a>
 </li>
       <li><a href="glossary.html#term-object-oriented-programming-paradigm"><strong>object-oriented programming paradigm</strong></a>
 </li>
@@ -1341,9 +1555,9 @@
     parameter passing
 
       <ul>
-        <li><a href="function-intro/functions.html#index-5">by reference</a>
+        <li><a href="function-intro/functions.html#index-6">by reference</a>
 </li>
-        <li><a href="function-intro/functions.html#index-4">by value</a>
+        <li><a href="function-intro/functions.html#index-5">by value</a>
 </li>
         <li><a href="function-intro/constants.html#index-1">const reference</a>
 </li>
@@ -1354,15 +1568,17 @@
 </li>
       <li><a href="glossary.html#term-parse"><strong>parse</strong></a>
 </li>
-      <li><a href="function-intro/functions.html#index-5">pass by reference</a>
+      <li><a href="algorithms/intro.html#index-1">partition_copy</a>
 </li>
-      <li><a href="function-intro/functions.html#index-4">pass by value</a>
+      <li><a href="function-intro/functions.html#index-6">pass by reference</a>
+</li>
+      <li><a href="function-intro/functions.html#index-5">pass by value</a>
 </li>
       <li>
     passing parameters
 
       <ul>
-        <li><a href="function-intro/functions.html#index-4">functions</a>
+        <li><a href="function-intro/functions.html#index-5">functions</a>
 </li>
       </ul></li>
       <li><a href="glossary.html#term-permutation"><strong>permutation</strong></a>
@@ -1399,15 +1615,17 @@
       <li><a href="pointers/pointers.html#index-0">pointers</a>
 
       <ul>
-        <li><a href="pointers/pointers.html#index-2">arrays</a>
+        <li><a href="pointers/pointers.html#index-3">arrays</a>
 </li>
-        <li><a href="pointers/pointers.html#index-4">const</a>
+        <li><a href="class-I-intro/pointers.html#index-0">class members</a>
+</li>
+        <li><a href="pointers/pointers.html#index-6">const</a>
 </li>
         <li><a href="pointers/valgrind.html#index-0">debugging</a>
 </li>
         <li><a href="pointers/free-store.html#index-0">free store</a>
 </li>
-        <li><a href="pointers/pointers.html#index-1">references</a>
+        <li><a href="pointers/pointers.html#index-2">references</a>
 </li>
       </ul></li>
   </ul></td>
@@ -1466,12 +1684,19 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="glossary.html#term-quadratic-probing"><strong>quadratic probing</strong></a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="glossary.html#term-queue"><strong>queue</strong></a>
 
       <ul>
-        <li><a href="containers/sequence-containers.html#index-5">sequence containers</a>
+        <li><a href="containers/sequence-containers.html#index-9">sequence containers</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    queue operations
+
+      <ul>
+        <li><a href="containers/sequence-containers.html#index-10">graph</a>
 </li>
       </ul></li>
   </ul></td>
@@ -1494,20 +1719,31 @@
 </li>
       <li><a href="glossary.html#term-recursive-function"><strong>recursive function</strong></a>
 </li>
+      <li><a href="algorithms/intro.html#index-1">reduce</a>
+</li>
+      <li>
+    refactoring
+
+      <ul>
+        <li><a href="algorithms/copy.html#index-0">algorithms</a>, <a href="algorithms/refactor.html#index-0">[1]</a>
+</li>
+      </ul></li>
       <li><a href="glossary.html#term-reference"><strong>reference</strong></a>
 </li>
       <li><a href="glossary.html#term-reference-count-algorithm"><strong>reference count algorithm</strong></a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     references
 
       <ul>
-        <li><a href="pointers/pointers.html#index-1">pointers</a>
+        <li><a href="pointers/pointers.html#index-2">pointers</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="glossary.html#term-reflexive"><strong>reflexive</strong></a>
+</li>
+      <li><a href="glossary.html#term-regular-type"><strong>regular type</strong></a>
 </li>
       <li><a href="glossary.html#term-relation"><strong>relation</strong></a>
 </li>
@@ -1517,7 +1753,7 @@
 </li>
       <li><a href="glossary.html#term-runtime-environment"><strong>runtime environment</strong></a>
 </li>
-      <li><a href="glossary.html#term-208"><strong>runtime error</strong></a>, <a href="glossary.html#term-runtime-error"><strong>[1]</strong></a>
+      <li><a href="glossary.html#term-213"><strong>runtime error</strong></a>, <a href="glossary.html#term-runtime-error"><strong>[1]</strong></a>
 </li>
       <li>
     runtime errors
@@ -1538,7 +1774,7 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="beginnings/scope.html#index-0">scope</a>, <a href="glossary.html#term-scope"><strong>[1]</strong></a>
 </li>
-      <li><a href="help/navhelp.html#index-0">search</a>
+      <li><a href="algorithms/intro.html#index-1">search</a>, <a href="help/navhelp.html#index-0">[1]</a>
 </li>
       <li><a href="glossary.html#term-secondary-clustering"><strong>secondary clustering</strong></a>
 </li>
@@ -1562,15 +1798,15 @@
       <li><a href="containers/sequence-containers.html#index-0">sequence containers</a>
 
       <ul>
-        <li><a href="containers/sequence-containers.html#index-2">array</a>
+        <li><a href="containers/sequence-containers.html#index-3">array</a>
 </li>
-        <li><a href="containers/sequence-containers.html#index-6">deque</a>
+        <li><a href="containers/sequence-containers.html#index-11">deque</a>
 </li>
-        <li><a href="containers/sequence-containers.html#index-3">list</a>
+        <li><a href="containers/sequence-containers.html#index-4">list</a>
 </li>
-        <li><a href="containers/sequence-containers.html#index-5">queue</a>
+        <li><a href="containers/sequence-containers.html#index-9">queue</a>
 </li>
-        <li><a href="containers/sequence-containers.html#index-4">stack</a>
+        <li><a href="containers/sequence-containers.html#index-8">stack</a>
 </li>
         <li><a href="containers/sequence-containers.html#index-1">vector</a>
 </li>
@@ -1580,6 +1816,10 @@
       <li><a href="serialization/serialization.html#index-1">serialization</a>, <a href="glossary.html#term-serialization"><strong>[1]</strong></a>
 </li>
       <li><a href="glossary.html#term-set"><strong>set</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">set_difference</a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">set_union</a>
 </li>
       <li>
     should I learn C first
@@ -1596,8 +1836,6 @@
 </li>
       <li><a href="glossary.html#term-simulating-recursion"><strong>simulating recursion</strong></a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="glossary.html#term-singly-linked-list"><strong>singly linked list</strong></a>
 </li>
       <li><a href="glossary.html#term-slot"><strong>slot</strong></a>
@@ -1606,8 +1844,14 @@
 </li>
       <li><a href="glossary.html#term-software-reuse"><strong>software reuse</strong></a>
 </li>
+      <li><a href="algorithms/intro.html#index-1">sort</a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">sort_heap</a>
+</li>
       <li><a href="glossary.html#term-source-code"><strong>source code</strong></a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     ssh client
 
@@ -1615,10 +1859,12 @@
         <li><a href="beginnings/linux.html#index-1">git</a>
 </li>
       </ul></li>
+      <li><a href="algorithms/intro.html#index-1">stable_partition</a>, <a href="algorithms/intro.html#index-1">[1]</a>
+</li>
       <li><a href="glossary.html#term-stack"><strong>stack</strong></a>
 
       <ul>
-        <li><a href="containers/sequence-containers.html#index-4">sequence containers</a>
+        <li><a href="containers/sequence-containers.html#index-8">sequence containers</a>
 </li>
       </ul></li>
       <li>
@@ -1637,8 +1883,52 @@
       </ul></li>
       <li><a href="function-intro/functions.html#index-2">static functions</a>
 </li>
+      <li><a href="algorithms/model.html#index-1">std::find</a>
+</li>
+      <li>
+    std::forward_list
+
+      <ul>
+        <li><a href="containers/sequence-containers.html#index-7">graph</a>
+</li>
+      </ul></li>
       <li><a href="function-pointers/std_function.html#index-0">std::function</a>
 </li>
+      <li>
+    std::list
+
+      <ul>
+        <li><a href="containers/sequence-containers.html#index-4">graph</a>, <a href="containers/sequence-containers.html#index-6">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    std::queue
+
+      <ul>
+        <li><a href="containers/sequence-containers.html#index-9">graph</a>
+</li>
+      </ul></li>
+      <li>
+    std::stack
+
+      <ul>
+        <li><a href="containers/sequence-containers.html#index-8">graph</a>
+</li>
+      </ul></li>
+      <li>
+    std::vector
+
+      <ul>
+        <li><a href="containers/sequence-containers.html#index-2">graph</a>
+</li>
+      </ul></li>
+      <li>
+    STL model
+
+      <ul>
+        <li><a href="algorithms/model.html#index-0">graph</a>
+</li>
+      </ul></li>
       <li><a href="glossary.html#term-strategy"><strong>strategy</strong></a>
 </li>
       <li><a href="glossary.html#term-stream"><strong>stream</strong></a>
@@ -1713,6 +2003,8 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="algorithms/intro.html#index-1">transform</a>
+</li>
       <li><a href="glossary.html#term-transitive"><strong>transitive</strong></a>
 </li>
       <li><a href="glossary.html#term-traversal"><strong>traversal</strong></a>
@@ -1723,11 +2015,15 @@
 </li>
       <li><a href="glossary.html#term-tree-traversal"><strong>tree traversal</strong></a>
 </li>
+      <li><a href="containers/trees.html#index-0">trees</a>
+</li>
       <li><a href="glossary.html#term-tuple"><strong>tuple</strong></a>
 </li>
       <li><a href="glossary.html#term-two-s-complement"><strong>two&#39;s complement</strong></a>
 </li>
       <li><a href="glossary.html#term-type"><strong>type</strong></a>
+</li>
+      <li><a href="glossary.html#term-type-invariant"><strong>type invariant</strong></a>
 </li>
       <li>
     types
@@ -1744,12 +2040,16 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="glossary.html#term-unary-function"><strong>unary function</strong></a>
 </li>
-      <li><a href="glossary.html#term-unit-test"><strong>unit test</strong></a>
+      <li><a href="algorithms/intro.html#index-1">uninitialized_copy</a>
 </li>
-      <li><a href="glossary.html#term-unsorted-list"><strong>unsorted list</strong></a>
+      <li><a href="algorithms/intro.html#index-1">uninitialized_fill</a>
+</li>
+      <li><a href="glossary.html#term-unit-test"><strong>unit test</strong></a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-unsorted-list"><strong>unsorted list</strong></a>
+</li>
       <li>
     using
 
@@ -1782,6 +2082,8 @@
       <li><a href="string+vector/vector.html#index-0">vector</a>, <a href="glossary.html#term-vector"><strong>[1]</strong></a>
 
       <ul>
+        <li><a href="string+vector/vector.html#index-1">graph</a>
+</li>
         <li><a href="containers/sequence-containers.html#index-1">sequence containers</a>
 </li>
       </ul></li>
@@ -1792,6 +2094,8 @@
         <li><a href="beginnings/version-control.html#index-0">git, introductory topics</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     vim
 
@@ -1807,8 +2111,6 @@
         <li><a href="beginnings/vim.html#index-0">text editors, introductory topics</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="glossary.html#term-visit"><strong>visit</strong></a>
 </li>
       <li><a href="glossary.html#term-visitor"><strong>visitor</strong></a>

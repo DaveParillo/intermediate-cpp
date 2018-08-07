@@ -41,6 +41,9 @@ Several actually.
 .. index:: g++ compiler
    single: c++ compiler
    single: compiler
+   single: build steps
+   pair: graph; build steps
+
 
 The C++ compiler
 ................

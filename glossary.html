@@ -13,16 +13,16 @@
     <link rel="stylesheet" href="_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="_static/video.css" type="text/css" />
     <link rel="stylesheet" href="_static/webgldemo.css" type="text/css" />
-    <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="_static/webglinteractive.css" type="text/css" />
+    <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="_static/parsons.css" type="text/css" />
-    <link rel="stylesheet" href="_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="_static/js_lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="_static/pytutor.css" type="text/css" />
     <link rel="stylesheet" href="_static/modal-basic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="_static/datafile.css" type="text/css" />
     <link rel="stylesheet" href="_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="_static/accessibility.css" type="text/css" />
     <link rel="stylesheet" href="_static/dragndrop.css" type="text/css" />
     <link rel="stylesheet" href="_static/poll.css" type="text/css" />
     <link rel="stylesheet" href="_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
@@ -49,6 +49,7 @@
     <script type="text/javascript" src="_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="_static/fitb.js"></script>
     <script type="text/javascript" src="_static/timedfitb.js"></script>
+    <script type="text/javascript" src="_static/runestonevideo.js"></script>
     <script type="text/javascript" src="_static/codemirror.js"></script>
     <script type="text/javascript" src="_static/xml.js"></script>
     <script type="text/javascript" src="_static/css.js"></script>
@@ -58,8 +59,8 @@
     <script type="text/javascript" src="_static/FileSaver.min.js"></script>
     <script type="text/javascript" src="_static/Blob.js"></script>
     <script type="text/javascript" src="_static/reveal.js"></script>
-    <script type="text/javascript" src="_static/lib/prettify.js"></script>
-    <script type="text/javascript" src="_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="_static/js_lib/prettify.js"></script>
+    <script type="text/javascript" src="_static/js_lib/hammer.min.js"></script>
     <script type="text/javascript" src="_static/parsons.js"></script>
     <script type="text/javascript" src="_static/timedparsons.js"></script>
     <script type="text/javascript" src="_static/animationbase.js"></script>
@@ -75,19 +76,24 @@
     <script type="text/javascript" src="_static/codelens.js"></script>
     <script type="text/javascript" src="_static/jquery.highlight.js"></script>
     <script type="text/javascript" src="_static/bookfuncs.js"></script>
-    <script type="text/javascript" src="_static/codemirror.js"></script>
-    <script type="text/javascript" src="_static/xml.js"></script>
-    <script type="text/javascript" src="_static/css.js"></script>
-    <script type="text/javascript" src="_static/htmlmixed.js"></script>
     <script type="text/javascript" src="_static/python.js"></script>
-    <script type="text/javascript" src="_static/javascript.js"></script>
-    <script type="text/javascript" src="_static/activecode.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/CLDRPluralRuleParser.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.messagestore.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.fallbacks.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.language.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.parser.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.emitter.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
+    <script type="text/javascript" src="_static/activecode-i18n.en.js"></script>
     <script type="text/javascript" src="_static/skulpt.min.js"></script>
     <script type="text/javascript" src="_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="_static/activecode.js"></script>
     <script type="text/javascript" src="_static/clike.js"></script>
     <script type="text/javascript" src="_static/timed_activecode.js"></script>
-    <script type="text/javascript" src="_static/skulpt.min.js"></script>
-    <script type="text/javascript" src="_static/skulpt-stdlib.js"></script>
     <script type="text/javascript" src="_static/datafile.js"></script>
     <script type="text/javascript" src="_static/showEval.js"></script>
     <script type="text/javascript" src="_static/dragndrop.js"></script>
@@ -431,6 +437,9 @@ a set of classes and their interrelationships.
 One of the classes is the <a class="reference internal" href="#term-base-class"><span class="xref std std-term">base class</span></a>, and the others are
 <a class="reference internal" href="#term-derived-class"><span class="xref std std-term">derived classes</span></a> that <a class="reference internal" href="#term-inherit"><span class="xref std std-term">inherit</span></a> either
 directly or indirectly from the base class.</dd>
+<dt id="term-class-invariant">class invariant<dt id="term-type-invariant">type invariant<dt id="term-invariants">invariants</dt>
+<dd>A class invariant is an assertion about conditions which must be true
+in order for a class to remain valid.</dd>
 <dt id="term-client">client</dt>
 <dd>The user of a service.</dd>
 <dt id="term-closed-hash-system">closed hash system</dt>
@@ -507,7 +516,7 @@ as the number of elements increases.</dd>
 low-level language all at once, in preparation for later execution.</dd>
 <dt id="term-compile-time-error">compile-time error</dt>
 <dd>Errors detected by the compiler.
-Compare to <a class="reference internal" href="#term-208"><span class="xref std std-term">runtime error</span></a>, <a class="reference internal" href="#term-link-error"><span class="xref std std-term">link error</span></a>,
+Compare to <a class="reference internal" href="#term-213"><span class="xref std std-term">runtime error</span></a>, <a class="reference internal" href="#term-link-error"><span class="xref std std-term">link error</span></a>,
 and <a class="reference internal" href="#term-semantic-error"><span class="xref std std-term">semantic error</span></a>.</dd>
 <dt id="term-compile-time-polymorphism">compile-time polymorphism</dt>
 <dd>A form of <a class="reference internal" href="#term-polymorphism"><span class="xref std std-term">polymorphism</span></a> known as Overloading.
@@ -792,7 +801,7 @@ General tree nodes tend to be harder to implement for this reason.</dd>
 <dt id="term-generic-programming">generic programming</dt>
 <dd>A computer programming style in which functions are written
 using <em>placeholders for</em> types. In C++ this is accomplished
-using templates.
+using :term:templates&lt;template&gt;`.
 Templates are used to create actual functions for specific types
 as needed.</dd>
 <dt id="term-hash-function">hash function</dt>
@@ -976,7 +985,7 @@ of another collision resolution method called
 <dd>After compiling, a link error occurs when each compilation unit compiles correctly,
 but in the next stage, the linker is unable to combine all
 the object code into a single valid executable file.
-Compare to <a class="reference internal" href="#term-compile-time-error"><span class="xref std std-term">compile-time error</span></a>, <a class="reference internal" href="#term-208"><span class="xref std std-term">runtime error</span></a>,
+Compare to <a class="reference internal" href="#term-compile-time-error"><span class="xref std std-term">compile-time error</span></a>, <a class="reference internal" href="#term-213"><span class="xref std std-term">runtime error</span></a>,
 and <a class="reference internal" href="#term-semantic-error"><span class="xref std std-term">semantic error</span></a>.</dd>
 <dt id="term-linked-list">linked list</dt>
 <dd>An implementation for the list ADT that uses
@@ -1075,7 +1084,7 @@ and they know how to perform certain actions
 (<a class="reference internal" href="#term-function"><span class="xref std std-term">functions</span></a>).</dd>
 <dt id="term-object-code">object code</dt>
 <dd>The output of the compiler after it translates the program.</dd>
-<dt id="term-object-oriented-programming-paradigm">object-oriented programming paradigm</dt>
+<dt id="term-object-oriented-programming">object-oriented programming<dt id="term-object-oriented-programming-paradigm">object-oriented programming paradigm</dt>
 <dd>An approach to problem-solving where all computations are
 carried out using <a class="reference internal" href="#term-object"><span class="xref std std-term">objects</span></a>.</dd>
 <dt id="term-open-addressing">open addressing</dt>
@@ -1300,6 +1309,45 @@ references.</dd>
 <dt id="term-reflexive">reflexive</dt>
 <dd>In set notation, binary relation <span class="math">\(R\)</span> on set <span class="math">\(S\)</span> is
 reflexive if <span class="math">\(aRa\)</span> for all <span class="math">\(a \in \mathbf{S}\)</span>.</dd>
+<dt id="term-regular-type">regular type</dt>
+<dd><p class="first">A user defined <a class="reference internal" href="#term-type"><span class="xref std std-term">type</span></a> that behaves like a ‘regular’
+built-in (fundamental) type.
+Regular types support the following operations:</p>
+<table border="1" class="last docutils">
+<colgroup>
+<col width="56%" />
+<col width="44%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Operation</th>
+<th class="head">Definition</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Default constructor</td>
+<td>T a;</td>
+</tr>
+<tr class="row-odd"><td>Copy constructor</td>
+<td>T a = b;</td>
+</tr>
+<tr class="row-even"><td>Destructor</td>
+<td>~T (a);</td>
+</tr>
+<tr class="row-odd"><td>Assignment</td>
+<td>a = b;</td>
+</tr>
+<tr class="row-even"><td>Equality</td>
+<td>a == b;</td>
+</tr>
+<tr class="row-odd"><td>Inequality</td>
+<td>a != b;</td>
+</tr>
+<tr class="row-even"><td>Ordering</td>
+<td>a &lt; b;</td>
+</tr>
+</tbody>
+</table>
+</dd>
 <dt id="term-relation">relation</dt>
 <dd>In set notation, a relation <span class="math">\(R\)</span> over set
 <span class="math">\(\mathbf{S}\)</span> is a set of ordered pairs from
@@ -1319,7 +1367,7 @@ and it conducts the execution of the program.</dd>
 <dd>Errors encountered during program execution.
 Compare to <a class="reference internal" href="#term-compile-time-error"><span class="xref std std-term">compile-time error</span></a>, <a class="reference internal" href="#term-link-error"><span class="xref std std-term">link error</span></a>,
 and <a class="reference internal" href="#term-semantic-error"><span class="xref std std-term">semantic error</span></a>.</dd>
-<dt id="term-208">runtime error</dt>
+<dt id="term-213">runtime error</dt>
 <dd>An error that does not occur until the program has started to execute
 but that prevents the program from continuing.</dd>
 <dt id="term-runtime-polymorphism">runtime polymorphism</dt>
@@ -1352,7 +1400,7 @@ probe sequence is determined in part by a second hash function.</dd>
 <dd>An error in a program that makes it do something other than what the
 programmer intended.
 Compare to <a class="reference internal" href="#term-compile-time-error"><span class="xref std std-term">compile-time error</span></a>, <a class="reference internal" href="#term-link-error"><span class="xref std std-term">link error</span></a>,
-and <a class="reference internal" href="#term-208"><span class="xref std std-term">runtime error</span></a>.</dd>
+and <a class="reference internal" href="#term-213"><span class="xref std std-term">runtime error</span></a>.</dd>
 <dt id="term-semantics">semantics</dt>
 <dd>The meaning of a program.</dd>
 <dt id="term-separate-chaining">separate chaining</dt>
@@ -1470,7 +1518,7 @@ therefore impossible to interpret.</dd>
 <dd><p class="first">A template is a specific way in C++ to write
 <a class="reference internal" href="#term-generic-programming"><span class="xref std std-term">generic</span></a> functions and classes.</p>
 <p class="last">A template by itself is not a class, type, function, or any other entity.
-It defines a <strong>recipie</strong> for generating a class or function.</p>
+It defines a <strong>recipe</strong> for generating a class or function.</p>
 </dd>
 <dt id="term-test-driven-development">test-driven development</dt>
 <dd><p class="first">Test-driven development (TDD) is a software development process

@@ -13,16 +13,16 @@
     <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
     <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js_lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
     <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
     <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/accessibility.css" type="text/css" />
     <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
     <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
     <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
@@ -49,6 +49,7 @@
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js"></script>
     <script type="text/javascript" src="../_static/codemirror.js"></script>
     <script type="text/javascript" src="../_static/xml.js"></script>
     <script type="text/javascript" src="../_static/css.js"></script>
@@ -58,8 +59,8 @@
     <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
     <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
-    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
-    <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js"></script>
     <script type="text/javascript" src="../_static/parsons.js"></script>
     <script type="text/javascript" src="../_static/timedparsons.js"></script>
     <script type="text/javascript" src="../_static/animationbase.js"></script>
@@ -75,19 +76,24 @@
     <script type="text/javascript" src="../_static/codelens.js"></script>
     <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
     <script type="text/javascript" src="../_static/bookfuncs.js"></script>
-    <script type="text/javascript" src="../_static/codemirror.js"></script>
-    <script type="text/javascript" src="../_static/xml.js"></script>
-    <script type="text/javascript" src="../_static/css.js"></script>
-    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
     <script type="text/javascript" src="../_static/python.js"></script>
-    <script type="text/javascript" src="../_static/javascript.js"></script>
-    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js"></script>
     <script type="text/javascript" src="../_static/skulpt.min.js"></script>
     <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
     <script type="text/javascript" src="../_static/clike.js"></script>
     <script type="text/javascript" src="../_static/timed_activecode.js"></script>
-    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
-    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
     <script type="text/javascript" src="../_static/datafile.js"></script>
     <script type="text/javascript" src="../_static/showEval.js"></script>
     <script type="text/javascript" src="../_static/dragndrop.js"></script>
@@ -363,18 +369,19 @@ possibly at different rates, then you need a traditional for loop:</p>
 </pre></div>
 </div>
 <p>If you need to <a class="reference internal" href="../glossary.html#term-traverse"><span class="xref std std-term">traverse</span></a> a container and remove items,
-then you need an explicit iterator so that you can call the container <code class="docutils literal"><span class="pre">erase</span></code> method:</p>
+then you need an explicit iterator so that you can call the container <code class="docutils literal"><span class="pre">erase</span></code> method.</p>
 <p>See the erase example in the following section.</p>
 </div>
 <div class="section" id="container-functions-that-require-iterators">
 <h2>8.4.2. Container functions that require iterators<a class="headerlink" href="#container-functions-that-require-iterators" title="Permalink to this headline">¶</a></h2>
-<p>Most container functions that use position information do not use an index like <code class="docutils literal"><span class="pre">operator[]</span></code>.
-Most of them express position using iterators.</p>
+<p>Most container functions that use position information do not
+accept an integral position or an index like <code class="docutils literal"><span class="pre">operator[]</span></code>.
+Position information is expressed using iterators.</p>
 <dl class="docutils">
 <dt>insert</dt>
 <dd>Inserts elements at the specified location in the container.</dd>
 </dl>
-<div id='tab_iterator_using_insert' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Example" >
+<div id='tab_iterator_using_insert' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Example" >
 <p>Create a <code class="docutils literal"><span class="pre">vector&lt;int&gt;</span></code> and initialize it with 3 values:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">nums</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span>
 </pre></div>
@@ -399,9 +406,9 @@ Most of them express position using iterators.</p>
 <div data-childcomponent="ac_iterator_insert" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac_iterator_insert data-lang="cpp" 
-      data-timelimit=25000   
+      data-timelimit=25000    
     data-audio=''   
-    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++11']"     >
+    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++11']"      >
 #include <iostream>
 #include <vector>
 
@@ -444,7 +451,7 @@ int main () {
 <dd>Removes specified elements from the container.
 <code class="docutils literal"><span class="pre">erase</span></code> may remove a single element or a contiguous range of elements.</dd>
 </dl>
-<div id='tab_iterator_using_erase' data-component="tabbedStuff" ><div data-component="tab" data-tabname="Example" >
+<div id='tab_iterator_using_erase' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Example" >
 <p>Given a <code class="docutils literal"><span class="pre">vector&lt;int&gt;</span></code>:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">nums</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">};</span>
 </pre></div>
@@ -458,9 +465,9 @@ int main () {
 </pre></div>
 </div>
 <p>or erase other elements:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// Erase all even numbers</span>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// Erase all even numbers </span>
 <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">nums</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="o">*</span> <span class="n">it</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">it</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">it</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">it</span><span class="p">);</span>
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="o">++</span><span class="n">it</span><span class="p">;</span>
@@ -468,22 +475,26 @@ int main () {
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Things to note about this example:</p>
-<ul class="simple">
-<li><code class="docutils literal"><span class="pre">it</span></code> is not incremented in the for loop iteration expression</li>
-<li>If an element is erased, the current iterator is <em>invalidated</em>.
-Any further use would be an error in a <code class="docutils literal"><span class="pre">vector</span></code>.
-The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=vector::erase">vector::erase</a> function returns the iterator to the next element
-in the container.</li>
+<p>Things to note about the last erase example:</p>
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">it</span></code> is not incremented in the for loop iteration expression</p>
+</li>
+<li><p class="first">If an element is erased, the current iterator is <em>invalidated</em>.
+Any further use would be an error in a <code class="docutils literal"><span class="pre">vector</span></code>.</p>
+<p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=vector::erase">vector::erase</a> function returns the iterator to the next element
+in the container.</p>
+</li>
+<li><p class="first">If an element is <strong>not</strong> erased, <em>then</em> increment the iterator.</p>
+</li>
 </ul>
 </div><div data-component="tab" data-tabname="Run it" >
 
 <div data-childcomponent="ac_iterator_erase" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac_iterator_erase data-lang="cpp" 
-      data-timelimit=25000   
+      data-timelimit=25000    
     data-audio=''   
-    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++11']"     >
+    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++11']"      >
 #include <vector>
 #include <iostream>
 
@@ -505,16 +516,17 @@ int main( ) {
   nums.erase(nums.begin()+2, nums.begin()+5);
   print(nums);
 
-  nums = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+  nums = {2, 7, 1, 8, 2, 8, 1, 8, 2, 8, 4, 5, 9};
 
   // Erase all even numbers
   for (auto it = nums.begin(); it != nums.end(); ) {
-    if (* it % 2 == 0) {
+    if (*it % 2 == 0) {
       it = nums.erase(it);
     } else {
       ++it;
     }
   }
+  print(nums);
 
   return 0;
 }

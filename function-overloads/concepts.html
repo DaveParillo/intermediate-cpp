@@ -13,16 +13,16 @@
     <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
     <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js_lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
     <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
     <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/accessibility.css" type="text/css" />
     <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
     <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
     <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
@@ -49,6 +49,7 @@
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js"></script>
     <script type="text/javascript" src="../_static/codemirror.js"></script>
     <script type="text/javascript" src="../_static/xml.js"></script>
     <script type="text/javascript" src="../_static/css.js"></script>
@@ -58,8 +59,8 @@
     <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
     <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
-    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
-    <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js"></script>
     <script type="text/javascript" src="../_static/parsons.js"></script>
     <script type="text/javascript" src="../_static/timedparsons.js"></script>
     <script type="text/javascript" src="../_static/animationbase.js"></script>
@@ -75,19 +76,24 @@
     <script type="text/javascript" src="../_static/codelens.js"></script>
     <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
     <script type="text/javascript" src="../_static/bookfuncs.js"></script>
-    <script type="text/javascript" src="../_static/codemirror.js"></script>
-    <script type="text/javascript" src="../_static/xml.js"></script>
-    <script type="text/javascript" src="../_static/css.js"></script>
-    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
     <script type="text/javascript" src="../_static/python.js"></script>
-    <script type="text/javascript" src="../_static/javascript.js"></script>
-    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js"></script>
     <script type="text/javascript" src="../_static/skulpt.min.js"></script>
     <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
     <script type="text/javascript" src="../_static/clike.js"></script>
     <script type="text/javascript" src="../_static/timed_activecode.js"></script>
-    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
-    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
     <script type="text/javascript" src="../_static/datafile.js"></script>
     <script type="text/javascript" src="../_static/showEval.js"></script>
     <script type="text/javascript" src="../_static/dragndrop.js"></script>
@@ -302,11 +308,11 @@ you can still get some of the readability improvements from concepts,
 just by defining an alias for the type your template expects:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
 <span class="c1">// A &#39;concept&#39; for a numeric type</span>
-<span class="cp">#define Number typename</span>
+<span class="cp">#define NumericType typename</span>
 
 <span class="c1">// Same template as before</span>
-<span class="c1">// &#39;typename&#39; replaced with &#39;Number&#39;</span>
-<span class="k">template</span> <span class="o">&lt;</span><span class="n">Number</span> <span class="n">T</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span><span class="o">&gt;</span> <span class="n">T</span> <span class="n">multiply</span> <span class="p">(</span><span class="n">T</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
+<span class="c1">// &#39;typename&#39; replaced with &#39;NumericType&#39;</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="n">NumericType</span> <span class="n">T</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span><span class="o">&gt;</span> <span class="n">T</span> <span class="n">multiply</span> <span class="p">(</span><span class="n">T</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="n">val</span> <span class="o">*</span> <span class="n">N</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
@@ -324,7 +330,7 @@ expressing our intent is about all we can do.</p>
 
 <span class="k">namespace</span> <span class="n">mesa</span> <span class="p">{</span>
   <span class="c1">// T must overload operator &gt;&gt;</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="n">Streamable</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="n">InputIterator</span> <span class="n">T</span><span class="o">&gt;</span>
     <span class="n">T</span> <span class="n">get</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">prompt</span> <span class="o">=</span> <span class="s">&quot;Enter a single value: &quot;</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">while</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">prompt</span><span class="p">;</span>
@@ -367,13 +373,32 @@ expressing our intent is about all we can do.</p>
 <span id="index-1"></span><h2>4.3.2. Keyword: <code class="docutils literal"><span class="pre">requires</span></code><a class="headerlink" href="#keyword-requires" title="Permalink to this headline">¶</a></h2>
 <p>A <em>requires clause</em> is an additional constraint on template arguments or a function.
 It is planned for release in C++20.</p>
+<p>You will sometimes encounter <em>named requirements</em> in C++ code.</p>
+<p>The named requirements listed <a class="reference external" href="https://en.cppreference.com/w/cpp/named_req">on this page</a>
+are the named requirements used in the normative text of the C++ standard to define the
+expectations of the standard library.</p>
+<p>Some of these requirements are being formalized in C++20 using the concepts language feature.
+Until then, the burden is on the programmer to ensure that library templates are
+instantiated with template arguments that satisfy these requirements.
+Failure to do so may result in very complex compiler errors and warnings.</p>
+<p>Even though they do not enforce any specific compiler rule or constraint (yet),
+they can improve the intent of expected template types.</p>
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">
 <p class="first admonition-title">More to Explore</p>
-<ul class="last simple">
-<li><a class="reference external" href="https://isocpp.org/blog/2016/02/a-bit-of-background-for-concepts-and-cpp17-bjarne-stroustrup">a bit of background for concepts and C++17</a> Bjarne Stroustrup</li>
-<li><a class="reference external" href="https://en.wikipedia.org/wiki/Concepts_(C%2B%2B)">Concepts C++</a> from Wikipedia</li>
-<li><a class="reference external" href="http://en.cppreference.com/w/cpp/concept">Constraints and concepts</a> from cppreference.com</li>
+<ul class="last">
+<li><p class="first"><a class="reference external" href="https://isocpp.org/blog/2016/02/a-bit-of-background-for-concepts-and-cpp17-bjarne-stroustrup">a bit of background for concepts and C++17</a> Bjarne Stroustrup</p>
+</li>
+<li><p class="first"><a class="reference external" href="https://en.wikipedia.org/wiki/Concepts_(C%2B%2B)">Concepts C++</a> from Wikipedia</p>
+</li>
+<li><p class="first">From cppreference.com</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="http://en.cppreference.com/w/cpp/concept">Constraints and concepts</a></li>
+<li><a class="reference external" href="https://en.cppreference.com/w/cpp/named_req">Named requirements</a></li>
+</ul>
+</div></blockquote>
+</li>
 </ul>
 </div>
 </div>

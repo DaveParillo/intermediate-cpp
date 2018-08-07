@@ -13,16 +13,16 @@
     <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
     <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js_lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
     <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
     <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/accessibility.css" type="text/css" />
     <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
     <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
     <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
@@ -49,6 +49,7 @@
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js"></script>
     <script type="text/javascript" src="../_static/codemirror.js"></script>
     <script type="text/javascript" src="../_static/xml.js"></script>
     <script type="text/javascript" src="../_static/css.js"></script>
@@ -58,8 +59,8 @@
     <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
     <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
-    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
-    <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js"></script>
     <script type="text/javascript" src="../_static/parsons.js"></script>
     <script type="text/javascript" src="../_static/timedparsons.js"></script>
     <script type="text/javascript" src="../_static/animationbase.js"></script>
@@ -75,19 +76,24 @@
     <script type="text/javascript" src="../_static/codelens.js"></script>
     <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
     <script type="text/javascript" src="../_static/bookfuncs.js"></script>
-    <script type="text/javascript" src="../_static/codemirror.js"></script>
-    <script type="text/javascript" src="../_static/xml.js"></script>
-    <script type="text/javascript" src="../_static/css.js"></script>
-    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
     <script type="text/javascript" src="../_static/python.js"></script>
-    <script type="text/javascript" src="../_static/javascript.js"></script>
-    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js"></script>
     <script type="text/javascript" src="../_static/skulpt.min.js"></script>
     <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
     <script type="text/javascript" src="../_static/clike.js"></script>
     <script type="text/javascript" src="../_static/timed_activecode.js"></script>
-    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
-    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
     <script type="text/javascript" src="../_static/datafile.js"></script>
     <script type="text/javascript" src="../_static/showEval.js"></script>
     <script type="text/javascript" src="../_static/dragndrop.js"></script>
@@ -431,9 +437,9 @@ of a few small numbers.</p>
 <div data-childcomponent="ac_floats_2" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac_floats_2 data-lang="c" 
-      data-timelimit=25000   
+      data-timelimit=25000    
     data-audio=''   
-         >
+          >
 #include <stdio.h>
 #include <math.h>
 #include <values.h>
@@ -480,6 +486,8 @@ int main(int argc, char** argv) {
   print_float(v);
   print_float(w);
   print_float(1.0);
+  print_float(0.1);
+  print_float(0.5);
   print_float(2.0);
   print_float(3.0);
   print_float(6.0);
@@ -488,6 +496,13 @@ int main(int argc, char** argv) {
   print_float(21.0);
 }
 </textarea>
+</div>
+<div class="admonition-try-this admonition">
+<p class="first admonition-title">Try This!</p>
+<p>Run and carefully examine the results of the previous program.</p>
+<p>How is the value of <code class="docutils literal"><span class="pre">0.1</span></code> different?</p>
+<p>Try to list at least 1 error this might cause in your programs?</p>
+<p class="last">Try other values and see which ones have exact floating point representations and which do not.</p>
 </div>
 </div>
 <div class="section" id="one-s-complement">
@@ -615,9 +630,9 @@ complement representation.</p>
 <div data-childcomponent="ac_two_comp_1" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac_two_comp_1 data-lang="cpp" 
-      data-timelimit=25000   
+      data-timelimit=25000    
     data-audio=''   
-         >
+          >
 #include <bitset>
 #include <iostream>
 using std::cout;
@@ -666,10 +681,12 @@ It helps to understand what is going on if you recognize what overflow looks lik
 <div data-childcomponent="ac_types_2" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac_types_2 data-lang="cpp" 
-      data-timelimit=25000   
+      data-timelimit=25000    
     data-audio=''   
-         >
+    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++11']"      >
 #include <iostream>
+#include <cstdint>
+using std::int8_t;
 
 int main() {
   int8_t x = 128;
@@ -836,9 +853,9 @@ This makes absolute consistency in all situations impossible.</p>
 <div data-childcomponent="ac-size-type-1" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac-size-type-1 data-lang="cpp" 
-      data-timelimit=25000   
+      data-timelimit=25000    
     data-audio=''   
-         >
+          >
 #include <iostream>
 #include <string>
 

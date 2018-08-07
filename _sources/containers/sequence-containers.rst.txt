@@ -42,6 +42,10 @@ but only when the additional memory is exhausted.
 The total amount of allocated memory can be queried using :cref:`vector::capacity()` function. 
 Starting in C++11, extra memory can be returned to the system via a call to :cref:`vector::shrink_to_fit()`. 
 
+
+.. index:: 
+   pair: graph; std::vector
+
 Given a vector declared as:
 
 .. code-block:: cpp
@@ -185,6 +189,7 @@ declared with an initializer list:
 
 .. index:: 
    pair: sequence containers; list
+   pair: graph; std::list
 
 The list class
 --------------
@@ -245,6 +250,9 @@ and to allow navigation to adjacent nodes.
       tail:s -> b:s [lhead=cluster_b];
     }
 
+.. index:: 
+   pair: graph; compact list
+
 A more compact way to graphically represent our :term:`doubly linked list` is like this:
 
 .. graphviz::
@@ -278,6 +286,10 @@ A :term:`linked list` that stores a sequence of ``int``\s can be trivially imple
 
 The ``struct node`` contains a single value it 'owns',
 plus pointers to adjacent nodes.
+
+
+.. index:: 
+   pair: graph; std::list
 
 Creating a :term:`linked list` from such a 'home grown' ``struct`` is not complicated,
 but it isn't pretty either:
@@ -473,6 +485,9 @@ The primary characteristics are:
   Linked lists do not.
 
 
+.. index:: 
+   pair: graph; std::forward_list
+
 std::forward_list
 .................
 Like :cref:`std::list`, 
@@ -517,6 +532,7 @@ it does not have any overhead compared to its implementation in C.
 
 .. index:: 
    pair: sequence containers; stack
+   pair: graph; std::stack
 
 The stack class
 ---------------
@@ -685,6 +701,7 @@ and ``std::deque`` can be adapted to create a ``stack``.
 
 .. index:: 
    pair: sequence containers; queue
+   pair: graph; std::queue
 
 The queue class
 ---------------
@@ -725,6 +742,10 @@ and pops them from the front.
        {rank=sink; a b c d e}
    }
 
+
+   
+.. index:: 
+   pair: graph; queue operations
 
 The defining operations of a :cref:`std::queue` are:
 

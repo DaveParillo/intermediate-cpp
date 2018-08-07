@@ -320,7 +320,10 @@ for functions and variables.
 
    .. activecode:: type_check
       :language: cpp
+      :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
       :caption: Write a program that prints your name
+
+      #include <iostream>
 
       int main() {
 
@@ -529,11 +532,13 @@ to perform tasks perhaps as complex as:
       =====
         for(int num=1; num<=100; ++num) {
       =====
-          if(num * 2 == 0)  #distractor
+          if(num * 2 == 0) {  #distractor
       =====
-          if(num % 2 != 0)
+          if(num % 2 != 0) {
       =====
             std::cout << '\t' << num << '\n';
+      =====
+          }
       =====
         }
       }
@@ -557,9 +562,7 @@ If not, refer to the section :doc:`debugging`.
 
    If **any** of the material on the preceding slides sounds unfamiliar, then
 
-   * Review the material in chapters 1-7 of the text
-
-   * Consider working through the week01 example source code
+   * Consider working through the `week 1 example source code <https://github.com/DaveParillo/cisc187/tree/master/examples/week01>`_
 
    * Review the material from your first semester text
 

@@ -6,11 +6,11 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-.. index:: 
-   single: associative containers
+.. index:: associative containers
+   single: trees
 
-Motivation
-==========
+Associative containers
+======================
 If sequence containers like :cref:`vector` are so great,
 then why would we need anything else?
 
@@ -48,7 +48,7 @@ we have to search the vector 1 element at a time until we find it.
 
 .. code-block:: cpp
 
-   vector<int> messy_closet (1000000);  // a fairly big vector
+   vector<int> messy_closet (1024 * 1024 * 1024);  // a fairly big vector
    
    // modify closet . . . 
 

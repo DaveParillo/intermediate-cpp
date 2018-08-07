@@ -38,11 +38,11 @@ just by defining an alias for the type your template expects:
 
    #include <iostream>
    // A 'concept' for a numeric type
-   #define Number typename
+   #define NumericType typename
 
    // Same template as before
-   // 'typename' replaced with 'Number'
-   template <Number T, int N> T multiply (T val) {
+   // 'typename' replaced with 'NumericType'
+   template <NumericType T, int N> T multiply (T val) {
      return val * N;
    }
 
@@ -63,7 +63,7 @@ expressing our intent is about all we can do.
 
    namespace mesa {
      // T must overload operator >>
-     template <Streamable T>
+     template <InputIterator T>
        T get(std::string prompt = "Enter a single value: ") {
          while(true) {
            std::cout << prompt;
@@ -110,12 +110,29 @@ Keyword: ``requires``
 A *requires clause* is an additional constraint on template arguments or a function.
 It is planned for release in C++20.
 
+You will sometimes encounter *named requirements* in C++ code.
+
+The named requirements listed `on this page <https://en.cppreference.com/w/cpp/named_req>`_
+are the named requirements used in the normative text of the C++ standard to define the 
+expectations of the standard library.
+
+Some of these requirements are being formalized in C++20 using the concepts language feature. 
+Until then, the burden is on the programmer to ensure that library templates are 
+instantiated with template arguments that satisfy these requirements. 
+Failure to do so may result in very complex compiler errors and warnings.
+
+Even though they do not enforce any specific compiler rule or constraint (yet),
+they can improve the intent of expected template types.
+
 -----
 
 .. admonition:: More to Explore
 
    - `a bit of background for concepts and C++17 <https://isocpp.org/blog/2016/02/a-bit-of-background-for-concepts-and-cpp17-bjarne-stroustrup>`_ Bjarne Stroustrup
    - `Concepts C++ <https://en.wikipedia.org/wiki/Concepts_(C%2B%2B)>`_ from Wikipedia
-   - `Constraints and concepts <http://en.cppreference.com/w/cpp/concept>`_ from cppreference.com
+   - From cppreference.com
+
+       - `Constraints and concepts <http://en.cppreference.com/w/cpp/concept>`_ 
+       - `Named requirements <https://en.cppreference.com/w/cpp/named_req>`_
 
 

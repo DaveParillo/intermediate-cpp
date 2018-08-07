@@ -7,7 +7,7 @@ Containers
 
    intro.rst
    sequence-containers.rst
-   associative-containers.rst
+   trees.rst
    set.rst
    map.rst
    unordered_map.rst

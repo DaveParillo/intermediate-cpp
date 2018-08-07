@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>10.2. Constructors &#8212; Intermediate Modern C++ Overview</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrixeq.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js_lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/accessibility.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/runestonebase.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js"></script>
+    <script type="text/javascript" src="../_static/clickable.js"></script>
+    <script type="text/javascript" src="../_static/timedclickable.js"></script>
+    <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
+    <script type="text/javascript" src="../_static/fitb.js"></script>
+    <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="../_static/Blob.js"></script>
+    <script type="text/javascript" src="../_static/reveal.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/parsons.js"></script>
+    <script type="text/javascript" src="../_static/timedparsons.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/mchoice.js"></script>
+    <script type="text/javascript" src="../_static/timedmc.js"></script>
+    <script type="text/javascript" src="../_static/timed.js"></script>
+    <script type="text/javascript" src="../_static/shortanswer.js"></script>
+    <script type="text/javascript" src="../_static/timed_shortanswer.js"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/codelens.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/clike.js"></script>
+    <script type="text/javascript" src="../_static/timed_activecode.js"></script>
+    <script type="text/javascript" src="../_static/datafile.js"></script>
+    <script type="text/javascript" src="../_static/showEval.js"></script>
+    <script type="text/javascript" src="../_static/dragndrop.js"></script>
+    <script type="text/javascript" src="../_static/timeddnd.js"></script>
+    <script type="text/javascript" src="../_static/poll.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10.3. Pointers to classes" href="pointers.html" />
+    <link rel="prev" title="10.1. Classes" href="intro.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="shortcut icon" href="/intermediate-cpp/static/favicon.ico" type="image/ico" />
+
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'https://daveparillo.github.io/intermediate-cpp/' ? 'https://daveparillo.github.io/intermediate-cpp/' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/intermediate-cpp';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'intermediate-cpp';
+  eBookConfig.acDefaultLanguage = 'cpp' ? 'cpp' : 'cpp'
+  eBookConfig.logLevel = 0;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "unknown";
+  eBookConfig.isLoggedIn = false;
+  eBookConfig.useRunestoneServices = false;
+  eBookConfig.python3 = false;
+  eBookConfig.basecourse = 'intermediate-cpp';
+  eBookConfig.jobehost = 'https://cryptic-headland-94862.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.runestone_version = '3.0.7';
+</script>
+
+
+  </head>
+  <body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        <a class="brand-logo" style='padding:12px 0;text-align:center' href="http://209.129.16.61/~dparillo/">
+           <i class="glyphicon glyphicon-home" style='opacity:0.9;font-size:16px;color:#848484'></i>
+        </a>
+        <!--
+        <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;' href="/intermediate-cpp/default/user/login">&nbsp; </a>
+        <a class="navbar-brand" href="/~dparillo" style="color:#5080a0">CISC-187</a>&nbsp;
+        -->
+        <a class="navbar-brand" href="../index.html">Intermediate C++</a>
+      </div>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html'>Table of Contents</a></li>
+            
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li id="scratch_ac_link"><a href="javascript:ACFactory.toggleScratchActivecode()">Scratch ActiveCode</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        
+        <li class="divider-vertical"></li>
+
+        <!-- help menu dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//help/navhelp.html'>Navigation Help</a></li>
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//glossary.html'>Glossary</a></li>
+            <li class="divider"></li>
+            <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
+          </ul>
+        </li>
+        <!-- end help menu dropdown -->
+
+        <li class="divider-vertical"></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        <!--
+          <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">10.2. Constructors</a><ul>
+<li><a class="reference internal" href="#object-lifecycle">10.2.1. Object lifecycle</a></li>
+<li><a class="reference internal" href="#class-invariants">10.2.2. Class invariants</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        
+          
+  <li id="relations-prev" title="Previous Chapter - 10.1. Classes" data-toggle="tooltip">
+    <a href="intro.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - 10.3. Pointers to classes' data-toggle="tooltip" >
+    <a href="pointers.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content">
+  
+  <div class="section" id="constructors">
+<span id="index-0"></span><h1>10.2. Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h1>
+<p>When we allocate storage for a built-in type,
+we use the name of the type and a name for the variable:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>As we saw in the previous section, the syntax for user-defined types is the same:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Talk</span> <span class="n">say</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>User-defined types use special functions to <em>construct</em> an object using the class definition.
+We call these special functions <em>class constructors</em>.
+Constructors are very similar to regular free functions, but there are a few special rules:</p>
+<ul class="simple">
+<li>A constructor is a <strong>class member</strong> function</li>
+<li>The function name is the <strong>same name</strong> as the class name</li>
+<li>A constructor has <strong>no return type</strong></li>
+</ul>
+<p><strong>All</strong> classes must have at least 1 constructor.
+If you do not write one, then compiler will try to create it automatically.
+The <code class="docutils literal"><span class="pre">Talk</span></code> class works because it used an automatically defined default constructor
+generated by the compiler.</p>
+<div id='ex1' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Example" >
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;cstdio&gt;</span>
+
+<span class="k">struct</span> <span class="n">Talk</span> <span class="p">{</span>
+  <span class="kt">void</span> <span class="n">hello</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">puts</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">Talk</span> <span class="n">say</span><span class="p">;</span>     <span class="c1">// Create an object from a class</span>
+  <span class="n">say</span><span class="p">.</span><span class="n">hello</span><span class="p">();</span>  <span class="c1">// Call a function in the object</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div data-childcomponent="ac-class-construct-ex1" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac-class-construct-ex1 data-lang="cpp" 
+      data-timelimit=25000    
+    data-audio=''   
+    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++11']"      >
+#include <cstdio>
+
+struct Talk {
+  void hello() {
+    std::puts("Hello, world!");
+  }
+};
+
+int main() {
+  Talk say;     // Create an object from a class
+  say.hello();  // Call a function in the object
+}
+</textarea>
+</div>
+</div>
+    </div>
+
+<p>Although we did not need to create a constructor for the <code class="docutils literal"><span class="pre">Talk</span></code> class,
+we could have:</p>
+<div id='ex2' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Example" >
+<p>This constructor doesn’t change how our code functions in any way.
+The compiler would have generated the code <code class="docutils literal"><span class="pre">Talk()</span> <span class="pre">{};</span></code>
+for us.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;cstdio&gt;</span>
+
+<span class="k">struct</span> <span class="n">Talk</span> <span class="p">{</span>
+  <span class="n">Talk</span><span class="p">()</span> <span class="p">{}</span>        <span class="c1">// default constructor</span>
+
+  <span class="kt">void</span> <span class="n">hello</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">puts</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">Talk</span> <span class="n">say</span><span class="p">;</span>     <span class="c1">// Create an object from a class</span>
+  <span class="n">say</span><span class="p">.</span><span class="n">hello</span><span class="p">();</span>  <span class="c1">// Call a function in the object</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In C++11, we can instruct the compiler to create the default constructor for us with</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Talk</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div data-childcomponent="ac-class-construct-ex2" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac-class-construct-ex2 data-lang="cpp" 
+      data-timelimit=25000    
+    data-audio=''   
+    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++11']"      >
+#include <cstdio>
+
+struct Talk {
+  Talk() {}        // default constructor
+
+  void hello() {
+    std::puts("Hello, world!");
+  }
+};
+
+int main() {
+  Talk say;     // Create an object from a class
+  say.hello();  // Call a function in the object
+}
+</textarea>
+</div>
+</div>
+    </div>
+
+<div class="section" id="object-lifecycle">
+<h2>10.2.1. Object lifecycle<a class="headerlink" href="#object-lifecycle" title="Permalink to this headline">¶</a></h2>
+<p>In C++, objects get created, get used, and then get destroyed.
+Constructors, assignment functions, and destructors control the
+lifecycle of objects: creation, copy, move, and destruction.</p>
+<p>Like the default constructor, C++ defines default operations for
+other parts of an object lifecycle.
+The default operations are a set of related operations that together
+implement the lifecycle semantics of an object.</p>
+<p>The list of default operations since C++11 is:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="47%" />
+<col width="53%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Operation</th>
+<th class="head">Function Signature</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>default constructor</td>
+<td><code class="docutils literal"><span class="pre">X()</span></code></td>
+</tr>
+<tr class="row-odd"><td>copy constructor</td>
+<td><code class="docutils literal"><span class="pre">X(const</span> <span class="pre">X&amp;)</span></code></td>
+</tr>
+<tr class="row-even"><td>copy assignment</td>
+<td><code class="docutils literal"><span class="pre">operator=(const</span> <span class="pre">X&amp;)</span></code></td>
+</tr>
+<tr class="row-odd"><td>move constructor</td>
+<td><code class="docutils literal"><span class="pre">X(X&amp;&amp;)</span></code></td>
+</tr>
+<tr class="row-even"><td>move assignment</td>
+<td><code class="docutils literal"><span class="pre">operator=(X&amp;&amp;)</span></code></td>
+</tr>
+<tr class="row-odd"><td>destructor</td>
+<td><code class="docutils literal"><span class="pre">~X()</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>We will be discussing these operations more over the next several chapters.</p>
+<p>Let’s improve our <code class="docutils literal"><span class="pre">Talk</span></code> class by making it possible to say more than one thing and
+to set the default text in a constructor:</p>
+<div id='ex3' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Example" >
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;cstdio&gt;</span>
+<span class="cp">#include &lt;string&gt;</span>
+
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="n">Talk</span> <span class="p">{</span>
+  <span class="n">string</span> <span class="n">text_</span><span class="p">;</span>               <span class="c1">// a variable to store what we want to say</span>
+
+  <span class="n">Talk</span><span class="p">()</span>                      <span class="c1">// a new default constructor</span>
+    <span class="o">:</span> <span class="n">text_</span> <span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">)</span>
+  <span class="p">{</span> <span class="p">}</span>
+
+  <span class="n">Talk</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">value</span><span class="p">)</span>    <span class="c1">// a one argument constructor</span>
+    <span class="o">:</span> <span class="n">text_</span> <span class="p">(</span><span class="n">value</span><span class="p">)</span>
+  <span class="p">{</span> <span class="p">}</span>
+
+  <span class="kt">void</span> <span class="n">text</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">puts</span><span class="p">(</span><span class="n">text_</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">Talk</span> <span class="n">say</span><span class="p">;</span>     <span class="c1">// Create the default object</span>
+  <span class="n">say</span><span class="p">.</span><span class="n">text</span><span class="p">();</span>
+
+  <span class="n">say</span><span class="p">.</span><span class="n">text_</span> <span class="o">=</span> <span class="s">&quot;Something else&quot;</span><span class="p">;</span>
+  <span class="n">say</span><span class="p">.</span><span class="n">text</span><span class="p">();</span>
+
+  <span class="c1">// Create a non-default object</span>
+  <span class="n">Talk</span> <span class="n">talk</span><span class="p">(</span><span class="s">&quot;The 80&#39;s were a long time ago.&quot;</span><span class="p">);</span>
+  <span class="n">talk</span><span class="p">.</span><span class="n">text</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that we also changed the name of our function from <code class="docutils literal"><span class="pre">hello</span></code> to <code class="docutils literal"><span class="pre">text</span></code>.
+Our old function name is no longer very appropriate since we can say more things
+than just <em>Hello, world!</em>.</p>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div data-childcomponent="ac-class-construct-ex3" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac-class-construct-ex3 data-lang="cpp" 
+      data-timelimit=25000    
+    data-audio=''   
+    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++11']"      >
+#include <cstdio>
+#include <string>
+
+using std::string;
+
+struct Talk {
+  string text_;               // a variable to store what we want to say
+
+  Talk()                      // a new default constructor
+    : text_ ("Hello, world!")
+  { }
+
+  Talk(const string& value)    // a one argument constructor
+    : text_ (value)
+  { }
+
+  void text() {
+    std::puts(text_.c_str());
+  }
+};
+
+int main() {
+  Talk say;     // Create the default object
+  say.text();
+
+  say.text_ = "Something else";
+  say.text();
+
+  // Create a non-default object
+  Talk talk("The 80's were a long time ago.");
+  talk.text();
+}
+</textarea>
+</div>
+</div>
+    </div>
+
+<p>Since C++11, this syntax for constructors:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Talk</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">value</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">text_</span> <span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="p">{</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>is preferred.</p>
+<p>This is called <em>initializer list syntax</em>.
+The general format is:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">ClassName</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">class_member1</span> <span class="p">{</span><span class="n">expression1</span><span class="p">},</span>
+    <span class="n">class_member2</span> <span class="p">{</span><span class="n">expression2</span><span class="p">},</span>
+    <span class="n">class_memberN</span> <span class="p">{</span><span class="n">expressionN</span><span class="p">}</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+<span class="p">{</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>Initializer list expressions can be surrounded by <code class="docutils literal"><span class="pre">(</span> <span class="pre">)</span></code> or <code class="docutils literal"><span class="pre">{</span> <span class="pre">}</span></code>.</p>
+<p>Prior to C++11, standard function syntax was used.
+It is still allowed, but initializer list syntax is preferred.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">ClassName</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">class_member1</span> <span class="o">=</span> <span class="n">expression1</span><span class="p">;</span>
+  <span class="n">class_member2</span> <span class="o">=</span> <span class="n">expression2</span><span class="p">;</span>
+  <span class="n">class_memberN</span> <span class="o">=</span> <span class="n">expressionN</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In C++11, it is also permissible to initialize class members
+with constants directly in class.
+In-class initialization is preferred because it
+makes it explicit that the same value is expected to be used in all constructors,
+avoids repetition, and avoids maintenance problems.
+It leads to the shortest and most efficient code.
+Consider the following:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="k">class</span> <span class="nc">BadInit</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="n">string</span> <span class="n">s</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">j</span><span class="p">;</span>
+  <span class="k">public</span><span class="o">:</span>
+    <span class="n">BadInit</span><span class="p">()</span> <span class="o">:</span><span class="n">i</span><span class="p">{</span><span class="mi">666</span><span class="p">},</span> <span class="n">s</span><span class="p">{</span><span class="s">&quot;nothing&quot;</span><span class="p">}</span> <span class="p">{</span> <span class="p">}</span>  <span class="c1">// j is uninitialized</span>
+    <span class="n">BadInit</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="o">:</span><span class="n">i</span><span class="p">{</span><span class="n">value</span><span class="p">}</span> <span class="p">{}</span>      <span class="c1">// s is &quot;&quot; and j is uninitialized</span>
+    <span class="c1">// ...</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>How would a maintainer know whether <code class="docutils literal"><span class="pre">j</span></code> was deliberately uninitialized
+(probably a poor idea anyway) and whether it was intentional to
+give <code class="docutils literal"><span class="pre">s</span></code> the default value <code class="docutils literal"><span class="pre">&quot;&quot;</span></code> in one case and <code class="docutils literal"><span class="pre">nothing</span></code> in another?
+This is almost always a bug.
+Forgetting to initialize a member often happens when a new member is added to an existing class.</p>
+<p>All these problems are easily fixed with in-class initializers:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="k">class</span> <span class="nc">OkInit</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="p">{</span><span class="mi">666</span><span class="p">};</span>
+    <span class="n">string</span> <span class="n">s</span> <span class="p">{</span><span class="s">&quot;ok&quot;</span><span class="p">};</span>
+    <span class="kt">int</span> <span class="n">j</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+  <span class="k">public</span><span class="o">:</span>
+    <span class="n">OkInit</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>              <span class="c1">// all members initialized to default values</span>
+    <span class="n">OkInit</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="o">:</span><span class="n">i</span><span class="p">{</span><span class="n">value</span><span class="p">}</span> <span class="p">{}</span>   <span class="c1">// s and j initialized to their defaults</span>
+    <span class="c1">// ...</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>A common error is to confuse constructors with other functions.</p>
+
+            <div class="runestone alert alert-warning">
+            <ul data-component="multiplechoice" data-multipleanswers="true" data-random id="mc-class-constructors-1">
+            <p>beginnings-10: Given:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="k">class</span> <span class="nc">date</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">;</span>
+
+  <span class="k">public</span><span class="o">:</span>
+    <span class="n">date</span> <span class="p">();</span>
+    <span class="n">date</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">d</span><span class="p">);</span>
+    <span class="n">date</span> <span class="p">(</span><span class="k">const</span> <span class="n">date</span><span class="o">&amp;</span> <span class="n">d</span><span class="p">);</span>
+    <span class="n">date</span> <span class="nf">get_date</span> <span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Which lines are valid constructor declarations? (Choose all that apply)</p>
+<li data-component="answer" data-correct id="mc-class-constructors-1_opt_a"><code class="docutils literal"><span class="pre">date</span> <span class="pre">();</span></code></li><li data-component="feedback" id="mc-class-constructors-1_opt_a">
+This is the <code class="docutils literal"><span class="pre">default</span> <span class="pre">constructor</span></code>.
+The default constructor takes no arguments.</li><li data-component="answer" data-correct id="mc-class-constructors-1_opt_b"><code class="docutils literal"><span class="pre">date</span> <span class="pre">(int</span> <span class="pre">y,</span> <span class="pre">int</span> <span class="pre">m,</span> <span class="pre">int</span> <span class="pre">d);</span></code></li><li data-component="feedback" id="mc-class-constructors-1_opt_b">
+Constructors may take arguments.</li><li data-component="answer" data-correct id="mc-class-constructors-1_opt_c"><code class="docutils literal"><span class="pre">date</span> <span class="pre">(const</span> <span class="pre">date&amp;</span> <span class="pre">d);</span></code></li><li data-component="feedback" id="mc-class-constructors-1_opt_c">
+There is no reason why a constructor can’t take an object of its own type
+as a function parameter.
+This is a special constructor called a <code class="docutils literal"><span class="pre">copy</span> <span class="pre">constructor</span></code>.</li><li data-component="answer"  id="mc-class-constructors-1_opt_d"><code class="docutils literal"><span class="pre">date</span> <span class="pre">get_date</span> <span class="pre">();</span></code></li><li data-component="feedback" id="mc-class-constructors-1_opt_d">
+This is <strong>not</strong> a constructor.
+It is free function named <code class="docutils literal"><span class="pre">get_date</span></code> that returns a <code class="docutils literal"><span class="pre">date</span></code>.</li><li data-component="answer"  id="mc-class-constructors-1_opt_e"><code class="docutils literal"><span class="pre">int</span> <span class="pre">y,</span> <span class="pre">m,</span> <span class="pre">d;</span></code></li><li data-component="feedback" id="mc-class-constructors-1_opt_e">
+This is <strong>not</strong> a constructor line.
+It is the declatation of 3 variables used in the class.</li>
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="class-invariants">
+<h2>10.2.2. Class invariants<a class="headerlink" href="#class-invariants" title="Permalink to this headline">¶</a></h2>
+<p>A struct is acceptable to define a type as long as <em>every</em> struct member may be assigned
+<strong>any</strong> value at any time.
+If this is not true for your type, then we say that your type has <a class="reference internal" href="../glossary.html#term-invariants"><span class="xref std std-term">invariants</span></a>.
+Class invariants are guarantees made by your type.
+Invariants represent things that must hold true for your class to be valid.</p>
+<p>Let say we need to prevent <code class="docutils literal"><span class="pre">Talk</span></code> from allowing zero length strings in the member <code class="docutils literal"><span class="pre">text_</span></code>.
+Currently, since everything is public, there is no way to prevent that,
+but it is easily fixed:</p>
+<div id='ex4' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Example" >
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<span class="cp">#include &lt;string&gt;</span>
+
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Talk</span> <span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span> 
+
+    <span class="n">Talk</span><span class="p">()</span> <span class="o">:</span> <span class="n">text_</span> <span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+    <span class="n">Talk</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">value</span><span class="p">)</span> 
+      <span class="o">:</span> <span class="n">text_</span> <span class="p">{</span><span class="n">value</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span><span class="o">?</span> <span class="s">&quot;default text&quot;</span><span class="o">:</span> <span class="n">value</span><span class="p">}</span> 
+    <span class="p">{</span> <span class="p">}</span>
+
+    <span class="n">string</span> <span class="n">text</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">text_</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">text</span><span class="p">(</span><span class="n">string</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">value</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="k">return</span><span class="p">;</span>
+      <span class="n">text_</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+    <span class="p">}</span>
+
+  <span class="k">private</span><span class="o">:</span>
+    <span class="n">string</span> <span class="n">text_</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">Talk</span> <span class="n">say</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">say</span><span class="p">.</span><span class="n">text</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+  <span class="n">say</span><span class="p">.</span><span class="n">text</span><span class="p">(</span><span class="s">&quot;Something else&quot;</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">say</span><span class="p">.</span><span class="n">text</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="n">say</span><span class="p">.</span><span class="n">text</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">say</span><span class="p">.</span><span class="n">text</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Without running this program, can you predict it’s output?</p>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div data-childcomponent="ac-class-construct-ex4" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac-class-construct-ex4 data-lang="cpp" 
+      data-timelimit=25000    
+    data-audio=''   
+    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++11']"      >
+#include <iostream>
+#include <string>
+
+using std::string;
+
+class Talk {
+  public:
+
+    Talk() : text_ ("Hello, world!") { }
+
+    Talk(const string& value)
+      : text_ {value.empty()? "default text": value}
+    { }
+
+    string text() {
+      return text_;
+    }
+    void text(string value) {
+      if (value.empty()) return;
+      text_ = value;
+    }
+
+  private:
+    string text_;
+};
+
+int main() {
+  Talk say;
+  std::cout << say.text() << '\n';
+
+  say.text("Something else");
+  std::cout << say.text() << '\n';
+  say.text("");
+  std::cout << say.text() << '\n';
+}
+</textarea>
+</div>
+</div>
+    </div>
+
+<p>Our class now enforces its <em>invariants</em> that it will never allow
+the <code class="docutils literal"><span class="pre">Talk</span></code> text to be empty
+(we’re a talkative Talk class).</p>
+<p>We made several changes:</p>
+<ul class="simple">
+<li>The member <code class="docutils literal"><span class="pre">text_</span></code> is now private.</li>
+<li>A function <code class="docutils literal"><span class="pre">void</span> <span class="pre">text(string</span> <span class="pre">value)</span></code> was added.
+This was needed because we made <code class="docutils literal"><span class="pre">text_</span></code> private.
+Without this function, the only way to set the text
+was in the constructor.</li>
+<li>Added an additional check to our one argument constructor
+to enforce the “can’t be empty” invariant.</li>
+</ul>
+<div class="admonition-try-this admonition">
+<p class="first admonition-title">Try This!!</p>
+<p class="last">Modify a constructor in last example so that it prints “”default text”.</p>
+</div>
+<hr class="docutils" />
+<div class="admonition-more-to-explore admonition">
+<p class="first admonition-title">More to Explore</p>
+<ul class="last simple">
+<li>From cppreference.com<ul>
+<li><a class="reference external" href="https://en.cppreference.com/w/cpp/language/classes">Classes</a>.</li>
+<li><a class="reference external" href="https://en.cppreference.com/w/cpp/language/default_constructor">Default constructors</a>.</li>
+</ul>
+</li>
+<li>From C++ Core Guidelines<ul>
+<li><a class="reference external" href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#S-ctor">Constructors</a></li>
+<li><a class="reference external" href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#c48-prefer-in-class-initializers-to-member-initializers-in-constructors-for-constant-initializers">Prefer in-class iniitalizers</a></li>
+<li>Default operations: <a class="reference external" href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rc-zero">rule of zero</a>
+and <a class="reference external" href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rc-five">rule of five</a></li>
+<li><a class="reference external" href="http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#SS-concrete">Concrete types</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="http://www.cplusplus.com/doc/tutorial/classes/">CplusPlus.com classes tutorial</a>.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+  
+      
+  <li id="relations-prev" class="navLink" title='Previous Section - 10.1. Classes' data-toggle="tooltip">
+    <a href="intro.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="intro.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - 10.3. Pointers to classes' data-toggle="tooltip" >
+    <a href="pointers.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="pointers.html" >Next Section - 10.3. Pointers to classes</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+  
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2017-2018 Dave Parillo.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+    </p>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

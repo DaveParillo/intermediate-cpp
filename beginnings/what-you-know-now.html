@@ -13,16 +13,16 @@
     <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
     <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js_lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
     <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
     <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/accessibility.css" type="text/css" />
     <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
     <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
     <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
@@ -49,6 +49,7 @@
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js"></script>
     <script type="text/javascript" src="../_static/codemirror.js"></script>
     <script type="text/javascript" src="../_static/xml.js"></script>
     <script type="text/javascript" src="../_static/css.js"></script>
@@ -58,8 +59,8 @@
     <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
     <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
-    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
-    <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js"></script>
     <script type="text/javascript" src="../_static/parsons.js"></script>
     <script type="text/javascript" src="../_static/timedparsons.js"></script>
     <script type="text/javascript" src="../_static/animationbase.js"></script>
@@ -75,19 +76,24 @@
     <script type="text/javascript" src="../_static/codelens.js"></script>
     <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
     <script type="text/javascript" src="../_static/bookfuncs.js"></script>
-    <script type="text/javascript" src="../_static/codemirror.js"></script>
-    <script type="text/javascript" src="../_static/xml.js"></script>
-    <script type="text/javascript" src="../_static/css.js"></script>
-    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
     <script type="text/javascript" src="../_static/python.js"></script>
-    <script type="text/javascript" src="../_static/javascript.js"></script>
-    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js"></script>
     <script type="text/javascript" src="../_static/skulpt.min.js"></script>
     <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
     <script type="text/javascript" src="../_static/clike.js"></script>
     <script type="text/javascript" src="../_static/timed_activecode.js"></script>
-    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
-    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
     <script type="text/javascript" src="../_static/datafile.js"></script>
     <script type="text/javascript" src="../_static/showEval.js"></script>
     <script type="text/javascript" src="../_static/dragndrop.js"></script>
@@ -524,7 +530,7 @@ for functions and variables.</p>
 
     <div data-component="reveal" id="reveal-skill-check-what-you-know-now"   data-showtitle="Show Skill Check" data-hidetitle="Hide Skill Check">
     
-            <div class="runestone">
+            <div class="runestone alert alert-warning">
             <ul data-component="multiplechoice" data-multipleanswers="true"  id="mc_initializing_1">
             beginnings-1: Which of the following statements represent <strong>assignment to</strong> a variable?  Check all that apply.
             <li data-component="answer"  id="mc_initializing_1_opt_a">int a;</li><li data-component="feedback" id="mc_initializing_1_opt_a">This is a declaration</li>
@@ -545,16 +551,18 @@ for functions and variables.</p>
 <div data-childcomponent="type_check" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=type_check data-lang="cpp" 
-      data-timelimit=25000   
+      data-timelimit=25000    
     data-audio=''   
-         data-caption='Write a program that prints your name'>
+    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++11']"     data-caption='Write a program that prints your name' >
+#include <iostream>
+
 int main() {
 
 }
 </textarea>
 </div>
 
-            <div class="runestone">
+            <div class="runestone alert alert-warning">
             <ul data-component="multiplechoice" data-multipleanswers="true"  id="mc_initializing_2">
             beginnings-2: Which of the following are legal variable names? Check all that apply.
             <li data-component="answer" data-correct id="mc_initializing_2_opt_a">int inner_product_of_a_and_b;</li><li data-component="feedback" id="mc_initializing_2_opt_a">A ridiculously long, but valid name.</li>
@@ -571,7 +579,7 @@ int main() {
             </ul>
             </div>
             
-            <div class="runestone">
+            <div class="runestone alert alert-warning">
             <ul data-component="multiplechoice" data-multipleanswers="false"  id="mc_shorcut_op_1">
             <p>beginnings-3: What are the values of x, y, and z after the following code executes?</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -597,7 +605,7 @@ int main() {
             </ul>
             </div>
             
-            <div class="runestone">
+            <div class="runestone alert alert-warning">
             <ul data-component="multiplechoice" data-multipleanswers="false"  id="mc_mod_1">
             beginnings-4: What is the result of 158 % 10?
             <li data-component="answer"  id="mc_mod_1_opt_a">15</li><li data-component="feedback" id="mc_mod_1_opt_a">This would be the result of 158 divided by 10.  Modulus gives you the remainder.</li>
@@ -610,7 +618,7 @@ int main() {
             </ul>
             </div>
             
-            <div class="runestone">
+            <div class="runestone alert alert-warning">
             <ul data-component="multiplechoice" data-multipleanswers="false"  id="mc_mod_2">
             beginnings-5: What is the result of 3 % 8?
             <li data-component="answer" data-correct id="mc_mod_2_opt_a">3</li><li data-component="feedback" id="mc_mod_2_opt_a">8 goes into 3 no times so the remainder is 3.  The remainder of a smaller number divided by a larger number is always the smaller number!</li>
@@ -623,7 +631,7 @@ int main() {
             </ul>
             </div>
             
-            <div class="runestone">
+            <div class="runestone alert alert-warning">
             <ul data-component="multiplechoice" data-multipleanswers="false"  id="mc_op_2">
             <p>beginnings-6: What are the values of x, y, and z after the following code executes?</p>
 <div class="highlight-java"><div class="highlight"><pre><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
@@ -746,9 +754,9 @@ to perform tasks perhaps as complex as:</p>
 <div data-childcomponent="ac_loop_1" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac_loop_1 data-lang="cpp" 
-      data-timelimit=25000   
+      data-timelimit=25000    
     data-audio=''   
-         >
+          >
 int main() {
 
 }
@@ -764,11 +772,13 @@ prints 'Odd numbers:' followed by all the odd numbers from 1 - 100, one per line
 ---
   for(int num=1; num<=100; ++num) {
 ---
-    if(num * 2 == 0)  #distractor
+    if(num * 2 == 0) {  #distractor
 ---
-    if(num % 2 != 0)
+    if(num % 2 != 0) {
 ---
       std::cout << '\t' << num << '\n';
+---
+    }
 ---
   }
 }
@@ -783,7 +793,7 @@ prints 'Odd numbers:' followed by all the odd numbers from 1 - 100, one per line
 <ul class="simple">
 <li><a class="reference internal" href="../glossary.html#term-compile-time-error"><span class="xref std std-term">Compile-time errors</span></a></li>
 <li>Link-time (linker) errors</li>
-<li><a class="reference internal" href="../glossary.html#term-208"><span class="xref std std-term">Runtime errors</span></a></li>
+<li><a class="reference internal" href="../glossary.html#term-213"><span class="xref std std-term">Runtime errors</span></a></li>
 <li><a class="reference internal" href="../glossary.html#term-semantic-error"><span class="xref std std-term">Semantic errors</span></a></li>
 </ul>
 <p>I expect some basic experience using a debugger in whatever
@@ -793,8 +803,7 @@ programming environment you may have used previously.</p>
 <p class="first admonition-title">Note</p>
 <p>If <strong>any</strong> of the material on the preceding slides sounds unfamiliar, then</p>
 <ul class="last simple">
-<li>Review the material in chapters 1-7 of the text</li>
-<li>Consider working through the week01 example source code</li>
+<li>Consider working through the <a class="reference external" href="https://github.com/DaveParillo/cisc187/tree/master/examples/week01">week 1 example source code</a></li>
 <li>Review the material from your first semester text</li>
 </ul>
 </div>

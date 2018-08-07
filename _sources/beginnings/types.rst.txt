@@ -165,63 +165,17 @@ a side effect of the sign and magnitude representation.
 The following C program [Aspnes2014]_ prints the sign, exponent and mantissa
 of a few small numbers.
 
-.. activecode:: ac_floats_2
-   :language: c
+.. include:: ac_floats.txt 
 
-   #include <stdio.h>
-   #include <math.h>
-   #include <values.h>
+.. admonition:: Try This!
 
-   /* endianness testing */
-   const int EndianTest = 0x04030201;
+   Run and carefully examine the results of the previous program.
 
-   #define LITTLE_ENDIAN() (*((const char *) &EndianTest) == 0x01)
+   How is the value of ``0.1`` different?
 
-   /* extract nth LSB from object stored in lvalue x */
-   #define GET_BIT(x, n) ((((const char *) &x)[LITTLE_ENDIAN() ?\
-             (n) / CHARBITS :\
-             sizeof(x) - (n) / CHARBITS - 1] >> ((n) % CHARBITS)) & 0x01)
+   Try to list at least 1 error this might cause in your programs?
 
-   #define PUT_BIT(x, n) (putchar(GET_BIT((x), (n)) ? '1' : '0'))
-
-   void print_float_bits(float f) {
-     int i;
-
-     i = FLOATBITS - 1;
-     PUT_BIT(f, i);
-     putchar(' ');
-     for(i--; i >= 23; i--) {
-       PUT_BIT(f, i);
-     }
-     putchar(' ');
-     for(; i >= 0; i--) {
-       PUT_BIT(f, i);
-     }
-   }
-
-   void print_float(float f) {
-     printf("%2g = ", f);
-     print_float_bits(f);
-     putchar('\n');
-   }
-
-   int main(int argc, char** argv) {
-     float u = -1.0;
-     float v = u * 0.0;
-     float w = v * -1.0;
-     puts(" x = S   exp     mantissa");
-     print_float(u);
-     print_float(v);
-     print_float(w);
-     print_float(1.0);
-     print_float(2.0);
-     print_float(3.0);
-     print_float(6.0);
-     print_float(8.0);
-     print_float(13.0);
-     print_float(21.0);
-   }
-
+   Try other values and see which ones have exact floating point representations and which do not.
 
 One's complement
 ................
@@ -326,8 +280,11 @@ It helps to understand what is going on if you recognize what overflow looks lik
 
 .. activecode:: ac_types_2
    :language: cpp
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
 
    #include <iostream>
+   #include <cstdint>
+   using std::int8_t;
 
    int main() {
      int8_t x = 128;

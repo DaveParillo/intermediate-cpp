@@ -13,16 +13,16 @@
     <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
     <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js_lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
     <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
     <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/accessibility.css" type="text/css" />
     <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
     <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
     <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
@@ -49,6 +49,7 @@
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js"></script>
     <script type="text/javascript" src="../_static/codemirror.js"></script>
     <script type="text/javascript" src="../_static/xml.js"></script>
     <script type="text/javascript" src="../_static/css.js"></script>
@@ -58,8 +59,8 @@
     <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
     <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
-    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
-    <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js"></script>
     <script type="text/javascript" src="../_static/parsons.js"></script>
     <script type="text/javascript" src="../_static/timedparsons.js"></script>
     <script type="text/javascript" src="../_static/animationbase.js"></script>
@@ -75,19 +76,24 @@
     <script type="text/javascript" src="../_static/codelens.js"></script>
     <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
     <script type="text/javascript" src="../_static/bookfuncs.js"></script>
-    <script type="text/javascript" src="../_static/codemirror.js"></script>
-    <script type="text/javascript" src="../_static/xml.js"></script>
-    <script type="text/javascript" src="../_static/css.js"></script>
-    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
     <script type="text/javascript" src="../_static/python.js"></script>
-    <script type="text/javascript" src="../_static/javascript.js"></script>
-    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js"></script>
     <script type="text/javascript" src="../_static/skulpt.min.js"></script>
     <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
     <script type="text/javascript" src="../_static/clike.js"></script>
     <script type="text/javascript" src="../_static/timed_activecode.js"></script>
-    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
-    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
     <script type="text/javascript" src="../_static/datafile.js"></script>
     <script type="text/javascript" src="../_static/showEval.js"></script>
     <script type="text/javascript" src="../_static/dragndrop.js"></script>
@@ -307,7 +313,7 @@ We already know that a variable stores some value:</p>
 </div>
 <p>The value assigned to <code class="docutils literal"><span class="pre">e_pointer</span></code> is the <em>address of</em> the variable <code class="docutils literal"><span class="pre">euler</span></code>.</p>
 <div class="section" id="declaring-pointers">
-<h2>5.1.1. Declaring pointers<a class="headerlink" href="#declaring-pointers" title="Permalink to this headline">¶</a></h2>
+<span id="index-1"></span><h2>5.1.1. Declaring pointers<a class="headerlink" href="#declaring-pointers" title="Permalink to this headline">¶</a></h2>
 <p>While some of the memory in a running program is stored in
 a small number of <strong>registers</strong>,
 these live on the CPU chip and perform specialized functions like keeping track of the
@@ -456,7 +462,7 @@ it is a compile error to assign an int pointer to a double pointer:</p>
 </div>
 </div>
 <div class="section" id="comparison-with-references">
-<span id="index-1"></span><h2>5.1.3. Comparison with references<a class="headerlink" href="#comparison-with-references" title="Permalink to this headline">¶</a></h2>
+<span id="index-2"></span><h2>5.1.3. Comparison with references<a class="headerlink" href="#comparison-with-references" title="Permalink to this headline">¶</a></h2>
 <p>Recall from our earlier discussions of pass by reference
 that the <code class="docutils literal"><span class="pre">address</span> <span class="pre">of</span></code> operator <code class="docutils literal"><span class="pre">&amp;</span></code> allows us to pass by reference:</p>
 <div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -599,7 +605,7 @@ they can expect it to change.</p>
 </div>
 </div>
 <div class="section" id="pointers-and-arrays">
-<span id="index-2"></span><h2>5.1.4. Pointers and arrays<a class="headerlink" href="#pointers-and-arrays" title="Permalink to this headline">¶</a></h2>
+<span id="index-3"></span><h2>5.1.4. Pointers and arrays<a class="headerlink" href="#pointers-and-arrays" title="Permalink to this headline">¶</a></h2>
 <p>Pointers are not arrays and arrays are not pointers.
 However, much confusion arises between them because
 <em>arrays in expressions</em> often behave like pointers.
@@ -714,9 +720,9 @@ then  <code class="docutils literal"><span class="pre">a[i]</span></code> must b
 <div data-childcomponent="ac-array-index-1" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac-array-index-1 data-lang="cpp" 
-      data-timelimit=25000   
+      data-timelimit=25000    
     data-audio=''   
-         >
+          >
 #include <iostream>
 using std::cout;
 
@@ -740,7 +746,7 @@ The lesson: use variables appropriate for the scope.
 In this case, perhaps a single letter (a) for the array was too short.</p>
 </div>
 <div class="section" id="arrays-of-type-char">
-<span id="index-3"></span><h3>5.1.4.2. Arrays of type <code class="docutils literal"><span class="pre">char</span></code><a class="headerlink" href="#arrays-of-type-char" title="Permalink to this headline">¶</a></h3>
+<span id="index-4"></span><h3>5.1.4.2. Arrays of type <code class="docutils literal"><span class="pre">char</span></code><a class="headerlink" href="#arrays-of-type-char" title="Permalink to this headline">¶</a></h3>
 <p>In the C language,
 the abstract idea of a string is implemented with an array of characters.
 Arrays of <code class="docutils literal"><span class="pre">char</span></code> that are null terminated are commonly called <em>C strings</em>.</p>
@@ -751,9 +757,9 @@ the C string as a loop exit condition:</p>
 <div data-childcomponent="ac-c-copy-idiom" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac-c-copy-idiom data-lang="c" 
-      data-timelimit=25000   
+      data-timelimit=25000    
     data-audio=''   
-         >
+          >
 #include <stdio.h>
 
 // an old C idiom to copy a 'string'
@@ -884,7 +890,7 @@ program executed in <code class="docutils literal"><span class="pre">argv[0]</sp
 <p>We know that C strings are arrays of <code class="docutils literal"><span class="pre">char</span></code>,
 so <code class="docutils literal"><span class="pre">argv</span></code> is a pointer to a <code class="docutils literal"><span class="pre">char</span></code> array.
 Or we can say <code class="docutils literal"><span class="pre">argv</span></code> is a pointer to a pointer to a <code class="docutils literal"><span class="pre">char</span></code>.</p>
-<p>When we compile a program like this:</p>
+<p id="index-5">When we compile a program like this:</p>
 <div class="highlight-none"><div class="highlight"><pre>/usr/bin/gcc -o myprog myprog.cpp
 </pre></div>
 </div>
@@ -1028,7 +1034,7 @@ and a switch with no value after it.</p>
 </div>
 </div>
 <div class="section" id="constant-pointers">
-<span id="index-4"></span><h2>5.1.6. Constant pointers<a class="headerlink" href="#constant-pointers" title="Permalink to this headline">¶</a></h2>
+<span id="index-6"></span><h2>5.1.6. Constant pointers<a class="headerlink" href="#constant-pointers" title="Permalink to this headline">¶</a></h2>
 <p>Pointers can be declared <code class="docutils literal"><span class="pre">const</span></code>, just like any other type.
 Where <code class="docutils literal"><span class="pre">const</span></code> appears controls what is held constant:</p>
 <div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// odd whitespace to help see where const is used</span>

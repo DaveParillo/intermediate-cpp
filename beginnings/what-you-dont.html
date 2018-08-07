@@ -13,16 +13,16 @@
     <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
     <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js_lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
     <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
     <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/accessibility.css" type="text/css" />
     <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
     <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
     <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
@@ -49,6 +49,7 @@
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js"></script>
     <script type="text/javascript" src="../_static/codemirror.js"></script>
     <script type="text/javascript" src="../_static/xml.js"></script>
     <script type="text/javascript" src="../_static/css.js"></script>
@@ -58,8 +59,8 @@
     <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
     <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
-    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
-    <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js"></script>
     <script type="text/javascript" src="../_static/parsons.js"></script>
     <script type="text/javascript" src="../_static/timedparsons.js"></script>
     <script type="text/javascript" src="../_static/animationbase.js"></script>
@@ -75,19 +76,24 @@
     <script type="text/javascript" src="../_static/codelens.js"></script>
     <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
     <script type="text/javascript" src="../_static/bookfuncs.js"></script>
-    <script type="text/javascript" src="../_static/codemirror.js"></script>
-    <script type="text/javascript" src="../_static/xml.js"></script>
-    <script type="text/javascript" src="../_static/css.js"></script>
-    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
     <script type="text/javascript" src="../_static/python.js"></script>
-    <script type="text/javascript" src="../_static/javascript.js"></script>
-    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js"></script>
     <script type="text/javascript" src="../_static/skulpt.min.js"></script>
     <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
     <script type="text/javascript" src="../_static/clike.js"></script>
     <script type="text/javascript" src="../_static/timed_activecode.js"></script>
-    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
-    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
     <script type="text/javascript" src="../_static/datafile.js"></script>
     <script type="text/javascript" src="../_static/showEval.js"></script>
     <script type="text/javascript" src="../_static/dragndrop.js"></script>
@@ -317,12 +323,12 @@ power of the <em>Standard Template Library</em> (STL).
 The STL was not developed until C++ had been used for more than 10 years.
 While it was incorporated into the first ISO version of the C++ standard (C++98),
 it took some time for many programmers to recognize the power and flexibility
-of <a class="reference internal" href="../glossary.html#term-generic-programming"><span class="xref std std-term">generic programming</span></a>.</p>
-<p>Unfortunately, some of you have “learned C++” mostly using an environment like
-CHide. CHide is not C++.
-It does not conform even to the C++98 version of the standard
-because it don’t include the STL.</p>
-<p>C++ is actually a federation of several languages:</p>
+of <a class="reference internal" href="../glossary.html#term-generic-programming"><span class="xref std std-term">template programming</span></a>
+in addition to the  <a class="reference internal" href="../glossary.html#term-object-oriented-programming-paradigm"><span class="xref std std-term">object-oriented programming paradigm</span></a>
+C++ was originally designed to support.</p>
+<p id="index-1">If the language or compiler you learned does not conform to at least the
+C++98 version of the standard, then it’s not C++.</p>
+<p>To add to the confusion, C++ is actually a federation of several languages:</p>
 <img src="../_images/graphviz-0a58d054efcdce56b7add91223945d1265557ebe.png" alt="digraph foo {
   fontname = &quot;Bitstream Vera Sans&quot;
   node [
@@ -340,23 +346,27 @@ because it don’t include the STL.</p>
   c -&gt; &quot;C++98&quot; -&gt; &quot;C++03&quot; -&gt; modern;
 }" />
 <p>Where ‘Modern’ C++ is C++11 and later.
-More specifically, the current version of the standard.</p>
+More specifically, the <strong>current</strong> version of the standard.</p>
 <p>It is possible to write code in any of these languages
 compile it with a C++ compiler and call it a “C++ program”.
 This course emphasizes ‘modern’ C++.
 Although there is emphasis on newer language features,
 that does not mean that features released before 2011 should never be used.
-Generally, C++ gives programmers many choices and it is true
+That would be impossible.</p>
+<p>Generally, C++ gives programmers many choices and it is true
 that some choices are preferred over others.
-We will try to make preferred programming choices clear.</p>
+We will try to make preferred design and programming choices clear.</p>
+<p>You can test the level of support for the compiler you are using by
+attempting to compile these examples in your environment.</p>
+<div id='tab_beginning_compiler_test' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="C++11" >
 <p>A simple test for a modern C++ compiler:</p>
 
 <div data-childcomponent="ac_begin_compiler_test" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac_begin_compiler_test data-lang="cpp" 
-      data-timelimit=25000   
+      data-timelimit=25000    
     data-audio=''   
-    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++11']"     >
+    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++11']"      >
 // A simple test for C++11 compiler
 // compiled with: -Wall -Wextra -pedantic -std=c++11
 
@@ -372,15 +382,16 @@ int main () {
 }
 </textarea>
 </div>
+</div><div data-component="tab" data-tabname="C++14" >
 <p>The current textbook compiler does not support C++14.
 This valid code fails to compile:</p>
 
 <div data-childcomponent="ac_begin_compiler_test_1y" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac_begin_compiler_test_1y data-lang="cpp" 
-      data-timelimit=25000   
+      data-timelimit=25000    
     data-audio=''   
-    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++1y']"     >
+    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++1y']"      >
 // A simple test for 'make_unique' support
 // compiled with: -Wall -Wextra -pedantic -std=c++1y
 
@@ -417,14 +428,15 @@ int main()
 </div>
 <p>If you run it on <a class="reference external" href="http://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique">cppreference.com</a>
 then you can see the output.</p>
+</div><div data-component="tab" data-tabname="C++17" >
 <p>The textbook compiler does not know that <code class="docutils literal"><span class="pre">-std=c++1z</span></code>, much less c++17 is an option:</p>
 
 <div data-childcomponent="ac_begin_compiler_test_1z" class="runestone explainer ac_section alert alert-warning">
 
 <textarea data-component="activecode" id=ac_begin_compiler_test_1z data-lang="cpp" 
-      data-timelimit=25000   
+      data-timelimit=25000    
     data-audio=''   
-    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++1z']"     >
+    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++1z']"      >
 // A simple test for C++17 support
 // compiled with: -Wall -Wextra -pedantic -std=c++1z
 
@@ -449,7 +461,10 @@ then you can see the output.</p>
  }
 </textarea>
 </div>
-<p>And now we know what our capabilities are.</p>
+</div>
+    </div>
+
+<p>And now we know what our textbook capabilities are.</p>
 </div>
 <div class="section" id="gnu-linux-or-unix-in-general">
 <h2>1.4.2. GNU/Linux (or Unix) in general<a class="headerlink" href="#gnu-linux-or-unix-in-general" title="Permalink to this headline">¶</a></h2>
@@ -465,8 +480,6 @@ You won’t have to edit it.</p>
 </div>
 <div class="section" id="parsing-command-line-arguments">
 <h2>1.4.3. Parsing command line arguments<a class="headerlink" href="#parsing-command-line-arguments" title="Permalink to this headline">¶</a></h2>
-<p>This information is for the extra credit part of the lab,
-but is required for all projects.</p>
 <p>Why command line programs?</p>
 <p>C++ is primarily used in <em>systems programming</em> and
 is a fundamental part of all <em>*nix</em> programs.
@@ -476,7 +489,7 @@ It is a matter of iterating through a 2 dimensional array of <cite>char</cite>.<
 <p>Function <code class="docutils literal"><span class="pre">main()</span></code> traditionally takes two arguments that provide information
 about the command line.</p>
 <ul>
-<li><p class="first"><code class="docutils literal"><span class="pre">int</span> <span class="pre">argc</span></code>: the total number of arguments, strings separated by whitespace</p>
+<li><p class="first"><code class="docutils literal"><span class="pre">int</span> <span class="pre">argc</span></code>: the total number of arguments, strings separated by <em>white space</em> (space or tab characters)</p>
 </li>
 <li><p class="first"><code class="docutils literal"><span class="pre">char</span> <span class="pre">*argv[]</span></code>: an array of these strings</p>
 <p><code class="docutils literal"><span class="pre">char</span> <span class="pre">*argv[]</span></code> can also be specified as <code class="docutils literal"><span class="pre">char</span> <span class="pre">**argv</span></code>,
@@ -485,7 +498,7 @@ If not, we’ll cover it soon.</p>
 </li>
 </ul>
 <p>The important thing to remember is that <code class="docutils literal"><span class="pre">argc</span></code> and <code class="docutils literal"><span class="pre">argv</span></code> are
-passed automatically to main and are available to use.
+passed automatically to main and are available for use.
 If you run a program named <code class="docutils literal"><span class="pre">foo</span></code> invoked as:</p>
 <div class="highlight-default"><div class="highlight"><pre><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">dave</span><span class="o">/</span><span class="n">foo</span> <span class="o">-</span><span class="n">n</span> <span class="mi">10</span> <span class="n">www</span><span class="o">.</span><span class="n">sdmesa</span><span class="o">.</span><span class="n">edu</span>
 </pre></div>

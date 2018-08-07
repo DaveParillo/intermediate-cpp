@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>9.1. Section &#8212; Intermediate Modern C++ Overview</title>
+    <title>10.4. Interfaces and implementation &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -13,16 +13,16 @@
     <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
     <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js_lib/prettify.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
     <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
     <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/accessibility.css" type="text/css" />
     <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
     <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
     <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
@@ -49,6 +49,7 @@
     <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
     <script type="text/javascript" src="../_static/fitb.js"></script>
     <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js"></script>
     <script type="text/javascript" src="../_static/codemirror.js"></script>
     <script type="text/javascript" src="../_static/xml.js"></script>
     <script type="text/javascript" src="../_static/css.js"></script>
@@ -58,8 +59,8 @@
     <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
     <script type="text/javascript" src="../_static/Blob.js"></script>
     <script type="text/javascript" src="../_static/reveal.js"></script>
-    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
-    <script type="text/javascript" src="../_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js"></script>
     <script type="text/javascript" src="../_static/parsons.js"></script>
     <script type="text/javascript" src="../_static/timedparsons.js"></script>
     <script type="text/javascript" src="../_static/animationbase.js"></script>
@@ -75,19 +76,24 @@
     <script type="text/javascript" src="../_static/codelens.js"></script>
     <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
     <script type="text/javascript" src="../_static/bookfuncs.js"></script>
-    <script type="text/javascript" src="../_static/codemirror.js"></script>
-    <script type="text/javascript" src="../_static/xml.js"></script>
-    <script type="text/javascript" src="../_static/css.js"></script>
-    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
     <script type="text/javascript" src="../_static/python.js"></script>
-    <script type="text/javascript" src="../_static/javascript.js"></script>
-    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js"></script>
     <script type="text/javascript" src="../_static/skulpt.min.js"></script>
     <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
     <script type="text/javascript" src="../_static/clike.js"></script>
     <script type="text/javascript" src="../_static/timed_activecode.js"></script>
-    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
-    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
     <script type="text/javascript" src="../_static/datafile.js"></script>
     <script type="text/javascript" src="../_static/showEval.js"></script>
     <script type="text/javascript" src="../_static/dragndrop.js"></script>
@@ -109,8 +115,8 @@
     <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="10. Introduction to classes" href="../class-I-intro/toctree.html" />
-    <link rel="prev" title="9. Algorithms" href="toctree.html" />
+    <link rel="next" title="10.5. const member functions" href="const.html" />
+    <link rel="prev" title="10.3. Pointers to classes" href="pointers.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -230,8 +236,8 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">9.1. Section</a><ul>
-<li><a class="reference internal" href="#subsection">9.1.1. Subsection</a></li>
+<li><a class="reference internal" href="#">10.4. Interfaces and implementation</a><ul>
+<li><a class="reference internal" href="#file-extensions">10.4.1. File extensions</a></li>
 </ul>
 </li>
 </ul>
@@ -241,14 +247,14 @@
         
         
           
-  <li id="relations-prev" title="Previous Chapter - 9. Algorithms" data-toggle="tooltip">
-    <a href="toctree.html" >
+  <li id="relations-prev" title="Previous Chapter - 10.3. Pointers to classes" data-toggle="tooltip">
+    <a href="pointers.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - 10. Introduction to classes' data-toggle="tooltip" >
-    <a href="../class-I-intro/toctree.html" >
+  <li id="relations-next" title='Next Chapter - 10.5. <code class="docutils literal"><span class="pre">const</span></code> member functions' data-toggle="tooltip" >
+    <a href="const.html" >
       <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
   </li>
@@ -278,15 +284,119 @@
 
 <div class="container" id="main-content">
   
-  <div class="section" id="section">
-<span id="index-0"></span><h1>9.1. Section<a class="headerlink" href="#section" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="subsection">
-<h2>9.1.1. Subsection<a class="headerlink" href="#subsection" title="Permalink to this headline">¶</a></h2>
-<p>TBD</p>
+  <div class="section" id="interfaces-and-implementation">
+<span id="index-0"></span><h1>10.4. Interfaces and implementation<a class="headerlink" href="#interfaces-and-implementation" title="Permalink to this headline">¶</a></h1>
+<p>A class defines a <a class="reference internal" href="../glossary.html#term-type"><span class="xref std std-term">type</span></a>.
+When you design a type, some parts are hidden (private),
+while others are visible (public).
+The public parts of your type represent an <em>interface</em>.
+The interface to your class determine how other functions
+will interact with it.</p>
+<p>Consider a simple <code class="docutils literal"><span class="pre">date</span></code> class.
+This class does not allow direct access to y, m, and d.
+These class members can only be set using the 3 arg constructor provided
+and can only be retrieved using the functions provided.</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="k">class</span> <span class="nc">date</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">;</span>
+
+  <span class="k">public</span><span class="o">:</span>
+    <span class="n">date</span> <span class="p">()</span>
+      <span class="o">:</span> <span class="n">y</span><span class="p">{</span><span class="mi">1776</span><span class="p">},</span> <span class="n">m</span><span class="p">{</span><span class="mi">7</span><span class="p">},</span> <span class="n">d</span><span class="p">{</span><span class="mi">4</span><span class="p">}</span>
+    <span class="p">{</span> <span class="p">}</span>
+    <span class="c1">// Declare other constructors &amp; functions</span>
+    <span class="n">date</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">d</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">as_tuple</span> <span class="p">();</span>
+    <span class="kt">int</span> <span class="nf">year</span> <span class="p">();</span>
+    <span class="kt">int</span> <span class="nf">month</span> <span class="p">();</span>
+    <span class="kt">int</span> <span class="nf">day</span> <span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Public member functions define the class interface.
+Everything hidden are implementation details.
+No one needs to know (or care) how things are actually implemented.</p>
+<p>Keeping interface specifications separate from the implementation
+is considered a best practice:</p>
+<ul class="simple">
+<li>As programs grow large,
+the time it takes to compile grows proportionally.
+On large projects, this can be a serious impact on your productivity.
+It’s even the <a class="reference external" href="https://xkcd.com/303/">source of jokes</a>.</li>
+<li>It makes your code easier to maintain.
+You don’t have to find <em>where</em> in a large file your code is
+when you can find the named file instead.</li>
+</ul>
+<p>Declare interfaces in your header files (<em>date.h</em>):</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#pragma once</span>
+
+<span class="cp">#include &lt;tuple&gt;</span>
+
+<span class="k">class</span> <span class="nc">date</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">y</span> <span class="p">{</span><span class="mi">1776</span><span class="p">};</span>
+    <span class="kt">int</span> <span class="n">m</span> <span class="p">{</span><span class="mi">7</span><span class="p">};</span>
+    <span class="kt">int</span> <span class="n">d</span> <span class="p">{</span><span class="mi">4</span><span class="p">};</span>
+  <span class="k">public</span><span class="o">:</span>
+    <span class="n">date</span> <span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+    <span class="n">date</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">d</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">as_tuple</span> <span class="p">();</span>
+    <span class="kt">int</span> <span class="nf">year</span> <span class="p">();</span>
+    <span class="kt">int</span> <span class="nf">month</span> <span class="p">();</span>
+    <span class="kt">int</span> <span class="nf">day</span> <span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Implement interfaces in your cpp files (<em>date.cpp</em>):</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &quot;date.h&quot;</span>
+<span class="cp">#include &lt;tuple&gt;</span>
+
+<span class="n">date</span><span class="o">::</span><span class="n">date</span> <span class="p">(</span><span class="kt">int</span> <span class="n">year</span><span class="p">,</span> <span class="kt">int</span> <span class="n">mon</span><span class="p">,</span> <span class="kt">int</span> <span class="n">day</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">y</span><span class="p">{</span><span class="n">year</span><span class="p">},</span> <span class="n">m</span><span class="p">{</span><span class="n">mon</span><span class="p">},</span> <span class="n">d</span><span class="p">{</span><span class="n">day</span><span class="p">}</span>
+<span class="p">{</span> <span class="p">}</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">date</span><span class="o">::</span><span class="n">as_tuple</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">make_tuple</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span><span class="n">d</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">date</span><span class="o">::</span><span class="n">year</span> <span class="p">()</span>  <span class="p">{</span> <span class="k">return</span> <span class="n">y</span><span class="p">;</span> <span class="p">}</span>
+<span class="kt">int</span> <span class="n">date</span><span class="o">::</span><span class="n">month</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">m</span><span class="p">;</span> <span class="p">}</span>
+<span class="kt">int</span> <span class="n">date</span><span class="o">::</span><span class="n">day</span> <span class="p">()</span>   <span class="p">{</span> <span class="k">return</span> <span class="n">d</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="file-extensions">
+<span id="index-1"></span><h2>10.4.1. File extensions<a class="headerlink" href="#file-extensions" title="Permalink to this headline">¶</a></h2>
+<p>All source files are simply text files,
+however, by convention, different kinds of files have different extensions:</p>
+<ul>
+<li><p class="first">Header files should end in <code class="docutils literal"><span class="pre">.h</span></code>, <code class="docutils literal"><span class="pre">.hpp</span></code>, or  <code class="docutils literal"><span class="pre">.hxx</span></code>.</p>
+<p>The extension you use is mostly a matter of preference, but some
+organizations define explicit guidelines.</p>
+<p>Some code editors may assume <code class="docutils literal"><span class="pre">.h</span></code> headers are for C code and that <code class="docutils literal"><span class="pre">.hpp</span></code>
+headers are C++ code and may apply different syntax highlighting rules.</p>
+<p>It won’t matter to your compiler.</p>
+</li>
+<li><p class="first">C++ Source files should end in <code class="docutils literal"><span class="pre">.cpp</span></code> and</p>
+</li>
+<li><p class="first">C Source files should end with <code class="docutils literal"><span class="pre">.c</span></code>.</p>
+</li>
+</ul>
+<p>C and C++ source files <em>are</em> handled differently by your compiler.
+That is when you compile your code, you need to compile the C files differently from the C++ files.
+Having a simple convention to distinguish them is important.</p>
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">
 <p class="first admonition-title">More to Explore</p>
-<p class="last">TBD</p>
+<ul class="last simple">
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/Include_guard">Include guards</a> from wikipedia.</li>
+<li>From cppreference.com<ul>
+<li><a class="reference external" href="https://en.cppreference.com/w/cpp/preprocessor/include">Source file inclusion</a>.</li>
+<li><a class="reference external" href="https://en.cppreference.com/w/cpp/preprocessor/impl">#pragma directives</a>.</li>
+</ul>
+</li>
+<li>From C++ Core Guidelines<ul>
+<li><a class="reference external" href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#S-interfaces">Interfaces</a></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -294,19 +404,19 @@
 
   
       
-  <li id="relations-prev" class="navLink" title='Previous Section - 9. Algorithms' data-toggle="tooltip">
-    <a href="toctree.html" >
+  <li id="relations-prev" class="navLink" title='Previous Section - 10.3. Pointers to classes' data-toggle="tooltip">
+    <a href="pointers.html" >
       <i class='prevNav glyphicon glyphicon-chevron-left'></i>
     </a>
   </li>
-  <a class="navLinkBg" id="navLinkBgLeft"  href="toctree.html" ></a>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="pointers.html" ></a>
   
-  <li id="relations-next" class="navLink" title='Next Section - 10. Introduction to classes' data-toggle="tooltip" >
-    <a href="../class-I-intro/toctree.html" >
+  <li id="relations-next" class="navLink" title='Next Section - 10.5. <code class="docutils literal"><span class="pre">const</span></code> member functions' data-toggle="tooltip" >
+    <a href="const.html" >
       <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
     </a>
   </li>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="../class-I-intro/toctree.html" >Next Section - 10. Introduction to classes</a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="const.html" >Next Section - 10.5. <code class="docutils literal"><span class="pre">const</span></code> member functions</a>
 
 <script type="text/javascript">
 

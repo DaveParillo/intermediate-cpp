@@ -7,19 +7,24 @@
     License".
 
 .. index:: 
-   single: algorithms
+   pair: algorithms; refactoring
 
-Section
-=======
 
-Subsection
-..........
+std::copy and Iterator Adapters
+===============================
 
-TBD
+TBD.
+
+Need an example showing how some algorithms break with default iterators
+if there is no 'next' element.
+
 
 -----
 
 .. admonition:: More to Explore
 
-   TBD
+   - From cppreference.com
+
+     - `std::copy <https://en.cppreference.com/w/cpp/algorithm/copy>`__
+     - `std::inserter <https://en.cppreference.com/w/cpp/iterator/inserter>`__
 
