@@ -7,4 +7,8 @@ Introduction to classes
 
    intro.rst
    constructors.rst
+   pointers.rst
+   interfaces.rst
+   const.rst
+   abstraction.rst
 

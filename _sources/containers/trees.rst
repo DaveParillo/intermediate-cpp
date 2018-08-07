@@ -6,11 +6,11 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-.. index:: 
+.. index:: associative containers
    single: trees
 
-Motivation
-==========
+Associative containers
+======================
 If sequence containers like :cref:`vector` are so great,
 then why would we need anything else?
 

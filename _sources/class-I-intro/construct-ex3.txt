@@ -1,0 +1,37 @@
+.. activecode:: ac-class-construct-ex3
+   :language: cpp
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+
+   #include <cstdio>
+   #include <string>
+
+   using std::string;
+
+   struct Talk {
+     string text_;               // a variable to store what we want to say
+
+     Talk()                      // a new default constructor
+       : text_ ("Hello, world!")
+     { }
+
+     Talk(const string& value)    // a one argument constructor
+       : text_ (value)
+     { }
+
+     void text() {
+       std::puts(text_.c_str());
+     }
+   };
+
+   int main() {
+     Talk say;     // Create the default object
+     say.text();
+  
+     say.text_ = "Something else";
+     say.text();
+
+     // Create a non-default object
+     Talk talk("The 80's were a long time ago.");
+     talk.text();
+   }
+

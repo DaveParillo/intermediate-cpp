@@ -208,6 +208,12 @@ Glossary
       :term:`derived classes <derived class>` that :term:`inherit` either
       directly or indirectly from the base class.
 
+   class invariant
+   type invariant
+   invariants
+      A class invariant is an assertion about conditions which must be true
+      in order for a class to remain valid.
+
    client
       The user of a service.
 

@@ -1,0 +1,19 @@
+.. activecode:: ac-class-construct-ex2
+   :language: cpp
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+
+   #include <cstdio>
+
+   struct Talk {
+     Talk() {}        // default constructor
+
+     void hello() {
+       std::puts("Hello, world!");
+     }
+   };
+
+   int main() {
+     Talk say;     // Create an object from a class
+     say.hello();  // Call a function in the object
+   }
+

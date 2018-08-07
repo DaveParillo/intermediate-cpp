@@ -1,0 +1,40 @@
+.. activecode:: ac-class-construct-ex4
+   :language: cpp
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+
+   #include <iostream>
+   #include <string>
+
+   using std::string;
+
+   class Talk {
+     public: 
+
+       Talk() : text_ ("Hello, world!") { }
+
+       Talk(const string& value) 
+         : text_ {value.empty()? "default text": value} 
+       { }
+
+       string text() {
+         return text_;
+       }
+       void text(string value) {
+         if (value.empty()) return;
+         text_ = value;
+       }
+
+     private:
+       string text_;
+   };
+
+   int main() {
+     Talk say;
+     std::cout << say.text() << '\n';
+  
+     say.text("Something else");
+     std::cout << say.text() << '\n';
+     say.text("");
+     std::cout << say.text() << '\n';
+   }
+
