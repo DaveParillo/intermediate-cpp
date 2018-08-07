@@ -96,8 +96,8 @@ Implement interfaces in your cpp files (*date.cpp*):
    int date::day ()   { return d; }
 
 .. index:: 
-   pair: file extensions, header
-   pair: file extensions, compiler
+   pair: file extensions; header
+   pair: file extensions; compiler
 
 File extensions
 ---------------
@@ -133,6 +133,5 @@ Having a simple convention to distinguish them is important.
 
    - From C++ Core Guidelines
 
-     - `Interfaces
-        <https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#S-interfaces>`__
+     - `Interfaces <https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#S-interfaces>`__
 
