@@ -12,7 +12,6 @@ sys.path.append(os.getcwd())
 home_dir = os.getcwd()
 #master_url = 'http://127.0.0.1:8000'
 master_url = 'https://daveparillo.github.io/intermediate-cpp/'
-#master_url = 'http://209.129.16.61/~dparillo/book/intermediate-cpp/'
 master_app = 'intermediate-cpp'
 serving_dir = "./build/intermediate-cpp"
 dest = "../../static"
@@ -36,7 +35,7 @@ options(
                        'dburl': '',
                        'default_ac_lang': 'cpp',
                        'basecourse': 'intermediate-cpp',
-                       'jobe_server': 'https://cryptic-headland-94862.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz',
+                       'jobe_server': 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz',
                        'proxy_uri_runs': '/jobe/index.php/restapi/runs/',
                        'proxy_uri_files': '/jobe/index.php/restapi/files/'
                        }
