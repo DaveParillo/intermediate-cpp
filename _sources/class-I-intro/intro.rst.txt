@@ -7,7 +7,9 @@
     License".
 
 .. index:: 
-   single: classes
+   single: class
+   single: object
+   single: abstraction
 
 Classes
 =======
@@ -19,24 +21,49 @@ placing unfinished functions on the call stack, if needed,
 working towards a desired end state.
 Functions usually exist independently from each other.
 C++ does provide some tools to make working with free functions easier.
-Function can be grouped in a :cref:`namespace declaration`,
+Functions can be grouped in a :cref:`namespace declaration`,
 or in a single compilation unit.
 Function overloads allow functions that perform the same task,
 but on different types to be given the same name.
 
 When procedural programs run,
 data is passed around or returned from functions.
-On very large programs, even these tools can fall short.
+In the late 1960's,
+concerns about the cost, reliability, and maintainability
+of large software systems manifested in what was called a
+'software crisis'.
 
-Every function, is effectively public.
-Every function has access to every other function,
-even if there is no good reason to call them.
+Very large programs comprised of many thousands of functions 
+are inherently complex.
+Simply managing the names of functions in a very large program
+can be burdensome.
+When every function is effectively public,
+Then every function has access to every other function,
+even if there is no good reason for public visibility.
+
+How to solve this problem? *Abstraction*.
+Humans deal with complexity by abstracting details away. For example:
+driving a car doesn't require knowledge of the internal combustion engine; 
+it's enough to think of a car as simple transport.
+
+There is nothing special about forming abstractions, 
+people do it every day.
+However, in object-oriented programming this is a main focus of activity and organization.
+Object-oriented (OO) programming 
+takes advantage of the natural human tendency to work with real world abstractions.
+In OO:
+
+- We define abstractions and call them *classes*
+- When we use our classes, then we call them *objects*
 
 In contrast to :term:`procedural` programming,
 :term:`object-oriented programming` allows programmers to hide
 data and functions within a :term:`class`.
 
-A class defines a specific abstraction:
+A class also effectively defines a *type*.
+In other words, when you create a new class,
+You are creating a new :term:`type`.
+Most classes define both:
 
 - A meaningful representation of data 
 
@@ -45,8 +72,9 @@ A class defines a specific abstraction:
 - The operations associated with the data
 
 Together, the data and operations form an :term:`abstract data type`.
-In other words, when you create a new class,
-You are creating a new :term:`type`.
+Since it is you inventing the type, you also see the term
+*user-defined type*.
+Class, abstract data type, and user-defined type are all synonyms for the same thing.
 
 Don't let the new terms scare you.
 You have been working with classes since chapter 2.
@@ -68,6 +96,8 @@ the user of the class do not need to care.
 We use classes in the same way we use any built-in type: 
 to get something specific done in a clear, efficient manner.
 
+.. index:: struct vs. class
+   single: class vs. struct
 
 Relationship to ``struct``
 --------------------------
@@ -148,6 +178,7 @@ what parts of the class may be accessed from outside the class.
 
 .. admonition:: More to Explore
 
+   - `Motivation for OO <https://atomicobject.com/resources/oo-programming/introduction-motivation-for-oo>`__
    - From cppreference.com
 
      - :cref:`Access specifiers`.

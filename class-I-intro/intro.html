@@ -136,7 +136,7 @@
   eBookConfig.useRunestoneServices = false;
   eBookConfig.python3 = false;
   eBookConfig.basecourse = 'intermediate-cpp';
-  eBookConfig.jobehost = 'https://cryptic-headland-94862.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
   eBookConfig.runestone_version = '3.0.7';
@@ -293,20 +293,44 @@ placing unfinished functions on the call stack, if needed,
 working towards a desired end state.
 Functions usually exist independently from each other.
 C++ does provide some tools to make working with free functions easier.
-Function can be grouped in a <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=namespace declaration">namespace declaration</a>,
+Functions can be grouped in a <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=namespace declaration">namespace declaration</a>,
 or in a single compilation unit.
 Function overloads allow functions that perform the same task,
 but on different types to be given the same name.</p>
 <p>When procedural programs run,
 data is passed around or returned from functions.
-On very large programs, even these tools can fall short.</p>
-<p>Every function, is effectively public.
-Every function has access to every other function,
-even if there is no good reason to call them.</p>
+In the late 1960’s,
+concerns about the cost, reliability, and maintainability
+of large software systems manifested in what was called a
+‘software crisis’.</p>
+<p>Very large programs comprised of many thousands of functions
+are inherently complex.
+Simply managing the names of functions in a very large program
+can be burdensome.
+When every function is effectively public,
+Then every function has access to every other function,
+even if there is no good reason for public visibility.</p>
+<p>How to solve this problem? <em>Abstraction</em>.
+Humans deal with complexity by abstracting details away. For example:
+driving a car doesn’t require knowledge of the internal combustion engine;
+it’s enough to think of a car as simple transport.</p>
+<p>There is nothing special about forming abstractions,
+people do it every day.
+However, in object-oriented programming this is a main focus of activity and organization.
+Object-oriented (OO) programming
+takes advantage of the natural human tendency to work with real world abstractions.
+In OO:</p>
+<ul class="simple">
+<li>We define abstractions and call them <em>classes</em></li>
+<li>When we use our classes, then we call them <em>objects</em></li>
+</ul>
 <p>In contrast to <a class="reference internal" href="../glossary.html#term-procedural"><span class="xref std std-term">procedural</span></a> programming,
 <a class="reference internal" href="../glossary.html#term-object-oriented-programming"><span class="xref std std-term">object-oriented programming</span></a> allows programmers to hide
 data and functions within a <a class="reference internal" href="../glossary.html#term-class"><span class="xref std std-term">class</span></a>.</p>
-<p>A class defines a specific abstraction:</p>
+<p>A class also effectively defines a <em>type</em>.
+In other words, when you create a new class,
+You are creating a new <a class="reference internal" href="../glossary.html#term-type"><span class="xref std std-term">type</span></a>.
+Most classes define both:</p>
 <ul class="simple">
 <li>A meaningful representation of data</li>
 </ul>
@@ -315,8 +339,9 @@ data and functions within a <a class="reference internal" href="../glossary.html
 <li>The operations associated with the data</li>
 </ul>
 <p>Together, the data and operations form an <a class="reference internal" href="../glossary.html#term-abstract-data-type"><span class="xref std std-term">abstract data type</span></a>.
-In other words, when you create a new class,
-You are creating a new <a class="reference internal" href="../glossary.html#term-type"><span class="xref std std-term">type</span></a>.</p>
+Since it is you inventing the type, you also see the term
+<em>user-defined type</em>.
+Class, abstract data type, and user-defined type are all synonyms for the same thing.</p>
 <p>Don’t let the new terms scare you.
 You have been working with classes since chapter 2.
 The types <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::string">std::string</a>, and all the sequential and associative containers,
@@ -335,7 +360,7 @@ the user of the class do not need to care.
 We use classes in the same way we use any built-in type:
 to get something specific done in a clear, efficient manner.</p>
 <div class="section" id="relationship-to-struct">
-<h2>10.1.1. Relationship to <code class="docutils literal"><span class="pre">struct</span></code><a class="headerlink" href="#relationship-to-struct" title="Permalink to this headline">¶</a></h2>
+<span id="index-1"></span><h2>10.1.1. Relationship to <code class="docutils literal"><span class="pre">struct</span></code><a class="headerlink" href="#relationship-to-struct" title="Permalink to this headline">¶</a></h2>
 <p>In C++, a <code class="docutils literal"><span class="pre">struct</span></code> <strong>is a</strong> <code class="docutils literal"><span class="pre">class</span></code> with default public access:</p>
 <div id='talk-struct' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Example" >
 <p>This program works because everything in a <code class="docutils literal"><span class="pre">struct</span></code> is publicly visible
@@ -461,6 +486,7 @@ as <code class="docutils literal"><span class="pre">class</span> <span class="pr
 <div class="admonition-more-to-explore admonition">
 <p class="first admonition-title">More to Explore</p>
 <ul class="last simple">
+<li><a class="reference external" href="https://atomicobject.com/resources/oo-programming/introduction-motivation-for-oo">Motivation for OO</a></li>
 <li>From cppreference.com<ul>
 <li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=Access specifiers">Access specifiers</a>.</li>
 </ul>
