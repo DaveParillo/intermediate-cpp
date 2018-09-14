@@ -5,23 +5,31 @@
    // A simple test for C++17 support
    // compiled with: -Wall -Wextra -pedantic -std=c++1z
 
-    #include <iostream>
-    #include <memory>
+   #include <any>
+   #include <iostream>
+   #include <type_traits>
 
-    template <typename T>
-    auto get_value(T t) {                   // auto return type deduction: c++14
-        if constexpr (std::is_pointer_v<T>) // constexpr-if: C++17
-            return *t;
-        else
-            return t;
-    }
+   template <typename T> 
+   // auto return type deduction: c++14
+   auto get_value(T t) { 
+      // constexpr-if: C++17
+      if constexpr (std::is_pointer_v<T>) {  // C++11
+          return *t;
+      } else {
+          return t;
+      }
+   }
 
-    int main()
-    {
-         auto pi = std::make_unique<int>(9);
-         int i = 9;
+   int main() {
+     // container for any type:   C++17
+     auto a = std::make_any<int>(3);
+     std::cout << std::any_cast<int>(a) << '\n';
+     a = 3.14159;
+     std::cout << std::any_cast<double>(a) << '\n';
+     int i = 9;
+     int* p = &i;
                  
-         std::cout << get_value(pi.get()) << "\n";
-         std::cout << get_value(i) << "\n";
-    }
+     std::cout << get_value(*p) << '\n';
+     std::cout << get_value(i) << '\n';
+   }
 

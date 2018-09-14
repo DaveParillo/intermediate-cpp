@@ -1,45 +1,39 @@
-The current textbook compiler does not support C++14.
-This valid code fails to compile:
+The current textbook compiler supports C++14, at least partly.
 
 .. activecode:: ac_begin_compiler_test_1y
    :language: cpp
    :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++1y']
 
-   // A simple test for 'make_unique' support
+   // A simple test for C++14 support
    // compiled with: -Wall -Wextra -pedantic -std=c++1y
        
    #include <iostream>
    #include <memory>
-        
-   struct point
-   {
-       int x, y;
-       point() : x(0), y(0) { }
-       point(int x, int y) :x(x), y(y) { }
-   };
-   std::ostream& operator<<(std::ostream& os, const point& p) {
-       return os << '{' << "x:" << p.x << " y:" << p.y << '}';
-   }
-      
-   int main()
-   {
-       // Use the default constructor.
-       std::unique_ptr<point> p1 = std::make_unique<point>();
-       // Use the constructor that matches these arguments
-       std::unique_ptr<point> p2 = std::make_unique<point>(1, 2);
-       // Create a unique_ptr to an array of 5 elements
-       std::unique_ptr<point[]> p3 = std::make_unique<point[]>(5);
-      
-       std::cout << "make_unique<point>():      " << *p1 << '\n'
-                 << "make_unique<point>(1,2): " << *p2 << '\n'
-                 << "make_unique<point[]>(5):   " << '\n';
-       for (int i = 0; i < 5; i++) {
-           std::cout << "     " << p3[i] << '\n';
-       }
+   #include <string>
+   #include <tuple>
+   #include <functional>
+
+   // this function returns multiple values
+   auto func() {
+      int x = 5;
+      return std::make_tuple(x, 7);
    }
 
-.. **
+   int main() {
+      // function returning multiple values
+      int a, b;
+      std::tie(a, b) = func();
 
-If you run it on `cppreference.com <http://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique>`_
-then you can see the output.
+      // make a unique pointer
+      std::unique_ptr<int> p1 = std::make_unique<int>(3);
+      std::cout << a << " " << b << " " << *p1 << "\n";
 
+      // quoted numeric literal
+      auto c = 299'792'458;
+
+      // std::string literal
+      // auto units = "m/s"s;    // valid c++14
+      std::string units = "m/s"; // online book requires this
+
+      std::cout << "speed of light: " << c << " " << units << "\n";
+   }
