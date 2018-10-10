@@ -339,12 +339,12 @@ ActiveCode.prototype.addHistoryScrubber = function (pos_last) {
         $(scrubberDiv).width("180px");
         var scrubber = document.createElement("div");
         this.slideit = function() {
-            console.log("slideit was called");
             this.editor.setValue(this.history[$(scrubber).slider("value")]);
             var curVal = this.timestamps[$(scrubber).slider("value")];
             var tooltip = '<div class="sltooltip"><div class="sltooltip-inner">' +
                 curVal + '</div><div class="sltooltip-arrow"></div></div>';
             $(scrubber).find(".ui-slider-handle").html(tooltip);
+            this.logBookEvent({'event': 'activecode', 'act': 'slide:'+curVal, 'div_id': this.divid})
             setTimeout(function () {
                 $(scrubber).find(".sltooltip").fadeOut()
             }, 4000);
@@ -384,7 +384,6 @@ ActiveCode.prototype.addHistoryScrubber = function (pos_last) {
         this.histButton = null;
         this.historyScrubber = scrubber;
         $(scrubberDiv).insertAfter(this.runButton);
-        console.log("resoving deferred in addHistoryScrubber");
         deferred.resolve();
     }.bind(this)
     if (eBookConfig.practice_mode){
@@ -397,7 +396,6 @@ ActiveCode.prototype.addHistoryScrubber = function (pos_last) {
                 for (t in data.timestamps) {
                     this.timestamps.push( (new Date(data.timestamps[t])).toLocaleString() )
                 }
-                console.log("gethist successful history updated")
             }
         }.bind(this))
             .always(helper); // For an explanation, please look at https://stackoverflow.com/questions/336859/var-functionname-function-vs-function-functionname
@@ -615,7 +613,7 @@ ActiveCode.prototype.showCodelens = function () {
     if (cl) {
         this.codelens.removeChild(cl)
     }
-    var code = this.editor.getValue();
+    var code = this.buildProg(false);
     var myVars = {};
     myVars.code = code;
     myVars.origin = "opt-frontend.js";
@@ -695,13 +693,31 @@ ActiveCode.prototype.toggleEditorVisibility = function () {
 };
 
 ActiveCode.prototype.addErrorMessage = function (err) {
-    //logRunEvent({'div_id': this.divid, 'code': this.prog, 'errinfo': err.toString()}); // Log the run event
+    // Add the error message
+    // But, adjust the line numbers.  If the line number is <= pretextLines then it is in included code
+    // if it is greater than the number of included lines but less than the pretext + current editor then it is in the student code.
+    // adjust the line number we display by eliminating the pre-included code.
+    let errorOutside = false;
+    if (err.traceback.length >= 1) {
+        errorLine = err.traceback[0].lineno;
+        if (errorLine <= this.pretextLines || errorLine > (this.progLines + this.pretextLines)) {
+            errorOutside = true;
+        } else {
+            if (this.pretextLines > 0) {
+                err.traceback[0].lineno = err.traceback[0].lineno - this.pretextLines + 1;
+            } 
+        }
+    }
     var errHead = $('<h3>').html('Error');
     this.eContainer = this.outerDiv.appendChild(document.createElement('div'));
     this.eContainer.className = 'error alert alert-danger';
     this.eContainer.id = this.divid + '_errinfo';
     this.eContainer.appendChild(errHead[0]);
     var errText = this.eContainer.appendChild(document.createElement('pre'));
+    if (errorOutside) {
+        errText.innerHTML = "An error occurred but it was outside of your code";
+        return;
+    }
     var errString = err.toString();
     var to = errString.indexOf(":");
     var errName = errString.substring(0, to);
@@ -793,10 +809,27 @@ ActiveCode.prototype.builtinRead = function (x) {
 ActiveCode.prototype.fileReader = function(divid) {
     let elem = document.getElementById(divid);
     let data = ""
+    let result = ""
     if (elem == null && Sk.builtinFiles["files"][divid]) {
         return Sk.builtinFiles["files"][divid];
+    } else {
+        // try remote file unless it ends with .js or .py -- otherwise we'll ask the server for all
+        // kinds of modules that we are trying to import
+        if ( ! (divid.endsWith('.js') || divid.endsWith('.py')) ) {
+            $.ajax({async: false,
+                    url: `/runestone/ajax/get_datafile?course_id=${eBookConfig.course}&acid=${divid}`,
+                    success: function(data) {
+                        result = JSON.parse(data).data;
+                        },
+                    error: function(err) {
+                        result = null;
+                        }})
+            if (result) {
+                return result
+            }
+        }
     }
-    if (elem == null) {
+    if (elem == null && result === null) {
         throw new Sk.builtin.IOError($.i18n("msg_activecode_no_file_or_dir",divid));
     } else {
         if (elem.nodeName.toLowerCase() == "textarea") {
@@ -837,11 +870,45 @@ ActiveCode.prototype.outputfun = function(text) {
         $(this.output).append(text);
     };
 
-ActiveCode.prototype.buildProg = function() {
+ActiveCode.prototype.filewriter = function(bytes, name, pos) {
+    let filecomponent = document.getElementById(name);
+    if (! filecomponent) {
+        let container = document.createElement('div')
+        $(container).addClass('runestone')
+        let tab = document.createElement('div');
+        $(tab).addClass('datafile_caption');
+        tab.innerHTML = `Data file: <code>${name}</code>`;
+        filecomponent = document.createElement('textarea')
+        filecomponent.rows = 10;
+        filecomponent.cols = 50;
+        filecomponent.id = name;
+        $(filecomponent).css('margin-bottom','5px');
+        $(filecomponent).addClass('ac_output');
+        container.appendChild(tab);
+        container.appendChild(filecomponent);
+        this.outerDiv.appendChild(container)
+    } else {
+        if (pos == 0) {
+            $(filecomponent).val("")
+        }
+    }
+
+    let current = $(filecomponent).val()
+    current = current + bytes;
+    $(filecomponent).val(current);
+    $(filecomponent).css('display', 'block');
+
+    return current.length;
+}
+
+ActiveCode.prototype.buildProg = function(useSuffix) {
     // assemble code from prefix, suffix, and editor for running.
     var pretext;
     var prog = this.editor.getValue() + "\n";
     this.pretext = "";
+    this.pretextLines = 0
+    this.progLines = prog.match(/\n/g).length + 1
+
     if (this.includes !== undefined) {
         // iterate over the includes, in-order prepending to prog
 
@@ -850,10 +917,13 @@ ActiveCode.prototype.buildProg = function() {
             pretext = pretext + edList[this.includes[x]].editor.getValue();
         }
         this.pretext = pretext;
+        if(this.pretext) {
+            this.pretextLines = (this.pretext.match(/\n/g) || '').length + 1
+        }
         prog = pretext + prog
     }
 
-    if(this.suffix) {
+    if(useSuffix && this.suffix) {
         prog = prog + this.suffix;
 }
 
@@ -862,7 +932,6 @@ ActiveCode.prototype.buildProg = function() {
 
 ActiveCode.prototype.manage_scrubber = function (scrubber_dfd, history_dfd, saveCode) {
     if (this.historyScrubber === null && !this.autorun) {
-        console.log("Need a new scrubber");
         scrubber_dfd = this.addHistoryScrubber();
     } else {
         scrubber_dfd = jQuery.Deferred();
@@ -872,14 +941,12 @@ ActiveCode.prototype.manage_scrubber = function (scrubber_dfd, history_dfd, save
     history_dfd = jQuery.Deferred();
     scrubber_dfd.done((function () {
         if (this.historyScrubber && (this.history[$(this.historyScrubber).slider("value")] != this.editor.getValue())) {
-            console.log("updating scrubber with changed code");
             saveCode = "True";
             this.history.push(this.editor.getValue());
             this.timestamps.push((new Date()).toLocaleString());
             $(this.historyScrubber).slider("option", "max", this.history.length - 1);
             $(this.historyScrubber).slider("option", "value", this.history.length - 1);
             this.slideit();
-            console.log("finished scrubber update")
         } else {
             saveCode = "False";
         }
@@ -898,19 +965,26 @@ ActiveCode.prototype.manage_scrubber = function (scrubber_dfd, history_dfd, save
 
 
 ActiveCode.prototype.runProg = function () {
-    var prog = this.buildProg();
+    var prog = this.buildProg(true);
     var saveCode = "True";
     var scrubber_dfd, history_dfd, skulpt_run_dfd;
-    console.log("starting a new run of " + this.divid);
     $(this.output).text('');
 
     $(this.eContainer).remove();
+    if (this.codelens) {
+        this.codelens.style.display = 'none';
+    }
+    if (this.clButton) {
+        this.clButton.innerText = $.i18n("msg_activecode_show_in_codelens");
+    }
     Sk.configure({
         output: this.outputfun.bind(this),
         read: this.fileReader,
+        filewriter: this.filewriter.bind(this),
         python3: this.python3,
         imageProxy: 'http://image.runestone.academy:8080/320x',
         inputfunTakesPrompt: true,
+        jsonpSites : ['https://itunes.apple.com'],
     });
     Sk.divid = this.divid;
     this.setTimeLimit();
@@ -1016,7 +1090,7 @@ JSActiveCode.prototype.outputfun = function (a) {
 
 JSActiveCode.prototype.runProg = function() {
     var _this = this;
-    var prog = this.buildProg();
+    var prog = this.buildProg(true);
     var einfo;
     var scrubber_dfd, history_dfd;
     var saveCode = "True";
@@ -1069,7 +1143,7 @@ function HTMLActiveCode (opts) {
 }
 
 HTMLActiveCode.prototype.runProg = function () {
-    var prog = this.buildProg();
+    var prog = this.buildProg(true);
     var scrubber_dfd, history_dfd, saveCode;
 
     var __ret = this.manage_scrubber(scrubber_dfd, history_dfd, saveCode);
@@ -1697,6 +1771,7 @@ LiveCode.prototype.init = function(opts) {
     this.resource = eBookConfig.proxyuri_runs ||  '/runestone/proxy/jobeRun';
     this.jobePutFiles = eBookConfig.proxyuri_files || '/runestone/proxy/jobePushFile/';
     this.jobeCheckFiles = eBookConfig.proxyuri_files || '/runestone/proxy/jobeCheckFile/';
+    // TODO:  should add a proper put/check in pavement.tmpl as this is misleading and will break on runestone
 
     this.div2id = {};
     if (this.stdin) {
@@ -1737,7 +1812,7 @@ LiveCode.prototype.runProg = function() {
     var saveCode = "True";
     var sfilemap = {java: '', cpp: 'test.cpp', c: 'test.c', python3: 'test.py', python2: 'test.py'};
     var source = this.editor.getValue();
-    source = this.buildProg();
+    source = this.buildProg(true);
 
     var __ret = this.manage_scrubber(scrubber_dfd, history_dfd, saveCode);
     history_dfd = __ret.history_dfd;
@@ -1805,7 +1880,8 @@ LiveCode.prototype.runProg = function() {
         runspec['file_list'] = [];
         var promises = [];
         var instance = this;
-        $.getScript('http://cdn.rawgit.com/killmenot/webtoolkit.md5/master/md5.js', function()
+        //todo: Not sure why this is loaded like this. It could be loaded once.
+        $.getScript('https://cdn.rawgit.com/killmenot/webtoolkit.md5/master/md5.js', function()
         {
             for(var i = 0; i < files.length; i++) {
                 var fileName = files[i].name;

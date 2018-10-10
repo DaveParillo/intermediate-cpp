@@ -2,6 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>7.6. Hashing concepts &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
@@ -29,16 +30,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/runestonebase.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -115,7 +107,7 @@
     <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="8. Iterators" href="../iterators/toctree.html" />
+    <link rel="next" title="9. Iterators" href="../iterators/toctree.html" />
     <link rel="prev" title="7.5. The map class" href="map.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -139,12 +131,11 @@
   eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.2.6';
 </script>
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -250,7 +241,7 @@
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - 8. Iterators' data-toggle="tooltip" >
+  <li id="relations-next" title='Next Chapter - 9. Iterators' data-toggle="tooltip" >
     <a href="../iterators/toctree.html" >
       <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
@@ -287,13 +278,13 @@
 we asserted that a <a class="reference internal" href="../glossary.html#term-map"><span class="xref std std-term">map</span></a> refers to any data structure that ‘maps’ <a class="reference internal" href="../glossary.html#term-key"><span class="xref std std-term">keys</span></a> to values.
 They have an advantage over sequential containers
 in that the cost of searches grows more slowly:
-<span class="math">\(log_2 {N}\)</span> for maps versus <span class="math">\(N \over 2\)</span> for the sequential containers.</p>
+<span class="math notranslate nohighlight">\(log_2 {N}\)</span> for maps versus <span class="math notranslate nohighlight">\(N \over 2\)</span> for the sequential containers.</p>
 <p>Is there a way to access elements in a tree that does not become more costly
 as the number of elements grows?
 We need to:</p>
 <ul class="simple">
 <li>Store data in some kind of <em>indexable data structure</em>:
-something we can access using an index, such as a <code class="docutils literal"><span class="pre">vector</span></code>.</li>
+something we can access using an index, such as a <code class="docutils literal notranslate"><span class="pre">vector</span></code>.</li>
 <li>Compute a value that will result in the index where are data is stored.</li>
 </ul>
 <p>This is exactly what the unordered containers do.</p>
@@ -301,39 +292,39 @@ something we can access using an index, such as a <code class="docutils literal"
 <a class="reference internal" href="../glossary.html#term-hashing"><span class="xref std std-term">Hashing</span></a> is a search method that uses a
 <a class="reference internal" href="../glossary.html#term-hash-function"><span class="xref std std-term">hash function</span></a> to convert a <a class="reference internal" href="../glossary.html#term-key"><span class="xref std std-term">key</span></a> into a position within a
 <a class="reference internal" href="../glossary.html#term-hash-table"><span class="xref std std-term">hash table</span></a>.</p>
-<p>Often the <a class="reference internal" href="../glossary.html#term-backing-storage"><span class="xref std std-term">backing storage</span></a> for an <code class="docutils literal"><span class="pre">unordered_map</span></code> is an array.
+<p>Often the <a class="reference internal" href="../glossary.html#term-backing-storage"><span class="xref std std-term">backing storage</span></a> for an <code class="docutils literal notranslate"><span class="pre">unordered_map</span></code> is an array.
 Each indexed location within the array is called a <a class="reference internal" href="../glossary.html#term-bucket"><span class="xref std std-term">bucket</span></a>.
 Each <a class="reference internal" href="../glossary.html#term-bucket"><span class="xref std std-term">bucket</span></a> provides access to one or more map entries
 (<a class="reference internal" href="../glossary.html#term-key-value-pair"><span class="xref std std-term">key-value pairs</span></a>).</p>
-<img src="../_images/graphviz-a533d55bab8f2c54ffe999d3857ca0e99ef49c46.png" alt="Fruit inventory hash table" />
+<img src="../_images/graphviz-6c086638777fc53162f17aef06207bb295321f7e.png" alt="Fruit inventory hash table" />
 <p>In order to use a type as a <a class="reference internal" href="../glossary.html#term-key"><span class="xref std std-term">key</span></a> in an unordered container,
 the type must override 3 functions:</p>
 <ul class="simple">
 <li>override <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::hash">std::hash</a></li>
-<li>override <code class="docutils literal"><span class="pre">operator==</span></code></li>
-<li>override <code class="docutils literal"><span class="pre">operator&lt;</span></code></li>
+<li>override <code class="docutils literal notranslate"><span class="pre">operator==</span></code></li>
+<li>override <code class="docutils literal notranslate"><span class="pre">operator&lt;</span></code></li>
 </ul>
 <p>before the <a class="reference internal" href="../glossary.html#term-key"><span class="xref std std-term">key</span></a> type will compile when added to an unordered container.</p>
 <p>Consider the following <a class="reference internal" href="../glossary.html#term-hash-table"><span class="xref std std-term">hash table</span></a>:</p>
-<img src="../_images/graphviz-6db101ce915e1d97817833a2579e3dbc98933c28.png" alt="Simple hash table" />
-<p>How does the software find the value <code class="docutils literal"><span class="pre">34</span></code> in this data structure?</p>
-<p>The <code class="docutils literal"><span class="pre">hash</span></code> override is used to compute the bucket.
-In this case the bucket is at index position <code class="docutils literal"><span class="pre">8</span></code>.</p>
+<img src="../_images/graphviz-e0764c41a52fc3b41b8eb6e3b990d2689256357e.png" alt="Simple hash table" />
+<p>How does the software find the value <code class="docutils literal notranslate"><span class="pre">34</span></code> in this data structure?</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">hash</span></code> override is used to compute the bucket.
+In this case the bucket is at index position <code class="docutils literal notranslate"><span class="pre">8</span></code>.</p>
 <p>Each element in the list stored in the bucket is evaluated using
-<code class="docutils literal"><span class="pre">operator==</span></code>.
-As soon as <code class="docutils literal"><span class="pre">operator==</span></code> evaluates to <code class="docutils literal"><span class="pre">true</span></code> the value is returned.</p>
-<p>The <code class="docutils literal"><span class="pre">operator&lt;</span></code> function is used when adding new elements to buckets.
+<code class="docutils literal notranslate"><span class="pre">operator==</span></code>.
+As soon as <code class="docutils literal notranslate"><span class="pre">operator==</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code> the value is returned.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">operator&lt;</span></code> function is used when adding new elements to buckets.
 New elements are kept sorted when added in order to reduce the time it takes to extract values from buckets.
 It should be clear that the performance of this data structure is
 highly dependent upon the quality of the <a class="reference internal" href="../glossary.html#term-hash-function"><span class="xref std std-term">hash function</span></a>.
-Always returning <code class="docutils literal"><span class="pre">42</span></code> is a <em>legitimate</em> value for a hash,
+Always returning <code class="docutils literal notranslate"><span class="pre">42</span></code> is a <em>legitimate</em> value for a hash,
 but an extremely poor one,
 because your <a class="reference internal" href="../glossary.html#term-hash-table"><span class="xref std std-term">hash table</span></a> is no better than a <a class="reference internal" href="../glossary.html#term-linked-list"><span class="xref std std-term">linked list</span></a>.</p>
 <p>All of the built in fundamental types and some other library types such as <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::string">std::string</a>
 already have hash overrides defined.
-If you define your own <code class="docutils literal"><span class="pre">struct</span></code> or <code class="docutils literal"><span class="pre">class</span></code>, you need to write your own override.
-Consider a <code class="docutils literal"><span class="pre">struct</span> <span class="pre">Point</span></code>:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">struct</span> <span class="n">Point</span> <span class="p">{</span>
+If you define your own <code class="docutils literal notranslate"><span class="pre">struct</span></code> or <code class="docutils literal notranslate"><span class="pre">class</span></code>, you need to write your own override.
+Consider a <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">Point</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">Point</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
   <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
 <span class="p">}</span>
@@ -354,7 +345,7 @@ Consider a <code class="docutils literal"><span class="pre">struct</span> <span 
 </div>
 <p>The override must be a function template,
 although in this case, no template parameter is needed.
-The template declaration <code class="docutils literal"><span class="pre">template</span> <span class="pre">&lt;&gt;</span></code> is perfectly valid.</p>
+The template declaration <code class="docutils literal notranslate"><span class="pre">template</span> <span class="pre">&lt;&gt;</span></code> is perfectly valid.</p>
 <p>A <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::hash">std::hash</a> override must be defined as a function object that takes the type as a parameter
 and returns a <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::size_t">std::size_t</a>.</p>
 <hr class="docutils" />
@@ -376,12 +367,12 @@ and returns a <a class="reference external" href="http://en.cppreference.com/mwi
   </li>
   <a class="navLinkBg" id="navLinkBgLeft"  href="map.html" ></a>
   
-  <li id="relations-next" class="navLink" title='Next Section - 8. Iterators' data-toggle="tooltip" >
+  <li id="relations-next" class="navLink" title='Next Section - 9. Iterators' data-toggle="tooltip" >
     <a href="../iterators/toctree.html" >
       <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
     </a>
   </li>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="../iterators/toctree.html" >Next Section - 8. Iterators</a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="../iterators/toctree.html" >Next Section - 9. Iterators</a>
 
 <script type="text/javascript">
 
@@ -400,7 +391,7 @@ and returns a <a class="reference external" href="http://en.cppreference.com/mwi
     </p>
     <p>
         &copy; Copyright 2017-2018 Dave Parillo.
-      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
     </p>
   </div>
 </footer>

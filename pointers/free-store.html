@@ -2,6 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>5.2. Free store pointers &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
@@ -29,16 +30,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/runestonebase.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -139,12 +131,11 @@
   eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.2.6';
 </script>
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -238,7 +229,7 @@
   <ul class="dropdown-menu localtoc"><ul>
 <li><a class="reference internal" href="#">5.2. Free store pointers</a><ul>
 <li><a class="reference internal" href="#stl-memory-management">5.2.1. STL memory management</a><ul>
-<li><a class="reference internal" href="#class-std-unique-ptr">5.2.1.1. Class <code class="docutils literal"><span class="pre">std::unique_ptr</span></code></a></li>
+<li><a class="reference internal" href="#class-std-unique-ptr">5.2.1.1. Class <code class="docutils literal notranslate"><span class="pre">std::unique_ptr</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -299,9 +290,9 @@ The free store is a system-provided memory pool for variables whose lifetime is
 directly managed by the programmer.
 Compare this to our experiences so far where variables were <em>automatically</em>
 managed by the system, not by the programmer.</p>
-<p>The <code class="docutils literal"><span class="pre">new</span></code> operator takes a type and (optionally) a set of initializers for that type as its arguments.
+<p>The <code class="docutils literal notranslate"><span class="pre">new</span></code> operator takes a type and (optionally) a set of initializers for that type as its arguments.
 It returns a pointer to an (optionally) initialized object of its type:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">struct</span> <span class="n">Point</span> <span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">Point</span> <span class="p">{</span>
      <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// member values is a C++11 feature</span>
      <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">};</span>
@@ -321,16 +312,16 @@ It returns a pointer to an (optionally) initialized object of its type:</p>
 </div>
 <p>Step through <a class="reference external" href="http://pythontutor.com/cpp.html#code=struct%20Point%20%7B%0A%20%20double%20x%20%3D%200%3B%20%20//%20member%20values%20is%20a%20C%2B%2B11%20feature%0A%20%20double%20y%20%3D%200%3B%0A%7D%3B%0A%0Aint%20main%28%29%20%7B%0A%20int*%20p1%20%3D%20new%20int%3B%20%20%20%20%20//%20allocate%201%20uninitialized%20int%0A%20int*%20p2%20%3D%20new%20int%5B3%5D%3B%20%20//%20allocate%203%20uninitialized%20ints%0A%20int*%20p3%20%3D%20new%20int%285%29%3B%20%20//%20allocate%201%20int%20initialized%20to%205%0A%20int*%20p4%20%3D%20new%20int%7B5%7D%3B%20%20//%20allocate%201%20int%20initialized%20to%205,%20C%2B%2B11%20or%20later%0A%20int*%20p5%20%3D%20new%20int%28%29%3B%20%20%20//%20allocate%201%20int%20initialized%20to%200%0A%0A%20Point*%20pt1%20%3D%20new%20Point%3B%20%20%20%20%20%20%20%20%20%20//%20allocate%20a%20default%20constructed%20Point%20%0A%20Point*%20pt2%20%3D%20new%20Point%28%29%3B%20%20%20%20%20%20%20%20//%20allocate%20a%20default%20constructed%20Point%20%0A%20Point*%20pt3%20%3D%20new%20Point%5B3%5D%3B%20%20%20%20%20%20%20//%20allocate%203%20default%20constructed%20Points%0A%7D&amp;mode=display&amp;origin=opt-frontend.js&amp;py=cpp&amp;rawInputLstJSON=%5B%5D">example 1 here</a>.</p>
 <p>In all of the above cases,
-since the <code class="docutils literal"><span class="pre">new</span></code> operator returns a pointer to an object of its type,
-the initialization could use <code class="docutils literal"><span class="pre">auto</span></code>.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">auto</span> <span class="n">pt1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="p">;</span>
+since the <code class="docutils literal notranslate"><span class="pre">new</span></code> operator returns a pointer to an object of its type,
+the initialization could use <code class="docutils literal notranslate"><span class="pre">auto</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">pt1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=operator new">operator new</a> allocates memory.
 When finished with the free-store memory,
 we return it to the pool of available memory using
 the <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=operator delete">operator delete</a>:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">struct</span> <span class="n">Point</span> <span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">Point</span> <span class="p">{</span>
      <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// member values is a C++11 feature</span>
      <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">};</span>
@@ -350,13 +341,13 @@ the <a class="reference external" href="http://en.cppreference.com/mwiki/index.p
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>There should always be exactly 1 <code class="docutils literal"><span class="pre">delete</span></code> for every pointer returned by <code class="docutils literal"><span class="pre">new</span></code>.</p>
+<p>There should always be exactly 1 <code class="docutils literal notranslate"><span class="pre">delete</span></code> for every pointer returned by <code class="docutils literal notranslate"><span class="pre">new</span></code>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>There are two forms of <code class="docutils literal"><span class="pre">delete</span></code>:</p>
+<p>There are two forms of <code class="docutils literal notranslate"><span class="pre">delete</span></code>:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">delete</span> <span class="pre">p</span></code> frees the memory for a single object allocated using <code class="docutils literal"><span class="pre">new</span></code></li>
-<li><code class="docutils literal"><span class="pre">delete[]</span> <span class="pre">p</span></code> frees the memory for an array of objects allocated using <code class="docutils literal"><span class="pre">new</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">delete</span> <span class="pre">p</span></code> frees the memory for a single object allocated using <code class="docutils literal notranslate"><span class="pre">new</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">delete[]</span> <span class="pre">p</span></code> frees the memory for an array of objects allocated using <code class="docutils literal notranslate"><span class="pre">new</span></code></li>
 </ul>
 <p class="last">Mistakes over which version of delete to use is a common source of error.</p>
 </div>
@@ -399,35 +390,35 @@ Given that memory management is such a problem,
 does the STL provide any resources to help solve it?</p>
 <p>Yes.</p>
 <p>The C++ Standard Template Library provides a family of classes to help solve these problems.
-They are all contained in the header <code class="docutils literal"><span class="pre">&lt;memory&gt;</span></code>
+They are all contained in the header <code class="docutils literal notranslate"><span class="pre">&lt;memory&gt;</span></code>
 and are defined as templates so that they can point to objects of any type.</p>
 <p>Smart pointers are classes that behave like <em>raw</em> pointers but also manage objects
-created with <code class="docutils literal"><span class="pre">new</span></code>,
+created with <code class="docutils literal notranslate"><span class="pre">new</span></code>,
 so that you don’t have to worry about when and whether to delete them.
 Smart pointers are declared on the <a class="reference internal" href="../glossary.html#term-stack"><span class="xref std std-term">stack</span></a> and
 automatically delete the encapsulated object when the smart pointer goes out of scope.
 The smart pointer is defined in such a way that it can be used
 syntactically almost exactly like a raw pointer.</p>
-<p>One of the earliest so-called ‘smart pointers’ was <code class="docutils literal"><span class="pre">auto_ptr</span></code>.
-Much online documentation and many text books still refer to and recommend <code class="docutils literal"><span class="pre">auto_ptr</span></code>.
-The <code class="docutils literal"><span class="pre">auto_ptr</span></code> function was officially deprecated in C++11 and removed in C++17.
-Generally, where old texts refer to <code class="docutils literal"><span class="pre">auto_ptr</span></code>, use <code class="docutils literal"><span class="pre">unique_ptr</span></code> instead.</p>
+<p>One of the earliest so-called ‘smart pointers’ was <code class="docutils literal notranslate"><span class="pre">auto_ptr</span></code>.
+Much online documentation and many text books still refer to and recommend <code class="docutils literal notranslate"><span class="pre">auto_ptr</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">auto_ptr</span></code> function was officially deprecated in C++11 and removed in C++17.
+Generally, where old texts refer to <code class="docutils literal notranslate"><span class="pre">auto_ptr</span></code>, use <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code> instead.</p>
 <div class="section" id="class-std-unique-ptr">
-<h3>5.2.1.1. Class <code class="docutils literal"><span class="pre">std::unique_ptr</span></code><a class="headerlink" href="#class-std-unique-ptr" title="Permalink to this headline">¶</a></h3>
+<h3>5.2.1.1. Class <code class="docutils literal notranslate"><span class="pre">std::unique_ptr</span></code><a class="headerlink" href="#class-std-unique-ptr" title="Permalink to this headline">¶</a></h3>
 <p>A <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::unique_ptr">std::unique_ptr</a> is a so-called ‘smart pointer’ that owns and manages another object through a pointer
-and disposes of that object when the <code class="docutils literal"><span class="pre">unique_ptr</span></code> goes out of scope.
-A <code class="docutils literal"><span class="pre">unique_ptr</span></code> is a very lightweight wrapper around a pointer.
+and disposes of that object when the <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code> goes out of scope.
+A <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code> is a very lightweight wrapper around a pointer.
 The basic syntax is:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// older C++11 syntax</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// older C++11 syntax</span>
 <span class="c1">// clunky and repetitive</span>
 <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">);</span>
 
 <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">();</span>       <span class="c1">// C++14 adds make_unique</span>
 </pre></div>
 </div>
-<p>In each example, both <code class="docutils literal"><span class="pre">p1</span></code> and <code class="docutils literal"><span class="pre">p2</span></code> are unique pointers that ‘own’ an <code class="docutils literal"><span class="pre">int*</span></code>.
+<p>In each example, both <code class="docutils literal notranslate"><span class="pre">p1</span></code> and <code class="docutils literal notranslate"><span class="pre">p2</span></code> are unique pointers that ‘own’ an <code class="docutils literal notranslate"><span class="pre">int*</span></code>.
 Our earlier examples can be changed to:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;memory&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;memory&gt;</span><span class="cp"></span>
 <span class="k">struct</span> <span class="n">Point</span> <span class="p">{</span>
   <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
   <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -449,7 +440,7 @@ Our earlier examples can be changed to:</p>
 </pre></div>
 </div>
 <p>Once declared, a unique pointer can be manipulated using the same syntax as a raw pointer.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span><span class="p">();</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span><span class="p">();</span>
 <span class="c1">// modify Point coordinates and print</span>
 <span class="n">p</span><span class="o">-&gt;</span><span class="n">x</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
 <span class="n">p</span><span class="o">-&gt;</span><span class="n">y</span> <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>
@@ -459,16 +450,16 @@ Our earlier examples can be changed to:</p>
 <span class="c1">// std::cout &lt;&lt; p.x &lt;&lt; &#39; &#39; &lt;&lt; p.y &lt;&lt; &#39;\n&#39;;</span>
 </pre></div>
 </div>
-<p>What makes a <code class="docutils literal"><span class="pre">unique_ptr</span></code> <em>unique</em>?</p>
+<p>What makes a <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code> <em>unique</em>?</p>
 <p>An object stored within a unique pointer <strong>uniquely owns</strong> its pointer.
 In other words, an object is ‘owned’ by exactly one unique_ptr.
 Unlike raw pointers, a unique pointer cannot be copied or assigned to another variable,
-even another <code class="docutils literal"><span class="pre">unique</span> <span class="pre">pointer</span></code>.</p>
+even another <code class="docutils literal notranslate"><span class="pre">unique</span> <span class="pre">pointer</span></code>.</p>
 <p>No two unique pointers can ever contain the same raw pointer value.
 This solves the ‘double delete’ problem if both go out of scope.
 The result is that some operations you <strong>can</strong> perform on raw pointers
-are not allowed on <code class="docutils literal"><span class="pre">unique_ptr</span></code>:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">auto</span> <span class="n">x</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span><span class="p">();</span>
+are not allowed on <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">x</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span><span class="p">();</span>
 <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">y</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">};</span>     <span class="c1">// error - copy construction not allowed</span>
 
 <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">z</span><span class="p">;</span>           <span class="c1">// new empty (nullptr)</span>
@@ -480,7 +471,7 @@ are not allowed on <code class="docutils literal"><span class="pre">unique_ptr</
 <p>Although copying unique pointers is not allowed,
 you can <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=unique_ptr::release()">unique_ptr::release()</a> the pointer and assign it to a
 raw pointer,
-or transfer ownership to a different <code class="docutils literal"><span class="pre">unique_ptr</span></code>.</p>
+or transfer ownership to a different <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code>.</p>
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">
 <p class="first admonition-title">More to Explore</p>
@@ -533,7 +524,7 @@ or transfer ownership to a different <code class="docutils literal"><span class=
     </p>
     <p>
         &copy; Copyright 2017-2018 Dave Parillo.
-      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
     </p>
   </div>
 </footer>

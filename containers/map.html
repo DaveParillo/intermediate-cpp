@@ -2,6 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>7.5. The map class &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
@@ -29,16 +30,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/runestonebase.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -139,12 +131,11 @@
   eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.2.6';
 </script>
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -289,26 +280,26 @@
   <div class="section" id="the-map-class">
 <span id="index-0"></span><h1>7.5. The map class<a class="headerlink" href="#the-map-class" title="Permalink to this headline">¶</a></h1>
 <p>A <a class="reference internal" href="../glossary.html#term-map"><span class="xref std std-term">map</span></a> refers to any data structure that ‘maps’ <a class="reference internal" href="../glossary.html#term-key"><span class="xref std std-term">keys</span></a> to values.
-The <code class="docutils literal"><span class="pre">map</span></code> class is arguably the most useful container in the STL
-after <code class="docutils literal"><span class="pre">vector</span></code>.</p>
+The <code class="docutils literal notranslate"><span class="pre">map</span></code> class is arguably the most useful container in the STL
+after <code class="docutils literal notranslate"><span class="pre">vector</span></code>.</p>
 <p>All the containers discussed so far focused on storing 1 thing.
 That is, each stores values of a single type.
 Maps add a new wrinkle.
-A <code class="docutils literal"><span class="pre">map</span></code> stores <strong>pairs</strong> of things.
+A <code class="docutils literal notranslate"><span class="pre">map</span></code> stores <strong>pairs</strong> of things.
 Traditionally, the pair stored is referred to as a <a class="reference internal" href="../glossary.html#term-key-value-pair"><span class="xref std std-term">key-value pair</span></a>.<a class="footnote-reference" href="#id2" id="id1">[1]</a></p>
-<p>Nearly every programming language provides some kind of <code class="docutils literal"><span class="pre">map</span></code> implementation.
+<p>Nearly every programming language provides some kind of <code class="docutils literal notranslate"><span class="pre">map</span></code> implementation.
 Some languages use the terms <em>associative array</em> or <em>dictionary List</em>,
 but structurally, they are very similar.</p>
-<p><strong>Values</strong> are retrieved from a <code class="docutils literal"><span class="pre">map</span></code> using the <strong>key</strong>.
+<p><strong>Values</strong> are retrieved from a <code class="docutils literal notranslate"><span class="pre">map</span></code> using the <strong>key</strong>.
 Each <a class="reference internal" href="../glossary.html#term-key"><span class="xref std std-term">key</span></a> must be unique.
-In other words, keys are members of a <code class="docutils literal"><span class="pre">set</span></code>.
+In other words, keys are members of a <code class="docutils literal notranslate"><span class="pre">set</span></code>.
 Like a <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::set">std::set</a>,
 adding a second node with the same key replaces the old value.
 Unlike a <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::set">std::set</a>,
 a <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::map">std::map</a> provides the <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=map::operator[]">map::operator[]</a>.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
-<span class="cp">#include &lt;map&gt;</span>
-<span class="cp">#include &lt;string&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">name_counts</span> <span class="p">{{</span><span class="s">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">27</span><span class="p">},</span>
@@ -346,28 +337,28 @@ a <a class="reference external" href="http://en.cppreference.com/mwiki/index.php
 <dd><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=map::count">map::count</a>, <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=map::find">map::find</a>, <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=map::equal_range">map::equal_range</a>,
 <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=map::upper_bound">map::upper_bound</a> and <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=map::lower_bound">map::lower_bound</a></dd>
 </dl>
-<p>For large data sets, the lookup functions in a <code class="docutils literal"><span class="pre">map</span></code> are faster than their
-counterparts in a sequential container such as <code class="docutils literal"><span class="pre">vector</span></code>.</p>
+<p>For large data sets, the lookup functions in a <code class="docutils literal notranslate"><span class="pre">map</span></code> are faster than their
+counterparts in a sequential container such as <code class="docutils literal notranslate"><span class="pre">vector</span></code>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>There is no <code class="docutils literal"><span class="pre">push_back()</span></code> for a map.</p>
-<p class="last">The <code class="docutils literal"><span class="pre">map</span></code> decides where elements go, not you.
+<p>There is no <code class="docutils literal notranslate"><span class="pre">push_back()</span></code> for a map.</p>
+<p class="last">The <code class="docutils literal notranslate"><span class="pre">map</span></code> decides where elements go, not you.
 All access requires either knowing the key or having an iterator.</p>
 </div>
 </div>
 <div class="section" id="map-structure">
 <h2>7.5.2. Map structure<a class="headerlink" href="#map-structure" title="Permalink to this headline">¶</a></h2>
-<p>Internally, a <code class="docutils literal"><span class="pre">map</span></code> is a sorted <a class="reference internal" href="../glossary.html#term-complete-binary-tree"><span class="xref std std-term">complete binary tree</span></a>.
+<p>Internally, a <code class="docutils literal notranslate"><span class="pre">map</span></code> is a sorted <a class="reference internal" href="../glossary.html#term-complete-binary-tree"><span class="xref std std-term">complete binary tree</span></a>.
 Each node in the tree is a <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::pair">std::pair</a>.</p>
-<img src="../_images/graphviz-2880aaa95f6df3c9d06f9be3cbfb289198e70517.png" alt="A complete binary tree" />
+<img src="../_images/graphviz-10f639d659f54e6b71ed7fbe5825fbaefc672d28.png" alt="A complete binary tree" />
 <p>All <a class="reference internal" href="../glossary.html#term-node"><span class="xref std std-term">nodes</span></a> are sorted by their <a class="reference internal" href="../glossary.html#term-key"><span class="xref std std-term">keys</span></a>.
-Sorting is managed using <code class="docutils literal"><span class="pre">operator&lt;</span></code> by default,
+Sorting is managed using <code class="docutils literal notranslate"><span class="pre">operator&lt;</span></code> by default,
 but this can be configured in the map constructor
-using a custom compare function or class, just as with a <code class="docutils literal"><span class="pre">set</span></code>.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
-<span class="cp">#include &lt;map&gt;</span>
-<span class="cp">#include &lt;set&gt;</span>
-<span class="cp">#include &lt;string&gt;</span>
+using a custom compare function or class, just as with a <code class="docutils literal notranslate"><span class="pre">set</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;set&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
 
 <span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">;</span>
 
@@ -413,7 +404,7 @@ using a custom compare function or class, just as with a <code class="docutils l
 </pre></div>
 </div>
 <p>and produces:</p>
-<div class="highlight-none"><div class="highlight"><pre>All fruit keys:
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>All fruit keys:
 apple cocoa grape kiwi lemon peach pear
 
 All fruit keys greater than &#39;kiwi&#39;:
@@ -421,12 +412,12 @@ lemon peach pear
 </pre></div>
 </div>
 <p>Using a customer comparator, we can store map items in reverse order:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// custom comparator</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// custom comparator</span>
 
-<span class="cp">#include &lt;functional&gt;  </span><span class="c1">// std::greater</span>
-<span class="cp">#include &lt;iostream&gt;</span>
-<span class="cp">#include &lt;map&gt;</span>
-<span class="cp">#include &lt;string&gt;</span>
+<span class="cp">#include</span> <span class="cpf">&lt;functional&gt;  // std::greater</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
 
 
 <span class="c1">// print inventories with different custom comparators</span>
@@ -476,7 +467,7 @@ lemon peach pear
 </pre></div>
 </div>
 <p>which produces:</p>
-<div class="highlight-text"><div class="highlight"><pre>Initial inventory:
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Initial inventory:
 apple, 12
 cocoa, 3
 grape, 100
@@ -510,13 +501,13 @@ apple, 12
 <p>The STL provides 3 alternate forms of <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::map">std::map</a> class:</p>
 <dl class="docutils">
 <dt>multimap</dt>
-<dd>A <code class="docutils literal"><span class="pre">map</span></code> in which duplicate keys are allowed.</dd>
+<dd>A <code class="docutils literal notranslate"><span class="pre">map</span></code> in which duplicate keys are allowed.</dd>
 <dt>unordered_map</dt>
-<dd>A <code class="docutils literal"><span class="pre">map</span></code> of unique <a class="reference internal" href="../glossary.html#term-key-value-pair"><span class="xref std std-term">key-value pairs</span></a>
+<dd>A <code class="docutils literal notranslate"><span class="pre">map</span></code> of unique <a class="reference internal" href="../glossary.html#term-key-value-pair"><span class="xref std std-term">key-value pairs</span></a>
 stored based on the <a class="reference internal" href="../glossary.html#term-key"><span class="xref std std-term">key</span></a> object <a class="reference internal" href="../glossary.html#term-hash-function"><span class="xref std std-term">hash function</span></a>.
 Added in C++11.</dd>
 <dt>unordered_multimap</dt>
-<dd>An <code class="docutils literal"><span class="pre">unordered_map</span></code> in which duplicate keys are allowed.</dd>
+<dd>An <code class="docutils literal notranslate"><span class="pre">unordered_map</span></code> in which duplicate keys are allowed.</dd>
 </dl>
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">
@@ -531,7 +522,7 @@ Added in C++11.</dd>
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Sometimes this is abbreviated as ‘KVP’.
-On cppreference.com you’ll see it shortened even further to just <code class="docutils literal"><span class="pre">P</span></code></td></tr>
+On cppreference.com you’ll see it shortened even further to just <code class="docutils literal notranslate"><span class="pre">P</span></code></td></tr>
 </tbody>
 </table>
 </div>
@@ -572,7 +563,7 @@ On cppreference.com you’ll see it shortened even further to just <code class="
     </p>
     <p>
         &copy; Copyright 2017-2018 Dave Parillo.
-      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
     </p>
   </div>
 </footer>

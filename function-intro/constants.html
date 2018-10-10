@@ -2,6 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>3.2. Keyword: const &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
@@ -29,16 +30,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/runestonebase.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -139,12 +131,11 @@
   eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.2.6';
 </script>
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -236,12 +227,12 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">3.2. Keyword: <code class="docutils literal"><span class="pre">const</span></code></a><ul>
-<li><a class="reference internal" href="#prefer-const-to-define">3.2.1. Prefer <code class="docutils literal"><span class="pre">const</span></code> to <code class="docutils literal"><span class="pre">#define</span></code></a><ul>
-<li><a class="reference internal" href="#function-like-macros-using-define">3.2.1.1. Function-like macros using <code class="docutils literal"><span class="pre">#define</span></code></a></li>
+<li><a class="reference internal" href="#">3.2. Keyword: <code class="docutils literal notranslate"><span class="pre">const</span></code></a><ul>
+<li><a class="reference internal" href="#prefer-const-to-define">3.2.1. Prefer <code class="docutils literal notranslate"><span class="pre">const</span></code> to <code class="docutils literal notranslate"><span class="pre">#define</span></code></a><ul>
+<li><a class="reference internal" href="#function-like-macros-using-define">3.2.1.1. Function-like macros using <code class="docutils literal notranslate"><span class="pre">#define</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#keyword-constexpr">3.2.2. Keyword: <code class="docutils literal"><span class="pre">constexpr</span></code></a></li>
+<li><a class="reference internal" href="#keyword-constexpr">3.2.2. Keyword: <code class="docutils literal notranslate"><span class="pre">constexpr</span></code></a></li>
 <li><a class="reference internal" href="#guidelines-for-now">3.2.3. Guidelines for now</a></li>
 </ul>
 </li>
@@ -258,7 +249,7 @@
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - 3.3. Keyword: <code class="docutils literal"><span class="pre">auto</span></code>' data-toggle="tooltip" >
+  <li id="relations-next" title='Next Chapter - 3.3. Keyword: <code class="docutils literal notranslate"><span class="pre">auto</span></code>' data-toggle="tooltip" >
     <a href="auto.html" >
       <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
@@ -290,9 +281,9 @@
 <div class="container" id="main-content">
   
   <div class="section" id="keyword-const">
-<span id="index-0"></span><h1>3.2. Keyword: <code class="docutils literal"><span class="pre">const</span></code><a class="headerlink" href="#keyword-const" title="Permalink to this headline">¶</a></h1>
+<span id="index-0"></span><h1>3.2. Keyword: <code class="docutils literal notranslate"><span class="pre">const</span></code><a class="headerlink" href="#keyword-const" title="Permalink to this headline">¶</a></h1>
 <p>Use <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=const">const</a> to instruct the compiler to hold something constant.
-The <code class="docutils literal"><span class="pre">const</span></code> keyword can modify the behavior of anything, depending on where it is used:</p>
+The <code class="docutils literal notranslate"><span class="pre">const</span></code> keyword can modify the behavior of anything, depending on where it is used:</p>
 <ul class="simple">
 <li>fundamental types</li>
 <li>structs or classes</li>
@@ -303,16 +294,16 @@ The <code class="docutils literal"><span class="pre">const</span></code> keyword
 </li>
 </ul>
 <p>Programs typically use a lot of constants.
-Mathematical constants like <span class="math">\(\pi\)</span>, or <span class="math">\(e\)</span>, and unit conversions are common.
-Obviously, it would be bad if a program changed the value of <span class="math">\(\pi\)</span> in the middle
+Mathematical constants like <span class="math notranslate nohighlight">\(\pi\)</span>, or <span class="math notranslate nohighlight">\(e\)</span>, and unit conversions are common.
+Obviously, it would be bad if a program changed the value of <span class="math notranslate nohighlight">\(\pi\)</span> in the middle
 of its execution.
 As programmers, we can make a promise to never change those variables that should
 not change.
 But the language allows a way to enforce the idea.</p>
-<p>A <code class="docutils literal"><span class="pre">const</span></code> is a named constant.
+<p>A <code class="docutils literal notranslate"><span class="pre">const</span></code> is a named constant.
 It can’t be assigned a new value after initialization.
 For example:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">const</span> <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159265359</span><span class="p">;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159265359</span><span class="p">;</span>
 
 <span class="kt">double</span> <span class="n">area</span> <span class="o">=</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">r</span> <span class="o">*</span> <span class="n">r</span><span class="p">;</span>           <span class="c1">// OK to read pi like any other variable</span>
 
@@ -321,7 +312,7 @@ For example:</p>
 </div>
 <p id="index-1">Returning to our by_reference function from the previous section,
 we have seen that pass by reference makes passing data to functions cheap:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">by_reference</span> <span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">by_reference</span> <span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;in by_ref the address of x is   &quot;</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
   <span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
@@ -332,8 +323,8 @@ is that now the called function might change the value provided.
 As programmers, we could promise to not change values in functions that shouldn’t,
 but generally, we don’t like promises.
 Programmers prefer contracts.
-Fortunately, <code class="docutils literal"><span class="pre">const</span></code> allows us to define just such a contract in the declaration:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">by_reference</span> <span class="p">(</span><span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+Fortunately, <code class="docutils literal notranslate"><span class="pre">const</span></code> allows us to define just such a contract in the declaration:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">by_reference</span> <span class="p">(</span><span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;in by_ref the address of x is   &quot;</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
   <span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>  <span class="c1">// this is now a compile error</span>
 <span class="p">}</span>
@@ -341,25 +332,25 @@ Fortunately, <code class="docutils literal"><span class="pre">const</span></code
 </div>
 <p>This is called <strong>passing by constant reference</strong>, or “const ref”, for short.
 Passing by const ref allows us to enforce our intentions.
-If a variable is declared as <code class="docutils literal"><span class="pre">const</span></code>, it is a compile error to change it.
+If a variable is declared as <code class="docutils literal notranslate"><span class="pre">const</span></code>, it is a compile error to change it.
 Any callers can use this function and rest assured that their data cannot change.
 The more time you spend programming,
 the more you will appreciate how powerful that guarantee is.</p>
-<p>C99 added the <code class="docutils literal"><span class="pre">const</span></code> keyword, so now it’s in both languages,
+<p>C99 added the <code class="docutils literal notranslate"><span class="pre">const</span></code> keyword, so now it’s in both languages,
 but you don’t see it nearly as often in C.
-Many programmers use <code class="docutils literal"><span class="pre">#define</span></code> instead.</p>
+Many programmers use <code class="docutils literal notranslate"><span class="pre">#define</span></code> instead.</p>
 <div class="section" id="prefer-const-to-define">
-<span id="index-2"></span><h2>3.2.1. Prefer <code class="docutils literal"><span class="pre">const</span></code> to <code class="docutils literal"><span class="pre">#define</span></code><a class="headerlink" href="#prefer-const-to-define" title="Permalink to this headline">¶</a></h2>
+<span id="index-2"></span><h2>3.2.1. Prefer <code class="docutils literal notranslate"><span class="pre">const</span></code> to <code class="docutils literal notranslate"><span class="pre">#define</span></code><a class="headerlink" href="#prefer-const-to-define" title="Permalink to this headline">¶</a></h2>
 <p>We also prefer <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=inline specifier">inline specifier</a> and <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=enum declaration">enum declaration</a> over
 <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=define">define</a>.</p>
-<p>There are good reasons to avoid <code class="docutils literal"><span class="pre">#define</span></code> where alternatives exist.</p>
-<p><code class="docutils literal"><span class="pre">#define</span></code> is parsed by the <em>preprocessor</em>, not the compiler.
-This mean that effectively, all <code class="docutils literal"><span class="pre">#define</span></code> directives are literally strings.
-Fundamentally they are no different from any other pre-processor directive (<code class="docutils literal"><span class="pre">#include</span></code>, <code class="docutils literal"><span class="pre">#ifdef</span></code>, etc.),
-except that people commonly use <code class="docutils literal"><span class="pre">#define</span></code> as a placeholder for a numeric <a class="reference internal" href="../glossary.html#term-type"><span class="xref std std-term">type</span></a>,
+<p>There are good reasons to avoid <code class="docutils literal notranslate"><span class="pre">#define</span></code> where alternatives exist.</p>
+<p><code class="docutils literal notranslate"><span class="pre">#define</span></code> is parsed by the <em>preprocessor</em>, not the compiler.
+This mean that effectively, all <code class="docutils literal notranslate"><span class="pre">#define</span></code> directives are literally strings.
+Fundamentally they are no different from any other pre-processor directive (<code class="docutils literal notranslate"><span class="pre">#include</span></code>, <code class="docutils literal notranslate"><span class="pre">#ifdef</span></code>, etc.),
+except that people commonly use <code class="docutils literal notranslate"><span class="pre">#define</span></code> as a placeholder for a numeric <a class="reference internal" href="../glossary.html#term-type"><span class="xref std std-term">type</span></a>,
 or a function.</p>
 <p>For example:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#define ASPECT_RATIO 1.653</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#define ASPECT_RATIO 1.653</span>
 </pre></div>
 </div>
 <p>is an old fashioned way to define a constant, but you’ll likely see it ‘in the wild’.
@@ -367,18 +358,18 @@ The pre-processor literally copies the value ‘1.653’ every place in the sour
 it encounters the string ‘ASPECT_RATIO’.
 Then the program is compiled.</p>
 <p>Prefer this instead:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">const</span> <span class="kt">double</span> <span class="n">ASPECT_RATIO</span> <span class="o">=</span> <span class="mf">1.653</span><span class="p">;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">double</span> <span class="n">ASPECT_RATIO</span> <span class="o">=</span> <span class="mf">1.653</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>This version preserves the name ‘ASPECT_RATIO’ which can simplify debugging.
 It is possible to also preserve macro names using
-certain debugging compiler switches, such as <code class="docutils literal"><span class="pre">-g3</span></code>.</p>
+certain debugging compiler switches, such as <code class="docutils literal notranslate"><span class="pre">-g3</span></code>.</p>
 <div class="section" id="function-like-macros-using-define">
-<span id="index-3"></span><h3>3.2.1.1. Function-like macros using <code class="docutils literal"><span class="pre">#define</span></code><a class="headerlink" href="#function-like-macros-using-define" title="Permalink to this headline">¶</a></h3>
-<p>If you use <code class="docutils literal"><span class="pre">#define</span></code> to create a function-like macro, then unexpected behaviors are possible.
+<span id="index-3"></span><h3>3.2.1.1. Function-like macros using <code class="docutils literal notranslate"><span class="pre">#define</span></code><a class="headerlink" href="#function-like-macros-using-define" title="Permalink to this headline">¶</a></h3>
+<p>If you use <code class="docutils literal notranslate"><span class="pre">#define</span></code> to create a function-like macro, then unexpected behaviors are possible.
 For example,
-a macro to call some function <code class="docutils literal"><span class="pre">f()</span></code> with the larger of either <code class="docutils literal"><span class="pre">a</span></code> or <code class="docutils literal"><span class="pre">b</span></code>:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+a macro to call some function <code class="docutils literal notranslate"><span class="pre">f()</span></code> with the larger of either <code class="docutils literal notranslate"><span class="pre">a</span></code> or <code class="docutils literal notranslate"><span class="pre">b</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="cp">#define CALL_WITH_MAX(a,b) f((a) &gt; (b) ? (a) : (b))</span>
 
@@ -403,22 +394,22 @@ a macro to call some function <code class="docutils literal"><span class="pre">f
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The number of times <code class="docutils literal"><span class="pre">a</span></code> is incremented depends on <strong>how</strong> <code class="docutils literal"><span class="pre">CALL_WITH_MAX</span></code> is called.
-In this case, the value of <code class="docutils literal"><span class="pre">b</span></code> affects whether <code class="docutils literal"><span class="pre">a</span></code> is incremented once or twice.
+<p>The number of times <code class="docutils literal notranslate"><span class="pre">a</span></code> is incremented depends on <strong>how</strong> <code class="docutils literal notranslate"><span class="pre">CALL_WITH_MAX</span></code> is called.
+In this case, the value of <code class="docutils literal notranslate"><span class="pre">b</span></code> affects whether <code class="docutils literal notranslate"><span class="pre">a</span></code> is incremented once or twice.
 <strong>Ouch!</strong></p>
 <p>Step through <a class="reference external" href="http://pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0A%23define%20CALL_WITH_MAX%28a,b%29%20f%28%28a%29%20%3E%20%28b%29%20%3F%20%28a%29%20%3A%20%28b%29%29%0A%0Aint%20f%28const%20int%20x%29%20%7B%0A%20%20return%20x%3B%0A%7D%0Aint%20main%28%29%20%7B%0A%20%20int%20a%20%3D%20-5%3B%20%0A%20%20const%20int%20b%20%3D%200%3B%0A%0A%20%20for%20%28int%20i%20%3D%201%3B%20i%20%3C%2011%3B%20%2B%2Bi%29%20%7B%0A%20%20%20%20CALL_WITH_MAX%28%2B%2Ba,%20b%29%3B%0A%20%20%20%20std%3A%3Acout%20%3C%3C%20i%20%3C%3C%20%22,%20a%3A%20%22%20%3C%3C%20a%20%3C%3C%20'%5Cn'%3B%0A%20%20%7D%0A%20%20a%20%3D%20-5%3B%20%0A%20%20for%20%28int%20i%20%3D%201%3B%20i%20%3C%2011%3B%20%2B%2Bi%29%20%7B%0A%20%20%20%20CALL_WITH_MAX%28%2B%2Ba,%20b%2B10%29%3B%0A%20%20%20%20std%3A%3Acout%20%3C%3C%20i%20%3C%3C%20%22,%20a%3A%20%22%20%3C%3C%20a%20%3C%3C%20'%5Cn'%3B%0A%20%20%7D%0A%7D&amp;curInstr=63&amp;mode=display&amp;origin=opt-frontend.js&amp;py=cpp&amp;rawInputLstJSON=%5B%5D">example 17</a> and see for yourself.</p>
-<p><code class="docutils literal"><span class="pre">#define</span></code> may seem like a shortcut.
+<p><code class="docutils literal notranslate"><span class="pre">#define</span></code> may seem like a shortcut.
 It’s not.</p>
 <p>Use it when no better alternative exists.</p>
 </div>
 </div>
 <div class="section" id="keyword-constexpr">
-<span id="index-4"></span><h2>3.2.2. Keyword: <code class="docutils literal"><span class="pre">constexpr</span></code><a class="headerlink" href="#keyword-constexpr" title="Permalink to this headline">¶</a></h2>
+<span id="index-4"></span><h2>3.2.2. Keyword: <code class="docutils literal notranslate"><span class="pre">constexpr</span></code><a class="headerlink" href="#keyword-constexpr" title="Permalink to this headline">¶</a></h2>
 <p>The keyword <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=constexpr">constexpr</a> was added in C++11.</p>
-<p>The fundamental difference between <code class="docutils literal"><span class="pre">const</span></code> and <code class="docutils literal"><span class="pre">constexpr</span></code> is that
-<code class="docutils literal"><span class="pre">constexpr</span></code> must be able to be determined at compile time.
+<p>The fundamental difference between <code class="docutils literal notranslate"><span class="pre">const</span></code> and <code class="docutils literal notranslate"><span class="pre">constexpr</span></code> is that
+<code class="docutils literal notranslate"><span class="pre">constexpr</span></code> must be able to be determined at compile time.
 So while this is OK:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">constexpr</span> <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159265359</span><span class="p">;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">constexpr</span> <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159265359</span><span class="p">;</span>
 
 <span class="c1">// and so is this</span>
 <span class="k">constexpr</span> <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="n">acos</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
@@ -430,31 +421,31 @@ So while this is OK:</p>
 </pre></div>
 </div>
 <p>This is not OK in C++11:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">constexpr</span> <span class="kt">double</span> <span class="nf">area</span> <span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">radius</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">constexpr</span> <span class="kt">double</span> <span class="nf">area</span> <span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">radius</span><span class="p">)</span> <span class="p">{</span>
    <span class="n">assert</span> <span class="p">(</span><span class="n">radius</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">);</span>
    <span class="k">return</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">radius</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>Adding a simple assertion causes this function to no longer compile:</p>
-<div class="highlight-text"><div class="highlight"><pre>g++ -std=c++11 -Wall -Wextra -pedantic     area.cpp   -o area
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>g++ -std=c++11 -Wall -Wextra -pedantic     area.cpp   -o area
 area.cpp: In function ‘constexpr double area(double)’:
 area.cpp:8:1: error: body of constexpr function ‘constexpr double area(double)’ not a return-statement
   }
   ^
 </pre></div>
 </div>
-<p>On compilers that support C++14, if you compile with <code class="docutils literal"><span class="pre">-std=c++11</span></code> you may see a warning like:</p>
-<div class="highlight-text"><div class="highlight"><pre>warning: use of this statement in a constexpr function is a C++14 extension [-Wc++14-extensions]
+<p>On compilers that support C++14, if you compile with <code class="docutils literal notranslate"><span class="pre">-std=c++11</span></code> you may see a warning like:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>warning: use of this statement in a constexpr function is a C++14 extension [-Wc++14-extensions]
   assert (radius &gt; 0);
 </pre></div>
 </div>
 <p>There are some exceptions, but in C++11,
-any function more complex than <code class="docutils literal"><span class="pre">return</span> <span class="pre">(some_expression)</span></code>
+any function more complex than <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">(some_expression)</span></code>
 is not able to be evaluated at compile time,
-therefore, it won’t compile as a <code class="docutils literal"><span class="pre">constexpr</span></code> expression.
+therefore, it won’t compile as a <code class="docutils literal notranslate"><span class="pre">constexpr</span></code> expression.
 You should still use it when you can.</p>
-<p>The rules for <code class="docutils literal"><span class="pre">constexpr</span></code> changed in C++14 and more in C++17.
+<p>The rules for <code class="docutils literal notranslate"><span class="pre">constexpr</span></code> changed in C++14 and more in C++17.
 Although not available on the Mesa server, you should still
 <a class="reference external" href="http://en.cppreference.com/w/cpp/language/constexpr">read the docs</a>
 and be aware of what is and is not a valid constant expression
@@ -465,17 +456,17 @@ for whatever environment you are working in.</p>
 <ul class="simple">
 <li>When creating local variables<ul>
 <li>Ask: “Does this variable ever change?”</li>
-<li>If not, consider <code class="docutils literal"><span class="pre">const</span></code> or <code class="docutils literal"><span class="pre">constexpr</span></code></li>
+<li>If not, consider <code class="docutils literal notranslate"><span class="pre">const</span></code> or <code class="docutils literal notranslate"><span class="pre">constexpr</span></code></li>
 </ul>
 </li>
-<li>Recall <code class="docutils literal"><span class="pre">constexpr</span></code> is more restrictive<ul>
+<li>Recall <code class="docutils literal notranslate"><span class="pre">constexpr</span></code> is more restrictive<ul>
 <li>Constant expression is evaluated at <em>compile time</em></li>
 </ul>
 </li>
 <li>When passing parameters to functions<ul>
-<li>Consider passing by <code class="docutils literal"><span class="pre">const</span></code> reference<ul>
+<li>Consider passing by <code class="docutils literal notranslate"><span class="pre">const</span></code> reference<ul>
 <li>Applies only to object types<ul>
-<li>Pass fundamental types by <code class="docutils literal"><span class="pre">const</span></code> value if they should not change</li>
+<li>Pass fundamental types by <code class="docutils literal notranslate"><span class="pre">const</span></code> value if they should not change</li>
 </ul>
 </li>
 <li>Avoids making an extra (unneeded) copy</li>
@@ -488,9 +479,9 @@ for whatever environment you are working in.</p>
 <div class="admonition-try-this admonition">
 <p class="first admonition-title">Try This!</p>
 <p>Given the following:</p>
-<p>How many simple changes can you make to the function <code class="docutils literal"><span class="pre">area</span></code> that are valid
+<p>How many simple changes can you make to the function <code class="docutils literal notranslate"><span class="pre">area</span></code> that are valid
 if the function signature is</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">const</span> <span class="kt">double</span> <span class="n">area</span> <span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">radius</span><span class="p">)</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">double</span> <span class="n">area</span> <span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">radius</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="last">but invalid if the function signature is unchanged?</p>
@@ -519,12 +510,12 @@ from GitHub</li>
   </li>
   <a class="navLinkBg" id="navLinkBgLeft"  href="functions.html" ></a>
   
-  <li id="relations-next" class="navLink" title='Next Section - 3.3. Keyword: <code class="docutils literal"><span class="pre">auto</span></code>' data-toggle="tooltip" >
+  <li id="relations-next" class="navLink" title='Next Section - 3.3. Keyword: <code class="docutils literal notranslate"><span class="pre">auto</span></code>' data-toggle="tooltip" >
     <a href="auto.html" >
       <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
     </a>
   </li>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="auto.html" >Next Section - 3.3. Keyword: <code class="docutils literal"><span class="pre">auto</span></code></a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="auto.html" >Next Section - 3.3. Keyword: <code class="docutils literal notranslate"><span class="pre">auto</span></code></a>
 
 <script type="text/javascript">
 
@@ -543,7 +534,7 @@ from GitHub</li>
     </p>
     <p>
         &copy; Copyright 2017-2018 Dave Parillo.
-      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
     </p>
   </div>
 </footer>

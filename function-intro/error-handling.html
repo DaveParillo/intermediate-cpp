@@ -2,6 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>3.4. Error handling &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
@@ -29,16 +30,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/runestonebase.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -139,12 +131,11 @@
   eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.2.6';
 </script>
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -253,7 +244,7 @@
         
         
           
-  <li id="relations-prev" title="Previous Chapter - 3.3. Keyword: <code class="docutils literal"><span class="pre">auto</span></code>" data-toggle="tooltip">
+  <li id="relations-prev" title="Previous Chapter - 3.3. Keyword: <code class="docutils literal notranslate"><span class="pre">auto</span></code>" data-toggle="tooltip">
     <a href="auto.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
@@ -310,7 +301,7 @@
 such as an attempt to open a file that does not exist.</p>
 <p>Exceptions provide a way to transfer control from one part of a program
 (where the error occurs) to another (where the error is ‘handled’).
-C++ exception handling is built upon three keywords: <code class="docutils literal"><span class="pre">try</span></code>, <code class="docutils literal"><span class="pre">catch</span></code>, and <code class="docutils literal"><span class="pre">throw</span></code>.</p>
+C++ exception handling is built upon three keywords: <code class="docutils literal notranslate"><span class="pre">try</span></code>, <code class="docutils literal notranslate"><span class="pre">catch</span></code>, and <code class="docutils literal notranslate"><span class="pre">throw</span></code>.</p>
 <dl class="docutils">
 <dt>throw</dt>
 <dd>A program <strong>throws</strong> an exception when a problem shows up.</dd>
@@ -318,19 +309,19 @@ C++ exception handling is built upon three keywords: <code class="docutils liter
 <dd>A program <strong>catches</strong> an exception with an exception handler at the place
 in a program where you want to handle the problem.</dd>
 <dt>try</dt>
-<dd>A <code class="docutils literal"><span class="pre">try</span></code> block identifies a block of code for which particular exceptions will be activated.
-It’s followed by one or more <code class="docutils literal"><span class="pre">catch</span></code> blocks.</dd>
+<dd>A <code class="docutils literal notranslate"><span class="pre">try</span></code> block identifies a block of code for which particular exceptions will be activated.
+It’s followed by one or more <code class="docutils literal notranslate"><span class="pre">catch</span></code> blocks.</dd>
 </dl>
 <p>Basic anatomy of an exception</p>
 <ol class="arabic simple">
-<li>Surround potentially error throwing code in a <code class="docutils literal"><span class="pre">try</span></code> block</li>
-<li>After the <code class="docutils literal"><span class="pre">try</span></code> block, include 1 or more <code class="docutils literal"><span class="pre">catch</span></code> blocks<ol class="loweralpha">
+<li>Surround potentially error throwing code in a <code class="docutils literal notranslate"><span class="pre">try</span></code> block</li>
+<li>After the <code class="docutils literal notranslate"><span class="pre">try</span></code> block, include 1 or more <code class="docutils literal notranslate"><span class="pre">catch</span></code> blocks<ol class="loweralpha">
 <li>The parameter in the catch identifies the type of exception the catch block will handle</li>
 </ol>
 </li>
 </ol>
 <blockquote>
-<div><div class="highlight-cpp"><div class="highlight"><pre><span class="n">try</span> <span class="p">{</span>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">try</span> <span class="p">{</span>
   <span class="c1">// execute potentially dangerous statements</span>
 <span class="p">}</span>
 
@@ -342,7 +333,7 @@ It’s followed by one or more <code class="docutils literal"><span class="pre">
 </pre></div>
 </div>
 </div></blockquote>
-<p>If you specify a <code class="docutils literal"><span class="pre">try</span></code>, you must include at least 1 <code class="docutils literal"><span class="pre">catch</span></code>.</p>
+<p>If you specify a <code class="docutils literal notranslate"><span class="pre">try</span></code>, you must include at least 1 <code class="docutils literal notranslate"><span class="pre">catch</span></code>.</p>
 <p>Passing catch parameters by <em>const reference</em> is considered a best practice</p>
 <ul>
 <li><p class="first">std::exception.what()</p>
@@ -350,10 +341,10 @@ It’s followed by one or more <code class="docutils literal"><span class="pre">
 <li>Returns a description of what caused the error</li>
 </ul>
 </li>
-<li><p class="first">More than one <code class="docutils literal"><span class="pre">catch</span></code> block is acceptable</p>
+<li><p class="first">More than one <code class="docutils literal notranslate"><span class="pre">catch</span></code> block is acceptable</p>
 </li>
 <li><p class="first">The special catch</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">catch</span> <span class="p">(...)</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">catch</span> <span class="p">(...)</span>
 </pre></div>
 </div>
 </li>
@@ -366,13 +357,13 @@ If you use this, then you should be prepared to really handle <em>anything</em>.
 <ul class="simple">
 <li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::exception">std::exception</a> is the base class for all exceptions</li>
 <li>Classes derived from <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::exception">std::exception</a><ul>
-<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::bad_alloc">std::bad_alloc</a>: thrown by <code class="docutils literal"><span class="pre">new</span></code> and other memory allocation errors</li>
-<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::bad_cast">std::bad_cast</a>: thrown by <code class="docutils literal"><span class="pre">dynamic_cast</span></code> and similar</li>
-<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::bad_typeid">std::bad_typeid</a>: thrown by <code class="docutils literal"><span class="pre">typeid</span></code></li>
+<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::bad_alloc">std::bad_alloc</a>: thrown by <code class="docutils literal notranslate"><span class="pre">new</span></code> and other memory allocation errors</li>
+<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::bad_cast">std::bad_cast</a>: thrown by <code class="docutils literal notranslate"><span class="pre">dynamic_cast</span></code> and similar</li>
+<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::bad_typeid">std::bad_typeid</a>: thrown by <code class="docutils literal notranslate"><span class="pre">typeid</span></code></li>
 <li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::bad_exception">std::bad_exception</a>: runtime unexpected or pointer exceptions</li>
 <li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::logic_error">std::logic_error</a>: exceptions that <em>should</em> be detected by reading the code</li>
 <li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::runtime_error">std::runtime_error</a>: exceptions that theoretically can’t be detected by reading the code</li>
-<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::logic_error">std::logic_error</a>, and <code class="docutils literal"><span class="pre">std::runtime_error</span></code> are also exception bases</li>
+<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::logic_error">std::logic_error</a>, and <code class="docutils literal notranslate"><span class="pre">std::runtime_error</span></code> are also exception bases</li>
 </ul>
 </li>
 <li>Classes derived from <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::logic_error">std::logic_error</a><ul>
@@ -393,22 +384,22 @@ If you use this, then you should be prepared to really handle <em>anything</em>.
 <div class="section" id="using-exceptions">
 <h3>3.4.2.2. Using exceptions<a class="headerlink" href="#using-exceptions" title="Permalink to this headline">¶</a></h3>
 <p>C++ exceptions are designed to support <em>error handling</em>.</p>
-<p>Use <code class="docutils literal"><span class="pre">throw</span></code> only to signal an error.
-Use <code class="docutils literal"><span class="pre">catch</span></code> only to specify error handling actions when
+<p>Use <code class="docutils literal notranslate"><span class="pre">throw</span></code> only to signal an error.
+Use <code class="docutils literal notranslate"><span class="pre">catch</span></code> only to specify error handling actions when
 you know you can handle it.
 Possibly by translating it to another type and re-throwing an exception of that type.
-For example, catching a <code class="docutils literal"><span class="pre">bad_alloc</span></code> and re-throwing a <code class="docutils literal"><span class="pre">no_space_for_file_buffers</span></code> exception.</p>
-<p><strong>Do not</strong> use <code class="docutils literal"><span class="pre">throw</span></code> to catch a coding error in usage of a function.
+For example, catching a <code class="docutils literal notranslate"><span class="pre">bad_alloc</span></code> and re-throwing a <code class="docutils literal notranslate"><span class="pre">no_space_for_file_buffers</span></code> exception.</p>
+<p><strong>Do not</strong> use <code class="docutils literal notranslate"><span class="pre">throw</span></code> to catch a coding error in usage of a function.
 Instead, use assert or other mechanism to either stop the program or log the error.</p>
-<p><strong>Do not</strong> use <code class="docutils literal"><span class="pre">throw</span></code> if you discover an unexpected violation of an invariant of your component.
-Instead, use <code class="docutils literal"><span class="pre">assert</span></code> or other mechanism to terminate the program.
+<p><strong>Do not</strong> use <code class="docutils literal notranslate"><span class="pre">throw</span></code> if you discover an unexpected violation of an invariant of your component.
+Instead, use <code class="docutils literal notranslate"><span class="pre">assert</span></code> or other mechanism to terminate the program.
 Throwing an exception will not cure memory corruption and may lead to further corruption of important user data.</p>
-<p>Use <code class="docutils literal"><span class="pre">try</span></code> and <code class="docutils literal"><span class="pre">catch</span></code> blocks
+<p>Use <code class="docutils literal notranslate"><span class="pre">try</span></code> and <code class="docutils literal notranslate"><span class="pre">catch</span></code> blocks
 if the logic is more clear than checking a condition and returning a value.
 For example,
 if you need to propagate errors several levels up the stack:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">f1</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">try</span> <span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">f1</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
     <span class="n">f2</span><span class="p">();</span>
   <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="k">const</span> <span class="n">some_exception</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// ... handle error</span>
@@ -424,39 +415,39 @@ if you need to propagate errors several levels up the stack:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Only the code that detects the error, <code class="docutils literal"><span class="pre">f5()</span></code>,
-and the code that handles the error, <code class="docutils literal"><span class="pre">f1()</span></code>, have any clutter.
+<p>Only the code that detects the error, <code class="docutils literal notranslate"><span class="pre">f5()</span></code>,
+and the code that handles the error, <code class="docutils literal notranslate"><span class="pre">f1()</span></code>, have any clutter.
 None of the other functions have to worry about passing error codes either in return values
 or in extra parameters that would have to be mutable.</p>
-<p>Do not use <code class="docutils literal"><span class="pre">try</span></code> blocks to reclaim resources.
+<p>Do not use <code class="docutils literal notranslate"><span class="pre">try</span></code> blocks to reclaim resources.
 This is a Java technique,
 which is great for Java, but is not needed in C++.
 In C++, use Resource Acquisition Is Initialization (<a class="reference internal" href="../glossary.html#term-raii"><span class="xref std std-term">RAII</span></a>).</p>
 <p>Use constructors to allocate resources
 and use destructors to clean up resources,</p>
-<p>Do not use <code class="docutils literal"><span class="pre">try</span></code> blocks as a proxy for error return codes.
-This results in too many <code class="docutils literal"><span class="pre">try</span></code> blocks cluttering up functions,
+<p>Do not use <code class="docutils literal notranslate"><span class="pre">try</span></code> blocks as a proxy for error return codes.
+This results in too many <code class="docutils literal notranslate"><span class="pre">try</span></code> blocks cluttering up functions,
 which harms readability if nothing else.</p>
 </div>
 <div class="section" id="exceptions-and-i-o-streams">
 <span id="index-3"></span><h3>3.4.2.3. Exceptions and I/O streams<a class="headerlink" href="#exceptions-and-i-o-streams" title="Permalink to this headline">¶</a></h3>
-<p>I/O streams can be configured to throw exceptions with <code class="docutils literal"><span class="pre">std::basic_ios::exceptions</span></code>.
+<p>I/O streams can be configured to throw exceptions with <code class="docutils literal notranslate"><span class="pre">std::basic_ios::exceptions</span></code>.
 This object gets and sets the exception mask of the stream.
 The exception mask set in the program determines which error states
 in the stream will throw an exception if an error is encountered.
 If no exception bits are set, then the I/O streams in C++ will not throw any exceptions.</p>
 <p>For example:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span> <span class="n">ifs</span><span class="p">(</span><span class="s">&quot;in.txt&quot;</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span> <span class="n">ifs</span><span class="p">(</span><span class="s">&quot;in.txt&quot;</span><span class="p">);</span>
 <span class="n">ifs</span><span class="p">.</span><span class="n">exceptions</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="o">::</span><span class="n">failbit</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>At this point, only the <code class="docutils literal"><span class="pre">failbit</span></code> will trigger an exception.</p>
-<p>I/O Streams may throw <code class="docutils literal"><span class="pre">ios_base::failure</span></code>
+<p>At this point, only the <code class="docutils literal notranslate"><span class="pre">failbit</span></code> will trigger an exception.</p>
+<p>I/O Streams may throw <code class="docutils literal notranslate"><span class="pre">ios_base::failure</span></code>
 But since C++11 this class inheritance changed.</p>
-<p><code class="docutils literal"><span class="pre">ios_base::failure</span></code> inherits from <code class="docutils literal"><span class="pre">std::system_error</span></code></p>
-<p>The end result is that <code class="docutils literal"><span class="pre">ios_base::failure</span></code> now has
-an <code class="docutils literal"><span class="pre">error_code</span></code> member to the exception object it didn’t used to have.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">catch</span> <span class="p">(</span><span class="k">const</span> <span class="n">ios_base</span><span class="o">::</span><span class="n">failure</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+<p><code class="docutils literal notranslate"><span class="pre">ios_base::failure</span></code> inherits from <code class="docutils literal notranslate"><span class="pre">std::system_error</span></code></p>
+<p>The end result is that <code class="docutils literal notranslate"><span class="pre">ios_base::failure</span></code> now has
+an <code class="docutils literal notranslate"><span class="pre">error_code</span></code> member to the exception object it didn’t used to have.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">catch</span> <span class="p">(</span><span class="k">const</span> <span class="n">ios_base</span><span class="o">::</span><span class="n">failure</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;I/O exception occurred.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Details: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Code: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">code</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
@@ -485,7 +476,7 @@ an <code class="docutils literal"><span class="pre">error_code</span></code> mem
 
   
       
-  <li id="relations-prev" class="navLink" title='Previous Section - 3.3. Keyword: <code class="docutils literal"><span class="pre">auto</span></code>' data-toggle="tooltip">
+  <li id="relations-prev" class="navLink" title='Previous Section - 3.3. Keyword: <code class="docutils literal notranslate"><span class="pre">auto</span></code>' data-toggle="tooltip">
     <a href="auto.html" >
       <i class='prevNav glyphicon glyphicon-chevron-left'></i>
     </a>
@@ -516,7 +507,7 @@ an <code class="docutils literal"><span class="pre">error_code</span></code> mem
     </p>
     <p>
         &copy; Copyright 2017-2018 Dave Parillo.
-      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
     </p>
   </div>
 </footer>

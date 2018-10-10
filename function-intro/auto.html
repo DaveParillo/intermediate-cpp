@@ -2,6 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>3.3. Keyword: auto &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
@@ -29,16 +30,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/runestonebase.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -139,12 +131,11 @@
   eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.2.6';
 </script>
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -236,7 +227,7 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">3.3. Keyword: <code class="docutils literal"><span class="pre">auto</span></code></a></li>
+<li><a class="reference internal" href="#">3.3. Keyword: <code class="docutils literal notranslate"><span class="pre">auto</span></code></a></li>
 </ul>
 </ul>
 </li>
@@ -244,7 +235,7 @@
         
         
           
-  <li id="relations-prev" title="Previous Chapter - 3.2. Keyword: <code class="docutils literal"><span class="pre">const</span></code>" data-toggle="tooltip">
+  <li id="relations-prev" title="Previous Chapter - 3.2. Keyword: <code class="docutils literal notranslate"><span class="pre">const</span></code>" data-toggle="tooltip">
     <a href="constants.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
@@ -282,10 +273,10 @@
 <div class="container" id="main-content">
   
   <div class="section" id="keyword-auto">
-<span id="index-0"></span><h1>3.3. Keyword: <code class="docutils literal"><span class="pre">auto</span></code><a class="headerlink" href="#keyword-auto" title="Permalink to this headline">¶</a></h1>
+<span id="index-0"></span><h1>3.3. Keyword: <code class="docutils literal notranslate"><span class="pre">auto</span></code><a class="headerlink" href="#keyword-auto" title="Permalink to this headline">¶</a></h1>
 <p>In C++11, the <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=auto specifier">auto specifier</a> meaning has changed significantly from
 it’s definition prior to C++11.
-Prior to C++11, <code class="docutils literal"><span class="pre">auto</span></code> designated variables assigned to the
+Prior to C++11, <code class="docutils literal notranslate"><span class="pre">auto</span></code> designated variables assigned to the
 <a class="reference external" href="http://en.cppreference.com/w/c/language/storage_duration">automatic storage class duration</a>.
 Every variable is assigned a storage duration which limits its lifetime.
 The automatic duration applied to local variables in a block scope.
@@ -295,20 +286,20 @@ It is still the default storage duration for block variables,
 but no C++11 keyword is reserved for this behavior.</p>
 <p>Since C++11, <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=auto specifier">auto specifier</a> instructs the compiler to automatically deduce the type
 of a variable based on the initializer used.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">auto</span> <span class="n">new_variable</span> <span class="o">=</span> <span class="n">initial_value</span><span class="p">;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">new_variable</span> <span class="o">=</span> <span class="n">initial_value</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Since the initializer provides the information used to deduce the <a class="reference internal" href="../glossary.html#term-type"><span class="xref std std-term">type</span></a>,
-an initial value is required when using <code class="docutils literal"><span class="pre">auto</span></code>:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">auto</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>   <span class="c1">// OK</span>
+an initial value is required when using <code class="docutils literal notranslate"><span class="pre">auto</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>   <span class="c1">// OK</span>
 <span class="k">auto</span> <span class="n">y</span><span class="p">;</span>       <span class="c1">// Not OK</span>
 
 <span class="k">auto</span> <span class="kt">int</span> <span class="n">z</span><span class="p">;</span>   <span class="c1">// Error in C++11</span>
               <span class="c1">// This is how auto was used prior to C++11</span>
 </pre></div>
 </div>
-<p>You can use <code class="docutils literal"><span class="pre">auto</span></code> in nearly any statement that includes an initializer:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">auto</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>          <span class="c1">// x is an int</span>
+<p>You can use <code class="docutils literal notranslate"><span class="pre">auto</span></code> in nearly any statement that includes an initializer:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>          <span class="c1">// x is an int</span>
 <span class="k">auto</span> <span class="n">q</span> <span class="o">=</span> <span class="sc">&#39;?&#39;</span><span class="p">;</span>        <span class="c1">// q is a char</span>
 <span class="k">auto</span> <span class="n">r</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>         <span class="c1">// r is an int</span>
                      <span class="c1">//  - a reference to a variable is implicitly dereferenced</span>
@@ -323,12 +314,12 @@ an initial value is required when using <code class="docutils literal"><span cla
 Later, we will see that some types are long and complicated -
 having to type them out, as was required prior to C++11,
 is a chore.
-<code class="docutils literal"><span class="pre">auto</span></code> frees us from having to declare a type the compiler already knows about.
+<code class="docutils literal notranslate"><span class="pre">auto</span></code> frees us from having to declare a type the compiler already knows about.
 Additionally, some types, such as those returned by <a class="reference internal" href="../function-pointers/lambda.html"><span class="doc">lambda expressions</span></a>,
 are hidden from us - auto is the only option in these cases.</p>
 <p>When variables are initialized using auto,
 they inherit the <em>type</em> from the initializer, but not its <em>constness</em>.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span>          <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>          <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="kt">int</span><span class="o">&amp;</span>         <span class="n">ir</span>  <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
 <span class="k">auto</span>         <span class="n">x</span>   <span class="o">=</span> <span class="n">ir</span><span class="p">;</span>
 </pre></div>
@@ -336,84 +327,84 @@ they inherit the <em>type</em> from the initializer, but not its <em>constness</
 <p>What type is x?</p>
 
     <div data-component="reveal" id="reveal-auto-1"   data-showtitle="Show Answer" data-hidetitle="Hide Answer">
-    <p>If you said, <code class="docutils literal"><span class="pre">int</span></code>, excellent job!</p>
-<p><code class="docutils literal"><span class="pre">ir</span></code> is a reference to <code class="docutils literal"><span class="pre">val</span></code>,
-which makes <code class="docutils literal"><span class="pre">ir</span></code> just another name for <code class="docutils literal"><span class="pre">val</span></code>.
-<code class="docutils literal"><span class="pre">auto</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">ir;</span></code> is exactly the same as if we had written
-<code class="docutils literal"><span class="pre">auto</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">val;</span></code> here.</p>
+    <p>If you said, <code class="docutils literal notranslate"><span class="pre">int</span></code>, excellent job!</p>
+<p><code class="docutils literal notranslate"><span class="pre">ir</span></code> is a reference to <code class="docutils literal notranslate"><span class="pre">val</span></code>,
+which makes <code class="docutils literal notranslate"><span class="pre">ir</span></code> just another name for <code class="docutils literal notranslate"><span class="pre">val</span></code>.
+<code class="docutils literal notranslate"><span class="pre">auto</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">ir;</span></code> is exactly the same as if we had written
+<code class="docutils literal notranslate"><span class="pre">auto</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">val;</span></code> here.</p>
 
     </div>
     <p>Given the following code:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">const</span> <span class="kt">double</span> <span class="n">val</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">double</span> <span class="n">val</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>
 <span class="k">auto</span>         <span class="n">y</span>   <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>What type is y?</p>
 
     <div data-component="reveal" id="reveal-auto-2"   data-showtitle="Show Answer" data-hidetitle="Hide Answer">
-    <p>If you said, <code class="docutils literal"><span class="pre">double</span></code>, excellent job!</p>
-<p>Just because <code class="docutils literal"><span class="pre">val</span></code> is <code class="docutils literal"><span class="pre">const</span></code>,
-it has nothing to do with whether <code class="docutils literal"><span class="pre">y</span></code> is <code class="docutils literal"><span class="pre">const</span></code>.</p>
-<p>If we had wanted <code class="docutils literal"><span class="pre">y</span></code> to be <code class="docutils literal"><span class="pre">const</span></code>,
+    <p>If you said, <code class="docutils literal notranslate"><span class="pre">double</span></code>, excellent job!</p>
+<p>Just because <code class="docutils literal notranslate"><span class="pre">val</span></code> is <code class="docutils literal notranslate"><span class="pre">const</span></code>,
+it has nothing to do with whether <code class="docutils literal notranslate"><span class="pre">y</span></code> is <code class="docutils literal notranslate"><span class="pre">const</span></code>.</p>
+<p>If we had wanted <code class="docutils literal notranslate"><span class="pre">y</span></code> to be <code class="docutils literal notranslate"><span class="pre">const</span></code>,
 then we would have needed to say so:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">const</span> <span class="k">auto</span> <span class="n">y</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="k">auto</span> <span class="n">y</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
 </pre></div>
 </div>
 
     </div>
-    <p>The <code class="docutils literal"><span class="pre">auto</span></code> keyword is a simple way to declare a variable that has a complicated type.
+    <p>The <code class="docutils literal notranslate"><span class="pre">auto</span></code> keyword is a simple way to declare a variable that has a complicated type.
 We will get into the details of using auto in this way in later sections.
 But accept for now that
 you can use auto to declare a variable where the initialization
 expression involves iterators, templates, pointers to functions, or pointers to members.
-You can also use <code class="docutils literal"><span class="pre">auto</span></code> to declare and initialize a variable to a lambda expression.
+You can also use <code class="docutils literal notranslate"><span class="pre">auto</span></code> to declare and initialize a variable to a lambda expression.
 You can’t declare the type of a lambda yourself because the type of a
 <a class="reference internal" href="../function-pointers/lambda.html"><span class="doc">lambda expression</span></a> is known only to the compiler.</p>
-<p><code class="docutils literal"><span class="pre">auto</span></code> is also commonly used when a type would be redundant, especially in
+<p><code class="docutils literal notranslate"><span class="pre">auto</span></code> is also commonly used when a type would be redundant, especially in
 <em>range-for loops</em>:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">numbers</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mf">8.8</span><span class="p">};</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">numbers</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mf">8.8</span><span class="p">};</span>
 <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">n</span><span class="p">:</span> <span class="n">numbers</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>In this case, the compiler already knows the type stored in the <code class="docutils literal"><span class="pre">vector</span></code> numbers.
+<p>In this case, the compiler already knows the type stored in the <code class="docutils literal notranslate"><span class="pre">vector</span></code> numbers.
 It doesn’t need to be told again.</p>
-<p>When first introduced to <code class="docutils literal"><span class="pre">auto</span></code>, many programmers balk.
+<p>When first introduced to <code class="docutils literal notranslate"><span class="pre">auto</span></code>, many programmers balk.
 It <em>feels</em> sloppy and imprecise, and it <em>seems</em> as if we are sacrificing clarity.
-In fact using <code class="docutils literal"><span class="pre">auto</span></code> is just as strongly typed as a manual declaration
+In fact using <code class="docutils literal notranslate"><span class="pre">auto</span></code> is just as strongly typed as a manual declaration
 and it aids clarity because it forces delaying variable
 declaration until you have a value to initialize it with.</p>
 <div class="admonition-guideline admonition">
 <p class="first admonition-title">Guideline</p>
-<p class="last">Prefer to declare local variables using <code class="docutils literal"><span class="pre">auto</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">expr;</span></code>
+<p class="last">Prefer to declare local variables using <code class="docutils literal notranslate"><span class="pre">auto</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">expr;</span></code>
 when you don’t need to explicitly commit to a type.
 It is efficient by default and guarantees that no implicit conversions
 or temporary objects will occur.</p>
 </div>
-<p>It is important to note that <code class="docutils literal"><span class="pre">auto</span></code> may not always deduce
+<p>It is important to note that <code class="docutils literal notranslate"><span class="pre">auto</span></code> may not always deduce
 the type you expect or the type you need.
 For example:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">auto</span> <span class="n">s</span> <span class="o">=</span> <span class="s">&quot;Hello, world!&quot;</span><span class="p">;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">s</span> <span class="o">=</span> <span class="s">&quot;Hello, world!&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>What type is s?</p>
 
     <div data-component="reveal" id="reveal-string-confusion"   data-showtitle="Show Answer" data-hidetitle="Hide Answer">
-    <p>If you said, <code class="docutils literal"><span class="pre">const</span> <span class="pre">char*</span></code>, excellent job!</p>
-<p>If you guessed <code class="docutils literal"><span class="pre">string</span></code>, you are not alone.
+    <p>If you said, <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">char*</span></code>, excellent job!</p>
+<p>If you guessed <code class="docutils literal notranslate"><span class="pre">string</span></code>, you are not alone.
 This is a common mistake and one that gives new C++ programmers a lot of headaches.
-String literals in C++ are <strong>always</strong> <code class="docutils literal"><span class="pre">const</span> <span class="pre">char*</span></code>.</p>
-<p>If you need a <code class="docutils literal"><span class="pre">std::string</span></code>, you have to explicitly declare it:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="s">&quot;Hello, world!&quot;</span><span class="p">;</span>
+String literals in C++ are <strong>always</strong> <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">char*</span></code>.</p>
+<p>If you need a <code class="docutils literal notranslate"><span class="pre">std::string</span></code>, you have to explicitly declare it:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="s">&quot;Hello, world!&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 
     </div>
     <p>One final note.</p>
-<p>The <code class="docutils literal"><span class="pre">auto</span></code> keyword is a <em>placeholder</em> for a type,
+<p>The <code class="docutils literal notranslate"><span class="pre">auto</span></code> keyword is a <em>placeholder</em> for a type,
 but it is <strong>not</strong> a type.
-Therefore, <code class="docutils literal"><span class="pre">auto</span></code> cannot be used in casts or operators such as <code class="docutils literal"><span class="pre">sizeof</span></code> and <code class="docutils literal"><span class="pre">typeid</span></code>.</p>
+Therefore, <code class="docutils literal notranslate"><span class="pre">auto</span></code> cannot be used in casts or operators such as <code class="docutils literal notranslate"><span class="pre">sizeof</span></code> and <code class="docutils literal notranslate"><span class="pre">typeid</span></code>.</p>
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">
 <p class="first admonition-title">More to Explore</p>
@@ -434,7 +425,7 @@ The <a class="reference external" href="http://en.cppreference.com/w/cpp/languag
 
   
       
-  <li id="relations-prev" class="navLink" title='Previous Section - 3.2. Keyword: <code class="docutils literal"><span class="pre">const</span></code>' data-toggle="tooltip">
+  <li id="relations-prev" class="navLink" title='Previous Section - 3.2. Keyword: <code class="docutils literal notranslate"><span class="pre">const</span></code>' data-toggle="tooltip">
     <a href="constants.html" >
       <i class='prevNav glyphicon glyphicon-chevron-left'></i>
     </a>
@@ -465,7 +456,7 @@ The <a class="reference external" href="http://en.cppreference.com/w/cpp/languag
     </p>
     <p>
         &copy; Copyright 2017-2018 Dave Parillo.
-      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
     </p>
   </div>
 </footer>

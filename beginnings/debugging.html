@@ -2,6 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>1.9. Debugging &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
@@ -29,16 +30,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/runestonebase.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -139,12 +131,11 @@
   eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.2.6';
 </script>
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -363,7 +354,7 @@ might be.</p>
 <p>Here are some ways to avoid the most common syntax errors:</p>
 <ol class="arabic simple">
 <li>Make sure you are not using a keyword for a variable name.</li>
-<li>Make sure you are compiling with the <code class="docutils literal"><span class="pre">-std=c++11</span></code> argument.</li>
+<li>Make sure you are compiling with the <code class="docutils literal notranslate"><span class="pre">-std=c++11</span></code> argument.</li>
 <li>Check that indentation is consistent. You may indent with either spaces or
 tabs but it’s best not to mix them. Each level should be nested the same
 amount. Neatness catches more errors than you might expect.</li>
@@ -372,18 +363,18 @@ amount. Neatness catches more errors than you might expect.</li>
 <li>An unclosed bracket – (, {, or [ – makes the compiler continue with the next
 line as part of the current statement. Generally, an error occurs almost
 immediately in the next line.</li>
-<li>Check for the classic <code class="docutils literal"><span class="pre">=</span></code> instead of <code class="docutils literal"><span class="pre">==</span></code> inside a conditional.</li>
+<li>Check for the classic <code class="docutils literal notranslate"><span class="pre">=</span></code> instead of <code class="docutils literal notranslate"><span class="pre">==</span></code> inside a conditional.</li>
 </ol>
 <p>A simple dropped semi-colon may generate
 slightly different results using different compilers.
 For example, given the following:</p>
-<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>2
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>2
 3
 4
 5
 6
 7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span class="kt">int</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -392,9 +383,9 @@ For example, given the following:</p>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
-<p>The <code class="docutils literal"><span class="pre">gcc</span></code> compiler, reports the error on line 8.
-It notices an end brace reached <code class="docutils literal"><span class="pre">}</span></code> but a semi-colon was expected:</p>
-<div class="highlight-none"><div class="highlight"><pre>g++ -std=c++11 -Wall -Wextra -pedantic    foo.cpp   -o foo
+<p>The <code class="docutils literal notranslate"><span class="pre">gcc</span></code> compiler, reports the error on line 8.
+It notices an end brace reached <code class="docutils literal notranslate"><span class="pre">}</span></code> but a semi-colon was expected:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>g++ -std=c++11 -Wall -Wextra -pedantic    foo.cpp   -o foo
 g++: warning: couldn’t understand kern.osversion ‘14.5.0
 foo.cpp: In function ‘int main()’:
 foo.cpp:8:1: error: expected ‘;’ before ‘}’ token
@@ -402,9 +393,9 @@ foo.cpp:8:1: error: expected ‘;’ before ‘}’ token
  ^
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">clang</span></code> compiler knows where the semi-colon belongs and in this case,
+<p>The <code class="docutils literal notranslate"><span class="pre">clang</span></code> compiler knows where the semi-colon belongs and in this case,
 provides a slightly more specific error:</p>
-<div class="highlight-none"><div class="highlight"><pre>The ``clang`` compiler, reports the error on line 7.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The ``clang`` compiler, reports the error on line 7.
 clang++ -std=c++11 -Wall -Wextra -pedantic    foo.cpp   -o foo
 foo.cpp:7:8: error: expected &#39;;&#39; after expression
   foo()
@@ -433,9 +424,9 @@ the pieces of the new program to the working one.</p>
 The most common mistake new programmers make is to start changing code in
 response to a link error.
 This will only make matters worse, as the program syntax was OK to begin with.
-The simplest kind of link error is when the linker can’t find a <code class="docutils literal"><span class="pre">main</span></code> function
+The simplest kind of link error is when the linker can’t find a <code class="docutils literal notranslate"><span class="pre">main</span></code> function
 to start execution:</p>
-<div class="highlight-none"><div class="highlight"><pre>g++: warning: couldn’t understand kern.osversion ‘14.5.0
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>g++: warning: couldn’t understand kern.osversion ‘14.5.0
 Undefined symbols for architecture x86_64:
   &quot;_main&quot;, referenced from:
       __start in crt1.o
@@ -447,15 +438,15 @@ collect2: error: ld returned 1 exit status
 <ol class="arabic simple">
 <li>The first line of output says “Undefined symbols …”.
 This is a clear indication that the linker could not find something it expected.</li>
-<li>The next 4 lines expand on this to tell us that the linker program (<code class="docutils literal"><span class="pre">ld</span></code>)
-was unable to find the symbol <code class="docutils literal"><span class="pre">_main</span></code>, which is the <em>mangled name</em> this particular compiler
-gives to the function <code class="docutils literal"><span class="pre">main()</span></code>.
+<li>The next 4 lines expand on this to tell us that the linker program (<code class="docutils literal notranslate"><span class="pre">ld</span></code>)
+was unable to find the symbol <code class="docutils literal notranslate"><span class="pre">_main</span></code>, which is the <em>mangled name</em> this particular compiler
+gives to the function <code class="docutils literal notranslate"><span class="pre">main()</span></code>.
 Compilers are free to mangle function names as they see fit to generate an executable
 in which every function signature is unique.</li>
 </ol>
 <p>Since link errors or other problems related to setting up your environment are not covered
 in detail in this course, this is a perfectly fine time to ask your instructor for help.
-Since the problem is either in your environment, your <code class="docutils literal"><span class="pre">Makefile</span></code>, or both.</p>
+Since the problem is either in your environment, your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, or both.</p>
 </div>
 <div class="section" id="runtime-errors">
 <span id="index-3"></span><h2>1.9.3. Runtime errors<a class="headerlink" href="#runtime-errors" title="Permalink to this headline">¶</a></h2>
@@ -467,7 +458,7 @@ start running it. What could possibly go wrong?</p>
 but does not actually invoke anything to start execution. This may be
 intentional if you only plan to import this module to supply classes and
 functions.</p>
-<p>If it is not intentional, make sure that your program has a <code class="docutils literal"><span class="pre">main()</span></code> function.</p>
+<p>If it is not intentional, make sure that your program has a <code class="docutils literal notranslate"><span class="pre">main()</span></code> function.</p>
 </div>
 <div class="section" id="my-program-hangs">
 <h3>1.9.3.2. My program hangs.<a class="headerlink" href="#my-program-hangs" title="Permalink to this headline">¶</a></h3>
@@ -475,7 +466,7 @@ functions.</p>
 that means that it is caught in an infinite loop or an infinite recursion.</p>
 <ol class="arabic simple">
 <li>If there is a particular loop that you suspect is the problem, add a
-<code class="docutils literal"><span class="pre">cout</span></code> or <code class="docutils literal"><span class="pre">puts</span></code> statement immediately before the loop that says entering the loop
+<code class="docutils literal notranslate"><span class="pre">cout</span></code> or <code class="docutils literal notranslate"><span class="pre">puts</span></code> statement immediately before the loop that says entering the loop
 and another immediately after that says exiting the loop.</li>
 <li>Run the program. If you get the first message and not the second, you’ve got
 an infinite loop.
@@ -503,11 +494,11 @@ Go to the Semantic error section below.</p>
 <div class="section" id="infinite-loops">
 <span id="index-4"></span><h3>1.9.3.3. Infinite loops<a class="headerlink" href="#infinite-loops" title="Permalink to this headline">¶</a></h3>
 <p>If you think you have an infinite loop and you think you know what loop is
-causing the problem, add a <code class="docutils literal"><span class="pre">print</span></code> statement at the end of the loop that
+causing the problem, add a <code class="docutils literal notranslate"><span class="pre">print</span></code> statement at the end of the loop that
 prints the values of the variables in the condition and the value of the
 condition.</p>
 <p>For example:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">while</span> <span class="p">(</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="p">(</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// do something to x</span>
   <span class="c1">// do something to y</span>
 
@@ -519,30 +510,30 @@ condition.</p>
 </div>
 <p>Now when you run the program, you will see three lines of output for each time
 through the loop. The last time through the loop, the condition should be
-<code class="docutils literal"><span class="pre">0</span></code>. If the loop keeps going, you will be able to see the values of <code class="docutils literal"><span class="pre">x</span></code>
-and <code class="docutils literal"><span class="pre">y</span></code>, and you might figure out why they are not being updated correctly.</p>
+<code class="docutils literal notranslate"><span class="pre">0</span></code>. If the loop keeps going, you will be able to see the values of <code class="docutils literal notranslate"><span class="pre">x</span></code>
+and <code class="docutils literal notranslate"><span class="pre">y</span></code>, and you might figure out why they are not being updated correctly.</p>
 <p>In a development environment like <em>CodeBlocks</em>, <em>Visual Studio</em>, or using
 command line debuggers such as <em>gdb</em> one can also set a breakpoint
 at the start of the loop, and single-step through the loop.  While you do
-this, inspect the values of <code class="docutils literal"><span class="pre">x</span></code> and <code class="docutils literal"><span class="pre">y</span></code> by hovering your cursor over
+this, inspect the values of <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> by hovering your cursor over
 them.</p>
 <p>Of course, all programming and debugging require that you have a good mental
 model of what the algorithm ought to be doing: if you don’t understand what
-ought to happen to <code class="docutils literal"><span class="pre">x</span></code> and <code class="docutils literal"><span class="pre">y</span></code>, printing or inspecting its value is
+ought to happen to <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, printing or inspecting its value is
 of little use. Probably the best place to debug the code is away from
 your computer, working on your understanding of what should be happening.</p>
 </div>
 <div class="section" id="infinite-recursion">
 <h3>1.9.3.4. Infinite recursion<a class="headerlink" href="#infinite-recursion" title="Permalink to this headline">¶</a></h3>
 <p>Most of the time, an infinite recursion will cause the program to run for a
-while and then produce a <code class="docutils literal"><span class="pre">Stack</span> <span class="pre">overflow</span></code> error.</p>
+while and then produce a <code class="docutils literal notranslate"><span class="pre">Stack</span> <span class="pre">overflow</span></code> error.</p>
 <p>If you suspect that a function or method is causing an infinite recursion,
 start by checking to make sure that there is a base case.  In other words,
 there should be some condition that will cause the function or method to return
 without making a recursive invocation. If not, then you need to rethink the
 algorithm and identify a base case.</p>
 <p>If there is a base case but the program doesn’t seem to be reaching it, add a
-<code class="docutils literal"><span class="pre">print</span></code> statement at the beginning of the function or method that prints the
+<code class="docutils literal notranslate"><span class="pre">print</span></code> statement at the beginning of the function or method that prints the
 parameters. Now when you run the program, you will see a few lines of output
 every time the function or method is invoked, and you will see the parameters.
 If the parameters are not moving toward the base case, you will get some ideas
@@ -577,7 +568,7 @@ program is actually doing. One of the things that makes that hard is
 that computers run so fast.</p>
 <p>You will often wish that you could slow the program down to human
 speed, and with some debuggers you can. But the time it takes to
-insert a few well-placed <code class="docutils literal"><span class="pre">print</span></code> statements is often short compared to
+insert a few well-placed <code class="docutils literal notranslate"><span class="pre">print</span></code> statements is often short compared to
 setting up the debugger, inserting and removing breakpoints, and
 walking the program to where the error is occurring.</p>
 </div>
@@ -642,11 +633,11 @@ but they can be hard to debug.
 Consider breaking a complex
 expression into a series of assignments to temporary variables.</p>
 <p>For example:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">this</span><span class="p">.</span><span class="n">hands</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">add_card</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">hands</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="n">neighbor</span><span class="p">(</span><span class="n">i</span><span class="p">)].</span><span class="n">top</span><span class="p">())</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="n">hands</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">add_card</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">hands</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="n">neighbor</span><span class="p">(</span><span class="n">i</span><span class="p">)].</span><span class="n">top</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>This can be rewritten as:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">auto</span> <span class="n">neighbor</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="n">neighbor</span> <span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">neighbor</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="n">neighbor</span> <span class="p">(</span><span class="n">i</span><span class="p">);</span>
 <span class="k">auto</span> <span class="n">picked</span> <span class="o">=</span> <span class="n">hands</span><span class="p">[</span><span class="n">neighbor</span><span class="p">].</span><span class="n">top</span><span class="p">();</span>
 <span class="n">hands</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">add_card</span> <span class="p">(</span><span class="n">picked</span><span class="p">);</span>
 </pre></div>
@@ -656,16 +647,16 @@ additional documentation, and it is easier to debug because you can check the
 types of the intermediate variables and display or inspect their values.</p>
 <p>Another problem that can occur with big expressions is that the order of
 evaluation may not be what you expect. For example, if you are translating the
-expression <code class="docutils literal"><span class="pre">x/2pi</span></code> into code, you might write:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">M_PI</span><span class="p">;</span>
+expression <code class="docutils literal notranslate"><span class="pre">x/2pi</span></code> into code, you might write:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">M_PI</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>That is not correct because multiplication and division have the same
 precedence and are evaluated from left to right. So this expression computes
-<code class="docutils literal"><span class="pre">(x/2)pi</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">(x/2)pi</span></code>.</p>
 <p>A good way to debug expressions is to add parentheses to make the order of
 evaluation explicit:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">M_PI</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">M_PI</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Whenever you are not sure of the order of evaluation, use parentheses.  Not
@@ -675,30 +666,30 @@ precedence.</p>
 </div>
 <div class="section" id="i-ve-got-a-function-that-doesn-t-return-what-i-expect">
 <h3>1.9.5.3. I’ve got a function that doesn’t return what I expect<a class="headerlink" href="#i-ve-got-a-function-that-doesn-t-return-what-i-expect" title="Permalink to this headline">¶</a></h3>
-<p>If you have a <code class="docutils literal"><span class="pre">return</span></code> statement with a complex expression, you don’t have a
-chance to print the <code class="docutils literal"><span class="pre">return</span></code> value before returning. Again, you can use a
+<p>If you have a <code class="docutils literal notranslate"><span class="pre">return</span></code> statement with a complex expression, you don’t have a
+chance to print the <code class="docutils literal notranslate"><span class="pre">return</span></code> value before returning. Again, you can use a
 temporary variable. For example, instead of:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">hands</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">remove_matches</span><span class="p">();</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">hands</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">remove_matches</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>you could write:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">auto</span> <span class="n">count</span> <span class="o">=</span> <span class="n">hands</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">remove_matches</span><span class="p">();</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">count</span> <span class="o">=</span> <span class="n">hands</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">remove_matches</span><span class="p">();</span>
 <span class="k">return</span> <span class="n">count</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>Now you have the opportunity to display or inspect the value of <code class="docutils literal"><span class="pre">count</span></code> before
+<p>Now you have the opportunity to display or inspect the value of <code class="docutils literal notranslate"><span class="pre">count</span></code> before
 returning.</p>
 </div>
 <div class="section" id="assertions">
 <span id="index-6"></span><h3>1.9.5.4. Assertions<a class="headerlink" href="#assertions" title="Permalink to this headline">¶</a></h3>
-<p>The include <code class="docutils literal"><span class="pre">&lt;assert.h&gt;</span></code> defines a very handy <strong>assert</strong> macro.
+<p>The include <code class="docutils literal notranslate"><span class="pre">&lt;assert.h&gt;</span></code> defines a very handy <strong>assert</strong> macro.
 The assert macro tests if a condition is true and halts your program
 with an error if it is false.</p>
-<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">#include &lt;assert.h&gt;</span>
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;assert.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">assert</span> <span class="p">(</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="p">);</span>
@@ -706,7 +697,7 @@ with an error if it is false.</p>
 </pre></div>
 </td></tr></table></div>
 <p>When compiled an run, the output is:</p>
-<div class="highlight-none"><div class="highlight"><pre>Assertion failed: (5 == 2+2), function main, file foo.cpp, line 4.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Assertion failed: (5 == 2+2), function main, file foo.cpp, line 4.
 </pre></div>
 </div>
 <p>Line numbers and everything,
@@ -728,14 +719,14 @@ in writing software.</p>
 <p>Nearly every <a class="reference internal" href="../glossary.html#term-integrated-development-environment"><span class="xref std std-term">IDE</span></a> comes with a graphical debugger.
 Most of them are very good.
 Linux provides a variety of debugging tools.
-The program <code class="docutils literal"><span class="pre">ddd</span></code> is a graphical debugger for linux.
-The program <code class="docutils literal"><span class="pre">gdb</span></code> is a text-based debugger for linux.</p>
+The program <code class="docutils literal notranslate"><span class="pre">ddd</span></code> is a graphical debugger for linux.
+The program <code class="docutils literal notranslate"><span class="pre">gdb</span></code> is a text-based debugger for linux.</p>
 <div class="section" id="the-gnu-debugger-gdb">
 <h3>1.9.6.1. The GNU debugger (gdb)<a class="headerlink" href="#the-gnu-debugger-gdb" title="Permalink to this headline">¶</a></h3>
-<p>The standard debugger on GNU/Linux is called <code class="docutils literal"><span class="pre">gdb</span></code>. This lets you run your program
+<p>The standard debugger on GNU/Linux is called <code class="docutils literal notranslate"><span class="pre">gdb</span></code>. This lets you run your program
 under remote control, so that you can stop it and see what is going on inside.</p>
 <p>Given the small, buggy program:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -752,7 +743,7 @@ Debug level 3 is the most detailed debug level.
 Debug levels 2 and 3 allow gdb to translate machine addresses back into
 identifiers and line numbers in the original program for us.</p>
 <p>Let’s compile and run it and see what happens:</p>
-<div class="highlight-none"><div class="highlight"><pre>$ g++ bogus.cpp -std=c++11 -Wall -Wextra -pedantic -g3 -o bogus
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ g++ bogus.cpp -std=c++11 -Wall -Wextra -pedantic -g3 -o bogus
 $ ./bogus
 sum = -34394132
 $
@@ -769,11 +760,11 @@ that it’s the right operator to use.
 We need somebody else to tell us that we are deluding ourselves,
 but nobody is around this time of night.
 So we’ll have to see what we can get the computer to tell us.</p>
-<p>The first thing to do is fire up <code class="docutils literal"><span class="pre">gdb</span></code>, the debugger.
+<p>The first thing to do is fire up <code class="docutils literal notranslate"><span class="pre">gdb</span></code>, the debugger.
 This runs our program in stop-motion,
 letting us step through it a piece at a time and watch what it is actually doing.
 In the example below gdb is run from the command line:</p>
-<div class="highlight-none"><div class="highlight"><pre>$ gdb bogus
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ gdb bogus
 GNU gdb (GDB; openSUSE 13.1) 7.6.50.20130731-cvs
 Copyright (C) 2013 Free Software Foundation, Inc.
 License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;
@@ -800,55 +791,55 @@ sum = -34394132
 To see our program in action, we need to slow it down a bit.
 We’ll stop it as soon as it enters main,
 and step through it one line at a time while having it print out the values of the variables.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>gdb<span class="o">)</span> <span class="nb">break </span>main
-Breakpoint <span class="m">1</span> at 0x8048719: file bogus.cpp, line 4.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>gdb<span class="o">)</span> <span class="nb">break</span> main
+Breakpoint <span class="m">1</span> at 0x8048719: file bogus.cpp, line <span class="m">4</span>.
 <span class="o">(</span>gdb<span class="o">)</span> run
 Starting program: /var2/home/dparillo/bogus
 
-Breakpoint 1, main <span class="o">()</span> at bogus.cpp:4
-<span class="m">4</span>     int <span class="nv">sum</span> <span class="o">=</span> 0<span class="p">;</span>
+Breakpoint <span class="m">1</span>, main <span class="o">()</span> at bogus.cpp:4
+<span class="m">4</span>     int <span class="nv">sum</span> <span class="o">=</span> <span class="m">0</span><span class="p">;</span>
 
 <span class="o">(</span>gdb<span class="o">)</span> display sum
-1: <span class="nv">sum</span> <span class="o">=</span> -1209683968
+<span class="m">1</span>: <span class="nv">sum</span> <span class="o">=</span> -1209683968
 <span class="o">(</span>gdb<span class="o">)</span> next
-<span class="m">6</span>     <span class="k">for</span> <span class="o">(</span>int <span class="nv">i</span> <span class="o">=</span> 0<span class="p">;</span> i -<span class="o">=</span> 1000<span class="p">;</span> ++i<span class="o">)</span> <span class="o">{</span>
-1: <span class="nv">sum</span> <span class="o">=</span> 0
+<span class="m">6</span>     <span class="k">for</span> <span class="o">(</span>int <span class="nv">i</span> <span class="o">=</span> <span class="m">0</span><span class="p">;</span> i -<span class="o">=</span> <span class="m">1000</span><span class="p">;</span> ++i<span class="o">)</span> <span class="o">{</span>
+<span class="m">1</span>: <span class="nv">sum</span> <span class="o">=</span> <span class="m">0</span>
 <span class="o">(</span>gdb<span class="o">)</span> next
-<span class="m">7</span>       sum +<span class="o">=</span> i<span class="p">;</span>
-1: <span class="nv">sum</span> <span class="o">=</span> 0
+<span class="m">7</span>       <span class="nv">sum</span> <span class="o">+=</span> i<span class="p">;</span>
+<span class="m">1</span>: <span class="nv">sum</span> <span class="o">=</span> <span class="m">0</span>
 <span class="o">(</span>gdb<span class="o">)</span> display i
-2: <span class="nv">i</span> <span class="o">=</span> -1000
+<span class="m">2</span>: <span class="nv">i</span> <span class="o">=</span> -1000
 <span class="o">(</span>gdb<span class="o">)</span> next
-<span class="m">6</span>     <span class="k">for</span> <span class="o">(</span>int <span class="nv">i</span> <span class="o">=</span> 0<span class="p">;</span> i -<span class="o">=</span> 1000<span class="p">;</span> ++i<span class="o">)</span> <span class="o">{</span>
-2: <span class="nv">i</span> <span class="o">=</span> -1000
-1: <span class="nv">sum</span> <span class="o">=</span> -1000
-<span class="o">(</span>gdb<span class="o">)</span> n                      <span class="c"># getting lazy and used &#39;n&#39; instead of &#39;next&#39;</span>
-<span class="m">7</span>       sum +<span class="o">=</span> i<span class="p">;</span>
-2: <span class="nv">i</span> <span class="o">=</span> -1999
-1: <span class="nv">sum</span> <span class="o">=</span> -1000
+<span class="m">6</span>     <span class="k">for</span> <span class="o">(</span>int <span class="nv">i</span> <span class="o">=</span> <span class="m">0</span><span class="p">;</span> i -<span class="o">=</span> <span class="m">1000</span><span class="p">;</span> ++i<span class="o">)</span> <span class="o">{</span>
+<span class="m">2</span>: <span class="nv">i</span> <span class="o">=</span> -1000
+<span class="m">1</span>: <span class="nv">sum</span> <span class="o">=</span> -1000
+<span class="o">(</span>gdb<span class="o">)</span> n                      <span class="c1"># getting lazy and used &#39;n&#39; instead of &#39;next&#39;</span>
+<span class="m">7</span>       <span class="nv">sum</span> <span class="o">+=</span> i<span class="p">;</span>
+<span class="m">2</span>: <span class="nv">i</span> <span class="o">=</span> -1999
+<span class="m">1</span>: <span class="nv">sum</span> <span class="o">=</span> -1000
 <span class="o">(</span>gdb<span class="o">)</span> n
-<span class="m">6</span>     <span class="k">for</span> <span class="o">(</span>int <span class="nv">i</span> <span class="o">=</span> 0<span class="p">;</span> i -<span class="o">=</span> 1000<span class="p">;</span> ++i<span class="o">)</span> <span class="o">{</span>
-2: <span class="nv">i</span> <span class="o">=</span> -1999
-1: <span class="nv">sum</span> <span class="o">=</span> -2999
+<span class="m">6</span>     <span class="k">for</span> <span class="o">(</span>int <span class="nv">i</span> <span class="o">=</span> <span class="m">0</span><span class="p">;</span> i -<span class="o">=</span> <span class="m">1000</span><span class="p">;</span> ++i<span class="o">)</span> <span class="o">{</span>
+<span class="m">2</span>: <span class="nv">i</span> <span class="o">=</span> -1999
+<span class="m">1</span>: <span class="nv">sum</span> <span class="o">=</span> -2999
 <span class="o">(</span>gdb<span class="o">)</span> quit
 A debugging session is active.
 
-  Inferior <span class="m">1</span> <span class="o">[</span>process 32187<span class="o">]</span> will be killed.
+  Inferior <span class="m">1</span> <span class="o">[</span>process <span class="m">32187</span><span class="o">]</span> will be killed.
 
 Quit anyway? <span class="o">(</span>y or n<span class="o">)</span> y
 </pre></div>
 </div>
 <p>Here we are using
 <strong>break main</strong> to tell the program to stop as soon as it enters main,
-<strong>display</strong> to tell it to show us the value of the variables <code class="docutils literal"><span class="pre">i</span></code> and <code class="docutils literal"><span class="pre">sum</span></code> whenever it pauses,
+<strong>display</strong> to tell it to show us the value of the variables <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">sum</span></code> whenever it pauses,
 and <strong>n</strong> (or <strong>next</strong>) to execute the program one line at a time.</p>
-<p>When stepping through a program, <code class="docutils literal"><span class="pre">gdb</span></code> displays the line it will execute next
+<p>When stepping through a program, <code class="docutils literal notranslate"><span class="pre">gdb</span></code> displays the line it will execute next
 as well as any variables you’ve told it to display.
 This means that any changes you see in the variables are the result of the previous displayed line.
-Bearing this in mind, we see that <code class="docutils literal"><span class="pre">i</span></code> drops from 0 to -1000 the very first time
+Bearing this in mind, we see that <code class="docutils literal notranslate"><span class="pre">i</span></code> drops from 0 to -1000 the very first time
 we hit the top of the for loop and drops to -1999 the next time.
 So something bad is happening in the top of that for loop,
-and we might begin to suspect that <code class="docutils literal"><span class="pre">i</span> <span class="pre">-=</span> <span class="pre">1000</span></code> is not doing what we intended.</p>
+and we might begin to suspect that <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">-=</span> <span class="pre">1000</span></code> is not doing what we intended.</p>
 <div class="section" id="useful-gdb-commands">
 <span id="index-8"></span><h4>1.9.6.1.1. Useful gdb commands<a class="headerlink" href="#useful-gdb-commands" title="Permalink to this headline">¶</a></h4>
 <dl class="docutils">
@@ -865,16 +856,16 @@ Also used to restart your program from the beginning if it is already running.</
 <dd><p class="first">Set a breakpoint, which is a place where gdb will automatically stop your program.
 Some examples:</p>
 <ul class="last simple">
-<li><code class="docutils literal"><span class="pre">break</span> <span class="pre">function_name</span></code> stops before executing the first line in <code class="docutils literal"><span class="pre">function_name</span></code>.</li>
-<li><code class="docutils literal"><span class="pre">break</span> <span class="pre">117</span></code> stops before executing line number 117.</li>
+<li><code class="docutils literal notranslate"><span class="pre">break</span> <span class="pre">function_name</span></code> stops before executing the first line in <code class="docutils literal notranslate"><span class="pre">function_name</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">break</span> <span class="pre">117</span></code> stops before executing line number 117.</li>
 </ul>
 </dd>
 <dt>list</dt>
 <dd><p class="first">Show part of your source file with line numbers (handy for figuring out where to put breakpoints).
 Examples:</p>
 <ul class="last simple">
-<li><code class="docutils literal"><span class="pre">list</span> <span class="pre">function_name</span></code> lists all lines of <code class="docutils literal"><span class="pre">function_name</span></code>.</li>
-<li><code class="docutils literal"><span class="pre">list</span> <span class="pre">117-123</span></code> lists lines 117 through 123.</li>
+<li><code class="docutils literal notranslate"><span class="pre">list</span> <span class="pre">function_name</span></code> lists all lines of <code class="docutils literal notranslate"><span class="pre">function_name</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">list</span> <span class="pre">117-123</span></code> lists lines 117 through 123.</li>
 </ul>
 </dd>
 <dt>next</dt>
@@ -895,13 +886,13 @@ Continue until</p>
 <li>a fatal error like a Segmentation Fault or Bus Error, or</li>
 <li>a breakpoint.</li>
 </ol>
-<p class="last">If you give it a numeric argument (e.g., <code class="docutils literal"><span class="pre">cont</span> <span class="pre">1000</span></code>) it will skip
+<p class="last">If you give it a numeric argument (e.g., <code class="docutils literal notranslate"><span class="pre">cont</span> <span class="pre">1000</span></code>) it will skip
 over that many breakpoints before stopping.</p>
 </dd>
 <dt>print</dt>
-<dd>Print the current value of some expression once, e.g. <code class="docutils literal"><span class="pre">print</span> <span class="pre">i</span></code>.</dd>
+<dd>Print the current value of some expression once, e.g. <code class="docutils literal notranslate"><span class="pre">print</span> <span class="pre">i</span></code>.</dd>
 <dt>display</dt>
-<dd>Like <code class="docutils literal"><span class="pre">print</span></code>, but runs automatically every time the program stops.
+<dd>Like <code class="docutils literal notranslate"><span class="pre">print</span></code>, but runs automatically every time the program stops.
 Useful for watching values that change often.</dd>
 </dl>
 
@@ -1028,7 +1019,7 @@ Useful for watching values that change often.</dd>
     </p>
     <p>
         &copy; Copyright 2017-2018 Dave Parillo.
-      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
     </p>
   </div>
 </footer>

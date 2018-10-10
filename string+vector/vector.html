@@ -2,6 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>2.3. The vector class &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
@@ -29,16 +30,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/runestonebase.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -139,12 +131,11 @@
   eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.2.6';
 </script>
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -294,7 +285,7 @@ More on templates later, for now,
 we just need to know enough to know how declare a vector.</p>
 <p>As with strings, in standard C,
 the typical way to work with a collection of data is with an array:</p>
-<div class="highlight-c"><div class="highlight"><pre><span class="kt">int</span> <span class="n">a</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">};</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">a</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">};</span>
 </pre></div>
 </div>
 <p>Some downsides to arrays are that they:</p>
@@ -304,11 +295,11 @@ the typical way to work with a collection of data is with an array:</p>
 <li>Decay into pointers easily</li>
 <li>Provide no convenience functions</li>
 </ul>
-<p>The <code class="docutils literal"><span class="pre">vector</span></code> class solves these problems for us and a few others besides.
-Declaring a <code class="docutils literal"><span class="pre">vector</span></code> is quite similar to the <code class="docutils literal"><span class="pre">string</span></code> declarations
+<p>The <code class="docutils literal notranslate"><span class="pre">vector</span></code> class solves these problems for us and a few others besides.
+Declaring a <code class="docutils literal notranslate"><span class="pre">vector</span></code> is quite similar to the <code class="docutils literal notranslate"><span class="pre">string</span></code> declarations
 from the previous section, with one minor addition:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;string&gt;        </span><span class="c1">// access std::string functions</span>
-<span class="cp">#include &lt;vector&gt;        </span><span class="c1">// access std::vector functions</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;        // access std::string functions</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;        // access std::vector functions</span><span class="cp"></span>
 
 <span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="p">;</span>       <span class="c1">// just use &#39;vector&#39; for type std::vector</span>
 
@@ -322,24 +313,24 @@ from the previous section, with one minor addition:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>When a <code class="docutils literal"><span class="pre">vector</span></code> is created, you must declare what type
+<p>When a <code class="docutils literal notranslate"><span class="pre">vector</span></code> is created, you must declare what type
 of data the vector can store.
-The <code class="docutils literal"><span class="pre">&lt;int&gt;</span></code> and <code class="docutils literal"><span class="pre">&lt;std::string&gt;</span></code> represent the <em>template parameters</em>
-passed to the <code class="docutils literal"><span class="pre">vector</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">&lt;int&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;std::string&gt;</span></code> represent the <em>template parameters</em>
+passed to the <code class="docutils literal notranslate"><span class="pre">vector</span></code>.
 It is these template parameters that allow the vector class to serve
 as a container for (almost) any type.
 There are some limits we will cover later,
 but for now, know that any normal type you already have learned about
 can be stored in a vector.</p>
-<p>Unlike a fundamental type, the declaration <code class="docutils literal"><span class="pre">vector&lt;int&gt;</span> <span class="pre">x;</span></code> does <strong>not</strong> create
+<p>Unlike a fundamental type, the declaration <code class="docutils literal notranslate"><span class="pre">vector&lt;int&gt;</span> <span class="pre">x;</span></code> does <strong>not</strong> create
 an uninitialized variable.
 It creates a fully formed vector with no elements stored in it yet.
 This is perfectly OK and normal.</p>
 <p id="index-1">Given a vector declared as:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
 </pre></div>
 </div>
-<img src="../_images/graphviz-19928940d9f4cdab4a3f2cb3bedb2261a07b8448.png" alt="digraph {
+<img src="../_images/graphviz-473591ad7332d754da2cb57e403a1f5187d8f722.png" alt="digraph {
 node [
      fontname = &quot;Courier&quot;
      fontsize = 14
@@ -367,19 +358,19 @@ node [
   labels:f5 -&gt; values:f5;
   {rank=same; struct,labels};
 }" />
-<p>Although the <code class="docutils literal"><span class="pre">vector</span></code> object is initialized, its contents are not.
+<p>Although the <code class="docutils literal notranslate"><span class="pre">vector</span></code> object is initialized, its contents are not.
 Many compilers will initialize the contents to zero, but don’t rely on this behavior.
 Explicitly initialize with a default value, if that is what you want:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>A vector comes with a rich assortment of convenience functions.
 Like an array, the <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=vector::operator[]">vector::operator[]</a> can be used to access elements
 without bounds checking.
 Like a string, the <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=vector::at()">vector::at()</a> function provides bounds checking
-and will throw an exception if an out of bounds index is used on the <code class="docutils literal"><span class="pre">vector</span></code>.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;vector&gt;</span>
-<span class="cp">#include &lt;iostream&gt;</span>
+and will throw an exception if an out of bounds index is used on the <code class="docutils literal notranslate"><span class="pre">vector</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">numbers</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">};</span>
@@ -402,18 +393,18 @@ and will throw an exception if an out of bounds index is used on the <code class
 </div>
 <div class="admonition-something-to-consider admonition">
 <p class="first admonition-title">Something to consider</p>
-<p>What is the difference between a <code class="docutils literal"><span class="pre">std::string</span></code> and
-<code class="docutils literal"><span class="pre">std::vector&lt;char&gt;</span></code>?</p>
+<p>What is the difference between a <code class="docutils literal notranslate"><span class="pre">std::string</span></code> and
+<code class="docutils literal notranslate"><span class="pre">std::vector&lt;char&gt;</span></code>?</p>
 <p class="last">Why did the developers of the STL decide it was important to include both?</p>
 </div>
 <p>Comparisons between vectors are also automatically handled by the class.
 In the case of a vector, <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=vector::operator==">vector::operator==</a>,
-or equality comparison between two vectors <code class="docutils literal"><span class="pre">a</span></code> and <code class="docutils literal"><span class="pre">b</span></code>,
-means the two vectors are equal if <code class="docutils literal"><span class="pre">a.size()</span> <span class="pre">==</span> <span class="pre">b.size()</span></code>
-and each element in <code class="docutils literal"><span class="pre">a</span></code> compares equal with each element in <code class="docutils literal"><span class="pre">b</span></code>
+or equality comparison between two vectors <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>,
+means the two vectors are equal if <code class="docutils literal notranslate"><span class="pre">a.size()</span> <span class="pre">==</span> <span class="pre">b.size()</span></code>
+and each element in <code class="docutils literal notranslate"><span class="pre">a</span></code> compares equal with each element in <code class="docutils literal notranslate"><span class="pre">b</span></code>
 in the same position in the vector.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;vector&gt;</span>
-<span class="cp">#include &lt;iostream&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">x</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">};</span>
@@ -430,15 +421,15 @@ in the same position in the vector.</p>
 </div>
 <div class="admonition-try-this admonition">
 <p class="first admonition-title">Try This!</p>
-<p class="last">Create two int arrays containing <code class="docutils literal"><span class="pre">{2,</span> <span class="pre">4,</span> <span class="pre">6,</span> <span class="pre">8}</span></code> and check them for equality.</p>
+<p class="last">Create two int arrays containing <code class="docutils literal notranslate"><span class="pre">{2,</span> <span class="pre">4,</span> <span class="pre">6,</span> <span class="pre">8}</span></code> and check them for equality.</p>
 </div>
 <div class="section" id="adding-data-to-a-vector">
 <h2>2.3.1. Adding data to a vector<a class="headerlink" href="#adding-data-to-a-vector" title="Permalink to this headline">¶</a></h2>
 <p>How do we solve the <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::out_of_range">std::out_of_range</a> exception from a few examples ago?
-How do we dynamically add data to a <code class="docutils literal"><span class="pre">vector</span></code>?
+How do we dynamically add data to a <code class="docutils literal notranslate"><span class="pre">vector</span></code>?
 A simple way is to use the <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=vector::push_back()">vector::push_back()</a> function.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;vector&gt;</span>
-<span class="cp">#include &lt;iostream&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">letters</span> <span class="p">{</span><span class="sc">&#39;a&#39;</span><span class="p">,</span> <span class="sc">&#39;b&#39;</span><span class="p">,</span> <span class="sc">&#39;c&#39;</span><span class="p">};</span>
@@ -505,7 +496,7 @@ A simple way is to use the <a class="reference external" href="http://en.cpprefe
     </p>
     <p>
         &copy; Copyright 2017-2018 Dave Parillo.
-      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
     </p>
   </div>
 </footer>

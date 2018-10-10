@@ -2,8 +2,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>10.6. Abstraction &#8212; Intermediate Modern C++ Overview</title>
+    <title>11.6. Abstraction &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -29,16 +30,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/runestonebase.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -115,8 +107,8 @@
     <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="11. Class constructors and overloads" href="../class-II-functions/toctree.html" />
-    <link rel="prev" title="10.5. const member functions" href="const.html" />
+    <link rel="next" title="12. Class constructors and overloads" href="../class-II-functions/toctree.html" />
+    <link rel="prev" title="11.5. const member functions" href="const.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -139,12 +131,11 @@
   eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.2.6';
 </script>
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -236,8 +227,8 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">10.6. Abstraction</a><ul>
-<li><a class="reference internal" href="#class-abstractions">10.6.1. Class abstractions</a></li>
+<li><a class="reference internal" href="#">11.6. Abstraction</a><ul>
+<li><a class="reference internal" href="#class-abstractions">11.6.1. Class abstractions</a></li>
 </ul>
 </li>
 </ul>
@@ -247,13 +238,13 @@
         
         
           
-  <li id="relations-prev" title="Previous Chapter - 10.5. <code class="docutils literal"><span class="pre">const</span></code> member functions" data-toggle="tooltip">
+  <li id="relations-prev" title="Previous Chapter - 11.5. <code class="docutils literal notranslate"><span class="pre">const</span></code> member functions" data-toggle="tooltip">
     <a href="const.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - 11. Class constructors and overloads' data-toggle="tooltip" >
+  <li id="relations-next" title='Next Chapter - 12. Class constructors and overloads' data-toggle="tooltip" >
     <a href="../class-II-functions/toctree.html" >
       <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
@@ -285,7 +276,7 @@
 <div class="container" id="main-content">
   
   <div class="section" id="abstraction">
-<span id="index-0"></span><h1>10.6. Abstraction<a class="headerlink" href="#abstraction" title="Permalink to this headline">¶</a></h1>
+<span id="index-0"></span><h1>11.6. Abstraction<a class="headerlink" href="#abstraction" title="Permalink to this headline">¶</a></h1>
 <p>Most programming constructs are <em>abstractions</em>.
 For example, even the idea of <strong>number</strong> on a computer is an abstraction.</p>
 <p>Programmers need to define, manipulate, and store numbers.
@@ -296,13 +287,13 @@ In math, you learned that:</p>
 <ul class="simple">
 <li>The set of integers is infinite</li>
 <li>There is only 1 value for 0</li>
-<li><span class="math">\(0.1 * 10\)</span> exactly equals 1</li>
+<li><span class="math notranslate nohighlight">\(0.1 * 10\)</span> exactly equals 1</li>
 </ul>
 <p>None of these things are guaranteed true on a computer.</p>
 <p>It depends on the abstractions used in your language.
 In C++, no numbers are infinite.
 Some numbers can only store positive values.
-The floating point numbers have two different representations for the value <span class="math">\(0\)</span>.
+The floating point numbers have two different representations for the value <span class="math notranslate nohighlight">\(0\)</span>.
 Decimal numbers that have exact values in mathematics can only be approximated in C++.</p>
 <p>Even with all these limitations,
 numeric types in C++ are quite useful.
@@ -341,7 +332,7 @@ Compare the previous steps with starting a car today:</p>
 manufacturers have hidden most implementation details
 even though cars today are far more complex than a Model T.</p>
 <div class="section" id="class-abstractions">
-<h2>10.6.1. Class abstractions<a class="headerlink" href="#class-abstractions" title="Permalink to this headline">¶</a></h2>
+<h2>11.6.1. Class abstractions<a class="headerlink" href="#class-abstractions" title="Permalink to this headline">¶</a></h2>
 <p>The design principles that apply to <em>everyday objects</em> also apply to <em>software objects</em>.</p>
 <ul class="simple">
 <li>Hide as many details as possible</li>
@@ -353,7 +344,7 @@ Keep in mind that every class defines a new <em>type</em>.
 In general we want to create classes that are easy to use
 and easy to modify.</p>
 <p>A poorly abstracted car class:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Car</span> <span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Car</span> <span class="p">{</span>
   <span class="k">private</span><span class="o">:</span>
     <span class="kt">double</span> <span class="n">speed_</span><span class="p">;</span>
     <span class="kt">double</span> <span class="n">heading_</span><span class="p">;</span>
@@ -381,15 +372,15 @@ This list is long, but here are the major problems:</p>
 <ol class="arabic simple">
 <li>By default, no class members are initialized.
 A default constructed car is invalid.</li>
-<li>It is still functionally a <code class="docutils literal"><span class="pre">struct</span></code>, even though this class has invariants.<ul>
+<li>It is still functionally a <code class="docutils literal notranslate"><span class="pre">struct</span></code>, even though this class has invariants.<ul>
 <li>The x and y values can be modified independently of speed and heading.</li>
-<li>The speed could be set <span class="math">\(&lt; 0\)</span>.</li>
+<li>The speed could be set <span class="math notranslate nohighlight">\(&lt; 0\)</span>.</li>
 <li>The heading could be anything. It’s not even clear what values are valid
-(<span class="math">\(0 - 360\)</span>?  <span class="math">\(0 - \pi\)</span>?)</li>
+(<span class="math notranslate nohighlight">\(0 - 360\)</span>?  <span class="math notranslate nohighlight">\(0 - \pi\)</span>?)</li>
 </ul>
 </li>
-<li>The car position is maintained in two separate <code class="docutils literal"><span class="pre">int</span></code> members, not a location object.</li>
-<li>If users try to use this <code class="docutils literal"><span class="pre">Car</span></code>,
+<li>The car position is maintained in two separate <code class="docutils literal notranslate"><span class="pre">int</span></code> members, not a location object.</li>
+<li>If users try to use this <code class="docutils literal notranslate"><span class="pre">Car</span></code>,
 then <strong>they</strong> are responsible for calculating correct x and y
 from the current heading and speed.</li>
 <li>Fundamentally, this is not how cars are operated.<ul>
@@ -403,7 +394,7 @@ from the current heading and speed.</li>
 <p>How can we improve the abstractions in our car class?</p>
 <p>First, group the x and y coordinates into a single type.
 We could do just this:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// a location on a Cartesian grid</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// a location on a Cartesian grid</span>
 <span class="k">struct</span> <span class="n">Point</span> <span class="p">{</span>
   <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
   <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
@@ -411,13 +402,13 @@ We could do just this:</p>
 </pre></div>
 </div>
 <p>This works, but it’s not much fun to use.
-When using <code class="docutils literal"><span class="pre">Point</span></code> objects, we will often want to initialize both the x and y values at once:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Point</span> <span class="n">r</span> <span class="p">{</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">};</span>
+When using <code class="docutils literal notranslate"><span class="pre">Point</span></code> objects, we will often want to initialize both the x and y values at once:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Point</span> <span class="n">r</span> <span class="p">{</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">};</span>
 </pre></div>
 </div>
 <p>The default constructors won’t do this automatically.
 We need a 2 argument constructor:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Point</span> <span class="p">(</span><span class="kt">double</span> <span class="n">x_value</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y_value</span><span class="p">)</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Point</span> <span class="p">(</span><span class="kt">double</span> <span class="n">x_value</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y_value</span><span class="p">)</span>
     <span class="o">:</span> <span class="n">x</span><span class="p">{</span><span class="n">x_value</span><span class="p">},</span> <span class="n">y</span><span class="p">{</span><span class="n">y_value</span><span class="p">}</span>
 <span class="p">{}</span>
 </pre></div>
@@ -425,11 +416,11 @@ We need a 2 argument constructor:</p>
 <p>Once a non-default constructor is added to a class,
 the compiler will <strong>not</strong> automatically generate the default constructor for us,
 so we need to be explicit:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Point</span> <span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Point</span> <span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>And putting them together we have very minimal class:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// a location on a Cartesian grid</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// a location on a Cartesian grid</span>
 <span class="k">struct</span> <span class="n">Point</span> <span class="p">{</span>
   <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
   <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
@@ -441,8 +432,8 @@ so we need to be explicit:</p>
 </pre></div>
 </div>
 <p>We can’t consider this class complete, but we will stop with Point for now and move onto the Car class.
-When we use Point, we should prevent <code class="docutils literal"><span class="pre">Car</span></code> users from changing it directly:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Car</span> <span class="p">{</span>
+When we use Point, we should prevent <code class="docutils literal notranslate"><span class="pre">Car</span></code> users from changing it directly:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Car</span> <span class="p">{</span>
   <span class="k">private</span><span class="o">:</span>
     <span class="n">Point</span>  <span class="n">location_</span><span class="p">;</span>
     <span class="kt">double</span> <span class="n">speed_</span>    <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
@@ -450,22 +441,22 @@ When we use Point, we should prevent <code class="docutils literal"><span class=
 
   <span class="k">public</span><span class="o">:</span>
     <span class="n">Point</span>  <span class="n">location</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-    <span class="kt">double</span> <span class="n">speed</span><span class="p">()</span>    <span class="k">const</span><span class="p">;</span>
-    <span class="kt">double</span> <span class="n">heading</span><span class="p">()</span>  <span class="k">const</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="nf">speed</span><span class="p">()</span>    <span class="k">const</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="nf">heading</span><span class="p">()</span>  <span class="k">const</span><span class="p">;</span>
 <span class="p">};</span>
 </pre></div>
 </div>
 <p>It is OK to keep the access functions for speed and heading.
-<code class="docutils literal"><span class="pre">Car</span></code> users are likely to need this information,
+<code class="docutils literal notranslate"><span class="pre">Car</span></code> users are likely to need this information,
 but they should never set them directly.
 We should also promise that these functions will never change the state
-of a <code class="docutils literal"><span class="pre">car</span></code> by making all of the access functions <code class="docutils literal"><span class="pre">const</span></code>.</p>
+of a <code class="docutils literal notranslate"><span class="pre">car</span></code> by making all of the access functions <code class="docutils literal notranslate"><span class="pre">const</span></code>.</p>
 <p>In order to make our car more ‘real’,
 we should add two more private member variables,
 one for the current steer angle and one for the current change in speed.
 Users are never given access to these, but internally a Car can use them to
 compute a new location:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Car</span> <span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Car</span> <span class="p">{</span>
   <span class="k">private</span><span class="o">:</span>
     <span class="n">Point</span>  <span class="n">location_</span><span class="p">;</span>
     <span class="kt">double</span> <span class="n">speed_</span>    <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -475,19 +466,19 @@ compute a new location:</p>
 
   <span class="k">public</span><span class="o">:</span>
     <span class="n">Point</span>  <span class="n">location</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-    <span class="kt">double</span> <span class="n">speed</span><span class="p">()</span>    <span class="k">const</span><span class="p">;</span>
-    <span class="kt">double</span> <span class="n">heading</span><span class="p">()</span>  <span class="k">const</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="nf">speed</span><span class="p">()</span>    <span class="k">const</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="nf">heading</span><span class="p">()</span>  <span class="k">const</span><span class="p">;</span>
 <span class="p">};</span>
 </pre></div>
 </div>
 <p>Since users can’t change steer angle directly, there needs to be come way to influence that value.
 One way is to define an enumerated type to set the angle on the steering wheel:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">enum</span> <span class="k">class</span> <span class="nc">Direction</span> <span class="p">{</span> <span class="n">CENTER</span><span class="p">,</span> <span class="n">LEFT</span><span class="p">,</span> <span class="n">RIGHT</span> <span class="p">};</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span> <span class="k">class</span> <span class="nc">Direction</span> <span class="p">{</span> <span class="n">CENTER</span><span class="p">,</span> <span class="n">LEFT</span><span class="p">,</span> <span class="n">RIGHT</span> <span class="p">};</span>
 </pre></div>
 </div>
 <p>With these parts added,
 we can add public functions that use them:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">//</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">//</span>
 <span class="c1">// Users steer the car by choosing a steer direction.</span>
 <span class="c1">// As long as a direction is applied, the steer angle will increase (or decrease)</span>
 <span class="c1">// towards the indicated direction until the max steering angle</span>
@@ -505,10 +496,10 @@ we can add public functions that use them:</p>
 <span class="kt">double</span> <span class="nf">accelerate</span> <span class="p">(</span><span class="kt">double</span> <span class="n">rate</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>And finally, an <code class="docutils literal"><span class="pre">update</span></code> function a car simulator might call to
+<p>And finally, an <code class="docutils literal notranslate"><span class="pre">update</span></code> function a car simulator might call to
 modify the state of the car every time step.
 Putting it all together:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// a location on a Cartesian grid</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// a location on a Cartesian grid</span>
 <span class="k">struct</span> <span class="n">Point</span> <span class="p">{</span>
   <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
   <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
@@ -530,8 +521,8 @@ Putting it all together:</p>
 
   <span class="k">public</span><span class="o">:</span>
     <span class="n">Point</span>  <span class="n">location</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-    <span class="kt">double</span> <span class="n">speed</span><span class="p">()</span>    <span class="k">const</span><span class="p">;</span>
-    <span class="kt">double</span> <span class="n">heading</span><span class="p">()</span>  <span class="k">const</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="nf">speed</span><span class="p">()</span>    <span class="k">const</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="nf">heading</span><span class="p">()</span>  <span class="k">const</span><span class="p">;</span>
 
     <span class="kt">double</span> <span class="nf">steer</span> <span class="p">(</span><span class="n">Direction</span> <span class="n">dir</span><span class="p">);</span>
     <span class="kt">double</span> <span class="nf">accelerate</span> <span class="p">(</span><span class="kt">double</span> <span class="n">rate</span><span class="p">);</span>
@@ -563,19 +554,19 @@ change it later once we realize it did not control any of its invariants.</p>
 
   
       
-  <li id="relations-prev" class="navLink" title='Previous Section - 10.5. <code class="docutils literal"><span class="pre">const</span></code> member functions' data-toggle="tooltip">
+  <li id="relations-prev" class="navLink" title='Previous Section - 11.5. <code class="docutils literal notranslate"><span class="pre">const</span></code> member functions' data-toggle="tooltip">
     <a href="const.html" >
       <i class='prevNav glyphicon glyphicon-chevron-left'></i>
     </a>
   </li>
   <a class="navLinkBg" id="navLinkBgLeft"  href="const.html" ></a>
   
-  <li id="relations-next" class="navLink" title='Next Section - 11. Class constructors and overloads' data-toggle="tooltip" >
+  <li id="relations-next" class="navLink" title='Next Section - 12. Class constructors and overloads' data-toggle="tooltip" >
     <a href="../class-II-functions/toctree.html" >
       <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
     </a>
   </li>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="../class-II-functions/toctree.html" >Next Section - 11. Class constructors and overloads</a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="../class-II-functions/toctree.html" >Next Section - 12. Class constructors and overloads</a>
 
 <script type="text/javascript">
 
@@ -594,7 +585,7 @@ change it later once we realize it did not control any of its invariants.</p>
     </p>
     <p>
         &copy; Copyright 2017-2018 Dave Parillo.
-      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
     </p>
   </div>
 </footer>

@@ -2,6 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>7.1. Standard Template Library Containers &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
@@ -29,16 +30,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/runestonebase.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -139,12 +131,11 @@
   eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.2.6';
 </script>
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -295,7 +286,7 @@ and are not considered part of the STL.
 There are two broad categories of STL containers:
 <em>sequence containers</em> and <em>associative containers</em>.
 In an <a class="reference internal" href="../string+vector/vector.html"><span class="doc">earlier section</span></a>,
-we briefly introduced <code class="docutils literal"><span class="pre">std::vector</span></code>.
+we briefly introduced <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>.
 A vector is an example of a sequence container.</p>
 <p>A <a class="reference internal" href="../glossary.html#term-sequence-container"><span class="xref std std-term">sequence container</span></a> stores a sequence of elements of a given type.
 The sequence containers can be further divided into two ‘flavors’:</p>
@@ -349,18 +340,18 @@ either directly or through <a class="reference internal" href="../iterators/toct
 An <strong>ordered</strong> container simply means that
 you can iterate through the container in a specific order.</p>
 <p>We normally do not think of the sequence containers as having an order.
-For example, a vector may contain the values <code class="docutils literal"><span class="pre">{3,</span> <span class="pre">1,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">5,</span> <span class="pre">9}</span></code>,
+For example, a vector may contain the values <code class="docutils literal notranslate"><span class="pre">{3,</span> <span class="pre">1,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">5,</span> <span class="pre">9}</span></code>,
 which clearly are not in the <a class="reference internal" href="../glossary.html#term-natural-order"><span class="xref std std-term">natural order</span></a> for integers.
-A <code class="docutils literal"><span class="pre">vector</span></code> <em>is</em> ordered, however: by its index position.
+A <code class="docutils literal notranslate"><span class="pre">vector</span></code> <em>is</em> ordered, however: by its index position.
 As long as items are not added or removed from an ordered container,
 two iterations over the same container will visit the same
 elements in the same order.
-So in our previous example, the vector containing <code class="docutils literal"><span class="pre">{3,</span> <span class="pre">1,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">5,</span> <span class="pre">9}</span></code>
+So in our previous example, the vector containing <code class="docutils literal notranslate"><span class="pre">{3,</span> <span class="pre">1,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">5,</span> <span class="pre">9}</span></code>
 is <em>ordered</em>, but <em>unsorted</em>.</p>
 <p>A <strong>sorted</strong> container stores elements using rules defined when the container is created:
 the sort order.
 All of the sorted containers define a default sort order,
-determined by the <code class="docutils literal"><span class="pre">operator&lt;</span></code> for the element type.</p>
+determined by the <code class="docutils literal notranslate"><span class="pre">operator&lt;</span></code> for the element type.</p>
 <p>Containers can <em>never</em> be both sorted and unordered,
 because sorting of any kind is by definition an ordering.</p>
 <hr class="docutils" />
@@ -412,7 +403,7 @@ because sorting of any kind is by definition an ordering.</p>
     </p>
     <p>
         &copy; Copyright 2017-2018 Dave Parillo.
-      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
     </p>
   </div>
 </footer>

@@ -2,8 +2,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>10.2. Constructors &#8212; Intermediate Modern C++ Overview</title>
+    <title>11.2. Constructors &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -29,16 +30,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/runestonebase.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -115,8 +107,8 @@
     <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="10.3. Pointers to classes" href="pointers.html" />
-    <link rel="prev" title="10.1. Classes" href="intro.html" />
+    <link rel="next" title="11.3. Pointers to classes" href="pointers.html" />
+    <link rel="prev" title="11.1. Classes" href="intro.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -139,12 +131,11 @@
   eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.2.6';
 </script>
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -236,9 +227,9 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">10.2. Constructors</a><ul>
-<li><a class="reference internal" href="#object-lifecycle">10.2.1. Object lifecycle</a></li>
-<li><a class="reference internal" href="#class-invariants">10.2.2. Class invariants</a></li>
+<li><a class="reference internal" href="#">11.2. Constructors</a><ul>
+<li><a class="reference internal" href="#object-life-cycle">11.2.1. Object life cycle</a></li>
+<li><a class="reference internal" href="#class-invariants">11.2.2. Class invariants</a></li>
 </ul>
 </li>
 </ul>
@@ -248,13 +239,13 @@
         
         
           
-  <li id="relations-prev" title="Previous Chapter - 10.1. Classes" data-toggle="tooltip">
+  <li id="relations-prev" title="Previous Chapter - 11.1. Classes" data-toggle="tooltip">
     <a href="intro.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - 10.3. Pointers to classes' data-toggle="tooltip" >
+  <li id="relations-next" title='Next Chapter - 11.3. Pointers to classes' data-toggle="tooltip" >
     <a href="pointers.html" >
       <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
@@ -286,14 +277,14 @@
 <div class="container" id="main-content">
   
   <div class="section" id="constructors">
-<span id="index-0"></span><h1>10.2. Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h1>
+<span id="index-0"></span><h1>11.2. Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h1>
 <p>When we allocate storage for a built-in type,
 we use the name of the type and a name for the variable:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>As we saw in the previous section, the syntax for user-defined types is the same:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Talk</span> <span class="n">say</span><span class="p">;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Talk</span> <span class="n">say</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>User-defined types use special functions to <em>construct</em> an object using the class definition.
@@ -306,10 +297,10 @@ Constructors are very similar to regular free functions, but there are a few spe
 </ul>
 <p><strong>All</strong> classes must have at least 1 constructor.
 If you do not write one, then compiler will try to create it automatically.
-The <code class="docutils literal"><span class="pre">Talk</span></code> class works because it used an automatically defined default constructor
+The <code class="docutils literal notranslate"><span class="pre">Talk</span></code> class works because it used an automatically defined default constructor
 generated by the compiler.</p>
 <div id='ex1' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Example" >
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;cstdio&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
 
 <span class="k">struct</span> <span class="n">Talk</span> <span class="p">{</span>
   <span class="kt">void</span> <span class="n">hello</span><span class="p">()</span> <span class="p">{</span>
@@ -348,13 +339,13 @@ int main() {
 </div>
     </div>
 
-<p>Although we did not need to create a constructor for the <code class="docutils literal"><span class="pre">Talk</span></code> class,
+<p>Although we did not need to create a constructor for the <code class="docutils literal notranslate"><span class="pre">Talk</span></code> class,
 we could have:</p>
 <div id='ex2' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Example" >
 <p>This constructor doesn’t change how our code functions in any way.
-The compiler would have generated the code <code class="docutils literal"><span class="pre">Talk()</span> <span class="pre">{};</span></code>
+The compiler would have generated the code <code class="docutils literal notranslate"><span class="pre">Talk()</span> <span class="pre">{};</span></code>
 for us.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;cstdio&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
 
 <span class="k">struct</span> <span class="n">Talk</span> <span class="p">{</span>
   <span class="n">Talk</span><span class="p">()</span> <span class="p">{}</span>        <span class="c1">// default constructor</span>
@@ -371,7 +362,7 @@ for us.</p>
 </pre></div>
 </div>
 <p>In C++11, we can instruct the compiler to create the default constructor for us with</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Talk</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Talk</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
 </pre></div>
 </div>
 </div><div data-component="tab" data-tabname="Run It" >
@@ -401,15 +392,15 @@ int main() {
 </div>
     </div>
 
-<div class="section" id="object-lifecycle">
-<h2>10.2.1. Object lifecycle<a class="headerlink" href="#object-lifecycle" title="Permalink to this headline">¶</a></h2>
-<p>In C++, objects get created, get used, and then get destroyed.
+<div class="section" id="object-life-cycle">
+<h2>11.2.1. Object life cycle<a class="headerlink" href="#object-life-cycle" title="Permalink to this headline">¶</a></h2>
+<p>In C++, objects get created, used, and destroyed.
 Constructors, assignment functions, and destructors control the
-lifecycle of objects: creation, copy, move, and destruction.</p>
+life cycle of objects: creation, copy, move, and destruction.</p>
 <p>Like the default constructor, C++ defines default operations for
-other parts of an object lifecycle.
+other parts of an object life cycle.
 The default operations are a set of related operations that together
-implement the lifecycle semantics of an object.</p>
+implement the life cycle semantics of an object.</p>
 <p>The list of default operations since C++11 is:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -423,31 +414,31 @@ implement the lifecycle semantics of an object.</p>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>default constructor</td>
-<td><code class="docutils literal"><span class="pre">X()</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">X()</span></code></td>
 </tr>
 <tr class="row-odd"><td>copy constructor</td>
-<td><code class="docutils literal"><span class="pre">X(const</span> <span class="pre">X&amp;)</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">X(const</span> <span class="pre">X&amp;)</span></code></td>
 </tr>
 <tr class="row-even"><td>copy assignment</td>
-<td><code class="docutils literal"><span class="pre">operator=(const</span> <span class="pre">X&amp;)</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">operator=(const</span> <span class="pre">X&amp;)</span></code></td>
 </tr>
 <tr class="row-odd"><td>move constructor</td>
-<td><code class="docutils literal"><span class="pre">X(X&amp;&amp;)</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">X(X&amp;&amp;)</span></code></td>
 </tr>
 <tr class="row-even"><td>move assignment</td>
-<td><code class="docutils literal"><span class="pre">operator=(X&amp;&amp;)</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">operator=(X&amp;&amp;)</span></code></td>
 </tr>
 <tr class="row-odd"><td>destructor</td>
-<td><code class="docutils literal"><span class="pre">~X()</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">~X()</span></code></td>
 </tr>
 </tbody>
 </table>
 <p>We will be discussing these operations more over the next several chapters.</p>
-<p>Let’s improve our <code class="docutils literal"><span class="pre">Talk</span></code> class by making it possible to say more than one thing and
+<p>Let’s improve our <code class="docutils literal notranslate"><span class="pre">Talk</span></code> class by making it possible to say more than one thing and
 to set the default text in a constructor:</p>
 <div id='ex3' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Example" >
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;cstdio&gt;</span>
-<span class="cp">#include &lt;string&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
 
 <span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">;</span>
 
@@ -480,7 +471,7 @@ to set the default text in a constructor:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Note that we also changed the name of our function from <code class="docutils literal"><span class="pre">hello</span></code> to <code class="docutils literal"><span class="pre">text</span></code>.
+<p>Note that we also changed the name of our function from <code class="docutils literal notranslate"><span class="pre">hello</span></code> to <code class="docutils literal notranslate"><span class="pre">text</span></code>.
 Our old function name is no longer very appropriate since we can say more things
 than just <em>Hello, world!</em>.</p>
 </div><div data-component="tab" data-tabname="Run It" >
@@ -529,7 +520,7 @@ int main() {
     </div>
 
 <p>Since C++11, this syntax for constructors:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Talk</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">value</span><span class="p">)</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Talk</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">value</span><span class="p">)</span>
   <span class="o">:</span> <span class="n">text_</span> <span class="p">(</span><span class="n">value</span><span class="p">)</span>
 <span class="p">{</span> <span class="p">}</span>
 </pre></div>
@@ -537,17 +528,17 @@ int main() {
 <p>is preferred.</p>
 <p>This is called <em>initializer list syntax</em>.
 The general format is:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="n">ClassName</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">ClassName</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span>
   <span class="o">:</span> <span class="n">class_member1</span> <span class="p">{</span><span class="n">expression1</span><span class="p">},</span>
     <span class="n">class_member2</span> <span class="p">{</span><span class="n">expression2</span><span class="p">},</span>
     <span class="n">class_memberN</span> <span class="p">{</span><span class="n">expressionN</span><span class="p">}</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
 <span class="p">{</span> <span class="p">}</span>
 </pre></div>
 </div>
-<p>Initializer list expressions can be surrounded by <code class="docutils literal"><span class="pre">(</span> <span class="pre">)</span></code> or <code class="docutils literal"><span class="pre">{</span> <span class="pre">}</span></code>.</p>
+<p>Initializer list expressions can be surrounded by <code class="docutils literal notranslate"><span class="pre">(</span> <span class="pre">)</span></code> or <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">}</span></code>.</p>
 <p>Prior to C++11, standard function syntax was used.
 It is still allowed, but initializer list syntax is preferred.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="n">ClassName</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">ClassName</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">class_member1</span> <span class="o">=</span> <span class="n">expression1</span><span class="p">;</span>
   <span class="n">class_member2</span> <span class="o">=</span> <span class="n">expression2</span><span class="p">;</span>
   <span class="n">class_memberN</span> <span class="o">=</span> <span class="n">expressionN</span><span class="p">;</span>
@@ -555,13 +546,13 @@ It is still allowed, but initializer list syntax is preferred.</p>
 </pre></div>
 </div>
 <p>In C++11, it is also permissible to initialize class members
-with constants directly in class.
+with constants directly in the class when declared.
 In-class initialization is preferred because it
 makes it explicit that the same value is expected to be used in all constructors,
 avoids repetition, and avoids maintenance problems.
 It leads to the shortest and most efficient code.
 Consider the following:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">class</span> <span class="nc">BadInit</span> <span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BadInit</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
     <span class="n">string</span> <span class="n">s</span><span class="p">;</span>
     <span class="kt">int</span> <span class="n">j</span><span class="p">;</span>
@@ -572,13 +563,13 @@ Consider the following:</p>
 <span class="p">};</span>
 </pre></div>
 </div>
-<p>How would a maintainer know whether <code class="docutils literal"><span class="pre">j</span></code> was deliberately uninitialized
+<p>How would a maintainer know whether <code class="docutils literal notranslate"><span class="pre">j</span></code> was deliberately uninitialized
 (probably a poor idea anyway) and whether it was intentional to
-give <code class="docutils literal"><span class="pre">s</span></code> the default value <code class="docutils literal"><span class="pre">&quot;&quot;</span></code> in one case and <code class="docutils literal"><span class="pre">nothing</span></code> in another?
+give <code class="docutils literal notranslate"><span class="pre">s</span></code> the default value <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> in one case and <code class="docutils literal notranslate"><span class="pre">nothing</span></code> in another?
 This is almost always a bug.
 Forgetting to initialize a member often happens when a new member is added to an existing class.</p>
 <p>All these problems are easily fixed with in-class initializers:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">class</span> <span class="nc">OkInit</span> <span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">OkInit</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">i</span> <span class="p">{</span><span class="mi">666</span><span class="p">};</span>
     <span class="n">string</span> <span class="n">s</span> <span class="p">{</span><span class="s">&quot;ok&quot;</span><span class="p">};</span>
     <span class="kt">int</span> <span class="n">j</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
@@ -593,8 +584,8 @@ Forgetting to initialize a member often happens when a new member is added to an
 
             <div class="runestone alert alert-warning">
             <ul data-component="multiplechoice" data-multipleanswers="true" data-random id="mc-class-constructors-1">
-            <p>beginnings-10: Given:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">class</span> <span class="nc">date</span> <span class="p">{</span>
+            <p>beginnings-1: Given:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">date</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">;</span>
 
   <span class="k">public</span><span class="o">:</span>
@@ -606,15 +597,15 @@ Forgetting to initialize a member often happens when a new member is added to an
 </pre></div>
 </div>
 <p>Which lines are valid constructor declarations? (Choose all that apply)</p>
-<li data-component="answer" data-correct id="mc-class-constructors-1_opt_a"><code class="docutils literal"><span class="pre">date</span> <span class="pre">();</span></code></li><li data-component="feedback" id="mc-class-constructors-1_opt_a">
-This is the <code class="docutils literal"><span class="pre">default</span> <span class="pre">constructor</span></code>.
-The default constructor takes no arguments.</li><li data-component="answer" data-correct id="mc-class-constructors-1_opt_b"><code class="docutils literal"><span class="pre">date</span> <span class="pre">(int</span> <span class="pre">y,</span> <span class="pre">int</span> <span class="pre">m,</span> <span class="pre">int</span> <span class="pre">d);</span></code></li><li data-component="feedback" id="mc-class-constructors-1_opt_b">
-Constructors may take arguments.</li><li data-component="answer" data-correct id="mc-class-constructors-1_opt_c"><code class="docutils literal"><span class="pre">date</span> <span class="pre">(const</span> <span class="pre">date&amp;</span> <span class="pre">d);</span></code></li><li data-component="feedback" id="mc-class-constructors-1_opt_c">
+<li data-component="answer" data-correct id="mc-class-constructors-1_opt_a"><code class="docutils literal notranslate"><span class="pre">date</span> <span class="pre">();</span></code></li><li data-component="feedback" id="mc-class-constructors-1_opt_a">
+This is the <code class="docutils literal notranslate"><span class="pre">default</span> <span class="pre">constructor</span></code>.
+The default constructor takes no arguments.</li><li data-component="answer" data-correct id="mc-class-constructors-1_opt_b"><code class="docutils literal notranslate"><span class="pre">date</span> <span class="pre">(int</span> <span class="pre">y,</span> <span class="pre">int</span> <span class="pre">m,</span> <span class="pre">int</span> <span class="pre">d);</span></code></li><li data-component="feedback" id="mc-class-constructors-1_opt_b">
+Constructors may take arguments.</li><li data-component="answer" data-correct id="mc-class-constructors-1_opt_c"><code class="docutils literal notranslate"><span class="pre">date</span> <span class="pre">(const</span> <span class="pre">date&amp;</span> <span class="pre">d);</span></code></li><li data-component="feedback" id="mc-class-constructors-1_opt_c">
 There is no reason why a constructor can’t take an object of its own type
 as a function parameter.
-This is a special constructor called a <code class="docutils literal"><span class="pre">copy</span> <span class="pre">constructor</span></code>.</li><li data-component="answer"  id="mc-class-constructors-1_opt_d"><code class="docutils literal"><span class="pre">date</span> <span class="pre">get_date</span> <span class="pre">();</span></code></li><li data-component="feedback" id="mc-class-constructors-1_opt_d">
+This is a special constructor called a <code class="docutils literal notranslate"><span class="pre">copy</span> <span class="pre">constructor</span></code>.</li><li data-component="answer"  id="mc-class-constructors-1_opt_d"><code class="docutils literal notranslate"><span class="pre">date</span> <span class="pre">get_date</span> <span class="pre">();</span></code></li><li data-component="feedback" id="mc-class-constructors-1_opt_d">
 This is <strong>not</strong> a constructor.
-It is free function named <code class="docutils literal"><span class="pre">get_date</span></code> that returns a <code class="docutils literal"><span class="pre">date</span></code>.</li><li data-component="answer"  id="mc-class-constructors-1_opt_e"><code class="docutils literal"><span class="pre">int</span> <span class="pre">y,</span> <span class="pre">m,</span> <span class="pre">d;</span></code></li><li data-component="feedback" id="mc-class-constructors-1_opt_e">
+It is free function named <code class="docutils literal notranslate"><span class="pre">get_date</span></code> that returns a <code class="docutils literal notranslate"><span class="pre">date</span></code>.</li><li data-component="answer"  id="mc-class-constructors-1_opt_e"><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">y,</span> <span class="pre">m,</span> <span class="pre">d;</span></code></li><li data-component="feedback" id="mc-class-constructors-1_opt_e">
 This is <strong>not</strong> a constructor line.
 It is the declatation of 3 variables used in the class.</li>
 
@@ -622,18 +613,18 @@ It is the declatation of 3 variables used in the class.</li>
             </div>
             </div>
 <div class="section" id="class-invariants">
-<h2>10.2.2. Class invariants<a class="headerlink" href="#class-invariants" title="Permalink to this headline">¶</a></h2>
+<h2>11.2.2. Class invariants<a class="headerlink" href="#class-invariants" title="Permalink to this headline">¶</a></h2>
 <p>A struct is acceptable to define a type as long as <em>every</em> struct member may be assigned
 <strong>any</strong> value at any time.
 If this is not true for your type, then we say that your type has <a class="reference internal" href="../glossary.html#term-invariants"><span class="xref std std-term">invariants</span></a>.
 Class invariants are guarantees made by your type.
 Invariants represent things that must hold true for your class to be valid.</p>
-<p>Let say we need to prevent <code class="docutils literal"><span class="pre">Talk</span></code> from allowing zero length strings in the member <code class="docutils literal"><span class="pre">text_</span></code>.
+<p>Let say we need to prevent <code class="docutils literal notranslate"><span class="pre">Talk</span></code> from allowing zero length strings in the member <code class="docutils literal notranslate"><span class="pre">text_</span></code>.
 Currently, since everything is public, there is no way to prevent that,
 but it is easily fixed:</p>
 <div id='ex4' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Example" >
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
-<span class="cp">#include &lt;string&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
 
 <span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">;</span>
 
@@ -719,13 +710,13 @@ int main() {
     </div>
 
 <p>Our class now enforces its <em>invariants</em> that it will never allow
-the <code class="docutils literal"><span class="pre">Talk</span></code> text to be empty
+the <code class="docutils literal notranslate"><span class="pre">Talk</span></code> text to be empty
 (we’re a talkative Talk class).</p>
 <p>We made several changes:</p>
 <ul class="simple">
-<li>The member <code class="docutils literal"><span class="pre">text_</span></code> is now private.</li>
-<li>A function <code class="docutils literal"><span class="pre">void</span> <span class="pre">text(string</span> <span class="pre">value)</span></code> was added.
-This was needed because we made <code class="docutils literal"><span class="pre">text_</span></code> private.
+<li>The member <code class="docutils literal notranslate"><span class="pre">text_</span></code> is now private.</li>
+<li>A function <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">text(string</span> <span class="pre">value)</span></code> was added.
+This was needed because we made <code class="docutils literal notranslate"><span class="pre">text_</span></code> private.
 Without this function, the only way to set the text
 was in the constructor.</li>
 <li>Added an additional check to our one argument constructor
@@ -761,19 +752,19 @@ and <a class="reference external" href="https://isocpp.github.io/CppCoreGuidelin
 
   
       
-  <li id="relations-prev" class="navLink" title='Previous Section - 10.1. Classes' data-toggle="tooltip">
+  <li id="relations-prev" class="navLink" title='Previous Section - 11.1. Classes' data-toggle="tooltip">
     <a href="intro.html" >
       <i class='prevNav glyphicon glyphicon-chevron-left'></i>
     </a>
   </li>
   <a class="navLinkBg" id="navLinkBgLeft"  href="intro.html" ></a>
   
-  <li id="relations-next" class="navLink" title='Next Section - 10.3. Pointers to classes' data-toggle="tooltip" >
+  <li id="relations-next" class="navLink" title='Next Section - 11.3. Pointers to classes' data-toggle="tooltip" >
     <a href="pointers.html" >
       <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
     </a>
   </li>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="pointers.html" >Next Section - 10.3. Pointers to classes</a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="pointers.html" >Next Section - 11.3. Pointers to classes</a>
 
 <script type="text/javascript">
 
@@ -792,7 +783,7 @@ and <a class="reference external" href="https://isocpp.github.io/CppCoreGuidelin
     </p>
     <p>
         &copy; Copyright 2017-2018 Dave Parillo.
-      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
     </p>
   </div>
 </footer>

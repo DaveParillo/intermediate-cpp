@@ -2,6 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>1.2. Types &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
@@ -29,16 +30,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/runestonebase.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -139,12 +131,11 @@
   eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.2.6';
 </script>
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -252,7 +243,7 @@
 <li><a class="reference internal" href="#reference-types">1.2.2.2. Reference types</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#the-type-std-size-t">1.2.3. The type <code class="docutils literal"><span class="pre">std::size_t</span></code></a></li>
+<li><a class="reference internal" href="#the-type-std-size-t">1.2.3. The type <code class="docutils literal notranslate"><span class="pre">std::size_t</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -305,8 +296,8 @@
 which both restricts the operations that are permitted for those entities
 and provides semantic meaning to the otherwise generic sequences of bits.</p>
 <p>A <a class="reference internal" href="../glossary.html#term-type"><span class="xref std std-term">type</span></a> is a collection of values.
-For example, the Boolean type consists of the values <code class="docutils literal"><span class="pre">true</span></code> and
-<code class="docutils literal"><span class="pre">false</span></code>.
+For example, the Boolean type consists of the values <code class="docutils literal notranslate"><span class="pre">true</span></code> and
+<code class="docutils literal notranslate"><span class="pre">false</span></code>.
 The integers also form a type.
 An integer is a <a class="reference internal" href="../glossary.html#term-simple-type"><span class="xref std std-term">simple type</span></a>
 because its values contain no subparts.
@@ -316,19 +307,19 @@ balance.</p>
 <p>The C++ type system consists of the following types:</p>
 <ul class="simple">
 <li>Fundamental types<ul>
-<li>The type <code class="docutils literal"><span class="pre">void</span></code></li>
-<li>The type <code class="docutils literal"><span class="pre">nullptr_t</span></code></li>
+<li>The type <code class="docutils literal notranslate"><span class="pre">void</span></code></li>
+<li>The type <code class="docutils literal notranslate"><span class="pre">nullptr_t</span></code></li>
 <li>Arithmetic types<ul>
-<li>Floating point types (<code class="docutils literal"><span class="pre">float</span></code>, <code class="docutils literal"><span class="pre">double</span></code>, and <code class="docutils literal"><span class="pre">long</span> <span class="pre">double</span></code>)</li>
+<li>Floating point types (<code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">double</span></code>, and <code class="docutils literal notranslate"><span class="pre">long</span> <span class="pre">double</span></code>)</li>
 <li>Integral types<ul>
-<li>The <code class="docutils literal"><span class="pre">bool</span></code> type (true &amp; false)</li>
+<li>The <code class="docutils literal notranslate"><span class="pre">bool</span></code> type (true &amp; false)</li>
 <li>The character types:<ul>
-<li>narrow character types (<code class="docutils literal"><span class="pre">char</span></code>, <code class="docutils literal"><span class="pre">signed</span> <span class="pre">char</span></code>, <code class="docutils literal"><span class="pre">unsigned</span> <span class="pre">char</span></code>)</li>
-<li>wide character types (<code class="docutils literal"><span class="pre">char16_t</span></code>, <code class="docutils literal"><span class="pre">char32_t</span></code>, <code class="docutils literal"><span class="pre">wchar_t</span></code>)</li>
+<li>narrow character types (<code class="docutils literal notranslate"><span class="pre">char</span></code>, <code class="docutils literal notranslate"><span class="pre">signed</span> <span class="pre">char</span></code>, <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">char</span></code>)</li>
+<li>wide character types (<code class="docutils literal notranslate"><span class="pre">char16_t</span></code>, <code class="docutils literal notranslate"><span class="pre">char32_t</span></code>, <code class="docutils literal notranslate"><span class="pre">wchar_t</span></code>)</li>
 </ul>
 </li>
-<li>signed integer types (<code class="docutils literal"><span class="pre">short</span> <span class="pre">int</span></code>, <code class="docutils literal"><span class="pre">int</span></code>, <code class="docutils literal"><span class="pre">long</span> <span class="pre">int</span></code>, <code class="docutils literal"><span class="pre">long</span> <span class="pre">long</span> <span class="pre">int</span></code>)</li>
-<li>unsigned integer types (<code class="docutils literal"><span class="pre">unsigned</span> <span class="pre">short</span> <span class="pre">int</span></code>, <code class="docutils literal"><span class="pre">unsigned</span> <span class="pre">int</span></code>, <code class="docutils literal"><span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">int</span></code>, <code class="docutils literal"><span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">int</span></code>)</li>
+<li>signed integer types (<code class="docutils literal notranslate"><span class="pre">short</span> <span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">long</span> <span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">long</span> <span class="pre">long</span> <span class="pre">int</span></code>)</li>
+<li>unsigned integer types (<code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">short</span> <span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">int</span></code>)</li>
 </ul>
 </li>
 </ul>
@@ -360,7 +351,7 @@ Abstractions allow the data stored in memory to be managed
 not as a sequence of bits, but as an integer,
 a floating point number, a boolean, a character, or something else.
 In C++, the abstractions for the built in numeric types
-(plus the types <code class="docutils literal"><span class="pre">void</span></code> and <code class="docutils literal"><span class="pre">nullptr_t</span></code>)
+(plus the types <code class="docutils literal notranslate"><span class="pre">void</span></code> and <code class="docutils literal notranslate"><span class="pre">nullptr_t</span></code>)
 are referred to as <a class="reference internal" href="../glossary.html#term-fundamental-type"><span class="xref std std-term">fundamental types</span></a>.</p>
 <p>It is natural to think that the types defined for the computer
 are the same used in mathematics.
@@ -371,10 +362,10 @@ basic concepts learned in school.</p>
 <p>What exactly do we mean?
 The unsigned integer type represents the set of whole numbers.
 In mathematics, this set is infinite:
-given any number <span class="math">\(N\)</span> a new integer
-<span class="math">\(M\)</span> can be generated by simply setting <span class="math">\(M = N + 1\)</span>.
+given any number <span class="math notranslate nohighlight">\(N\)</span> a new integer
+<span class="math notranslate nohighlight">\(M\)</span> can be generated by simply setting <span class="math notranslate nohighlight">\(M = N + 1\)</span>.
 However, this basic axiom does not apply to integers stored on a computer
-because and integer on a computer occupies a fixed size: that is, an <code class="docutils literal"><span class="pre">unsigned</span></code> is stored
+because and integer on a computer occupies a fixed size: that is, an <code class="docutils literal notranslate"><span class="pre">unsigned</span></code> is stored
 in a finite number of bits.
 Another way to say this is that every numeric fundamental type has both a
 minimum and maximum allowed value.
@@ -382,11 +373,11 @@ This situation is very different from what you are used to in math class.</p>
 <p>One consequence of a fixed size is that basic axioms of
 mathematics are not always true.
 For example, the ordinary associative law of addition:</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[(x + y) + z = x + (y + z)\]</div>
-<p>is satisfied only if both <span class="math">\(|x + y| &lt;= max int\)</span> and
-<span class="math">\(|y + z| &lt;= max int\)</span>.</p>
-<p>In practice, the upper limit of an <code class="docutils literal"><span class="pre">unsigned</span></code> is so large that it
+<p>is satisfied only if both <span class="math notranslate nohighlight">\(|x + y| &lt;= max int\)</span> and
+<span class="math notranslate nohighlight">\(|y + z| &lt;= max int\)</span>.</p>
+<p>In practice, the upper limit of an <code class="docutils literal notranslate"><span class="pre">unsigned</span></code> is so large that it
 is not a limiting factor in many ordinary numeric calculations.
 When the upper limit is exceeded, the results are typically dramatic.
 <a class="reference internal" href="../glossary.html#term-overflow"><span class="xref std std-term">Overflow</span></a> errors are typically obvious.
@@ -417,11 +408,11 @@ The number’s sign is stored in a <em>sign bit</em>:
 setting that bit (often the most significant bit) to 0 means a positive number or positive zero,
 and setting it to 1 is for a negative number or negative zero.
 The remaining bits in the number indicate the magnitude (or absolute value).</p>
-<p>In eight bits the magnitude can range from <code class="docutils literal"><span class="pre">0000000</span></code> (0) to <code class="docutils literal"><span class="pre">1111111</span></code> (127).
+<p>In eight bits the magnitude can range from <code class="docutils literal notranslate"><span class="pre">0000000</span></code> (0) to <code class="docutils literal notranslate"><span class="pre">1111111</span></code> (127).
 Numbers ranging from −127 to +127 can be represented once the sign bit (the eighth bit) is added.
-For example, −43 encoded in an eight-bit byte is <code class="docutils literal"><span class="pre">10101011</span></code> while 43 is <code class="docutils literal"><span class="pre">00101011</span></code>.
+For example, −43 encoded in an eight-bit byte is <code class="docutils literal notranslate"><span class="pre">10101011</span></code> while 43 is <code class="docutils literal notranslate"><span class="pre">00101011</span></code>.
 A consequence of using signed magnitude representation is that there are two ways to represent zero,
-<code class="docutils literal"><span class="pre">00000000</span></code> (0) and <code class="docutils literal"><span class="pre">10000000</span></code> (−0).</p>
+<code class="docutils literal notranslate"><span class="pre">00000000</span></code> (0) and <code class="docutils literal notranslate"><span class="pre">10000000</span></code> (−0).</p>
 <p>Some early binary computers (e.g., IBM 7090) use this representation for integers,
 perhaps because of its natural relation to common usage.
 However, it is slower and requires more complicated hardware than
@@ -429,7 +420,7 @@ one’s complement or two’s complement representations.
 Signed magnitude remains the most common way of representing the exponent in floating point values.
 It is the official IEEE floating point number format.</p>
 <p>The important item here is that even today,
-floating point numbers have two different representations for <code class="docutils literal"><span class="pre">0</span></code>,
+floating point numbers have two different representations for <code class="docutils literal notranslate"><span class="pre">0</span></code>,
 a side effect of the sign and magnitude representation.</p>
 <p>The following C program <a class="reference internal" href="#aspnes2014" id="id1">[Aspnes2014]</a> prints the sign, exponent and mantissa
 of a few small numbers.</p>
@@ -500,7 +491,7 @@ int main(int argc, char** argv) {
 <div class="admonition-try-this admonition">
 <p class="first admonition-title">Try This!</p>
 <p>Run and carefully examine the results of the previous program.</p>
-<p>How is the value of <code class="docutils literal"><span class="pre">0.1</span></code> different?</p>
+<p>How is the value of <code class="docutils literal notranslate"><span class="pre">0.1</span></code> different?</p>
 <p>Try to list at least 1 error this might cause in your programs?</p>
 <p class="last">Try other values and see which ones have exact floating point representations and which do not.</p>
 </div>
@@ -510,10 +501,10 @@ int main(int argc, char** argv) {
 <p>Alternatively, a system known as ones’ complement can be used to represent negative numbers.
 The ones’ complement form of a negative binary number is the bitwise NOT applied to each bit in the number.
 That is, each negative number is the “complement” of its positive counterpart.</p>
-<p>C++ provides a complement operator <code class="docutils literal"><span class="pre">~</span></code> for this purpose.
-The complement of the 5 bit binary number <code class="docutils literal"><span class="pre">11100</span></code>, is <code class="docutils literal"><span class="pre">00011</span></code>, which is the number 3.</p>
+<p>C++ provides a complement operator <code class="docutils literal notranslate"><span class="pre">~</span></code> for this purpose.
+The complement of the 5 bit binary number <code class="docutils literal notranslate"><span class="pre">11100</span></code>, is <code class="docutils literal notranslate"><span class="pre">00011</span></code>, which is the number 3.</p>
 <p>Note that like sign-and-magnitude representation, ones’ complement has two representations
-of 0: <code class="docutils literal"><span class="pre">00000000</span></code> (+0) and <code class="docutils literal"><span class="pre">11111111</span></code> (−0).</p>
+of 0: <code class="docutils literal notranslate"><span class="pre">00000000</span></code> (+0) and <code class="docutils literal notranslate"><span class="pre">11111111</span></code> (−0).</p>
 <p>A few of the 4 bit one’s complement integers are:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -657,14 +648,14 @@ int main() {
 Because it is very useful to know how numbers are actually stored when debugging your code.
 Sometimes a value cannot be represented in the limited number
 of bits allowed.   Examples:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="n">unsigned</span><span class="p">,</span> <span class="mi">3</span> <span class="n">bits</span><span class="p">:</span>    <span class="mi">8</span> <span class="n">would</span> <span class="n">require</span> <span class="n">at</span> <span class="n">least</span> <span class="mi">4</span> <span class="n">bits</span> <span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">unsigned</span><span class="p">,</span> <span class="mi">3</span> <span class="n">bits</span><span class="p">:</span>    <span class="mi">8</span> <span class="n">would</span> <span class="n">require</span> <span class="n">at</span> <span class="n">least</span> <span class="mi">4</span> <span class="n">bits</span> <span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
 <span class="n">sign</span> <span class="n">mag</span><span class="o">.</span><span class="p">,</span> <span class="mi">4</span> <span class="n">bits</span><span class="p">:</span>   <span class="mi">8</span> <span class="n">would</span> <span class="n">require</span> <span class="n">at</span> <span class="n">least</span> <span class="mi">5</span> <span class="n">bits</span> <span class="p">(</span><span class="mi">01000</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>When a value cannot be represented in the number of bits allowed,
 we say that <a class="reference internal" href="../glossary.html#term-overflow"><span class="xref std std-term">overflow</span></a> has occurred.
 Overflow occurs when doing arithmetic operations.</p>
-<div class="highlight-text"><div class="highlight"><pre>example:          3 bit unsigned representation
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>example:          3 bit unsigned representation
 
   011 (3)
 + 110 (6)
@@ -705,8 +696,8 @@ two values can result in a value smaller than the sum of the two values.</p>
 <div class="admonition-try-this admonition">
 <p class="first admonition-title">Try This!</p>
 <p>Copy the preceding program to your own development environment and
-change the types from <code class="docutils literal"><span class="pre">int8_t</span></code> to <code class="docutils literal"><span class="pre">uint8_t</span></code>.</p>
-<p>Change the value of <code class="docutils literal"><span class="pre">x</span></code> to 256 and run the program.</p>
+change the types from <code class="docutils literal notranslate"><span class="pre">int8_t</span></code> to <code class="docutils literal notranslate"><span class="pre">uint8_t</span></code>.</p>
+<p>Change the value of <code class="docutils literal notranslate"><span class="pre">x</span></code> to 256 and run the program.</p>
 <p class="last">What do you expect to see? What did you see?</p>
 </div>
 <div class="section" id="preventing-overflow-errors">
@@ -718,9 +709,9 @@ It is generally preferred to check for possible overflow before
 attempting a calculation that might overflow.</p>
 <p>The following program checks for addition overflow and throws an error
 if addition overflow would occur.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
-<span class="cp">#include &lt;limits&gt;</span>
-<span class="cp">#include &lt;string&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;limits&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">();</span>
@@ -738,7 +729,7 @@ if addition overflow would occur.</p>
 </div>
 <p>Similarly, checks for multiplication overflow and exponentiation overflow
 could use the following checks:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">()</span> <span class="o">/</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">()</span> <span class="o">/</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
  <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;multiplication failed: result is too big</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -767,7 +758,7 @@ Those that aren’t covered later are discussed now.</p>
 <p>An <strong>array</strong> is a block of memory that holds one or more objects of a given type.
 Declare an array by giving the type of object the array holds followed by
 the array name and the size in square brackets:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>              <span class="c1">// array of 3 ints</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>              <span class="c1">// array of 3 ints</span>
 <span class="kt">int</span> <span class="n">b</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">};</span>  <span class="c1">// array of 3 ints</span>
 <span class="kt">int</span> <span class="n">c</span><span class="p">[]</span>  <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">};</span>  <span class="c1">// array of 3 ints</span>
 <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>         <span class="c1">// array of 64 characters</span>
@@ -779,7 +770,7 @@ Arrays <strong>cannot</strong> be constructed from references, functions, or abs
 <p>Objects of array type cannot be modified as a whole:
 even though they are lvalues (e.g. an address of array can be taken),
 they cannot appear on the left hand side of an assignment operator</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">};</span>  <span class="c1">// array of 3 ints</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">};</span>  <span class="c1">// array of 3 ints</span>
 <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">b</span><span class="p">)[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>      <span class="c1">// OK to make an array of pointers using an address</span>
 <span class="kt">int</span> <span class="n">c</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>                 <span class="c1">// Error. Can&#39;t assign to an array</span>
@@ -793,8 +784,8 @@ they cannot appear on the left hand side of an assignment operator</p>
 declares a named variable as an alias to an <em>already-existing</em> object or function.</p>
 <p>References are a C++ addition - one of the few types not present in C.</p>
 <p>A reference is required to be initialized to refer to a valid object or function.
-There are no references to <code class="docutils literal"><span class="pre">void</span></code> and no references to references.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+There are no references to <code class="docutils literal notranslate"><span class="pre">void</span></code> and no references to references.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
 <span class="kt">int</span><span class="o">&amp;</span> <span class="n">r1</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="c1">// r1 is a reference to a</span>
 <span class="n">r1</span> <span class="o">=</span> <span class="mi">72</span><span class="p">;</span>     <span class="c1">// changes the value of a</span>
 <span class="kt">int</span><span class="o">&amp;</span> <span class="n">r2</span><span class="p">;</span>     <span class="c1">// Error. r2 must refer to something</span>
@@ -811,35 +802,35 @@ All of the references discussed until then will be <em>lvalue references</em>.</
 </div>
 </div>
 <div class="section" id="the-type-std-size-t">
-<h2>1.2.3. The type <code class="docutils literal"><span class="pre">std::size_t</span></code><a class="headerlink" href="#the-type-std-size-t" title="Permalink to this headline">¶</a></h2>
-<p>There exists an implementation defined <code class="docutils literal"><span class="pre">typedef</span></code> <strong>std::size_t</strong>.
-<code class="docutils literal"><span class="pre">std::size_t</span></code> is the unsigned integer type resulting from the <code class="docutils literal"><span class="pre">sizeof</span></code> operator.
-<code class="docutils literal"><span class="pre">std::size_t</span></code> represents the maximum number of bytes
+<h2>1.2.3. The type <code class="docutils literal notranslate"><span class="pre">std::size_t</span></code><a class="headerlink" href="#the-type-std-size-t" title="Permalink to this headline">¶</a></h2>
+<p>There exists an implementation defined <code class="docutils literal notranslate"><span class="pre">typedef</span></code> <strong>std::size_t</strong>.
+<code class="docutils literal notranslate"><span class="pre">std::size_t</span></code> is the unsigned integer type resulting from the <code class="docutils literal notranslate"><span class="pre">sizeof</span></code> operator.
+<code class="docutils literal notranslate"><span class="pre">std::size_t</span></code> represents the maximum number of bytes
 that can be stored for an object of any type (including array).</p>
-<p>This means that <code class="docutils literal"><span class="pre">std::size_t</span></code> is <strong>guaranteed</strong> to always be big enough to use safely
+<p>This means that <code class="docutils literal notranslate"><span class="pre">std::size_t</span></code> is <strong>guaranteed</strong> to always be big enough to use safely
 as an index in any array.
 This doesn’t mean you can’t access an invalid element of an array,
 only that the index can be increased without worrying about the index
 variable overflowing (see the previous discussion about overflow).</p>
-<p>The purpose of <code class="docutils literal"><span class="pre">size_t</span></code> is to relieve the programmer from having
+<p>The purpose of <code class="docutils literal notranslate"><span class="pre">size_t</span></code> is to relieve the programmer from having
 to worry about which of the predefined unsigned types is used to represent sizes.</p>
-<p>Code that assumes <code class="docutils literal"><span class="pre">sizeof</span></code> yields an <code class="docutils literal"><span class="pre">unsigned</span> <span class="pre">int</span></code> is not as portable
-as code that assumes it yields a <code class="docutils literal"><span class="pre">size_t</span></code>.</p>
-<p><code class="docutils literal"><span class="pre">std::size_t</span></code> is commonly used for array indexing and loop counting.
-Programs that use other types, such as <code class="docutils literal"><span class="pre">unsigned</span> <span class="pre">int</span></code>,
+<p>Code that assumes <code class="docutils literal notranslate"><span class="pre">sizeof</span></code> yields an <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">int</span></code> is not as portable
+as code that assumes it yields a <code class="docutils literal notranslate"><span class="pre">size_t</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">std::size_t</span></code> is commonly used for array indexing and loop counting.
+Programs that use other types, such as <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">int</span></code>,
 for array indexing may fail, for example,
-on 64-bit systems when the index exceeds <code class="docutils literal"><span class="pre">UINT_MAX</span></code> or
+on 64-bit systems when the index exceeds <code class="docutils literal notranslate"><span class="pre">UINT_MAX</span></code> or
 if it relies on 32-bit modular arithmetic.</p>
 <p>So, if you must write a hand-rolled loop to loop though a container that returns its size,
 then prefer this:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">for</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">foo</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">foo</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>over this:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">foo</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">foo</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>As a programmer, you need to use caution if the variable <code class="docutils literal"><span class="pre">i</span></code> is to be used for anything
+<p>As a programmer, you need to use caution if the variable <code class="docutils literal notranslate"><span class="pre">i</span></code> is to be used for anything
 other than an index — for example, in an arithmetic expression.
 Avoid mixing signed and unsigned types as the results can be surprising.
 Also be aware that C++ uses signed integers for array subscripts and
@@ -882,7 +873,7 @@ int main() {
     
 <div class="runestone">
 <ul data-component="dragndrop" id="dnd_type1">
-    <span data-component="question">Drag the definition from the left and drop it on the correct concept on the right.  Click the "Check Me" button to see if you are correct</span>
+    <span data-component="question">Q-1: Drag the definition from the left and drop it on the correct concept on the right.  Click the "Check Me" button to see if you are correct</span>
 	<span data-component=feedback>Review the summaries above.</span>
 
     <li data-component="draggable" id="dnd_type1_drag1">Specifying the type and name for a variable</li>
@@ -899,7 +890,7 @@ int main() {
 </ul></div>
 <div class="runestone">
 <ul data-component="dragndrop" id="dnd_type2">
-    <span data-component="question">Drag the definition from the left and drop it on the correct concept on the right.  Click the "Check Me" button to see if you are correct.</span>
+    <span data-component="question">Q-2: Drag the definition from the left and drop it on the correct concept on the right.  Click the "Check Me" button to see if you are correct.</span>
 	<span data-component=feedback>Review the summaries above.</span>
 
     <li data-component="draggable" id="dnd_type2_drag1">Setting the value of a variable the first time</li>
@@ -975,7 +966,7 @@ variable length <a class="reference external" href="https://developers.google.co
     </p>
     <p>
         &copy; Copyright 2017-2018 Dave Parillo.
-      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
     </p>
   </div>
 </footer>

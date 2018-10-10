@@ -2,6 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>1.5. Introducing Gnu/Linux &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
@@ -29,16 +30,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/runestonebase.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -139,12 +131,11 @@
   eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.2.6';
 </script>
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -312,21 +303,21 @@ and ease forward progress.</p>
 <p>All projects and some of the lab assignments are required to be handed in on the
 San Diego Mesa College server <strong>buffy</strong>.
 Access is only available using a <em>secure shell</em> client program (ssh).
-There are a few ways to access buffy using <code class="docutils literal"><span class="pre">ssh</span></code>.
+There are a few ways to access buffy using <code class="docutils literal notranslate"><span class="pre">ssh</span></code>.
 If you have a MacOS X or Linux computer available already, then you already have ssh installed.
 If you have a Windows computer,
-then my first recommendation is to install <code class="docutils literal"><span class="pre">git</span></code>.
-Technically, <code class="docutils literal"><span class="pre">git</span></code> is a source code revision control program,
+then my first recommendation is to install <code class="docutils literal notranslate"><span class="pre">git</span></code>.
+Technically, <code class="docutils literal notranslate"><span class="pre">git</span></code> is a source code revision control program,
 but it also provides a minimal GNU/Linux environment
 (not too surprising since the creator, Linus Torvalds, is also the creator of Linux).
 Git provides just about everything you need, except for a compiler.</p>
 <p>Another good choice for an SSH
 client if you run Microsoft Windows is PuTTY:</p>
-<div class="highlight-none"><div class="highlight"><pre>http://www.chiark.greenend.org.uk/~sgtatham/putty/
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>http://www.chiark.greenend.org.uk/~sgtatham/putty/
 </pre></div>
 </div>
-<p>In <code class="docutils literal"><span class="pre">git</span></code> you would type the following in the <em>GIT Bash</em> to connect to the buffy server:</p>
-<div class="highlight-none"><div class="highlight"><pre>host@user: ssh fireNN@209.129.16.61
+<p>In <code class="docutils literal notranslate"><span class="pre">git</span></code> you would type the following in the <em>GIT Bash</em> to connect to the buffy server:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>host@user: ssh fireNN@209.129.16.61
 </pre></div>
 </div>
 <p>where <em>fireNN*</em> is the user name assigned to you by the instructor.</p>
@@ -338,7 +329,7 @@ You enter commands by typing them on the keyboard and feedback is returned as te
 <p>The command line typically presents you with a prompt.
 As you type, it will be displayed after the prompt.
 Most of the time you will be issuing commands. Here is an example:</p>
-<div class="highlight-none"><div class="highlight"><pre>host@user: ls -l /home/user
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>host@user: ls -l /home/user
 total 12
 -rw-rw---- 1 user student  419 May 29 06:49 main.cpp
 -rw-rw---- 1 user student 3320 May 29 06:50 util.h
@@ -349,8 +340,8 @@ host@user:
 <p>What’s happening?</p>
 <ul>
 <li><p class="first">The first line is the <strong>prompt</strong> ( host&#64;user ).
-On this first line, a command was also entered <code class="docutils literal"><span class="pre">ls</span></code>.
-The <code class="docutils literal"><span class="pre">ls</span></code> command lists the contents of a directory.
+On this first line, a command was also entered <code class="docutils literal notranslate"><span class="pre">ls</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">ls</span></code> command lists the contents of a directory.
 In this example, we also supplied some command line arguments (-l /home/user).
 It is conventional to start command line arguments (or ‘switches’) with a dash.</p>
 </li>
@@ -366,11 +357,11 @@ At this point, the system is waiting for the next command.</p>
 </div>
 <div class="section" id="absolute-vs-relative-paths">
 <h2>1.5.3. Absolute vs relative paths<a class="headerlink" href="#absolute-vs-relative-paths" title="Permalink to this headline">¶</a></h2>
-<p>Look at the argument passed to the <code class="docutils literal"><span class="pre">ls</span></code> command in the previous example:</p>
-<div class="highlight-none"><div class="highlight"><pre>/home/user
+<p>Look at the argument passed to the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command in the previous example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/home/user
 </pre></div>
 </div>
-<p>Specifically, this indicates the <em>absolute path</em> to the directory <code class="docutils literal"><span class="pre">/home/user</span></code>.
+<p>Specifically, this indicates the <em>absolute path</em> to the directory <code class="docutils literal notranslate"><span class="pre">/home/user</span></code>.
 There are 2 types of paths we can use, <strong>absolute</strong> and <strong>relative</strong>.
 All references to a file or directory use one of these forms.</p>
 <dl class="docutils">
@@ -382,18 +373,18 @@ An absolute path <em>must</em> start with the character ‘/’.</dd>
 A relative path will <em>never</em> start with the character ‘/’.</dd>
 </dl>
 <p>When navigating or specifying paths, there are two special files which
-reside in every directory: <code class="docutils literal"><span class="pre">.</span></code> and <code class="docutils literal"><span class="pre">..</span></code>.</p>
+reside in every directory: <code class="docutils literal notranslate"><span class="pre">.</span></code> and <code class="docutils literal notranslate"><span class="pre">..</span></code>.</p>
 <dl class="docutils">
 <dt>.</dt>
-<dd>The single dot <code class="docutils literal"><span class="pre">.</span></code> file contains information about the files in the current
+<dd>The single dot <code class="docutils literal notranslate"><span class="pre">.</span></code> file contains information about the files in the current
 directory.  In many commands, it is synonymous with the current directory.</dd>
 <dt>..</dt>
-<dd>The two dots <code class="docutils literal"><span class="pre">..</span></code> file contains information about the files in the directory
+<dd>The two dots <code class="docutils literal notranslate"><span class="pre">..</span></code> file contains information about the files in the directory
 that is the parent of the current directory.
-The only directory that does not contain a <code class="docutils literal"><span class="pre">..</span></code> file is the root directory: <code class="docutils literal"><span class="pre">/</span></code>.</dd>
+The only directory that does not contain a <code class="docutils literal notranslate"><span class="pre">..</span></code> file is the root directory: <code class="docutils literal notranslate"><span class="pre">/</span></code>.</dd>
 </dl>
 <p>In addition, the character ~ (tilde) is an abbreviation for the path to any user home directory.</p>
-<div class="highlight-none"><div class="highlight"><pre>ls ~alice/public_html
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ls ~alice/public_html
 </pre></div>
 </div>
 <p>Displays the contents of the public_html folder in her home directory,
@@ -403,7 +394,7 @@ regardless of where her home directory actually is located.</p>
     
             <div class="runestone alert alert-warning">
             <ul data-component="multiplechoice" data-multipleanswers="true"  id="mc_paths_1">
-            Q-6: Which of the following statements are <strong>relative paths</strong>?  Check all that apply.
+            Q-1: Which of the following statements are <strong>relative paths</strong>?  Check all that apply.
             <li data-component="answer" data-correct id="mc_paths_1_opt_a">../usr/bin</li><li data-component="feedback" id="mc_paths_1_opt_a">Correct. ../usr/bin does not start with a '/'.</li>
             
             <li data-component="answer"  id="mc_paths_1_opt_b">/usr/bin</li><li data-component="feedback" id="mc_paths_1_opt_b">/usr/bin starts with a slash.</li>
@@ -420,7 +411,7 @@ regardless of where her home directory actually is located.</p>
             
             <div class="runestone alert alert-warning">
             <ul data-component="multiplechoice" data-multipleanswers="true"  id="mc_paths_2">
-            Q-7: Which of the following paths list the contents <code class="docutils literal"><span class="pre">/home/user</span></code>?  Check all that apply.
+            Q-2: Which of the following paths list the contents <code class="docutils literal notranslate"><span class="pre">/home/user</span></code>?  Check all that apply.
             <li data-component="answer" data-correct id="mc_paths_2_opt_a">In directory <tt>/tmp</tt>, <tt>../home/user</tt></li><li data-component="feedback" id="mc_paths_2_opt_a">Correct.</li>
             
             <li data-component="answer" data-correct id="mc_paths_2_opt_b">In directory <tt>/home</tt>, <tt>../home/user</tt></li><li data-component="feedback" id="mc_paths_2_opt_b">Correct.</li>
@@ -442,35 +433,35 @@ regardless of where her home directory actually is located.</p>
 <dl class="docutils">
 <dt>pwd</dt>
 <dd>Prints the working directory name.
-<code class="docutils literal"><span class="pre">pwd</span></code> prints the full path name of the directory you are currently in.</dd>
+<code class="docutils literal notranslate"><span class="pre">pwd</span></code> prints the full path name of the directory you are currently in.</dd>
 <dt>ls</dt>
 <dd><p class="first">Print directory contents.
-With no arguments, <code class="code docutils literal"><span class="pre">ls</span></code> prints the current directory contents,
-that is the contents of the directory returned by <code class="code docutils literal"><span class="pre">pwd</span></code>.
+With no arguments, <code class="code docutils literal notranslate"><span class="pre">ls</span></code> prints the current directory contents,
+that is the contents of the directory returned by <code class="code docutils literal notranslate"><span class="pre">pwd</span></code>.
 For each operand that names a file
 of type directory, ls displays the names of files contained within that directory, as
 well as any requested, associated information.</p>
-<p class="last">The <code class="code docutils literal"><span class="pre">ls</span></code> command has a <strong>lot</strong> of options.</p>
+<p class="last">The <code class="code docutils literal notranslate"><span class="pre">ls</span></code> command has a <strong>lot</strong> of options.</p>
 </dd>
 <dt>cd</dt>
 <dd><p class="first">Change directory.
-With no arguments, (just <code class="docutils literal"><span class="pre">cd</span></code>), this command will take you to <strong>your</strong>
+With no arguments, (just <code class="docutils literal notranslate"><span class="pre">cd</span></code>), this command will take you to <strong>your</strong>
 home directory.
-A file after the cd command <code class="docutils literal"><span class="pre">cd</span> <span class="pre">../lab/solutions</span></code> changes the current working
+A file after the cd command <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">../lab/solutions</span></code> changes the current working
 directory to the named path.</p>
-<p class="last">The special name <code class="docutils literal"><span class="pre">~</span></code> is a shortcut for the users home directory.</p>
+<p class="last">The special name <code class="docutils literal notranslate"><span class="pre">~</span></code> is a shortcut for the users home directory.</p>
 </dd>
 <dt>mkdir</dt>
 <dd><p class="first">Make a new directory. At least one argument is required. For example:</p>
-<div class="last highlight-bash"><div class="highlight"><pre>host@user: <span class="nb">cd</span>
+<div class="last highlight-bash notranslate"><div class="highlight"><pre><span></span>host@user: <span class="nb">cd</span>
 host@user: ls -l
-total 4
--rw-rw---- <span class="m">1</span> user student  <span class="m">419</span> May <span class="m">29</span> 06:49 main.cpp
+total <span class="m">4</span>
+-rw-rw---- <span class="m">1</span> user student  <span class="m">419</span> May <span class="m">29</span> <span class="m">06</span>:49 main.cpp
 host@user: mkdir labs
 host@user: ls -l
-total 8
-drwx------ <span class="m">1</span> user student  <span class="m">419</span> May <span class="m">29</span> 15:06 labs
--rw-rw---- <span class="m">1</span> user student  <span class="m">419</span> May <span class="m">29</span> 06:49 main.cpp
+total <span class="m">8</span>
+drwx------ <span class="m">1</span> user student  <span class="m">419</span> May <span class="m">29</span> <span class="m">15</span>:06 labs
+-rw-rw---- <span class="m">1</span> user student  <span class="m">419</span> May <span class="m">29</span> <span class="m">06</span>:49 main.cpp
 </pre></div>
 </div>
 </dd>
@@ -480,7 +471,7 @@ drwx------ <span class="m">1</span> user student  <span class="m">419</span> May
 Conceived of and written before the internet existed, it was intended
 to function as a comprehensive reference for everything a programmer
 would need to know to be productive in Unix.  For example:</p>
-<div class="highlight-man"><div class="highlight"><pre>host@user: man ascii
+<div class="highlight-man notranslate"><div class="highlight"><pre><span></span>host@user: man ascii
 
 ASCII(7)               Linux Programmer&#39;s Manual              ASCII(7)
 NAME
@@ -531,7 +522,7 @@ DESCRIPTION
 </dd>
 </dl>
 <p>For these last four ‘core’ commands,
-use the <code class="docutils literal"><span class="pre">man</span></code> command to learn detailed information about how they function,
+use the <code class="docutils literal notranslate"><span class="pre">man</span></code> command to learn detailed information about how they function,
 if you need it.</p>
 <dl class="docutils">
 <dt>cp</dt>
@@ -590,7 +581,7 @@ if you need it.</p>
     </p>
     <p>
         &copy; Copyright 2017-2018 Dave Parillo.
-      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
     </p>
   </div>
 </footer>

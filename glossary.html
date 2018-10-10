@@ -2,6 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Glossary &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
@@ -29,16 +30,7 @@
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/runestonebase.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
@@ -115,8 +107,8 @@
     <script type="text/javascript" src="_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Frequently asked questions (FAQ)" href="back-matter/faq.html" />
-    <link rel="prev" title="14.1. Fundamental I/O concepts" href="serialization/serialization.html" />
+    <link rel="next" title="8. Working with binary trees" href="trees/toctree.html" />
+    <link rel="prev" title="15.1. Fundamental I/O concepts" href="serialization/serialization.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -139,12 +131,11 @@
   eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.2.6';
 </script>
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -244,14 +235,14 @@
         
         
           
-  <li id="relations-prev" title="Previous Chapter - 14.1. Fundamental I/O concepts" data-toggle="tooltip">
+  <li id="relations-prev" title="Previous Chapter - 15.1. Fundamental I/O concepts" data-toggle="tooltip">
     <a href="serialization/serialization.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - Frequently asked questions (FAQ)' data-toggle="tooltip" >
-    <a href="back-matter/faq.html" >
+  <li id="relations-next" title='Next Chapter - 8. Working with binary trees' data-toggle="tooltip" >
+    <a href="trees/toctree.html" >
       <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
   </li>
@@ -314,9 +305,9 @@ Another term for this is <a class="reference internal" href="#term-composite-typ
 <dt id="term-algorithm">algorithm</dt>
 <dd>A general step by step process for solving a <a class="reference internal" href="#term-problem"><span class="xref std std-term">problem</span></a>.</dd>
 <dt id="term-ancestor">ancestor</dt>
-<dd>In a tree, for a given node <span class="math">\(A\)</span>, any node on a
-path from <span class="math">\(A\)</span> up to the root is an ancestor of
-<span class="math">\(A\)</span>.</dd>
+<dd>In a tree, for a given node <span class="math notranslate nohighlight">\(A\)</span>, any node on a
+path from <span class="math notranslate nohighlight">\(A\)</span> up to the root is an ancestor of
+<span class="math notranslate nohighlight">\(A\)</span>.</dd>
 <dt id="term-anti-pattern">anti-pattern</dt>
 <dd>A common response to a recurring problem that is generally ineffective.
 Anti-patterns represent examples that you <strong>should not</strong> emulate!
@@ -340,7 +331,7 @@ non-printing characters (such as carrage return).
 Now largely replaced by UTF-8 encoding.</dd>
 <dt id="term-associative-container">associative container</dt>
 <dd>A set of sorted data structures that can be quickly searched.
-<code class="docutils literal"><span class="pre">map</span></code> and <code class="docutils literal"><span class="pre">set</span></code> are examples.</dd>
+<code class="docutils literal notranslate"><span class="pre">map</span></code> and <code class="docutils literal notranslate"><span class="pre">set</span></code> are examples.</dd>
 <dt id="term-attribute">attribute</dt>
 <dd>In <a class="reference internal" href="#term-object-oriented-programming-paradigm"><span class="xref std std-term">object-oriented programming</span></a>,
 a synonym for <a class="reference internal" href="#term-data-member"><span class="xref std std-term">data member</span></a>.</dd>
@@ -374,7 +365,7 @@ upper bound for an algorithm or problem.</dd>
 <dd>A standard <a class="reference internal" href="#term-recursion"><span class="xref std std-term">recursive</span></a> algorithm for finding
 the <a class="reference internal" href="#term-record"><span class="xref std std-term">record</span></a> with a given <a class="reference internal" href="#term-key"><span class="xref std std-term">key</span></a> within
 a sorted list.
-It runs in <span class="math">\(O(\log n)\)</span> time.
+It runs in <span class="math notranslate nohighlight">\(O(\log n)\)</span> time.
 At each step, look at the middle of the current sublist, and throw
 away the half of the records whose keys are either too small or
 too large.</dd>
@@ -400,8 +391,8 @@ distribution of the high-order bits of the keys.</dd>
 <dd>Defines a <a class="reference internal" href="#term-scope"><span class="xref std std-term">scope</span></a> within a program.
 A synonym for <a class="reference internal" href="#term-code-block"><span class="xref std std-term">code block</span></a>.</dd>
 <dt id="term-boolean-variable">boolean variable</dt>
-<dd>A variable that takes on one of the two values <code class="docutils literal"><span class="pre">true</span></code> and
-<code class="docutils literal"><span class="pre">false</span></code>.</dd>
+<dd>A variable that takes on one of the two values <code class="docutils literal notranslate"><span class="pre">true</span></code> and
+<code class="docutils literal notranslate"><span class="pre">false</span></code>.</dd>
 <dt id="term-bucket">bucket</dt>
 <dd>In <a class="reference internal" href="#term-bucket-hashing"><span class="xref std std-term">bucket hashing</span></a>, a bucket is a sequence of
 <a class="reference internal" href="#term-slot"><span class="xref std std-term">slots</span></a> in the <a class="reference internal" href="#term-hash-table"><span class="xref std std-term">hash table</span></a> that are grouped
@@ -421,11 +412,11 @@ If the bucket if full, then the record is placed in an
 <dt id="term-bug">bug</dt>
 <dd>An error in a program.</dd>
 <dt id="term-ceiling">ceiling</dt>
-<dd>Written <span class="math">\(\lceil x \rceil\)</span>, for real value <span class="math">\(x\)</span> the
-ceiling is the least integer <span class="math">\(\geq x\)</span>.</dd>
+<dd>Written <span class="math notranslate nohighlight">\(\lceil x \rceil\)</span>, for real value <span class="math notranslate nohighlight">\(x\)</span> the
+ceiling is the least integer <span class="math notranslate nohighlight">\(\geq x\)</span>.</dd>
 <dt id="term-child">child</dt>
 <dd>In a tree, the set of <a class="reference internal" href="#term-node"><span class="xref std std-term">nodes</span></a> directly pointed to
-by a node <span class="math">\(R\)</span> are the <a class="reference internal" href="#term-child"><span class="xref std std-term">children</span></a> of <span class="math">\(R\)</span>.</dd>
+by a node <span class="math notranslate nohighlight">\(R\)</span> are the <a class="reference internal" href="#term-child"><span class="xref std std-term">children</span></a> of <span class="math notranslate nohighlight">\(R\)</span>.</dd>
 <dt id="term-class">class</dt>
 <dd>In the <a class="reference internal" href="#term-object-oriented-programming-paradigm"><span class="xref std std-term">object-oriented programming paradigm</span></a>
 an ADT and its implementation together make up a class.
@@ -484,9 +475,9 @@ program.</dd>
 <dd>The concept that two objects can be compared to determine if they
 are equal or not, or to determine which one is greater than the
 other.
-In set notation, elements <span class="math">\(x\)</span> and <span class="math">\(y\)</span> of a set are
-comparable under a given relation <span class="math">\(R\)</span> if either
-<span class="math">\(xRy\)</span> or <span class="math">\(yRx\)</span>.
+In set notation, elements <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> of a set are
+comparable under a given relation <span class="math notranslate nohighlight">\(R\)</span> if either
+<span class="math notranslate nohighlight">\(xRy\)</span> or <span class="math notranslate nohighlight">\(yRx\)</span>.
 To be reliably compared for a greater/lesser relationship,
 the values being compared must belong to a <a class="reference internal" href="#term-total-order"><span class="xref std std-term">total order</span></a>.
 In programming, the property of a data type such that two
@@ -526,8 +517,8 @@ Compare to <a class="reference internal" href="#term-runtime-polymorphism"><span
 <dt id="term-complete-binary-tree">complete binary tree</dt>
 <dd>A binary tree where the nodes are filled in row by row, with the
 bottom row filled in left to right.
-Due to this requirement, there is only one tree of <span class="math">\(n\)</span>
-nodes for any value of <span class="math">\(n\)</span>.
+Due to this requirement, there is only one tree of <span class="math notranslate nohighlight">\(n\)</span>
+nodes for any value of <span class="math notranslate nohighlight">\(n\)</span>.
 Since storing the records in an array in row order leads to a
 simple mapping from a node’s position in the array to its
 <a class="reference internal" href="#term-parent"><span class="xref std std-term">parent</span></a>, <a class="reference internal" href="#term-sibling"><span class="xref std std-term">siblings</span></a>, and
@@ -567,7 +558,7 @@ other class ‘B’.</dd>
 <dd>The cost of a function whose running time is not related to its
 input size.
 In Theta notation, this is traditionally written as
-<span class="math">\(\Theta(1)\)</span>.</dd>
+<span class="math notranslate nohighlight">\(\Theta(1)\)</span>.</dd>
 <dt id="term-container">container<dt id="term-container-class">container class</dt>
 <dd>A <a class="reference internal" href="#term-data-structure"><span class="xref std std-term">data structure</span></a> that stores a collection of
 <a class="reference internal" href="#term-record"><span class="xref std std-term">records</span></a>.
@@ -603,8 +594,8 @@ programming errors.</dd>
 <dd>A declaration introduces a new <a class="reference internal" href="#term-name"><span class="xref std std-term">name</span></a>
 and <a class="reference internal" href="#term-type"><span class="xref std std-term">type</span></a> into a <a class="reference internal" href="#term-scope"><span class="xref std std-term">scope</span></a>.</dd>
 <dt id="term-depth">depth</dt>
-<dd>The depth of a node <span class="math">\(M\)</span> in a tree is the length
-of the path from the root of the tree to <span class="math">\(M\)</span>.</dd>
+<dd>The depth of a node <span class="math notranslate nohighlight">\(M\)</span> in a tree is the length
+of the path from the root of the tree to <span class="math notranslate nohighlight">\(M\)</span>.</dd>
 <dt id="term-dequeue">dequeue</dt>
 <dd>A specialized term used to indicate removing an element from a queue.</dd>
 <dt id="term-derived-class">derived class</dt>
@@ -613,12 +604,12 @@ any class within a <a class="reference internal" href="#term-class-hierarchy"><s
 <a class="reference internal" href="#term-inherit"><span class="xref std std-term">inherits</span></a> from some other class.
 A synonym for <a class="reference internal" href="#term-derived-class"><span class="xref std std-term">derived class</span></a>.</dd>
 <dt id="term-descendant">descendant</dt>
-<dd>In a tree, the set of all nodes that have a node <span class="math">\(A\)</span> as an
-<a class="reference internal" href="#term-ancestor"><span class="xref std std-term">ancestor</span></a> are the descendants of <span class="math">\(A\)</span>.
+<dd>In a tree, the set of all nodes that have a node <span class="math notranslate nohighlight">\(A\)</span> as an
+<a class="reference internal" href="#term-ancestor"><span class="xref std std-term">ancestor</span></a> are the descendants of <span class="math notranslate nohighlight">\(A\)</span>.
 In other words, all of the nodes that can be reached from
-<span class="math">\(A\)</span> by progressing downwards in tree.
+<span class="math notranslate nohighlight">\(A\)</span> by progressing downwards in tree.
 Another way to say it is: The
-<a class="reference internal" href="#term-child"><span class="xref std std-term">children</span></a> of <span class="math">\(A\)</span>, their children, and so
+<a class="reference internal" href="#term-child"><span class="xref std std-term">children</span></a> of <span class="math notranslate nohighlight">\(A\)</span>, their children, and so
 on.</dd>
 <dt id="term-deserialization">deserialization</dt>
 <dd>The process of returning a <a class="reference internal" href="#term-serialization"><span class="xref std std-term">serialized</span></a>
@@ -641,7 +632,7 @@ software subsystem that supports insertion, search, and deletion
 of records.</dd>
 <dt id="term-double-hashing">double hashing</dt>
 <dd>A <a class="reference internal" href="#term-collision-resolution"><span class="xref std std-term">collision resolution</span></a> method. A second hash
-function is used to generate a value <span class="math">\(c\)</span> on the key.
+function is used to generate a value <span class="math notranslate nohighlight">\(c\)</span> on the key.
 That value is then used by this key as the step size in
 <a class="reference internal" href="#term-linear-probing-by-steps"><span class="xref std std-term">linear probing by steps</span></a>.
 Since different keys use different step sizes (as generated by
@@ -688,8 +679,8 @@ produced by the traversal
 <dd>An <a class="reference internal" href="#term-equivalence-relation"><span class="xref std std-term">equivalence relation</span></a> can be used to partition a set
 into equivalence classes.</dd>
 <dt id="term-equivalence-relation">equivalence relation</dt>
-<dd>Relation <span class="math">\(R\)</span> is an equivalence relation on set
-<span class="math">\(\mathbf{S}\)</span> if it is <a class="reference internal" href="#term-reflexive"><span class="xref std std-term">reflexive</span></a>,
+<dd>Relation <span class="math notranslate nohighlight">\(R\)</span> is an equivalence relation on set
+<span class="math notranslate nohighlight">\(\mathbf{S}\)</span> if it is <a class="reference internal" href="#term-reflexive"><span class="xref std std-term">reflexive</span></a>,
 <a class="reference internal" href="#term-symmetric"><span class="xref std std-term">symmetric</span></a>, and <a class="reference internal" href="#term-transitive"><span class="xref std std-term">transitive</span></a>.</dd>
 <dt id="term-exception">exception</dt>
 <dd>Another name for a runtime error.</dd>
@@ -713,8 +704,8 @@ Standard ASCII and Unicode representations for characters are
 both examples of fixed-length coding schemes.
 This is in contrast to <a class="reference internal" href="#term-variable-length-coding"><span class="xref std std-term">variable-length coding</span></a>.</dd>
 <dt id="term-floor">floor</dt>
-<dd>Written <span class="math">\(\lfloor x \rfloor\)</span>, for real value <span class="math">\(x\)</span> the
-floor is the greatest integer <span class="math">\(\leq x\)</span>.</dd>
+<dd>Written <span class="math notranslate nohighlight">\(\lfloor x \rfloor\)</span>, for real value <span class="math notranslate nohighlight">\(x\)</span> the
+floor is the greatest integer <span class="math notranslate nohighlight">\(\leq x\)</span>.</dd>
 <dt id="term-flyweight">flyweight</dt>
 <dd>A <a class="reference internal" href="#term-design-pattern"><span class="xref std std-term">design pattern</span></a> that is meant to solve the following
 problem:
@@ -760,7 +751,7 @@ The free store is sometimes referred to as the <a class="reference internal" hre
 which can be confusing because <a class="reference internal" href="#term-heap"><span class="xref std std-term">heap</span></a> more often refers to
 a specific data structure. Most programming languages provide
 functions to allocate (and maybe to deallocate) objects from the
-free store, such as <code class="docutils literal"><span class="pre">new</span></code> in C++ and Java.</dd>
+free store, such as <code class="docutils literal notranslate"><span class="pre">new</span></code> in C++ and Java.</dd>
 <dt id="term-full-tree">full tree</dt>
 <dd>A <a class="reference internal" href="#term-binary-tree"><span class="xref std std-term">binary tree</span></a> is full if every <a class="reference internal" href="#term-node"><span class="xref std std-term">node</span></a> is either a
 <a class="reference internal" href="#term-leaf-node"><span class="xref std std-term">leaf node</span></a> or else it is an <a class="reference internal" href="#term-internal-node"><span class="xref std std-term">internal node</span></a> with
@@ -774,8 +765,8 @@ function to change any global variables
 <dt id="term-fundamental-type">fundamental type</dt>
 <dd>One of the <a class="reference internal" href="#term-simple-type"><span class="xref std std-term">simple types</span></a>
 provided by the language.
-Examples are <code class="docutils literal"><span class="pre">bool</span></code>, <code class="docutils literal"><span class="pre">char</span></code>, <code class="docutils literal"><span class="pre">int</span></code>, and <code class="docutils literal"><span class="pre">double</span></code>.
-Types provided by the STL, such as <code class="docutils literal"><span class="pre">std::string</span></code> and <code class="docutils literal"><span class="pre">std::vector</span></code>
+Examples are <code class="docutils literal notranslate"><span class="pre">bool</span></code>, <code class="docutils literal notranslate"><span class="pre">char</span></code>, <code class="docutils literal notranslate"><span class="pre">int</span></code>, and <code class="docutils literal notranslate"><span class="pre">double</span></code>.
+Types provided by the STL, such as <code class="docutils literal notranslate"><span class="pre">std::string</span></code> and <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>
 are not considered ‘fundamental’ types.</dd>
 <dt id="term-garbage">garbage</dt>
 <dd>In memory management, any memory that was previously (dynamically)
@@ -796,7 +787,7 @@ Java, JavaScript, Lisp, and Scheme will periodically reclaim
 <a class="reference internal" href="#term-child"><span class="xref std std-term">children</span></a>.
 This is in contrast to, for example, a <a class="reference internal" href="#term-binary-tree"><span class="xref std std-term">binary tree</span></a> where
 each node has a fixed number of children (some of which might be
-<code class="docutils literal"><span class="pre">null</span></code>).
+<code class="docutils literal notranslate"><span class="pre">null</span></code>).
 General tree nodes tend to be harder to implement for this reason.</dd>
 <dt id="term-generic-programming">generic programming</dt>
 <dd>A computer programming style in which functions are written
@@ -835,9 +826,9 @@ known as <a class="reference internal" href="#term-collision-resolution"><span c
 <dd>The beginning of a <a class="reference internal" href="#term-list"><span class="xref std std-term">list</span></a>.</dd>
 <dt id="term-header-guard">header guard</dt>
 <dd><p class="first">In C and C++, used to prevent definitions copied into a file
-using the <code class="docutils literal"><span class="pre">#include</span></code> directive from beging defined
+using the <code class="docutils literal notranslate"><span class="pre">#include</span></code> directive from beging defined
 more than once.</p>
-<div class="last highlight-cpp"><div class="highlight"><pre><span class="cp">#ifndef FOO_H_INCLUDED </span><span class="c1">// any name uniquely mapped to file name</span>
+<div class="last highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef FOO_H_INCLUDED </span><span class="c1">// any name uniquely mapped to file name</span>
 <span class="cp">#define FOO_H_INCLUDED</span>
 <span class="c1">// contents of the file are here</span>
 <span class="cp">#endif</span>
@@ -866,10 +857,10 @@ structure.
 To add a new value to a heap, or to remove the extreme value
 (the max value in a max-heap or min value in a min-heap) and
 update the heap,
-takes <span class="math">\(\Theta(\log n)\)</span> time in the worst case.
+takes <span class="math notranslate nohighlight">\(\Theta(\log n)\)</span> time in the worst case.
 However, if given all of the values in an unordered array,
 the values can be re-arranged to form a heap in only
-<span class="math">\(\Theta(n)\)</span> time.
+<span class="math notranslate nohighlight">\(\Theta(n)\)</span> time.
 Due to its space and time efficiency, the heap is a
 popular choice for implementing a <a class="reference internal" href="#term-priority-queue"><span class="xref std std-term">priority queue</span></a>.</dd>
 <dt id="term-height">height</dt>
@@ -914,8 +905,8 @@ build automation tools, and a debugger.
 Most also automatically complete partially typed keywords and
 create commonly used code from templates.</dd>
 <dt id="term-internal-fragmentation">internal fragmentation</dt>
-<dd>A condition that occurs when more than <span class="math">\(N\)</span> bytes
-are allocated to service a memory request for <span class="math">\(N\)</span>
+<dd>A condition that occurs when more than <span class="math notranslate nohighlight">\(N\)</span> bytes
+are allocated to service a memory request for <span class="math notranslate nohighlight">\(N\)</span>
 bytes, wasting free storage.
 This is often done to simplify memory management.</dd>
 <dt id="term-internal-node">internal node</dt>
@@ -951,8 +942,8 @@ node has two children, and that is why the leaf node has to have
 two empty children, rather than no children.)
 In a general tree, any node is a leaf node if it has no children.</dd>
 <dt id="term-level">level</dt>
-<dd>In a tree, all nodes of <a class="reference internal" href="#term-depth"><span class="xref std std-term">depth</span></a> <span class="math">\(d\)</span> are at
-level <span class="math">\(d\)</span> in the tree.
+<dd>In a tree, all nodes of <a class="reference internal" href="#term-depth"><span class="xref std std-term">depth</span></a> <span class="math notranslate nohighlight">\(d\)</span> are at
+level <span class="math notranslate nohighlight">\(d\)</span> in the tree.
 The root is the only node at level 0, and its depth is 0.</dd>
 <dt id="term-lifo">LIFO</dt>
 <dd>Abbreviation for “Last-In, First-Out”.
@@ -961,8 +952,8 @@ and an old terminolgy for the stack is “LIFO list”.</dd>
 <dt id="term-linear-probing">linear probing</dt>
 <dd>In <a class="reference internal" href="#term-hashing"><span class="xref std std-term">hashing</span></a>, this is the simplest
 <a class="reference internal" href="#term-collision-resolution"><span class="xref std std-term">collision resolution</span></a> method.
-Term <span class="math">\(i\)</span> of the <a class="reference internal" href="#term-probe-sequence"><span class="xref std std-term">probe sequence</span></a> is simply
-<span class="math">\(i\)</span>, meaning that collision resolution works by moving
+Term <span class="math notranslate nohighlight">\(i\)</span> of the <a class="reference internal" href="#term-probe-sequence"><span class="xref std std-term">probe sequence</span></a> is simply
+<span class="math notranslate nohighlight">\(i\)</span>, meaning that collision resolution works by moving
 sequentially through the hash table from the <a class="reference internal" href="#term-home-slot"><span class="xref std std-term">home slot</span></a>.
 While simple, it is also inefficient, since it quickly leads to
 certain free <a class="reference internal" href="#term-slot"><span class="xref std std-term">slots</span></a> in the hash table having
@@ -971,16 +962,16 @@ search.</dd>
 <dt id="term-linear-probing-by-steps">linear probing by steps</dt>
 <dd>In <a class="reference internal" href="#term-hashing"><span class="xref std std-term">hashing</span></a>, this <a class="reference internal" href="#term-collision-resolution"><span class="xref std std-term">collision resolution</span></a> method is
 a variation on simple <a class="reference internal" href="#term-linear-probing"><span class="xref std std-term">linear probing</span></a>.
-Some constant <span class="math">\(c\)</span> is defined such that
-term <span class="math">\(i\)</span> of the <a class="reference internal" href="#term-probe-sequence"><span class="xref std std-term">probe sequence</span></a> is
-<span class="math">\(ci\)</span>.
+Some constant <span class="math notranslate nohighlight">\(c\)</span> is defined such that
+term <span class="math notranslate nohighlight">\(i\)</span> of the <a class="reference internal" href="#term-probe-sequence"><span class="xref std std-term">probe sequence</span></a> is
+<span class="math notranslate nohighlight">\(ci\)</span>.
 This  means that collision resolution works by moving
 sequentially through the hash table from the <a class="reference internal" href="#term-home-slot"><span class="xref std std-term">home slot</span></a>
-in steps of size <span class="math">\(c\)</span>.
+in steps of size <span class="math notranslate nohighlight">\(c\)</span>.
 While not much improvement on linear probing, it forms the basis
 of another collision resolution method called
 <a class="reference internal" href="#term-double-hashing"><span class="xref std std-term">double hashing</span></a>, where each key uses a value for
-<span class="math">\(c\)</span> defined by a second <a class="reference internal" href="#term-hash-function"><span class="xref std std-term">hash function</span></a>.</dd>
+<span class="math notranslate nohighlight">\(c\)</span> defined by a second <a class="reference internal" href="#term-hash-function"><span class="xref std std-term">hash function</span></a>.</dd>
 <dt id="term-link-error">link error</dt>
 <dd>After compiling, a link error occurs when each compilation unit compiles correctly,
 but in the next stage, the linker is unable to combine all
@@ -1054,8 +1045,8 @@ at the <a class="reference internal" href="#term-root"><span class="xref std std
 <dt id="term-modulus">modulus</dt>
 <dd>The modulus function returns the
 remainder of an integer division.
-Sometimes written <span class="math">\(n \bmod m\)</span> in mathematical expressions,
-the syntax in many programming languages is <code class="docutils literal"><span class="pre">n</span> <span class="pre">%</span> <span class="pre">m</span></code>.</dd>
+Sometimes written <span class="math notranslate nohighlight">\(n \bmod m\)</span> in mathematical expressions,
+the syntax in many programming languages is <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">%</span> <span class="pre">m</span></code>.</dd>
 <dt id="term-multilist">multilist</dt>
 <dd>A list that may contain sublists.
 This term is sometimes used as a synonym to the term
@@ -1117,21 +1108,21 @@ bucket.</dd>
 <dt id="term-parameters">parameters</dt>
 <dd>The values making up an input to a <a class="reference internal" href="#term-function"><span class="xref std std-term">function</span></a>.</dd>
 <dt id="term-parent">parent</dt>
-<dd>In a tree, the <a class="reference internal" href="#term-node"><span class="xref std std-term">node</span></a> <span class="math">\(P\)</span> that directly links to a
-node <span class="math">\(A\)</span> is the parent of <span class="math">\(A\)</span>. <span class="math">\(A\)</span> is the
-<a class="reference internal" href="#term-child"><span class="xref std std-term">child</span></a> of <span class="math">\(P\)</span>.</dd>
+<dd>In a tree, the <a class="reference internal" href="#term-node"><span class="xref std std-term">node</span></a> <span class="math notranslate nohighlight">\(P\)</span> that directly links to a
+node <span class="math notranslate nohighlight">\(A\)</span> is the parent of <span class="math notranslate nohighlight">\(A\)</span>. <span class="math notranslate nohighlight">\(A\)</span> is the
+<a class="reference internal" href="#term-child"><span class="xref std std-term">child</span></a> of <span class="math notranslate nohighlight">\(P\)</span>.</dd>
 <dt id="term-parse">parse</dt>
 <dd>To examine a program and analyze the syntactic structure.</dd>
 <dt id="term-permutation">permutation</dt>
-<dd>A permutation of a sequence <span class="math">\(\mathbf{S}\)</span>
-is the <a class="reference internal" href="#term-element"><span class="xref std std-term">elements</span></a> of <span class="math">\(\mathbf{S}\)</span> arranged
+<dd>A permutation of a sequence <span class="math notranslate nohighlight">\(\mathbf{S}\)</span>
+is the <a class="reference internal" href="#term-element"><span class="xref std std-term">elements</span></a> of <span class="math notranslate nohighlight">\(\mathbf{S}\)</span> arranged
 in some order.</dd>
 <dt id="term-physical-form">physical form</dt>
 <dd>The implementation of a data type as a data structure.
 Contrast to the <a class="reference internal" href="#term-logical-form"><span class="xref std std-term">logical form</span></a> for the data type.</dd>
 <dt id="term-pigeonhole-principle">Pigeonhole Principle</dt>
 <dd>A commonly used lemma in Mathematics. A typical variant states:
-When <span class="math">\(n+1\)</span> objects are stored in <span class="math">\(n\)</span> locations, at
+When <span class="math notranslate nohighlight">\(n+1\)</span> objects are stored in <span class="math notranslate nohighlight">\(n\)</span> locations, at
 least one of the locations must store two or more of the objects.</dd>
 <dt id="term-pod">POD</dt>
 <dd>An abbreviation for ‘plain old data’.
@@ -1236,8 +1227,8 @@ A program can refer to the <a class="reference internal" href="#term-compile"><s
 <dd>In <a class="reference internal" href="#term-hashing"><span class="xref std std-term">hashing</span></a>, this is a <a class="reference internal" href="#term-collision-resolution"><span class="xref std std-term">collision resolution</span></a>
 method that stores a random permutation of the values 1 through
 the size of the <a class="reference internal" href="#term-hash-table"><span class="xref std std-term">hash table</span></a>.
-Term <span class="math">\(i\)</span> of the <a class="reference internal" href="#term-probe-sequence"><span class="xref std std-term">probe sequence</span></a> is simply the value
-of position <span class="math">\(i\)</span> in the permuation.</dd>
+Term <span class="math notranslate nohighlight">\(i\)</span> of the <a class="reference internal" href="#term-probe-sequence"><span class="xref std std-term">probe sequence</span></a> is simply the value
+of position <span class="math notranslate nohighlight">\(i\)</span> in the permuation.</dd>
 <dt id="term-push">push</dt>
 <dd>A specialized term used to indicate inserting an <a class="reference internal" href="#term-element"><span class="xref std std-term">element</span></a>
 onto a <a class="reference internal" href="#term-stack"><span class="xref std std-term">stack</span></a>.</dd>
@@ -1246,10 +1237,10 @@ onto a <a class="reference internal" href="#term-stack"><span class="xref std st
 onto a <a class="reference internal" href="#term-vector"><span class="xref std std-term">vector</span></a>.</dd>
 <dt id="term-quadratic-probing">quadratic probing</dt>
 <dd>In <a class="reference internal" href="#term-hashing"><span class="xref std std-term">hashing</span></a>, this is a <a class="reference internal" href="#term-collision-resolution"><span class="xref std std-term">collision resolution</span></a>
-method that computes term <span class="math">\(i\)</span> of the
+method that computes term <span class="math notranslate nohighlight">\(i\)</span> of the
 <a class="reference internal" href="#term-probe-sequence"><span class="xref std std-term">probe sequence</span></a> using some quadratic equation
-<span class="math">\(ai^2 _ bi + c\)</span> for suitable constants <span class="math">\(a, b, c\)</span>.
-The simplest form is simply to use <span class="math">\(i^2\)</span> as term <span class="math">\(i\)</span>
+<span class="math notranslate nohighlight">\(ai^2 _ bi + c\)</span> for suitable constants <span class="math notranslate nohighlight">\(a, b, c\)</span>.
+The simplest form is simply to use <span class="math notranslate nohighlight">\(i^2\)</span> as term <span class="math notranslate nohighlight">\(i\)</span>
 of the probe sequence.</dd>
 <dt id="term-queue">queue</dt>
 <dd>A list-like structure in which elements are inserted only at one
@@ -1307,8 +1298,8 @@ for reuse.
 This approach can fail if there is a cycle in the chain of
 references.</dd>
 <dt id="term-reflexive">reflexive</dt>
-<dd>In set notation, binary relation <span class="math">\(R\)</span> on set <span class="math">\(S\)</span> is
-reflexive if <span class="math">\(aRa\)</span> for all <span class="math">\(a \in \mathbf{S}\)</span>.</dd>
+<dd>In set notation, binary relation <span class="math notranslate nohighlight">\(R\)</span> on set <span class="math notranslate nohighlight">\(S\)</span> is
+reflexive if <span class="math notranslate nohighlight">\(aRa\)</span> for all <span class="math notranslate nohighlight">\(a \in \mathbf{S}\)</span>.</dd>
 <dt id="term-regular-type">regular type</dt>
 <dd><p class="first">A user defined <a class="reference internal" href="#term-type"><span class="xref std std-term">type</span></a> that behaves like a ‘regular’
 built-in (fundamental) type.
@@ -1349,9 +1340,9 @@ Regular types support the following operations:</p>
 </table>
 </dd>
 <dt id="term-relation">relation</dt>
-<dd>In set notation, a relation <span class="math">\(R\)</span> over set
-<span class="math">\(\mathbf{S}\)</span> is a set of ordered pairs from
-<span class="math">\(\mathbf{S}\)</span>.</dd>
+<dd>In set notation, a relation <span class="math notranslate nohighlight">\(R\)</span> over set
+<span class="math notranslate nohighlight">\(\mathbf{S}\)</span> is a set of ordered pairs from
+<span class="math notranslate nohighlight">\(\mathbf{S}\)</span>.</dd>
 <dt id="term-root">root</dt>
 <dd>In a <a class="reference internal" href="#term-tree"><span class="xref std std-term">tree</span></a>, the topmost <a class="reference internal" href="#term-node"><span class="xref std std-term">node</span></a> of the tree.
 All other nodes in the tree are <a class="reference internal" href="#term-descendant"><span class="xref std std-term">descendants</span></a>
@@ -1413,8 +1404,8 @@ A sequence is also sometimes called a <a class="reference internal" href="#term-
 <a class="reference internal" href="#term-vector"><span class="xref std std-term">vector</span></a>.</dd>
 <dt id="term-sequence-container">sequence container</dt>
 <dd>A container in which elements can be accessed sequentially.
-The underlying data may be a contiguous block of memory, as with <code class="docutils literal"><span class="pre">vector</span></code> and
-<code class="docutils literal"><span class="pre">array</span></code>, or may be non-contiguous memory, as with <code class="docutils literal"><span class="pre">list</span></code>.</dd>
+The underlying data may be a contiguous block of memory, as with <code class="docutils literal notranslate"><span class="pre">vector</span></code> and
+<code class="docutils literal notranslate"><span class="pre">array</span></code>, or may be non-contiguous memory, as with <code class="docutils literal notranslate"><span class="pre">list</span></code>.</dd>
 <dt id="term-sequential-tree-representation">sequential tree representation</dt>
 <dd>A representation that stores a series of node values with the
 minimum information needed to reconstruct the tree structure.
@@ -1432,8 +1423,8 @@ original data structure from the serialized representation.</dd>
 <dd>A collection of distinguishable <a class="reference internal" href="#term-member"><span class="xref std std-term">members</span></a> or
 <a class="reference internal" href="#term-element"><span class="xref std std-term">elements</span></a>.</dd>
 <dt id="term-sibling">sibling</dt>
-<dd>In a <a class="reference internal" href="#term-tree"><span class="xref std std-term">tree</span></a>, a sibling of <a class="reference internal" href="#term-node"><span class="xref std std-term">node</span></a> <span class="math">\(A\)</span> is any
-other node with the same <a class="reference internal" href="#term-parent"><span class="xref std std-term">parent</span></a> as <span class="math">\(A\)</span>.</dd>
+<dd>In a <a class="reference internal" href="#term-tree"><span class="xref std std-term">tree</span></a>, a sibling of <a class="reference internal" href="#term-node"><span class="xref std std-term">node</span></a> <span class="math notranslate nohighlight">\(A\)</span> is any
+other node with the same <a class="reference internal" href="#term-parent"><span class="xref std std-term">parent</span></a> as <span class="math notranslate nohighlight">\(A\)</span>.</dd>
 <dt id="term-signature">signature</dt>
 <dd>In a programming language, the signature for a function is its
 return type and its list of parameters and their types.</dd>
@@ -1501,12 +1492,12 @@ any class within a <a class="reference internal" href="#term-class-hierarchy"><s
 A synonym for <a class="reference internal" href="#term-derived-class"><span class="xref std std-term">derived class</span></a>.</dd>
 <dt id="term-subtree">subtree</dt>
 <dd>A subtree is a subset of the nodes of a binary tree that
-includes some node <span class="math">\(R\)</span> of the tree as the subtree
+includes some node <span class="math notranslate nohighlight">\(R\)</span> of the tree as the subtree
 <a class="reference internal" href="#term-root"><span class="xref std std-term">root</span></a> along with all the <a class="reference internal" href="#term-descendant"><span class="xref std std-term">descendants</span></a>
-of <span class="math">\(R\)</span>.</dd>
+of <span class="math notranslate nohighlight">\(R\)</span>.</dd>
 <dt id="term-symmetric">symmetric</dt>
-<dd>In set notation, relation <span class="math">\(R\)</span> is symmetric if whenever
-<span class="math">\(aRb\)</span>, then <span class="math">\(bRa\)</span>, for all <span class="math">\(a, b \in \mathbf{S}\)</span>.</dd>
+<dd>In set notation, relation <span class="math notranslate nohighlight">\(R\)</span> is symmetric if whenever
+<span class="math notranslate nohighlight">\(aRb\)</span>, then <span class="math notranslate nohighlight">\(bRa\)</span>, for all <span class="math notranslate nohighlight">\(a, b \in \mathbf{S}\)</span>.</dd>
 <dt id="term-syntax">syntax</dt>
 <dd>The structure of a program.</dd>
 <dt id="term-syntax-error">syntax error</dt>
@@ -1540,35 +1531,35 @@ which of the pair is greater than the other).</dd>
 <dt id="term-trailing-return-type">trailing return type</dt>
 <dd><p class="first">A C++11 language feature that allows a function or lambda expression
 to defer evaluating the function return type.  Example:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
 <span class="k">auto</span> <span class="n">mul</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">b</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">decltype</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="p">){</span>
   <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>or</p>
-<div class="last highlight-cpp"><div class="highlight"><pre><span class="p">[](</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">;}</span>
+<div class="last highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="p">[](</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">;}</span>
 </pre></div>
 </div>
 </dd>
 <dt id="term-transitive">transitive</dt>
-<dd>In set notation, relation <span class="math">\(R\)</span> is transitive if whenever
-<span class="math">\(aRb\)</span> and <span class="math">\(bRc\)</span>, then <span class="math">\(aRc\)</span>, for all
-<span class="math">\(a, b, c \in \mathbf{S}\)</span>.</dd>
+<dd>In set notation, relation <span class="math notranslate nohighlight">\(R\)</span> is transitive if whenever
+<span class="math notranslate nohighlight">\(aRb\)</span> and <span class="math notranslate nohighlight">\(bRc\)</span>, then <span class="math notranslate nohighlight">\(aRc\)</span>, for all
+<span class="math notranslate nohighlight">\(a, b, c \in \mathbf{S}\)</span>.</dd>
 <dt id="term-traversal">traversal<dt id="term-traverse">traverse</dt>
 <dd>Any process for visiting all of the objects in a collection
 (such as a <a class="reference internal" href="#term-tree"><span class="xref std std-term">tree</span></a> or <a class="reference internal" href="#term-list"><span class="xref std std-term">list</span></a>) in some order.</dd>
 <dt id="term-tree">tree</dt>
-<dd>A tree <span class="math">\(\mathbf{T}\)</span> is a finite set of one or more
+<dd>A tree <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> is a finite set of one or more
 <a class="reference internal" href="#term-node"><span class="xref std std-term">nodes</span></a> such that there is one designated node
-<span class="math">\(R\)</span>, called the <a class="reference internal" href="#term-root"><span class="xref std std-term">root</span></a> of <span class="math">\(\mathbf{T}\)</span>.
-If the set <span class="math">\((\mathbf{T} -\{R\})\)</span> is not empty, these
-nodes are partitioned into <span class="math">\(n &gt; 0\)</span>
-disjoint sets <span class="math">\(\mathbf{T}_0\)</span>,
-<span class="math">\(\mathbf{T}_1\)</span>, …, <span class="math">\(\mathbf{T}_{n-1}\)</span>,
+<span class="math notranslate nohighlight">\(R\)</span>, called the <a class="reference internal" href="#term-root"><span class="xref std std-term">root</span></a> of <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>.
+If the set <span class="math notranslate nohighlight">\((\mathbf{T} -\{R\})\)</span> is not empty, these
+nodes are partitioned into <span class="math notranslate nohighlight">\(n &gt; 0\)</span>
+disjoint sets <span class="math notranslate nohighlight">\(\mathbf{T}_0\)</span>,
+<span class="math notranslate nohighlight">\(\mathbf{T}_1\)</span>, …, <span class="math notranslate nohighlight">\(\mathbf{T}_{n-1}\)</span>,
 each of which is a tree, and whose <a class="reference internal" href="#term-root"><span class="xref std std-term">roots</span></a>
-<span class="math">\(R_1, R_2, ..., R_n\)</span>,
-respectively, are <a class="reference internal" href="#term-child"><span class="xref std std-term">children</span></a> of <span class="math">\(R\)</span>.</dd>
+<span class="math notranslate nohighlight">\(R_1, R_2, ..., R_n\)</span>,
+respectively, are <a class="reference internal" href="#term-child"><span class="xref std std-term">children</span></a> of <span class="math notranslate nohighlight">\(R\)</span>.</dd>
 <dt id="term-tree-traversal">tree traversal</dt>
 <dd>A <a class="reference internal" href="#term-traversal"><span class="xref std std-term">traversal</span></a> performed on a tree.
 Traditional tree traversals include
@@ -1595,9 +1586,9 @@ are written before any other code.</dd>
 <dt id="term-unsorted-list">unsorted list</dt>
 <dd>A <a class="reference internal" href="#term-list"><span class="xref std std-term">list</span></a> where the records stored in the list can appear
 in any order (as opposed to a sorted list).
-An unsorted list can support efficient (<span class="math">\(\Theta(1)\)</span>)
+An unsorted list can support efficient (<span class="math notranslate nohighlight">\(\Theta(1)\)</span>)
 insertion time (since you can put the record anywhere
-convenient), but requires <span class="math">\(\Theta(n)\)</span> time for both search
+convenient), but requires <span class="math notranslate nohighlight">\(\Theta(n)\)</span> time for both search
 and deletion.</dd>
 <dt id="term-variable-length-coding">variable-length coding</dt>
 <dd>Given a collection of objects, a variable-length coding scheme
@@ -1631,19 +1622,19 @@ loses all stored information when the power is turned off.</dd>
 
   
       
-  <li id="relations-prev" class="navLink" title='Previous Section - 14.1. Fundamental I/O concepts' data-toggle="tooltip">
+  <li id="relations-prev" class="navLink" title='Previous Section - 15.1. Fundamental I/O concepts' data-toggle="tooltip">
     <a href="serialization/serialization.html" >
       <i class='prevNav glyphicon glyphicon-chevron-left'></i>
     </a>
   </li>
   <a class="navLinkBg" id="navLinkBgLeft"  href="serialization/serialization.html" ></a>
   
-  <li id="relations-next" class="navLink" title='Next Section - Frequently asked questions (FAQ)' data-toggle="tooltip" >
-    <a href="back-matter/faq.html" >
+  <li id="relations-next" class="navLink" title='Next Section - 8. Working with binary trees' data-toggle="tooltip" >
+    <a href="trees/toctree.html" >
       <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
     </a>
   </li>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="back-matter/faq.html" >Next Section - Frequently asked questions (FAQ)</a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="trees/toctree.html" >Next Section - 8. Working with binary trees</a>
 
 <script type="text/javascript">
 
@@ -1662,7 +1653,7 @@ loses all stored information when the power is turned off.</dd>
     </p>
     <p>
         &copy; Copyright 2017-2018 Dave Parillo.
-      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
     </p>
   </div>
 </footer>

@@ -2,6 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>4.1. Function overloads &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
@@ -29,16 +30,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/runestonebase.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -139,12 +131,11 @@
   eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.2.6';
 </script>
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -333,7 +324,7 @@ and every function name must be unique.
 For example:</p>
 <ul class="simple">
 <li>C defines 7 different functions just for absolute value<ul>
-<li><code class="docutils literal"><span class="pre">abs</span></code>, <code class="docutils literal"><span class="pre">llabs</span></code>, <code class="docutils literal"><span class="pre">fabs</span></code>, <code class="docutils literal"><span class="pre">fabsf</span></code>, etc.
+<li><code class="docutils literal notranslate"><span class="pre">abs</span></code>, <code class="docutils literal notranslate"><span class="pre">llabs</span></code>, <code class="docutils literal notranslate"><span class="pre">fabs</span></code>, <code class="docutils literal notranslate"><span class="pre">fabsf</span></code>, etc.
 see <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=abs">abs</a></li>
 </ul>
 </li>
@@ -341,7 +332,7 @@ see <a class="reference external" href="http://en.cppreference.com/mwiki/index.p
 </ul>
 <p>This just adds to the amount of stuff programmers have to commit to memory.
 In C++, you only have to remember a single function to compute
-the absolute value: <code class="docutils literal"><span class="pre">abs</span></code>.</p>
+the absolute value: <code class="docutils literal notranslate"><span class="pre">abs</span></code>.</p>
 <p>Another example: a family of functions to compute volume.</p>
 
 <div data-childcomponent="ac-volume" class="runestone explainer ac_section alert alert-warning">
@@ -392,7 +383,7 @@ int main() {
 <p>This is an often asked question, with no clear cut answer.
 It is primarily a question of <em>clarity</em> and <em>design</em>.</p>
 <p>For example, given:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span> <span class="nf">operate</span> <span class="p">(</span><span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="kt">long</span> <span class="n">c</span><span class="p">,</span> <span class="kt">double</span> <span class="n">d</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">operate</span> <span class="p">(</span><span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="kt">long</span> <span class="n">c</span><span class="p">,</span> <span class="kt">double</span> <span class="n">d</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>In this case, the parameters and function name provide no guidance on
@@ -401,14 +392,14 @@ So four is probably too many parameters,
 simply because future usage errors are likely.</p>
 <p>Keep in mind that more parameters equal more complexity.
 Limit the number of parameters you need in a given method,
-or use a <code class="docutils literal"><span class="pre">struct</span></code> to combine parameters.
+or use a <code class="docutils literal notranslate"><span class="pre">struct</span></code> to combine parameters.
 Also, be wary of overloads with the same number of parameters and different types.
 For example:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span> <span class="nf">operate</span> <span class="p">(</span><span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">);</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">operate</span> <span class="p">(</span><span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">);</span>
 <span class="kt">int</span> <span class="nf">operate</span> <span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">b</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Depending on what <code class="docutils literal"><span class="pre">operate</span></code> does with it’s parameters,
+<p>Depending on what <code class="docutils literal notranslate"><span class="pre">operate</span></code> does with it’s parameters,
 reversing the order of the parameters could have drastic consequences.
 We just don’t know without looking at the source code.
 In this case even two parameters is too many.
@@ -458,7 +449,7 @@ It is almost certain someone will invoke the wrong version occasionally.</p>
     </p>
     <p>
         &copy; Copyright 2017-2018 Dave Parillo.
-      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
     </p>
   </div>
 </footer>

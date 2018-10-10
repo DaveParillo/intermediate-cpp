@@ -2,6 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>1.7. Command-line compiling &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
@@ -29,16 +30,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/runestonebase.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -139,12 +131,11 @@
   eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.2.6';
 </script>
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -319,40 +310,40 @@ output to a text stream is similarly easy.</p>
 <div class="section" id="the-c-compiler">
 <span id="index-1"></span><h2>1.7.1. The C++ compiler<a class="headerlink" href="#the-c-compiler" title="Permalink to this headline">¶</a></h2>
 <p>There are many programs that will make executables from C++ source.
-One popular choice is <code class="docutils literal"><span class="pre">gcc</span></code>, the Gnu project C and C++ compiler.
-<code class="docutils literal"><span class="pre">gcc</span></code> is free and open-source, meaning that it can be made to run
+One popular choice is <code class="docutils literal notranslate"><span class="pre">gcc</span></code>, the Gnu project C and C++ compiler.
+<code class="docutils literal notranslate"><span class="pre">gcc</span></code> is free and open-source, meaning that it can be made to run
 on many different operating systems.
 It also has the advantage of being able to compile more than just C and C++,
 although it was developed initially for that.
 One of the advantages of using a multi language tool like gcc is that
 it potentially minimizes the number of new tools you have to learn
 to begin working in a new language.</p>
-<p>When you invoke <code class="docutils literal"><span class="pre">gcc</span></code>, it normally does preprocessing, compilation, assembly and linking.</p>
-<img src="../_images/graphviz-f65b0ba51852fa340a44b437810baae9b187cd82.png" alt="Standard executable build steps" />
-<p><code class="docutils literal"><span class="pre">gcc</span></code> is a complex program with <strong>many</strong> options.
+<p>When you invoke <code class="docutils literal notranslate"><span class="pre">gcc</span></code>, it normally does preprocessing, compilation, assembly and linking.</p>
+<img src="../_images/graphviz-77c088abb08bda934687e2a095d1af61dfa487f0.png" alt="Standard executable build steps" />
+<p><code class="docutils literal notranslate"><span class="pre">gcc</span></code> is a complex program with <strong>many</strong> options.
 You can execute only one of these steps, some of them,
 all of them, or change the behavior of one or more steps.</p>
 <p>Generally, we are interested in building our programs as simply as possible.
-Given a single source file <code class="docutils literal"><span class="pre">main.cpp</span></code>, that contains all the code
+Given a single source file <code class="docutils literal notranslate"><span class="pre">main.cpp</span></code>, that contains all the code
 needed to describe a working program, it is enough to type:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="n">g</span><span class="o">++</span> <span class="n">main</span><span class="o">.</span><span class="n">cpp</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">++</span> <span class="n">main</span><span class="o">.</span><span class="n">cpp</span>
 </pre></div>
 </div>
 <p>This command will perform all of the steps to make an executable
-and write the executable to a file named <code class="docutils literal"><span class="pre">a.out</span></code>.
+and write the executable to a file named <code class="docutils literal notranslate"><span class="pre">a.out</span></code>.
 Normally, however, we want to give our programs meaningful names:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="n">g</span><span class="o">++</span> <span class="n">main</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">o</span> <span class="n">main</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">++</span> <span class="n">main</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">o</span> <span class="n">main</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">-o</span></code> switch tells g++ to write the executable to a file named <code class="docutils literal"><span class="pre">main</span></code>.
-We could have added a file extension, like <code class="docutils literal"><span class="pre">.exe</span></code>, but that is ordinarily
+<p>The <code class="docutils literal notranslate"><span class="pre">-o</span></code> switch tells g++ to write the executable to a file named <code class="docutils literal notranslate"><span class="pre">main</span></code>.
+We could have added a file extension, like <code class="docutils literal notranslate"><span class="pre">.exe</span></code>, but that is ordinarily
 only done on the Windows © operating system.
 On most other systems, the extension is used for people to sort out different
 types of files, but the operating system doesn’t need them to figure things out.</p>
-<p>If our <code class="docutils literal"><span class="pre">main.cpp</span></code> contained syntax from the C++11 standard,
+<p>If our <code class="docutils literal notranslate"><span class="pre">main.cpp</span></code> contained syntax from the C++11 standard,
 or included any headers that did, then in order for it to compile,
 the following switch must also be added:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="n">g</span><span class="o">++</span> <span class="n">main</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">std</span><span class="o">=</span><span class="n">c</span><span class="o">++</span><span class="mi">11</span> <span class="o">-</span><span class="n">o</span> <span class="n">main</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">++</span> <span class="n">main</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">std</span><span class="o">=</span><span class="n">c</span><span class="o">++</span><span class="mi">11</span> <span class="o">-</span><span class="n">o</span> <span class="n">main</span>
 </pre></div>
 </div>
 <p>The default C++ version for most compilers, gcc included is c++98.</p>
@@ -382,34 +373,34 @@ Debug level #2 is the default.</p>
 </div>
 <div class="section" id="the-make-utility">
 <span id="index-2"></span><h2>1.7.2. The make utility<a class="headerlink" href="#the-make-utility" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">make</span></code> program automatically determines which pieces of a large
+<p>The <code class="docutils literal notranslate"><span class="pre">make</span></code> program automatically determines which pieces of a large
 program need to be recompiled, and issues commands to recompile them.
 Note how this is different from the previous sections.
-The <code class="docutils literal"><span class="pre">make</span></code> program doesn’t actually compile anything.
+The <code class="docutils literal notranslate"><span class="pre">make</span></code> program doesn’t actually compile anything.
 It doesn’t know how.
-What <code class="docutils literal"><span class="pre">make</span></code> <em>does know</em> is</p>
+What <code class="docutils literal notranslate"><span class="pre">make</span></code> <em>does know</em> is</p>
 <ul class="simple">
 <li>What source files are normally associated with C++ programs</li>
 <li>What commands are used to compile and link C++ source files</li>
 </ul>
-<p><code class="docutils literal"><span class="pre">make</span></code> actually ‘knows’ some other things as well,
+<p><code class="docutils literal notranslate"><span class="pre">make</span></code> actually ‘knows’ some other things as well,
 and can be given more information to make it even more useful,
 but these first two things are the most important.</p>
 <p>To prepare to use ‘make’, you must write a file called the “makefile”
 that describes the relationships among files in your program and
 provides commands for updating each file.
-By default, <code class="docutils literal"><span class="pre">make</span></code> searches for a file named <strong>Makefile</strong>.</p>
+By default, <code class="docutils literal notranslate"><span class="pre">make</span></code> searches for a file named <strong>Makefile</strong>.</p>
 <p>Once a file named Makefile exists, each time you change some source
 files, this simple shell command:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="n">make</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span>
 </pre></div>
 </div>
-<p>is enough to perform all necessary recompilations.  The <code class="docutils literal"><span class="pre">make</span></code> program
+<p>is enough to perform all necessary recompilations.  The <code class="docutils literal notranslate"><span class="pre">make</span></code> program
 uses the makefile data and the last-modification times of the files
 to decide which of the files need to be updated.  For each of those
 files, it issues the recipes recorded in the makefile.</p>
 <p>A simple makefile consists of “rules” with the following shape:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="n">TARGET</span> <span class="o">...</span> <span class="p">:</span> <span class="n">PREREQUISITES</span> <span class="o">...</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TARGET</span> <span class="o">...</span> <span class="p">:</span> <span class="n">PREREQUISITES</span> <span class="o">...</span>
    <span class="n">RECIPE</span>
    <span class="o">...</span>
    <span class="o">...</span>
@@ -430,7 +421,7 @@ more than one command, either on the same line or each on its own line.</p>
 recipe line!  This is an obscurity that catches the unwary.</p>
 </div>
 <p>A <em>very</em> simple Unix C++ makefile:</p>
-<div class="highlight-make"><div class="highlight"><pre><span class="nv">CXX</span> <span class="o">=</span> c++
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">CXX</span> <span class="o">=</span> c++
 <span class="nv">CXXFLAGS</span><span class="o">=</span>-Wall -Wextra -pedantic -std<span class="o">=</span>c++11 -O3
 
 <span class="nf">my_prog </span><span class="o">:</span> <span class="n">clean</span>
@@ -464,11 +455,11 @@ the two to focus on for now are those used in the previous makefile.</p>
 </dl>
 </div></blockquote>
 <p>A slight variation on this theme creates several executables from a list.
-The primary assumption in this makefile is that each program in the list <code class="docutils literal"><span class="pre">PROGS</span></code>
+The primary assumption in this makefile is that each program in the list <code class="docutils literal notranslate"><span class="pre">PROGS</span></code>
 contains a main and is a single file.
-The makefile makes use of the fact that <code class="docutils literal"><span class="pre">make</span></code> can make a simple program
+The makefile makes use of the fact that <code class="docutils literal notranslate"><span class="pre">make</span></code> can make a simple program
 without a makefile, if the program is contained within a single file.</p>
-<div class="highlight-make"><div class="highlight"><pre><span class="nv">CXX</span> <span class="o">=</span> c++
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">CXX</span> <span class="o">=</span> c++
 <span class="nv">CXXFLAGS</span><span class="o">=</span>-Wall -Wextra -pedantic -std<span class="o">=</span>c++11 -O3
 
 <span class="nv">PROGS</span> <span class="o">=</span> asciitable <span class="se">\</span>
@@ -483,24 +474,24 @@ without a makefile, if the program is contained within a single file.</p>
     rm -f <span class="k">$(</span>PROGS<span class="k">)</span>
 </pre></div>
 </div>
-<p>Even without a Makefile, <code class="docutils literal"><span class="pre">make</span></code> is smart enough to produce sensible
+<p>Even without a Makefile, <code class="docutils literal notranslate"><span class="pre">make</span></code> is smart enough to produce sensible
 defaults for simple programs.
-For example, given our <code class="docutils literal"><span class="pre">main.cpp</span></code> example from the previous section,
+For example, given our <code class="docutils literal notranslate"><span class="pre">main.cpp</span></code> example from the previous section,
 we can make it using make:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="n">make</span> <span class="n">main</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">main</span>
 </pre></div>
 </div>
 <p>The make program will actually invoke:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="n">g</span><span class="o">++</span> <span class="n">main</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">o</span> <span class="n">main</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">++</span> <span class="n">main</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">o</span> <span class="n">main</span>
 </pre></div>
 </div>
 <p>If you have exported an environment variable that make uses,
-such as <code class="docutils literal"><span class="pre">CXXFLAGS</span></code>, then those will be used by make:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="n">export</span> <span class="n">CXXFLAGS</span><span class="o">=-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">Wextra</span> <span class="o">-</span><span class="n">pedantic</span> <span class="o">-</span><span class="n">std</span><span class="o">=</span><span class="n">c</span><span class="o">++</span><span class="mi">11</span>
+such as <code class="docutils literal notranslate"><span class="pre">CXXFLAGS</span></code>, then those will be used by make:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">CXXFLAGS</span><span class="o">=-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">Wextra</span> <span class="o">-</span><span class="n">pedantic</span> <span class="o">-</span><span class="n">std</span><span class="o">=</span><span class="n">c</span><span class="o">++</span><span class="mi">11</span>
 </pre></div>
 </div>
 <p>Now the make program will invoke:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="n">make</span> <span class="n">main</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">main</span>
 <span class="n">g</span><span class="o">++</span> <span class="n">main</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">Wextra</span> <span class="o">-</span><span class="n">pedantic</span> <span class="o">-</span><span class="n">std</span><span class="o">=</span><span class="n">c</span><span class="o">++</span><span class="mi">11</span> <span class="o">-</span><span class="n">o</span> <span class="n">main</span>
 </pre></div>
 </div>
@@ -513,7 +504,7 @@ programs listed.</p>
 on the command line to tell the shell that you want to run a program
 in the current directory (called ‘.’) instead of one of the standard system directories.
 So for example, if I’ve just built a program called <em>hello</em>, I can run it by typing:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="o">./</span><span class="n">hello</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">hello</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -569,7 +560,7 @@ So for example, if I’ve just built a program called <em>hello</em>, I can run 
     </p>
     <p>
         &copy; Copyright 2017-2018 Dave Parillo.
-      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
     </p>
   </div>
 </footer>

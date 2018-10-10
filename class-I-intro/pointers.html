@@ -2,8 +2,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>10.3. Pointers to classes &#8212; Intermediate Modern C++ Overview</title>
+    <title>11.3. Pointers to classes &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -29,16 +30,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/runestonebase.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -115,8 +107,8 @@
     <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="10.4. Interfaces and implementation" href="interfaces.html" />
-    <link rel="prev" title="10.2. Constructors" href="constructors.html" />
+    <link rel="next" title="11.4. Interfaces and implementation" href="interfaces.html" />
+    <link rel="prev" title="11.2. Constructors" href="constructors.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -139,12 +131,11 @@
   eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.2.6';
 </script>
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -236,7 +227,7 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">10.3. Pointers to classes</a></li>
+<li><a class="reference internal" href="#">11.3. Pointers to classes</a></li>
 </ul>
 </ul>
 </li>
@@ -244,13 +235,13 @@
         
         
           
-  <li id="relations-prev" title="Previous Chapter - 10.2. Constructors" data-toggle="tooltip">
+  <li id="relations-prev" title="Previous Chapter - 11.2. Constructors" data-toggle="tooltip">
     <a href="constructors.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - 10.4. Interfaces and implementation' data-toggle="tooltip" >
+  <li id="relations-next" title='Next Chapter - 11.4. Interfaces and implementation' data-toggle="tooltip" >
     <a href="interfaces.html" >
       <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
@@ -282,18 +273,18 @@
 <div class="container" id="main-content">
   
   <div class="section" id="pointers-to-classes">
-<span id="index-0"></span><h1>10.3. Pointers to classes<a class="headerlink" href="#pointers-to-classes" title="Permalink to this headline">¶</a></h1>
+<span id="index-0"></span><h1>11.3. Pointers to classes<a class="headerlink" href="#pointers-to-classes" title="Permalink to this headline">¶</a></h1>
 <p>When we create a pointer to a class,
 member access changes.
 Given a simple <a class="reference internal" href="../glossary.html#term-pod"><span class="xref std std-term">POD</span></a>:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="k">struct</span> <span class="n">Fibonacci</span> <span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">Fibonacci</span> <span class="p">{</span>
   <span class="kt">short</span> <span class="n">f5</span><span class="p">;</span> <span class="kt">short</span> <span class="n">f6</span><span class="p">;</span> <span class="kt">short</span> <span class="n">f7</span><span class="p">;</span>
 <span class="p">};</span>
 </pre></div>
 </div>
 <p>Access to members of any objects created uses the <em>member access operator</em>
-<code class="docutils literal"><span class="pre">operator</span> <span class="pre">.</span></code>:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// create foo with initial values</span>
+<code class="docutils literal notranslate"><span class="pre">operator</span> <span class="pre">.</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// create foo with initial values</span>
 <span class="n">Fibonacci</span> <span class="n">foo</span> <span class="o">=</span> <span class="p">{</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">};</span>
 
 <span class="c1">// use member access operator to get values</span>
@@ -306,30 +297,30 @@ Given a simple <a class="reference internal" href="../glossary.html#term-pod"><s
 <p>When you need to access members through a pointer,
 the operator precedence rules for pointer dereference
 and member access are a common source of error.
-Let’s add a pointer to <code class="docutils literal"><span class="pre">foo</span></code>:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// create foo with initial values</span>
+Let’s add a pointer to <code class="docutils literal notranslate"><span class="pre">foo</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// create foo with initial values</span>
 <span class="n">Fibonacci</span> <span class="n">foo</span> <span class="o">=</span> <span class="p">{</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">};</span>
 <span class="n">Fibonacci</span><span class="o">*</span> <span class="n">bar</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">foo</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>It seems that if <code class="docutils literal"><span class="pre">foo.f5</span></code> works, then
-given a pointer to a <code class="docutils literal"><span class="pre">foo</span></code>, that <code class="docutils literal"><span class="pre">*bar.f5</span></code>
+<p>It seems that if <code class="docutils literal notranslate"><span class="pre">foo.f5</span></code> works, then
+given a pointer to a <code class="docutils literal notranslate"><span class="pre">foo</span></code>, that <code class="docutils literal notranslate"><span class="pre">*bar.f5</span></code>
 should work, but it does not.
 The member access operator has higher precedence than
 the dereference operator.
-The code <code class="docutils literal"><span class="pre">*bar.f5</span></code> is equivalent to <code class="docutils literal"><span class="pre">*(bar.f5)</span></code>.
+The code <code class="docutils literal notranslate"><span class="pre">*bar.f5</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">*(bar.f5)</span></code>.
 This is almost always a bug.
-In this case, <code class="docutils literal"><span class="pre">f5</span></code> is not a pointer type and cannot be dereferenced.</p>
+In this case, <code class="docutils literal notranslate"><span class="pre">f5</span></code> is not a pointer type and cannot be dereferenced.</p>
 <p>Explicit use of parentheses is one way to fix this problem:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="p">(</span><span class="o">*</span><span class="n">bar</span><span class="p">).</span><span class="n">f5</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">*</span><span class="n">bar</span><span class="p">).</span><span class="n">f5</span>
 </pre></div>
 </div>
 <p>This works, but the syntax is ugly.
-For this reason, the <code class="docutils literal"><span class="pre">operator</span> <span class="pre">-&gt;</span></code> is used to
+For this reason, the <code class="docutils literal notranslate"><span class="pre">operator</span> <span class="pre">-&gt;</span></code> is used to
 access members of a pointer to an object.
-The code <code class="docutils literal"><span class="pre">bar-&gt;f5</span></code> is easier to read than <code class="docutils literal"><span class="pre">(*bar).f5</span></code>.</p>
+The code <code class="docutils literal notranslate"><span class="pre">bar-&gt;f5</span></code> is easier to read than <code class="docutils literal notranslate"><span class="pre">(*bar).f5</span></code>.</p>
 <p>Putting it all together:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// create foo with initial values</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// create foo with initial values</span>
 <span class="n">Fibonacci</span> <span class="n">foo</span> <span class="o">=</span> <span class="p">{</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">};</span>
 <span class="n">Fibonacci</span><span class="o">*</span> <span class="n">bar</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">foo</span><span class="p">;</span>
 
@@ -361,19 +352,19 @@ The code <code class="docutils literal"><span class="pre">bar-&gt;f5</span></cod
 
   
       
-  <li id="relations-prev" class="navLink" title='Previous Section - 10.2. Constructors' data-toggle="tooltip">
+  <li id="relations-prev" class="navLink" title='Previous Section - 11.2. Constructors' data-toggle="tooltip">
     <a href="constructors.html" >
       <i class='prevNav glyphicon glyphicon-chevron-left'></i>
     </a>
   </li>
   <a class="navLinkBg" id="navLinkBgLeft"  href="constructors.html" ></a>
   
-  <li id="relations-next" class="navLink" title='Next Section - 10.4. Interfaces and implementation' data-toggle="tooltip" >
+  <li id="relations-next" class="navLink" title='Next Section - 11.4. Interfaces and implementation' data-toggle="tooltip" >
     <a href="interfaces.html" >
       <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
     </a>
   </li>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="interfaces.html" >Next Section - 10.4. Interfaces and implementation</a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="interfaces.html" >Next Section - 11.4. Interfaces and implementation</a>
 
 <script type="text/javascript">
 
@@ -392,7 +383,7 @@ The code <code class="docutils literal"><span class="pre">bar-&gt;f5</span></cod
     </p>
     <p>
         &copy; Copyright 2017-2018 Dave Parillo.
-      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
     </p>
   </div>
 </footer>

@@ -2,6 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>6.1. Function pointers &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
@@ -29,16 +30,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/runestonebase.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -139,12 +131,11 @@
   eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.2.6';
 </script>
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -296,7 +287,7 @@
 an <a class="reference internal" href="../glossary.html#term-activation-record"><span class="xref std std-term">activation record</span></a> for a function is pushed onto the <a class="reference internal" href="../glossary.html#term-runtime-stack"><span class="xref std std-term">runtime stack</span></a>.
 This means every function has an address.</p>
 <p>Consider the following code:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="kt">int</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="mi">5</span><span class="p">;</span>
 <span class="p">}</span>
@@ -309,33 +300,33 @@ This means every function has an address.</p>
 <p>Hint: It doesn’t call the function foo</p>
 
     <div data-component="reveal" id="reveal-fp1"   data-showtitle="Show" data-hidetitle="Hide">
-    It prints the <em>address</em> of the function <code class="docutils literal"><span class="pre">foo()</span></code>
+    It prints the <em>address</em> of the function <code class="docutils literal notranslate"><span class="pre">foo()</span></code>
     </div>
-    <p>When a function is called using <code class="docutils literal"><span class="pre">operator()</span></code>,
+    <p>When a function is called using <code class="docutils literal notranslate"><span class="pre">operator()</span></code>,
 execution jumps to the <em>address</em> of the function being called.
 We can make use of this to store the address of the function.</p>
-<p>To declare a pointer to a function that returns an <code class="docutils literal"><span class="pre">int</span></code> and takes no parameters:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">pf</span><span class="p">)();</span>
+<p>To declare a pointer to a function that returns an <code class="docutils literal notranslate"><span class="pre">int</span></code> and takes no parameters:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">pf</span><span class="p">)();</span>
 </pre></div>
 </div>
-<p>The pointer variable is named <code class="docutils literal"><span class="pre">pf</span></code>.
-The parentheses around <code class="docutils literal"><span class="pre">(*pf)</span></code> are required due to operator precedence.
+<p>The pointer variable is named <code class="docutils literal notranslate"><span class="pre">pf</span></code>.
+The parentheses around <code class="docutils literal notranslate"><span class="pre">(*pf)</span></code> are required due to operator precedence.
 Without the parentheses:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span> <span class="o">*</span><span class="nf">pf</span><span class="p">();</span>     <span class="c1">// not a pointer to a function</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="o">*</span><span class="nf">pf</span><span class="p">();</span>     <span class="c1">// not a pointer to a function</span>
 
 <span class="c1">// same as above</span>
 <span class="kt">int</span><span class="o">*</span> <span class="nf">pf</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>Instead, this declares a function that returns an <code class="docutils literal"><span class="pre">int*</span></code> and takes no parameters.</p>
-<p>To declare a pointer named <code class="docutils literal"><span class="pre">func</span></code>
-pointing to a function that returns a <code class="docutils literal"><span class="pre">double</span></code> and takes two parameters:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">double</span> <span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">);</span>
+<p>Instead, this declares a function that returns an <code class="docutils literal notranslate"><span class="pre">int*</span></code> and takes no parameters.</p>
+<p>To declare a pointer named <code class="docutils literal notranslate"><span class="pre">func</span></code>
+pointing to a function that returns a <code class="docutils literal notranslate"><span class="pre">double</span></code> and takes two parameters:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Once you have a valid definition,
 you can assign functions to it:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">double</span> <span class="nf">add</span>     <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">;}</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="nf">add</span>     <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">;}</span>
 <span class="kt">double</span> <span class="nf">multiply</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">;}</span>
 <span class="kt">double</span> <span class="nf">pi</span>      <span class="p">()</span>             <span class="p">{</span> <span class="k">return</span> <span class="mf">3.14159265</span><span class="p">;}</span>
 
@@ -360,7 +351,7 @@ you can assign functions to it:</p>
 that this doesn’t look like the initialization syntax we are used to.
 This is a legacy of the C language C++ was originally based on.</p>
 <p>The C++11 <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=type alias">type alias</a> allows defining a name that refers to a previously defined type:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">double</span> <span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>          <span class="c1">// old syntax</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>          <span class="c1">// old syntax</span>
 
 <span class="k">using</span> <span class="n">func</span> <span class="o">=</span> <span class="kt">double</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>  <span class="c1">// since C++11</span>
 </pre></div>
@@ -392,10 +383,10 @@ This switch will enable the ROT47 function.</dd>
 <dd>This is where the program will get the text to work on.</dd>
 </dl>
 <p>Once we have decided on this as our basic framework,
-we can create a file like <code class="docutils literal"><span class="pre">help.h</span></code>:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#pragma once</span>
+we can create a file like <code class="docutils literal notranslate"><span class="pre">help.h</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
 
-<span class="cp">#include &lt;iostream&gt;</span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="k">static</span> <span class="kt">void</span> <span class="nf">usage</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Encrypt or decrypt text read from standard input</span><span class="se">\n</span><span class="s">&quot;</span>
@@ -423,15 +414,15 @@ we can create a file like <code class="docutils literal"><span class="pre">help.
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The ‘fundamental unit’ of any text input is a <code class="docutils literal"><span class="pre">char</span></code>,
+<p>The ‘fundamental unit’ of any text input is a <code class="docutils literal notranslate"><span class="pre">char</span></code>,
 so it makes sense to write our transforming functions to work with a single
 character at a time.</p>
 <p>We will write three functions for this program, one for ROT13 and one for ROT47.
-The third function takes a <code class="docutils literal"><span class="pre">std::string</span></code>  and a function pointer as input,
+The third function takes a <code class="docutils literal notranslate"><span class="pre">std::string</span></code>  and a function pointer as input,
 and transforms the string using the provided function,
 one character at a time.</p>
 <p>First we declare our interfaces:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#pragma once</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
 
 <span class="c1">//</span>
 <span class="c1">// Function to perform simple character rotations through an alphabet.</span>
@@ -442,7 +433,7 @@ one character at a time.</p>
 <span class="c1">// See: https://en.wikipedia.org/wiki/Caesar_cipher</span>
 <span class="c1">//</span>
 
-<span class="cp">#include &lt;string&gt;</span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
 
 <span class="c1">// A pointer to the function that will transform a character</span>
 <span class="k">using</span> <span class="n">transform</span> <span class="o">=</span> <span class="kt">char</span> <span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">c</span><span class="p">);</span>
@@ -468,20 +459,20 @@ one character at a time.</p>
 </div>
 <p>The <a class="reference external" href="http://en.cppreference.com/w/cpp/language/type_alias">using declaration</a>
 exists only to simplify our use of our function pointer.
-Any place you see the word <code class="docutils literal"><span class="pre">transform</span></code>,
+Any place you see the word <code class="docutils literal notranslate"><span class="pre">transform</span></code>,
 you can literally replace it with
-<code class="docutils literal"><span class="pre">char</span> <span class="pre">(*)(const</span> <span class="pre">unsigned</span> <span class="pre">char</span> <span class="pre">c)</span></code>
+<code class="docutils literal notranslate"><span class="pre">char</span> <span class="pre">(*)(const</span> <span class="pre">unsigned</span> <span class="pre">char</span> <span class="pre">c)</span></code>
 and not change how the program behaves.</p>
-<p>We implemented our functions to take type <code class="docutils literal"><span class="pre">unsigned</span> <span class="pre">char</span></code> because
-they depend on the library functions <code class="docutils literal"><span class="pre">std::isdigit</span></code> and <code class="docutils literal"><span class="pre">std::isalpha</span></code>.
+<p>We implemented our functions to take type <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">char</span></code> because
+they depend on the library functions <code class="docutils literal notranslate"><span class="pre">std::isdigit</span></code> and <code class="docutils literal notranslate"><span class="pre">std::isalpha</span></code>.
 These function have undefined behavior if the character provided
-is not an <code class="docutils literal"><span class="pre">unsigned</span> <span class="pre">char</span></code>.</p>
+is not an <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">char</span></code>.</p>
 <p>With these definitions in place, we can implement them:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &quot;caesar.h&quot;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;caesar.h&quot;</span><span class="cp"></span>
 
-<span class="cp">#include &lt;iostream&gt;</span>
-<span class="cp">#include &lt;cctype&gt;      </span><span class="c1">// isalpha, islower</span>
-<span class="cp">#include &lt;string&gt;</span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cctype&gt;      // isalpha, islower</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
 
 <span class="c1">// TODO: add locale and extend non english alphabets</span>
 
@@ -511,12 +502,12 @@ is not an <code class="docutils literal"><span class="pre">unsigned</span> <span
 </pre></div>
 </div>
 <p>And now we have a decent set of functions we can call from a small main program:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &quot;caesar.h&quot;</span>
-<span class="cp">#include &quot;help.h&quot;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;caesar.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;help.h&quot;</span><span class="cp"></span>
 
-<span class="cp">#include &lt;cstring&gt;    </span><span class="c1">// strcmp</span>
-<span class="cp">#include &lt;iostream&gt;</span>
-<span class="cp">#include &lt;string&gt;</span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;    // strcmp</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Define a default a &#39;character handler&#39;</span>
@@ -544,9 +535,9 @@ is not an <code class="docutils literal"><span class="pre">unsigned</span> <span
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Note, we did not use the function call operator, <code class="docutils literal"><span class="pre">operator()</span></code> when
-assigning values to <code class="docutils literal"><span class="pre">handler</span></code>.
-The name <code class="docutils literal"><span class="pre">rot13</span></code> points to the address where the function <code class="docutils literal"><span class="pre">rot13</span></code>
+<p>Note, we did not use the function call operator, <code class="docutils literal notranslate"><span class="pre">operator()</span></code> when
+assigning values to <code class="docutils literal notranslate"><span class="pre">handler</span></code>.
+The name <code class="docutils literal notranslate"><span class="pre">rot13</span></code> points to the address where the function <code class="docutils literal notranslate"><span class="pre">rot13</span></code>
 is stored.</p>
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">
@@ -600,7 +591,7 @@ is stored.</p>
     </p>
     <p>
         &copy; Copyright 2017-2018 Dave Parillo.
-      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
     </p>
   </div>
 </footer>

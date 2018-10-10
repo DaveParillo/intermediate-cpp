@@ -2,6 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>6.2. Lambda expressions &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
@@ -29,16 +30,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/runestonebase.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -139,12 +131,11 @@
   eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.2.6';
 </script>
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -295,7 +286,7 @@ where it is invoked or passed as an argument to a function.</p>
 <ol class="arabic simple">
 <li>Write a separate function with a name</li>
 <li>Store the function in a specific compilation unit</li>
-<li><code class="docutils literal"><span class="pre">#include</span></code> the compilation unit definitions where it will be used</li>
+<li><code class="docutils literal notranslate"><span class="pre">#include</span></code> the compilation unit definitions where it will be used</li>
 <li>Call or pass the function as an argument</li>
 </ol>
 <p>While using STL facilities with lambdas is not required,
@@ -306,14 +297,14 @@ any place a function pointer can be used, a lambda expression can be used instea
 There is a ‘count if’ function in the STL we can use to get the job done.
 The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::count_if">std::count_if</a> function expects 3 parameters:</p>
 <ul class="simple">
-<li>A pointer to the first element to examine in the <code class="docutils literal"><span class="pre">vector</span></code></li>
-<li>A pointer to one past the last element to examine in the <code class="docutils literal"><span class="pre">vector</span></code></li>
+<li>A pointer to the first element to examine in the <code class="docutils literal notranslate"><span class="pre">vector</span></code></li>
+<li>A pointer to one past the last element to examine in the <code class="docutils literal notranslate"><span class="pre">vector</span></code></li>
 <li>A pointer to a function that will determine if the element should be counted</li>
 </ul>
 <p>The last parameter is commonly called a <a class="reference internal" href="../glossary.html#term-predicate-function"><span class="xref std std-term">predicate function</span></a>.
-A predicate function is a fancy name for a function that returns a <code class="docutils literal"><span class="pre">bool</span></code>.</p>
+A predicate function is a fancy name for a function that returns a <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
 <p>We could implement this using the techniques we have already learned:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">bool</span> <span class="nf">less_than_5</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span> <span class="nf">less_than_5</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="n">str</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -325,27 +316,27 @@ A predicate function is a fancy name for a function that returns a <code class="
 </pre></div>
 </div>
 <p>While it is easy to write as many functions like this as we need:
-<code class="docutils literal"><span class="pre">less_than_10</span></code>, <code class="docutils literal"><span class="pre">greater_than_15</span></code>, etc.,
+<code class="docutils literal notranslate"><span class="pre">less_than_10</span></code>, <code class="docutils literal notranslate"><span class="pre">greater_than_15</span></code>, etc.,
 it’s clear this would get tedious quickly.
 Nor it is very flexible.
 Each time we want to compare a different value, or use a different comparator,
 we need to add a new function and recompile the program!</p>
 <p>In addition,
-if <code class="docutils literal"><span class="pre">less_than_5</span></code> is never used anywhere else, it seems like a bad idea to have
+if <code class="docutils literal notranslate"><span class="pre">less_than_5</span></code> is never used anywhere else, it seems like a bad idea to have
 this special-case function elevated to the status equivalent to all other functions.
 Conceptually, it doesn’t deserve
 to have the status of a full-fledged function with its own name,
 callable from anywhere.</p>
 <p>Our goal is to avoid writing a new function for every little comparison we want to make.
-One obvious solution is to add a parameter to our <code class="docutils literal"><span class="pre">less_than_5</span></code> function:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">bool</span> <span class="nf">less_than</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+One obvious solution is to add a parameter to our <code class="docutils literal notranslate"><span class="pre">less_than_5</span></code> function:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span> <span class="nf">less_than</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="n">str</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>Unfortunately, we can’t use this function in <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::count_if">std::count_if</a>.
 The new version of the function is arguably more generic,
-but we can’t use our ‘improved’ <code class="docutils literal"><span class="pre">less_than</span></code> in <code class="docutils literal"><span class="pre">count_if</span></code>.
+but we can’t use our ‘improved’ <code class="docutils literal notranslate"><span class="pre">less_than</span></code> in <code class="docutils literal notranslate"><span class="pre">count_if</span></code>.
 A predicate must be a <a class="reference internal" href="../glossary.html#term-unary-function"><span class="xref std std-term">unary function</span></a>.
 In other words, it can take only 1 parameter, no more.
 The ‘improved’ function is less useful than the old,
@@ -357,14 +348,14 @@ lambda expressions.
 Depending on where you go, you’ll also see these referred to as
 closures, lambda functions, function literals, or just lambdas.</p>
 <p>A lambda allows us to omit the separate function definition entirely and use it
-within the <code class="docutils literal"><span class="pre">num_short_strings</span></code> function as an inline parameter to <code class="docutils literal"><span class="pre">count_if</span></code>:</p>
-<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+within the <code class="docutils literal notranslate"><span class="pre">num_short_strings</span></code> function as an inline parameter to <code class="docutils literal notranslate"><span class="pre">count_if</span></code>:</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
 5
 6
-7</pre></div></td><td class="code"><div class="highlight"><pre><span class="kt">size_t</span> <span class="nf">num_short_strings</span><span class="p">(</span><span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&amp;</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">size_t</span> <span class="nf">num_short_strings</span><span class="p">(</span><span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&amp;</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">const</span> <span class="n">string</span><span class="o">*</span> <span class="n">begin</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">data</span><span class="p">();</span>
   <span class="k">const</span> <span class="k">auto</span> <span class="n">end</span> <span class="o">=</span> <span class="n">begin</span> <span class="o">+</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
 
@@ -373,20 +364,20 @@ within the <code class="docutils literal"><span class="pre">num_short_strings</s
 </span><span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
-<p>The lambda on line 6 completely replaces the old function <code class="docutils literal"><span class="pre">less_than_5</span></code>.</p>
+<p>The lambda on line 6 completely replaces the old function <code class="docutils literal notranslate"><span class="pre">less_than_5</span></code>.</p>
 <p>The general syntax for a lambda is:</p>
-<div class="highlight-text"><div class="highlight"><pre>[ captures ] (parameters) -&gt; returnType { lambda_body; }
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[ captures ] (parameters) -&gt; returnType { lambda_body; }
 </pre></div>
 </div>
-<p>The capture block <code class="docutils literal"><span class="pre">[]</span></code> is required, even if empty.
+<p>The capture block <code class="docutils literal notranslate"><span class="pre">[]</span></code> is required, even if empty.
 This informs the compiler that a lambda expression is beginning.</p>
 <p>The capture block allows the lambda to <strong>capture</strong> variables from outside the scope
 of the lambda body and use them within the lambda.
 Without a capture, no variables outside the lambda scope are visible
 within the lambda.</p>
 <p>In our previous example, it would allow us to extend num_short_strings by
-being able to pass in a value, rather than hard code the value <code class="docutils literal"><span class="pre">5</span></code>:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">size_t</span> <span class="nf">num_short_strings</span><span class="p">(</span><span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&amp;</span> <span class="n">v</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">sz</span><span class="p">)</span> <span class="p">{</span>
+being able to pass in a value, rather than hard code the value <code class="docutils literal notranslate"><span class="pre">5</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">size_t</span> <span class="nf">num_short_strings</span><span class="p">(</span><span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&amp;</span> <span class="n">v</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">sz</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">const</span> <span class="n">string</span><span class="o">*</span> <span class="n">begin</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">data</span><span class="p">();</span>
   <span class="k">const</span> <span class="k">auto</span> <span class="n">end</span> <span class="o">=</span> <span class="n">begin</span> <span class="o">+</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
 
@@ -398,14 +389,14 @@ being able to pass in a value, rather than hard code the value <code class="docu
 <p>The parameter is optional, but many useful standard algorithms that operate
 on containers expect to be able to pass each container element one at a time
 to a function that will use it.
-This is exactly what <code class="docutils literal"><span class="pre">count_if</span></code> does.</p>
+This is exactly what <code class="docutils literal notranslate"><span class="pre">count_if</span></code> does.</p>
 <p>The return type is also optional.
 A lambda will ordinarily be able to deduce the correct type from the return
 statement, so an explicit return is not needed.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;algorithm&gt;</span>
-<span class="cp">#include &lt;iostream&gt;</span>
-<span class="cp">#include &lt;string&gt;</span>
-<span class="cp">#include &lt;vector&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 
 <span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">;</span>
 <span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="p">;</span>
@@ -453,7 +444,7 @@ statement, so an explicit return is not needed.</p>
 within a function parameter list.
 You can define a lambda any place a normal function can be defined,
 but if you do this, you must assign the lambda to a variable so that it has a name:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">auto</span> <span class="n">lambda</span> <span class="o">=</span> <span class="p">[]</span> <span class="p">{</span>
     <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Hello, lambda!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
@@ -463,13 +454,13 @@ but if you do this, you must assign the lambda to a variable so that it has a na
 </pre></div>
 </div>
 <p>Once a lambda has a name, it is called like a function,
-using <code class="docutils literal"><span class="pre">operator()</span></code>.
+using <code class="docutils literal notranslate"><span class="pre">operator()</span></code>.
 The previous example was about as simple as a lambda can get.
 No return type and no parameter.</p>
-<p>Note the use of <code class="docutils literal"><span class="pre">auto</span></code> when defining the type of a lambda.
+<p>Note the use of <code class="docutils literal notranslate"><span class="pre">auto</span></code> when defining the type of a lambda.
 In the case of a lambda, auto is not an option.
 If auto was not used, what type would we supply in its place?</p>
-<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -480,7 +471,7 @@ If auto was not used, what type would we supply in its place?</p>
  9
 10
 11
-12</pre></div></td><td class="code"><div class="highlight"><pre><span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
   <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">numbers</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span>
                        <span class="mi">35</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">50</span> <span class="p">};</span>
   <span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="n">begin</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">.</span><span class="n">data</span><span class="p">();</span>
@@ -512,13 +503,13 @@ which is where return types are defined for normal functions.</p>
 <p>In a lambda, the only option is to specify a <a class="reference internal" href="../glossary.html#term-trailing-return-type"><span class="xref std std-term">trailing return type</span></a>.
 It can be used with ordinary functions also, but
 they are most commonly seen in lambda expressions and function templates.</p>
-<p>A trailing return type is <code class="docutils literal"><span class="pre">operator-&gt;</span></code>, followed by the return type.
+<p>A trailing return type is <code class="docutils literal notranslate"><span class="pre">operator-&gt;</span></code>, followed by the return type.
 The trailing return type must occur after the parameter list
 and before the function body.
 This is true for both lambdas and normal functions.</p>
 <p>In the following function, we want to return a type
 other than what would normally be returned by the operations.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;The return value of this odd function is: &quot;</span>
           <span class="p">[](</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">int</span> <span class="p">{</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
@@ -533,7 +524,7 @@ other than what would normally be returned by the operations.</p>
 </pre></div>
 </div>
 <p>Note in the previous example we defined a lambda taking two parameters and then
-immediately called it using <code class="docutils literal"><span class="pre">operator()</span></code>.</p>
+immediately called it using <code class="docutils literal notranslate"><span class="pre">operator()</span></code>.</p>
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">
 <p class="first admonition-title">More to Explore</p>
@@ -583,7 +574,7 @@ immediately called it using <code class="docutils literal"><span class="pre">ope
     </p>
     <p>
         &copy; Copyright 2017-2018 Dave Parillo.
-      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
     </p>
   </div>
 </footer>

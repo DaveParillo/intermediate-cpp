@@ -115,11 +115,10 @@ attempting to compile these examples in your environment.
 
    .. tab:: C++17
 
-      The textbook compiler does not know that ``-std=c++1z``, much less c++17 is an option:
-
       .. include:: test17.txt
 
-And now we know what our textbook capabilities are.
+The textbook online compiler has complete support for C++11
+and has support for some aspects, but not all of C++14 and C++17.
 
 
 GNU/Linux (or Unix) in general

@@ -2,6 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>1.6. Introducing the vim editor &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
@@ -29,16 +30,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/runestonebase.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -139,12 +131,11 @@
   eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.2.6';
 </script>
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -297,7 +288,7 @@
 <span id="index-0"></span><h1>1.6. Introducing the vim editor<a class="headerlink" href="#introducing-the-vim-editor" title="Permalink to this headline">¶</a></h1>
 <p>Vim is a highly configurable text editor built to make creating
 and changing any kind of text very efficient.
-It is included as <code class="docutils literal"><span class="pre">vi</span></code> with most *nix systems and with Apple OS X.
+It is included as <code class="docutils literal notranslate"><span class="pre">vi</span></code> with most *nix systems and with Apple OS X.
 Among its features are:</p>
 <ul class="simple">
 <li>persistent, multi-level undo tree</li>
@@ -307,23 +298,23 @@ Among its features are:</p>
 <li>integrates with many tools</li>
 </ul>
 <p>If you plan to program in C++,
-you should have at least a minimal familiarity with <code class="docutils literal"><span class="pre">vi</span></code>.
-<code class="docutils literal"><span class="pre">vi</span></code> is a very old, but very capable text editor with many features
+you should have at least a minimal familiarity with <code class="docutils literal notranslate"><span class="pre">vi</span></code>.
+<code class="docutils literal notranslate"><span class="pre">vi</span></code> is a very old, but very capable text editor with many features
 specifically designed for writing software.
-Technically, <code class="docutils literal"><span class="pre">vi</span></code> came first, and <code class="docutils literal"><span class="pre">vim</span></code> is a separate program (Vi IMproved),
+Technically, <code class="docutils literal notranslate"><span class="pre">vi</span></code> came first, and <code class="docutils literal notranslate"><span class="pre">vim</span></code> is a separate program (Vi IMproved),
 but often typing either ‘vi’ or ‘vim’ invokes the same program,
 and the distinction is unimportant until you begin
-exploring some of the features <code class="docutils literal"><span class="pre">vim</span></code> has added.
+exploring some of the features <code class="docutils literal notranslate"><span class="pre">vim</span></code> has added.
 This text uses the two terms interchangeably.</p>
 <p>Vi has thousands of features.
 No one knows them all, that is not the point.
 Vi is a very efficient editor that has intuitive commands.
-Because <code class="docutils literal"><span class="pre">vi</span></code> was created by programmers, for programmers,
-most <code class="docutils literal"><span class="pre">vi</span></code> commands ‘reward’ you, if you know how to touch type.
+Because <code class="docutils literal notranslate"><span class="pre">vi</span></code> was created by programmers, for programmers,
+most <code class="docutils literal notranslate"><span class="pre">vi</span></code> commands ‘reward’ you, if you know how to touch type.
 The idea is to spend less time messing with menu commands and to spend
 more time writing code.</p>
 <p><strong>Benefits of learning Vim</strong></p>
-<p>Once the basics of the <code class="docutils literal"><span class="pre">vi</span></code> editor have been mastered,
+<p>Once the basics of the <code class="docutils literal notranslate"><span class="pre">vi</span></code> editor have been mastered,
 you’ll find the skills learned to master vi translate to other
 tasks you’ll perform as a programmer as well.</p>
 <ol class="arabic simple">
@@ -337,7 +328,7 @@ so while learning vim, you are also learning these commands without even knowing
 </ol>
 <p><strong>Vim help</strong></p>
 <p>Vim is delivered with an extensive set of searchable, hyperlinked documentation.
-Access vim help using <code class="docutils literal"><span class="pre">:help</span></code> (or just <code class="docutils literal"><span class="pre">:h</span></code>.
+Access vim help using <code class="docutils literal notranslate"><span class="pre">:help</span></code> (or just <code class="docutils literal notranslate"><span class="pre">:h</span></code>.
 By default a help window open with basic vim navigation and how to jump to hyperlinked topics within
 the documentation.</p>
 <div class="section" id="modes">
@@ -355,7 +346,7 @@ Modes allow vi to do two basic things:</p>
 <li>accept text, written by you</li>
 </ul>
 <p>Some commands tell vim to enter a new <em>mode</em> which affects what your next keystrokes will do.
-In vi, type <code class="docutils literal"><span class="pre">:help</span> <span class="pre">vim-modes</span></code> to get help on modes and how to use them.</p>
+In vi, type <code class="docutils literal notranslate"><span class="pre">:help</span> <span class="pre">vim-modes</span></code> to get help on modes and how to use them.</p>
 <p>In the vi editor, each of these tasks is achieved by putting the editor
 into a particular <em>mode of operation</em> (normally just called a <em>mode</em>).
 When you wish to give vi a command,
@@ -381,7 +372,7 @@ When you first start vi, it is automatically in normal mode.</p>
 <td>For navigation and manipulation of text.
 This is the mode that vim will usually start in,
 which you can usually get back to with ESC.</td>
-<td><code class="docutils literal"><span class="pre">:help</span> <span class="pre">Normal-mode</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">:help</span> <span class="pre">Normal-mode</span></code></td>
 </tr>
 <tr class="row-odd"><td>insert</td>
 <td>For inserting new text.
@@ -389,35 +380,35 @@ The main difference from vi is that many important
 “normal” commands are also available in insert mode -
 provided you have a keyboard with enough meta keys
 (such as Ctrl, Alt, Windows-key, etc.).</td>
-<td><code class="docutils literal"><span class="pre">:help</span> <span class="pre">Insert-mode</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">:help</span> <span class="pre">Insert-mode</span></code></td>
 </tr>
 <tr class="row-even"><td>visual</td>
 <td>For navigation and manipulation of text selections,
 this mode allows you to perform most normal commands,
 and a few extra commands, on selected text.</td>
-<td><code class="docutils literal"><span class="pre">:help</span> <span class="pre">Visual-mode</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">:help</span> <span class="pre">Visual-mode</span></code></td>
 </tr>
 <tr class="row-odd"><td>select</td>
 <td>Similar to visual, but with a more MS Windows-like
 behavior.</td>
-<td><code class="docutils literal"><span class="pre">:help</span> <span class="pre">Select-mode</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">:help</span> <span class="pre">Select-mode</span></code></td>
 </tr>
 <tr class="row-even"><td>command-line</td>
 <td>For entering editor commands -
 like the help commands in the 3rd column.</td>
-<td><code class="docutils literal"><span class="pre">:help</span> <span class="pre">Command-line-mode</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">:help</span> <span class="pre">Command-line-mode</span></code></td>
 </tr>
 <tr class="row-odd"><td>Ex-mode</td>
 <td>Similar to the command-line mode but optimized
 for batch processing.</td>
-<td><code class="docutils literal"><span class="pre">:help</span> <span class="pre">Ex-mode</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">:help</span> <span class="pre">Ex-mode</span></code></td>
 </tr>
 </tbody>
 </table>
 <p>There are many sources of vim tutorials and resources for learning about vim.
 The best place to start is at your terminal, if you have one.
-At the command prompt, type <code class="docutils literal"><span class="pre">vimtutor</span></code>:</p>
-<div class="highlight-text"><div class="highlight"><pre>host@user: vimtutor
+At the command prompt, type <code class="docutils literal notranslate"><span class="pre">vimtutor</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>host@user: vimtutor
 </pre></div>
 </div>
 <p>Will launch a short tutorial designed to get you started with the basics.</p>
@@ -428,25 +419,25 @@ a decent introduction to vim.</p>
 <div class="section" id="motions">
 <span id="index-2"></span><h2>1.6.2. Motions<a class="headerlink" href="#motions" title="Permalink to this headline">¶</a></h2>
 <p>A motion is simply a command that moves the cursor. There’s plenty of them, with
-<code class="docutils literal"><span class="pre">h</span></code>, <code class="docutils literal"><span class="pre">j</span></code>, <code class="docutils literal"><span class="pre">k</span></code>, and <code class="docutils literal"><span class="pre">l</span></code> being the most
+<code class="docutils literal notranslate"><span class="pre">h</span></code>, <code class="docutils literal notranslate"><span class="pre">j</span></code>, <code class="docutils literal notranslate"><span class="pre">k</span></code>, and <code class="docutils literal notranslate"><span class="pre">l</span></code> being the most
 easily understood: move left, move up, move right, move down; all by only a
 single character.</p>
 <div class="section" id="word-motions">
 <h3>1.6.2.1. Word motions<a class="headerlink" href="#word-motions" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal"><span class="pre">w</span></code> To the beginning of the next word.</p>
-<p><code class="docutils literal"><span class="pre">e</span></code> To the end of the current word.</p>
-<p><code class="docutils literal"><span class="pre">W</span></code> To the beginning of the next WORD.</p>
-<p><code class="docutils literal"><span class="pre">E</span></code> To the end of the current WORD.</p>
-<p><code class="docutils literal"><span class="pre">b</span></code> Go backward a word.</p>
-<p><code class="docutils literal"><span class="pre">B</span></code> Go backward a WORD.</p>
+<p><code class="docutils literal notranslate"><span class="pre">w</span></code> To the beginning of the next word.</p>
+<p><code class="docutils literal notranslate"><span class="pre">e</span></code> To the end of the current word.</p>
+<p><code class="docutils literal notranslate"><span class="pre">W</span></code> To the beginning of the next WORD.</p>
+<p><code class="docutils literal notranslate"><span class="pre">E</span></code> To the end of the current WORD.</p>
+<p><code class="docutils literal notranslate"><span class="pre">b</span></code> Go backward a word.</p>
+<p><code class="docutils literal notranslate"><span class="pre">B</span></code> Go backward a WORD.</p>
 </div>
 <div class="section" id="other-motions">
 <h3>1.6.2.2. Other motions<a class="headerlink" href="#other-motions" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal"><span class="pre">gg</span></code> Go to the first line.</p>
-<p><code class="docutils literal"><span class="pre">G</span></code> Go to the very last line.</p>
-<p><code class="docutils literal"><span class="pre">0</span></code> Go to the very first character of the line.</p>
-<p><code class="docutils literal"><span class="pre">^</span></code> Go to the very first non-whitespace character of the line.</p>
-<p><code class="docutils literal"><span class="pre">$</span></code> Go to the very last character of the line.</p>
+<p><code class="docutils literal notranslate"><span class="pre">gg</span></code> Go to the first line.</p>
+<p><code class="docutils literal notranslate"><span class="pre">G</span></code> Go to the very last line.</p>
+<p><code class="docutils literal notranslate"><span class="pre">0</span></code> Go to the very first character of the line.</p>
+<p><code class="docutils literal notranslate"><span class="pre">^</span></code> Go to the very first non-whitespace character of the line.</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span></code> Go to the very last character of the line.</p>
 </div>
 </div>
 <div class="section" id="selections">
@@ -456,26 +447,26 @@ cursor but they do alter the way in which commands work. They will apply a
 command or operation to something like a word, or a sentence, or a block of text
 inside paired parenthesis, etc. A single selection can do a lot to make life in
 Vim easy.</p>
-<p><code class="docutils literal"><span class="pre">aw</span></code> A word</p>
-<p><code class="docutils literal"><span class="pre">aW</span></code> A WORD</p>
-<p><code class="docutils literal"><span class="pre">iw</span></code> An inner word</p>
-<p><code class="docutils literal"><span class="pre">iW</span></code> An inner WORD</p>
+<p><code class="docutils literal notranslate"><span class="pre">aw</span></code> A word</p>
+<p><code class="docutils literal notranslate"><span class="pre">aW</span></code> A WORD</p>
+<p><code class="docutils literal notranslate"><span class="pre">iw</span></code> An inner word</p>
+<p><code class="docutils literal notranslate"><span class="pre">iW</span></code> An inner WORD</p>
 </div>
 <div class="section" id="command-motion-examples">
 <h2>1.6.4. Command &amp; motion examples<a class="headerlink" href="#command-motion-examples" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Re-indent everything <code class="docutils literal"><span class="pre">gg=G</span></code></li>
-<li>Re-indent a block of code, including braces <code class="docutils literal"><span class="pre">=aB</span></code> or <code class="docutils literal"><span class="pre">=a{</span></code><ul>
-<li>If the cursor is on a brace, <code class="docutils literal"><span class="pre">=%</span></code> is the same as <code class="docutils literal"><span class="pre">=aB</span></code></li>
+<li>Re-indent everything <code class="docutils literal notranslate"><span class="pre">gg=G</span></code></li>
+<li>Re-indent a block of code, including braces <code class="docutils literal notranslate"><span class="pre">=aB</span></code> or <code class="docutils literal notranslate"><span class="pre">=a{</span></code><ul>
+<li>If the cursor is on a brace, <code class="docutils literal notranslate"><span class="pre">=%</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">=aB</span></code></li>
 </ul>
 </li>
-<li>Re-indent ‘inner block’, excluding braces <code class="docutils literal"><span class="pre">=iB</span></code> or <code class="docutils literal"><span class="pre">=i{</span></code></li>
-<li>Delete to the next word: <code class="docutils literal"><span class="pre">daw</span></code></li>
-<li>Delete to the next <code class="docutils literal"><span class="pre">x</span></code> character (replace ‘x’ with your character): <code class="docutils literal"><span class="pre">dtx</span></code></li>
-<li>Change a sentence: <code class="docutils literal"><span class="pre">cas</span></code></li>
-<li>Change 3 letters: <code class="docutils literal"><span class="pre">3cl</span></code></li>
-<li>Delete everything inside parenthesis: <code class="docutils literal"><span class="pre">di)</span></code></li>
-<li>Visually select a paragraph: <code class="docutils literal"><span class="pre">vap</span></code></li>
+<li>Re-indent ‘inner block’, excluding braces <code class="docutils literal notranslate"><span class="pre">=iB</span></code> or <code class="docutils literal notranslate"><span class="pre">=i{</span></code></li>
+<li>Delete to the next word: <code class="docutils literal notranslate"><span class="pre">daw</span></code></li>
+<li>Delete to the next <code class="docutils literal notranslate"><span class="pre">x</span></code> character (replace ‘x’ with your character): <code class="docutils literal notranslate"><span class="pre">dtx</span></code></li>
+<li>Change a sentence: <code class="docutils literal notranslate"><span class="pre">cas</span></code></li>
+<li>Change 3 letters: <code class="docutils literal notranslate"><span class="pre">3cl</span></code></li>
+<li>Delete everything inside parenthesis: <code class="docutils literal notranslate"><span class="pre">di)</span></code></li>
+<li>Visually select a paragraph: <code class="docutils literal notranslate"><span class="pre">vap</span></code></li>
 </ul>
 </div>
 <div class="section" id="creating-hello-world-using-vim">
@@ -486,23 +477,23 @@ but doesn’t provide information specific to compiling and running programs.</p
 <ol class="arabic">
 <li><p class="first">Before jumping into the editor, first let’s plan to
 save our project in a directory of its own:</p>
-<div class="highlight-text"><div class="highlight"><pre>host@user: mkdir work
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>host@user: mkdir work
 host@user: cd work
 </pre></div>
 </div>
-<p>I chose to work in the directory, <code class="docutils literal"><span class="pre">work</span></code>, but you could have named it
-<code class="docutils literal"><span class="pre">hello</span></code>, <code class="docutils literal"><span class="pre">project1</span></code>, or anything else.
+<p>I chose to work in the directory, <code class="docutils literal notranslate"><span class="pre">work</span></code>, but you could have named it
+<code class="docutils literal notranslate"><span class="pre">hello</span></code>, <code class="docutils literal notranslate"><span class="pre">project1</span></code>, or anything else.
 Just pick something that works for you, preferably related to the task at hand.
 Recommendation: avoid spaces in directory names.</p>
 </li>
 <li><p class="first">At the command prompt, open a new cpp source file:</p>
-<div class="highlight-text"><div class="highlight"><pre>host@user: vi hello.cpp
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>host@user: vi hello.cpp
 </pre></div>
 </div>
-<p>You’ll now be in <code class="docutils literal"><span class="pre">vi</span></code>, which initially, will show a blank canvas.
+<p>You’ll now be in <code class="docutils literal notranslate"><span class="pre">vi</span></code>, which initially, will show a blank canvas.
 Use the commands you learned in <em>vimtutor</em> to enter insert mode and
 begin typing your program:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Hello, World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
@@ -510,31 +501,31 @@ begin typing your program:</p>
 </pre></div>
 </div>
 </li>
-<li><p class="first">When done typing, press <code class="docutils literal"><span class="pre">ESC</span></code> to leave insert mode.</p>
+<li><p class="first">When done typing, press <code class="docutils literal notranslate"><span class="pre">ESC</span></code> to leave insert mode.</p>
 </li>
-<li><p class="first">Save your work by typing <code class="docutils literal"><span class="pre">:w</span></code>.</p>
+<li><p class="first">Save your work by typing <code class="docutils literal notranslate"><span class="pre">:w</span></code>.</p>
 </li>
-<li><p class="first">Still within vim, run the <em>make command</em>: type <code class="docutils literal"><span class="pre">:make</span> <span class="pre">hello</span></code>.
+<li><p class="first">Still within vim, run the <em>make command</em>: type <code class="docutils literal notranslate"><span class="pre">:make</span> <span class="pre">hello</span></code>.
 You should see something similar to:</p>
-<div class="highlight-text"><div class="highlight"><pre>c++ hello.cpp   -o hello
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>c++ hello.cpp   -o hello
 
 Press ENTER or type command to continue
 </pre></div>
 </div>
 </li>
-<li><p class="first">If you type <code class="docutils literal"><span class="pre">:make</span> <span class="pre">hello</span></code> a second time
+<li><p class="first">If you type <code class="docutils literal notranslate"><span class="pre">:make</span> <span class="pre">hello</span></code> a second time
 (when hello already exists and you haven’t yet modified hello.cpp),
 then you should see:</p>
-<div class="highlight-text"><div class="highlight"><pre>make: `hello&#39; is up to date.
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>make: `hello&#39; is up to date.
 </pre></div>
 </div>
 </li>
 <li><p class="first">At this point, you can run your program,
-also without leaving <code class="docutils literal"><span class="pre">vi</span></code>,
-by typing <code class="docutils literal"><span class="pre">:!./hello</span></code>.
-The <code class="docutils literal"><span class="pre">:!</span></code> command (bang command) executes shell commands from vim.
+also without leaving <code class="docutils literal notranslate"><span class="pre">vi</span></code>,
+by typing <code class="docutils literal notranslate"><span class="pre">:!./hello</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">:!</span></code> command (bang command) executes shell commands from vim.
 If you typed the above source code, you should see:</p>
-<div class="highlight-text"><div class="highlight"><pre>Hello, World!
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Hello, World!
 
 Press ENTER or type command to continue
 </pre></div>
@@ -550,16 +541,16 @@ The idea is to save the error messages from the compiler in a file and use Vim
 to jump to the errors one by one.  You can examine each problem and fix it,
 without having to remember all the error messages.</p>
 <p>Given the following, almost correct version of our <em>hello, world</em> program:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Hello, World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Typing <code class="docutils literal"><span class="pre">make</span> <span class="pre">foo</span></code> results in:</p>
+<p>Typing <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">foo</span></code> results in:</p>
 <blockquote>
-<div><div class="highlight-text"><div class="highlight"><pre>c++ -std=c++11 -Wall -Wextra -pedantic    foo.cpp   -o foo
+<div><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>c++ -std=c++11 -Wall -Wextra -pedantic    foo.cpp   -o foo
 foo.cpp:4:5: error: use of undeclared identifier &#39;cout&#39;; did you mean &#39;std::cout&#39;?
     cout &lt;&lt; &quot;Hello, World!\n&quot;;
     ^~~~
@@ -574,15 +565,15 @@ Press ENTER or type command to continue
 </pre></div>
 </div>
 </div></blockquote>
-<p>When you press ENTER, the <code class="docutils literal"><span class="pre">make</span></code> output is hidden, but stored in a special vim buffer:
+<p>When you press ENTER, the <code class="docutils literal notranslate"><span class="pre">make</span></code> output is hidden, but stored in a special vim buffer:
 the quickfix window.
-Open the quickfix window with the command <code class="docutils literal"><span class="pre">:copen</span></code>.
-This will open the output from the last <code class="docutils literal"><span class="pre">make</span></code> command in a new pane.
-You can move through the errors with the commands <code class="docutils literal"><span class="pre">:cnext</span></code> (or just <code class="docutils literal"><span class="pre">:cn</span></code>)
-and <code class="docutils literal"><span class="pre">:cprevious</span></code> (or just <code class="docutils literal"><span class="pre">:cp</span></code>).
-When done, close the quickfix window with <code class="docutils literal"><span class="pre">:close</span></code> (or just <code class="docutils literal"><span class="pre">:ccl</span></code>)</p>
-<p>There are many more quickfix commands, see <code class="docutils literal"><span class="pre">:help</span> <span class="pre">quickfix</span></code> for more information.</p>
-<p>The <code class="docutils literal"><span class="pre">make</span></code> utility is described in more detail in the <a class="reference internal" href="make.html"><span class="doc">Command-line compiling</span></a> section.</p>
+Open the quickfix window with the command <code class="docutils literal notranslate"><span class="pre">:copen</span></code>.
+This will open the output from the last <code class="docutils literal notranslate"><span class="pre">make</span></code> command in a new pane.
+You can move through the errors with the commands <code class="docutils literal notranslate"><span class="pre">:cnext</span></code> (or just <code class="docutils literal notranslate"><span class="pre">:cn</span></code>)
+and <code class="docutils literal notranslate"><span class="pre">:cprevious</span></code> (or just <code class="docutils literal notranslate"><span class="pre">:cp</span></code>).
+When done, close the quickfix window with <code class="docutils literal notranslate"><span class="pre">:close</span></code> (or just <code class="docutils literal notranslate"><span class="pre">:ccl</span></code>)</p>
+<p>There are many more quickfix commands, see <code class="docutils literal notranslate"><span class="pre">:help</span> <span class="pre">quickfix</span></code> for more information.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">make</span></code> utility is described in more detail in the <a class="reference internal" href="make.html"><span class="doc">Command-line compiling</span></a> section.</p>
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">
 <p class="first admonition-title">More to Explore</p>
@@ -603,7 +594,7 @@ When done, close the quickfix window with <code class="docutils literal"><span c
 <li><a class="reference external" href="http://www.gnu.org/software/emacs/">Emacs</a></li>
 </ul>
 <p class="last">Both vim and emacs are included on the Mesa server.
-If you have already downloaded <code class="docutils literal"><span class="pre">git</span></code>, then you also have vim.
+If you have already downloaded <code class="docutils literal notranslate"><span class="pre">git</span></code>, then you also have vim.
 Git provides a subset of the Gnu/linux utilities,
 including vim and ssh, but not make or g++.</p>
 </div>
@@ -644,7 +635,7 @@ including vim and ssh, but not make or g++.</p>
     </p>
     <p>
         &copy; Copyright 2017-2018 Dave Parillo.
-      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
     </p>
   </div>
 </footer>

@@ -2,6 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>3.1. Introduction to functions &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
@@ -29,16 +30,7 @@
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
     <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/runestonebase.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
@@ -139,12 +131,11 @@
   eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
   eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
   eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
-  eBookConfig.runestone_version = '3.0.7';
+  eBookConfig.runestone_version = '3.2.6';
 </script>
 
 
-  </head>
-  <body>
+  </head><body>
 
 
 <!-- Begin navbar -->
@@ -258,7 +249,7 @@
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - 3.2. Keyword: <code class="docutils literal"><span class="pre">const</span></code>' data-toggle="tooltip" >
+  <li id="relations-next" title='Next Chapter - 3.2. Keyword: <code class="docutils literal notranslate"><span class="pre">const</span></code>' data-toggle="tooltip" >
     <a href="constants.html" >
       <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
@@ -298,11 +289,11 @@ A function is composed of:</p>
 <li>Zero or more <em>parameters</em></li>
 <li>A return value<ul>
 <li>A function that returns no value must still declare that fact by
-specifying a return type <code class="docutils literal"><span class="pre">void</span></code>.</li>
+specifying a return type <code class="docutils literal notranslate"><span class="pre">void</span></code>.</li>
 </ul>
 </li>
 </ul>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="n">return_type</span> <span class="nf">function_name</span> <span class="p">(</span><span class="n">argument</span> <span class="n">list</span><span class="p">)</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">return_type</span> <span class="nf">function_name</span> <span class="p">(</span><span class="n">argument</span> <span class="n">list</span><span class="p">)</span>
 <span class="p">{</span>
    <span class="c1">// zero or more statements</span>
 <span class="p">}</span>
@@ -313,7 +304,7 @@ The braces and their contents is called the <strong>function body</strong>.
 Once defined, a function may be called and
 the task it defines can be executed as often as needed.
 Some simple, specific examples:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">int</span> <span class="nf">area</span> <span class="p">(</span><span class="kt">int</span> <span class="n">height</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">area</span> <span class="p">(</span><span class="kt">int</span> <span class="n">height</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="n">height</span><span class="o">*</span><span class="n">width</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -338,18 +329,18 @@ in addition to the declaration that appears in the function definition.</li>
 and is the only option when the function is used in a different file.</p>
 <p>To make sure that all declarations of a function are consistent,
 the usual practice is to put them in an <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=include">include</a> file.
-For example, if the <code class="docutils literal"><span class="pre">area</span></code> function is used in a lot of places,
-we might put it in its own file <code class="docutils literal"><span class="pre">area.cpp</span></code>:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &quot;area.h&quot;</span>
+For example, if the <code class="docutils literal notranslate"><span class="pre">area</span></code> function is used in a lot of places,
+we might put it in its own file <code class="docutils literal notranslate"><span class="pre">area.cpp</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;area.h&quot;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">area</span> <span class="p">(</span><span class="kt">int</span> <span class="n">height</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="n">height</span><span class="o">*</span><span class="n">width</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p id="index-1">The file <code class="docutils literal"><span class="pre">area.cpp</span></code> above uses an  <code class="docutils literal"><span class="pre">#include</span></code> directive to include a copy
+<p id="index-1">The file <code class="docutils literal notranslate"><span class="pre">area.cpp</span></code> above uses an  <code class="docutils literal notranslate"><span class="pre">#include</span></code> directive to include a copy
 of the following header file area.h:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#ifndef AREA_H</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef AREA_H</span>
 <span class="cp">#define AREA_H</span>
 
 <span class="cm">/* Returns the area of a rectangle */</span>
@@ -358,21 +349,21 @@ of the following header file area.h:</p>
 <span class="cp">#endif </span><span class="cm">/* AREA_H */</span><span class="cp"></span>
 </pre></div>
 </div>
-<p>Note that the declaration in <code class="docutils literal"><span class="pre">area.h</span></code> doesn’t have a body.
+<p>Note that the declaration in <code class="docutils literal notranslate"><span class="pre">area.h</span></code> doesn’t have a body.
 Instead, it’s terminated by a semicolon, like a variable declaration.
 A <em>function declaration</em> serves the same purpose as a <em>variable declaration</em>:
 they both introduce a new name and its type into a <a class="reference internal" href="../glossary.html#term-scope"><span class="xref std std-term">scope</span></a>.</p>
-<p>The <code class="docutils literal"><span class="pre">#ifndef</span></code>, <code class="docutils literal"><span class="pre">#define</span></code>, and <code class="docutils literal"><span class="pre">#endif</span></code> together form a pattern called a
+<p>The <code class="docutils literal notranslate"><span class="pre">#ifndef</span></code>, <code class="docutils literal notranslate"><span class="pre">#define</span></code>, and <code class="docutils literal notranslate"><span class="pre">#endif</span></code> together form a pattern called a
 <a class="reference internal" href="../glossary.html#term-header-guard"><span class="xref std std-term">header guard</span></a> or <em>include guard</em>.
 They ensure the functions in include files are defined only once.</p>
 <p>By convention, the documentation for functions is primarily in the include file.
-The idea is that <code class="docutils literal"><span class="pre">area.h</span></code> is the public interface of this module,
+The idea is that <code class="docutils literal notranslate"><span class="pre">area.h</span></code> is the public interface of this module,
 and so the explanation of how to use the function should be there.
-The reason <code class="docutils literal"><span class="pre">area.cpp</span></code> includes <code class="docutils literal"><span class="pre">area.h</span></code> is to get the compiler to
+The reason <code class="docutils literal notranslate"><span class="pre">area.cpp</span></code> includes <code class="docutils literal notranslate"><span class="pre">area.h</span></code> is to get the compiler to
 verify that the declarations in the two files match.</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">area.h</span></code> contains the function declaration</li>
-<li><code class="docutils literal"><span class="pre">area.cpp</span></code> contains the function definition (which includes a declaration)</li>
+<li><code class="docutils literal notranslate"><span class="pre">area.h</span></code> contains the function declaration</li>
+<li><code class="docutils literal notranslate"><span class="pre">area.cpp</span></code> contains the function definition (which includes a declaration)</li>
 </ul>
 <div class="admonition-best-practice admonition">
 <p class="first admonition-title">Best Practice</p>
@@ -380,14 +371,14 @@ verify that the declarations in the two files match.</p>
 <p class="last">The source file that <em>defines</em> a function should include the file that <em>declares</em>
 a function.</p>
 </div>
-<p>Every other file that needs to use the <code class="docutils literal"><span class="pre">area</span></code> function uses an include directive
-<code class="docutils literal"><span class="pre">#include</span> <span class="pre">&quot;area.h&quot;</span></code> at the top of the file that uses it:</p>
-<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>Every other file that needs to use the <code class="docutils literal notranslate"><span class="pre">area</span></code> function uses an include directive
+<code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&quot;area.h&quot;</span></code> at the top of the file that uses it:</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
 5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">#include &quot;area.h&quot;</span>
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;area.h&quot;</span><span class="cp"></span>
 
 <span class="kt">bool</span> <span class="nf">too_small</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">const</span> <span class="kt">int</span> <span class="n">min_size</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
@@ -395,10 +386,10 @@ a function.</p>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
-<p>The <code class="docutils literal"><span class="pre">#include</span></code> on line 1 uses double quotes instead of angle brackets;
-this tells the compiler to look for <code class="docutils literal"><span class="pre">area.h</span></code> in the current directory
+<p>The <code class="docutils literal notranslate"><span class="pre">#include</span></code> on line 1 uses double quotes instead of angle brackets;
+this tells the compiler to look for <code class="docutils literal notranslate"><span class="pre">area.h</span></code> in the current directory
 instead of the system include directory (typically /usr/include).
-Using <code class="docutils literal"><span class="pre">make</span></code>, you can add directories to the include search path using <code class="docutils literal"><span class="pre">-I</span></code>.</p>
+Using <code class="docutils literal notranslate"><span class="pre">make</span></code>, you can add directories to the include search path using <code class="docutils literal notranslate"><span class="pre">-I</span></code>.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <p class="last"><a class="reference internal" href="../beginnings/scope.html"><span class="doc">Scope</span></a></p>
@@ -409,8 +400,8 @@ Using <code class="docutils literal"><span class="pre">make</span></code>, you c
 <p>By default, all functions are global;
 they can be used in any file of your program whether or not a declaration appears in a header file.
 To limit access to the
-current file, declare a function or variable <code class="docutils literal"><span class="pre">static</span></code>, like this:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// assume all these definitions are in a single file &quot;foo.cpp&quot;</span>
+current file, declare a function or variable <code class="docutils literal notranslate"><span class="pre">static</span></code>, like this:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// assume all these definitions are in a single file &quot;foo.cpp&quot;</span>
 
 <span class="c1">// static variable used by non-static functions</span>
 <span class="k">static</span> <span class="kt">bool</span> <span class="n">verbose</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
@@ -447,22 +438,22 @@ current file, declare a function or variable <code class="docutils literal"><spa
 </pre></div>
 </div>
 <p>Similar to file static functions and variables,
-the keyword <code class="docutils literal"><span class="pre">static</span></code> can also be used inside functions.
+the keyword <code class="docutils literal notranslate"><span class="pre">static</span></code> can also be used inside functions.
 Static variables are initialized only the first time the function is called,
 for example:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="kt">size_t</span> <span class="nf">counter</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">size_t</span> <span class="nf">counter</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">static</span> <span class="kt">size_t</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
   <span class="k">return</span> <span class="o">++</span><span class="n">count</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The first time <code class="docutils literal"><span class="pre">counter</span></code> is called,
-the variable <code class="docutils literal"><span class="pre">count</span></code> is initialized to zero.
-Each call thereafter, <code class="docutils literal"><span class="pre">count</span></code> is increased by 1 and the new value is returned.</p>
+<p>The first time <code class="docutils literal notranslate"><span class="pre">counter</span></code> is called,
+the variable <code class="docutils literal notranslate"><span class="pre">count</span></code> is initialized to zero.
+Each call thereafter, <code class="docutils literal notranslate"><span class="pre">count</span></code> is increased by 1 and the new value is returned.</p>
 <p>Another appropriate use of static variable in functions:
 when defining a constant that should only be initialized once.
-For example, our earlier <code class="docutils literal"><span class="pre">too_small</span></code> function, could be:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &quot;area.h&quot;</span>
+For example, our earlier <code class="docutils literal notranslate"><span class="pre">too_small</span></code> function, could be:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;area.h&quot;</span><span class="cp"></span>
 
 <span class="kt">bool</span> <span class="nf">too_small</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">min_size</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
@@ -495,7 +486,7 @@ this is a sign that maybe you need to restructure your code.
 Having a function that does more than one thing (or does different things depending on its arguments)
 is likely to lead to confusion.</p>
 <p>So, for example, this is not a good function definition:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// This code is an anti-pattern.</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// This code is an anti-pattern.</span>
 <span class="c1">// It&#39;s an example of how NOT to write a function.</span>
 
 <span class="cm">/**</span>
@@ -521,7 +512,7 @@ is likely to lead to confusion.</p>
 </div>
 <p>This function is clearly trying to do two things and not doing either one very well.
 Two functions would be far simpler:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// return the maximum of x and y</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// return the maximum of x and y</span>
 <span class="c1">// if x == y, return y</span>
 <span class="kt">int</span> <span class="nf">maximum</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">)</span> <span class="o">?</span> <span class="nl">y</span> <span class="p">:</span> <span class="n">x</span><span class="p">;</span>
@@ -555,10 +546,10 @@ Your future co-workers will thank you.</p>
 <p>Also be aware the STL provides functions
 <a class="reference external" href="http://en.cppreference.com/w/cpp/algorithm/min">std::min</a> and
 <a class="reference external" href="http://en.cppreference.com/w/cpp/algorithm/max">std::max</a>,
-which eliminate the need for our <code class="docutils literal"><span class="pre">minimum</span></code> and <code class="docutils literal"><span class="pre">maximum</span></code> entirely
+which eliminate the need for our <code class="docutils literal notranslate"><span class="pre">minimum</span></code> and <code class="docutils literal notranslate"><span class="pre">maximum</span></code> entirely
 and have the advantage of working on any <a class="reference internal" href="../glossary.html#term-comparable"><span class="xref std std-term">comparable</span></a> type.</p>
 <p>This would transform the previous example to:</p>
-<div class="last highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;algorithm&gt;</span>
+<div class="last highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">computeMinOrMax</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">getMax</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="n">getMax</span> <span class="o">?</span> <span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">:</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
@@ -579,7 +570,7 @@ memory locations built into the CPU itself,
 but most will go on the <a class="reference internal" href="../glossary.html#term-stack"><span class="xref std std-term">stack</span></a>,
 a region of memory that on typical machines grows downward,
 even though the most recent additions to the stack are called the “top” of the stack.</p>
-<img src="../_images/graphviz-09565a785e969618f85e64280915eec8ac35a4ff.png" alt="digraph memory {
+<img src="../_images/graphviz-449289da4bcf3beddd8295d4d2e2acb573fcb891.png" alt="digraph memory {
   fontname = &quot;Bitstream Vera Sans&quot;
   label=&quot;Typical program memory layout&quot;
   node [
@@ -634,7 +625,7 @@ Any information stored in local variables is lost.</p>
 it may be useful to have a variable local to a function that persists from one function call to the next.
 You can do so by declaring the variable static.
 For example, here is a function that counts how many times it has been called:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// return the number of times the function has been called</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// return the number of times the function has been called</span>
 <span class="kt">int</span> <span class="nf">counter</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">static</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
   <span class="k">return</span> <span class="o">++</span><span class="n">count</span><span class="p">;</span>
@@ -654,7 +645,7 @@ Then step though
 <a class="reference external" href="http://pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0A%0A//%20forward%20function%20declarations%0Avoid%20dig%28%29%3B%0Avoid%20deeper%28%29%3B%0A%0Aint%20main%28%29%20%7B%0A%20%20std%3A%3Acout%20%3C%3C%20%22Programs%20always%20start%20in%20function%20main.%5Cn%22%3B%0A%0A%20%20dig%28%29%3B%0A%0A%20%20std%3A%3Acout%20%3C%3C%20%22Returned%20to%20main.%5Cnexiting.%22%3B%0A%20%20return%200%3B%0A%7D%0A%0Avoid%20dig%28%29%20%7B%0A%20%20std%3A%3Acout%20%3C%3C%20%22Digging...%5Cn%22%3B%0A%20%20deeper%28%29%3B%0A%20%20std%3A%3Acout%20%3C%3C%20%22Still%20digging...%5Cn%22%3B%0A%7D%0A%0Avoid%20deeper%28%29%20%7B%0A%20%20std%3A%3Acout%20%3C%3C%20%22now%20even%20deeper....%5Cn%22%3B%0A%7D%0A&amp;curInstr=6&amp;mode=display&amp;origin=opt-frontend.js&amp;py=cpp&amp;rawInputLstJSON=%5B%5D">the example code here</a>
 to see the call stack in action.</p>
 <p>Did your expectations match what actually happened?</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="c1">// call-stack.h</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// call-stack.h</span>
 
 <span class="c1">// it&#39;s a better idea to physically separate</span>
 <span class="c1">// definitions and declarations</span>
@@ -669,11 +660,11 @@ to see the call stack in action.</p>
 <span class="cp">#endif</span>
 </pre></div>
 </div>
-<div class="last highlight-cpp"><div class="highlight"><pre><span class="c1">// implement the call-stack functions</span>
+<div class="last highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// implement the call-stack functions</span>
 <span class="c1">// declared in call-stack.h</span>
 
-<span class="cp">#include &quot;call-stack.h&quot;</span>
-<span class="cp">#include &lt;iostream&gt;</span>
+<span class="cp">#include</span> <span class="cpf">&quot;call-stack.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Programs always start in function main.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
@@ -704,7 +695,7 @@ Unless you specify otherwise,
 function parameters are initialized with <em>copies</em> of the actual arguments,
 and function callers get back a <em>copy</em> of the value returned by the function.
 Pass by value is the simplest way to get data into and out of functions.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="c1">// Declare a function that takes a parameter.</span>
 <span class="kt">void</span> <span class="nf">printFavorite</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">);</span>
@@ -723,12 +714,12 @@ Pass by value is the simplest way to get data into and out of functions.</p>
 </div>
 <p>You can also step through <a class="reference external" href="http://pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0A%0A//%20Declare%20a%20function%20that%20takes%20a%20parameter.%0Avoid%20printFavorite%28int%20x%29%3B%0A%0Aint%20main%28%29%20%7B%0A%20%20int%20favorite%20%3D%2072%3B%0A%20%20printFavorite%28favorite%29%3B%20//%20Call%20the%20function.%0A%20%20return%200%3B%0A%7D%0A%0A//%20define%20the%20function%0Avoid%20printFavorite%28int%20x%29%20%7B%0A%20%20std%3A%3Acout%20%3C%3C%20%22my%20favorite%20number%20is%20%22%20%3C%3C%20x%20%3C%3C%20'%5Cn'%3B%0A%7D%0A&amp;curInstr=0&amp;mode=display&amp;origin=opt-frontend.js&amp;py=cpp&amp;rawInputLstJSON=%5B%5D">example 2.1.5-1 here</a>.</p>
 <p>The important point is that two copies of my favorite number are stored.
-The one declared in main, <code class="docutils literal"><span class="pre">favorite</span></code>, and
-the one declared in printFavorite, <code class="docutils literal"><span class="pre">x</span></code>.
-The parameter <code class="docutils literal"><span class="pre">x</span></code> is initialized using the value of <code class="docutils literal"><span class="pre">favorite</span></code> in main.</p>
+The one declared in main, <code class="docutils literal notranslate"><span class="pre">favorite</span></code>, and
+the one declared in printFavorite, <code class="docutils literal notranslate"><span class="pre">x</span></code>.
+The parameter <code class="docutils literal notranslate"><span class="pre">x</span></code> is initialized using the value of <code class="docutils literal notranslate"><span class="pre">favorite</span></code> in main.</p>
 <p>More than one parameter can be passed.
 For example, a function to add two numbers:</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="c1">// This function takes two parameters.</span>
 <span class="kt">int</span> <span class="nf">addNumbers</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">);</span>
@@ -754,12 +745,12 @@ An alternative to pass by value, is called <strong>pass by reference</strong>.
 Rather than passing a <em>copy</em> of the object,
 instead only the <em>address</em> of the object (the object reference),
 is passed instead.
-We use the <em>address of operator</em> <code class="docutils literal"><span class="pre">&amp;</span></code> to declare that only the address of the
+We use the <em>address of operator</em> <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> to declare that only the address of the
 variable is passed, rather than a copy.
 The primary advantage is that since all addresses are the same size,
 the cost of passing is the same,
 regardless of how large the object is.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="cm">/**</span>
 <span class="cm"> * A copy of x is passed to this function.</span>
@@ -799,7 +790,7 @@ regardless of how large the object is.</p>
 
     <div data-component="reveal" id="reveal-skill-check-functions"   data-showtitle="Show Skill Check" data-hidetitle="Hide Skill Check">
     <p>Given the following program:</p>
-<div class="highlight-cpp"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -812,7 +803,7 @@ regardless of how large the object is.</p>
 11
 12
 13
-14</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">#include &lt;iostream&gt;</span>
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">change_and_add</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
@@ -831,7 +822,7 @@ regardless of how large the object is.</p>
 
         <div class="runestone">
         <div data-component="fillintheblank" id="fib_param_1">
-            <p>What is the output from this program?</p>
+            <p>beginnings-1: What is the output from this program?</p>
 <input type="text">
         <script type="application/json">
             [[{"number": [428, 428], "feedback": "Correct."}, {"number": [123, 123], "feedback": "The variable a is modified in this program."}, {"number": [437, 437], "feedback": "The variable b is never modified in this program."}, {"number": [427, 427], "feedback": "Variable a is modified &lt;em&gt;twice&lt;/em&gt; before the addition is performed."}, {"regex": "^ *.* *$", "regexFlags": "", "feedback": "What is passed to the function change_and_add? What changes? What doesn\u2019t?"}]]
@@ -857,7 +848,7 @@ That is, prefer faster when <strong>equally</strong> clear</p>
 Programs with too many side-effects are hard to predict and debug.</p>
 <p>Returning to our call-stack example.
 What if the function signatures were changed to accept a pass-by-reference parameter?</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#pragma once</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
 
 <span class="kt">void</span> <span class="nf">dig</span><span class="p">(</span><span class="kt">double</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">);</span>
 <span class="kt">void</span> <span class="nf">deeper</span><span class="p">(</span><span class="kt">double</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">);</span>
@@ -866,8 +857,8 @@ What if the function signatures were changed to accept a pass-by-reference param
 <p>Given that the names of these functions provide no insight to their purpose,
 there is no way to know without inspecting the source if
 the variable x is modified when passed to these functions.</p>
-<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &quot;call-stack.h&quot;</span>
-<span class="cp">#include &lt;iostream&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;call-stack.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159</span><span class="p">;</span>
@@ -892,8 +883,8 @@ the variable x is modified when passed to these functions.</p>
 </pre></div>
 </div>
 <p>This is one of the reasons why some programmers <strong>only</strong> use pass-by-reference
-when the parameter is <code class="docutils literal"><span class="pre">const</span></code>.
-Some programmers prefer passing pointers over non-<code class="docutils literal"><span class="pre">const</span></code> parameters.
+when the parameter is <code class="docutils literal notranslate"><span class="pre">const</span></code>.
+Some programmers prefer passing pointers over non-<code class="docutils literal notranslate"><span class="pre">const</span></code> parameters.
 This requires the caller to explicitly pass in an address and
 clearly states that the function may modify the parameter.</p>
 </li>
@@ -919,7 +910,7 @@ once functions reach a certain size.</p>
 <li><p class="first">Check function parameters for validity.
 Unless you <em>completely</em> trust the caller (and their caller…)</p>
 <ul class="simple">
-<li>It should be obvious: do not trust <code class="docutils literal"><span class="pre">argv[]</span></code></li>
+<li>It should be obvious: do not trust <code class="docutils literal notranslate"><span class="pre">argv[]</span></code></li>
 </ul>
 </li>
 </ol>
@@ -951,12 +942,12 @@ from GitHub</li>
   </li>
   <a class="navLinkBg" id="navLinkBgLeft"  href="toctree.html" ></a>
   
-  <li id="relations-next" class="navLink" title='Next Section - 3.2. Keyword: <code class="docutils literal"><span class="pre">const</span></code>' data-toggle="tooltip" >
+  <li id="relations-next" class="navLink" title='Next Section - 3.2. Keyword: <code class="docutils literal notranslate"><span class="pre">const</span></code>' data-toggle="tooltip" >
     <a href="constants.html" >
       <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
     </a>
   </li>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="constants.html" >Next Section - 3.2. Keyword: <code class="docutils literal"><span class="pre">const</span></code></a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="constants.html" >Next Section - 3.2. Keyword: <code class="docutils literal notranslate"><span class="pre">const</span></code></a>
 
 <script type="text/javascript">
 
@@ -975,7 +966,7 @@ from GitHub</li>
     </p>
     <p>
         &copy; Copyright 2017-2018 Dave Parillo.
-      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.0.7.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
     </p>
   </div>
 </footer>
