@@ -42,6 +42,7 @@ Chapters
    pointers/toctree.rst
    function-pointers/toctree.rst
    containers/toctree.rst
+   trees/toctree.rst
    iterators/toctree.rst
    algorithms/toctree.rst
    class-I-intro/toctree.rst
