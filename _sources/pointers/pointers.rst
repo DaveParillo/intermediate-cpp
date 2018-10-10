@@ -550,15 +550,12 @@ the C string as a loop exit condition:
 
      char* p1 = a; 
      char* p2 = b;
-     while ((*p2++ = *p1++)); // copy *p1 to *p2
+     for (int i=0; a[i]; ++i) p2[i] = p1[i];
 
      printf("copy:\n");
      printf("%s\n", p2);  // print chars until '\0' detected
      return 0;
    }
-
-.. 
-   **
 
 Code like this can fail if the source string contains any embedded null characters.
 The risk is that this code works fine 99% of the time, but fails
