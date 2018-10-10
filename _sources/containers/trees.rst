@@ -9,8 +9,8 @@
 .. index:: associative containers
    single: trees
 
-Associative containers
-======================
+Tree ADT concepts
+=================
 If sequence containers like :cref:`vector` are so great,
 then why would we need anything else?
 

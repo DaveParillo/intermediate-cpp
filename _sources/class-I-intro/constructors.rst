@@ -79,16 +79,16 @@ we could have:
       .. include:: construct-ex2.txt
 
 
-Object lifecycle
-----------------
-In C++, objects get created, get used, and then get destroyed.
+Object life cycle
+-----------------
+In C++, objects get created, used, and destroyed.
 Constructors, assignment functions, and destructors control the
-lifecycle of objects: creation, copy, move, and destruction. 
+life cycle of objects: creation, copy, move, and destruction. 
 
 Like the default constructor, C++ defines default operations for
-other parts of an object lifecycle.
+other parts of an object life cycle.
 The default operations are a set of related operations that together 
-implement the lifecycle semantics of an object. 
+implement the life cycle semantics of an object. 
 
 The list of default operations since C++11 is:
 
@@ -162,7 +162,7 @@ It is still allowed, but initializer list syntax is preferred.
 
 
 In C++11, it is also permissible to initialize class members
-with constants directly in class.
+with constants directly in the class when declared.
 In-class initialization is preferred because it
 makes it explicit that the same value is expected to be used in all constructors, 
 avoids repetition, and avoids maintenance problems. 
