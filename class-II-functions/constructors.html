@@ -228,7 +228,8 @@
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
 <li><a class="reference internal" href="#">12.1. Constructors</a><ul>
-<li><a class="reference internal" href="#subsection">12.1.1. Subsection</a></li>
+<li><a class="reference internal" href="#initialization-syntax">12.1.1. Initialization syntax</a></li>
+<li><a class="reference internal" href="#overloaded-constructors">12.1.2. Overloaded constructors</a></li>
 </ul>
 </li>
 </ul>
@@ -277,14 +278,261 @@
   
   <div class="section" id="constructors">
 <span id="index-0"></span><h1>12.1. Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h1>
-<p>Normal paragraph text.</p>
-<div class="section" id="subsection">
-<h2>12.1.1. Subsection<a class="headerlink" href="#subsection" title="Permalink to this headline">¶</a></h2>
-<p>TBD</p>
+<p>All user defined types include a constructor.
+Even if you do not write one explicitly,
+the compiler will write one for you.
+For most of the classes and structs seen so far,
+we let the compiler generate the default constructors for us.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="47%" />
+<col width="53%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Operation</th>
+<th class="head">Function Signature</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>default constructor</td>
+<td><code class="docutils literal notranslate"><span class="pre">X()</span></code></td>
+</tr>
+<tr class="row-odd"><td>copy constructor</td>
+<td><code class="docutils literal notranslate"><span class="pre">X(const</span> <span class="pre">X&amp;)</span></code></td>
+</tr>
+<tr class="row-even"><td>copy assignment</td>
+<td><code class="docutils literal notranslate"><span class="pre">operator=(const</span> <span class="pre">X&amp;)</span></code></td>
+</tr>
+<tr class="row-odd"><td>move constructor</td>
+<td><code class="docutils literal notranslate"><span class="pre">X(X&amp;&amp;)</span></code></td>
+</tr>
+<tr class="row-even"><td>move assignment</td>
+<td><code class="docutils literal notranslate"><span class="pre">operator=(X&amp;&amp;)</span></code></td>
+</tr>
+<tr class="row-odd"><td>destructor</td>
+<td><code class="docutils literal notranslate"><span class="pre">~X()</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>The default constructor can be overloaded like any other function.
+When you design your types, you may create constructors with
+one, two, or more arguments as appropriate.</p>
+<p>The compiler will <strong>not</strong> generate a default
+constructor if we write any non-default ones.
+The compiler may still create other default operations.</p>
+<p>So while this is fine:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">point</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="n">point</span> <span class="n">p</span><span class="p">;</span>        <span class="c1">// implicitly defined constructor</span>
+  <span class="n">point</span> <span class="n">q</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>    <span class="c1">// implicitly defined copy constructor</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We can only initialize our point using the default constructor.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// this works, but it&#39;s tedious</span>
+<span class="n">point</span> <span class="n">p</span><span class="p">;</span>
+<span class="n">p</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="n">p</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>
+
+
+<span class="c1">// This syntax is preferred, but won&#39;t compile</span>
+<span class="n">point</span> <span class="n">e</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>If we want to initialize class members at construction time,
+then we need to add custom constructors.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">point</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+  <span class="n">point</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="n">point</span> <span class="n">p</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">};</span>  <span class="c1">// 2 arg constructor OK</span>
+  <span class="n">point</span> <span class="n">q</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>    <span class="c1">// default copy constructor</span>
+  <span class="n">point</span> <span class="n">e</span><span class="p">;</span>        <span class="c1">// compile error</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now we can use our 2 argument constructor,
+but now our old default invocation is broken.
+You’ll see and error like this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>foo.cpp:11:11: error: no matching constructor for initialization of &#39;point&#39;
+</pre></div>
+</div>
+<p>This is fixed by either:</p>
+<ul>
+<li><p class="first">Writing our own default implementation</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">point</span> <span class="p">()</span>
+  <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="p">{}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Telling the compiler to write it</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">point</span> <span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Telling the compiler to delete it</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">point</span> <span class="p">()</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In this case, attempting the use the default constructor is still a
+compile error, but the error is more explicit: you can’t use it because it was deleted.</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If you write a non-default constructor,
+then you should <em>always</em> write your own default constructor,
+or explicitly instruct the compiler to make it for you,
+or delete it.</p>
+<p class="last">In general, take care deleting the default constructor.
+Delete it only when you are sure objects of the class will <strong>never</strong>
+need to be default constructed.</p>
+</div>
+<div class="section" id="initialization-syntax">
+<h2>12.1.1. Initialization syntax<a class="headerlink" href="#initialization-syntax" title="Permalink to this headline">¶</a></h2>
+<p>Some programmers coming to C++ from other OO languages sometimes
+feel as if they have to initialize objects like this:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">point</span> <span class="nf">p</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Even though all semester, you been writing:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">s</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">random_device</span> <span class="n">r</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>When it comes to user defined types, sometimes it feels ‘incomplete’
+if you don’t include the <code class="docutils literal notranslate"><span class="pre">()</span></code>.
+Usually, those parentheses create more problems than they resolve.
+This is because of an inherent ambiguity in the C++ language.
+Although it seems obvious to us the statement <code class="docutils literal notranslate"><span class="pre">point</span> <span class="pre">p();</span></code>
+is a call to the default constructor and the results should be a new variable <code class="docutils literal notranslate"><span class="pre">p</span></code>,
+the compiler interprets it differently.</p>
+<p>The basic rule is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>If it looks like a function call, it&#39;s a function call.
+</pre></div>
+</div>
+<p>This means that in the code above, the compiler instead looks for:</p>
+<ul class="simple">
+<li>a function named <code class="docutils literal notranslate"><span class="pre">p</span></code></li>
+<li>that takes no arguments</li>
+<li>and returns an object of type <code class="docutils literal notranslate"><span class="pre">point</span></code></li>
+</ul>
+<p>Since in this case, there is no such function, it returns an error.
+Some compilers, like <em>clang</em>, will try to tell you:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>point.cpp:7:12: warning: empty parentheses interpreted as a function declaration [-Wvexing-parse]
+    point p();
+           ^~
+point.cpp:7:12: note: replace parentheses with an initializer to declare a variable
+    point p();
+           ^~
+</pre></div>
+</div>
+<p>C++ resolves this ambiguity in C++11 using the <em>uniform initializer syntax</em>.
+You can use curly braces: <code class="docutils literal notranslate"><span class="pre">{}</span></code> instead of parentheses to initialize objects.
+Braces are an extension of the initializer list syntax for containers
+and can be used even for default constructed objects.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="n">s</span><span class="p">{};</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">{};</span>
+<span class="n">point</span> <span class="n">p</span><span class="p">{};</span>
+<span class="n">string</span> <span class="n">s</span><span class="p">{</span><span class="s">&quot;hello, world!&quot;</span><span class="p">};</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>While the above works every time, omitting the braces entirely when not needed is preferred:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="n">s</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+<span class="n">point</span> <span class="n">p</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Initializer syntax works within constructors as well.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">vector</span><span class="o">&lt;</span><span class="n">point</span><span class="o">&gt;</span> <span class="n">redundant</span> <span class="p">{</span>
+   <span class="n">point</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">},</span>
+   <span class="n">point</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">},</span>
+   <span class="n">point</span> <span class="p">{</span><span class="mi">8</span><span class="p">,</span><span class="mi">13</span><span class="p">},</span>
+   <span class="n">point</span> <span class="p">{</span><span class="mi">21</span><span class="p">,</span><span class="mi">34</span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// The compiler can deduce the type in the container,</span>
+<span class="c1">// so we don&#39;t have to repeat the type every time</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">point</span><span class="o">&gt;</span> <span class="n">points</span> <span class="p">{</span>
+   <span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">},</span> <span class="p">{</span><span class="mi">8</span><span class="p">,</span><span class="mi">13</span><span class="p">},</span> <span class="p">{</span><span class="mi">21</span><span class="p">,</span><span class="mi">34</span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Recall that for containers, there is a difference between
+<code class="docutils literal notranslate"><span class="pre">vector&lt;int&gt;(5)</span></code>
+and
+<code class="docutils literal notranslate"><span class="pre">vector&lt;int&gt;{5}</span></code>.
+What’s the difference?</p>
+
+    <div data-component="reveal" id="reveal-whats-the-difference"   data-showtitle="Show" data-hidetitle="Hide">
+    <p>The first version creates a vector of size 5 with no initialized values.</p>
+<p>The second version creates a vector of size 1 with a single value equal to 5.</p>
+
+    </div>
+    </div>
+<div class="section" id="overloaded-constructors">
+<h2>12.1.2. Overloaded constructors<a class="headerlink" href="#overloaded-constructors" title="Permalink to this headline">¶</a></h2>
+<p>The same guidelines that apply to writing good functions apply to writing good
+overloaded constructors.
+A good class is built around good functions.
+Just as with regular functions,
+avoid confusing parameter lists.
+Consider the following:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Date</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>It’s seems likely that the three parameters represent the
+year, month, and day, but without reading the code,
+there is no way to know what order.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// is this correct?</span>
+<span class="n">Date</span> <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1776</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">};</span>
+
+<span class="c1">// or this?</span>
+<span class="n">Date</span> <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1776</span><span class="p">,</span> <span class="mi">7</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>Even if we read the code and learn the order,
+it is still probable that we will forget the order and transpose
+a month and day at some point.</p>
+<p>Instead of resigning ourselves to hoping we remember or
+having debugging problems at runtime, simply defining
+appropriate types improves clarity and utility:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">year</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+  <span class="k">public</span><span class="o">:</span>
+    <span class="n">year</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+    <span class="n">year</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="o">:</span> <span class="n">y</span> <span class="p">{</span><span class="n">value</span><span class="p">}</span> <span class="p">{}</span>
+
+    <span class="kt">int</span> <span class="n">year</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">y</span><span class="p">;}</span>
+<span class="p">};</span>
+<span class="k">enum</span> <span class="k">class</span> <span class="nc">month</span> <span class="p">{</span>
+  <span class="n">jan</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">feb</span><span class="p">,</span> <span class="n">mar</span><span class="p">,</span> <span class="n">apr</span><span class="p">,</span> <span class="n">may</span><span class="p">,</span> <span class="n">jun</span><span class="p">,</span> <span class="n">jul</span><span class="p">,</span> <span class="n">aug</span><span class="p">,</span> <span class="n">sep</span><span class="p">,</span> <span class="n">oct</span><span class="p">,</span> <span class="n">nov</span><span class="p">,</span> <span class="n">dec</span>
+<span class="p">};</span>
+
+<span class="c1">// now a new date can be constructed like:</span>
+<span class="n">Date</span> <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="n">year</span><span class="p">{</span><span class="mi">1776</span><span class="p">},</span> <span class="n">month</span><span class="o">::</span><span class="n">jul</span><span class="p">,</span> <span class="mi">4</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>This version is easier for programmers to remember and any errors are compile errors
+instead of runtime errors.</p>
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">
 <p class="first admonition-title">More to Explore</p>
-<p class="last">TBD</p>
+<ul class="last simple">
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/Most_vexing_parse">Most vexing parse (wikipedia)</a></li>
+<li>Item #6 “Most Vexing Parse” from ‘Effective STL’ by Scott Meyers (Addison-Wesley Professional).
+Copyright 2001 Scott Meyers, 978-0-201-74962-5.</li>
+</ul>
 </div>
 </div>
 </div>

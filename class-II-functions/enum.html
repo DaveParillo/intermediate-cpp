@@ -227,7 +227,11 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">12.2. Enumerated types</a></li>
+<li><a class="reference internal" href="#">12.2. Enumerated types</a><ul>
+<li><a class="reference internal" href="#unscoped-enumerations">12.2.1. Unscoped enumerations</a></li>
+<li><a class="reference internal" href="#scoped-enumerations">12.2.2. Scoped enumerations</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -274,11 +278,356 @@
   
   <div class="section" id="enumerated-types">
 <span id="index-0"></span><h1>12.2. Enumerated types<a class="headerlink" href="#enumerated-types" title="Permalink to this headline">¶</a></h1>
-<p>Normal paragraph text.</p>
+<p>An <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=enum">enum</a> (enumerated type) is a distinct type whose value is restricted
+to a range of values (see below for details),
+which may include several explicitly named constants (“enumerators”).
+The values of the constants are values of an integral type known as the
+<em>underlying type</em> of the enumeration.</p>
+<p>There are two distinct kinds of enumerations:</p>
+<dl class="docutils">
+<dt>unscoped enumeration</dt>
+<dd>declared with the keyword <code class="docutils literal notranslate"><span class="pre">enum</span></code></dd>
+<dt>scoped enumeration</dt>
+<dd>declared with the enum-key <code class="docutils literal notranslate"><span class="pre">enum</span> <span class="pre">class</span></code> or <code class="docutils literal notranslate"><span class="pre">enum</span> <span class="pre">struct</span></code></dd>
+</dl>
+<div class="section" id="unscoped-enumerations">
+<h2>12.2.1. Unscoped enumerations<a class="headerlink" href="#unscoped-enumerations" title="Permalink to this headline">¶</a></h2>
+<p>Each enumerator becomes a named constant of the enumeration’s type
+(that is, name),
+visible in the enclosing scope,
+and can be used whenever constants are required.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span> <span class="n">color</span> <span class="p">{</span> <span class="n">red</span><span class="p">,</span> <span class="n">green</span><span class="p">,</span> <span class="n">blue</span> <span class="p">};</span>
+<span class="n">color</span> <span class="n">r</span> <span class="o">=</span> <span class="n">red</span><span class="p">;</span>
+<span class="k">switch</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">case</span> <span class="nl">red</span>  <span class="p">:</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;red</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>   <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">green</span><span class="p">:</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;green</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">blue</span> <span class="p">:</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;blue</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>  <span class="k">break</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Each enumerator is associated with a value of the underlying type.
+When initializers are provided in the enumerator-list,
+the values of enumerators are defined by those initializers.
+If the first enumerator does not have an initializer, the associated value is zero.
+For any other enumerator whose definition does not have an initializer,
+the associated value is the value of the previous enumerator plus one.</p>
+<p>Values of unscoped enumeration type are implicitly-convertible to integral types.
+If the underlying type is not fixed, the value is convertible to the first type
+from the following list able to hold their entire value range:
+<code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">long</span></code>, <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">long</span></code>, <code class="docutils literal notranslate"><span class="pre">long</span> <span class="pre">long</span></code>, or <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span></code>.
+If the underlying type is fixed, the values can be converted to their promoted underlying type.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span> <span class="n">color</span> <span class="p">{</span> <span class="n">red</span><span class="p">,</span> <span class="n">yellow</span><span class="p">,</span> <span class="n">green</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">blue</span> <span class="p">};</span>
+<span class="n">color</span> <span class="n">c</span> <span class="o">=</span> <span class="n">red</span><span class="p">;</span> <span class="c1">// c  implicitly converts to 0</span>
+<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">blue</span><span class="p">;</span>  <span class="c1">// n == 21</span>
+</pre></div>
+</div>
+<p>Consider the following program:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">enum</span> <span class="n">Direction</span> <span class="p">{</span> <span class="n">north</span><span class="p">,</span> <span class="n">south</span><span class="p">,</span> <span class="n">east</span><span class="p">,</span> <span class="n">west</span> <span class="p">};</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">show_direction</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">direction</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Direction: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">direction</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\\</span><span class="s">n&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">Direction</span> <span class="n">dir</span> <span class="o">=</span> <span class="n">west</span><span class="p">;</span>
+  <span class="n">show_direction</span><span class="p">(</span><span class="n">dir</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">dir</span><span class="p">;</span>
+  <span class="n">show_direction</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">north</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">show_direction</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+    <div data-component="reveal" id="reveal-enum-issues"   data-showtitle="What problems does this program have?" data-hidetitle="Hide">
+    <ol class="arabic simple">
+<li>The unscoped enum <code class="docutils literal notranslate"><span class="pre">Direction</span></code> is not type safe<ul>
+<li>Any integral type can be assigned to it</li>
+</ul>
+</li>
+<li>The line <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">num</span> <span class="pre">=</span> <span class="pre">dir;</span></code> assigns a direction to an int</li>
+<li>The for loop is unaware that there are only 4 directions, not 8.</li>
+<li>Function <code class="docutils literal notranslate"><span class="pre">show_direction</span></code> implies it takes a direction as an argument,
+but any integral type will be processed without complaint</li>
+<li>The function <code class="docutils literal notranslate"><span class="pre">show_direction</span></code> can’t print a human readable direction.
+It can only print a number.</li>
+</ol>
+
+    </div>
+    <p>Scoped enums were introduced to address these specific shortcomings.</p>
+</div>
+<div class="section" id="scoped-enumerations">
+<h2>12.2.2. Scoped enumerations<a class="headerlink" href="#scoped-enumerations" title="Permalink to this headline">¶</a></h2>
+<p>Like unscoped enumerations,
+each enumerator becomes a named constant of the enumeration’s type
+visible in the enclosing scope,
+and can be used whenever constants are required.</p>
+<p>Unlike unscoped enums, scoped enums do <strong>not</strong> implicitly convert to integral types,
+but can be converted with a static or explicit cast.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span> <span class="k">class</span> <span class="nc">Color</span> <span class="p">{</span> <span class="n">red</span><span class="p">,</span> <span class="n">green</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">blue</span> <span class="p">};</span>
+<span class="n">Color</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Color</span><span class="o">::</span><span class="n">blue</span><span class="p">;</span>
+<span class="k">switch</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">case</span> <span class="n">Color</span><span class="o">::</span><span class="nl">red</span>  <span class="p">:</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;red</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>   <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="n">Color</span><span class="o">::</span><span class="nl">green</span><span class="p">:</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;green</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="n">Color</span><span class="o">::</span><span class="nl">blue</span> <span class="p">:</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;blue</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>  <span class="k">break</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// int n = r;                // error: no implicit int conversion</span>
+<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">r</span><span class="p">);</span> <span class="c1">// OK, n = 21</span>
+</pre></div>
+</div>
+<p>All the C++ enumerated types are very simple compared to the same types in other languages.
+However, it is easy to add features as needed.
+Given the following scoped enum:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// If this were declared enum struct, nothing in this example changes...</span>
+<span class="c1">//</span>
+<span class="k">enum</span> <span class="k">class</span> <span class="nc">Direction</span> <span class="p">{</span> <span class="n">NORTH</span><span class="p">,</span> <span class="n">SOUTH</span><span class="p">,</span> <span class="n">EAST</span><span class="p">,</span> <span class="n">WEST</span> <span class="p">};</span>
+</pre></div>
+</div>
+<p>We can implement a stream overload to allow printing enum members with
+human readable strings:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">Direction</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">dir</span><span class="p">;</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="n">rhs</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">Direction</span><span class="o">::</span><span class="nl">NORTH</span><span class="p">:</span> <span class="n">dir</span> <span class="o">=</span> <span class="s">&quot;NORTH&quot;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">Direction</span><span class="o">::</span><span class="nl">EAST</span><span class="p">:</span>  <span class="n">dir</span> <span class="o">=</span> <span class="s">&quot;EAST&quot;</span><span class="p">;</span>  <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">Direction</span><span class="o">::</span><span class="nl">SOUTH</span><span class="p">:</span> <span class="n">dir</span> <span class="o">=</span> <span class="s">&quot;SOUTH&quot;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">Direction</span><span class="o">::</span><span class="nl">WEST</span><span class="p">:</span>  <span class="n">dir</span> <span class="o">=</span> <span class="s">&quot;WEST&quot;</span><span class="p">;</span>  <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="n">dir</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>And an array allows the enum to be used in a range for loop:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">Direction</span><span class="p">,</span><span class="mi">4</span><span class="o">&gt;</span> <span class="n">directions</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="p">{</span>
+    <span class="n">Direction</span><span class="o">::</span><span class="n">NORTH</span><span class="p">,</span>
+    <span class="n">Direction</span><span class="o">::</span><span class="n">EAST</span><span class="p">,</span>
+    <span class="n">Direction</span><span class="o">::</span><span class="n">SOUTH</span><span class="p">,</span>
+    <span class="n">Direction</span><span class="o">::</span><span class="n">WEST</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Now the show directions program looks like this:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;Direction.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="nf">show_direction</span><span class="p">(</span><span class="k">const</span> <span class="n">Direction</span> <span class="n">d</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Direction: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">d</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">Direction</span> <span class="n">dir</span> <span class="o">=</span> <span class="n">Direction</span><span class="o">::</span><span class="n">WEST</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Show one direction: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">show_direction</span><span class="p">(</span><span class="n">dir</span><span class="p">);</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Loop through all directions: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">d</span><span class="p">:</span> <span class="n">directions</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">show_direction</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Another example uses the same techniques to build a deck of cards.</p>
+<div id='cards' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Source" >
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;array&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+
+<span class="k">enum</span> <span class="k">class</span> <span class="nc">Rank</span> <span class="p">{</span>
+  <span class="n">Ace</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Two</span><span class="p">,</span> <span class="n">Three</span><span class="p">,</span> <span class="n">Four</span><span class="p">,</span> <span class="n">Five</span><span class="p">,</span> <span class="n">Six</span><span class="p">,</span> <span class="n">Seven</span><span class="p">,</span> <span class="n">Eight</span><span class="p">,</span> <span class="n">Nine</span><span class="p">,</span> <span class="n">Ten</span><span class="p">,</span> <span class="n">Jack</span><span class="p">,</span> <span class="n">Queen</span><span class="p">,</span> <span class="n">King</span>
+<span class="p">};</span>
+
+<span class="c1">// Define an array of Rank to allow range-for looping</span>
+<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">Rank</span><span class="p">,</span><span class="mi">13</span><span class="o">&gt;</span> <span class="n">ranks</span> <span class="o">=</span> 
+<span class="p">{</span>
+  <span class="p">{</span>
+    <span class="n">Rank</span><span class="o">::</span><span class="n">Ace</span><span class="p">,</span> <span class="n">Rank</span><span class="o">::</span><span class="n">Two</span><span class="p">,</span> <span class="n">Rank</span><span class="o">::</span><span class="n">Three</span><span class="p">,</span> <span class="n">Rank</span><span class="o">::</span><span class="n">Four</span><span class="p">,</span> <span class="n">Rank</span><span class="o">::</span><span class="n">Five</span><span class="p">,</span>    
+    <span class="n">Rank</span><span class="o">::</span><span class="n">Six</span><span class="p">,</span> <span class="n">Rank</span><span class="o">::</span><span class="n">Seven</span><span class="p">,</span> <span class="n">Rank</span><span class="o">::</span><span class="n">Eight</span><span class="p">,</span> <span class="n">Rank</span><span class="o">::</span><span class="n">Nine</span><span class="p">,</span> <span class="n">Rank</span><span class="o">::</span><span class="n">Ten</span><span class="p">,</span>    
+    <span class="n">Rank</span><span class="o">::</span><span class="n">Jack</span><span class="p">,</span> <span class="n">Rank</span><span class="o">::</span><span class="n">Queen</span><span class="p">,</span> <span class="n">Rank</span><span class="o">::</span><span class="n">King</span>     
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">enum</span> <span class="k">class</span> <span class="nc">Suit</span> <span class="p">{</span>
+  <span class="n">Clubs</span><span class="p">,</span> <span class="n">Diamonds</span><span class="p">,</span> <span class="n">Hearts</span><span class="p">,</span> <span class="n">Spades</span>
+<span class="p">};</span>
+
+<span class="c1">// Define an array of Suit to allow range-for looping</span>
+<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">Suit</span><span class="p">,</span><span class="mi">4</span><span class="o">&gt;</span> <span class="n">suits</span> <span class="o">=</span> 
+<span class="p">{</span>
+  <span class="p">{</span>
+    <span class="n">Suit</span><span class="o">::</span><span class="n">Clubs</span><span class="p">,</span> <span class="n">Suit</span><span class="o">::</span><span class="n">Diamonds</span><span class="p">,</span> <span class="n">Suit</span><span class="o">::</span><span class="n">Hearts</span><span class="p">,</span> <span class="n">Suit</span><span class="o">::</span><span class="n">Spades</span>     
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">Card</span> <span class="p">{</span>
+  <span class="n">Rank</span> <span class="n">rank</span><span class="p">;</span>
+  <span class="n">Suit</span> <span class="n">suit</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">Rank</span><span class="o">&amp;</span> <span class="n">rhs</span> <span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">Suit</span><span class="o">&amp;</span> <span class="n">rhs</span> <span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">Card</span><span class="o">&amp;</span> <span class="n">rhs</span> <span class="p">);</span>
+
+
+<span class="c1">// short, but take care . . . </span>
+<span class="c1">// a change in the order of the enum could break this,</span>
+<span class="c1">// Assumes order: A,2,3,4,5,6,7,8,9,10,J,Q,K</span>
+<span class="c1">// A more verbose switch would be better</span>
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">Rank</span><span class="o">&amp;</span> <span class="n">rhs</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">rhs</span> <span class="o">&gt;</span> <span class="n">Rank</span><span class="o">::</span><span class="n">Ace</span> <span class="o">&amp;&amp;</span> <span class="n">rhs</span> <span class="o">&lt;</span> <span class="n">Rank</span><span class="o">::</span><span class="n">Jack</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">rhs</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">rhs</span> <span class="o">==</span> <span class="n">Rank</span><span class="o">::</span><span class="n">Ace</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Ace&quot;</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">rhs</span> <span class="o">==</span> <span class="n">Rank</span><span class="o">::</span><span class="n">Jack</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Jack&quot;</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">rhs</span> <span class="o">==</span> <span class="n">Rank</span><span class="o">::</span><span class="n">Queen</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Queen&quot;</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;King&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">os</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">Suit</span><span class="o">&amp;</span> <span class="n">rhs</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">switch</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">Suit</span><span class="o">::</span><span class="nl">Clubs</span><span class="p">:</span>    <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Clubs&quot;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">Suit</span><span class="o">::</span><span class="nl">Diamonds</span><span class="p">:</span> <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Diamonds&quot;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">Suit</span><span class="o">::</span><span class="nl">Hearts</span><span class="p">:</span>   <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Hearts&quot;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">Suit</span><span class="o">::</span><span class="nl">Spades</span><span class="p">:</span>   <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Spades&quot;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">os</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">Card</span><span class="o">&amp;</span> <span class="n">rhs</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="n">rhs</span><span class="p">.</span><span class="n">rank</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; of &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">rhs</span><span class="p">.</span><span class="n">suit</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Card</span><span class="o">&gt;</span> <span class="n">deck</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">s</span><span class="p">:</span> <span class="n">suits</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">r</span><span class="p">:</span> <span class="n">ranks</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">deck</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">Card</span><span class="p">{</span><span class="n">r</span><span class="p">,</span><span class="n">s</span><span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">c</span> <span class="p">:</span> <span class="n">deck</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">c</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Run it" >
+
+<div data-childcomponent="ac-class-enum-cards-ex1" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac-class-enum-cards-ex1 data-lang="cpp" 
+      data-timelimit=25000    
+    data-audio=''   
+    data-compileargs="['-Wall', '-Wextra', '-pedantic', '-std=c++11']"      >
+#include <array>
+#include <iostream>
+#include <vector>
+
+enum class Rank {
+  Ace = 1, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King
+};
+
+// Define an array of Rank to allow range-for looping
+const std::array<Rank,13> ranks =
+{
+  {
+    Rank::Ace, Rank::Two, Rank::Three, Rank::Four, Rank::Five,
+    Rank::Six, Rank::Seven, Rank::Eight, Rank::Nine, Rank::Ten,
+    Rank::Jack, Rank::Queen, Rank::King
+  }
+};
+
+enum class Suit {
+  Clubs, Diamonds, Hearts, Spades
+};
+
+// Define an array of Suit to allow range-for looping
+const std::array<Suit,4> suits =
+{
+  {
+    Suit::Clubs, Suit::Diamonds, Suit::Hearts, Suit::Spades
+  }
+};
+
+struct Card {
+  Rank rank;
+  Suit suit;
+};
+
+std::ostream& operator<<(std::ostream& os, const Rank& rhs );
+std::ostream& operator<<(std::ostream& os, const Suit& rhs );
+std::ostream& operator<<(std::ostream& os, const Card& rhs );
+
+
+// short, but take care . . .
+// a change in the order of the enum could break this,
+// Assumes order: A,2,3,4,5,6,7,8,9,10,J,Q,K
+// A more verbose switch would be better
+std::ostream& operator<<(std::ostream& os, const Rank& rhs ) {
+  if (rhs > Rank::Ace && rhs < Rank::Jack) {
+    os << static_cast<int>(rhs);
+  } else if (rhs == Rank::Ace) {
+    os << "Ace";
+  } else if (rhs == Rank::Jack) {
+    os << "Jack";
+  } else if (rhs == Rank::Queen) {
+    os << "Queen";
+  } else {
+    os << "King";
+  }
+
+  return os;
+}
+
+std::ostream& operator<<(std::ostream& os, const Suit& rhs ) {
+  switch(rhs) {
+    case Suit::Clubs:    os << "Clubs"; break;
+    case Suit::Diamonds: os << "Diamonds"; break;
+    case Suit::Hearts:   os << "Hearts"; break;
+    case Suit::Spades:   os << "Spades"; break;
+  }
+  return os;
+}
+
+std::ostream& operator<<(std::ostream& os, const Card& rhs ) {
+  return os << rhs.rank << " of " << rhs.suit;
+}
+
+int main() {
+  std::vector<Card> deck;
+  for (const auto& s: suits) {
+    for (const auto& r: ranks) {
+      deck.push_back(Card{r,s});
+    }
+  }
+  for(const auto& c : deck ) {
+    std::cout << c << '\n';
+  }
+  return 0;
+}
+</textarea>
+</div>
+</div>
+    </div>
+
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">
 <p class="first admonition-title">More to Explore</p>
 <p class="last">TBD</p>
+</div>
 </div>
 </div>
 
