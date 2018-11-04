@@ -99,8 +99,22 @@ to get something specific done in a clear, efficient manner.
 .. index:: struct vs. class
    single: class vs. struct
 
-Relationship to ``struct``
---------------------------
+The basic structure of a class
+------------------------------
+Create a new class using either the ``class`` or ``struct`` keywords.
+The general (simplified) format is:
+
+.. code-block:: cpp
+
+   class class-name {
+     public:
+        // publicly visible class members
+     private:
+        // hidden class members
+   };
+
+We will be adding to this basic structure over the next several chapters.
+
 In C++, a ``struct`` **is a** ``class`` with default public access:
 
 .. tabbed:: talk-struct

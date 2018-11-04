@@ -228,7 +228,7 @@
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
 <li><a class="reference internal" href="#">11.1. Classes</a><ul>
-<li><a class="reference internal" href="#relationship-to-struct">11.1.1. Relationship to <code class="docutils literal notranslate"><span class="pre">struct</span></code></a></li>
+<li><a class="reference internal" href="#the-basic-structure-of-a-class">11.1.1. The basic structure of a class</a></li>
 </ul>
 </li>
 </ul>
@@ -350,8 +350,19 @@ there is no way to know if a class even <strong>has</strong> data without lookin
 the user of the class do not need to care.
 We use classes in the same way we use any built-in type:
 to get something specific done in a clear, efficient manner.</p>
-<div class="section" id="relationship-to-struct">
-<span id="index-1"></span><h2>11.1.1. Relationship to <code class="docutils literal notranslate"><span class="pre">struct</span></code><a class="headerlink" href="#relationship-to-struct" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-basic-structure-of-a-class">
+<span id="index-1"></span><h2>11.1.1. The basic structure of a class<a class="headerlink" href="#the-basic-structure-of-a-class" title="Permalink to this headline">¶</a></h2>
+<p>Create a new class using either the <code class="docutils literal notranslate"><span class="pre">class</span></code> or <code class="docutils literal notranslate"><span class="pre">struct</span></code> keywords.
+The general (simplified) format is:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">class</span><span class="o">-</span><span class="n">name</span> <span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+     <span class="c1">// publicly visible class members</span>
+  <span class="k">private</span><span class="o">:</span>
+     <span class="c1">// hidden class members</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>We will be adding to this basic structure over the next several chapters.</p>
 <p>In C++, a <code class="docutils literal notranslate"><span class="pre">struct</span></code> <strong>is a</strong> <code class="docutils literal notranslate"><span class="pre">class</span></code> with default public access:</p>
 <div id='talk-struct' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Example" >
 <p>This program works because everything in a <code class="docutils literal notranslate"><span class="pre">struct</span></code> is publicly visible
