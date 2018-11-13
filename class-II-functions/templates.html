@@ -228,7 +228,8 @@
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
 <li><a class="reference internal" href="#">12.6. Class templates</a><ul>
-<li><a class="reference internal" href="#subsection">12.6.1. Subsection</a></li>
+<li><a class="reference internal" href="#value-class-templates">12.6.1. Value class templates</a></li>
+<li><a class="reference internal" href="#friend-or-non-friend">12.6.2. Friend or non-friend?</a></li>
 </ul>
 </li>
 </ul>
@@ -277,14 +278,208 @@
   
   <div class="section" id="class-templates">
 <span id="index-0"></span><h1>12.6. Class templates<a class="headerlink" href="#class-templates" title="Permalink to this headline">¶</a></h1>
-<p>Text</p>
-<div class="section" id="subsection">
-<h2>12.6.1. Subsection<a class="headerlink" href="#subsection" title="Permalink to this headline">¶</a></h2>
-<p>TBD</p>
+<p>C++ allows writing class templates using the same syntax used to write function templates.
+We use templates in classes for the same reason we use templates in functions:
+when we want to use variables without making a commitment to a fixed type.
+A class template is <strong>not</strong> a class.
+It defines instructions the compiler uses to create classes as needed.
+No code is generated from a source file that contains only template definitions.
+In order for any code to appear, a template must be instantiated:
+the template arguments must be provided so that the compiler can generate an actual class.
+Class template type cannot be deduced from the passed parameters
+in the way that function templates may.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="nc">U</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">pair</span> <span class="p">{</span>
+  <span class="n">T</span> <span class="n">first</span><span class="p">;</span>
+  <span class="n">U</span> <span class="n">second</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">pair</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">symbol</span> <span class="o">=</span> <span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="mi">65</span><span class="p">};</span>
+  <span class="k">return</span> <span class="n">symbol</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A class template allows us to define a family of classes that performs the same
+behaviors on many different types.
+Container classes are the canonical examples of how templates
+can make code maintenance easier.
+The following class is a ‘bag’ - a general purpose container.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">bag</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">data</span><span class="p">;</span>
+
+  <span class="k">public</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">add</span><span class="p">(</span><span class="n">T</span> <span class="n">item</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="nf">erase</span><span class="p">(</span><span class="n">bag</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">item</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="n">bag</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">item</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>As this class demonstrates, a <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::vector">std::vector</a> is a <em>bag</em>:
+a general purpose container for (nearly) any type.</p>
+<p>Recall the reason why we wanted to create a function template.
+We were writing multiple copies of the same functions over and over.
+The function bodies were identical except for the types used.
+The same applies to class templates:
+we want to avoid writing multiple classes that are the same
+except for the data stored and types passed to functions.</p>
+<div class="section" id="value-class-templates">
+<h2>12.6.1. Value class templates<a class="headerlink" href="#value-class-templates" title="Permalink to this headline">¶</a></h2>
+<p>Using the information we have so far, we can create a complete
+class template that supports most of the basic operations
+we are generally interested in for any value type:</p>
+<ul class="simple">
+<li>Default construct</li>
+<li>Copy and assign values</li>
+<li>Use any relational operation</li>
+</ul>
+<p>The following example uses some common conventions for user defined types:</p>
+<ul>
+<li><p class="first">Constructors are defined in the class body if they are short
+(5 lines of code or less).</p>
+</li>
+<li><p class="first">The name <em>other</em> is used as the parameter name for another object
+of the same type when passed as the only parameter to a function.</p>
+</li>
+<li><p class="first">Binary operator overloads use <em>lhs</em> and <em>rhs</em> to denote the
+right-hand side and left-hand side operands of the binary operation.</p>
+</li>
+<li><p class="first">The <a class="reference external" href="https://en.cppreference.com/w/cpp/language/member_functions#Special_member_functions">default keyword</a> is used to instruct the compiler to create
+the default implementation for the marked special member function.</p>
+<p>Only special member functions may be marked <code class="docutils literal notranslate"><span class="pre">default</span></code>.</p>
+</li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span> <span class="cp">#pragma once</span>
+
+ <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+ <span class="k">struct</span> <span class="n">item</span>
+ <span class="p">{</span>
+   <span class="n">T</span> <span class="n">value</span><span class="p">;</span>
+   <span class="n">item</span><span class="p">()</span> <span class="p">{}</span>
+   <span class="o">~</span><span class="n">item</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+
+   <span class="c1">// Copy construct and assignment</span>
+   <span class="n">item</span><span class="p">(</span><span class="k">const</span> <span class="n">item</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="o">:</span> <span class="n">value</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">value</span><span class="p">)</span> <span class="p">{}</span>
+   <span class="n">item</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">item</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
+     <span class="n">value</span> <span class="o">=</span> <span class="n">other</span><span class="p">.</span><span class="n">value</span><span class="p">;</span>
+     <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+   <span class="p">}</span>
+   <span class="c1">// Conversions from T and to T:</span>
+   <span class="k">explicit</span> <span class="n">item</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="o">:</span> <span class="n">value</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{}</span>
+   <span class="k">explicit</span> <span class="k">operator</span> <span class="n">T</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">value</span><span class="p">;</span> <span class="p">}</span>
+ <span class="p">};</span>
+
+ <span class="c1">// Non-member functions</span>
+
+ <span class="c1">// Relational operators</span>
+ <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+   <span class="kr">inline</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">item</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">rhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">item</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">lhs</span><span class="p">)</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="n">rhs</span><span class="p">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">lhs</span><span class="p">.</span><span class="n">value</span><span class="p">;</span>
+   <span class="p">}</span>
+ <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+   <span class="kr">inline</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="k">const</span> <span class="n">item</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">rhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">item</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">lhs</span><span class="p">)</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="o">!</span><span class="p">(</span><span class="n">rhs</span> <span class="o">==</span> <span class="n">lhs</span><span class="p">);</span>
+   <span class="p">}</span>
+ <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+   <span class="kr">inline</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;</span><span class="p">(</span><span class="k">const</span> <span class="n">item</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">rhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">item</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">lhs</span><span class="p">)</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="n">rhs</span><span class="p">.</span><span class="n">value</span> <span class="o">&lt;</span> <span class="n">lhs</span><span class="p">.</span><span class="n">value</span><span class="p">;</span>
+   <span class="p">}</span>
+ <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+   <span class="kr">inline</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">&gt;</span><span class="p">(</span><span class="k">const</span> <span class="n">item</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">rhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">item</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">lhs</span><span class="p">)</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="n">lhs</span> <span class="o">&lt;</span> <span class="n">rhs</span><span class="p">;</span>
+   <span class="p">}</span>
+ <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+   <span class="kr">inline</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;=</span><span class="p">(</span><span class="k">const</span> <span class="n">item</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">rhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">item</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">lhs</span><span class="p">)</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="o">!</span><span class="p">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">rhs</span><span class="p">);</span>
+   <span class="p">}</span>
+ <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+   <span class="kr">inline</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">&gt;=</span><span class="p">(</span><span class="k">const</span> <span class="n">item</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">rhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">item</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">lhs</span><span class="p">)</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="o">!</span><span class="p">(</span><span class="n">rhs</span> <span class="o">&lt;</span> <span class="n">lhs</span><span class="p">);</span>
+   <span class="p">}</span>
+
+ <span class="c1">// stream extraction</span>
+   <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="kr">inline</span> <span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">item</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">lhs</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="n">lhs</span><span class="p">.</span><span class="n">value</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="friend-or-non-friend">
+<h2>12.6.2. Friend or non-friend?<a class="headerlink" href="#friend-or-non-friend" title="Permalink to this headline">¶</a></h2>
+<p>Some operators must be implemented as member functions,
+<code class="docutils literal notranslate"><span class="pre">operator=</span></code>, <code class="docutils literal notranslate"><span class="pre">operator[]</span></code>, and member access -
+both <code class="docutils literal notranslate"><span class="pre">operator.</span></code> and <code class="docutils literal notranslate"><span class="pre">operator-&gt;&gt;</span></code>,
+because the language requires it.
+We have choices where we define the others.</p>
+<p>Some are commonly implemented as non-member functions,
+because their left operand cannot be modified by you.
+The most prominent of these are the stream insertion and extraction operators.
+The left operands are stream classes from the standard library which you cannot change.</p>
+<p>For operators where you have to choose to either implement them as a
+member function or a non-member function,
+use the following guidelines:</p>
+<ol class="arabic">
+<li><p class="first">If it is a <strong>unary operator</strong>,
+then implement it as a <strong>member</strong> function.
+For example, <code class="docutils literal notranslate"><span class="pre">operator++</span></code>.</p>
+</li>
+<li><p class="first">If a binary operator treats both operands equally
+then implement as a <strong>non-member</strong> function.</p>
+<p>Generally, neither operand is modified in this situation.
+The relational operators all fall into this category.</p>
+</li>
+<li><p class="first">If a binary operator does not treat both of its operands equally
+then consider making it a member function.</p>
+<p>If the left-hand side operator is modified in the operation,
+or the function returns the <code class="docutils literal notranslate"><span class="pre">this</span></code> pointer, then
+it should be a member function of the left hand operand type.</p>
+<p>Otherwise, it can be implemented as a non-member function.</p>
+</li>
+</ol>
+<p>In the previous section, the relational operators were all declared as
+<em>non-friend non-member</em> functions.
+This is considered best practice by many programmers.</p>
+<blockquote class="epigraph">
+<div><p>Prefer writing non-friend non-member functions</p>
+<p class="attribution">&mdash;Item 44 of <em>C++ Coding Standards</em>, by Herb Sutter and Andrei Alexandrescu</p>
+</div></blockquote>
+<p>Compare to the functionally similar friend, member overload
+for <code class="docutils literal notranslate"><span class="pre">operator==</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">friend</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">item</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="k">const</span> <span class="n">item</span><span class="o">&amp;</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">x</span><span class="p">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">y</span><span class="p">.</span><span class="n">value</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first">A non-friend function does not automatically know that a function is
+part of a class template unless told.</p>
+<p>This is why the non-friend functions repeat the template declaration
+from the <code class="docutils literal notranslate"><span class="pre">struct</span></code>.</p>
+</li>
+<li><p class="first">The friend functions declared in the class are implicitly <em>inlined</em>.
+The compiler <em>may</em> replace function calls to these functions with
+in-line copies of the function body.
+The compiler is not obligated to do so, but usually does.</p>
+<p>To get the same behavior from non-member functions, the <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=inline">inline</a>
+keyword is used.</p>
+</li>
+<li><p class="first">The <code class="docutils literal notranslate"><span class="pre">friend</span></code> keyword is often used to provide private member access to
+non-member functions.
+In the case of the <code class="docutils literal notranslate"><span class="pre">item</span></code> struct, this wasn’t needed.</p>
+<p>The use of friend here prevents the <code class="docutils literal notranslate"><span class="pre">this</span></code> pointer from being passed
+to functions declared (and in this case defined) in the data structure
+body.</p>
+</li>
+</ul>
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">
 <p class="first admonition-title">More to Explore</p>
-<p class="last">TBD</p>
+<ul class="last simple">
+<li><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=friend specifier">friend specifier</a></li>
+<li>Item 44 from <a class="reference external" href="https://www.google.com/search?client=safari&amp;rls=en&amp;q=isbn+978-0321113580">C++ Coding Standards, Sutter and Alexandrescu, 2004.</a></li>
+</ul>
 </div>
 </div>
 </div>

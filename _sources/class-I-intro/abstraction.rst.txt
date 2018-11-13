@@ -314,8 +314,8 @@ change it later once we realize it did not control any of its invariants.
 
    - TBD
 
-.. rubric:: Footnotes
+.. topic:: Footnotes
 
-.. [#f1] From https://www.caranddriver.com/features/how-to-drive-a-ford-model-t
+   .. [#f1] From https://www.caranddriver.com/features/how-to-drive-a-ford-model-t
 
 
