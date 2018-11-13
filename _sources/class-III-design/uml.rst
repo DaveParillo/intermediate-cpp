@@ -565,7 +565,10 @@ This type of relationship is represented with a dashed line:
      Customer -> Book [constraint=false];
    }
 
-
+As discussed in the introduction to this section,
+the UML is much more involved than simple class diagrams.
+For our purposes, which currently are limited to visualizing
+inheritance and composition, this is enough.
 
 -----
 
