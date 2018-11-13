@@ -407,13 +407,11 @@ For example:
 .. code-block:: cpp
 
    struct Department {
-    
-     Professor prof;
-    
-     void setProf(Professor p) { 
-       prof = p; 
-     }
+     Professor* prof;    // non-owning pointer to a professor
    };
+
+A ``Department`` **has-a** ``Professor``,
+but the professor exists independently of any department.
 
 .. index::
    pair: UML; Martin Fowler

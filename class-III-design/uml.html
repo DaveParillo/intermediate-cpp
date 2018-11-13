@@ -508,15 +508,12 @@ In addition, a Professor could work in more than one department,
 but a department could not be part of more than one university.
 For example:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">Department</span> <span class="p">{</span>
-
-  <span class="n">Professor</span> <span class="n">prof</span><span class="p">;</span>
-
-  <span class="kt">void</span> <span class="nf">setProf</span><span class="p">(</span><span class="n">Professor</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">prof</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
-  <span class="p">}</span>
+  <span class="n">Professor</span><span class="o">*</span> <span class="n">prof</span><span class="p">;</span>    <span class="c1">// non-owning pointer to a professor</span>
 <span class="p">};</span>
 </pre></div>
 </div>
+<p>A <code class="docutils literal notranslate"><span class="pre">Department</span></code> <strong>has-a</strong> <code class="docutils literal notranslate"><span class="pre">Professor</span></code>,
+but the professor exists independently of any department.</p>
 <div class="admonition tip" id="index-7">
 <p class="first admonition-title">Tip</p>
 <p><strong>Use aggregation judiciously</strong></p>
