@@ -258,10 +258,10 @@ the following relationships are valid:
      Person -> Teacher;
      Student -> ta;
      Teacher -> ta;
-     ta [label="Teaching Assistant"];
+     ta [label="TeachingAssistant"];
    }
 
-The ``Teaching Assistant`` class is both a ``Teacher`` and a ``Student``
+The ``TeachingAssistant`` class is both a ``Teacher`` and a ``Student``
 and inherits two copies of the ``Person`` base class data.
 When a TA is created, the Person constructor is called *twice*.
 Once for each copy of the Person stored.
@@ -303,16 +303,16 @@ For example:
        } 
    }; 
      
-   struct Teaching_Assistant : public Faculty, public Student  { 
+   struct TeachingAssistant : public Faculty, public Student  { 
        explicit
-       Teaching_Assistant(string n)
+       TeachingAssistant(string n)
          : Faculty(n), Student(n)   { 
            cout<<"TA(" << n << ") called\n"; 
        } 
    }; 
      
    int main()  { 
-       Teaching_Assistant ta("Alice"); 
+       TeachingAssistant ta("Alice"); 
    } 
 
 This solves the 'multiple grandparent problem' for the teaching assistant class,
@@ -321,14 +321,14 @@ If the name is stored in the Person class,
 then we need to call the non-default constructor.
 
 The ``Person(string)`` constructor can be explicitly called in the
-``Teaching_Assistant`` initializer.
+``TeachingAssistant`` initializer.
 In order for ``Faculty`` and ``Student`` to initialize correctly,
 the Person class must be constructed first:
 
 .. code-block:: cpp
 
    explicit
-       Teaching_Assistant(string n)
+       TeachingAssistant(string n)
          : Person(n), Faculty(n), Student(n)   { . . . } 
 
 .. admonition:: Try This!
@@ -353,7 +353,7 @@ like this:
 
 .. code-block:: cpp
 
-   Teaching_Assistant::foo() {
+   TeachingAssistant::foo() {
       if (weekday) {
          Faculty::foo();
       } else {

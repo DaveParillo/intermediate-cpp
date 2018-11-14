@@ -450,8 +450,8 @@ int main() {
 <p><strong>The Diamond of Death</strong></p>
 <p>Since C++ allows multiple inheritance,
 the following relationships are valid:</p>
-<img src="../_images/graphviz-8e832e9beb1990f0ddf96b4c0cb5a50faff99d3b.png" alt="multiple inheritance" />
-<p>The <code class="docutils literal notranslate"><span class="pre">Teaching</span> <span class="pre">Assistant</span></code> class is both a <code class="docutils literal notranslate"><span class="pre">Teacher</span></code> and a <code class="docutils literal notranslate"><span class="pre">Student</span></code>
+<img src="../_images/graphviz-27407428f4bfdb9e5c000faba20a9584dab18aeb.png" alt="multiple inheritance" />
+<p>The <code class="docutils literal notranslate"><span class="pre">TeachingAssistant</span></code> class is both a <code class="docutils literal notranslate"><span class="pre">Teacher</span></code> and a <code class="docutils literal notranslate"><span class="pre">Student</span></code>
 and inherits two copies of the <code class="docutils literal notranslate"><span class="pre">Person</span></code> base class data.
 When a TA is created, the Person constructor is called <em>twice</em>.
 Once for each copy of the Person stored.
@@ -494,16 +494,16 @@ struct Student : virtual public Person {
     }
 };
 
-struct Teaching_Assistant : public Faculty, public Student  {
+struct TeachingAssistant : public Faculty, public Student  {
     explicit
-    Teaching_Assistant(string n)
+    TeachingAssistant(string n)
       : Faculty(n), Student(n)   {
         cout<<"TA(" << n << ") called\n";
     }
 };
 
 int main()  {
-    Teaching_Assistant ta("Alice");
+    TeachingAssistant ta("Alice");
 }
 </textarea>
 </div>
@@ -512,11 +512,11 @@ but note that the <strong>default</strong> Person constructor is called.
 If the name is stored in the Person class,
 then we need to call the non-default constructor.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Person(string)</span></code> constructor can be explicitly called in the
-<code class="docutils literal notranslate"><span class="pre">Teaching_Assistant</span></code> initializer.
+<code class="docutils literal notranslate"><span class="pre">TeachingAssistant</span></code> initializer.
 In order for <code class="docutils literal notranslate"><span class="pre">Faculty</span></code> and <code class="docutils literal notranslate"><span class="pre">Student</span></code> to initialize correctly,
 the Person class must be constructed first:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">explicit</span>
-    <span class="nf">Teaching_Assistant</span><span class="p">(</span><span class="n">string</span> <span class="n">n</span><span class="p">)</span>
+    <span class="nf">TeachingAssistant</span><span class="p">(</span><span class="n">string</span> <span class="n">n</span><span class="p">)</span>
       <span class="o">:</span> <span class="n">Person</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">Faculty</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">Student</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>   <span class="p">{</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="p">}</span>
 </pre></div>
 </div>
@@ -536,7 +536,7 @@ Most compilers will essentially bail and not call <strong>any</strong> of the fu
 base class function.
 The derived class must call the fully qualified name of the function
 like this:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Teaching_Assistant</span><span class="o">::</span><span class="n">foo</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">TeachingAssistant</span><span class="o">::</span><span class="n">foo</span><span class="p">()</span> <span class="p">{</span>
    <span class="k">if</span> <span class="p">(</span><span class="n">weekday</span><span class="p">)</span> <span class="p">{</span>
       <span class="n">Faculty</span><span class="o">::</span><span class="n">foo</span><span class="p">();</span>
    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
