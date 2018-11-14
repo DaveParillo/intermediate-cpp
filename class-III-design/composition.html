@@ -274,11 +274,55 @@
   
   <div class="section" id="composition">
 <span id="index-0"></span><h1>13.3. Composition<a class="headerlink" href="#composition" title="Permalink to this headline">¶</a></h1>
-<p>Normal paragraph text.</p>
+<p>Every class definition also defines a new <a class="reference internal" href="../glossary.html#term-type"><span class="xref std std-term">type</span></a>
+that becomes available for use anywhere a built in type
+could be used.</p>
+<p>Composition is also fundamental to <em>every</em> language.
+Even if a language does not support composition,
+people still think in terms of parts and components.
+It would be impossible to break down complex problems into
+solvable chunks without composition.</p>
+<p>The simplest way to incorporate a class is to just use the
+type directly in another class.
+A class can be made up of any number and type of other objects,
+in any combination needed to achieve the functionality
+desired in the new class.
+Because this results in composing a new class from existing classes,
+this concept is called <em>composition</em>.
+Composition is often described as a “has-a” relationship,
+as in “a car has an engine.”</p>
+<p>Composition models the relation where two object lifetimes are linked:</p>
+<ul class="simple">
+<li>When a Car is created, it comes with an Engine.</li>
+<li>The Engine can exist only as long as the Car exists.</li>
+<li>The Engine exists solely for the benefit of the Car that contains the Engine</li>
+<li>No other car can use this engine.</li>
+<li>When the Car is destroyed, the Engine is destroyed.</li>
+</ul>
+<p>Composition provides a great deal of flexibility.
+Member objects are usually private,
+making them inaccessible to the users of a type.
+This enables changing those members without disturbing existing client code.
+You can also change the member objects at runtime,
+to dynamically change the behavior of your program.
+Inheritance, which is described next,
+does not have this flexibility since the compiler must place compile-time
+restrictions on classes created with inheritance.</p>
+<p>Because inheritance is so important in object-oriented programming
+it is often highly emphasized,
+and a new programmer might think that inheritance should be used everywhere.
+This can result in awkward and overly-complicated designs.
+Instead, prefer composition when creating new classes,
+since it is simpler and more flexible.
+If you take this approach, your designs will stay cleaner.</p>
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">
 <p class="first admonition-title">More to Explore</p>
-<p class="last">TBD</p>
+<ul class="last simple">
+<li>Effective C++ Item #40: Model HAS-A using composition
+Note that Meyers uses the term <em>layering</em> as a synonym for composition.</li>
+<li></li>
+</ul>
 </div>
 </div>
 
