@@ -277,11 +277,228 @@ appropriate types improves clarity and utility:
    // now a new date can be constructed like:
    Date d = {year{1776}, month::jul, 4};
 
-This version is easier for programmers to remember and any errors are compile errors
-instead of runtime errors.
+This version is easier for programmers to remember and any errors are 
+compile errors instead of runtime errors.
+
+Telescoping constructors
+------------------------
+The original ``date`` class suffered from a common design problem:
+too many parameters of the same type.
+A closely related problem is how to provide flexibility when constructing
+new objects. A common solution is to provide constructors with
+different numbers of arguments:
+
+.. code-block:: cpp
+
+   struct date {
+      date();                          // make a default date
+      date(year y);                    // use a default month and day
+      date(year y, month m);           // use a default day
+      date(year y, month m, int day);  // specify the entire date
+   };
+
+What about the possibility of specifying ``month`` and ``day``?
+How many different constructors should be allowed?
+The number of permutations get unmaintainable even for a relatively
+few number of parameters.
+
+This is called a *telescoping constructor*, and is generally
+considered an :term:`anti-pattern`.
+That is, there are better solutions to this problem.
+
+The easiest solution in C++ is to use default values for function parameters.
+This works best when the default values are different types
+and there is no need to allow every possible combination of parameters.
+
+.. code-block:: cpp
+
+   struct date {
+      date(year y = date::current_year(), 
+           month m = date::current_month(), 
+           int day = date::current_day());
+   };
 
 
+This solution is still limited by the fact that defaults are still evaluated
+left to right.
+A date declaration of the form
 
+.. code-block:: cpp
+
+   date d {15};
+
+won't create a date for the 15th day of the current month and year.
+In addition, the solution does not work well when all (or most) 
+of the parameters are the same type.
+Consider this example:
+
+.. code-block:: cpp
+
+   class NutritionFacts {
+     private:
+       // variables in need of initialization to make valid object
+       const double serving_size_;  // mL
+       const int servings_;         // per container
+       const double calories_;      // Kcal
+       const double fat_;           // g
+       const double sodium_;        // mg
+       const double carbs_;         // g
+    
+     public:
+       // How about this as a solution?
+      NutritionFacts(double, int, double, double, double, double); 
+   };
+
+
+Is the proper order ``calories``, ``fat``, ``carbs``, or
+``fat``, ``calories``, ``carbs``, or
+something else?
+Even if we give these parameters meaningful names,
+there is no runtime enforcement.
+It's easy to make a mistake when too many parameters are the same type.
+
+When confronted with many optional parameters, 
+a builder is an effective alternative.
+Basic ideas:
+
+- Use constructor parameters to accept mandatory parameters.
+- Use a helper class (Builder) to default initialize optional parameters.
+- A ``Builder::build()`` function creates a NutritionFacts object from a builder.
+- The builder makes the class it helps a friend.
+
+  This is used only avoid creating builder accessor functions.
+
+- A conversion constructor is used to copy builder state into the
+  enclosing class.
+
+
+.. code-block:: cpp
+
+   #pragma once
+
+   #include <iosfwd>
+
+   class NutritionFacts {
+     private:
+       // variables in need of initialization to make valid object
+       const double serving_size_;  // mL
+       const int servings_;         // per container
+       const double calories_;      // Kcal
+       const double fat_;           // g
+       const double sodium_;        // mg
+       const double carbs_;         // g
+    
+
+     public:
+       // Only one simple constructor for mandatory parameters
+       // - rest is handled by Builder
+       NutritionFacts( const double serving_size, const int servings) 
+         : serving_size_{serving_size}, servings_{servings},
+         calories_{0}, fat_{0}, sodium_{0}, carbs_{0}
+       {}
+
+       // use this class to construct Nutritionfacts
+       class Builder {
+         private:
+           friend NutritionFacts;
+           double serving_size_ = 15;  // mL
+           int servings_ = 10;         // per container
+           double calories_ = 0;       // Kcal
+           double fat_ = 0;            // g
+           double sodium_ = 0;         // mg
+           double carbs_ = 0;          // g
+
+         public:
+           Builder() = default;
+
+           // create a NutritionFacts object from a builder
+           NutritionFacts build() {
+             return NutritionFacts (*this);
+           }
+
+           Builder& serving_size(const double size) { 
+             serving_size_ = size; 
+             return *this;
+           }
+           Builder& servings(const int s) { 
+             servings_ = s; 
+             return *this;
+           }
+           Builder& calories(const double c) { 
+             calories_ = c; 
+             return *this;
+           }
+           Builder& fat(const double f) { 
+             fat_ = f; 
+             return *this;
+           }
+           Builder& sodium(const double s) { 
+             sodium_ = s; 
+             return *this;
+           }
+           Builder& carbohydrates(const double c) { 
+             carbs_ = c; 
+             return *this;
+           }
+
+       };
+
+       explicit NutritionFacts(const Builder& builder)
+         : serving_size_{builder.serving_size_}, 
+         servings_{builder.servings_},
+         calories_{builder.calories_}, 
+         fat_{builder.fat_}, 
+         sodium_{builder.sodium_}, 
+         carbs_{builder.carbs_}
+       {}
+
+       double serving_size() const { return serving_size_; }
+       int servings() const { return servings_; }
+       double calories() const { return calories_; }
+       double fat() const { return fat_; }
+       double sodium() const { return sodium_; }
+       double carbohydrates() const { return carbs_; }
+   };
+
+
+   std::ostream& operator<<(std::ostream& os, const NutritionFacts& rhs);
+
+
+When complete, the classes can be used like this:
+
+.. code-block:: cpp
+
+   #include "NutritionFacts.h"
+
+   #include <iostream>
+
+   int main() {
+     // make some facts without any optional parts
+     NutritionFacts cake = {75, 8};
+
+     // create a builder
+     NutritionFacts::Builder b;
+
+     // change the state
+     b.serving_size(28.4).servings(1);
+     b.fat(10).sodium(2).calories(150).carbohydrates(15);
+
+     // create a set of nutrition facts using the builder
+     auto chips = b.build();
+
+     // create nutrition facts without creating a (named)
+     // temporary builder object
+     // 
+     NutritionFacts soda = NutritionFacts::Builder()
+                           .serving_size(368).servings(1)
+                           .carbohydrates(40).calories(150).sodium(15);
+
+     std::cout << "Cake:\t" << cake << "\n";
+     std::cout << "Chips:\t" << chips << "\n";
+     std::cout << "Soda:\t" << soda << "\n";
+
+     return 0;
+   }
 
 
 -----
@@ -291,5 +508,14 @@ instead of runtime errors.
    - `Most vexing parse (wikipedia) <https://en.wikipedia.org/wiki/Most_vexing_parse>`__
    - Item #6 "Most Vexing Parse" from 'Effective STL' by Scott Meyers (Addison-Wesley Professional).  
      Copyright 2001 Scott Meyers, 978-0-201-74962-5.
+   - Builder design pattern:
+
+     - `Builder Design Pattern 
+       <http://www.oodesign.com/builder-pattern.html>`__ on oodesign.com
+     - `Builder Design Pattern
+       <https://en.wikipedia.org/wiki/Builder_pattern>`__ on Wikipedia
+     - `Example telescoping constructor <https://gist.github.com/DavidTPate/9041099>`__
+     - Effective Java, by Joshua Bloch. 
+       Item #2: Consider a builder when faced with many constructor parameters
 
 
