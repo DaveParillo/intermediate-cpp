@@ -15,7 +15,7 @@
    pair: class design; visualization 
    pair: class design; UML
 
-Unified modelling language
+Unified modeling language
 ==========================
 The Unified Modeling Language, or UML, is an industry standard graphical
 notation for describing and analysing software designs.
@@ -414,42 +414,6 @@ A ``Department`` **has-a** ``Professor``,
 but the professor exists independently of any department.
 
 .. index::
-   pair: UML; Martin Fowler
-
-
-.. tip::  
-   **Use aggregation judiciously**
-
-   .. epigraph::
-
-      Few things in the UML cause more consternation than aggregation and composition,
-      in particular how they vary from regular association.
-
-      The full story is muddled by history.
-      In the pre-UML methods there was a common notation of defining some form
-      of part --- whole relationships.
-      The trouble was that each method defined different semantics for these
-      relationships (although to be fair, some of these were pretty semantics free).
-
-      So when the time came to standardize, lots of people wanted part --- whole
-      relationships, but they couldn't agree on what they meant.
-      So the UML introduced two relationships.
-   
-      **aggregation** (*white diamond*) has no semantics beyond a regular association.
-      It is, as Jim Rumbaugh puts it, a modeling placebo.  People can, and do,
-      use it --- but there are no standard meanings for it.
-      I would advise not using it yourself without some form of explanation.
-
-      **composition** (*black diamond*) does carry semantics.
-      The most particular is that an object can only be part of one composition relationship.
-      So even if both windows and panels can hold menu bars, any instance of menu bar
-      must be held by only one whole.  This is a constraint you can't easily
-      express with the regular multiplicity markers.
-
-      -- Martin Fowler, `AggregationAndComposition blog post <http://martinfowler.com/bliki/AggregationAndComposition.html>`_  17 May 2003.
-
-
-.. index::
    pair: UML; composition
 
 **Compositon**
@@ -489,32 +453,40 @@ Like aggregation, one class *has an* instance of another class,
 but the child class's instance life cycle is dependent on the parent class's instance life cycle. 
 In other words, when the parent dies, the child dies.
 
-An example might be two classes Car and Engine.
-When a Car is created, it comes with an Engine.
-The Engine can exist only as long as the Car exists.
-Furthermore, the Engine exists solely for the benefit of the Car that contains
-the Engine --- no other car can use this engine. 
-When the Car is destroyed, the Engine is destroyed.
-For example:
+.. index::
+   pair: UML; Martin Fowler
 
-.. code-block:: cpp
 
-   struct Engine {
-     // define engine
-   };
+.. tip::  
+   **Use aggregation judiciously**
 
-   struct Car {
-     Engine mopar;
-   };
+   .. epigraph::
 
-   int main() {
-     {  // create a temporary scope
+      Few things in the UML cause more consternation than aggregation and composition,
+      in particular how they vary from regular association.
 
-       // create a car (and an engine)
-       Car c;
-     } // when the Car goes out of scope,
-       // both the car and its engine are destroyed
-   }
+      The full story is muddled by history.
+      In the pre-UML methods there was a common notation of defining some form
+      of part --- whole relationships.
+      The trouble was that each method defined different semantics for these
+      relationships (although to be fair, some of these were pretty semantics free).
+
+      So when the time came to standardize, lots of people wanted part --- whole
+      relationships, but they couldn't agree on what they meant.
+      So the UML introduced two relationships.
+   
+      **aggregation** (*white diamond*) has no semantics beyond a regular association.
+      It is, as Jim Rumbaugh puts it, a modeling placebo.  People can, and do,
+      use it --- but there are no standard meanings for it.
+      I would advise not using it yourself without some form of explanation.
+
+      **composition** (*black diamond*) does carry semantics.
+      The most particular is that an object can only be part of one composition relationship.
+      So even if both windows and panels can hold menu bars, any instance of menu bar
+      must be held by only one whole.  This is a constraint you can't easily
+      express with the regular multiplicity markers.
+
+      -- Martin Fowler, `AggregationAndComposition blog post <http://martinfowler.com/bliki/AggregationAndComposition.html>`_  17 May 2003.
 
 
 .. index::

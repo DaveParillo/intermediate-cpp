@@ -16,16 +16,15 @@ Every class definition also defines a new :term:`type`
 that becomes available for use anywhere a built in type
 could be used.
 
-Composition is also fundamental to *every* language.
-Even if a language does not support composition,
-people still think in terms of parts and components.
-It would be impossible to break down complex problems into 
+Composition is also fundamental to *every* object oriented language.
+It is natural to think about things in terms of parts and components.
+It would be difficult to break down complex problems into 
 solvable chunks without composition.
 
 The simplest way to incorporate a class is to just use the
 type directly in another class.
 A class can be made up of any number and type of other objects, 
-in any combination needed to achieve the functionality 
+in any combination needed to implement the capabilities 
 desired in the new class. 
 Because this results in composing a new class from existing classes,
 this concept is called *composition*.
@@ -40,6 +39,27 @@ Composition models the relation where two object lifetimes are linked:
 - No other car can use this engine.
 - When the Car is destroyed, the Engine is destroyed.
 
+.. code-block:: cpp
+
+   struct Engine { . . . };
+   struct Tire   { . . . };
+   struct Stereo { . . . };
+
+   struct Car {
+     Engine e;
+     Stereo s;
+     std::array<Tire, 4> tires;
+   };
+
+   int main() {
+     {  // create a temporary scope
+
+       // create a car (and all its components)
+       Car c;
+     } // when the Car goes out of scope,
+       // both the car and its components are destroyed
+   }
+
 Composition provides a great deal of flexibility.
 Member objects are usually private,
 making them inaccessible to the users of a type.
@@ -49,6 +69,10 @@ to dynamically change the behavior of your program.
 Inheritance, which is described next,
 does not have this flexibility since the compiler must place compile-time
 restrictions on classes created with inheritance.
+
+.. admonition:: Guideline
+
+   Prefer composition over inheritance.
 
 Because inheritance is so important in object-oriented programming
 it is often highly emphasized,

@@ -77,6 +77,9 @@ Consider the following classes.
    but generally when we do that we are coing our way around a
    basic design problem.
 
+We will explore solutions for fixing these types of design problems 
+in the next section.
+
 It is very important when creating a class hierarchy using
 inheritance that *every* derived class passes the **is a** test
 for **all** of its bases.
@@ -361,10 +364,12 @@ like this:
       }
    }
 
-There is no obligation to always call all implementing function,
+There is no obligation to always call all implementing functions,
 but in practice, this is often needed.
 
 Note that this defeats the entire purpose of having runtime polymorphism.
+The derived class at the end of the inheritance chain might need
+code containing 'knowledge' about **all** of its ancestor classes.
 This is partly why the diamond is considered 'deadly'.
 
 
