@@ -376,7 +376,7 @@ Basic ideas:
 
    #pragma once
 
-   #include <iosfwd>
+   #include <iostream>
 
    class NutritionFacts {
      private:
@@ -461,7 +461,14 @@ Basic ideas:
    };
 
 
-   std::ostream& operator<<(std::ostream& os, const NutritionFacts& rhs);
+   std::ostream& operator<<(std::ostream& os, const NutritionFacts& rhs) {
+     return os << "Serving size: " << rhs.serving_size()
+               << "\tServings: " << rhs.servings()
+               << "\tCal: " << rhs.calories()
+               << "\tFat: " << rhs.fat()
+               << "\tSodium: " << rhs.sodium()
+               << "\tCarbs: " << rhs.carbohydrates();
+   }
 
 
 When complete, the classes can be used like this:
@@ -500,6 +507,10 @@ When complete, the classes can be used like this:
      return 0;
    }
 
+While not the most idiomatic C++ solution, 
+it is something we can create and use with only the knowledge 
+of classes we have so far.
+We will revisit the builder pattern later after we cover inheritance.
 
 -----
 
