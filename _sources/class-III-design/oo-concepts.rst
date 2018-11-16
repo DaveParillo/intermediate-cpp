@@ -400,7 +400,7 @@ It is common to draw inheritance relationships like this:
            shape=record,
            style="filled"];
      shape [
-       label="{shape\n||+ ~shape()\l+ draw()\l+ erase()\l+ move()\l+ color()\l+ color()\l}",
+       label="{shape\n||+ ~shape()\l+ draw()\l+ erase()\l+ move()\l}",
        fillcolor="lightblue"];
      shape -> circle;
      circle [
