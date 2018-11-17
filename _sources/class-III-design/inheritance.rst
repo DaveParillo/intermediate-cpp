@@ -37,9 +37,9 @@ connected by generalization relations.
 Consider the following classes.
 
 .. graphviz:: 
-   :alt: Person inheritance
+   :alt: Bird inheritance
 
-   digraph "person"
+   digraph "bird"
    {
      edge [fontname="BitstreamVeraSans",
            fontsize="10",
@@ -141,7 +141,8 @@ Inheritance should only be used when:
 
 Private inheritance
 -------------------
-The default inheritiance model in C++ is *priavte inheritance*.
+The default inheritance model in C++ is *private inheritance*
+for classes, public for structs.
 In private inheritance **all** of the base class members:
 data and functions, public, protected, and private,
 are treated as **private members** of the derived class.
@@ -151,6 +152,12 @@ A common question is "Why would we ever do this?"
 If a derived class wants to reuse all of the code from a base class,
 but *not* conform to the interface,
 then private inheritance is how to achieve that.
+
+Consider :cref:`std::stack``.
+It is a container that *adapts* the capabilities of an underlying container.
+Although the default container for a :cref:`std::stack`` 
+is a :cref:`std::deque``, 
+we don't want to expose all of the functions of a ``deque`` in a ``stack``.
 
 
 .. index:: non-virtual functions; manatory interfaces; shadowing
@@ -167,7 +174,7 @@ For example:
    struct B {
      void foo();
    };
-   struct D: public B { 
+   struct D: B { 
      void foo();        // derived class D has its own version
    };
 
