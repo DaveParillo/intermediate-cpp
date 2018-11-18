@@ -8,27 +8,223 @@
 
 .. index:: 
    pair: classes; inheritance
+   pair: virtual; keyword
 
 Inheritance
 ===========
 Inheritance enables new classes to receive --- or inherit --- 
 the properties and methods of existing classes. 
-Inheritance is a programming strategy used to increase the flexibility
-of your objects.
-In particular, inheritance is **not** a code reuse strategy.
-The purpose of inheritance in C++ is to express interface compliance 
-(creating a subtype), not to reuse code.
-In C++, code reuse usually comes via composition rather than 
-via inheritance.
-In other words, 
-inheritance is mainly a specification technique rather than an 
-implementation technique.
+In C++, we can extend a class,
+adding data members or behavior in a new type.
+Consider the following example:
 
+.. code-block:: cpp
+
+   class enum Color {RED, ORANGE, YELLOW, 
+				  GREEN, BLUE, INDIGO, VIOLET,
+				  WHITE, BLACK};
+
+   class shape {
+       Color color_ = Color::BLUE;
+     public:
+       virtual ~shape() = default;
+       void   color (Color new_color)
+       {
+         color_ = new_color;
+       }
+       Color  color()  const 
+       {
+         return color_;
+       }
+       virtual void   move();      // implemented in shape.cpp
+       virtual void   draw() = 0;
+       virtual void   erase() = 0;
+   };
+
+The class ``shape`` defines common behaviors that
+can be shared among all classes.
+This shape class provides some definitions and requires
+derived classes to provide others.
+
+In the base class ``shape``,
+the ``virtual`` keyword instructs the compiler that the marked functions
+can be *overridden* in derived classes.
+The shape example illustrates different ways base class functions
+may be implemented.
+
+The ``color`` functions are not marked virtual.
+These functions are inherited by all derived classes,
+and cannot be overridden.
+These functions represent a *mandatory implementation*.
+In this design, **every** shape must have a color,
+and it is changed using these functions.
+
+The ``move`` function is marked virtual.
+A default implementation is defined in the ``shape`` class,
+but derived classes are free to override it if needed.
+
+The functions ``draw`` and ``erase`` are marked virtual.
+Note the ``= 0;`` at the end of the declaration.
+This marks these functions as *pure virtual*.
+A pure virtual function **cannot** be implemented in the 
+class that defines it.
+In this case, a ``shape`` does not know how to draw itself.
+Code that can only properly be implemented in the class that
+properly 'owns' the behavior (``draw`` and ``erase``)
+should be implemented in the *derived* classes.
+
+Because a class the defines a pure virtual function cannot implement it,
+that means any class containing a pure virtual function can never be
+instantiated.
+Given the shape class defined here, this code:
+
+.. code-block:: cpp
+
+   shape s;
+
+will not compile.
+
+A class containing at least one pure virtual function can **only**
+be used as a base class.
+
+Derived classes declare their bases immediately after the
+derived class name.
+The general format is:
+
+.. code-block:: cpp
+
+   class derived_name: {access_modifier} base_name, {access_modifier} base2_name, . . . 
+
+Applying this to our base class shape:
+
+.. code-block:: cpp
+
+   class circle: public shape {
+      double radius = 1;
+     public:
+       void   draw()  const override;
+       void   erase() override;
+   };
+
+   class rectangle: public shape {
+      double ht = 1;
+      double wd = 1;
+     public:
+       void   draw()  const override;
+       void   erase() override;
+   };
+
+   class triangle: public shape {
+      double height = 1;
+      double base   = 1;
+     public:
+       void   draw()  const override;
+       void   erase() override;
+   };
+
+
+The keyword ``override`` tells the compiler that this function
+intends to override a virtual function in a base class.
+Although a C++11 feature and not required,
+it is a best practice since it provides the compiler
+more information about your intent and can flag functions
+with incorrect signatures.
+
+Note that a class may inherit from more than one base class.
+
+Base class references and pointers
+----------------------------------
+One of the primary benefits of inheritance become apparent when passed
+as parameters or when used in container classes.
+Object references and pointers will call the correct derived class member
+function in an inheritance hierarchy.
+For example, some part of our drawing program need to draw **any** shape,
+without having special case code to determine *what* the shape type is:
+
+.. code-block:: cpp
+
+   draw_shape (const shape& s) {
+     s.draw();
+   }
+
+   int main() {
+     Circle c;
+     draw_shape(c);
+   }
+
+Although we can't instantiate a ``shape``,
+we *can* pass a derived class instance (circle, triangle, etc.)
+to a function that takes a *reference to a shape*.
+This works because a ``circle`` **is a** ``shape``.
+A ``circle`` is both a ``circle`` **and** a ``shape``.
+
+Passing a pointer would work as well as a reference:
+
+.. code-block:: cpp
+
+   draw_shape (const shape* s) {
+     s->draw();
+   }
+
+   int main() {
+     Circle c;
+     draw_shape(&c);
+   }
+
+The polymorphism achieved by assigning derived classes **only**
+works when assignment is through a reference or a pointer.
+
+Recall that containers are limited to values of a single type
+and that references are not :term:`assignable`.
+How do we create a vector of ``shape`` objects?
+Through a pointer:
+
+.. code-block:: cpp
+
+   #include <memory>
+   #include <vector>
+
+   using std::unique_ptr;
+   using std::make_unique;
+
+   draw_all (const std::vector<unique_ptr<shape>>& shapes) {
+     for (const auto& s: shapes) {
+       s->draw();
+     }
+   }
+
+   int main() {
+     std::vector<unique_ptr<shape>> shapes;
+     shapes.push_back(make_unique<circle>());
+     shapes.push_back(make_unique<rectangle>());
+     shapes.push_back(make_unique<triangle>());
+
+     draw_all(shapes);
+   }
+
+The :cref:`std::vector`` of unique pointers could have been
+implemented with a vector of raw pointers:
+
+.. code-block:: cpp
+
+
+   std::vector<shape*> shapes;
+   shapes.push_back(new circle());
+
+This version works essentially the same as the previous version,
+but requires a bit more code to manage our own memory.
+
+
+.. index::
+   pair: graph; bird inheritance
+
+Design problems
+---------------
 New programmers are generally eager to "do things the OO way"
 and tend to overuse inheritance relationships.
 This is especially true if starting with UML diagrams:
 many diagram look 'too simple' without a lot of boxes
-connected by generalization relations.
+connected by generalization and dependency relations.
 
 .. admonition:: Guideline
 
@@ -137,12 +333,30 @@ Inheritance should only be used when:
 - The base class implementation is necessary or appropriate for the derived class
 - The enhancements made by the derived class are primarily additive
 
-.. index:: private inheritance
+.. index::
+   pair: private; inheritance
 
 Private inheritance
 -------------------
+In the classes derive from ``shape``, 
+we declare ``public`` members of the shape class
+to also have ``public`` access the derived classes.
+Compare:
+
+.. code-block:: cpp
+
+   class circle: public shape {} // case #1: public inheritance
+
+   class circle: shape {}        // case #2: private inheritance
+
+
+In the second case, the public members of shape
+are treated as ``private`` members of class circle.
+This is almost always a bug for new programmers
+and a common source of error.
+
 The default inheritance model in C++ is *private inheritance*
-for classes, public for structs.
+for classes and public for structs.
 In private inheritance **all** of the base class members:
 data and functions, public, protected, and private,
 are treated as **private members** of the derived class.
@@ -160,7 +374,8 @@ is a :cref:`std::deque``,
 we don't want to expose all of the functions of a ``deque`` in a ``stack``.
 
 
-.. index:: non-virtual functions; manatory interfaces; shadowing
+.. index:: non-virtual functions; manatory interfaces;
+   pair: shadowing
 
 Non-virtual base class functions
 --------------------------------
@@ -204,6 +419,7 @@ interface defined by a base class,
 then it probably shouldn't be a derived class.
 
 .. index:: diamond of death
+   pair: multiple; inheritance
 
 Multiple inheritance
 --------------------
