@@ -88,6 +88,14 @@ Glossary
       non-printing characters (such as carrage return).
       Now largely replaced by UTF-8 encoding.
 
+   assignable
+      A :term:`type` is *assignable* if the type can be copy-assigned
+      a new value as the left-hand side of the operation.
+
+      References are not assignable because once initialized,
+      they cannot be assigned a new value.
+
+
    associative container
       A set of sorted data structures that can be quickly searched.
       ``map`` and ``set`` are examples.
