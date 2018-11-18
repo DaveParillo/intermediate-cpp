@@ -74,6 +74,9 @@ and the collaborations between objects.  Dynamic views include:
 
 - Use Case diagrams
 
+.. index::
+   pair: graph; class diagram
+
 Class diagrams
 --------------
 .. sidebar:: A simple class

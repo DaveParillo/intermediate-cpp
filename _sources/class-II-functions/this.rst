@@ -7,7 +7,8 @@
     License".
 
 .. index:: this pointer
-   pair: class; ``*this``
+   pair: keyword; class
+   pair: keyword; ``*this``
 
 
 'this' pointer

@@ -6,7 +6,8 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
    
-.. index:: const
+.. index::
+   pair: keyword; const
 
 Keyword: ``const``
 ==================
@@ -165,7 +166,8 @@ It's not.
 Use it when no better alternative exists.
 
 
-.. index:: constexpr
+.. index:: 
+   pair: keyword; constexpr
 
 Keyword: ``constexpr``
 ----------------------
