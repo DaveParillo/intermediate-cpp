@@ -214,88 +214,6 @@ implemented with a vector of raw pointers:
 This version works essentially the same as the previous version,
 but requires a bit more code to manage our own memory.
 
-
-.. index::
-   pair: graph; bird inheritance
-
-Design problems
----------------
-New programmers are generally eager to "do things the OO way"
-and tend to overuse inheritance relationships.
-This is especially true if starting with UML diagrams:
-many diagram look 'too simple' without a lot of boxes
-connected by generalization and dependency relations.
-
-.. admonition:: Guideline
-
-   Prefer composition over inheritance.
-
-Consider the following classes.
-
-.. graphviz:: 
-   :alt: Bird inheritance
-
-   digraph "bird"
-   {
-     edge [fontname="BitstreamVeraSans",
-           fontsize="10",
-           labelfontname="BitstreamVeraSans",
-           labelfontsize="10",
-           dir="back",
-           arrowtail="onormal",
-           style="solid",
-           color="midnightblue"];
-     node [fontname="BitstreamVeraSans",
-           fontsize="10",
-           height=0.2,
-           width=0.4,
-           color="black",
-           fillcolor="lightblue",
-           shape=box,
-           style="filled"];
-     bird [shape=record,
-       label="{\<\<interface\>\>\nbird\n||fly(): void\l}"];
-     bird -> hawk;
-     bird -> owl;
-     bird -> penguin;
-     bird -> robin;
-   }
-
-.. reveal:: r_class_inherit
-   :showtitle: Is this OK?
-
-   No.
-
-   We have asserted that a penguin can fly.
-
-   We might choose to implement ``fly()`` in our penguin class
-   and simply do nothing, 
-   but generally when we do that we are coing our way around a
-   basic design problem.
-
-We will explore solutions for fixing these types of design problems 
-in the next section.
-
-It is very important when creating a class hierarchy using
-inheritance that *every* derived class passes the **is a** test
-for **all** of its bases.
-For example:
-
-.. code-block:: cpp
-
-   struct oven: public kitchen { . . . };
-
-This is not a proper relationship.
-An oven is a thing commonly *found* in a kitchen,
-but that does not mean an oven *is a* kitchen.
-Because it fails this basic test,
-it is likely that variables and functions that apply to the base:
-``cupboards``, ``sink``, ``enter_room()``, etc
-will fail to make sense when applied to the derived class.
-
-This is an example better modelled through composition.
-A kitchen **has a** sink in it.
-
 When to use inheritance
 -----------------------
 Adapted from *Composition vs. Inheritance: How to Choose?*.
@@ -338,7 +256,7 @@ Inheritance should only be used when:
 
 Private inheritance
 -------------------
-In the classes derive from ``shape``, 
+In the classes derived from ``shape``, 
 we declare ``public`` members of the shape class
 to also have ``public`` access the derived classes.
 Compare:
@@ -367,10 +285,10 @@ If a derived class wants to reuse all of the code from a base class,
 but *not* conform to the interface,
 then private inheritance is how to achieve that.
 
-Consider :cref:`std::stack``.
+Consider :cref:`std::stack`.
 It is a container that *adapts* the capabilities of an underlying container.
-Although the default container for a :cref:`std::stack`` 
-is a :cref:`std::deque``, 
+Although the default container for a :cref:`std::stack` 
+is a :cref:`std::deque`, 
 we don't want to expose all of the functions of a ``deque`` in a ``stack``.
 
 
@@ -595,6 +513,86 @@ The derived class at the end of the inheritance chain might need
 code containing 'knowledge' about **all** of its ancestor classes.
 This is partly why the diamond is considered 'deadly'.
 
+.. index::
+   pair: graph; bird inheritance
+
+Design problems
+---------------
+New programmers are generally eager to "do things the OO way"
+and tend to overuse inheritance relationships.
+This is especially true if starting with UML diagrams:
+many diagram look 'too simple' without a lot of boxes
+connected by generalization and dependency relations.
+
+Consider the following classes.
+
+.. graphviz:: 
+   :alt: Bird inheritance
+
+   digraph "bird"
+   {
+     edge [fontname="BitstreamVeraSans",
+           fontsize="10",
+           labelfontname="BitstreamVeraSans",
+           labelfontsize="10",
+           dir="back",
+           arrowtail="onormal",
+           style="solid",
+           color="midnightblue"];
+     node [fontname="BitstreamVeraSans",
+           fontsize="10",
+           height=0.2,
+           width=0.4,
+           color="black",
+           fillcolor="lightblue",
+           shape=box,
+           style="filled"];
+     bird [shape=record,
+       label="{\<\<interface\>\>\nbird\n||fly(): void\l}"];
+     bird -> hawk;
+     bird -> owl;
+     bird -> penguin;
+     bird -> robin;
+   }
+
+.. reveal:: r_class_inherit
+   :showtitle: Is this OK?
+
+   No.
+
+   We have asserted that a penguin can fly.
+
+   We might choose to implement ``fly()`` in our penguin class
+   and simply do nothing, 
+   but generally when we do that we are coding our way around a
+   basic design problem.
+
+We will explore solutions for fixing these types of design problems 
+in the next section.
+
+.. admonition:: Guideline
+
+   Prefer composition over inheritance.
+
+It is very important when creating a class hierarchy using
+inheritance that *every* derived class passes the **is a** test
+for **all** of its bases.
+For example:
+
+.. code-block:: cpp
+
+   struct oven: public kitchen { . . . };
+
+This is not a proper relationship.
+An oven is a thing commonly *found* in a kitchen,
+but that does not mean an oven *is a* kitchen.
+Because it fails this basic test,
+it is likely that variables and functions that apply to the base:
+``cupboards``, ``sink``, ``enter_room()``, etc
+will fail to make sense when applied to the derived class.
+
+This is an example better modelled through composition.
+A kitchen **has a** sink in it.
 
 -----
 
