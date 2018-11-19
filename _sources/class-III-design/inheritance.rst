@@ -375,7 +375,7 @@ we don't want to expose all of the functions of a ``deque`` in a ``stack``.
 
 
 .. index:: non-virtual functions; manatory interfaces;
-   pair: shadowing
+   single: shadowing
 
 Non-virtual base class functions
 --------------------------------
