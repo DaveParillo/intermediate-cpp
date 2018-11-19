@@ -327,8 +327,8 @@ author did not realize the potential pitfalls with ``using namspace std;``.
 
 
 .. index::
-   pair: Herb Sutter; namespace using quote
-   pair: Andrei Alexandrescu; namespace using quote
+   pair: Herb Sutter; namespace using
+   pair: Andrei Alexandrescu; namespace using
 
 One final word from two experts:
 

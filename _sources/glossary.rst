@@ -31,6 +31,11 @@ Glossary
       abstract properties of a :term:`data type` and the concrete details 
       of its implementation. 
 
+   abstract base class
+      A class in which some functions are not implemented.
+      Abstract bases classes cannot be instantiated --- a derived class
+      must override the abstract virtual function with an implementation.
+
    abstract data type
       Abbreviated :term:`ADT`. The realization of a :term:`data type`
       as a software component.
