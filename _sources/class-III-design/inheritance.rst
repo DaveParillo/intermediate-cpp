@@ -36,9 +36,7 @@ Consider the following example:
        {
          return color_;
        }
-       virtual void   move();      // implemented in shape.cpp
-       virtual void   draw() = 0;
-       virtual void   erase() = 0;
+       virtual void   move();
    };
 
 The class ``shape`` defines common behaviors that
@@ -63,29 +61,11 @@ The ``move`` function is marked virtual.
 A default implementation is defined in the ``shape`` class,
 but derived classes are free to override it if needed.
 
-The functions ``draw`` and ``erase`` are marked virtual.
-Note the ``= 0;`` at the end of the declaration.
-This marks these functions as *pure virtual*.
-A pure virtual function **cannot** be implemented in the 
-class that defines it.
-In this case, a ``shape`` does not know how to draw itself.
-Code that can only properly be implemented in the class that
-properly 'owns' the behavior (``draw`` and ``erase``)
-should be implemented in the *derived* classes.
-
-Because a class the defines a pure virtual function cannot implement it,
-that means any class containing a pure virtual function can never be
-instantiated.
-Given the shape class defined here, this code:
-
-.. code-block:: cpp
-
-   shape s;
-
-will not compile.
-
-A class containing at least one pure virtual function can **only**
-be used as a base class.
+The shape class destructor: ``~shape()`` is also marked virtual.
+Even if this class manages no resources, 
+it is a good idea to define a virtual destructor for every base class.
+This allows derived constructors to be called if the base class is used
+in a container.
 
 Derived classes declare their bases immediately after the
 derived class name.
@@ -95,36 +75,18 @@ The general format is:
 
    class derived_name: {access_modifier} base_name, {access_modifier} base2_name, . . . 
 
-Applying this to our base class shape:
+Applying this to our base class shape we can define a circle like this:
 
 .. code-block:: cpp
 
    class circle: public shape {
       double radius = 1;
      public:
-       void   draw()  const override;
-       void   erase() override;
+       void   move() override;
    };
-
-   class rectangle: public shape {
-      double ht = 1;
-      double wd = 1;
-     public:
-       void   draw()  const override;
-       void   erase() override;
-   };
-
-   class triangle: public shape {
-      double height = 1;
-      double base   = 1;
-     public:
-       void   draw()  const override;
-       void   erase() override;
-   };
-
 
 The keyword ``override`` tells the compiler that this function
-intends to override a virtual function in a base class.
+intends to *override* a virtual function in a base class.
 Although a C++11 feature and not required,
 it is a best practice since it provides the compiler
 more information about your intent and can flag functions
