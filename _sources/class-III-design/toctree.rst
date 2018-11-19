@@ -9,4 +9,6 @@ Class design
    uml.rst
    composition.rst
    inheritance.rst
+   interfaces.rst
+   patterns.rst
 

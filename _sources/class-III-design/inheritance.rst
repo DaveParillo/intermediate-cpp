@@ -20,22 +20,14 @@ Consider the following example:
 
 .. code-block:: cpp
 
-   class enum Color {RED, ORANGE, YELLOW, 
-				  GREEN, BLUE, INDIGO, VIOLET,
-				  WHITE, BLACK};
+   class enum Color {RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET};
 
    class shape {
        Color color_ = Color::BLUE;
      public:
        virtual ~shape() = default;
-       void   color (Color new_color)
-       {
-         color_ = new_color;
-       }
-       Color  color()  const 
-       {
-         return color_;
-       }
+       void   color (Color new_color) { color_ = new_color; }
+       Color  color ()  const         { return color_; }
        virtual void   move();
    };
 
@@ -84,6 +76,10 @@ Applying this to our base class shape we can define a circle like this:
      public:
        void   move() override;
    };
+
+Which creates a by default a blue circle with radius = 1.
+A circle inherits its ability to change color from its parent: shape.
+This circle implements its own version of the ``move()`` function.
 
 The keyword ``override`` tells the compiler that this function
 intends to *override* a virtual function in a base class.
@@ -300,6 +296,7 @@ then it probably shouldn't be a derived class.
 
 .. index:: diamond of death
    pair: multiple; inheritance
+   pair: Bjarne Stroustrup; multiple inheritance
 
 Multiple inheritance
 --------------------
@@ -475,6 +472,32 @@ The derived class at the end of the inheritance chain might need
 code containing 'knowledge' about **all** of its ancestor classes.
 This is partly why the diamond is considered 'deadly'.
 
+.. epigraph::
+
+   **Do we really need multiple inheritance?**
+
+   Not really. 
+   We can do without multiple inheritance by using workarounds, 
+   exactly as we can do without single inheritance by using workarounds. 
+   We can even do without classes by using workarounds. 
+   C is a proof of that contention. 
+   However, every modern language with static type checking and inheritance 
+   provides some form of multiple inheritance. 
+   In C++, abstract classes often serve as interfaces and 
+   a class can have many interfaces. 
+   Other languages -- often deemed "not MI" -- 
+   simply has a separate name for their equivalent to a pure abstract class: 
+   an interface. 
+   The reason languages provide inheritance (both single and multiple) 
+   is that language-supported inheritance is typically superior to workarounds 
+   (e.g. use of forwarding functions to sub-objects or separately allocated objects)
+   for ease of programming, 
+   for detecting logical problems, 
+   for maintainability, and often for performance.
+
+   -- Bjarne Stroustrup's C++ Style and Technique FAQ
+
+
 .. index::
    pair: graph; bird inheritance
 
@@ -560,6 +583,8 @@ A kitchen **has a** sink in it.
 
 .. admonition:: More to Explore
 
+   - `Derived classes <https://en.cppreference.com/w/cpp/language/derived_class>`__
+     from cppreference.com
    - `Ineritance basics 
      <https://isocpp.org/wiki/faq/basics-of-inheritance>`__
      from the C++ FAQ
