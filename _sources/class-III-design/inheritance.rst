@@ -533,7 +533,7 @@ Consider the following classes.
            shape=box,
            style="filled"];
      bird [shape=record,
-       label="{\<\<interface\>\>\nbird\n||fly(): void\l}"];
+       label="{bird\n|-wingspan: double|+fly(): void\l+eat(): void\l}"];
      bird -> hawk;
      bird -> owl;
      bird -> penguin;
