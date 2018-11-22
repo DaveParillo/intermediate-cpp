@@ -914,10 +914,38 @@ Unless you <em>completely</em> trust the caller (and their caller…)</p>
 </ul>
 </li>
 </ol>
-<hr class="docutils" />
+
+    <div class="runestone" style="margin-left: auto; margin-right:auto">
+    <div id="9mWWNYRHAIQ_vid"></div>
+    </div>
+    <script id="9mWWNYRHAIQ_script">
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var ytScriptTag = document.getElementById('9mWWNYRHAIQ_script');
+      ytScriptTag.parentNode.insertBefore(tag, ytScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('9mWWNYRHAIQ_vid', {
+          height: '281',
+          width: '500',
+          videoId: '9mWWNYRHAIQ',
+          events: {
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+    </script>
+    <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">
 <p class="first admonition-title">More to Explore</p>
 <ul class="last simple">
+<li><a class="reference external" href="https://www.youtube.com/watch?v=-87KQS-rZCA">Basic intro to functions</a>
+from Buckys C++ Programming Tutorials.</li>
 <li>From: cppreference.com:
 <a class="reference external" href="http://en.cppreference.com/w/cpp/language/function">function declarations</a>.</li>
 <li><a class="reference external" href="https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#S-functions">C++ Core Guidelines for functions</a>

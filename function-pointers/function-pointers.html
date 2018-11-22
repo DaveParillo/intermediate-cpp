@@ -356,7 +356,33 @@ This is a legacy of the C language C++ was originally based on.</p>
 <span class="k">using</span> <span class="n">func</span> <span class="o">=</span> <span class="kt">double</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>  <span class="c1">// since C++11</span>
 </pre></div>
 </div>
-<div class="section" id="example-caesar-ciphers">
+
+    <div class="runestone" style="margin-left: auto; margin-right:auto">
+    <div id="p4sDgQ-jao4_vid"></div>
+    </div>
+    <script id="p4sDgQ-jao4_script">
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var ytScriptTag = document.getElementById('p4sDgQ-jao4_script');
+      ytScriptTag.parentNode.insertBefore(tag, ytScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('p4sDgQ-jao4_vid', {
+          height: '281',
+          width: '500',
+          videoId: 'p4sDgQ-jao4',
+          events: {
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+    </script>
+    <div class="section" id="example-caesar-ciphers">
 <h2>6.1.1. Example: Caesar ciphers<a class="headerlink" href="#example-caesar-ciphers" title="Permalink to this headline">¶</a></h2>
 <p>A simple substitution cipher, called <a class="reference external" href="https://en.wikipedia.org/wiki/ROT13">ROT13</a>, short for ‘rotate 13 places’
 can be used to obfuscate text by replacing each letter with the letter 13 letters after it in the alphabet.

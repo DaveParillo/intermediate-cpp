@@ -347,7 +347,33 @@ That would be impossible.</p>
 <p>Generally, C++ gives programmers many choices and it is true
 that some choices are preferred over others.
 We will try to make preferred design and programming choices clear.</p>
-<p>You can test the level of support for the compiler you are using by
+
+    <div class="runestone" style="margin-left: auto; margin-right:auto">
+    <div id="AUT201AXeJg_vid"></div>
+    </div>
+    <script id="AUT201AXeJg_script">
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var ytScriptTag = document.getElementById('AUT201AXeJg_script');
+      ytScriptTag.parentNode.insertBefore(tag, ytScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('AUT201AXeJg_vid', {
+          height: '281',
+          width: '500',
+          videoId: 'AUT201AXeJg',
+          events: {
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+    </script>
+    <p>You can test the level of support for the compiler you are using by
 attempting to compile these examples in your environment.</p>
 <div id='tab_beginning_compiler_test' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="C++11" >
 <p>A simple test for a modern C++ compiler:</p>

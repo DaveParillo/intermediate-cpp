@@ -490,9 +490,37 @@ Each lambda defines a new type.
 Only the compiler knows exactly what the type is, so as a programmer,
 you must use auto and allow the compiler to deduce it.</p>
 <p>Even two identical lambdas will become two different types when compiled.</p>
-</div>
+<p>It is possible to convert between lambda expressions and function pointers,
+as this video demonstrates:</p>
+
+    <div class="runestone" style="margin-left: auto; margin-right:auto">
+    <div id="Cmk0Tlo1eCA_vid"></div>
+    </div>
+    <script id="Cmk0Tlo1eCA_script">
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var ytScriptTag = document.getElementById('Cmk0Tlo1eCA_script');
+      ytScriptTag.parentNode.insertBefore(tag, ytScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('Cmk0Tlo1eCA_vid', {
+          height: '281',
+          width: '500',
+          videoId: 'Cmk0Tlo1eCA',
+          events: {
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+    </script>
+    </div>
 <div class="section" id="trailing-return-types-in-lambda-expressions">
-<span id="index-1"></span><h2>6.2.2. Trailing return types in lambda expressions<a class="headerlink" href="#trailing-return-types-in-lambda-expressions" title="Permalink to this headline">¶</a></h2>
+<span id="index-2"></span><h2>6.2.2. Trailing return types in lambda expressions<a class="headerlink" href="#trailing-return-types-in-lambda-expressions" title="Permalink to this headline">¶</a></h2>
 <p>When the compiler cannot deduce the correct type,
 or does not deduce the desired type,
 then the return type must be specified.</p>

@@ -244,6 +244,16 @@ you must use auto and allow the compiler to deduce it.
 
 Even two identical lambdas will become two different types when compiled.
 
+It is possible to convert between lambda expressions and function pointers,
+as this video demonstrates:
+
+.. index::
+   pair: video; lambda - function pointer conversion
+
+.. youtube:: Cmk0Tlo1eCA
+   :http: https
+
+
 .. index::
    pair: lambda; trailing return type
 

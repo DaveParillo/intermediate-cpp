@@ -333,7 +333,33 @@ see <a class="reference external" href="http://en.cppreference.com/mwiki/index.p
 <p>This just adds to the amount of stuff programmers have to commit to memory.
 In C++, you only have to remember a single function to compute
 the absolute value: <code class="docutils literal notranslate"><span class="pre">abs</span></code>.</p>
-<p>Another example: a family of functions to compute volume.</p>
+
+    <div class="runestone" style="margin-left: auto; margin-right:auto">
+    <div id="IAMzWp3kS_k_vid"></div>
+    </div>
+    <script id="IAMzWp3kS_k_script">
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var ytScriptTag = document.getElementById('IAMzWp3kS_k_script');
+      ytScriptTag.parentNode.insertBefore(tag, ytScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('IAMzWp3kS_k_vid', {
+          height: '281',
+          width: '500',
+          videoId: 'IAMzWp3kS_k',
+          events: {
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+    </script>
+    <p>Another example: a family of functions to compute volume.</p>
 
 <div data-childcomponent="ac-volume" class="runestone explainer ac_section alert alert-warning">
 

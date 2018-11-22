@@ -719,10 +719,20 @@ General function writing guidelines
 
    - It should be obvious: do not trust ``argv[]``
 
+
+.. index::
+   pair: video; function returns
+
+.. youtube:: 9mWWNYRHAIQ
+   :http: https
+
+
 -----
 
 .. admonition:: More to Explore
 
+  - `Basic intro to functions <https://www.youtube.com/watch?v=-87KQS-rZCA>`__
+    from Buckys C++ Programming Tutorials.
   - From: cppreference.com: 
     `function declarations <http://en.cppreference.com/w/cpp/language/function>`_. 
   - `C++ Core Guidelines for functions 
