@@ -100,6 +100,9 @@ Generally, C++ gives programmers many choices and it is true
 that some choices are preferred over others.
 We will try to make preferred design and programming choices clear.
 
+.. youtube:: AUT201AXeJg
+   :http: https
+
 You can test the level of support for the compiler you are using by
 attempting to compile these examples in your environment.
 

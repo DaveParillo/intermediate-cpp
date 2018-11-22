@@ -110,6 +110,12 @@ The C++11 :cref:`type alias` allows defining a name that refers to a previously 
 
    using func = double(*)(int, int);  // since C++11
 
+.. index::
+   pair: video; function pointers
+
+.. youtube:: p4sDgQ-jao4
+   :http: https
+
 
 Example: Caesar ciphers
 -----------------------
