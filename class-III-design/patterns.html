@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13.6. Design patterns &#8212; Intermediate Modern C++ Overview</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrixeq.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js_lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/accessibility.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/runestonebase.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js"></script>
+    <script type="text/javascript" src="../_static/clickable.js"></script>
+    <script type="text/javascript" src="../_static/timedclickable.js"></script>
+    <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
+    <script type="text/javascript" src="../_static/fitb.js"></script>
+    <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="../_static/Blob.js"></script>
+    <script type="text/javascript" src="../_static/reveal.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/parsons.js"></script>
+    <script type="text/javascript" src="../_static/timedparsons.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/mchoice.js"></script>
+    <script type="text/javascript" src="../_static/timedmc.js"></script>
+    <script type="text/javascript" src="../_static/timed.js"></script>
+    <script type="text/javascript" src="../_static/shortanswer.js"></script>
+    <script type="text/javascript" src="../_static/timed_shortanswer.js"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/codelens.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/clike.js"></script>
+    <script type="text/javascript" src="../_static/timed_activecode.js"></script>
+    <script type="text/javascript" src="../_static/datafile.js"></script>
+    <script type="text/javascript" src="../_static/showEval.js"></script>
+    <script type="text/javascript" src="../_static/dragndrop.js"></script>
+    <script type="text/javascript" src="../_static/timeddnd.js"></script>
+    <script type="text/javascript" src="../_static/poll.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="14. Memory Management" href="../class-IV-memory/toctree.html" />
+    <link rel="prev" title="13.5. Abstract base classes" href="interfaces.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="shortcut icon" href="/intermediate-cpp/static/favicon.ico" type="image/ico" />
+
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'https://daveparillo.github.io/intermediate-cpp/' ? 'https://daveparillo.github.io/intermediate-cpp/' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/intermediate-cpp';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'intermediate-cpp';
+  eBookConfig.acDefaultLanguage = 'cpp' ? 'cpp' : 'cpp'
+  eBookConfig.logLevel = 0;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "unknown";
+  eBookConfig.isLoggedIn = false;
+  eBookConfig.useRunestoneServices = false;
+  eBookConfig.python3 = false;
+  eBookConfig.basecourse = 'intermediate-cpp';
+  eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.runestone_version = '3.2.6';
+</script>
+
+
+  </head><body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        <a class="brand-logo" style='padding:12px 0;text-align:center' href="http://209.129.16.61/~dparillo/">
+           <i class="glyphicon glyphicon-home" style='opacity:0.9;font-size:16px;color:#848484'></i>
+        </a>
+        <!--
+        <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;' href="/intermediate-cpp/default/user/login">&nbsp; </a>
+        <a class="navbar-brand" href="/~dparillo" style="color:#5080a0">CISC-187</a>&nbsp;
+        -->
+        <a class="navbar-brand" href="../index.html">Intermediate C++</a>
+      </div>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html'>Table of Contents</a></li>
+            
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li id="scratch_ac_link"><a href="javascript:ACFactory.toggleScratchActivecode()">Scratch ActiveCode</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        
+        <li class="divider-vertical"></li>
+
+        <!-- help menu dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//help/navhelp.html'>Navigation Help</a></li>
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//glossary.html'>Glossary</a></li>
+            <li class="divider"></li>
+            <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
+          </ul>
+        </li>
+        <!-- end help menu dropdown -->
+
+        <li class="divider-vertical"></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        <!--
+          <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">13.6. Design patterns</a><ul>
+<li><a class="reference internal" href="#fixing-an-inheritance-problem">13.6.1. Fixing an inheritance problem</a><ul>
+<li><a class="reference internal" href="#strategy-pattern">13.6.1.1. Strategy pattern</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#chain-of-responsibility-pattern">13.6.2. Chain of Responsibility pattern</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        
+          
+  <li id="relations-prev" title="Previous Chapter - 13.5. Abstract base classes" data-toggle="tooltip">
+    <a href="interfaces.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - 14. Memory Management' data-toggle="tooltip" >
+    <a href="../class-IV-memory/toctree.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content">
+  
+  <div class="section" id="design-patterns">
+<span id="index-0"></span><h1>13.6. Design patterns<a class="headerlink" href="#design-patterns" title="Permalink to this headline">¶</a></h1>
+<p>A software design pattern is a general,
+reusable solution to a common software problem.
+It is not an actual implementation,
+but rather an idea.</p>
+<p>Design patterns gained popularity in computer science after the book
+<em>Design Patterns: Elements of Reusable Object-Oriented Software</em>
+was published in 1994 by (Gamma et al.).
+The book had 4 authors and together they became known as the
+“Gang of Four”, or even more briefly the “GoF”.</p>
+<p>Design patterns are useful for several reasons:</p>
+<ul class="simple">
+<li>They provide useful solutions to common problems</li>
+<li>They provide a common vocabulary between programmers when discussing a design</li>
+<li>They exploit lessons learned by other developers</li>
+</ul>
+<blockquote class="epigraph">
+<div><p>… with patterns you get <em>experience</em> reuse.</p>
+<p class="attribution">&mdash;Head First Design Patterns, Freeman and Robson, 2014, p. 1.</p>
+</div></blockquote>
+<div class="section" id="fixing-an-inheritance-problem">
+<span id="index-1"></span><h2>13.6.1. Fixing an inheritance problem<a class="headerlink" href="#fixing-an-inheritance-problem" title="Permalink to this headline">¶</a></h2>
+<p>Recall our flying penguin problem from the section on <a class="reference internal" href="inheritance.html"><span class="doc">Inheritance</span></a>:</p>
+<img src="../_images/graphviz-b52c202d8daa47e3a137a40625e944e306704b9e.png" alt="Bird inheritance" />
+<p>This type of design error is actually common.</p>
+<p>It’s easy to overlook a design error, in this case flying penguins.
+Part of what makes these errors problematic is that design errors
+that actually get delivered in the final product are among the most
+expensive software errors to fix.</p>
+<p>So how do we fix our bird design?</p>
+<p>We <strong>could</strong> just override the <code class="docutils literal notranslate"><span class="pre">fly</span></code> method for penguins
+and have the override do nothing.
+This might solve our immediate problem, but it’s not a general
+solution to this problem:</p>
+<ul>
+<li><p class="first">It doesn’t work as well for non-void functions.
+In this case, <code class="docutils literal notranslate"><span class="pre">fly</span></code> – a void function – really could do nothing
+A non-void function <strong>must</strong> return something.
+If the function returns something, but that ‘something’ actually means
+‘nothing’, then we have another design problem.
+This value now represents a marker that every caller of the function
+might need to handle and understand that no action was taken.</p>
+</li>
+<li><p class="first">What happens when we need behaviors other than <code class="docutils literal notranslate"><span class="pre">fly</span></code>?
+If every time we have an exception case for a derived type
+and we create overrides that do nothing,
+then it can become difficult to understand the true capabilities
+of any object in the hierarchy just by looking that the interface.</p>
+<p>You have to examine the <em>code</em> to see how each (or if) an
+interface was <em>implemented</em>.</p>
+<p>Any design that requires us to look at the source code before we can
+completely understand it is not a design we want to use.</p>
+</li>
+</ul>
+<p>Another problem with the existing design is that it encourages
+duplication in derived classes.
+For example, let’s assume we need to model bird flying behavior.
+Most birds don’t just ‘fly’.
+They soar, flock, flit about, dive, or don’t fly at all.
+There are many thousands of different kinds of birds,
+but relatively few ways of flying.</p>
+<p>We <em>could</em> decide to solve this problem using an interface:</p>
+<img src="../_images/graphviz-c2f3b4b45e298354dc7792f97e6b8ff31b3d7cbc.png" alt="Flying interfaces" />
+<p>This does allow limiting the flying behavior to those birds that actually fly,
+but at a high cost.
+Now every bird that <em>does</em> fly needs to reimplement the code for <code class="docutils literal notranslate"><span class="pre">fly()</span></code>.
+Derived classes cannot inherit code from each other.
+Future maintenance of all the duplicated code could be expensive.
+Our current situation:</p>
+<ul class="simple">
+<li>Not all birds fly, so inheritance is not the right choice</li>
+<li>A simple interface solves the inheritance problem,
+but creates an unacceptable maintenance burden.</li>
+</ul>
+<p>There must be a better option.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p><strong>Accommodating change</strong></p>
+<p>How can we isolate the parts of a system that change from the parts
+that do not change?
+By isolating the parts most likely to change frequently,
+we can later change or extend them without impacting other parts of the system.</p>
+<p class="last">This simple idea is the motivation behind nearly every design pattern.</p>
+</div>
+<div class="section" id="strategy-pattern">
+<span id="index-2"></span><h3>13.6.1.1. Strategy pattern<a class="headerlink" href="#strategy-pattern" title="Permalink to this headline">¶</a></h3>
+<p>We can think of flying as a <em>strategy</em> different birds employ to move around.
+Birds don’t <em>inherit</em> a fly behavior, they <em>have it</em>.
+The centerpiece of the solution is to isolate many different
+types of flying behavior behind a single class that stores
+a pointer to a function implementing the behavior.
+Each implementation defines a different <strong>strategy</strong> for the interface.</p>
+<img src="../_images/graphviz-499cf741fde2697ea9322a2dbc18172d4bbcfdcd.png" alt="Flying strategy" />
+<p>Any callable entity (function, function object, or lambda) is
+a potential strategy that derived classes of a bird can now use.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;functional&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;utility&gt;</span><span class="cp"></span>
+
+<span class="cp">#define FunctionObject typename</span>
+
+<span class="c1">// an alias to avoid copying std::function ... everywhere</span>
+<span class="k">using</span> <span class="n">fly_strategy</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">()</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">fly_behavior</span> <span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="n">FunctionObject</span> <span class="n">F</span><span class="o">&gt;</span>
+    <span class="k">explicit</span> <span class="n">fly_behavior</span><span class="p">(</span><span class="n">F</span> <span class="n">strategy</span><span class="p">)</span>
+      <span class="o">:</span> <span class="n">strategy</span> <span class="p">{</span><span class="n">strategy</span><span class="p">}</span>
+    <span class="p">{</span> <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">fly</span><span class="p">()</span> <span class="p">{</span> <span class="n">strategy</span><span class="p">();</span> <span class="p">}</span>
+
+  <span class="k">private</span><span class="o">:</span>
+    <span class="n">fly_strategy</span> <span class="n">strategy</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// a function object that implements a strategy</span>
+<span class="k">struct</span> <span class="n">soar</span>
+<span class="p">{</span>
+  <span class="kt">void</span> <span class="k">operator</span><span class="p">()</span> <span class="p">()</span> <span class="p">{</span>
+   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;fly by soaring.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// a free function can also implement a strategy</span>
+<span class="kt">void</span> <span class="nf">no_flying_allowed</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;I don&#39;t fly.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The base class now <em>delgates</em> the fly behavior to the strategy
+instead of either defining a single fixed behavior or forcing every
+derived class to create one.
+In languages without lambda expressions, each implemented strategy
+is usually implemented as a separate class, each inheriting from the base
+strategy class.
+In C++, an inheritance based solution is possible, but not required.
+There is no ‘best’ solution - your needs must drive the final
+design decision.
+In general, if the strategy also needs to store state information,
+then implement as a class or function object.
+If the strategy is stateless, then implement a functional solution.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">bird</span> <span class="p">{</span>
+  <span class="n">fly_strategy</span> <span class="n">strategy</span> <span class="o">=</span> <span class="n">soar</span><span class="p">();</span>
+
+  <span class="k">public</span><span class="o">:</span>
+  <span class="n">bird</span> <span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  <span class="k">explicit</span> <span class="nf">bird</span><span class="p">(</span><span class="n">fly_strategy</span> <span class="n">strategy</span><span class="p">)</span>
+   <span class="o">:</span> <span class="n">strategy</span><span class="p">(</span><span class="n">strategy</span><span class="p">)</span>
+  <span class="p">{}</span>
+  <span class="o">~</span><span class="n">bird</span> <span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+
+  <span class="c1">// change strategy mid-stream</span>
+  <span class="kt">void</span> <span class="nf">fly_behavior</span> <span class="p">(</span><span class="n">fly_strategy</span> <span class="n">new_strategy</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">strategy</span> <span class="o">=</span> <span class="n">new_strategy</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kt">void</span> <span class="nf">fly</span><span class="p">()</span> <span class="p">{</span>
+   <span class="n">strategy</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>In this example, a bird may</p>
+<ul class="simple">
+<li>default construct the default soaring strategy, or</li>
+<li>set a strategy when constructed, or</li>
+<li>change the strategy at some point after construction.</li>
+</ul>
+<p>An example of birds using the strategy:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// a hawk can use the default soar behavior</span>
+<span class="k">class</span> <span class="nc">hawk</span> <span class="o">:</span> <span class="k">public</span> <span class="n">bird</span> <span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+   <span class="n">hawk</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// this penguin defines its fly behavior using a free function</span>
+<span class="k">class</span> <span class="nc">penguin</span> <span class="o">:</span> <span class="k">public</span> <span class="n">bird</span> <span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+   <span class="n">penguin</span><span class="p">()</span>
+     <span class="o">:</span> <span class="n">bird</span><span class="p">(</span><span class="n">no_flying_allowed</span><span class="p">)</span>
+   <span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">hawk</span> <span class="n">h</span><span class="p">;</span>
+  <span class="n">h</span><span class="p">.</span><span class="n">fly</span><span class="p">();</span>
+
+  <span class="n">penguin</span> <span class="n">p</span><span class="p">;</span>
+  <span class="n">p</span><span class="p">.</span><span class="n">fly</span><span class="p">();</span>
+
+  <span class="c1">// change the behavior for just this penguin</span>
+  <span class="n">p</span><span class="p">.</span><span class="n">fly_behavior</span><span class="p">(</span>
+     <span class="p">[](){</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;With a rocket pack, now I can fly!!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+     <span class="p">}</span>
+  <span class="p">);</span>
+  <span class="n">p</span><span class="p">.</span><span class="n">fly</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Notice that we fixed our inheritance problem by using <a class="reference internal" href="../glossary.html#term-composition"><span class="xref std std-term">composition</span></a>.
+Not only did composition allow us to encapsulate a family of behaviors,
+it also allowed a simple hook to enable changing the behavior at runtime.</p>
+</div>
+</div>
+<div class="section" id="chain-of-responsibility-pattern">
+<span id="index-3"></span><h2>13.6.2. Chain of Responsibility pattern<a class="headerlink" href="#chain-of-responsibility-pattern" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes we need to give more than one object a chance to handle a request.
+The Chain of Responsibility pattern is a ‘behavioral’ software design pattern.
+The goal of the pattern is to separate request senders and request handlers,
+while giving more than one object a chance to handle the request.</p>
+<p>The Chain of Responsibility design pattern allows an object to send a command
+without knowing what object will receive and handle it.
+The request is sent from one object to another making them parts of a chain and
+each object in this chain can handle the command, pass it on or do both.
+The most usual example of a machine using the Chain of Responsibility is the
+vending machine coin slot: rather than having a slot for each type of coin,
+the machine has only one slot for all of them.
+The dropped coin is routed to the appropriate storage place that is determined
+by the receiver of the command.</p>
+<p>Instead of calling a single function to satisfy a request,
+multiple functions in the chain have a chance to satisfy the request.
+Since the chain is effectively a list,
+it can be dynamically created,
+so you could also think of it as a more general,
+dynamically-built switch statement.</p>
+<p>This fun example is adapted from Thinking in C++, Vol 2.</p>
+<div id='cor_pattern_tab' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Abstract class" >
+<p>First we define an abstract class each handler
+in the chain of responsibility must implement.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;memory&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+
+<span class="k">enum</span> <span class="k">class</span> <span class="nc">Answer</span> <span class="p">{</span> <span class="n">NO</span><span class="p">,</span> <span class="n">YES</span> <span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">GimmeStrategy</span> <span class="p">{</span>
+  <span class="k">virtual</span> <span class="n">Answer</span> <span class="n">canIHave</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">GimmeStrategy</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Rather than a <code class="docutils literal notranslate"><span class="pre">bool</span></code>, in this case, our early termination
+criteria is an enumerated type.</p>
+</div><div data-component="tab" data-tabname="Implementing classes" >
+<p>For a chain to be a chain, at least two classes must implement the interface.
+(It’s not much of a chain with only 1 link).</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="nl">AskMom</span> <span class="p">:</span> <span class="k">public</span> <span class="n">GimmeStrategy</span> <span class="p">{</span>
+  <span class="n">Answer</span> <span class="n">canIHave</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Mommy? Can I have this?</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">Answer</span><span class="o">::</span><span class="n">NO</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="nl">AskDad</span> <span class="p">:</span> <span class="k">public</span> <span class="n">GimmeStrategy</span> <span class="p">{</span>
+  <span class="n">Answer</span> <span class="n">canIHave</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Dad, I really need this!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">Answer</span><span class="o">::</span><span class="n">NO</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="nl">AskGrandpa</span> <span class="p">:</span> <span class="k">public</span> <span class="n">GimmeStrategy</span> <span class="p">{</span>
+  <span class="n">Answer</span> <span class="n">canIHave</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Grandpa, is it my birthday yet?</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">Answer</span><span class="o">::</span><span class="n">NO</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="nl">AskGrandma</span> <span class="p">:</span> <span class="k">public</span> <span class="n">GimmeStrategy</span> <span class="p">{</span>
+  <span class="n">Answer</span> <span class="n">canIHave</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Grandma, I really love you!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">Answer</span><span class="o">::</span><span class="n">YES</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div><div data-component="tab" data-tabname="Building the chain" >
+<p>Much discussion related to this pattern is about how to create
+the chain of responsibility as a linked list.
+However, when you look at the pattern it really shouldn’t matter how
+the chain is created: that’s an implementation detail.
+The only important part is that <em>some</em> kind of
+<a class="reference internal" href="../glossary.html#term-iterable"><span class="xref std std-term">iterable</span></a> type is used to visit each handler.
+How that is implemented should be invisible to users.</p>
+<p>While the <code class="docutils literal notranslate"><span class="pre">Gimme</span></code> class also is derived from the <code class="docutils literal notranslate"><span class="pre">GimmeStrategy</span></code>
+it is used to construct the chain of all the other strategies
+used.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Gimme</span> <span class="o">:</span> <span class="k">public</span> <span class="n">GimmeStrategy</span> <span class="p">{</span>
+   <span class="k">private</span><span class="o">:</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">GimmeStrategy</span><span class="o">&gt;&gt;</span> <span class="n">chain</span><span class="p">;</span>
+   <span class="k">public</span><span class="o">:</span>
+     <span class="n">Gimme</span><span class="p">()</span> <span class="p">{</span>
+       <span class="n">chain</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">GimmeStrategy</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="n">AskMom</span><span class="p">));</span>
+       <span class="n">chain</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">GimmeStrategy</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="n">AskDad</span><span class="p">));</span>
+       <span class="n">chain</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">GimmeStrategy</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="n">AskGrandpa</span><span class="p">));</span>
+       <span class="n">chain</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">GimmeStrategy</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="n">AskGrandma</span><span class="p">));</span>
+     <span class="p">}</span>
+     <span class="n">Answer</span> <span class="n">canIHave</span><span class="p">()</span> <span class="p">{</span>
+       <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">it</span><span class="p">:</span> <span class="n">chain</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">it</span><span class="o">-&gt;</span><span class="n">canIHave</span><span class="p">()</span> <span class="o">==</span> <span class="n">Answer</span><span class="o">::</span><span class="n">YES</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">Answer</span><span class="o">::</span><span class="n">YES</span><span class="p">;</span>
+         <span class="p">}</span>
+       <span class="p">}</span>
+       <span class="c1">// Reached end without success...</span>
+       <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Waaaaaahh!!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+       <span class="k">return</span> <span class="n">Answer</span><span class="o">::</span><span class="n">NO</span><span class="p">;</span>
+     <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+    </div>
+
+<p>Once the abstract and implementing classes have been defined,
+then calling the chain is easy:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">Gimme</span> <span class="n">chain</span><span class="p">;</span>
+  <span class="n">chain</span><span class="p">.</span><span class="n">canIHave</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If you research the Chain of Responsibility in the GoF Patterns book
+or on the web, you’ll find that the structure differs significantly from
+the one above because most people focus on creating their own linked list.
+However, if you keep in mind that the essence of Chain of Responsibility is
+to try a number of solutions until you find one that works,
+you’ll realize that the implementation of the sequencing mechanism is not
+an essential part of the pattern.</p>
+<hr class="docutils" />
+<div class="admonition-more-to-explore admonition">
+<p class="first admonition-title">More to Explore</p>
+<ul class="last">
+<li><p class="first"><a class="reference external" href="http://www.oodesign.com/strategy-pattern.html">Strategy Design Pattern</a> on oodesign.com
+and on <a class="reference external" href="https://en.wikipedia.org/wiki/Strategy_pattern">Wikipedia</a>.</p>
+</li>
+<li><p class="first"><a class="reference external" href="http://www.oodesign.com/chain-of-responsibility-pattern.html">Chain of Responsibility Design Pattern</a> on oodesign.com
+and on <a class="reference external" href="https://en.wikipedia.org/wiki/Chain-of-responsibility_pattern">Wikipedia</a>.</p>
+</li>
+<li><p class="first">Bruce Eckel. Thinking in C++, Vol 2.,  section 3.3.10.</p>
+</li>
+<li><p class="first"><a class="reference external" href="http://wiki.c2.com/?DesignPatternsAreMissingLanguageFeatures">Design Patterns Are Missing Language Features</a> from the PortlandPatternRepository.</p>
+</li>
+<li><p class="first"><a class="reference external" href="http://www.paulgraham.com/icad.html">Revenge of the Nerds</a>
+an excellent article written by Paul Graham in 2002.
+About the evolution of language and how modern languages are becoming more
+like Lisp – which was discovered in 1958.
+The end has a short criticism of patterns.</p>
+<p>Keep this date in mind when he uses phrases like ‘recently invented’:
+that’s still over 20 years ago!</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+  
+      
+  <li id="relations-prev" class="navLink" title='Previous Section - 13.5. Abstract base classes' data-toggle="tooltip">
+    <a href="interfaces.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="interfaces.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - 14. Memory Management' data-toggle="tooltip" >
+    <a href="../class-IV-memory/toctree.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="../class-IV-memory/toctree.html" >Next Section - 14. Memory Management</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+  
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2017-2018 Dave Parillo.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.6.
+    </p>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

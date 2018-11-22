@@ -31,6 +31,11 @@ Glossary
       abstract properties of a :term:`data type` and the concrete details 
       of its implementation. 
 
+   abstract base class
+      A class in which some functions are not implemented.
+      Abstract bases classes cannot be instantiated --- a derived class
+      must override the abstract virtual function with an implementation.
+
    abstract data type
       Abbreviated :term:`ADT`. The realization of a :term:`data type`
       as a software component.
@@ -87,6 +92,14 @@ Glossary
       case letters, digits, some punctuation, and some number of
       non-printing characters (such as carrage return).
       Now largely replaced by UTF-8 encoding.
+
+   assignable
+      A :term:`type` is *assignable* if the type can be copy-assigned
+      a new value as the left-hand side of the operation.
+
+      References are not assignable because once initialized,
+      they cannot be assigned a new value.
+
 
    associative container
       A set of sorted data structures that can be quickly searched.

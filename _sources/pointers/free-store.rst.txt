@@ -115,7 +115,7 @@ Depending on what your program does,
 even a short program can run out of memory before accomplishing all of its goals.
 
 .. index:: memory management
-   :single: smart pointer; auto_ptr; unique_ptr; shared_ptr
+   single: smart pointer; auto_ptr; unique_ptr; shared_ptr
 
 STL memory management
 ---------------------

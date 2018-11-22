@@ -230,6 +230,7 @@
 <li><a class="reference internal" href="#">12.1. Constructors</a><ul>
 <li><a class="reference internal" href="#initialization-syntax">12.1.1. Initialization syntax</a></li>
 <li><a class="reference internal" href="#overloaded-constructors">12.1.2. Overloaded constructors</a></li>
+<li><a class="reference internal" href="#telescoping-constructors">12.1.3. Telescoping constructors</a></li>
 </ul>
 </li>
 </ul>
@@ -523,8 +524,225 @@ appropriate types improves clarity and utility:</p>
 <span class="n">Date</span> <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="n">year</span><span class="p">{</span><span class="mi">1776</span><span class="p">},</span> <span class="n">month</span><span class="o">::</span><span class="n">jul</span><span class="p">,</span> <span class="mi">4</span><span class="p">};</span>
 </pre></div>
 </div>
-<p>This version is easier for programmers to remember and any errors are compile errors
-instead of runtime errors.</p>
+<p>This version is easier for programmers to remember and any errors are
+compile errors instead of runtime errors.</p>
+</div>
+<div class="section" id="telescoping-constructors">
+<h2>12.1.3. Telescoping constructors<a class="headerlink" href="#telescoping-constructors" title="Permalink to this headline">¶</a></h2>
+<p>The original <code class="docutils literal notranslate"><span class="pre">date</span></code> class suffered from a common design problem:
+too many parameters of the same type.
+A closely related problem is how to provide flexibility when constructing
+new objects. A common solution is to provide constructors with
+different numbers of arguments:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">date</span> <span class="p">{</span>
+   <span class="n">date</span><span class="p">();</span>                          <span class="c1">// make a default date</span>
+   <span class="n">date</span><span class="p">(</span><span class="n">year</span> <span class="n">y</span><span class="p">);</span>                    <span class="c1">// use a default month and day</span>
+   <span class="n">date</span><span class="p">(</span><span class="n">year</span> <span class="n">y</span><span class="p">,</span> <span class="n">month</span> <span class="n">m</span><span class="p">);</span>           <span class="c1">// use a default day</span>
+   <span class="n">date</span><span class="p">(</span><span class="n">year</span> <span class="n">y</span><span class="p">,</span> <span class="n">month</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">day</span><span class="p">);</span>  <span class="c1">// specify the entire date</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>What about the possibility of specifying <code class="docutils literal notranslate"><span class="pre">month</span></code> and <code class="docutils literal notranslate"><span class="pre">day</span></code>?
+How many different constructors should be allowed?
+The number of permutations get unmaintainable even for a relatively
+few number of parameters.</p>
+<p>This is called a <em>telescoping constructor</em>, and is generally
+considered an <a class="reference internal" href="../glossary.html#term-anti-pattern"><span class="xref std std-term">anti-pattern</span></a>.
+That is, there are better solutions to this problem.</p>
+<p>The easiest solution in C++ is to use default values for function parameters.
+This works best when the default values are different types
+and there is no need to allow every possible combination of parameters.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">date</span> <span class="p">{</span>
+   <span class="n">date</span><span class="p">(</span><span class="n">year</span> <span class="n">y</span> <span class="o">=</span> <span class="n">date</span><span class="o">::</span><span class="n">current_year</span><span class="p">(),</span>
+        <span class="n">month</span> <span class="n">m</span> <span class="o">=</span> <span class="n">date</span><span class="o">::</span><span class="n">current_month</span><span class="p">(),</span>
+        <span class="kt">int</span> <span class="n">day</span> <span class="o">=</span> <span class="n">date</span><span class="o">::</span><span class="n">current_day</span><span class="p">());</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>This solution is still limited by the fact that defaults are still evaluated
+left to right.
+A date declaration of the form</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">date</span> <span class="n">d</span> <span class="p">{</span><span class="mi">15</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>won’t create a date for the 15th day of the current month and year.
+In addition, the solution does not work well when all (or most)
+of the parameters are the same type.
+Consider this example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">NutritionFacts</span> <span class="p">{</span>
+  <span class="k">private</span><span class="o">:</span>
+    <span class="c1">// variables in need of initialization to make valid object</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">serving_size_</span><span class="p">;</span>  <span class="c1">// mL</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">servings_</span><span class="p">;</span>         <span class="c1">// per container</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">calories_</span><span class="p">;</span>      <span class="c1">// Kcal</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">fat_</span><span class="p">;</span>           <span class="c1">// g</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">sodium_</span><span class="p">;</span>        <span class="c1">// mg</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">carbs_</span><span class="p">;</span>         <span class="c1">// g</span>
+
+  <span class="k">public</span><span class="o">:</span>
+    <span class="c1">// How about this as a solution?</span>
+   <span class="n">NutritionFacts</span><span class="p">(</span><span class="kt">double</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">double</span><span class="p">,</span> <span class="kt">double</span><span class="p">,</span> <span class="kt">double</span><span class="p">,</span> <span class="kt">double</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Is the proper order <code class="docutils literal notranslate"><span class="pre">calories</span></code>, <code class="docutils literal notranslate"><span class="pre">fat</span></code>, <code class="docutils literal notranslate"><span class="pre">carbs</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">fat</span></code>, <code class="docutils literal notranslate"><span class="pre">calories</span></code>, <code class="docutils literal notranslate"><span class="pre">carbs</span></code>, or
+something else?
+Even if we give these parameters meaningful names,
+there is no runtime enforcement.
+It’s easy to make a mistake when too many parameters are the same type.</p>
+<p>When confronted with many optional parameters,
+a builder is an effective alternative.
+Basic ideas:</p>
+<ul>
+<li><p class="first">Use constructor parameters to accept mandatory parameters.</p>
+</li>
+<li><p class="first">Use a helper class (Builder) to default initialize optional parameters.</p>
+</li>
+<li><p class="first">A <code class="docutils literal notranslate"><span class="pre">Builder::build()</span></code> function creates a NutritionFacts object from a builder.</p>
+</li>
+<li><p class="first">The builder makes the class it helps a friend.</p>
+<p>This is used only avoid creating builder accessor functions.</p>
+</li>
+<li><p class="first">A conversion constructor is used to copy builder state into the
+enclosing class.</p>
+</li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="k">class</span> <span class="nc">NutritionFacts</span> <span class="p">{</span>
+  <span class="k">private</span><span class="o">:</span>
+    <span class="c1">// variables in need of initialization to make valid object</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">serving_size_</span><span class="p">;</span>  <span class="c1">// mL</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">servings_</span><span class="p">;</span>         <span class="c1">// per container</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">calories_</span><span class="p">;</span>      <span class="c1">// Kcal</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">fat_</span><span class="p">;</span>           <span class="c1">// g</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">sodium_</span><span class="p">;</span>        <span class="c1">// mg</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">carbs_</span><span class="p">;</span>         <span class="c1">// g</span>
+
+
+  <span class="k">public</span><span class="o">:</span>
+    <span class="c1">// Only one simple constructor for mandatory parameters</span>
+    <span class="c1">// - rest is handled by Builder</span>
+    <span class="n">NutritionFacts</span><span class="p">(</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">serving_size</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">servings</span><span class="p">)</span>
+      <span class="o">:</span> <span class="n">serving_size_</span><span class="p">{</span><span class="n">serving_size</span><span class="p">},</span> <span class="n">servings_</span><span class="p">{</span><span class="n">servings</span><span class="p">},</span>
+      <span class="n">calories_</span><span class="p">{</span><span class="mi">0</span><span class="p">},</span> <span class="n">fat_</span><span class="p">{</span><span class="mi">0</span><span class="p">},</span> <span class="n">sodium_</span><span class="p">{</span><span class="mi">0</span><span class="p">},</span> <span class="n">carbs_</span><span class="p">{</span><span class="mi">0</span><span class="p">}</span>
+    <span class="p">{}</span>
+
+    <span class="c1">// use this class to construct Nutritionfacts</span>
+    <span class="k">class</span> <span class="nc">Builder</span> <span class="p">{</span>
+      <span class="k">private</span><span class="o">:</span>
+        <span class="k">friend</span> <span class="n">NutritionFacts</span><span class="p">;</span>
+        <span class="kt">double</span> <span class="n">serving_size_</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>  <span class="c1">// mL</span>
+        <span class="kt">int</span> <span class="n">servings_</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>         <span class="c1">// per container</span>
+        <span class="kt">double</span> <span class="n">calories_</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>       <span class="c1">// Kcal</span>
+        <span class="kt">double</span> <span class="n">fat_</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>            <span class="c1">// g</span>
+        <span class="kt">double</span> <span class="n">sodium_</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>         <span class="c1">// mg</span>
+        <span class="kt">double</span> <span class="n">carbs_</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>          <span class="c1">// g</span>
+
+      <span class="k">public</span><span class="o">:</span>
+        <span class="n">Builder</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+
+        <span class="c1">// create a NutritionFacts object from a builder</span>
+        <span class="n">NutritionFacts</span> <span class="nf">build</span><span class="p">()</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="n">NutritionFacts</span> <span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">Builder</span><span class="o">&amp;</span> <span class="n">serving_size</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+          <span class="n">serving_size_</span> <span class="o">=</span> <span class="n">size</span><span class="p">;</span>
+          <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">Builder</span><span class="o">&amp;</span> <span class="n">servings</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+          <span class="n">servings_</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
+          <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">Builder</span><span class="o">&amp;</span> <span class="n">calories</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+          <span class="n">calories_</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+          <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">Builder</span><span class="o">&amp;</span> <span class="n">fat</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">f</span><span class="p">)</span> <span class="p">{</span>
+          <span class="n">fat_</span> <span class="o">=</span> <span class="n">f</span><span class="p">;</span>
+          <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">Builder</span><span class="o">&amp;</span> <span class="n">sodium</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+          <span class="n">sodium_</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
+          <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">Builder</span><span class="o">&amp;</span> <span class="n">carbohydrates</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+          <span class="n">carbs_</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+          <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+        <span class="p">}</span>
+
+    <span class="p">};</span>
+
+    <span class="k">explicit</span> <span class="nf">NutritionFacts</span><span class="p">(</span><span class="k">const</span> <span class="n">Builder</span><span class="o">&amp;</span> <span class="n">builder</span><span class="p">)</span>
+      <span class="o">:</span> <span class="n">serving_size_</span><span class="p">{</span><span class="n">builder</span><span class="p">.</span><span class="n">serving_size_</span><span class="p">},</span>
+      <span class="n">servings_</span><span class="p">{</span><span class="n">builder</span><span class="p">.</span><span class="n">servings_</span><span class="p">},</span>
+      <span class="n">calories_</span><span class="p">{</span><span class="n">builder</span><span class="p">.</span><span class="n">calories_</span><span class="p">},</span>
+      <span class="n">fat_</span><span class="p">{</span><span class="n">builder</span><span class="p">.</span><span class="n">fat_</span><span class="p">},</span>
+      <span class="n">sodium_</span><span class="p">{</span><span class="n">builder</span><span class="p">.</span><span class="n">sodium_</span><span class="p">},</span>
+      <span class="n">carbs_</span><span class="p">{</span><span class="n">builder</span><span class="p">.</span><span class="n">carbs_</span><span class="p">}</span>
+    <span class="p">{}</span>
+
+    <span class="kt">double</span> <span class="n">serving_size</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">serving_size_</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">servings</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">servings_</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">double</span> <span class="n">calories</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">calories_</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">double</span> <span class="n">fat</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">fat_</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">double</span> <span class="n">sodium</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">sodium_</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">double</span> <span class="n">carbohydrates</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">carbs_</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">NutritionFacts</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Serving size: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">rhs</span><span class="p">.</span><span class="n">serving_size</span><span class="p">()</span>
+            <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\t</span><span class="s">Servings: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">rhs</span><span class="p">.</span><span class="n">servings</span><span class="p">()</span>
+            <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\t</span><span class="s">Cal: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">rhs</span><span class="p">.</span><span class="n">calories</span><span class="p">()</span>
+            <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\t</span><span class="s">Fat: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">rhs</span><span class="p">.</span><span class="n">fat</span><span class="p">()</span>
+            <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\t</span><span class="s">Sodium: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">rhs</span><span class="p">.</span><span class="n">sodium</span><span class="p">()</span>
+            <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\t</span><span class="s">Carbs: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">rhs</span><span class="p">.</span><span class="n">carbohydrates</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>When complete, the classes can be used like this:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;NutritionFacts.h&quot;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// make some facts without any optional parts</span>
+  <span class="n">NutritionFacts</span> <span class="n">cake</span> <span class="o">=</span> <span class="p">{</span><span class="mi">75</span><span class="p">,</span> <span class="mi">8</span><span class="p">};</span>
+
+  <span class="c1">// create a builder</span>
+  <span class="n">NutritionFacts</span><span class="o">::</span><span class="n">Builder</span> <span class="n">b</span><span class="p">;</span>
+
+  <span class="c1">// change the state</span>
+  <span class="n">b</span><span class="p">.</span><span class="n">serving_size</span><span class="p">(</span><span class="mf">28.4</span><span class="p">).</span><span class="n">servings</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="n">b</span><span class="p">.</span><span class="n">fat</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="n">sodium</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">calories</span><span class="p">(</span><span class="mi">150</span><span class="p">).</span><span class="n">carbohydrates</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+
+  <span class="c1">// create a set of nutrition facts using the builder</span>
+  <span class="k">auto</span> <span class="n">chips</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">build</span><span class="p">();</span>
+
+  <span class="c1">// create nutrition facts without creating a (named)</span>
+  <span class="c1">// temporary builder object</span>
+  <span class="c1">//</span>
+  <span class="n">NutritionFacts</span> <span class="n">soda</span> <span class="o">=</span> <span class="n">NutritionFacts</span><span class="o">::</span><span class="n">Builder</span><span class="p">()</span>
+                        <span class="p">.</span><span class="n">serving_size</span><span class="p">(</span><span class="mi">368</span><span class="p">).</span><span class="n">servings</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                        <span class="p">.</span><span class="n">carbohydrates</span><span class="p">(</span><span class="mi">40</span><span class="p">).</span><span class="n">calories</span><span class="p">(</span><span class="mi">150</span><span class="p">).</span><span class="n">sodium</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Cake:</span><span class="se">\t</span><span class="s">&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">cake</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Chips:</span><span class="se">\t</span><span class="s">&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">chips</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Soda:</span><span class="se">\t</span><span class="s">&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">soda</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>While not the most idiomatic C++ solution,
+it is something we can create and use with only the knowledge
+of classes we have so far.
+We will revisit the builder pattern later after we cover inheritance.</p>
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">
 <p class="first admonition-title">More to Explore</p>
@@ -532,6 +750,14 @@ instead of runtime errors.</p>
 <li><a class="reference external" href="https://en.wikipedia.org/wiki/Most_vexing_parse">Most vexing parse (wikipedia)</a></li>
 <li>Item #6 “Most Vexing Parse” from ‘Effective STL’ by Scott Meyers (Addison-Wesley Professional).
 Copyright 2001 Scott Meyers, 978-0-201-74962-5.</li>
+<li>Builder design pattern:<ul>
+<li><a class="reference external" href="http://www.oodesign.com/builder-pattern.html">Builder Design Pattern</a> on oodesign.com</li>
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/Builder_pattern">Builder Design Pattern</a> on Wikipedia</li>
+<li><a class="reference external" href="https://gist.github.com/DavidTPate/9041099">Example telescoping constructor</a></li>
+<li>Effective Java, by Joshua Bloch.
+Item #2: Consider a builder when faced with many constructor parameters</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>

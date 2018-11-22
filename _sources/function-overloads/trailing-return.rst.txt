@@ -7,6 +7,7 @@
     License".
 
 .. index::
+   pair: keyword; auto
    pair: auto; trailing return type
 
 Trailing return types
@@ -45,6 +46,9 @@ to delay the evaluation of a function return value until after the function para
 Use ``auto`` and ``decltype`` to declare a function whose return type depends on the types of its arguments. 
 
 To understand what's going on, first we have to understand ``decltype``.
+
+.. index::
+   pair: keyword; decltype
 
 Keyword: decltype
 -----------------

@@ -840,6 +840,7 @@ in the array ``argv`` into whatever type is appropriate for the program.
 
 .. index:: const pointers
    pair: pointers; const
+   pair: keyword; const
 
 Constant pointers
 -----------------

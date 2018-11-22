@@ -11,7 +11,7 @@
    Copyright (c) 2014-2016 by the OpenDSA Project Contributors, and
    distributed under an MIT open source license.
 
-.. index:: object-oriented programming
+.. index:: object-oriented programming; oo concepts
 
 Object-oriented concepts
 ========================
@@ -112,10 +112,10 @@ There are 4 principles that apply to most:
 
 .. index:: 
    pair: encapsulation; class invariants
+   pair: oo concepts; encapsulation
 
 Encapsulation
 -------------
-
 Consider the following example:
 
 .. code-block:: cpp
@@ -237,146 +237,28 @@ No classes would need to be modified to add the new capability below.
    };
 
 
-.. index:: virtual keyword
+.. index::
+   pair: oo concepts; inheritance
 
 Inheritance
 -----------
-In C++, we can extend a class,
-adding data members or behavior in a new type.
-Consider the following example:
-
-.. code-block:: cpp
-
-   class enum Color {RED, ORANGE, YELLOW, 
-				  GREEN, BLUE, INDIGO, VIOLET,
-				  WHITE, BLACK};
-
-   class shape {
-       Color color_ = Color::BLUE;
-     public:
-       virtual ~shape() = default;
-       virtual void   draw() = 0;
-       virtual void   erase() = 0;
-       virtual void   move();
-       void   color (Color new_color)
-       {
-         color_ = new_color;
-       }
-       Color  color()  const 
-       {
-         return color_;
-       }
-   };
-
-The class ``shape`` defines common behaviors that
-can be shared among all classes.
-The fundamental operations of translation across the plane
-(``move()``), or assigning a color to a shape can have
-common definitions.
-Code that can only properly be implemented in the class that
-properly 'owns' the behavior (``draw`` and ``erase``)
-is implemented in the *derived* classes.
-
-In the base class ``shape``,
-the ``virtual`` keyword instructs the compiler that the marked functions
-can be *overridden* in derived classes.
-The shape example illustrates different ways base class functions
-may be implemented.
-
-The ``color`` functions are not marked virtual.
-These functions are inherited by all derived classes,
-but cannot be overridden.
-These functions represent a *mandatory implementation*.
-In this design, **every** shape must have a color,
-and it is changed using these functions.
-
-The ``move`` function is marked virtual.
-It can be overridden and the definition
-of move is implemented in the cpp file associated with this
-include file.
-
-The functions ``draw`` and ``erase`` are marked virtual.
-Note the ``= 0;`` at the end of the declaration.
-This marks these functions as *pure virtual*.
-A pure virtual function **cannot** be implemented in the 
-class that defines it.
-Because a class the defines a pure virtual function cannot implement it,
-that means any class containing a pure virtual function can never be
-instantiated.
-Given the shape class defined here, this code:
-
-.. code-block:: cpp
-
-   shape s;
-
-will not compile.
-
-A class containing at least one pure virtual function can **only**
-be used as a base class.
-
-Derived classes declare their bases immediately after the
-derived class name.
-The general format is:
-
-.. code-block:: cpp
-
-   class derived_name: {access_modifier} base_name, {access_modifier} base2_name, . . . 
-
-
-A class may inherit from more than one base class.
-
-.. code-block:: cpp
-
-   class circle: public shape {
-      double radius = 1;
-     public:
-       void   draw()  const override;
-       void   erase() override;
-   };
-
-
-   class rectangle: public shape {
-      double ht = 1;
-      double wd = 1;
-     public:
-       void   draw()  const override;
-       void   erase() override;
-   };
-
-
-   class triangle: public shape {
-      double height = 1;
-      double base   = 1;
-     public:
-       void   draw()  const override;
-       void   erase() override;
-   };
-
-In the derived class definitions, 
-we declare ``public`` members of the shape class
-to also have ``public`` access the derived classes.
-Compare:
-
-.. code-block:: cpp
-
-   class circle: public shape {}
-
-   class circle: shape {}
-
-
-In the second case, the public members of shape
-are treated as ``private`` members of class circle.
-This is almost always a bug for new programmers
-and a common source of error.
-
-The keyword ``override`` tells the compiler that this function
-intends to override a virtual function in a base class.
-Although a C++11 feature and not required,
-it is a best practice since it provides the compiler
-more information about your intent and can flag functions
-with incorrect signatures.
+Inheritance enables new classes to receive --- or inherit --- 
+the properties and methods of existing classes. 
+Inheritance is a programming strategy used to increase the flexibility
+of your objects.
+In particular, inheritance is **not** a code reuse strategy.
+The purpose of inheritance in C++ is to express interface compliance 
+(creating a subtype), not to reuse code.
+In C++, code reuse usually comes via composition rather than 
+via inheritance.
+In other words, 
+inheritance is mainly a specification technique rather than an 
+implementation technique.
 
 It is common to draw inheritance relationships like this:
+
+.. index::
+   pair: graph; shape inheritance
 
 .. graphviz:: 
    :alt: Shape inheritance
@@ -400,7 +282,7 @@ It is common to draw inheritance relationships like this:
            shape=record,
            style="filled"];
      shape [
-       label="{shape\n||+ ~shape()\l+ draw()\l+ erase()\l+ move()\l+ color()\l+ color()\l}",
+       label="{shape\n||+ ~shape()\l+ draw()\l+ erase()\l+ move()\l}",
        fillcolor="lightblue"];
      shape -> circle;
      circle [
@@ -417,6 +299,7 @@ later sections.
 
 
 .. index:: runtime polymorphism; compile-time polymorphism
+   pair: oo concepts; polymorphism
    
 Polymorphism
 ------------
@@ -449,6 +332,9 @@ itself comes in two distinct forms:
   Compile-time polymorphism is simply method overloading. 
   **Overloaded** methods have the same method name but 
   different number of arguments or different types of arguments or both.
+
+.. index::
+   pair: oo concepts; polymorphism
 
 Abstraction
 -----------

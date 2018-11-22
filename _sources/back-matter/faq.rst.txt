@@ -2,6 +2,8 @@
    pair: FAQ; frequently asked questions
    pair: FAQ; Marshall Cline
    pair: FAQ; Bjarne Stroustrup
+   pair: FAQ; Microsoft
+   pair: FAQ; cppreference.com
 
 Frequently asked questions (FAQ)
 ================================
