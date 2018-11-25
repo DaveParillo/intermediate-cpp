@@ -642,6 +642,9 @@ the pointer, what it points to, and *what the pointer that it points to points t
       cout << **sp3 << '\n';
     }
 
+.. index::
+   pair: video; pointer to reference
+
 You can also define a pointer to a reference variable:
 
 .. youtube:: 0QOxC7ADT80
