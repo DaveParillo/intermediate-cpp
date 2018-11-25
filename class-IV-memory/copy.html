@@ -440,7 +440,6 @@ When <code class="docutils literal notranslate"><span class="pre">hello.c_str()<
 <p>Fixing these problems requires writing a custom copy constructor.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">sz</span> <span class="o">=</span> <span class="n">other</span><span class="p">.</span><span class="n">sz</span><span class="p">;</span>
-  <span class="k">delete</span><span class="p">[]</span> <span class="n">data</span><span class="p">;</span>
   <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">sz</span><span class="p">];</span>
   <span class="n">std</span><span class="o">::</span><span class="n">strcpy</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">data</span><span class="p">);</span>
 <span class="p">}</span>
@@ -450,11 +449,15 @@ When <code class="docutils literal notranslate"><span class="pre">hello.c_str()<
 The member <code class="docutils literal notranslate"><span class="pre">sz</span></code> can simply be default copied.
 It’s the pointer member that needs special treatment:</p>
 <ul class="simple">
-<li>First, don’t forget to delete the old data (avoiding a memory leak)</li>
 <li>Initialize a new memory block large enough to hold the copy</li>
 <li>Copy each element of the source array into the destination.
 This is what <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::strcpy">std::strcpy</a> does.</li>
 </ul>
+<p>In contrast to a <em>shallow</em> copy,
+this copy is a <strong>deep copy</strong>.
+It doesn’t copy the pointer at all.
+It makes an entirely new pointer and (deeply)
+copies all of the data pointed to by the source pointer to the destination.</p>
 <div class="admonition-try-this admonition">
 <p class="first admonition-title">Try This!</p>
 <p class="last">Take the copy constructor provided and rerun the previous
