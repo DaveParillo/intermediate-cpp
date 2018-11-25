@@ -240,9 +240,10 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#pointers-to-pointers">5.1.5. Pointers to pointers</a></li>
-<li><a class="reference internal" href="#constant-pointers">5.1.6. Constant pointers</a></li>
-<li><a class="reference internal" href="#the-nullptr-type">5.1.7. The <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> type</a></li>
-<li><a class="reference internal" href="#void-pointers">5.1.8. <code class="docutils literal notranslate"><span class="pre">void</span></code> pointers</a></li>
+<li><a class="reference internal" href="#parsing-the-command-line">5.1.6. Parsing the command line</a></li>
+<li><a class="reference internal" href="#constant-pointers">5.1.7. Constant pointers</a></li>
+<li><a class="reference internal" href="#the-nullptr-type">5.1.8. The <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> type</a></li>
+<li><a class="reference internal" href="#void-pointers">5.1.9. <code class="docutils literal notranslate"><span class="pre">void</span></code> pointers</a></li>
 </ul>
 </li>
 </ul>
@@ -851,6 +852,36 @@ the pointer, what it points to, and <em>what the pointer that it points to point
  <span class="p">}</span>
 </pre></div>
 </div>
+<p id="index-5">You can also define a pointer to a reference variable:</p>
+
+    <div class="runestone" style="margin-left: auto; margin-right:auto">
+    <div id="0QOxC7ADT80_vid"></div>
+    </div>
+    <script id="0QOxC7ADT80_script">
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var ytScriptTag = document.getElementById('0QOxC7ADT80_script');
+      ytScriptTag.parentNode.insertBefore(tag, ytScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('0QOxC7ADT80_vid', {
+          height: '281',
+          width: '500',
+          videoId: '0QOxC7ADT80',
+          events: {
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+    </script>
+    </div>
+<div class="section" id="parsing-the-command-line">
+<span id="index-6"></span><h2>5.1.6. Parsing the command line<a class="headerlink" href="#parsing-the-command-line" title="Permalink to this headline">¶</a></h2>
 <p>Now we have enough tools in our tool kit to understand command line arguments.
 Up to now, all of our examples showing the function <code class="docutils literal notranslate"><span class="pre">main()</span></code>
 did not include any function parameters.
@@ -881,7 +912,7 @@ program executed in <code class="docutils literal notranslate"><span class="pre"
 <p>We know that C strings are arrays of <code class="docutils literal notranslate"><span class="pre">char</span></code>,
 so <code class="docutils literal notranslate"><span class="pre">argv</span></code> is a pointer to a <code class="docutils literal notranslate"><span class="pre">char</span></code> array.
 Or we can say <code class="docutils literal notranslate"><span class="pre">argv</span></code> is a pointer to a pointer to a <code class="docutils literal notranslate"><span class="pre">char</span></code>.</p>
-<p id="index-5">When we compile a program like this:</p>
+<p id="index-7">When we compile a program like this:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/usr/bin/gcc -o myprog myprog.cpp
 </pre></div>
 </div>
@@ -1025,7 +1056,7 @@ and a switch with no value after it.</p>
 </div>
 </div>
 <div class="section" id="constant-pointers">
-<span id="index-6"></span><h2>5.1.6. Constant pointers<a class="headerlink" href="#constant-pointers" title="Permalink to this headline">¶</a></h2>
+<span id="index-8"></span><h2>5.1.7. Constant pointers<a class="headerlink" href="#constant-pointers" title="Permalink to this headline">¶</a></h2>
 <p>Pointers can be declared <code class="docutils literal notranslate"><span class="pre">const</span></code>, just like any other type.
 Where <code class="docutils literal notranslate"><span class="pre">const</span></code> appears controls what is held constant:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// odd whitespace to help see where const is used</span>
@@ -1047,7 +1078,7 @@ You can use this pointer to change the value of x, but can’t point to a differ
 </ul>
 </div>
 <div class="section" id="the-nullptr-type">
-<h2>5.1.7. The <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> type<a class="headerlink" href="#the-nullptr-type" title="Permalink to this headline">¶</a></h2>
+<h2>5.1.8. The <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> type<a class="headerlink" href="#the-nullptr-type" title="Permalink to this headline">¶</a></h2>
 <p>In section <cite>Comparison with references</cite>,
 we mentioned that unlike a reference,
 a pointer might point to ‘nothing’.</p>
@@ -1142,7 +1173,7 @@ Consider the following code example, from Effective Modern C++:</p>
 </div>
 </div>
 <div class="section" id="void-pointers">
-<h2>5.1.8. <code class="docutils literal notranslate"><span class="pre">void</span></code> pointers<a class="headerlink" href="#void-pointers" title="Permalink to this headline">¶</a></h2>
+<h2>5.1.9. <code class="docutils literal notranslate"><span class="pre">void</span></code> pointers<a class="headerlink" href="#void-pointers" title="Permalink to this headline">¶</a></h2>
 <p>A <em>void pointer</em> is a
 pointer to some memory, but the compiler doesn’t know the type.</p>
 <p>It is about as close to a raw machine address as you can get in C++.</p>
