@@ -209,7 +209,6 @@ Fixing these problems requires writing a custom copy constructor.
 
    string (const string& other) {
      sz = other.sz;
-     delete[] data;
      data = new char[sz];
      std::strcpy(data, other.data);
    }
@@ -218,10 +217,15 @@ Each class member needs to be copied.
 The member ``sz`` can simply be default copied.
 It's the pointer member that needs special treatment:
 
-- First, don't forget to delete the old data (avoiding a memory leak)
 - Initialize a new memory block large enough to hold the copy
 - Copy each element of the source array into the destination.
   This is what :cref:`std::strcpy` does.
+
+In contrast to a *shallow* copy,
+this copy is a **deep copy**.
+It doesn't copy the pointer at all.
+It makes an entirely new pointer and (deeply)
+copies all of the data pointed to by the source pointer to the destination.
 
 .. admonition:: Try This!
 
