@@ -171,37 +171,30 @@ Because there are two pointers to the same data on the free store,
 when either is deleted, the free-store memory is recovered.
 Consider this:
 
-.. tabbed:: tab_class_my_string_copy_ube
+.. code-block:: cpp
 
-   .. tab:: Example
+   mesa::string hello("Hello, world!");
 
-      .. code-block:: cpp
+   // create a new scope
+   {
+     mesa::string copy = hello;
+   } // local variable copy destroyed
 
-         mesa::string hello("Hello, world!");
+   std::cout << hello.c_str() << '\n';
 
-         // create a new scope
-         {
-           mesa::string copy = hello;
-         } // local variable copy destroyed
+What does the last line print?
 
-         std::cout << hello.c_str() << '\n';
+.. reveal:: reveal_str_copy_ube
 
-      What does the last line print?
+   There is no way to know for sure.
 
-      .. reveal:: reveal_str_copy_ube
+   When ``copy`` goes out of scope and its destructor is called,
+   it deletes the memory ``copy::data`` points to,
+   but this is the same array ``hello`` is using.
+   When ``hello.c_str()`` is called, undefined behavior is the result.
 
-         There is no way to know for sure.
-
-         When ``copy`` goes out of scope and its destructor is called,
-         it deletes the memory ``copy::data`` points to,
-         but this is the same array ``hello`` is using.
-         When ``hello.c_str()`` is called, undefined behavior is the result.
-
-   .. tab:: View It
-
-      .. raw:: html
-
-         <iframe width="800" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=%23include%20%3Ccctype%3E%0A%23include%20%3Ccstddef%3E%0A%23include%20%3Ccstring%3E%0A%23include%20%3Ciostream%3E%0A%0Ausing%20std%3A%3Asize_t%3B%0A%0Anamespace%20mesa%20%7B%0A%20%20class%20string%20%7B%0A%20%20%20%20private%3A%0A%20%20%20%20%20%20char*%20data%3B%0A%20%20%20%20%20%20size_t%20sz%3B%0A%0A%20%20%20%20public%3A%0A%20%20%20%20%20%20explicit%20string%28const%20char*%20value%20%3D%20%22%22%29%20%7B%0A%20%20%20%20%20%20%20%20sz%20%3D%20std%3A%3Astrlen%28value%29%20%2B%201%3B%0A%20%20%20%20%20%20%20%20data%20%3D%20new%20char%5Bsz%5D%3B%0A%20%20%20%20%20%20%20%20for%20%28size_t%20i%3D0%3B%20i%20%3C%20sz%3B%20%2B%2Bi%29%20%7B%0A%20%20%20%20%20%20%20%20%20%20data%5Bi%5D%20%3D%20value%5Bi%5D%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20data%5Bsz-1%5D%20%3D%20'%5C0'%3B%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20void%20upper%28%29%20%7B%0A%20%20%20%20%20%20%20%20for%20%28size_t%20i%3D0%3B%20i%20%3C%20sz%3B%20%2B%2Bi%29%0A%20%20%20%20%20%20%20%20%20%20data%5Bi%5D%20%3D%20std%3A%3Atoupper%28data%5Bi%5D%29%3B%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20~string%28%29%20%7B%0A%20%20%20%20%20%20%20%20delete%5B%5D%20data%3B%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20char*%20c_str%28%29%20%7B%20return%20data%3B%20%7D%0A%20%20%7D%3B%0A%0A%7D%20//%20namespace%20mesa%0Aint%20main%28%29%0A%7B%0A%20%20mesa%3A%3Astring%20hello%28%22Hello,%20world!%22%29%3B%0A%20%20//%20create%20a%20new%20scope%0A%20%20%7B%0A%20%20%20%20mesa%3A%3Astring%20copy%20%3D%20hello%3B%0A%20%20%7D%20//%20local%20variable%20copy%20destroyed%0A%0A%20%20std%3A%3Acout%20%3C%3C%20hello.c_str%28%29%20%3C%3C%20'%5Cn'%3B%0A%20%20return%200%3B%0A%7D&codeDivHeight=400&codeDivWidth=350&curInstr=36&origin=opt-frontend.js&py=cpp&rawInputLstJSON=%5B%5D"> </iframe>
+To see this copy in action, view it
+`here <http://pythontutor.com/cpp.html#code=%23include%20%3Ccctype%3E%0A%23include%20%3Ccstddef%3E%0A%23include%20%3Ccstring%3E%0A%23include%20%3Ciostream%3E%0A%0Ausing%20std%3A%3Asize_t%3B%0A%0Anamespace%20mesa%20%7B%0A%20%20class%20string%20%7B%0A%20%20%20%20private%3A%0A%20%20%20%20%20%20char*%20data%3B%0A%20%20%20%20%20%20size_t%20sz%3B%0A%0A%20%20%20%20public%3A%0A%20%20%20%20%20%20explicit%20string%28const%20char*%20value%20%3D%20%22%22%29%20%7B%0A%20%20%20%20%20%20%20%20sz%20%3D%20std%3A%3Astrlen%28value%29%20%2B%201%3B%0A%20%20%20%20%20%20%20%20data%20%3D%20new%20char%5Bsz%5D%3B%0A%20%20%20%20%20%20%20%20for%20%28size_t%20i%3D0%3B%20i%20%3C%20sz%3B%20%2B%2Bi%29%20%7B%0A%20%20%20%20%20%20%20%20%20%20data%5Bi%5D%20%3D%20value%5Bi%5D%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20data%5Bsz-1%5D%20%3D%20'%5C0'%3B%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20void%20upper%28%29%20%7B%0A%20%20%20%20%20%20%20%20for%20%28size_t%20i%3D0%3B%20i%20%3C%20sz%3B%20%2B%2Bi%29%0A%20%20%20%20%20%20%20%20%20%20data%5Bi%5D%20%3D%20std%3A%3Atoupper%28data%5Bi%5D%29%3B%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20~string%28%29%20%7B%0A%20%20%20%20%20%20%20%20delete%5B%5D%20data%3B%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20char*%20c_str%28%29%20%7B%20return%20data%3B%20%7D%0A%20%20%7D%3B%0A%0A%7D%20//%20namespace%20mesa%0Aint%20main%28%29%0A%7B%0A%20%20mesa%3A%3Astring%20hello%28%22Hello,%20world!%22%29%3B%0A%20%20//%20create%20a%20new%20scope%0A%20%20%7B%0A%20%20%20%20mesa%3A%3Astring%20copy%20%3D%20hello%3B%0A%20%20%7D%20//%20local%20variable%20copy%20destroyed%0A%0A%20%20std%3A%3Acout%20%3C%3C%20hello.c_str%28%29%20%3C%3C%20'%5Cn'%3B%0A%20%20return%200%3B%0A%7D&codeDivHeight=400&codeDivWidth=350&curInstr=36&origin=opt-frontend.js&py=cpp&rawInputLstJSON=%5B%5D">`__.
 
 Fixing these problems requires writing a custom copy constructor.
 
