@@ -306,6 +306,8 @@ passwd
 
    - `GNU / Linux tutorial <https://www.debian.org/doc/manuals/debian-reference/>`_ - from debian.org
    - `UNIX Philosophy <https://en.wikipedia.org/wiki/Unix_philosophy>`_ - from Wikipedia
+   - `UNIX Text Processing <http://home.windstream.net/kollar/utp/>`__ - one of the best general
+     references for people new to Unix or GNU/Linux.
    - Learn Enough\ |trade| `Command-Line to be Dangerous tutorial <http://www.learnenough.com/command-line-tutorial>`_ by Michael Hartl.
    - `Ryans Tutorials: Linux <http://ryanstutorials.net/linuxtutorial/>`_ - a decent introduction to the linux command line 
 
