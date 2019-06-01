@@ -6,9 +6,6 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-..  Much of the content in version control section is adapted from
-    http://www.cs.yale.edu/homes/aspnes/classes/223/notes.html
-
 .. index:: 
    triple: introductory topics; version control; git
 
@@ -338,5 +335,10 @@ but the checkout did add tiny.cpp and stage it for commit:
      All Git commands take a ``--help`` argument that brings up their manual page. 
      There is also extensive documentation at http://git-scm.com.
 
+.. topic:: Endnotes
 
+   1.  Content in this section is adapted from
+       http://www.cs.yale.edu/homes/aspnes/classes/223/notes.html
+
+   
 

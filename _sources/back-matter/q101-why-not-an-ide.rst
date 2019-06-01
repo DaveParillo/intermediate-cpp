@@ -66,6 +66,6 @@ Lots of reasons.
 
 .. admonition:: More to Explore
 
-   - Textbook: :doc:`../beginnings/make`
+   - Textbook: :doc:`app-a/make`
 
 

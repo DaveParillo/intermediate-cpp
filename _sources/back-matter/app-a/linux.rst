@@ -298,16 +298,36 @@ rm
 
 passwd
   Change your login password
+
+
+.. admonition:: Try This!
+
+   Use this example terminal to try the commands described in this section.
+
+   It's a sandbox, feel free to play for a bit.
+   
+   - The top window is a file where you can type and save commands.
+   - The bottom window is a linux shell.
+     Commands typed directly in the shell are not saved.
+
+
+   .. raw:: html
+
+      <div>
+      <iframe height="400px" width="100%" src="https://repl.it/@DaveParillo/bashtutorial?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+      </div>
+
     
 
 -----
 
 .. admonition:: More to Explore
 
-   - `GNU / Linux tutorial <https://www.debian.org/doc/manuals/debian-reference/>`_ - from debian.org
-   - `UNIX Philosophy <https://en.wikipedia.org/wiki/Unix_philosophy>`_ - from Wikipedia
+   - `LinuxCommand.org <http://linuxcommand.org>`__
    - `UNIX Text Processing <http://home.windstream.net/kollar/utp/>`__ - one of the best general
      references for people new to Unix or GNU/Linux.
+   - `GNU / Linux tutorial <https://www.debian.org/doc/manuals/debian-reference/>`_ - from debian.org
+   - `UNIX Philosophy <https://en.wikipedia.org/wiki/Unix_philosophy>`_ - from Wikipedia
    - Learn Enough\ |trade| `Command-Line to be Dangerous tutorial <http://www.learnenough.com/command-line-tutorial>`_ by Michael Hartl.
    - `Ryans Tutorials: Linux <http://ryanstutorials.net/linuxtutorial/>`_ - a decent introduction to the linux command line 
 

@@ -9,9 +9,4 @@ Getting started
    types.rst
    scope.rst
    what-you-dont.rst
-   linux.rst
-   vim.rst
-   make.rst
-   version-control.rst
-   debugging.rst
 

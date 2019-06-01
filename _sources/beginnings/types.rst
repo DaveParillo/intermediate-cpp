@@ -284,7 +284,7 @@ It helps to understand what is going on if you recognize what overflow looks lik
 
    #include <iostream>
    #include <cstdint>
-   using std::int8_t;
+   using std::int8_t; // should be redundant
 
    int main() {
      int8_t x = 128;
@@ -505,11 +505,14 @@ Later on, we will cover techniques that improve on iterating through data even m
    What are the implications of these differences when writing code that needs to run on both?
 
 
-.. reveal:: reveal-skill-check-types
-   :showtitle: Show Skill Check
-   :hidetitle: Hide Skill Check
+Skill Check
+-----------
+The questions in this hidden section provide a chance to demonstrate
+your understanding of the concepts discussed so far.
 
-   .. dragndrop:: dnd_type1
+.. reveal:: reveal-skill-check-types
+
+   .. dragndrop:: types_dnd_type1
       :feedback: Review the summaries above.
       :match_1: Specifying the type and name for a variable|||declaring a variable 
       :match_2: A whole number|||integer
@@ -518,7 +521,7 @@ Later on, we will cover techniques that improve on iterating through data even m
         
       Drag the definition from the left and drop it on the correct concept on the right.  Click the "Check Me" button to see if you are correct
         
-   .. dragndrop:: dnd_type2
+   .. dragndrop:: types_dnd_type2
       :feedback: Review the summaries above.
       :match_1: Setting the value of a variable the first time|||initialize
       :match_2: An operator that returns the remainder|||modulous

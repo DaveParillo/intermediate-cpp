@@ -45,7 +45,7 @@ by now:
 
 * What happens during compilation?  Linking?
 * How to use function *main()*, *argc*, and *argv*
-* :cref:`cout` and the meaning of statements like:
+* :io:`cout` and the meaning of statements like:
 
 .. code-block:: cpp
 
@@ -66,7 +66,7 @@ by now:
 Code comments
 -------------
 
-You should have learned different formats for code :cref:`comments`
+You should have learned different formats for code :cpp:`comments`
 
 .. code-block:: cpp
 
@@ -231,7 +231,7 @@ As bad as they are, they can still be instructive.
     It would be nice to know what is expected of ``args`` that are passed into our
     nasty little program, but perhaps the author thought that was obvious?
 
-    .. code-block:: cpp
+    ::
 
        // Main is a global function.
        int main(int argc, char** argv) {
@@ -256,7 +256,7 @@ some coding standard and you should follow that guidance when you encounter it.
 Fundamental types and type conversions
 --------------------------------------
 
-You should already be familiar with declaring fundamental :cref:`types`
+You should already be familiar with declaring fundamental :cpp:`types`
 (``int``, ``char``, ``double``, ``uint16_t``, etc.).
 You should also be familiar with the basic operations and operators
 (``+``, ``-``, ``=``, ``==``, etc.).
@@ -276,13 +276,13 @@ You should know how to explicitly cast fundamental types from one
 type to another.
 Most people should be familiar with the ``static_cast`` form:
 
-.. code-block:: cpp
+::
     
    auto almost_pi = static_cast<int>(3.14159);
 
 Some people may have also learned the C-style cast:
 
-.. code-block:: cpp
+::
     
    auto almost_pi = (int)3.14159;
 
@@ -295,11 +295,222 @@ at least those common to both C and C++, and legal identifier names
 for functions and variables.
 
 
-.. reveal:: reveal-skill-check-what-you-know-now
-   :showtitle: Show Skill Check
-   :hidetitle: Hide Skill Check
 
-   .. mchoice:: mc_initializing_1
+User-defined types
+------------------
+
+Although you may not have done any object oriented programming yourself,
+you probably have used objects, even if you weren't aware of it.
+The C++ standard provides many classes.
+Two of the oldest classes handle stream formatted input and output:
+:io:`cin` and :io:`cout`.
+
+You should have already encountered code like:
+
+.. code-block:: cpp
+
+   std::string  name;
+   std::cout << "Enter your name: ";
+   std::cin  >> name;
+   std::cout << "Hello," << name << "!\n";
+
+Hopefully, you have been taught the basics of :cpp:`string` and :container:`vector`
+as it is hard to imagine doing much (non-embedded) C++ programming without ever using either.
+A bit like writing a paragraph in English without using the letter 'e'.
+Try that sometime!
+
+We will be working with ``std::string`` and ``std::vector``
+often in this course, so if you haven't used them yet,
+don't worry - you will.
+
+File input and output
+.....................
+
+I expect you to know how to use some form of file input and output,
+whether it is the C-style :cstdio:`printf` and :cstdio:`scanf`, or the
+C++-style input and output file streams: :io:`ofstream` and :io:`ifstream <basic_ifstream>`.
+Both are serviceable, have their own advantages and disadvantages.
+This course emphasizes *contemporary* C++ and encourages the use of
+C++ generally, but sometimes ``printf`` is a perfectly acceptable
+alternative to ``cout``. 
+
+Don't panic.
+
+While file I/O is not a primary focus of this course, you will be expected to employ
+basic I/O in labs and projects.
+
+Statements and branching
+------------------------
+
+Writing basic statements and conditionally executing code,
+or executing blocks of code repeatedly, are fundamental skills
+common to all programming languages.
+
+Everyone should be **extremely familiar** with writing
+``if``, ``switch``, ``for``, and ``while`` blocks.
+
+You should have used combinations of statements and branching 
+to perform tasks perhaps as complex as:
+
+* Computing an amortization table
+* Computing population growth
+* Parsing text
+
+
+Fixing errors in code
+---------------------
+
+You should know the difference between basic types of errors:
+
+* :term:`Compile-time errors <compile-time error>`
+* Link-time (linker) errors 
+* :term:`Runtime errors <runtime error>`
+* :term:`Semantic errors <semantic error>`
+
+I expect some basic experience using a debugger in whatever 
+programming environment you may have used previously.
+
+If not, refer to the section :doc:`../back-matter/app-a/debugging`.
+
+.. note::
+
+   If **any** of the material in the preceding sections sounds unfamiliar, then
+
+   * Consider working through the `week 1 example source code <https://github.com/DaveParillo/cisc187/tree/master/examples/week01>`_
+
+   * Review the material from your first semester text
+
+Skill Check
+-----------
+The questions in this hidden section provide a chance to demonstrate
+your understanding of the concepts discussed so far.
+
+These are all concepts you should already know.
+
+.. reveal:: cpp-review-skill-check
+
+   .. fillintheblank:: begin_fitb1
+
+      Given the following plain english statements:
+
+      - Create a variable x with value 8
+      - Create a variable y with value 5
+      - Add x and y, storing the result in y
+
+      If they were implemented as a program,
+      then what value is ``y`` when finished? 
+
+      - :13: Correct.
+        :5: No, because the variable y is modified.
+        :8: No. ``y`` is the sum of x and y, not simply ``x``.
+        :x: Try again.
+
+   .. parsonsprob:: begin_parson1
+      :adaptive:
+      :noindent:
+      :language: c
+
+      Place these statements in their proper order
+      so that the program prompts for input, computes the area,
+      and displays the results.
+      -----
+      double h = 0;
+      double w = 0;
+      =====
+      std::cout << "Enter height:\t";
+      =====
+      std::cin >> h;
+      =====
+      std::cout << "Enter width:\t";
+      =====
+      std::cin >> w;
+      =====
+      double area = h*w;
+      =====
+      std::cout << area << '\n';
+
+
+   .. activecode:: begin_ac1
+      :language: cpp
+      :compileargs: ['-Wall', '-std=c++11']
+
+      Fix this program so that it compiles.
+
+      ~~~~
+      int main() {
+        21 = value;
+        double value;
+
+        std::cout << value << '\n';
+      }
+
+   .. fillintheblank:: begin_fitb2
+
+      Given the following program:
+
+      .. code-block:: cpp
+         :linenos:
+
+         int main() {
+           int a = 7;
+           int b = 4;
+
+           if (a<=b) { 
+             a = 99;
+           } else {    
+             int t = a;
+             a = b;
+             b = t;
+           }
+           return a;                                     
+         }
+
+      What value is returned? 
+
+      - :4: Correct.
+        :7: No, because the variable a is always modified in this program.
+        :99: No. Since a is greater than b, the code on line 6 is never executed.
+        :.*: Sorry, no. What is happening in the else block?
+
+   
+   .. activecode:: begin_ac2
+      :language: cpp
+      :compileargs: ['-Wall', '-std=c++11']
+
+      Write a program that accumulates the sum of the 
+      numbers 1 - 10 and prints the result.
+
+      ~~~~
+      int main() {
+
+      }
+   
+   .. parsonsprob:: begin_parson2
+      :adaptive:
+      :language: c
+
+      When assembled in its proper order, the following program segment 
+      prints 'Odd numbers:' followed by all the odd numbers from 1 - 100, one per line.
+      -----
+      int main () {
+      =====
+        std::cout << "Odd numbers:\n";
+      =====
+        for(int num=1; num<=100; ++num) {
+      =====
+          if(num * 2 == 0) {  #distractor
+      =====
+          if(num % 2 != 0) {
+      =====
+            std::cout << '\t' << num << '\n';
+      =====
+          }
+      =====
+        }
+      }
+
+
+   .. mchoice:: begin_mc_initializing_1
       :multiple_answers:
       :correct: b,d
       :answer_a: int a;
@@ -316,20 +527,21 @@ for functions and variables.
       Which of the following statements represent **assignment to** a variable?  Check all that apply.
 
 
-   Write a program that stores your name in a local variable and then prints it.
-
-   .. activecode:: type_check
+   .. activecode:: begin_type_check
       :language: cpp
-      :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+      :compileargs: ['-Wall', '-std=c++11']
       :caption: Write a program that prints your name
 
+      Write a program that stores your name in a local variable and then prints it.
+
+      ~~~~
       #include <iostream>
 
       int main() {
 
       }
 
-   .. mchoice:: mc_initializing_2
+   .. mchoice:: begin_mc_initializing_2
       :multiple_answers:
       :correct: a,b,e
       :answer_a: int inner_product_of_a_and_b;
@@ -369,8 +581,7 @@ for functions and variables.
          ++y;
          z+=y;
 
-
-   .. mchoice:: mc_mod_1
+   .. mchoice:: begin_mc_mod_1
       :answer_a: 15
       :answer_b: 16
       :answer_c: 8
@@ -381,7 +592,7 @@ for functions and variables.
 
       What is the result of 158 % 10?
    
-   .. mchoice:: mc_mod_2
+   .. mchoice:: begin_mc_mod_2
       :answer_a: 3
       :answer_b: 2
       :answer_c: 8
@@ -392,7 +603,7 @@ for functions and variables.
 
       What is the result of 3 % 8?
 
-   .. mchoice:: mc_op_2
+   .. mchoice:: begin_mc_op_2
       :answer_a: x = 6, y = 2.5, z = 2
       :answer_b: x = 4, y = 2.5, z = 2
       :answer_c: x = 6, y = 2, z = 3
@@ -416,162 +627,34 @@ for functions and variables.
          y /= 2;
          ++z;
 
+   .. fillintheblank:: begin_fitb3
 
+      Given the following statement:
 
-User-defined types
-------------------
+      .. code-block:: cpp
 
-Although you may not have done any object oriented programming yourself,
-you probably have used objects, even if you weren't aware of it.
-The C++ standard provides many classes.
-Two of the oldest classes handle stream formatted input and output:
-:cref:`std::cin` and :cref:`std::cout`.
+         double x = 2 + 2^3
 
-You should have already encountered code like:
+      What is value stored in ``x``? 
 
-.. code-block:: cpp
-
-   std::string  name;
-   std::cout << "Enter your name: ";
-   std::cin  >> name;
-   std::cout << "Hello," << name << "!\\n";
-
-Hopefully, you have been taught the basics of :cref:`std::string` and :cref:`std::vector`
-as it is hard to imagine doing much (non-embedded) C++ programming without ever using either.
-A bit like writing a paragraph in English without using the letter 'e'.
-Try that sometime!
-
-We will be working with ``std::string`` and ``std::vector``
-often in this course, so if you haven't used them yet,
-don't worry - you will.
-
-File input and output
-.....................
-
-I expect you to know how to use some form of file input and output,
-whether it is the C-style :cref:`printf` and :cref:`scanf`, or the
-C++-style input and output file streams: :cref:`ofstream` and :cref:`ifstream`.
-Both are serviceable, have their own advantages and disadvantages.
-This course emphasizes *modern* C++ and encourages the use of
-C++ generally, but sometimes ``printf`` is a perfectly acceptable
-alternative to ``cout``. 
-Don't panic.
-
-While file I/O is not a primary focus of this course, you will be expected to employ
-basic I/O in labs and projects.
-
-Statements and branching
-------------------------
-
-Writing basic statements and conditionally executing code,
-or executing blocks of code repeatedly, are fundamental skills
-common to all programming languages.
-
-Everyone should be **extremely familiar** with writing
-``if``, ``switch``, ``for``, and ``while`` blocks.
-
-You should have used combinations of statements and branching 
-to perform tasks perhaps as complex as:
-
-* Computing an amortization table
-* Computing population growth
-* Parsing text
-
-.. reveal:: reveal-skill-check-branch
-   :showtitle: Show Skill Check
-   :hidetitle: Hide Skill Check
-
-   Given the following program:
-
-   .. code-block:: cpp
-      :linenos:
-
-      int main() {
-        int a = 7;
-        int b = 4;
-
-        if (a<=b) { 
-          a = 99;
-        } else {    
-          int t = a;
-          a = b;
-          b = t;
-        }
-        return a;                                     
-      }
-
-   .. fillintheblank:: fib_conditions
-
-      What value is returned? 
-
-      - :4: Correct.
-        :7: No, because the variable a is always modified in this program.
-        :99: No. Since a is greater than b, the code on line 6 is never executed.
-        :.*: Sorry, no. What is happening in the else block?
+      - :7: Correct.
+        :10: No. ``^`` is not the exponent operator.
+             There is no such operator in C++.
+             It is the *exclusive or* operator.
+        :64: No. ``^`` is not the exponent operator.
+             There is no such operator in C++.
+             It is the *exclusive or* operator.
+        :3: No. The spaces here are misleading.
+            Addition has higher precedence than exclusive or.
+        :x: Try again.
 
    
-   Write a program that accumulates the sum of the numbers 1 - 10 and prints the result.
-
-   .. activecode:: ac_loop_1
-      :language: cpp
-
-      int main() {
-
-      }
-   
-   .. parsonsprob:: parson_loop_1
-      :adaptive:
-      :language: c
-
-      When assembled in its proper order, the following program segment 
-      prints 'Odd numbers:' followed by all the odd numbers from 1 - 100, one per line.
-      -----
-      int main () {
-      =====
-        std::cout << "Odd numbers:\n";
-      =====
-        for(int num=1; num<=100; ++num) {
-      =====
-          if(num * 2 == 0) {  #distractor
-      =====
-          if(num % 2 != 0) {
-      =====
-            std::cout << '\t' << num << '\n';
-      =====
-          }
-      =====
-        }
-      }
-
-Fixing errors in code
----------------------
-
-You should know the difference between basic types of errors:
-
-* :term:`Compile-time errors <compile-time error>`
-* Link-time (linker) errors 
-* :term:`Runtime errors <runtime error>`
-* :term:`Semantic errors <semantic error>`
-
-I expect some basic experience using a debugger in whatever 
-programming environment you may have used previously.
-
-If not, refer to the section :doc:`debugging`.
-
-.. note::
-
-   If **any** of the material on the preceding slides sounds unfamiliar, then
-
-   * Consider working through the `week 1 example source code <https://github.com/DaveParillo/cisc187/tree/master/examples/week01>`_
-
-   * Review the material from your first semester text
-
 
 -----
 
 .. admonition:: More to Explore
 
    - Jeff Atwood's blog: `Code smells <https://blog.codinghorror.com/code-smells/>`_
-   - From cppreference.com: :cref:`statements` and :cref:`loops`
+   - From cppreference.com: :lang:`statements` and :cref:`loops`
 
 

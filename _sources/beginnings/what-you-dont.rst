@@ -6,9 +6,6 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-..  Much of the content in version control section is adapted from
-    http://www.cs.yale.edu/homes/aspnes/classes/223/notes.html
-
 .. index:: 
    pair: introductory topics; C++
 
@@ -123,23 +120,6 @@ attempting to compile these examples in your environment.
 The textbook online compiler has complete support for C++11
 and has support for some aspects, but not all of C++14 and C++17.
 
-
-GNU/Linux (or Unix) in general
-------------------------------
-
-And **make** in particular.
-
-This course does not assume any familiarity with any specific operating system.
-That is, no assumptions regarding **any** command prompt or terminal environments,
-or knowledge of hardware beyond broad generalities.
-
-This course  **does**, however have a certain *linux flair*, and
-all projects and any labs that require handing in source code
-must be able to compile on the command line, preferably using **make**.
-
-For all projects, a working **Makefile** will be provided.
-You won't have to edit it.
-
 Parsing command line arguments
 ------------------------------
 
@@ -147,7 +127,7 @@ Why command line programs?
 
 C++ is primarily used in *systems programming* and
 is a fundamental part of all *\*nix* programs.
-*\*nix* is short for *Unix & friends*, *MacOS X*, and *GNU/Linux*.
+*\*nix* is short for *Unix* (and friends), *MacOS X*, and *GNU/Linux*.
 
 Parsing the command line is not complicated.
 It is a matter of iterating through a 2 dimensional array of `char`.

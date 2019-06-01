@@ -57,6 +57,7 @@ Back Matter
 .. toctree::
    :maxdepth: 1
 
+   back-matter/app-a/toctree.rst
    back-matter/faq.rst
 
 * :ref:`search`
