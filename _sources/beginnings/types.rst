@@ -644,7 +644,7 @@ your understanding of the concepts discussed so far.
    .. dragndrop:: types_dnd_type2
       :feedback: Review the summaries above.
       :match_1: Setting the value of a variable the first time|||initialize
-      :match_2: An operator that returns the remainder|||modulous
+      :match_2: An operator that returns the remainder|||modulus
       :match_3: a type used to represent decimal values|||double
       :match_4: changing the type of a variable|||casting
         
