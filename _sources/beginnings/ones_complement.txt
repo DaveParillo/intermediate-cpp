@@ -1,0 +1,19 @@
+.. activecode:: ac_one_comp_1
+   :language: cpp
+
+   #include <bitset>
+   #include <iostream>
+   using std::cout;
+   using std::bitset;
+ 
+   int main() {
+     int x = -1;
+     int y = ~x;  // one's complement of x
+     int z = x * 0;
+ 
+     cout << "x: " << x << "\t(" << bitset<4>(x) << ")\n";
+     cout << "y: " << y << "\t(" << bitset<4>(y) << ")\n";
+     cout << "z: " << z << "\t(" << bitset<4>(z) << ")\n";
+     cout << "~z: " << ~z << "\t(" << bitset<4>(~z) << ")\n";
+   }
+

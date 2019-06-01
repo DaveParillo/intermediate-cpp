@@ -155,17 +155,38 @@ Some early binary computers (e.g., IBM 7090) use this representation for integer
 perhaps because of its natural relation to common usage. 
 However, it is slower and requires more complicated hardware than
 one's complement or two's complement representations.
-Signed magnitude remains the most common way of representing the exponent in floating point values.
-It is the official IEEE floating point number format.
 
-The important item here is that even today, 
-floating point numbers have two different representations for ``0``, 
-a side effect of the sign and magnitude representation.
 
-The following C program [Aspnes2014]_ prints the sign, exponent and mantissa
-of a few small numbers.
+.. tabbed:: sign_magnitude
 
-.. include:: ac_floats.txt 
+   .. tab:: Example: Sign & Magnitude
+
+      Signed magnitude remains the most common way of representing 
+      the exponent in floating point values.
+      It is the official IEEE floating point number format.
+
+      The program on the run tab isn't meant to be completely
+      understood, but does demonstrate the bits stored
+      in the exponent and mantissa for some floats.
+
+      Feel free to modify ``main()`` and provide your
+      own values.
+
+      .. literalinclude:: ac_floats.txt
+         :language: c
+         :lines: 42,46,51
+         :dedent: 3
+
+      The important item here is that even today, 
+      floating point numbers have two different representations for ``0``, 
+      a side effect of the sign and magnitude representation.
+
+   .. tab:: Run It
+
+      The following C program [Aspnes2014]_ prints the sign,
+      exponent, and mantissa of a few small numbers.
+
+      .. include:: ac_floats.txt
 
 .. admonition:: Try This!
 
@@ -175,7 +196,8 @@ of a few small numbers.
 
    Try to list at least 1 error this might cause in your programs?
 
-   Try other values and see which ones have exact floating point representations and which do not.
+   Try other values and see which ones have exact 
+   floating point representations and which do not.
 
 One's complement
 ................
@@ -227,27 +249,31 @@ two's complement representation.
 The following program demonstrates the consistency of the two's
 complement representation.
 
-.. activecode:: ac_two_comp_1
-   :language: cpp
+.. tabbed:: ones_complement
 
-   #include <bitset>
-   #include <iostream>
-   using std::cout;
-   using std::bitset;
- 
-   int main() {
-     int x = -1;
-     int y = ~x;  // one's complement of x
-     int z = x * 0;
- 
-     cout << "x: " << x << "\t(" << bitset<4>(x) << ")\n";
-     cout << "y: " << y << "\t(" << bitset<4>(y) << ")\n";
-     cout << "z: " << z << "\t(" << bitset<4>(z) << ")\n";
-     cout << "~z: " << ~z << "\t(" << bitset<4>(~z) << ")\n";
-   }
+   .. tab:: Example: bitset
+
+      A :cref:`std::bitset` is a simple way to see the individual
+      with a number.
+
+      A ``bitset`` is a templated type that must be
+      initialized with a size: ::
+
+         std::bitset<8> x;
+
+      The size determines the number of bits stored and doesn't need
+      to match the size of the variable.
+      A value can be provided when declared: ::
+
+         std::bitset<4> x = 9;
+         auto y = std::bitset<4>(9);
+
+   .. tab:: Run It
+
+      .. include:: ones_complement.txt
 
 Overflow
-.........
+........
 
 Why bother with all this obscure discussion about type representation now?
 Because it is very useful to know how numbers are actually stored when debugging your code.
@@ -273,28 +299,65 @@ Overflow occurs when doing arithmetic operations.
                  the value 9 in unsigned rep.
 
 
-Mistakes happen.
-Someday, you will write some code that will overflow the amount
-of space allocated for the type.
-It helps to understand what is going on if you recognize what overflow looks like for various types.
+.. tabbed:: overflow
 
-.. activecode:: ac_types_2
-   :language: cpp
-   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+   .. tab:: Overflow
 
-   #include <iostream>
-   #include <cstdint>
-   using std::int8_t; // should be redundant
+      Mistakes happen.
+      Someday, you will write some code that will overflow the amount
+      of space allocated for the type.
+      It helps to understand what is going on if you recognize what 
+      overflow looks like for various types.
 
-   int main() {
-     int8_t x = 128;
-     int8_t y = 1;
+      There is a standard C header to define the exact size
+      of an integral type: ::
 
-     std::cout << "x + y = " << (x + y) << '\n';
-   }
+         #include <cstdint>
+
+      Once included, a family of fixed size integral types
+      are available: ::
+
+         int8_t
+         uint8_t
+
+         int16_t
+         uint16_t
+
+      and many others.
+      Use these types like any other standard type you are 
+      already familiar with.
+
+      Where ``int`` sizes may vary from machine to machine,
+      the size of ``int8_t`` is guaranteed to be an 8 bit
+      signed integer always.
+
+      For this reason, the programming guidelines of many
+      organizations prefer fixed size integral types to the
+      generic ``int`` and ``long``.
+
+   .. tab:: Run It
+
+      Ask yourself what is the largest number we can store in
+      an 8 bit **signed** integer,
+      then predict the output of the following program before you run it.
+
+      .. activecode:: ac_types_2
+         :language: cpp
+         :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+
+         #include <iostream>
+         #include <cstdint>
+
+         int main() {
+           int8_t x = 128;
+           int8_t y = 1;
+
+           std::cout << "x + y = " << (x + y) << '\n';
+         }
 
 Overflow involving signed integral types overflows into the most significant bit,
 effectively changing the sign, as in the preceding example.
+
 Unsigned integers do not, technically, overflow in that they do not become negative.
 They are after all, unsigned.
 They **do** however still 'wrap around' and the result can be that adding
@@ -314,12 +377,14 @@ Preventing overflow errors
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The C and C++ compilers do not check math overflow for you.
-They can report when it happens at runtime, but by that point,
+You can turn on compiler warnings that can inform you about
+possible overflow or type conversion problems.
+A program can report when it happens at runtime, but by that point,
 the error has already occurred.
 It is generally preferred to check for possible overflow before
 attempting a calculation that might overflow.
 
-The following program checks for addition overflow and throws an error
+The following program checks for addition overflow and reports an error
 if addition overflow would occur.
 
 .. code-block:: cpp
@@ -394,11 +459,49 @@ they cannot appear on the left hand side of an assignment operator
 
 .. code-block:: cpp
 
-   int a[3] = {4, 5, 6};  // array of 3 ints
+   int a[3] = {4, 5, 6};  // array of 3 ints with initial values
    int (*b)[3] = &a;      // OK to make an array of pointers using an address
-   int c[3];
+   int c[3];              // array of 3 ints with default initial values
    c = a;                 // Error. Can't assign to an array
    c[0] = a[0];           // OK.
+
+
+.. tabbed:: arrays
+
+   .. tab:: Arrays
+      
+      It's easy to forget that arrays always supply a default
+      value if one is not provided.
+
+      This is true even if only part of a multi-dimensional array
+      is initialized with values.
+      Consider the statement::
+
+         int a[2][4] = {{1,2,3,4}};
+
+      What is declared?
+
+      What is initialized?
+
+      Then run it.
+
+   .. tab:: Run It
+
+      .. activecode:: types_ac_3
+         :language: cpp
+
+         #include <iostream>
+
+         int main () {
+             int a[2][4] = {{1,2,3,4}};
+
+             std::cout << "first: " << a[0][0] << '\n';
+             std::cout << "last:  " << a[1][3] << '\n';
+         }
+
+
+
+
 
 Reference types
 ...............
@@ -459,7 +562,7 @@ then prefer this:
 
 .. code-block:: cpp
  
-   for (std::size_t i = 0; i < foo.size(); ++i) 
+   for (size_t i = 0; i < foo.size(); ++i) 
 
 over this:
 
@@ -521,6 +624,23 @@ your understanding of the concepts discussed so far.
         
       Drag the definition from the left and drop it on the correct concept on the right.  Click the "Check Me" button to see if you are correct
         
+   .. mchoice:: types_mc1
+      :answer_a: int 3;
+      :answer_b: const double pi;
+      :answer_c: x = 21;
+      :answer_d: char* s = "hello";
+      :answer_e: constexpr int min = 1;
+      :correct: d,e
+      :feedback_a: Declarations must always include a name
+      :feedback_b: Constant declarations must always include a value
+      :feedback_c: Declarations must always include a type.
+                   As written, this is assignment, not declaration
+      :feedback_d: Correct
+      :feedback_e: Correct
+
+      Which declarations are valid?
+
+
    .. dragndrop:: types_dnd_type2
       :feedback: Review the summaries above.
       :match_1: Setting the value of a variable the first time|||initialize
@@ -529,6 +649,92 @@ your understanding of the concepts discussed so far.
       :match_4: changing the type of a variable|||casting
         
       Drag the definition from the left and drop it on the correct concept on the right.  Click the "Check Me" button to see if you are correct.
+
+   .. fillintheblank:: types_fitb1
+
+      Given the following:
+
+      .. code-block:: cpp
+
+         #include <cstdint>
+         int main() {
+           int8_t x = 128, y = 1;
+           auto z   = x+y;
+         }
+
+      What is value stored in ``z``?
+
+      - :-127: Correct.
+        :128: No. ``y`` has been added to ``x``
+        :129: No. The valid range of a signed 8 bit variable is -127 to +128
+        :-1: Sorry, no.
+        :x: This program compiles and runs.
+
+   .. fillintheblank:: types_fitb2
+
+      Given the following:
+
+      .. code-block:: cpp
+
+         int x = ~-1;
+
+      What is value stored in ``x``?
+
+      - :0: Correct.
+        :-1: No. ``-1`` Sets all bits in an int type to 1. ``~`` inverts all the bits.
+        :x: This statement compiles and stores a value in ``x``.
+
+
+   .. activecode:: types_ac1
+      :language: cpp
+      :compileargs: ['-Wall', '-Wextra' '-std=c++11']
+
+      Fix all the errors in the code below:
+
+      ~~~~
+      int main() {
+        weight = 3
+        distance = 8.5;
+        cout << "Weight: " << weight \n;
+        cout << "Distance: " << distance \n;
+      }
+
+   .. parsonsprob:: types_par1
+      :adaptive:
+      :noindent:
+      :language: c
+
+      #include <iostream>
+      =====
+      void func() {
+      =====
+         int x = 3, y = 5;
+      =====
+         x = y * 8;
+      =====
+         std::cout << x << std::endl << y << std::endl;
+      =====
+      }
+
+   .. fillintheblank:: types_fitb3
+
+      Given the following:
+
+      .. code-block:: cpp
+
+         #include <iostream>
+
+         int main () {
+             char x[2][3] = {{'a','b','c'}};
+
+             std::cout << x[0][1] << '\n';
+         }
+
+      What is value displayed?
+
+      - :b: Correct.
+        :a: No. array indicies begin at ``0``
+        :x: Try again.
 
 
 -----
