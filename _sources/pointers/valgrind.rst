@@ -14,7 +14,7 @@
 Pointer debugging
 =================
 
-All the techniques described in section :doc:`../beginnings/debugging` applies
+All the techniques described in section :doc:`../back-matter/app-a/debugging` applies
 when debugging pointers.
 What can make debugging pointer errors more difficult is that 
 when things go wrong with a pointer, often memory is corrupted

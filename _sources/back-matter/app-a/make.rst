@@ -316,7 +316,7 @@ So for example, if I've just built a program called *hello*, I can run it by typ
 
 .. admonition:: More to Explore
 
-   - Textbook FAQ: :doc:`../back-matter/q101-why-not-an-ide`
+   - Textbook FAQ: :doc:`../q101-why-not-an-ide`
 
    - `GNU Make Manual <https://www.gnu.org/software/make/manual/>`_
    - Prefer compile-time and link-time errors to runtime errors
