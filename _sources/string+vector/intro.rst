@@ -19,7 +19,7 @@ In order to group them together,
 we need some sort of **container**.
 
 Two of these containers you should learn first:
-:cref:`std::string` and :cref:`std::vector`.
+:cpp:`std::string<string>` and :container:`std::vector<vector>`.
 They come with many useful functions that help solve many common problems.
 While there is some cost in using them,
 often the cost is worth the benefits in terms of
@@ -32,7 +32,8 @@ data stored inside the container.
 
 The simplest 'batch of data' is a 'batch of characters'
 Another word for 'batch of characters' is 'string'.
-A ``string`` is a container for data of a single type: :cref:`char`.
+A ``string`` is a container for data of a 
+single type: :cpp:`char<keyword/char>`.
 
 A ``vector`` can store data of **any** type: even types that you make up.
 We will see how that is possible in a bit, 
