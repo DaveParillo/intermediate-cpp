@@ -16,12 +16,13 @@ Scope
 Each name that appears in a C++ program is only valid in some *possibly discontiguous*
 portion of the source code called its :term:`scope`.
 
-Within a scope, unqualified name lookup can be used to associate the name with its declaration.
+Within a scope, 
+unqualified name lookup can be used to associate the name with its declaration.
 
 
 .. code-block:: cpp
 
-   #include <assert.h>
+   #include <cassert>
 
    int n = 3;                  // global variable
 
@@ -34,13 +35,26 @@ Within a scope, unqualified name lookup can be used to associate the name with i
      assert (n == 3);          // only name 'n' in scope is the global one
    }
 
+.. admonition:: Macro assert
+
+   The ``assert`` macro from C is a simple way to validate
+   something in your program that **must** be true before you
+   proceed.
+   To use the assert macro, ``#include <cassert>``,
+   then call the function ``assert``.
+   The assert function takes a boolean variable or
+   an expression that evaluates to a ``bool``.
+
+   Use the assert macro in your own code to validate function
+   parameters or any other important checks.
 
 
-Depending on the *scope*, of the variable ``n`` all of the following assertions are ``true``:
+In the following example, 
+all of the assertions about ``n`` are ``true``:
 
 .. code-block:: cpp
 
-   #include <assert.h>
+   #include <cassert>
 
    int n = 3;
 
@@ -254,67 +268,87 @@ The using-directive ``using namespace std;`` at any namespace scope introduces
 which may lead to undesirable name collisions. 
 This, and other using directives are generally considered bad practice at file scope of a header file.
 Additionally, shadowing names in the standard namespace can lead to unexpected behaviors.
-For example, run the following example twice,
-first as is, then remove the line ``bool showpoint = true;``:
 
-.. activecode:: ac-namespace-1
-   :language: cpp
 
-   #include <iostream>
+.. tabbed:: namespace
 
-   using namespace std;
+   .. tab:: Example: namespace std
 
-   int main () {
-     bool showpoint = true; 
+      It can be hard to remember every name that might be
+      imported when ``using namespace std;``.
+      Even when only 1 header is included.
 
-     cout << "1.0 with showpoint: " << showpoint << 1.0 << '\n'
-          << "1.0 with noshowpoint: " << noshowpoint << 1.0 << '\n';
+      The following example seems innocent enough,
+      until you learn that :io:`showpoint<manip/showpoint>` is a name
+      in ``std::ios``
 
-   }
+      Run the following example twice,
+      first as is, then remove the line ``bool showpoint = true;``:
+
+      .. activecode:: ac-namespace-1
+         :language: cpp
+
+         #include <iostream>
+
+         using namespace std;
+
+         int main () {
+           bool showpoint = true; 
+
+           cout << "1.0 with showpoint: " << showpoint << 1.0 << '\n'
+                << "1.0 with noshowpoint: " << noshowpoint << 1.0 << '\n';
+
+         }
    
 Errors using namespace directives are seldom this obviously wrong.
-Here is a simplification of a 
-`real question <https://stackoverflow.com/questions/2712076/how-to-use-an-iterator>`_
-asked on stack overflow:
 
-.. activecode:: ac-namespace-2
-   :language: cpp
-   :compileargs: ['-Wall', '-Wextra', '-std=c++11']
 
-   #include <iostream>
-   #include <vector>
-   #include <cmath>
-   using namespace std;
+.. tabbed:: so_question
 
-   struct point {
-     float x;
-     float y;
-   };
+   .. tab:: Stack Overflow
 
-   // calculate the distance between two points
-   float distance(const point& p1, const point& p2) {
-     return sqrt((p1.x - p2.x)*(p1.x - p2.x) +
-                 (p1.y - p2.y)*(p1.y - p2.y));
-   }
+      Here is a simplification of a 
+      `real question <https://stackoverflow.com/questions/2712076/how-to-use-an-iterator>`_
+      asked on stack overflow:
 
-   int main() {
-     vector <point> po;
-     point p1; p1.x = 0; p1.y = 0;
-     point p2; p2.x = 100; p2.y = 100;
-     po.push_back(p1);
-     po.push_back(p2);
+      .. activecode:: ac-namespace-2
+         :language: cpp
+         :compileargs: ['-Wall', '-Wextra', '-std=c++11']
 
-     for (auto ii = po.begin(); ii != po.end(); ii++) {
-       for (auto jj = po.begin(); jj != po.end(); jj++) {
-         cout << distance(ii,jj) << " ";
-       }
-     }
-     return 0;
-   }
-       
-      
-This code compiles and runs and says the answer is: ``0 1 -1 0``.
-I think we can all agree that is not the correct answer for two points ``(0,0)`` and ``(100,100)``.
+         #include <iostream>
+         #include <vector>
+         #include <cmath>
+         using namespace std;
+
+         struct point {
+           float x;
+           float y;
+         };
+
+         // calculate the distance between two points
+         float distance(const point& p1, const point& p2) {
+           return sqrt((p1.x - p2.x)*(p1.x - p2.x) +
+                       (p1.y - p2.y)*(p1.y - p2.y));
+         }
+
+         int main() {
+           vector <point> po;
+           point p1; p1.x = 0; p1.y = 0;
+           point p2; p2.x = 100; p2.y = 100;
+           po.push_back(p1);
+           po.push_back(p2);
+
+           for (auto ii = po.begin(); ii != po.end(); ii++) {
+             for (auto jj = po.begin(); jj != po.end(); jj++) {
+               cout << distance(ii,jj) << " ";
+             }
+           }
+           return 0;
+         }
+             
+            
+      This code compiles and runs and says the answer is: ``0 1 -1 0``.
+      I think we can all agree that is not the correct answer for two points ``(0,0)`` and ``(100,100)``.
 
 .. admonition:: Try This!
 
