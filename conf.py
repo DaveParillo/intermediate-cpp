@@ -29,8 +29,33 @@ from runestone import runestone_static_dirs, runestone_extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = ['sphinx.ext.mathjax', 
               'sphinx.ext.graphviz', 
+              'sphinx.ext.extlinks', 
               'matplotlib.sphinxext.plot_directive',
               'cppreference'] + runestone_extensions()
+
+graphviz_dot='/opt/local/bin/dot'
+# extlinks dict
+#            role       url                                              prefix
+extlinks = {
+        'cpp': ('https://en.cppreference.com/w/cpp/%s', ''),
+        'core': ('https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines', ''),
+        'cstdio': ('https://en.cppreference.com/w/cpp/io/c/%s', ''),
+        'header': ('https://en.cppreference.com/w/cpp/header/%s', ''),
+        'algorithm': ('https://en.cppreference.com/w/cpp/algorithm/%s', ''),
+        'container': ('https://en.cppreference.com/w/cpp/container/%s', ''),
+        'functional': ('https://en.cppreference.com/w/cpp/utility/functional/%s', ''),
+        'io': ('https://en.cppreference.com/w/cpp/io/%s', ''),
+        'iterator': ('https://en.cppreference.com/w/cpp/iterator/%s', ''),
+        'lang': ('https://en.cppreference.com/w/cpp/language/%s', ''),
+        'cmath': ('https://en.cppreference.com/w/cpp/numeric/math/%s', ''),
+        'numeric': ('https://en.cppreference.com/w/cpp/numeric/%s', ''),
+        'string': ('https://en.cppreference.com/w/cpp/string/basic_string/%s', ''),
+        'utility': ('https://en.cppreference.com/w/cpp/utility/%s', ''),
+        'types': ('https://en.cppreference.com/w/cpp/types/%s', ''),
+        'issue': ('https://github.com/sphinx-doc/sphinx/issues/%s', 'issue ')
+        }
+# normal use cas iss :issue:`123`
+# prefix override as :issue:`this issue <123>`
 
 #,'runestone.video','runestone.reveal','runestone.poll','runestone.tabbedStuff','runestone.disqus','runestone.codelens','runestone.activecode', 'runestone.assess', 'runestone.animation','runestone.meta', 'runestone.parsons', 'runestone.blockly', 'runestone.livecode']
 
@@ -41,7 +66,7 @@ templates_path = ['_templates']
 source_suffix = '.rst'
 
 # default language for code-block
-#highlight_language = 'cpp'
+highlight_language = 'cpp'
 
 # The encoding of source files.
 #source_encoding = 'utf-8-sig'

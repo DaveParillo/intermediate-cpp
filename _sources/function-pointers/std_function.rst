@@ -10,7 +10,7 @@
 
 The std::function template
 ==========================
-The :cref:`std::function` wrapper provides a standard way to pass around lambda expressions,
+The :utility:`std::function<functional/function>` wrapper provides a standard way to pass around lambda expressions,
 function pointers, and function objects.
 Introduced in C++11, its facilities are accessed from ``#include <functional>``.
 The primary goal of ``std::function`` is clarity:
@@ -81,5 +81,5 @@ We can store any function-like entity using a consistent syntax:
 
    - From: cppreference.com: 
 
-     - `std::function <http://en.cppreference.com/w/cpp/utility/functional/function>`_. 
+     - :utility:`std::function<functional/function>`
 

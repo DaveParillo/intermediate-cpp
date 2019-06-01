@@ -102,7 +102,7 @@ A downside to traditional function pointer initialization is
 that this doesn't look like the initialization syntax we are used to.
 This is a legacy of the C language C++ was originally based on.
 
-The C++11 :cref:`type alias` allows defining a name that refers to a previously defined type:
+The C++11 :lang:`type alias` allows defining a name that refers to a previously defined type:
 
 .. code-block:: cpp
 

@@ -212,7 +212,7 @@ It's the pointer member that needs special treatment:
 
 - Initialize a new memory block large enough to hold the copy
 - Copy each element of the source array into the destination.
-  This is what :cref:`std::strcpy` does.
+  This is what :cpp:`std::strcpy<string/byte/strcpy>` does.
 
 In contrast to a *shallow* copy,
 this copy is a **deep copy**.
