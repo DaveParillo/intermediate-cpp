@@ -11,7 +11,7 @@
 
 The vector class
 ================
-A :cref:`std::vector` is intended to behave like a dynamically sized array.
+A :container:`vector` is intended to behave like a dynamically sized array.
 It is a :term:`template`, so unlike a string, 
 which is a container for characters only,
 a vector can serve as a container for any type.
@@ -212,7 +212,6 @@ A simple way is to use the :cref:`vector::push_back()` function.
      letters.clear();         // clear all contents from vector
      return 0;
    }
-
 
 
 -----

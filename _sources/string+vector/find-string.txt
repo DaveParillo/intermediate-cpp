@@ -1,0 +1,25 @@
+.. activecode:: string_find_ac1
+   :language: cpp
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++14']
+
+   #include <iostream>
+   #include <string>
+
+   int main() {
+     auto us = "team"s;
+     size_t pos = us.find('i');
+     if(pos == std::string::npos) {
+       std::cout << "There is no 'i' in 'team'\n";
+     }
+     auto hi = "Hello world"s;
+     pos = hi.find("wor");                 // pos == 6
+
+	  if (hi.find('o') == hi.rfind('o') {
+       std::cout << "There must be exactly 1 'o' in this string\n";
+	  }
+     pos = hi.find_first_of("aeiou");      // pos == 1  (e)
+     pos = hi.find_first_not_of("aeiou");  // pos == 0  (H)
+
+     return 0;
+   }
+

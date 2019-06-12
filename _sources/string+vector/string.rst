@@ -11,7 +11,7 @@ The string class
 ================
 
 A short review of how string abstractions are handled in C,
-followed by a short :cref:`std::string` primer.
+followed by a short :cpp:`string` primer.
 
 String abstractions in C
 ------------------------
@@ -126,7 +126,7 @@ even if an explicit size is not provided.
 C strings have an advantage of being extremely lightweight and simple.
 Their main disadvantage is that they are too simple for many applications.
 Their simplicity makes them a pain to work with,
-which is why the Standard Template Library (STL) contains the :cref:`string` class.
+which is why the Standard Template Library (STL) contains the :cpp:`string` class.
 
 A string class primer
 ---------------------
@@ -180,12 +180,12 @@ It knows it's own size, and comes with many convenience functions.
    }
 
 
-Using the :cref:`string::operator[]` to access select characters in a string is,
+Using the :string:`operator[]<operator_at>` to access select characters in a string is,
 like an array,
 not range checked.
 This means that if you use an index referring to an invalid position,
 then your program might have undefined behavior, or fail unexpectedly.
-You can use the function :cref:`string::at()` anywhere ``operator[]`` is allowed.
+You can use the function :string:`at` anywhere ``operator[]`` is allowed.
 The ``at`` function is range checked.
 While there is a cost associated with this check, 
 if the index provided is out of range, 
@@ -218,7 +218,7 @@ What type is ``my_string``?
 
    The default type for characters enclosed in double quotes is ``const char*``.
 
-This is one of those situations where :cref:`auto` may not be deducing the type
+This is one of those situations where :lang:`auto` may not be deducing the type
 you actually want.
 There are several simple ways to use auto *and* get the type
 deduced to be a ``std::string``.
@@ -263,31 +263,84 @@ A ``string`` knows its own size and can provide other useful information.
 And the string class provides many functions dedicated to finding substrings
 within a string.
 
-.. code-block:: cpp
-   
-   #include <iostream>
-   #include <string>
+.. tabbed:: tab_find_string
 
-   int main() {
-     auto us = "team"s;
-     std::size_t pos = us.find('i');       // auto pos is less typing
-     if(pos == std::string::npos) {        // true
-       std::cout << "There is no 'i' in 'team'\n";
-     }
-     auto hi = "Hello world"s;
-     pos = hi.find("wor");                 // pos == 6
-     pos = hi.find('o');                   // pos == 4
-     pos = hi.rfind('o');                  // pos == 7
-     pos = hi.find_first_of("aeiou");      // pos == 1  (e)
-     pos = hi.find_first_not_of("aeiou");  // pos == 0  (H)
+   .. tab:: Example: find
 
-     return 0;
-   }
+      The simplest example is the :string:`find` function.
 
-The special value :cref:`std::string::npos` is used both as an end of string indicator
+      Given any string object, for example, this string:
+
+      .. literalinclude:: find-string.txt
+         :language: cpp
+         :lines: 9
+         :dedent: 3
+
+      defined using the C++14 string literal syntax,
+      creates a new object ``us``.
+
+      Once we have a ``string``, calling the string member function 
+      find always returns a position:
+
+      - Either a position within the string, or
+      - The special value :string:`std::string::npos<npos>` 
+        which means the value was not found in the string.
+
+      We can use this to check if we found what we were looking for:
+      
+      .. literalinclude:: find-string.txt
+         :language: cpp
+         :lines: 10-13
+         :dedent: 3
+
+      The position returned by find is a zero-based index
+      into the string.
+
+      Find can also take a sequence of characters.
+      In that case, it returns the position to the first ``char``
+      where the entire sequence is matched.
+
+      **Reverse find**
+
+      Similar to ``find``, :string:`rfind` performs the same
+      task as find, but iterates through the string in reverse order:
+      starting at the end and moving towards the first character.
+      Keep in mind that the position returned is still based
+      on the same index positions as regular ``find``.
+
+      **Find first of**
+
+      The :string:`find_first_of` function takes a ``char`` sequence,
+      but unlike find where the entire sequence is used to find a match,
+      ``find_first_of`` examines each character in the sequence,
+      on at a time, and returns the *minimum position* of **any**
+      of the characters listed as function arguments in the string.
+      For example:
+
+      .. literalinclude:: find-string.txt
+         :language: cpp
+         :lines: 14, 20
+         :dedent: 3
+
+      The function returns the position of 'e' in 'Hello world',
+      even though 'e' and 'o' are both present,
+      because 'e' is first.
+
+      The order of the character arguments do not matter.
+      The results would be exactly the same if the arguments were
+      'uoiea'.
+      Don't take my word for it, try it yourself.
+
+   .. tab:: Run It
+
+      .. include:: find-string.txt
+
+The special value :string:`std::string::npos<npos>` is used both as an end of string indicator
 by functions that expect a string and
 as an indicator of *not found* by functions that return an index (like find).
 
+.. youtube:: nkKeA74p3RY
+   :http: https
 
 Converting a std::string to C string 
 ....................................
@@ -311,8 +364,138 @@ Final words
 -----------
 This was a very brief introduction and barely captures what std::string
 is capable of.
-Check out the documentation at creference.com to get a feel for the functions
+Check out the documentation at cppreference.com to get a feel for the functions
 and capabilities available.
+
+Skill Check
+-----------
+The questions in this hidden section provide a chance to demonstrate
+your understanding of the concepts discussed so far.
+
+.. reveal:: reveal-skill-check-string
+
+   .. fillintheblank:: string_fitb1
+
+      Given the following:
+
+      .. code-block:: cpp
+
+         std::string x = "The rain in Spain. . . ";
+         size_t pos = x.find("in");
+
+      What is the value of ``pos``?
+
+      - :6: Correct.
+        :9: No. There is another substring 'in'
+        :7: String positions are zero-based
+        :x: Try again.
+
+   .. parsonsprob:: string_pp1
+      :adaptive:
+      :noindent:
+      :language: c
+
+      int main() {
+      =====
+        std::string  us = "Team USA";
+      =====
+        auto snowflake = us.find_first_of("Korea");
+      =====
+        if (snowflake == std::string::npos) {
+      =====
+          std::cout << "Did not find anything\n";
+      =====
+        } else {
+      =====
+          std::cout << "Found it!\n";
+      =====
+        }
+        return snowflake;
+      =====
+      }
+
+   .. fillintheblank:: string_fitb2
+
+      Given the following:
+
+      .. code-block:: c
+
+         char text[32];
+         strcpy(text, "hello");
+         int len = strlen(text);
+
+      What is the value of ``len``?
+
+      - :5: Correct.
+        :6: String length does not include the null character.
+        :4: Sizes are not indexes.
+        :x: Try again.
+
+   .. activecode:: string_sc_ac1
+      :language: cpp
+      :compileargs: ['-Wall', '-Wextra' '-std=c++11']
+
+      Fix the errors in the ``printf`` line below:
+
+      ~~~~
+      #include <cstdio>
+      #include <string>
+
+      int main() {
+        std::string yazoo = "ritish alternative band";
+        char c = 'B';
+          
+        printf ("%c%s\n",c, yazoo);
+      }
+
+   .. fillintheblank:: string_fitb3
+
+      Which ``#include`` is required to use functions such as
+      ``std::atoi`` and ``std::atof``?
+
+      - :cstdlib: Correct.
+        :cstring: These are C library functions
+        :string: These are C library functions
+        :x: Try again.
+
+
+   .. fillintheblank:: string_fitb4
+
+      Which ``#include`` is required to use functions such as
+      ``std::stoi`` and ``std::stol``?
+
+      - :string: Correct.
+        :cstring: These are not C functions
+        :cstdlib: These are string functions added in C++11
+        :x: Try again.
+
+   .. fillintheblank:: string_fitb5
+
+      Given the following:
+
+      .. code-block:: cpp
+
+         #include <string>
+
+         int main (){
+           std::string s = "Donald Duck";
+           int value = 0;
+           if (s.find_first_of(' ') == s.find_last_of(' ')) {
+             value = 3;
+           } else {
+             value = 5;
+           }
+           return value;
+         }
+
+      What value is returned from main?
+
+      - :3: Correct.
+        :0: In an if/else block one of the blocks must always be
+            entered.
+        :5: What positions are returned from both find statements?
+        :x: Try again.
+
 
 -----
 
