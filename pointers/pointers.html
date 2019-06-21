@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>5.1. Pointers &#8212; Intermediate Modern C++ Overview</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/matrixeq.css?v=58BC228F" />
+    <link rel="stylesheet" type="text/css" href="../_static/clickable.css?v=58C4E18A" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabbedstuff.css?v=424F1CC9" />
+    <link rel="stylesheet" type="text/css" href="../_static/fitb.css?v=3BA0E63E" />
+    <link rel="stylesheet" type="text/css" href="../_static/video.css?v=-1AC7A4C5" />
+    <link rel="stylesheet" type="text/css" href="../_static/webgldemo.css?v=B36B48D" />
+    <link rel="stylesheet" type="text/css" href="../_static/webglinteractive.css?v=-6EF20E1F" />
+    <link rel="stylesheet" type="text/css" href="../_static/codemirror.css?v=1CE53237" />
+    <link rel="stylesheet" type="text/css" href="../_static/reveal.css?v=4A81D381" />
+    <link rel="stylesheet" type="text/css" href="../_static/parsons.css?v=2F3E13EE" />
+    <link rel="stylesheet" type="text/css" href="../_static/js_lib/prettify.css?v=2A364B6B" />
+    <link rel="stylesheet" type="text/css" href="../_static/pytutor.css?v=239FC54E" />
+    <link rel="stylesheet" type="text/css" href="../_static/modal-basic.css?v=-75E5BD1C" />
+    <link rel="stylesheet" type="text/css" href="../_static/activecode.css?v=-B8E06A5" />
+    <link rel="stylesheet" type="text/css" href="../_static/datafile.css?v=-3E7B1476" />
+    <link rel="stylesheet" type="text/css" href="../_static/showEval.css?v=C6382F3" />
+    <link rel="stylesheet" type="text/css" href="../_static/accessibility.css?v=-7F7467D6" />
+    <link rel="stylesheet" type="text/css" href="../_static/dragndrop.css?v=-46455F2F" />
+    <link rel="stylesheet" type="text/css" href="../_static/poll.css?v=-1DDF53CD" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/runestonebase.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js?v=-29B305A6"></script>
+    <script type="text/javascript" src="../_static/clickable.js?v=-6A9F19A2"></script>
+    <script type="text/javascript" src="../_static/timedclickable.js?v=-6C6763DD"></script>
+    <script type="text/javascript" src="../_static/tabbedstuff.js?v=5BE6106"></script>
+    <script type="text/javascript" src="../_static/fitb.js?v=-71BF18ED"></script>
+    <script type="text/javascript" src="../_static/timedfitb.js?v=2AA17071"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js?v=53E888DE"></script>
+    <script type="text/javascript" src="../_static/codemirror.js?v=-6B0AAD37"></script>
+    <script type="text/javascript" src="../_static/xml.js?v=236EDFF7"></script>
+    <script type="text/javascript" src="../_static/css.js?v=623153CE"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js?v=33B91944"></script>
+    <script type="text/javascript" src="../_static/javascript.js?v=6F38CA04"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js?v=2B768384"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js?v=-7BF73669"></script>
+    <script type="text/javascript" src="../_static/Blob.js?v=AEC2447"></script>
+    <script type="text/javascript" src="../_static/reveal.js?v=112CBFA2"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js?v=-358176D8"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js?v=73056367"></script>
+    <script type="text/javascript" src="../_static/parsons.js?v=-6C1000C7"></script>
+    <script type="text/javascript" src="../_static/timedparsons.js?v=2EEA9E5A"></script>
+    <script type="text/javascript" src="../_static/animationbase.js?v=-5FBC3C59"></script>
+    <script type="text/javascript" src="../_static/mchoice.js?v=6E285D06"></script>
+    <script type="text/javascript" src="../_static/timedmc.js?v=-4FEF5BA9"></script>
+    <script type="text/javascript" src="../_static/timed.js?v=6789FE30"></script>
+    <script type="text/javascript" src="../_static/shortanswer.js?v=-44F4664F"></script>
+    <script type="text/javascript" src="../_static/timed_shortanswer.js?v=-4C5EE829"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js?v=836E01C"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js?v=-49B30F58"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js?v=42F9EBEA"></script>
+    <script type="text/javascript" src="../_static/pytutor.js?v=-7D4FDD47"></script>
+    <script type="text/javascript" src="../_static/codelens.js?v=-354132B7"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js?v=-E3B6938"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js?v=-57645C8C"></script>
+    <script type="text/javascript" src="../_static/python.js?v=14A28F1F"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js?v=599B42B0"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js?v=-775EBCF1"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js?v=-51EA5B5F"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js?v=-75420181"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js?v=747279FF"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js?v=7B020E13"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js?v=660E85C3"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js?v=54B21948"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js?v=-6D577C35"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js?v=75F941D8"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js?v=-4AE6ECF7"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js?v=-F502D84"></script>
+    <script type="text/javascript" src="../_static/clike.js?v=2DCE0756"></script>
+    <script type="text/javascript" src="../_static/timed_activecode.js?v=5150FA78"></script>
+    <script type="text/javascript" src="../_static/datafile.js?v=3ED1A80C"></script>
+    <script type="text/javascript" src="../_static/showEval.js?v=-3A31F37F"></script>
+    <script type="text/javascript" src="../_static/dragndrop.js?v=2B6403E8"></script>
+    <script type="text/javascript" src="../_static/timeddnd.js?v=378F237E"></script>
+    <script type="text/javascript" src="../_static/poll.js?v=6C59AE9F"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.2. Free store pointers" href="free-store.html" />
+    <link rel="prev" title="5. Pointers" href="toctree.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="shortcut icon" href="/intermediate-cpp/static/favicon.ico" type="image/ico" />
+
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'https://daveparillo.github.io/intermediate-cpp/' ? 'https://daveparillo.github.io/intermediate-cpp/' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/intermediate-cpp';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'intermediate-cpp';
+  eBookConfig.acDefaultLanguage = 'cpp' ? 'cpp' : 'cpp'
+  eBookConfig.logLevel = 0;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "unknown";
+  eBookConfig.isLoggedIn = false;
+  eBookConfig.useRunestoneServices = false;
+  eBookConfig.python3 = false;
+  eBookConfig.basecourse = 'intermediate-cpp';
+  eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.runestone_version = '3.4.6.dev0';
+</script>
+
+
+  </head><body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        <a class="brand-logo" style='padding:12px 0;text-align:center' href="http://209.129.16.61/~dparillo/">
+           <i class="glyphicon glyphicon-home" style='opacity:0.9;font-size:16px;color:#848484'></i>
+        </a>
+        <!--
+        <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;' href="/intermediate-cpp/default/user/login">&nbsp; </a>
+        <a class="navbar-brand" href="/~dparillo" style="color:#5080a0">CISC-187</a>&nbsp;
+        -->
+        <a class="navbar-brand" href="../index.html">Intermediate C++</a>
+      </div>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html'>Table of Contents</a></li>
+            
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li id="scratch_ac_link"><a href="javascript:ACFactory.toggleScratchActivecode()">Scratch ActiveCode</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        
+        <li class="divider-vertical"></li>
+
+        <!-- help menu dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//help/navhelp.html'>Navigation Help</a></li>
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//glossary.html'>Glossary</a></li>
+            <li class="divider"></li>
+            <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
+          </ul>
+        </li>
+        <!-- end help menu dropdown -->
+
+        <li class="divider-vertical"></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        <!--
+          <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">5.1. Pointers</a><ul>
+<li><a class="reference internal" href="#declaring-pointers">5.1.1. Declaring pointers</a></li>
+<li><a class="reference internal" href="#using-pointers">5.1.2. Using pointers</a></li>
+<li><a class="reference internal" href="#comparison-with-references">5.1.3. Comparison with references</a><ul>
+<li><a class="reference internal" href="#function-passing-semantics">5.1.3.1. Function passing semantics</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pointers-and-arrays">5.1.4. Pointers and arrays</a><ul>
+<li><a class="reference internal" href="#array-indexing-pitfalls">5.1.4.1. Array indexing pitfalls</a></li>
+<li><a class="reference internal" href="#arrays-of-type-char">5.1.4.2. Arrays of type <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">char</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pointers-to-pointers">5.1.5. Pointers to pointers</a></li>
+<li><a class="reference internal" href="#parsing-the-command-line">5.1.6. Parsing the command line</a></li>
+<li><a class="reference internal" href="#constant-pointers">5.1.7. Constant pointers</a></li>
+<li><a class="reference internal" href="#the-nullptr-type">5.1.8. The <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">nullptr</span></code> type</a></li>
+<li><a class="reference internal" href="#void-pointers">5.1.9. <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">void</span></code> pointers</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        
+          
+  <li id="relations-prev" title="Previous Chapter - 5. Pointers" data-toggle="tooltip">
+    <a href="toctree.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - 5.2. Free store pointers' data-toggle="tooltip" >
+    <a href="free-store.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content">
+  
+  <div class="section" id="pointers">
+<span id="index-0"></span><h1>5.1. Pointers<a class="headerlink" href="#pointers" title="Permalink to this headline">¶</a></h1>
+<p>People make a big deal out of pointers.
+They really aren’t that hard to understand.
+We already know that a variable stores some value:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">euler</span> <span class="o">=</span> <span class="mf">2.718281828459</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>We use the name <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">euler</span></code> to retrieve the value.</p>
+<p>A pointer is simply a variable that stores an <em>address</em>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="o">*</span> <span class="n">e_pointer</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">euler</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The value assigned to <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">e_pointer</span></code> is the <em>address of</em> the variable <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">euler</span></code>.</p>
+<div class="section" id="declaring-pointers">
+<span id="index-1"></span><h2>5.1.1. Declaring pointers<a class="headerlink" href="#declaring-pointers" title="Permalink to this headline">¶</a></h2>
+<p>While some of the memory in a running program is stored in
+a small number of <strong>registers</strong>,
+these live on the CPU chip and perform specialized functions like keeping track of the
+location of the next machine code instruction to execute.
+Most of the memory of interest to programmers is <strong>main memory</strong>,
+which (mostly) lives outside the CPU chip and which stores the code and data of a running program.
+Main memory is partitioned within a program into the following areas,
+which we have seen in the section <a class="reference internal" href="../function-intro/functions.html"><span class="doc">Introduction to functions</span></a>.</p>
+<div class="graphviz"><img src="../_images/graphviz-fa92de8bc1bee15ece079c372a5b18e48f0923f3.png" alt="digraph memory {
+  fontname = &quot;Bitstream Vera Sans&quot;
+  label=&quot;Typical program memory layout&quot;
+  node [
+     fontname = &quot;Bitstream Vera Sans&quot;
+     fontsize = 11
+     shape = &quot;record&quot;
+     style=filled
+     fillcolor=lightblue
+  ]
+  mem [
+     label = &quot;{stack\n (grows down)|\n\n\nunused memory\n\n|\nfree store\n(grows up)|\nstatic data\n|\ncode\n(text area)}&quot;
+  ]
+
+}" class="graphviz" /></div>
+<p>Each part of a program: functions, variables, and objects are stored in main memory and
+each is assigned a unique address.
+When the CPU wants to fetch a value from a particular location in main memory,
+it must supply the address.
+Frequently, we don’t need to concern ourselves with the address of a value.
+Instead, we use a variable or function name and the
+CPU resolves the address for us.
+Sometimes we need more control, and then we use <strong>pointers</strong> to store memory addresses
+and manipulate them like any other variable.
+In C++,
+they are defined as a family of types that can be passed as arguments,
+stored in variables, returned from functions, etc.</p>
+<p>A pointer is defined by the operator <code class="docutils literal highlight highlight-cpp"><span></span><span class="o">*</span></code> <em>and</em> a <strong>type</strong>.
+Both are required because a pointer can be thought of as a compound type.
+The <code class="docutils literal highlight highlight-cpp"><span></span><span class="o">*</span></code> declares that the system should store an initial memory address, not a value.
+The type instructs the system how many bytes after the initial location
+need to be allocated for storage of the value pointed to.
+<code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">int</span><span class="o">*</span> <span class="n">int_pointer</span><span class="p">;</span></code> defines a new, uninitialized pointer to an <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">int</span></code>.</p>
+<p>Both
+<code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">int</span> <span class="o">*</span> <span class="n">int_pointer</span><span class="p">;</span></code> and <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">int</span> <span class="o">*</span><span class="n">int_pointer</span><span class="p">;</span></code>
+declare the exact same variable.
+White space does not matter and the last variation is common.
+Personally, I prefer <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">int</span><span class="o">*</span> <span class="n">p</span></code>,
+because it emphasizes (for me) that the <em>type</em>
+is <em>integer pointer</em>.
+Declarations of pointers to other fundamental types follow a similar pattern:</p>
+<p><code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">double</span><span class="o">*</span> <span class="n">dbl_pointer</span><span class="p">;</span></code> is an uninitialized pointer to a <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">double</span></code>.</p>
+<p><code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">char</span><span class="o">*</span> <span class="n">char_ptr</span><span class="p">;</span></code> is an uninitialized pointer to a <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">char</span></code>.</p>
+<p>Each of these declarations creates a variable of either 4 or 8 bytes, depending on the architecture.
+On any given CPU all pointers are the same size, regardless of what they point to -
+because the <strong>only</strong> thing a pointer ever stores is an address.
+The pointer variable stores a specific memory location (the address) and the <em>value</em>
+associated with the pointer is stored in one or more bytes starting at the pointer
+address.</p>
+<p>Like any other variable in C++,
+an uninitialized pointer will initially contain garbage — in this case,
+the address of a location that might or might not contain something important.
+To initialize a pointer,
+you assign it the address of something that already exists.
+If you already have an object, you can use the <strong>address of operator</strong> <code class="docutils literal highlight highlight-cpp"><span></span><span class="o">&amp;</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// a stack int</span>
+  <span class="kt">int</span><span class="o">*</span> <span class="n">p</span><span class="p">;</span>    <span class="c1">// a pointer to an int</span>
+  <span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">;</span>    <span class="c1">// p now points to n</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>As you might expect, you do not need to declare pointers uninitialized.
+You can declare and initialize in a single step.
+Once you have an initialized pointer, use the <strong>dereference operator</strong> <code class="docutils literal highlight highlight-cpp"><span></span><span class="o">*</span></code>
+to get the value stored in the pointer, or to assign a new value.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+   <span class="kt">int</span> <span class="n">x</span>  <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+   <span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>    <span class="c1">// assign the address of x to p</span>
+   <span class="o">*</span><span class="n">p</span>     <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>     <span class="c1">// x is now 7, p is unchanged</span>
+
+   <span class="kt">int</span> <span class="n">x2</span>  <span class="o">=</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>   <span class="c1">// assign the value of x to new int x2</span>
+   <span class="kt">int</span><span class="o">*</span> <span class="n">p2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">x2</span><span class="p">;</span>  <span class="c1">// get a pointer to another int</span>
+
+   <span class="n">p2</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>         <span class="c1">// p2 and p both point to x</span>
+   <span class="n">p</span>  <span class="o">=</span> <span class="o">&amp;</span><span class="n">x2</span><span class="p">;</span>       <span class="c1">// make p point to another object</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The equivalent example for references is:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+   <span class="kt">int</span> <span class="n">y</span>  <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+   <span class="kt">int</span><span class="o">&amp;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>    <span class="c1">// the &amp; is in the type, not in the initializer</span>
+   <span class="n">r</span>      <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>    <span class="c1">// assign to y through reference r</span>
+
+   <span class="kt">int</span>  <span class="n">y2</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>   <span class="c1">// read y through r (no * needed)</span>
+   <span class="kt">int</span><span class="o">&amp;</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">y2</span><span class="p">;</span>  <span class="c1">// get a reference to another int</span>
+
+   <span class="n">r2</span>  <span class="o">=</span> <span class="n">r</span><span class="p">;</span>       <span class="c1">// the value of y is assigned to y2</span>
+   <span class="c1">//r = &amp;y2;     // error: you can&#39;t change the value of a reference</span>
+                  <span class="c1">//   (no assignment from int* to an int&amp;)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-pointers">
+<h2>5.1.2. Using pointers<a class="headerlink" href="#using-pointers" title="Permalink to this headline">¶</a></h2>
+<p>The simplest way to use a pointer is to get their value as with any other variable.
+This value will be an address,
+which can be stored in another pointer variable of the same type.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">;</span>  <span class="c1">// points to n</span>
+<span class="kt">int</span><span class="o">*</span> <span class="n">q</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>   <span class="c1">// points to n also</span>
+</pre></div>
+</div>
+<p>Once a pointer has been dereferenced, it is treated exactly like any other variable of that type.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">;</span>
+<span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="o">*</span><span class="n">p</span> <span class="o">+</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span> <span class="c1">// n = 4</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal highlight highlight-cpp"><span></span><span class="o">*</span></code> operator binds very tightly, that is it has high precedence.
+You can usually use <code class="docutils literal highlight highlight-cpp"><span></span><span class="o">*</span><span class="n">p</span></code> anywhere you could use the variable it points to
+without worrying about parentheses.
+However, a few operators,
+such as the unary decrement and increment (<code class="docutils literal highlight highlight-cpp"><span></span><span class="o">--</span></code> and <code class="docutils literal highlight highlight-cpp"><span></span><span class="o">++</span></code>) operators,
+and the member of (<code class="docutils literal highlight highlight-cpp"><span></span><span class="p">.</span></code>) operator used to unpack structs and classes, bind tighter.
+These require parentheses if you want the <code class="docutils literal highlight highlight-cpp"><span></span><span class="o">*</span></code> to take precedence.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">;</span>
+<span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="o">++</span><span class="p">;</span> <span class="c1">// increments n, n = 3</span>
+<span class="o">*</span><span class="n">p</span><span class="o">++</span><span class="p">;</span>   <span class="c1">// increments p</span>
+        <span class="c1">// p now points to next address in memory</span>
+        <span class="c1">// Almost always an error</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="http://pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0Aint%20main%28%29%20%7B%0A%20%20int%20n%20%3D%202%3B%0A%20%20int*%20p%20%3D%20%26n%3B%20%20//%20points%20to%20n%0A%20%20int*%20q%20%3D%20p%3B%20%20%20//%20points%20to%20n%20also%0A%20%20*p%20%3D%20*p%20%2B%20*p%3B%20//%20n%20%3D%204%0A%20%20std%3A%3Acout%20%3C%3C%20%22n%20%3D%20%22%20%3C%3C%20n%20%3C%3C%20'%5Cn'%3B%0A%20%20%0A%20%20int*%20p2n%20%3D%20%26n%3B%20%20//%20another%20pointer%20to%20n%0A%20%20%28*p%29%2B%2B%3B%20//%20increments%20n%0A%20%20*p%2B%2B%3B%20%20%20//%20increments%20p%0A%0A%20%20return%200%3B%0A%7D&amp;curInstr=0&amp;mode=display&amp;origin=opt-frontend.js&amp;py=cpp&amp;rawInputLstJSON=%5B%5D">See what p points to when the last line is reached.</a></p>
+<p>Unlike the fundamental types in C++,
+pointer types do not implicitly convert to other types.
+While we expect to be able to assign an int to a double,
+it is a compile error to assign an int pointer to a double pointer:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>    <span class="n">i</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="kt">double</span> <span class="n">d</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>     <span class="c1">// OK.  implicit widening conversion</span>
+
+<span class="kt">int</span><span class="o">*</span>    <span class="n">pi</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>
+<span class="kt">double</span><span class="o">*</span> <span class="n">di</span> <span class="o">=</span> <span class="n">pi</span><span class="p">;</span>  <span class="c1">// compile error</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="comparison-with-references">
+<span id="index-2"></span><h2>5.1.3. Comparison with references<a class="headerlink" href="#comparison-with-references" title="Permalink to this headline">¶</a></h2>
+<p>Recall from our earlier discussions of pass by reference
+that the <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">address</span> <span class="n">of</span></code> operator <code class="docutils literal highlight highlight-cpp"><span></span><span class="o">&amp;</span></code> allows us to pass by reference:</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="nf">by_value</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="mi">99</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;in by_value the address of x is &quot;</span>
+            <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">by_reference</span> <span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;in by_ref the address of x is   &quot;</span>
+            <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>In function <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">by_value</span></code> the statement <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">99</span><span class="p">;</span></code> changes the copy provided.
+The value of <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">x</span></code> is printed, but is destroyed when <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">x</span></code> goes out of scope on line 6.</p>
+<p>No special character is needed if you want to use a function that takes a reference:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">beta</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;the address of beta is &quot;</span>
+            <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">beta</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+  <span class="n">by_value</span><span class="p">(</span><span class="n">beta</span><span class="p">);</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;beta = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">beta</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+  <span class="n">by_reference</span><span class="p">(</span><span class="n">beta</span><span class="p">);</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;beta is now &quot;</span>
+            <span class="o">&lt;&lt;</span> <span class="n">beta</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>References do have some definite advantages:</p>
+<ul class="simple">
+<li>A reference must always be initialized using an existing object.
+In other words, a reference can <strong>never</strong> be <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">null</span></code>.</li>
+<li>A reference can’t be reassigned to a different object</li>
+<li>A <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">const</span></code> reference means you can’t modify the thing the reference refers to</li>
+<li>References are simpler, more limited, and inherently safer than pointers</li>
+</ul>
+<p>However, there are important things you can’t do with references:</p>
+<ul class="simple">
+<li>You can’t assign an address to a reference<ul>
+<li>This would have the effect of having a reference refer to a different object</li>
+<li>The technical term for this is that references are not <strong>assignable</strong></li>
+</ul>
+</li>
+<li>You can’t operate on a reference<ul>
+<li>In other words, you can’t increment the referred to memory address,
+which, by definition, would involve having the reference refer to a different object</li>
+</ul>
+</li>
+<li>You can’t use a single reference to refer to more than one object</li>
+<li>You can’t use references in containers such as <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">vector</span></code><ul>
+<li>Containers can only hold <em>assignable</em> entities</li>
+</ul>
+</li>
+</ul>
+<p>We still need to be able to do all these kinds of memory manipulations.
+In C++, we achieve these goals using <em>pointers</em>.</p>
+<div class="section" id="function-passing-semantics">
+<h3>5.1.3.1. Function passing semantics<a class="headerlink" href="#function-passing-semantics" title="Permalink to this headline">¶</a></h3>
+<p>We can pass pointers to a function that expects a reference:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="nf">by_reference</span> <span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span>  <span class="n">i</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>
+  <span class="n">by_reference</span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">);</span>
+  <span class="n">assert</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If we pass in only <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">p</span></code>, what happens?</p>
+
+    <div data-component="reveal" id="reveal-skill-check"   data-showtitle="Show Answer" data-hidetitle="Hide" >
+    <p>The program fails to compile.</p>
+<p>We can’t pass an <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">int</span><span class="o">*</span></code> to a function expecting an <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">int</span><span class="o">&amp;</span></code>.</p>
+
+    </div>
+    <div class="admonition-non-const-references-vs-pointers admonition">
+<p class="first admonition-title">Non-const references vs. pointers</p>
+<p>Some programmers consider passing by non-const reference bad style,
+because the call syntax is the same as pass by value.
+When a variable is passed into a function by non-const reference
+there is no visual indication to the programmer of what to expect.
+Without reading additional documentation or
+reading the source code,
+there is no way to know if the function will change its parameter or not.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">func</span> <span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>       <span class="c1">// will x change?</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For this reason, a function that takes a <em>non-owning pointer</em> is preferred:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">func</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">x</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="n">func</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>       <span class="c1">// Caller expects x to change</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p class="last">A function signature is a <em>contract</em> between the function author and
+the function caller.
+A function that takes non-const references represents a poorly written contract.
+Callers don’t know what to expect when the function is called.
+Even if the parameter isn’t changed today, it might tomorrow.
+A non-owning pointer makes the intent clear.
+There is still no <em>requirement</em> to change the parameter,
+but since the caller is explicitly passing in an address,
+they can expect it to change.</p>
+</div>
+</div>
+</div>
+<div class="section" id="pointers-and-arrays">
+<span id="index-3"></span><h2>5.1.4. Pointers and arrays<a class="headerlink" href="#pointers-and-arrays" title="Permalink to this headline">¶</a></h2>
+<p>Pointers are not arrays and arrays are not pointers.
+However, much confusion arises between them because
+<em>arrays in expressions</em> often behave like pointers.
+The term you’ll often see is that <em>arrays decay into pointers</em>.</p>
+<p>Any array type will implicitly convert to a pointer of the type stored in the array.
+The pointer is constructed to point to the first element of the array.
+This conversion happens whenever arrays are used in an expression where
+arrays are not expected, but pointers are:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">13</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">35</span><span class="p">};</span>
+  <span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span>  <span class="c1">// prints size of array</span>
+            <span class="o">&lt;&lt;</span> <span class="k">sizeof</span> <span class="n">p</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span> <span class="c1">// prints size of a pointer</span>
+
+ <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="nl">n</span><span class="p">:</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>          <span class="c1">// okay: arrays can be used in range-for loops</span>
+   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span><span class="p">;</span> <span class="c1">// prints elements of the array</span>
+ <span class="p">}</span>
+ <span class="c1">// for(int n: p) {       // error: no range for looping on a pointer</span>
+
+
+ <span class="c1">// arrays and pointers share the same semantics</span>
+ <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span>
+           <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span> <span class="c1">// prints the first element</span>
+           <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span> <span class="c1">// same</span>
+           <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span>  <span class="c1">// prints the second element twice</span>
+           <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span> <span class="c1">// same</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This behavior applies to function calling as well:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="c1">// print first element of array using pointer dereference</span>
+<span class="kt">void</span> <span class="nf">g</span><span class="p">(</span><span class="kt">int</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="mi">3</span><span class="p">])</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// print first element of array using array semantics through pointer</span>
+<span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">13</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">35</span><span class="p">};</span>
+  <span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+
+ <span class="c1">// where arrays are acceptable, but pointers aren&#39;t, only arrays may be used</span>
+ <span class="n">g</span><span class="p">(</span><span class="n">a</span><span class="p">);</span> <span class="c1">// okay: function takes an array by reference</span>
+ <span class="c1">// g(p); // error: pointers do not implicitly convert to arrays</span>
+
+ <span class="c1">// where pointers are acceptable, but arrays aren&#39;t, both may be used:</span>
+ <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">);</span> <span class="c1">// okay: function takes a pointer</span>
+ <span class="n">f</span><span class="p">(</span><span class="n">p</span><span class="p">);</span> <span class="c1">// okay: function takes a pointer</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="array-indexing-pitfalls">
+<h3>5.1.4.1. Array indexing pitfalls<a class="headerlink" href="#array-indexing-pitfalls" title="Permalink to this headline">¶</a></h3>
+<p><strong>Pitfall #1</strong></p>
+<p>Arrays perform absolutely no bounds checking.</p>
+<p>Read that again.</p>
+<p>Good.</p>
+<p>Now consider that no compiler will complain about this code:</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="kt">int</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>  <span class="c1">// OK</span>
+<span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>  <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>  <span class="c1">// OK</span>
+<span class="n">p</span><span class="p">[</span><span class="mi">99</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>  <span class="c1">// oops!  where did we write this?</span>
+<span class="n">p</span><span class="p">[</span><span class="o">-</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>  <span class="c1">// or this!</span>
+</pre></div>
+</td></tr></table></div>
+<p>No compiler will inform you that on line 4 we just wrote an <code class="docutils literal highlight highlight-cpp"><span></span><span class="mi">8</span></code>
+at a location 96 positions past the end of the array.
+Nor will it inform you that on line 5, we just wrote to a location
+7 positions before the beginning of the array.</p>
+<p>Most pointer examples you see will never attempt to use <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span><span class="p">[]</span></code>
+to index a pointer that is not an array.
+This is a good thing, but as you might expect, if you make a mistake,
+the compiler has nothing to offer:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span>  <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">99</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Even with all compiler warnings enabled, most compilers will emit nothing at all.
+No compiler will inform you that
+we just accessed a piece of memory 98 <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">ints</span></code> past the one you own.
+Whatever is stored there, we then added 2 to it
+and assigned that value to <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">y</span></code>.
+The compiler doesn’t even know <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">p</span></code> is a pointer to just one <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">int</span></code>.</p>
+<p><strong>Pitfall #2</strong></p>
+<p>From the standard:</p>
+<blockquote>
+<div>The definition of the subscript <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span><span class="p">[]</span></code> is that <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">E1</span><span class="p">[</span><span class="n">E2</span><span class="p">]</span></code> is identical to <code class="docutils literal highlight highlight-cpp"><span></span><span class="p">(</span><span class="o">*</span><span class="p">((</span><span class="n">E1</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">E2</span><span class="p">)))</span></code>.
+Because of the conversion rules that apply to the binary <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span><span class="o">+</span></code>,
+if <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">E1</span></code> is an array object (equivalently, a pointer to the initial element of an array object)
+and <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">E2</span></code> is an integer, <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">E1</span><span class="p">[</span><span class="n">E2</span><span class="p">]</span></code> designates the <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">E2</span></code>-th element of <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">E1</span></code> (counting from zero).</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>What the standard doesn’t repeat here is that addition commutes, that is
+<span class="math notranslate nohighlight">\(a+b = b+a\)</span>.
+A side-effect of this fact is that for any array and index pair <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></code>,
+then  <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></code> must be equivalent to <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">i</span><span class="p">[</span><span class="n">a</span><span class="p">]</span></code>.</p>
+
+<div data-childcomponent="ac-array-index-1" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac-array-index-1 data-lang="cpp" 
+      data-timelimit=25000    
+    data-audio=''     
+          >
+#include <iostream>
+using std::cout;
+
+int main() {
+  int a[4] = {3, 5, 8, 13};
+  cout << "Print each array element 4 times:\n";
+  for (int i=0; i<4; ++i) {
+    cout << a[i]   << ' '
+         << *(a+i) << ' '
+         << *(i+a) << ' '
+         << i[a]   << '\n';
+  }
+}
+</textarea>
+</div>
+<p class="last">Although the standard does not strictly <em>prohibit</em> this syntax,
+doesn’t mean you should use it.</p>
+</div>
+<p>This pitfall is only a problem when using arrays of type <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">int</span></code> with easily confused variable names.
+The lesson: use variables appropriate for the scope.
+In this case, perhaps a single letter (a) for the array was too short.</p>
+</div>
+<div class="section" id="arrays-of-type-char">
+<span id="index-4"></span><h3>5.1.4.2. Arrays of type <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">char</span></code><a class="headerlink" href="#arrays-of-type-char" title="Permalink to this headline">¶</a></h3>
+<p>In the C language,
+the abstract idea of a string is implemented with an array of characters.
+Arrays of <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">char</span></code> that are null terminated are commonly called <em>C strings</em>.</p>
+<p>In older C and C++ code using C strings,
+it’s common to see code that uses the null terminator in
+the C string as a loop exit condition:</p>
+
+<div data-childcomponent="ac-c-copy-idiom" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac-c-copy-idiom data-lang="c" 
+      data-timelimit=25000    
+    data-audio=''     
+          >
+#include <stdio.h>
+
+// an old C idiom to copy a 'string'
+int main (int argc, char** argv) {
+  char a[] = "Hello World!";
+  char b[13];
+
+  // painfully print each char, 1 at a time.
+  int i;
+  for (i=0; i<12;++i) putchar(a[i]);
+  printf("\n");
+
+
+  char* p1 = a;
+  char* p2 = b;
+  for (int i=0; a[i]; ++i) p2[i] = p1[i];
+
+  printf("copy:\n");
+  printf("%s\n", p2);  // print chars until '\0' detected
+  return 0;
+}
+</textarea>
+</div>
+<p>Code like this can fail if the source string contains any embedded null characters.
+The risk is that this code works fine 99% of the time, but fails
+when working with character data from an uncontrolled source
+(a network or socket interface, for example).</p>
+<div class="admonition-try-this admonition">
+<p class="first admonition-title">Try This!</p>
+<p>Run the previous example, but modify it,
+replacing the ‘Hello World’ with ‘Hello\0World’.
+What happens?</p>
+<p class="last">What warnings does the compiler display?</p>
+</div>
+</div>
+</div>
+<div class="section" id="pointers-to-pointers">
+<h2>5.1.5. Pointers to pointers<a class="headerlink" href="#pointers-to-pointers" title="Permalink to this headline">¶</a></h2>
+<p>A pointer can point to any memory address within the scope of the program,
+which includes pointers themselves.
+Each new pointer just adds another to the chain of pointers.
+The language does not impose a strict limit.
+The only limit is your sanity…</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+
+<span class="c1">// all of these variables point to x</span>
+<span class="kt">int</span><span class="o">*</span> <span class="n">p2x</span>     <span class="o">=</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">**</span> <span class="n">p2p</span>    <span class="o">=</span> <span class="o">&amp;</span><span class="n">p2x</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">***</span> <span class="n">p2pp</span>  <span class="o">=</span> <span class="o">&amp;</span><span class="n">p2p</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="http://pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0Aint%20main%28%29%20%7B%0A%20%20int%20x%20%3D%208%3B%0A%0A%20%20//%20all%20of%20these%20variables%20point%20to%20x%0A%20%20int*%20p2x%20%20%20%20%20%3D%20%26x%3B%0A%20%20int**%20p2p%20%20%20%20%3D%20%26p2x%3B%0A%20%20int***%20p2pp%20%20%3D%20%26p2p%3B%0A%0A%20%20return%200%3B%0A%7D&amp;curInstr=3&amp;mode=display&amp;origin=opt-frontend.js&amp;py=cpp&amp;rawInputLstJSON=%5B%5D">See it for yourself.</a></p>
+<p>Like <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">int</span></code> or <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">char</span></code>, a pointer type is still a type.
+When you declare a variable of type pointer,
+storage still must be allocated somewhere,
+and this storage must have an address too.</p>
+<p>When dealing with pointers, we have to manage the added complexity
+of keeping clear in our minds the difference between
+<em>the pointer variable</em> and <em>what the pointer points to</em>.
+When dealing with pointers to pointers, we have to manage
+the pointer, what it points to, and <em>what the pointer that it points to points to</em>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
+
+ <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+   <span class="n">string</span> <span class="n">message</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;Alice&quot;</span><span class="p">,</span><span class="s">&quot;Bob here!&quot;</span><span class="p">,</span><span class="s">&quot;Carol checking in.&quot;</span><span class="p">};</span>
+
+   <span class="n">string</span> <span class="o">*</span><span class="n">sp</span><span class="p">;</span>   <span class="c1">// a pointer to at least 1 string</span>
+
+   <span class="n">sp</span> <span class="o">=</span> <span class="n">message</span><span class="p">;</span>
+   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;sp:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">sp</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">sp</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="p">(</span><span class="n">sp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="p">(</span><span class="n">sp</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">;</span>
+
+
+   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;sp2:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+   <span class="n">string</span> <span class="o">*</span><span class="n">sp2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">string</span> <span class="p">[</span><span class="mi">3</span><span class="p">];</span>          <span class="c1">//create string pointer on the heap</span>
+   <span class="o">*</span><span class="n">sp2</span> <span class="o">=</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">Alice has left the building&quot;</span><span class="p">;</span>
+   <span class="o">*</span><span class="p">(</span><span class="n">sp2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="s">&quot;Bob who?&quot;</span><span class="p">;</span>
+   <span class="o">*</span><span class="p">(</span><span class="n">sp2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="s">&quot;Carol checked out.&quot;</span><span class="p">;</span>
+
+   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">sp2</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">sp2</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="p">(</span><span class="n">sp2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="p">(</span><span class="n">sp2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+   <span class="n">string</span> <span class="o">**</span><span class="n">sp3</span><span class="p">;</span>                 <span class="c1">// a pointer to a string pointer</span>
+
+   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;sp3:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+   <span class="n">sp3</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">sp2</span><span class="p">;</span>
+   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">sp3</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">**</span><span class="n">sp3</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+<p id="index-5">You can also define a pointer to a reference variable:</p>
+
+    <div class="runestone" style="margin-left: auto; margin-right:auto">
+        <div id="0QOxC7ADT80_vid" class="align-left youtube-video" data-video-height="281" data-video-width="500" data-video-videoid="0QOxC7ADT80" data-video-divid="0QOxC7ADT80_vid" data-video-start="0" data-video-end="-1" ></div>
+    </div>
+    </div>
+<div class="section" id="parsing-the-command-line">
+<span id="index-6"></span><h2>5.1.6. Parsing the command line<a class="headerlink" href="#parsing-the-command-line" title="Permalink to this headline">¶</a></h2>
+<p>Now we have enough tools in our tool kit to understand command line arguments.
+Up to now, all of our examples showing the function <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">main</span><span class="p">()</span></code>
+did not include any function parameters.
+The function <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">main</span><span class="p">()</span></code> can take two parameters.
+Given:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>or equivalently:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The name of the variable <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">argc</span></code> stands for ‘argument count’.
+<code class="docutils literal highlight highlight-cpp"><span></span><span class="n">argc</span></code> contains the number of arguments passed to the program.
+The name of the variable <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">argv</span></code> stands for ‘argument vector’.
+A vector is a one-dimensional array, and <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">argv</span></code> is a one-dimensional array of strings.
+Each string is one of the arguments that was passed to the program.
+These names are used by convention, although technically,
+any valid identifiers can be used.</p>
+<p>Dereferencing <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">argv</span></code> returns the thing <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">argv</span></code> points to:
+the first string in <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">argv</span></code>.
+By convention, essentially all compilers place the name of the
+program executed in <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></code>.</p>
+<p>We know that C strings are arrays of <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">char</span></code>,
+so <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">argv</span></code> is a pointer to a <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">char</span></code> array.
+Or we can say <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">argv</span></code> is a pointer to a pointer to a <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">char</span></code>.</p>
+<p id="index-7">When we compile a program like this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/usr/bin/gcc -o myprog myprog.cpp
+</pre></div>
+</div>
+<p>The gcc program receives the arguments passed to main:</p>
+<ul class="simple">
+<li><code class="docutils literal highlight highlight-cpp"><span></span><span class="n">argc</span></code> contains 4</li>
+<li><code class="docutils literal highlight highlight-cpp"><span></span><span class="n">argv</span></code> contains 4 arrays of length 13:</li>
+</ul>
+<div class="graphviz"><img src="../_images/graphviz-092b125238d900ecd896b5d7a5f4064325d174a5.png" alt="digraph argv {
+  rankdir=LR
+  fontname = &quot;Bitstream Vera Sans&quot;
+  label=&quot;The two dimensional argv array&quot;
+  node [
+     fontname = &quot;Bitstream Vera Sans&quot;
+     fontsize = 14
+     shape = &quot;plain&quot;
+  ]
+  argv0 [label=&quot;argv[0]&quot;];
+  argv1 [label=&quot;argv[1]&quot;];
+  argv2 [label=&quot;argv[2]&quot;];
+  argv3 [label=&quot;argv[3]&quot;];
+
+  edge [style = invis;]
+  node [
+     fontname = &quot;Bitstream Vera Sans&quot;
+     fontsize = 14
+     shape = &quot;record&quot;
+     style=filled
+     fillcolor=lightblue
+  ]
+  arr0 [
+     label = &quot;{/|u|s|r|/|b|i|n|/|g|c|c|\\0}&quot;
+  ]
+  argv0 -&gt;  arr0;
+  arr1 [
+     label = &quot;{-|o|\\0| | | | | | | | | | }&quot;
+  ]
+  argv1 -&gt; arr1;
+  arr2 [
+     label = &quot;{m|y|p|r|o|g|\\0| | | | | | }&quot;
+  ]
+  argv2 -&gt; arr2;
+  arr3 [
+     label = &quot;{m|y|p|r|o|g|.|c|\\0| | | | }&quot;
+  ]
+  argv3 -&gt; arr3;
+
+  argv0 -&gt; argv1 -&gt; argv2 -&gt; argv3
+
+  {rank=same; argv0 argv1 argv2 argv3}
+
+}" class="graphviz" /></div>
+<p>Different <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">gcc</span></code> invocations would result in different values for argc and argv.</p>
+<p>Once main is called,
+we can access any character in <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">argv</span></code> using pointer arithmetic,
+array index operators, or a combination.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="c1">// Print arguments using c functions</span>
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="n">printf</span> <span class="p">(</span><span class="s">&quot;The program &#39;%s&#39; was called with: </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="n">argc</span><span class="p">;</span> <span class="n">count</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;argv[%d] = %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="n">count</span><span class="p">]);</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">puts</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">no other arguments.&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Typically, this is used to provide an ability
+to change the behavior of programs using command line ‘switches’
+specified by the user when the program is run.
+The following example takes 3 arguments:</p>
+<dl class="docutils">
+<dt><strong>-h</strong></dt>
+<dd>Display help</dd>
+<dt><strong>-n</strong></dt>
+<dd>Attempt to interpret the next word as a number and print it</dd>
+<dt>anything else</dt>
+<dd>Interpret the next word as a string and print it</dd>
+</dl>
+<p>There is nothing special about the character <code class="docutils literal highlight highlight-cpp"><span></span><span class="o">-</span></code>.
+It is a convention used to distinguish command line arguments
+with special meaning (the switches) from other content.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="c1">// Display a usage statement for this program.</span>
+<span class="c1">// name is the program name</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">usage</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Usage: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; [-h] [-n number] [any_word]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">number</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">word</span> <span class="o">=</span> <span class="s">&quot;Hello&quot;</span><span class="p">;</span>
+
+  <span class="c1">// Start at 1 to skip over program name</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">argc</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">strncmp</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s">&quot;-h&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="p">{</span>
+      <span class="c1">// print help if the current string is &#39;-h&#39;</span>
+      <span class="n">usage</span><span class="p">(</span><span class="o">*</span><span class="n">argv</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">strncmp</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s">&quot;-n&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="p">{</span>
+      <span class="c1">// attempt to parse the string after &#39;-n&#39; as an int</span>
+      <span class="o">++</span><span class="n">i</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">argc</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">number</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;The number is: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">number</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Error using &#39;-n&#39; argument: no number specified</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+        <span class="n">usage</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+      <span class="p">}</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// print any other string provided</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;The word is: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">word</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;The last number is: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">number</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span>
+            <span class="o">&lt;&lt;</span> <span class="s">&quot;The last word is: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">word</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Keep in mind that everything received on the command line is
+character data.
+It is the responsibility of the programmer to transform the characters
+in the array <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">argv</span></code> into whatever type is appropriate for the program.</p>
+<div class="admonition-try-this admonition">
+<p class="first admonition-title">Try This!</p>
+<p>Compile and run the previous program with a variety of inputs and see what happens.</p>
+<p class="last">Try passing no arguments or switches,
+the same switch more than once,
+and a switch with no value after it.</p>
+</div>
+</div>
+<div class="section" id="constant-pointers">
+<span id="index-8"></span><h2>5.1.7. Constant pointers<a class="headerlink" href="#constant-pointers" title="Permalink to this headline">¶</a></h2>
+<p>Pointers can be declared <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">const</span></code>, just like any other type.
+Where <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">const</span></code> appears controls what is held constant:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// odd whitespace to help see where const is used</span>
+      <span class="kt">int</span>         <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+      <span class="kt">int</span><span class="o">*</span>       <span class="n">p1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>  <span class="c1">// non-const pointer to non-const int</span>
+<span class="k">const</span> <span class="kt">int</span><span class="o">*</span>       <span class="n">p2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>  <span class="c1">// non-const pointer to const int</span>
+      <span class="kt">int</span><span class="o">*</span> <span class="k">const</span> <span class="n">p3</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>  <span class="c1">// const pointer to non-const int</span>
+<span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="k">const</span> <span class="n">p4</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>  <span class="c1">// const pointer to const int</span>
+</pre></div>
+</div>
+<p>You may find it helpful to read pointer declarations from right to left.</p>
+<ul class="simple">
+<li>In <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">p1</span></code>, nothing is constant.  Either the pointer or the value pointed to can change.</li>
+<li>In <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">p2</span></code>, the pointer can change,  but the value pointed to is constant.
+You can’t use this pointer to change the value of x.</li>
+<li>In <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">p3</span></code>, the pointer is constant,  but the value pointed to can change.
+You can use this pointer to change the value of x, but can’t point to a different variable.</li>
+<li>In <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">p4</span></code>, both are held constant.</li>
+</ul>
+</div>
+<div class="section" id="the-nullptr-type">
+<h2>5.1.8. The <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">nullptr</span></code> type<a class="headerlink" href="#the-nullptr-type" title="Permalink to this headline">¶</a></h2>
+<p>In section <cite>Comparison with references</cite>,
+we mentioned that unlike a reference,
+a pointer might point to ‘nothing’.</p>
+<p>What exactly is ‘nothing’?</p>
+<p>Many languages refer to this ‘nothing’ as <code class="docutils literal highlight highlight-cpp"><span></span><span class="nb">NULL</span></code>.</p>
+<p>Prior to C++11, there was no unambiguous definition.
+Typically the value 0 was used:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#define NULL 0LL</span>
+</pre></div>
+</div>
+<p>This definition carries over from standard C.</p>
+<p>Using the value <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">long</span> <span class="kt">long</span> <span class="mi">0</span></code> as an indicator for a null pointer created
+several problems over the years in C++ programs.</p>
+<p>Null pointers are the same type as regular integral types.</p>
+<p>While it is unlikely that the number 0 could ever be confused with a valid address,
+it creates problems regular old C never had to handle.
+Specifically, C++ introduces function overloads,
+which exposes the weakness in using an integral type for both
+numbers and the concept <code class="docutils literal highlight highlight-cpp"><span></span><span class="nb">NULL</span></code>.
+For example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#define NULL 0LL</span>
+
+<span class="c1">// Three overloads of f</span>
+<span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>   <span class="p">{</span> <span class="n">puts</span><span class="p">(</span><span class="s">&quot;f(int)&quot;</span><span class="p">);</span> <span class="p">}</span>
+<span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>  <span class="p">{</span> <span class="n">puts</span><span class="p">(</span><span class="s">&quot;f(bool)&quot;</span><span class="p">);</span> <span class="p">}</span>
+<span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="p">{</span> <span class="n">puts</span><span class="p">(</span><span class="s">&quot;f(void*)&quot;</span><span class="p">);</span> <span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>     <span class="c1">// calls f(int) overload, not f(void*)</span>
+
+  <span class="n">f</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>  <span class="c1">// might not compile, typically calls</span>
+            <span class="c1">// f(int) overload.</span>
+            <span class="c1">// Never calls f(void*)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The overload with <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">f</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span></code> is never called,
+because <code class="docutils literal highlight highlight-cpp"><span></span><span class="nb">NULL</span></code> is not a pointer type.</p>
+<p>C++ resolves this by creating a new type just to hold the null pointer.
+The type is <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">nullptr_t</span></code> and the variable of that type is <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">nullptr</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+
+<span class="c1">// Three overloads of f</span>
+<span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>   <span class="p">{</span> <span class="n">puts</span><span class="p">(</span><span class="s">&quot;f(int)&quot;</span><span class="p">);</span> <span class="p">}</span>
+<span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>  <span class="p">{</span> <span class="n">puts</span><span class="p">(</span><span class="s">&quot;f(bool)&quot;</span><span class="p">);</span> <span class="p">}</span>
+<span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="p">{</span> <span class="n">puts</span><span class="p">(</span><span class="s">&quot;f(void*)&quot;</span><span class="p">);</span> <span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>        <span class="c1">// calls f(int) overload as before</span>
+
+  <span class="n">f</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span>  <span class="c1">// calls f(void*) overload</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The variable <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">nullptr</span></code> is a distinct type.
+It is not a pointer type, pointer to member, integral type, size type, reference type,
+or a member of any type group.
+The <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">nullptr</span></code> <strong>does</strong> implicitly convert to a pointer type.</p>
+<p>In short, using <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">nullptr</span></code> improves code clarity and correctness.
+Using <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">nullptr</span></code> improves code clarity, especially when auto variables are involved.
+Consider the following code example, from Effective Modern C++:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// A function that returns a pointer</span>
+<span class="kt">int</span><span class="o">*</span> <span class="nf">findRecord</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// If you don’t happen to know (or can’t easily find out) what findRecord returns,</span>
+  <span class="c1">// it may not be clear whether result is a pointer type or an integral type.</span>
+  <span class="c1">//</span>
+  <span class="c1">// After all, 0 (what result is tested against) could go either way.</span>
+
+  <span class="p">{</span>
+    <span class="k">auto</span> <span class="n">result</span> <span class="o">=</span> <span class="n">findRecord</span><span class="p">();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1">// If you see the following, on the other hand ...</span>
+  <span class="p">{</span>
+    <span class="k">auto</span> <span class="n">result</span> <span class="o">=</span> <span class="n">findRecord</span><span class="p">();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span>
+    <span class="c1">// there’s no ambiguity: result must be a pointer type.</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="void-pointers">
+<h2>5.1.9. <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">void</span></code> pointers<a class="headerlink" href="#void-pointers" title="Permalink to this headline">¶</a></h2>
+<p>A <em>void pointer</em> is a
+pointer to some memory, but the compiler doesn’t know the type.</p>
+<p>It is about as close to a raw machine address as you can get in C++.</p>
+<p>Legitimate uses are
+calls between functions in different languages or
+templates where the provided value could literally be <em>anything</em>,
+such as the actual implementation of <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">new</span></code> in C++.</p>
+<div class="admonition-important admonition">
+<p class="first admonition-title">Important!</p>
+<p><code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">void</span><span class="o">*</span></code> is not the same as <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">void</span></code></p>
+<p>There are no objects of type void:</p>
+<div class="last highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">i</span><span class="p">;</span>           <span class="c1">// declare an int</span>
+<span class="kt">void</span> <span class="n">x</span><span class="p">;</span>          <span class="c1">// error!  void is not a type</span>
+<span class="kt">void</span> <span class="nf">print</span><span class="p">();</span>    <span class="c1">// function returns nothing</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Any</strong> pointer can be assigned to <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">void</span><span class="o">*</span></code>:</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="o">*</span>    <span class="n">i</span>  <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">{</span><span class="mi">5</span><span class="p">};</span>
+<span class="kt">double</span><span class="o">*</span> <span class="n">x</span>  <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="kt">int</span><span class="o">*</span>    <span class="n">j</span>  <span class="o">=</span> <span class="n">i</span><span class="p">;</span>             <span class="c1">// OK: i and j are both int*</span>
+<span class="kt">void</span><span class="o">*</span>   <span class="n">p1</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>             <span class="c1">// OK: assign int* to void*</span>
+<span class="kt">void</span><span class="o">*</span>   <span class="n">p2</span> <span class="o">=</span> <span class="n">d</span><span class="p">;</span>             <span class="c1">// OK: assign double* to void*</span>
+
+<span class="kt">int</span><span class="o">*</span>    <span class="n">i2</span> <span class="o">=</span> <span class="n">p1</span><span class="p">;</span>            <span class="c1">// error</span>
+                            <span class="c1">// can&#39;t assign void* to int*</span>
+</pre></div>
+</td></tr></table></div>
+<p>The last assignment is invalid, even though <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">p1</span></code> was last assigned an <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">int</span><span class="o">*</span></code>.
+A human reader knows the void pointer currently holds an int pointer,
+but the compiler does not.</p>
+<p>The compiler <strong>can’t</strong> know the size of the value pointed to.
+<code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">void</span></code> isn’t a type, so it has no size:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="o">*</span>    <span class="n">i</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">{</span><span class="mi">5</span><span class="p">};</span>
+<span class="kt">void</span><span class="o">*</span>   <span class="n">p</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>             <span class="c1">// OK</span>
+<span class="kt">int</span><span class="o">*</span>    <span class="n">j</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>             <span class="c1">// error</span>
+</pre></div>
+</div>
+<p>To resolve this error,
+we have to give the compiler size information.
+We can use one of C++ <em>casts</em> to convert <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">void</span><span class="o">*</span></code>
+to another pointer type that has a size:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="o">*</span>    <span class="n">i</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">{</span><span class="mi">5</span><span class="p">};</span>
+<span class="kt">void</span><span class="o">*</span>   <span class="n">p</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>                    <span class="c1">// OK</span>
+<span class="c1">//int*  j = p;                    // error</span>
+<span class="kt">int</span><span class="o">*</span>    <span class="n">j</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">p</span><span class="p">);</span> <span class="c1">// OK</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<div class="admonition-more-to-explore admonition">
+<p class="first admonition-title">More to Explore</p>
+<ul class="last simple">
+<li>Array declarations in <a class="reference external" href="http://en.cppreference.com/w/c/language/array">C</a> and <a class="reference external" href="http://en.cppreference.com/w/cpp/language/array">C++</a></li>
+<li>From the ISO C++ FAQ: <a class="reference external" href="https://isocpp.org/wiki/faq/const-correctness#ptr-to-const-aliasing">Does “Const Fred* p” mean that *p can’t change?</a></li>
+<li>Effective Modern C++ by Scott Meyers <a class="reference external" href="https://www.google.com/search?q=isbn+0636920033707">Item 8: Prefer nullptr to 0 and NULL</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+  
+      
+  <li id="relations-prev" class="navLink" title='Previous Section - 5. Pointers' data-toggle="tooltip">
+    <a href="toctree.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="toctree.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - 5.2. Free store pointers' data-toggle="tooltip" >
+    <a href="free-store.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="free-store.html" >Next Section - 5.2. Free store pointers</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+  
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2017-2018 Dave Parillo.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.4.6.dev0.
+    </p>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

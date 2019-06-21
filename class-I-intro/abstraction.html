@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>11.6. Abstraction &#8212; Intermediate Modern C++ Overview</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/matrixeq.css?v=58BC228F" />
+    <link rel="stylesheet" type="text/css" href="../_static/clickable.css?v=58C4E18A" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabbedstuff.css?v=424F1CC9" />
+    <link rel="stylesheet" type="text/css" href="../_static/fitb.css?v=3BA0E63E" />
+    <link rel="stylesheet" type="text/css" href="../_static/video.css?v=-1AC7A4C5" />
+    <link rel="stylesheet" type="text/css" href="../_static/webgldemo.css?v=B36B48D" />
+    <link rel="stylesheet" type="text/css" href="../_static/webglinteractive.css?v=-6EF20E1F" />
+    <link rel="stylesheet" type="text/css" href="../_static/codemirror.css?v=1CE53237" />
+    <link rel="stylesheet" type="text/css" href="../_static/reveal.css?v=4A81D381" />
+    <link rel="stylesheet" type="text/css" href="../_static/parsons.css?v=2F3E13EE" />
+    <link rel="stylesheet" type="text/css" href="../_static/js_lib/prettify.css?v=2A364B6B" />
+    <link rel="stylesheet" type="text/css" href="../_static/pytutor.css?v=239FC54E" />
+    <link rel="stylesheet" type="text/css" href="../_static/modal-basic.css?v=-75E5BD1C" />
+    <link rel="stylesheet" type="text/css" href="../_static/activecode.css?v=-B8E06A5" />
+    <link rel="stylesheet" type="text/css" href="../_static/datafile.css?v=-3E7B1476" />
+    <link rel="stylesheet" type="text/css" href="../_static/showEval.css?v=C6382F3" />
+    <link rel="stylesheet" type="text/css" href="../_static/accessibility.css?v=-7F7467D6" />
+    <link rel="stylesheet" type="text/css" href="../_static/dragndrop.css?v=-46455F2F" />
+    <link rel="stylesheet" type="text/css" href="../_static/poll.css?v=-1DDF53CD" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/runestonebase.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js?v=-29B305A6"></script>
+    <script type="text/javascript" src="../_static/clickable.js?v=-6A9F19A2"></script>
+    <script type="text/javascript" src="../_static/timedclickable.js?v=-6C6763DD"></script>
+    <script type="text/javascript" src="../_static/tabbedstuff.js?v=5BE6106"></script>
+    <script type="text/javascript" src="../_static/fitb.js?v=-71BF18ED"></script>
+    <script type="text/javascript" src="../_static/timedfitb.js?v=2AA17071"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js?v=53E888DE"></script>
+    <script type="text/javascript" src="../_static/codemirror.js?v=-6B0AAD37"></script>
+    <script type="text/javascript" src="../_static/xml.js?v=236EDFF7"></script>
+    <script type="text/javascript" src="../_static/css.js?v=623153CE"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js?v=33B91944"></script>
+    <script type="text/javascript" src="../_static/javascript.js?v=6F38CA04"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js?v=2B768384"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js?v=-7BF73669"></script>
+    <script type="text/javascript" src="../_static/Blob.js?v=AEC2447"></script>
+    <script type="text/javascript" src="../_static/reveal.js?v=112CBFA2"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js?v=-358176D8"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js?v=73056367"></script>
+    <script type="text/javascript" src="../_static/parsons.js?v=-6C1000C7"></script>
+    <script type="text/javascript" src="../_static/timedparsons.js?v=2EEA9E5A"></script>
+    <script type="text/javascript" src="../_static/animationbase.js?v=-5FBC3C59"></script>
+    <script type="text/javascript" src="../_static/mchoice.js?v=6E285D06"></script>
+    <script type="text/javascript" src="../_static/timedmc.js?v=-4FEF5BA9"></script>
+    <script type="text/javascript" src="../_static/timed.js?v=6789FE30"></script>
+    <script type="text/javascript" src="../_static/shortanswer.js?v=-44F4664F"></script>
+    <script type="text/javascript" src="../_static/timed_shortanswer.js?v=-4C5EE829"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js?v=836E01C"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js?v=-49B30F58"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js?v=42F9EBEA"></script>
+    <script type="text/javascript" src="../_static/pytutor.js?v=-7D4FDD47"></script>
+    <script type="text/javascript" src="../_static/codelens.js?v=-354132B7"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js?v=-E3B6938"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js?v=-57645C8C"></script>
+    <script type="text/javascript" src="../_static/python.js?v=14A28F1F"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js?v=599B42B0"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js?v=-775EBCF1"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js?v=-51EA5B5F"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js?v=-75420181"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js?v=747279FF"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js?v=7B020E13"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js?v=660E85C3"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js?v=54B21948"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js?v=-6D577C35"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js?v=75F941D8"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js?v=-4AE6ECF7"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js?v=-F502D84"></script>
+    <script type="text/javascript" src="../_static/clike.js?v=2DCE0756"></script>
+    <script type="text/javascript" src="../_static/timed_activecode.js?v=5150FA78"></script>
+    <script type="text/javascript" src="../_static/datafile.js?v=3ED1A80C"></script>
+    <script type="text/javascript" src="../_static/showEval.js?v=-3A31F37F"></script>
+    <script type="text/javascript" src="../_static/dragndrop.js?v=2B6403E8"></script>
+    <script type="text/javascript" src="../_static/timeddnd.js?v=378F237E"></script>
+    <script type="text/javascript" src="../_static/poll.js?v=6C59AE9F"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12. Class constructors and overloads" href="../class-II-functions/toctree.html" />
+    <link rel="prev" title="11.5. const member functions" href="const.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="shortcut icon" href="/intermediate-cpp/static/favicon.ico" type="image/ico" />
+
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'https://daveparillo.github.io/intermediate-cpp/' ? 'https://daveparillo.github.io/intermediate-cpp/' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/intermediate-cpp';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'intermediate-cpp';
+  eBookConfig.acDefaultLanguage = 'cpp' ? 'cpp' : 'cpp'
+  eBookConfig.logLevel = 0;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "unknown";
+  eBookConfig.isLoggedIn = false;
+  eBookConfig.useRunestoneServices = false;
+  eBookConfig.python3 = false;
+  eBookConfig.basecourse = 'intermediate-cpp';
+  eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.runestone_version = '3.4.6.dev0';
+</script>
+
+
+  </head><body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        <a class="brand-logo" style='padding:12px 0;text-align:center' href="http://209.129.16.61/~dparillo/">
+           <i class="glyphicon glyphicon-home" style='opacity:0.9;font-size:16px;color:#848484'></i>
+        </a>
+        <!--
+        <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;' href="/intermediate-cpp/default/user/login">&nbsp; </a>
+        <a class="navbar-brand" href="/~dparillo" style="color:#5080a0">CISC-187</a>&nbsp;
+        -->
+        <a class="navbar-brand" href="../index.html">Intermediate C++</a>
+      </div>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html'>Table of Contents</a></li>
+            
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li id="scratch_ac_link"><a href="javascript:ACFactory.toggleScratchActivecode()">Scratch ActiveCode</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        
+        <li class="divider-vertical"></li>
+
+        <!-- help menu dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//help/navhelp.html'>Navigation Help</a></li>
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//glossary.html'>Glossary</a></li>
+            <li class="divider"></li>
+            <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
+          </ul>
+        </li>
+        <!-- end help menu dropdown -->
+
+        <li class="divider-vertical"></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        <!--
+          <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">11.6. Abstraction</a><ul>
+<li><a class="reference internal" href="#class-abstractions">11.6.1. Class abstractions</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        
+          
+  <li id="relations-prev" title="Previous Chapter - 11.5. <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">const</span></code> member functions" data-toggle="tooltip">
+    <a href="const.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - 12. Class constructors and overloads' data-toggle="tooltip" >
+    <a href="../class-II-functions/toctree.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content">
+  
+  <div class="section" id="abstraction">
+<span id="index-0"></span><h1>11.6. Abstraction<a class="headerlink" href="#abstraction" title="Permalink to this headline">¶</a></h1>
+<p>Most programming constructs are <em>abstractions</em>.
+For example, even the idea of <strong>number</strong> on a computer is an abstraction.</p>
+<p>Programmers need to define, manipulate, and store numbers.
+Each language and compiler implements specific properties and operations.
+C++ defines Integral types and Floating point types.
+However, these numbers are <strong>not</strong> the numbers you learned in your math classes.
+In math, you learned that:</p>
+<ul class="simple">
+<li>The set of integers is infinite</li>
+<li>There is only 1 value for 0</li>
+<li><span class="math notranslate nohighlight">\(0.1 * 10\)</span> exactly equals 1</li>
+</ul>
+<p>None of these things are guaranteed true on a computer.</p>
+<p>It depends on the abstractions used in your language.
+In C++, no numbers are infinite.
+Some numbers can only store positive values.
+The floating point numbers have two different representations for the value <span class="math notranslate nohighlight">\(0\)</span>.
+Decimal numbers that have exact values in mathematics can only be approximated in C++.</p>
+<p>Even with all these limitations,
+numeric types in C++ are quite useful.
+They achieve the goal of allowing programmers to work with numbers easily
+without having to worry much about how they are actually represented in hardware.</p>
+<p>Abstraction is all about hiding implementation details.</p>
+<p>Consider a car as an example of abstraction in design.
+Starting a car in 1915 <a class="footnote-reference" href="#f1" id="id1">[1]</a> :</p>
+<ol class="arabic simple">
+<li>On front of car, pull chock near right fender and engage crank lever under radiator.<ul>
+<li>Turn slowly to prime carburetor.</li>
+</ul>
+</li>
+<li>Get into car, insert key in ignition.<ul>
+<li>Turn start setting to either magneto or battery</li>
+<li>Adjust timing stalk and throttle stalk</li>
+<li>Pull back on handbrake to place car in neutral</li>
+</ul>
+</li>
+<li>Return to front of car.<ul>
+<li>Use left hand to crank lever</li>
+<li>If the engine back-fires, using left hand results in fewer broken arms</li>
+</ul>
+</li>
+<li>If car starts, jump in!</li>
+</ol>
+<p>The Model-T was one of the most popular cars ever made.
+It had no frills and few abstractions.
+You had to understand how it was <em>made</em> even to get it started.</p>
+<p>This is not true with most cars today.
+Compare the previous steps with starting a car today:</p>
+<ol class="arabic simple">
+<li>Push button</li>
+</ol>
+<p>Over the last 100 years
+manufacturers have hidden most implementation details
+even though cars today are far more complex than a Model T.</p>
+<div class="section" id="class-abstractions">
+<h2>11.6.1. Class abstractions<a class="headerlink" href="#class-abstractions" title="Permalink to this headline">¶</a></h2>
+<p>The design principles that apply to <em>everyday objects</em> also apply to <em>software objects</em>.</p>
+<ul class="simple">
+<li>Hide as many details as possible</li>
+<li>Don’t hide too many</li>
+</ul>
+<p>You, as the designer of a class are responsible for getting the abstractions
+correct in the classes you design.
+Keep in mind that every class defines a new <em>type</em>.
+In general we want to create classes that are easy to use
+and easy to modify.</p>
+<p>A poorly abstracted car class:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Car</span> <span class="p">{</span>
+  <span class="k">private</span><span class="o">:</span>
+    <span class="kt">double</span> <span class="n">speed_</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">heading_</span><span class="p">;</span>
+    <span class="kt">int</span>    <span class="n">x_</span><span class="p">;</span>
+    <span class="kt">int</span>    <span class="n">y_</span><span class="p">;</span>
+  <span class="k">public</span><span class="o">:</span>
+    <span class="kt">double</span> <span class="n">speed</span> <span class="p">();</span>
+    <span class="kt">double</span> <span class="nf">heading</span> <span class="p">();</span>
+    <span class="kt">int</span>    <span class="nf">x</span> <span class="p">();</span>
+    <span class="kt">int</span>    <span class="nf">y</span> <span class="p">();</span>
+    <span class="kt">void</span> <span class="nf">speed</span> <span class="p">(</span><span class="kt">double</span> <span class="n">speed</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="nf">heading</span> <span class="p">(</span><span class="kt">double</span> <span class="n">direction</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="nf">x</span> <span class="p">(</span><span class="kt">int</span> <span class="n">new_x</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="nf">y</span> <span class="p">(</span><span class="kt">int</span> <span class="n">new_y</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>What is wrong with this design?</p>
+<p>We have created a class and dutifully made all of the class variables private.
+We then (also dutifully) created functions to set and get each of the class member variables.
+Isn’t this is what object-oriented programming is all about?</p>
+<p>No, it is not.</p>
+<p>What is wrong with this design?
+This list is long, but here are the major problems:</p>
+<ol class="arabic simple">
+<li>By default, no class members are initialized.
+A default constructed car is invalid.</li>
+<li>It is still functionally a <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">struct</span></code>, even though this class has invariants.<ul>
+<li>The x and y values can be modified independently of speed and heading.</li>
+<li>The speed could be set <span class="math notranslate nohighlight">\(&lt; 0\)</span>.</li>
+<li>The heading could be anything. It’s not even clear what values are valid
+(<span class="math notranslate nohighlight">\(0 - 360\)</span>?  <span class="math notranslate nohighlight">\(0 - \pi\)</span>?)</li>
+</ul>
+</li>
+<li>The car position is maintained in two separate <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">int</span></code> members, not a location object.</li>
+<li>If users try to use this <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">Car</span></code>,
+then <strong>they</strong> are responsible for calculating correct x and y
+from the current heading and speed.</li>
+<li>Fundamentally, this is not how cars are operated.<ul>
+<li>A car has a steering wheel and at least 1 pedal to accelerate</li>
+<li>Cars only change position when moving</li>
+<li>Cars only change direction when moving AND when the steering wheel is turned</li>
+<li>The steering wheel has limits to keep the tires aligned with the forward momentum.</li>
+</ul>
+</li>
+</ol>
+<p>How can we improve the abstractions in our car class?</p>
+<p>First, group the x and y coordinates into a single type.
+We could do just this:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// a location on a Cartesian grid</span>
+<span class="k">struct</span> <span class="n">Point</span> <span class="p">{</span>
+  <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>This works, but it’s not much fun to use.
+When using <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">Point</span></code> objects, we will often want to initialize both the x and y values at once:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Point</span> <span class="n">r</span> <span class="p">{</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>The default constructors won’t do this automatically.
+We need a 2 argument constructor:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Point</span> <span class="p">(</span><span class="kt">double</span> <span class="n">x_value</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y_value</span><span class="p">)</span>
+    <span class="o">:</span> <span class="n">x</span><span class="p">{</span><span class="n">x_value</span><span class="p">},</span> <span class="n">y</span><span class="p">{</span><span class="n">y_value</span><span class="p">}</span>
+<span class="p">{}</span>
+</pre></div>
+</div>
+<p>Once a non-default constructor is added to a class,
+the compiler will <strong>not</strong> automatically generate the default constructor for us,
+so we need to be explicit:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Point</span> <span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>And putting them together we have very minimal class:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// a location on a Cartesian grid</span>
+<span class="k">struct</span> <span class="n">Point</span> <span class="p">{</span>
+  <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+  <span class="n">Point</span> <span class="p">(</span><span class="kt">double</span> <span class="n">x_value</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y_value</span><span class="p">)</span>
+      <span class="o">:</span> <span class="n">x</span><span class="p">{</span><span class="n">x_value</span><span class="p">},</span> <span class="n">y</span><span class="p">{</span><span class="n">y_value</span><span class="p">}</span>
+  <span class="p">{}</span>
+  <span class="n">Point</span> <span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>We can’t consider this class complete, but we will stop with Point for now and move onto the Car class.
+When we use Point, we should prevent <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">Car</span></code> users from changing it directly:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Car</span> <span class="p">{</span>
+  <span class="k">private</span><span class="o">:</span>
+    <span class="n">Point</span>  <span class="n">location_</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">speed_</span>    <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">heading_</span>  <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+
+  <span class="k">public</span><span class="o">:</span>
+    <span class="n">Point</span>  <span class="n">location</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="nf">speed</span><span class="p">()</span>    <span class="k">const</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="nf">heading</span><span class="p">()</span>  <span class="k">const</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>It is OK to keep the access functions for speed and heading.
+<code class="docutils literal highlight highlight-cpp"><span></span><span class="n">Car</span></code> users are likely to need this information,
+but they should never set them directly.
+We should also promise that these functions will never change the state
+of a <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">car</span></code> by making all of the access functions <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">const</span></code>.</p>
+<p>In order to make our car more ‘real’,
+we should add two more private member variables,
+one for the current steer angle and one for the current change in speed.
+Users are never given access to these, but internally a Car can use them to
+compute a new location:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Car</span> <span class="p">{</span>
+  <span class="k">private</span><span class="o">:</span>
+    <span class="n">Point</span>  <span class="n">location_</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">speed_</span>    <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">heading_</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">angle_</span>    <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// current steering angle</span>
+    <span class="kt">double</span> <span class="n">rate_</span>     <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// current change in speed</span>
+
+  <span class="k">public</span><span class="o">:</span>
+    <span class="n">Point</span>  <span class="n">location</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="nf">speed</span><span class="p">()</span>    <span class="k">const</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="nf">heading</span><span class="p">()</span>  <span class="k">const</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Since users can’t change steer angle directly, there needs to be come way to influence that value.
+One way is to define an enumerated type to set the angle on the steering wheel:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span> <span class="k">class</span> <span class="nc">Direction</span> <span class="p">{</span> <span class="n">CENTER</span><span class="p">,</span> <span class="n">LEFT</span><span class="p">,</span> <span class="n">RIGHT</span> <span class="p">};</span>
+</pre></div>
+</div>
+<p>With these parts added,
+we can add public functions that use them:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">//</span>
+<span class="c1">// Users steer the car by choosing a steer direction.</span>
+<span class="c1">// As long as a direction is applied, the steer angle will increase (or decrease)</span>
+<span class="c1">// towards the indicated direction until the max steering angle</span>
+<span class="c1">// for the car is reached.</span>
+<span class="c1">//</span>
+<span class="c1">// The max steer angle might be Car make/model dependent.</span>
+<span class="c1">//</span>
+<span class="kt">double</span> <span class="nf">steer</span> <span class="p">(</span><span class="n">Direction</span> <span class="n">dir</span><span class="p">);</span>
+
+<span class="c1">//</span>
+<span class="c1">// Change the car speed by (de)accelerating.</span>
+<span class="c1">// Positive values will increase car speed.</span>
+<span class="c1">// Negative values will reduce car speed.</span>
+<span class="c1">// Zero values leave the car speed unchanged.</span>
+<span class="kt">double</span> <span class="nf">accelerate</span> <span class="p">(</span><span class="kt">double</span> <span class="n">rate</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>And finally, an <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">update</span></code> function a car simulator might call to
+modify the state of the car every time step.
+Putting it all together:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// a location on a Cartesian grid</span>
+<span class="k">struct</span> <span class="n">Point</span> <span class="p">{</span>
+  <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+  <span class="n">Point</span> <span class="p">(</span><span class="kt">double</span> <span class="n">x_value</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y_value</span><span class="p">)</span>
+      <span class="o">:</span> <span class="n">x</span><span class="p">{</span><span class="n">x_value</span><span class="p">},</span> <span class="n">y</span><span class="p">{</span><span class="n">y_value</span><span class="p">}</span>
+  <span class="p">{}</span>
+  <span class="n">Point</span> <span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">enum</span> <span class="k">class</span> <span class="nc">Direction</span> <span class="p">{</span> <span class="n">CENTER</span><span class="p">,</span> <span class="n">LEFT</span><span class="p">,</span> <span class="n">RIGHT</span> <span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Car</span> <span class="p">{</span>
+  <span class="k">private</span><span class="o">:</span>
+    <span class="n">Point</span>  <span class="n">location_</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">speed_</span>    <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">heading_</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">angle_</span>    <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">rate_</span>     <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">public</span><span class="o">:</span>
+    <span class="n">Point</span>  <span class="n">location</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="nf">speed</span><span class="p">()</span>    <span class="k">const</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="nf">heading</span><span class="p">()</span>  <span class="k">const</span><span class="p">;</span>
+
+    <span class="kt">double</span> <span class="nf">steer</span> <span class="p">(</span><span class="n">Direction</span> <span class="n">dir</span><span class="p">);</span>
+    <span class="kt">double</span> <span class="nf">accelerate</span> <span class="p">(</span><span class="kt">double</span> <span class="n">rate</span><span class="p">);</span>
+    <span class="kt">void</span>   <span class="nf">update</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Actually implementing these functions is a lab assignment.</p>
+<p>While this class is far from complete,
+at least now we have a design that we can extend without needing to completely
+change it later once we realize it did not control any of its invariants.</p>
+<hr class="docutils" />
+<div class="admonition-more-to-explore admonition">
+<p class="first admonition-title">More to Explore</p>
+<ul class="last simple">
+<li>TBD</li>
+</ul>
+</div>
+<div class="topic">
+<p class="topic-title first">Footnotes</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>From <a class="reference external" href="https://www.caranddriver.com/features/how-to-drive-a-ford-model-t">https://www.caranddriver.com/features/how-to-drive-a-ford-model-t</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+  
+      
+  <li id="relations-prev" class="navLink" title='Previous Section - 11.5. <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">const</span></code> member functions' data-toggle="tooltip">
+    <a href="const.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="const.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - 12. Class constructors and overloads' data-toggle="tooltip" >
+    <a href="../class-II-functions/toctree.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="../class-II-functions/toctree.html" >Next Section - 12. Class constructors and overloads</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+  
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2017-2018 Dave Parillo.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.4.6.dev0.
+    </p>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>12.5. Operator overloads &#8212; Intermediate Modern C++ Overview</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/matrixeq.css?v=58BC228F" />
+    <link rel="stylesheet" type="text/css" href="../_static/clickable.css?v=58C4E18A" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabbedstuff.css?v=424F1CC9" />
+    <link rel="stylesheet" type="text/css" href="../_static/fitb.css?v=3BA0E63E" />
+    <link rel="stylesheet" type="text/css" href="../_static/video.css?v=-1AC7A4C5" />
+    <link rel="stylesheet" type="text/css" href="../_static/webgldemo.css?v=B36B48D" />
+    <link rel="stylesheet" type="text/css" href="../_static/webglinteractive.css?v=-6EF20E1F" />
+    <link rel="stylesheet" type="text/css" href="../_static/codemirror.css?v=1CE53237" />
+    <link rel="stylesheet" type="text/css" href="../_static/reveal.css?v=4A81D381" />
+    <link rel="stylesheet" type="text/css" href="../_static/parsons.css?v=2F3E13EE" />
+    <link rel="stylesheet" type="text/css" href="../_static/js_lib/prettify.css?v=2A364B6B" />
+    <link rel="stylesheet" type="text/css" href="../_static/pytutor.css?v=239FC54E" />
+    <link rel="stylesheet" type="text/css" href="../_static/modal-basic.css?v=-75E5BD1C" />
+    <link rel="stylesheet" type="text/css" href="../_static/activecode.css?v=-B8E06A5" />
+    <link rel="stylesheet" type="text/css" href="../_static/datafile.css?v=-3E7B1476" />
+    <link rel="stylesheet" type="text/css" href="../_static/showEval.css?v=C6382F3" />
+    <link rel="stylesheet" type="text/css" href="../_static/accessibility.css?v=-7F7467D6" />
+    <link rel="stylesheet" type="text/css" href="../_static/dragndrop.css?v=-46455F2F" />
+    <link rel="stylesheet" type="text/css" href="../_static/poll.css?v=-1DDF53CD" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/runestonebase.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js?v=-29B305A6"></script>
+    <script type="text/javascript" src="../_static/clickable.js?v=-6A9F19A2"></script>
+    <script type="text/javascript" src="../_static/timedclickable.js?v=-6C6763DD"></script>
+    <script type="text/javascript" src="../_static/tabbedstuff.js?v=5BE6106"></script>
+    <script type="text/javascript" src="../_static/fitb.js?v=-71BF18ED"></script>
+    <script type="text/javascript" src="../_static/timedfitb.js?v=2AA17071"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js?v=53E888DE"></script>
+    <script type="text/javascript" src="../_static/codemirror.js?v=-6B0AAD37"></script>
+    <script type="text/javascript" src="../_static/xml.js?v=236EDFF7"></script>
+    <script type="text/javascript" src="../_static/css.js?v=623153CE"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js?v=33B91944"></script>
+    <script type="text/javascript" src="../_static/javascript.js?v=6F38CA04"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js?v=2B768384"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js?v=-7BF73669"></script>
+    <script type="text/javascript" src="../_static/Blob.js?v=AEC2447"></script>
+    <script type="text/javascript" src="../_static/reveal.js?v=112CBFA2"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js?v=-358176D8"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js?v=73056367"></script>
+    <script type="text/javascript" src="../_static/parsons.js?v=-6C1000C7"></script>
+    <script type="text/javascript" src="../_static/timedparsons.js?v=2EEA9E5A"></script>
+    <script type="text/javascript" src="../_static/animationbase.js?v=-5FBC3C59"></script>
+    <script type="text/javascript" src="../_static/mchoice.js?v=6E285D06"></script>
+    <script type="text/javascript" src="../_static/timedmc.js?v=-4FEF5BA9"></script>
+    <script type="text/javascript" src="../_static/timed.js?v=6789FE30"></script>
+    <script type="text/javascript" src="../_static/shortanswer.js?v=-44F4664F"></script>
+    <script type="text/javascript" src="../_static/timed_shortanswer.js?v=-4C5EE829"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js?v=836E01C"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js?v=-49B30F58"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js?v=42F9EBEA"></script>
+    <script type="text/javascript" src="../_static/pytutor.js?v=-7D4FDD47"></script>
+    <script type="text/javascript" src="../_static/codelens.js?v=-354132B7"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js?v=-E3B6938"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js?v=-57645C8C"></script>
+    <script type="text/javascript" src="../_static/python.js?v=14A28F1F"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js?v=599B42B0"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js?v=-775EBCF1"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js?v=-51EA5B5F"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js?v=-75420181"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js?v=747279FF"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js?v=7B020E13"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js?v=660E85C3"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js?v=54B21948"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js?v=-6D577C35"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js?v=75F941D8"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js?v=-4AE6ECF7"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js?v=-F502D84"></script>
+    <script type="text/javascript" src="../_static/clike.js?v=2DCE0756"></script>
+    <script type="text/javascript" src="../_static/timed_activecode.js?v=5150FA78"></script>
+    <script type="text/javascript" src="../_static/datafile.js?v=3ED1A80C"></script>
+    <script type="text/javascript" src="../_static/showEval.js?v=-3A31F37F"></script>
+    <script type="text/javascript" src="../_static/dragndrop.js?v=2B6403E8"></script>
+    <script type="text/javascript" src="../_static/timeddnd.js?v=378F237E"></script>
+    <script type="text/javascript" src="../_static/poll.js?v=6C59AE9F"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12.6. Class templates" href="templates.html" />
+    <link rel="prev" title="12.4. ‘this’ pointer" href="this.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="shortcut icon" href="/intermediate-cpp/static/favicon.ico" type="image/ico" />
+
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'https://daveparillo.github.io/intermediate-cpp/' ? 'https://daveparillo.github.io/intermediate-cpp/' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/intermediate-cpp';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'intermediate-cpp';
+  eBookConfig.acDefaultLanguage = 'cpp' ? 'cpp' : 'cpp'
+  eBookConfig.logLevel = 0;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "unknown";
+  eBookConfig.isLoggedIn = false;
+  eBookConfig.useRunestoneServices = false;
+  eBookConfig.python3 = false;
+  eBookConfig.basecourse = 'intermediate-cpp';
+  eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.runestone_version = '3.4.6.dev0';
+</script>
+
+
+  </head><body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        <a class="brand-logo" style='padding:12px 0;text-align:center' href="http://209.129.16.61/~dparillo/">
+           <i class="glyphicon glyphicon-home" style='opacity:0.9;font-size:16px;color:#848484'></i>
+        </a>
+        <!--
+        <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;' href="/intermediate-cpp/default/user/login">&nbsp; </a>
+        <a class="navbar-brand" href="/~dparillo" style="color:#5080a0">CISC-187</a>&nbsp;
+        -->
+        <a class="navbar-brand" href="../index.html">Intermediate C++</a>
+      </div>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html'>Table of Contents</a></li>
+            
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li id="scratch_ac_link"><a href="javascript:ACFactory.toggleScratchActivecode()">Scratch ActiveCode</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        
+        <li class="divider-vertical"></li>
+
+        <!-- help menu dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//help/navhelp.html'>Navigation Help</a></li>
+            <li><a href='https://daveparillo.github.io/intermediate-cpp//glossary.html'>Glossary</a></li>
+            <li class="divider"></li>
+            <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
+          </ul>
+        </li>
+        <!-- end help menu dropdown -->
+
+        <li class="divider-vertical"></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        <!--
+          <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">12.5. Operator overloads</a><ul>
+<li><a class="reference internal" href="#basic-overloading-guidelines">12.5.1. Basic overloading guidelines</a></li>
+<li><a class="reference internal" href="#assignment-operator">12.5.2. Assignment operator</a></li>
+<li><a class="reference internal" href="#insertion-and-extraction-operators">12.5.3. Insertion and extraction operators</a></li>
+<li><a class="reference internal" href="#function-call-operator">12.5.4. Function call operator</a></li>
+<li><a class="reference internal" href="#relational-operators">12.5.5. Relational operators</a></li>
+<li><a class="reference internal" href="#binary-arithmetic-operators">12.5.6. Binary arithmetic operators</a></li>
+<li><a class="reference internal" href="#increment-and-decrement-operators">12.5.7. Increment and decrement operators</a></li>
+<li><a class="reference internal" href="#conversion-operators">12.5.8. Conversion operators</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        
+          
+  <li id="relations-prev" title="Previous Chapter - 12.4. ‘this’ pointer" data-toggle="tooltip">
+    <a href="this.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - 12.6. Class templates' data-toggle="tooltip" >
+    <a href="templates.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content">
+  
+  <div class="section" id="operator-overloads">
+<span id="index-0"></span><h1>12.5. Operator overloads<a class="headerlink" href="#operator-overloads" title="Permalink to this headline">¶</a></h1>
+<p>There are many reasons to want to overload the builtin operator
+functions for user defined types.</p>
+<p><strong>Case 1</strong></p>
+<p>Operator overloads are <em>required</em> for some containers in the STL.
+Notably <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::set">std::set</a>,
+which requires any type used in a set overloads <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span><span class="o">&lt;</span></code>,
+or the operator defined for the set if a custom comparison
+function is defined.
+Similarly, <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::map">std::map</a> requires <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span><span class="o">&lt;</span></code>
+and <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::unordered_map">std::unordered_map</a> requires both that and <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span><span class="o">==</span></code>.</p>
+<p>Classes that do not overload these comparison operators
+can’t be used in these containers.</p>
+<p>Overloading these operators is useful in any conditional expression,
+but only makes sense when creating a class
+with data members that are <em>comparable</em>.</p>
+<p><strong>Case 2</strong></p>
+<p>C++ provides many builtin types and operators to manipulate them.
+We want new user defined types to be as simple and intuitive to use as
+the builtin types.</p>
+<p>For example, finding the roots of a quadratic equation:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">root1</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">+</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="o">*</span><span class="n">b</span> <span class="o">-</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">c</span><span class="p">)))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">a</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>When all the variables are builtin types,
+this looks familiar.
+But without operator overloads, a rational number class
+would be a pain to read and use.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Complex</span>  <span class="n">root</span> <span class="o">=</span> <span class="n">Complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">Rational</span> <span class="n">a</span>    <span class="o">=</span> <span class="n">Rational</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">Rational</span> <span class="n">b</span>    <span class="o">=</span> <span class="n">Rational</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">Rational</span> <span class="n">c</span>    <span class="o">=</span> <span class="n">Rational</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">Complex</span> <span class="n">tmp</span>   <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+                      <span class="p">.</span><span class="n">minus</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="mi">4</span><span class="p">))));</span>
+<span class="n">root</span><span class="p">.</span><span class="n">setComplex</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">invSign</span><span class="p">().</span><span class="n">plus</span><span class="p">(</span><span class="n">tmp</span><span class="p">.</span><span class="n">divide</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="mi">2</span><span class="p">))));</span>
+</pre></div>
+</div>
+<p>When <em>everything</em> has to be a named function,
+and the standard operators can only be used on builtin types,
+the result is not as clean as we would like.</p>
+<p>What we want here is the ability to use familiar semantics
+on user defined types.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Rational</span> <span class="n">a</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">},</span> <span class="n">b</span><span class="p">{</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span> <span class="n">c</span><span class="p">{</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span>
+<span class="n">Complex</span> <span class="n">root1</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">+</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="o">*</span><span class="n">b</span> <span class="o">-</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">c</span><span class="p">)))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">a</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Overloading the standard operator functions
+make this possible.</p>
+<p>In C++, operators are overloaded in the form of functions with special names.
+For example, <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">a</span><span class="o">+</span><span class="n">b</span></code> and <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span></code> both call
+the same function.</p>
+<p>As with other functions,
+overloaded operators can generally be implemented either as a member
+function of their left operand’s type or as non-member functions.</p>
+<p>Most of the work in overloading operators is boiler-plate code.
+Not surprising,
+since most operators defer their actual work to plain functions.
+The programming community has already thought long and hard on
+techniques to make overloads efficient and easy to maintain.</p>
+<div class="section" id="basic-overloading-guidelines">
+<span id="index-1"></span><h2>12.5.1. Basic overloading guidelines<a class="headerlink" href="#basic-overloading-guidelines" title="Permalink to this headline">¶</a></h2>
+<p>Most C++ operators can be overloaded.
+You cannot change the meaning of operators for built-in types in C++.
+Operators can only be overloaded when at least 1 operand is a user-defined type.
+Other rules of overloads still apply:
+overloads for a specific function signature can only be used once.</p>
+<p>Not all operators can be overloaded in C++.
+Those that cannot be overloaded are:
+<code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span> <span class="p">.</span></code>, <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span> <span class="o">::</span></code>,
+<code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span> <span class="k">sizeof</span></code>, <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span> <span class="k">typeid</span></code>,
+<code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span> <span class="p">.</span><span class="o">*</span></code>, and <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span> <span class="o">?</span> <span class="o">:</span></code>.</p>
+<p>When it comes to operator overloading in C++,
+there are basic guidelines you should follow.
+As with all such guidelines, there are exceptions.
+The goal of operator overloading is to make classes <em>easier</em>
+to use and to make them behave more like builtin types.
+Keep that in mind when overloading.</p>
+<ol class="arabic">
+<li><p class="first">Whenever the meaning of an operator is not obviously clear and undisputed,
+it should not be overloaded.</p>
+<p>Instead, provide a function with a well-chosen name.
+It is hard to understand the semantics behind the
+operator unless the use of the operator in the application
+domain is well known and undisputed.
+Contrary to popular belief, this is hardly ever the case.</p>
+</li>
+<li><p class="first">Always stick to the well-known semantics for the operator.</p>
+<p>C++ poses no limitations on the semantics of overloaded operators.
+Your compiler will happily accept code that implements the binary + operator to
+subtract from its right operand.
+However, the users of such an operator would never suspect the expression a + b
+to subtract a from b.
+Of course, this supposes that the semantics of the operator in the application
+domain is undisputed.</p>
+</li>
+<li><p class="first">Always provide all out of a set of related operations.</p>
+<p>Operators are related to each other and to other operations.</p>
+<ul class="simple">
+<li>If your type supports <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span></code>,
+then users will expect to be able to call <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">a</span> <span class="o">+=</span> <span class="n">b</span></code>, too.</li>
+<li>If it supports prefix increment <code class="docutils literal highlight highlight-cpp"><span></span><span class="o">++</span><span class="n">a</span></code>,
+then <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">a</span><span class="o">++</span></code> is likely expected also.</li>
+<li>If they can check whether <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span></code>,
+then most users expect to also to be able to check <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span></code>.</li>
+<li>If copy-construction is allowed, then assignment is expected.</li>
+</ul>
+</li>
+</ol>
+<p>The remaining sections describe the specific techniques and
+function signatures for some of the most common operator overloads.</p>
+</div>
+<div class="section" id="assignment-operator">
+<h2>12.5.2. Assignment operator<a class="headerlink" href="#assignment-operator" title="Permalink to this headline">¶</a></h2>
+<p>The copy assignment operator is called when an object appears
+on the left side of an assignment expression.</p>
+<p>The canonical copy-assignment operator is expected to perform
+no action on self-assignment, and to return the <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">lhs</span></code> by reference:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="o">&amp;</span> <span class="n">T</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// copy data from other to</span>
+  <span class="c1">// current instance</span>
+  <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In those situations where copy assignment cannot benefit from resource reuse
+(it does not manage a heap-allocated array and does not have a
+member that does, such as a member std::vector or std::string),
+there is a popular convenient shorthand:
+the copy-and-swap assignment operator,
+which takes its parameter by value
+swaps with the parameter, and lets the destructor clean it up.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// copy/move constructor is called to construct other</span>
+<span class="n">T</span><span class="o">&amp;</span> <span class="n">T</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">T</span> <span class="n">other</span><span class="p">)</span> <span class="k">noexcept</span>
+<span class="p">{</span>
+    <span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">;</span>
+    <span class="n">swap</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">,</span> <span class="n">other</span><span class="p">);</span> <span class="c1">// exchange resources between *this and other</span>
+    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>When the function ends,
+the destructor of <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">other</span></code> is called to release the resources
+formerly held by <code class="docutils literal highlight highlight-cpp"><span></span><span class="o">*</span><span class="k">this</span></code>.
+A custom swap function for the user defined type <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">T</span></code>
+is required for this technique to work:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">friend</span> <span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span> <span class="n">first</span><span class="p">,</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">second</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">;</span>
+
+  <span class="c1">// by swapping the members of two objects,</span>
+  <span class="c1">// the two objects are effectively swapped</span>
+  <span class="n">swap</span><span class="p">(</span><span class="n">first</span><span class="p">.</span><span class="n">size_</span><span class="p">,</span> <span class="n">second</span><span class="p">.</span><span class="n">size_</span><span class="p">);</span>
+  <span class="n">swap</span><span class="p">(</span><span class="n">first</span><span class="p">.</span><span class="n">value_</span><span class="p">,</span> <span class="n">second</span><span class="p">.</span><span class="n">value_</span><span class="p">);</span>
+  <span class="c1">// repeat for each member</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="insertion-and-extraction-operators">
+<h2>12.5.3. Insertion and extraction operators<a class="headerlink" href="#insertion-and-extraction-operators" title="Permalink to this headline">¶</a></h2>
+<p>The bitshift operators <code class="docutils literal highlight highlight-cpp"><span></span><span class="o">&lt;&lt;</span></code> and <code class="docutils literal highlight highlight-cpp"><span></span><span class="o">&gt;&gt;</span></code>,
+although still used in hardware interfacing for the bit-manipulation functions
+they inherit from C,
+have become more prevalent as formatted stream operators in C++.</p>
+<p>The overloads of <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span> <span class="o">&gt;&gt;</span></code> and <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span> <span class="o">&lt;&lt;</span></code> that take a
+<a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::istream">std::istream</a> &amp; or <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::ostream">std::ostream</a> &amp; as the left hand argument
+are known as insertion and extraction operators.</p>
+<p>Since these operators change their left argument (they alter the stream),
+they should, according to the rules of thumb,
+be implemented as members of their left operand’s type.
+However, their left operands are streams from the standard library,
+and while most of the stream output and input operators defined by the
+standard library are indeed defined as members of the stream classes,
+when you implement output and input operations for your own types,
+you cannot change the standard library’s stream types.
+So clearly, these overloads cannot be stream member functions.</p>
+<p>It is common, however, to see C++ examples posted on the internet that
+define these overloads as friends.
+The advantage of making these functions friends is they have access
+to the private data of the class, if needed.
+The disadvantage of making these functions friends is that
+you may decide to stream data out of a class that is otherwise
+not accessible.</p>
+<p>Why is that bad?</p>
+<p>Josh Bloch in <em>Effective Java</em>, dedicates an entire section to this topic.
+Effective Java discusses the <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">toString</span><span class="p">()</span></code> overload,
+but it serves a similar purpose to <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span> <span class="o">&lt;&lt;</span></code> in the Java language.</p>
+<p>When you create
+an output function that streams data out of your class
+that is not available through any other function,
+then some users will use your stream function just
+to get their hands on your private data.</p>
+<ul class="simple">
+<li>If your data needs to be part of the output stream,
+then make a function to access it.</li>
+<li>If you have functions that provide access to every
+private member that is part of the stream,
+then you don’t need it to be a member function
+or a <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">friend</span></code>.</li>
+</ul>
+<p>That’s why you need to implement these operators for your own types as
+non-member non-friend functions. The canonical forms are:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// write rhs to stream</span>
+
+  <span class="k">return</span> <span class="n">os</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">istream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">istream</span><span class="o">&amp;</span> <span class="n">is</span><span class="p">,</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// read rhs from stream</span>
+
+  <span class="k">if</span><span class="p">(</span> <span class="cm">/* could not construct T from stream */</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">is</span><span class="p">.</span><span class="n">setstate</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">failbit</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">is</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="function-call-operator">
+<h2>12.5.4. Function call operator<a class="headerlink" href="#function-call-operator" title="Permalink to this headline">¶</a></h2>
+<p>When a user-defined class overloads the function call operator,
+<code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span><span class="p">()</span></code>, it becomes a FunctionObject type.
+A function object is a class that can be called as if it was a function.
+Many standard algorithms, from <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::sort`">std::sort`</a> to <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::accumulate">std::accumulate</a>
+accept objects of such types to customize behavior.
+Prior to C++11 with <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::function">std::function</a> and lambda expressions,
+function objects were an important way to pass functions to algorithms.</p>
+<p>There are no particularly notable canonical forms of <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span><span class="p">()</span></code>,
+but to illustrate the usage:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">Sum</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">sum</span><span class="p">;</span>
+    <span class="n">Sum</span><span class="p">()</span> <span class="o">:</span> <span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="kt">void</span> <span class="k">operator</span><span class="p">()(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="n">sum</span> <span class="o">+=</span> <span class="n">n</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+<span class="n">Sum</span> <span class="n">s</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">Sum</span><span class="p">());</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Unlike lambda expressions and function pointers,
+when passing a function object to an algorithm,
+the function call operator <strong>must</strong> be included.</p>
+</div>
+<p>A function call overload can be overloaded
+to take any number of additional arguments, including zero.
+A single class can contain more than 1 function call operator overload,
+subject to the other rules of function overloading.</p>
+</div>
+<div class="section" id="relational-operators">
+<h2>12.5.5. Relational operators<a class="headerlink" href="#relational-operators" title="Permalink to this headline">¶</a></h2>
+<p>Standard algorithms such as std::sort and containers such as
+<a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::set">std::set</a> expect <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span> <span class="o">&lt;</span></code> to be defined, by default,
+for the user-provided types, and expect it to implement strict
+<a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::weak_ordering">std::weak_ordering</a>.
+Strict weak ordering defines members of a set as <em>comparable</em> to each other.
+The general signature for these non-member functions is:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kr">inline</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">lhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="c1">// compare the data in left-hand side and right-hand side objects</span>
+   <span class="c1">// for less than</span>
+<span class="p">}</span>
+
+<span class="kr">inline</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">lhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="c1">// compare the data in left-hand side and right-hand side objects</span>
+   <span class="c1">// for equality</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>An idiomatic way to implement strict weak ordering for a structure is to use
+lexicographical comparison provided by <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::tie">std::tie</a>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">Record</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">floor</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">weight</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kr">inline</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;</span><span class="p">(</span><span class="k">const</span> <span class="n">Record</span><span class="o">&amp;</span> <span class="n">lhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">Record</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="c1">// parameters passed to each tie must be in the same order</span>
+   <span class="c1">// or this will always return false</span>
+   <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">tie</span><span class="p">(</span><span class="n">lhs</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">lhs</span><span class="p">.</span><span class="n">floor</span><span class="p">,</span> <span class="n">lhs</span><span class="p">.</span><span class="n">weight</span><span class="p">)</span>
+        <span class="o">&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">tie</span><span class="p">(</span><span class="n">rhs</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">rhs</span><span class="p">.</span><span class="n">floor</span><span class="p">,</span> <span class="n">rhs</span><span class="p">.</span><span class="n">weight</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If some of the data required for the comparison is private
+and has no function to access the data members,
+then you may need to make your relational operators friends.</p>
+<p>If you do need to define <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span><span class="o">&lt;</span></code> as a member function,
+then the left-hand side of the operator will be the this pointer.
+The signature of the operator overload changes:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="k">const</span>
+<span class="p">{</span>
+   <span class="cm">/* do actual comparison with *this */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that this form of the overload must be <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">const</span></code>
+in order to compile as a member function.</p>
+<p>Once you have defined <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span><span class="o">&lt;</span></code> and <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span><span class="o">==</span></code>,
+there is no need to rewrite the comparison logic again.
+It is much better to implement the remaining comparison functions
+in terms of <code class="docutils literal highlight highlight-cpp"><span></span><span class="o">&lt;</span></code> and <code class="docutils literal highlight highlight-cpp"><span></span><span class="o">==</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// note the operands swapped inside the function body</span>
+<span class="kr">inline</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">&gt;</span> <span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">lhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">){</span> <span class="k">return</span>   <span class="n">rhs</span> <span class="o">&lt;</span> <span class="n">lhs</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="kr">inline</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;=</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">lhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">){</span> <span class="k">return</span> <span class="o">!</span><span class="p">(</span><span class="n">lhs</span> <span class="o">&gt;</span> <span class="n">rhs</span><span class="p">);</span> <span class="p">}</span>
+<span class="kr">inline</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">&gt;=</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">lhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">){</span> <span class="k">return</span> <span class="o">!</span><span class="p">(</span><span class="n">lhs</span> <span class="o">&lt;</span> <span class="n">rhs</span><span class="p">);</span> <span class="p">}</span>
+
+<span class="kr">inline</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">lhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">){</span> <span class="k">return</span> <span class="o">!</span><span class="p">(</span><span class="n">lhs</span> <span class="o">==</span> <span class="n">rhs</span><span class="p">);</span> <span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Since C++20, all 6 comparison operators are defined if the
+three-way comparison operator <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span><span class="o">&lt;=&gt;</span></code> is defined,
+and <em>that</em> operator, in turn, is generated by the compiler if it is
+defined as defaulted:</p>
+<div class="last highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">Record</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">floor</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">weight</span><span class="p">;</span>
+    <span class="k">auto</span> <span class="k">operator</span><span class="o">&lt;=&gt;</span><span class="p">(</span><span class="k">const</span> <span class="n">Record</span><span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="c1">// records can now be compared with ==, !=, &lt;, &lt;=, &gt;, and &gt;=</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="binary-arithmetic-operators">
+<h2>12.5.6. Binary arithmetic operators<a class="headerlink" href="#binary-arithmetic-operators" title="Permalink to this headline">¶</a></h2>
+<p>Binary operators are typically implemented as non-members to maintain symmetry.
+For example, when adding a complex number and an integer,
+if <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span><span class="o">+</span></code> is a member function of the complex type,
+then addition doesn’t behave in a way most people expect:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">complex</span> <span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span>
+<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="n">complex</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span>  <span class="c1">// compiles</span>
+<span class="n">complex</span> <span class="n">d</span> <span class="o">=</span> <span class="n">b</span><span class="o">+</span><span class="n">a</span><span class="p">;</span>  <span class="c1">// error</span>
+</pre></div>
+</div>
+<p>As a member function, only complex+integer would compile, not integer+complex.
+Since for every binary arithmetic operator there exists a corresponding
+compound assignment operator,
+canonical forms of binary operators are implemented in terms of their
+compound assignments:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">T</span>
+<span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="n">T</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="c1">// compound assignment (does not need to be a member,</span>
+  <span class="p">{</span>                           <span class="c1">// but often is, to modify the private members)</span>
+    <span class="c1">// add rhs to *this</span>
+    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>             <span class="c1">// return the result by reference</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The normal addition is often implemented as a non-friend non-member:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span>      <span class="n">T</span> <span class="n">lhs</span><span class="p">,</span>    <span class="c1">// passing lhs by value helps optimize chained a+b+c</span>
+            <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span>   <span class="c1">// otherwise, both parameters may be const references</span>
+<span class="p">{</span>
+  <span class="n">lhs</span> <span class="o">+=</span> <span class="n">rhs</span><span class="p">;</span> <span class="c1">// reuse compound assignment</span>
+  <span class="k">return</span> <span class="n">lhs</span><span class="p">;</span> <span class="c1">// return the result by value (uses move constructor)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The remaining binary arithmetic operators are implemented using the same pattern.</p>
+</div>
+<div class="section" id="increment-and-decrement-operators">
+<h2>12.5.7. Increment and decrement operators<a class="headerlink" href="#increment-and-decrement-operators" title="Permalink to this headline">¶</a></h2>
+<p>When the postfix increment and decrement appear in an expression,
+the corresponding user-defined function (<code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span><span class="o">++</span></code> or <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">operator</span><span class="o">--</span></code>)
+is called with an integer argument 0.
+Typically, it is implemented as <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">T</span> <span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span></code>,
+where the argument is ignored.
+The postfix increment and decrement operator is usually implemented
+in terms of the prefix version:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">T</span>
+<span class="p">{</span>
+    <span class="c1">// prefix increment</span>
+    <span class="n">T</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">++</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// actual increment takes place here</span>
+        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// postfix increment</span>
+    <span class="n">T</span> <span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">T</span> <span class="n">tmp</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">);</span> <span class="c1">// copy</span>
+        <span class="k">operator</span><span class="o">++</span><span class="p">();</span> <span class="c1">// pre-increment</span>
+        <span class="k">return</span> <span class="n">tmp</span><span class="p">;</span>   <span class="c1">// return old value</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="conversion-operators">
+<h2>12.5.8. Conversion operators<a class="headerlink" href="#conversion-operators" title="Permalink to this headline">¶</a></h2>
+<p>C++ allows you to create operators to convert between your type and other ADT’s.
+A conversion function is declared like a non-static member function or
+member function template with</p>
+<ul>
+<li><p class="first">no parameters,</p>
+</li>
+<li><p class="first">no explicit return type, and</p>
+</li>
+<li><p class="first">with the name of the form:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// implcit conversion</span>
+<span class="k">operator</span> <span class="nf">int</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="cm">/* return int version of type */</span> <span class="p">}</span>
+
+<span class="c1">// explicit conversion</span>
+<span class="k">explicit</span> <span class="k">operator</span> <span class="nf">int</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="cm">/* return int version of type */</span> <span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Suppose we want to concatenate a Rational to a string?</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Rational</span> <span class="n">a</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;A = &quot;</span><span class="p">};</span>
+<span class="n">s</span> <span class="o">+=</span> <span class="n">a</span><span class="p">;</span>                   <span class="c1">// will not compile</span>
+</pre></div>
+</div>
+<p>Your compiler may present something like:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>error: no viable overloaded &#39;+=&#39;
+candidate function not viable:
+no known conversion from &#39;Rational&#39; to
+&#39;const std::__1::basic_string&lt;char&gt;&#39; for 1st argument
+_LIBCPP_INLINE_VISIBILITY basic_string&amp; operator+=(const basic_string...
+</pre></div>
+</div>
+<p>Defining a conversion operator for <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span></code> allows this conversion
+to happen:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Rational</span><span class="o">::</span><span class="k">operator</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+   <span class="n">std</span><span class="o">::</span><span class="n">stringstream</span> <span class="n">ss</span><span class="p">;</span>
+   <span class="n">ss</span> <span class="o">&lt;&lt;</span> <span class="n">numerator</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;/&#39;</span> <span class="o">&lt;&lt;</span> <span class="n">denominator</span><span class="p">;</span>
+   <span class="k">return</span> <span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A class constructor taking a single argument can also be seen as
+converting its argument into the type:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Rational</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">numerator</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+   <span class="n">denominator</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>And an expression like this works:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Rational</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The conversion both of these previous cases,
+for the <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">string</span></code> and the <code class="docutils literal highlight highlight-cpp"><span></span><span class="kt">int</span></code> happened implicitly.
+Often, we don’t want types to <strong>always</strong> implicitly
+convert to a user-defined type:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">func</span> <span class="p">(</span><span class="n">Rational</span> <span class="n">r</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
+   <span class="n">func</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>   <span class="c1">// this works</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The call to <code class="docutils literal highlight highlight-cpp"><span></span><span class="n">func</span><span class="p">()</span></code> works because Rational has a conversion
+constructor that converts int values to Rational ones.
+C++ provides a keyword <code class="docutils literal highlight highlight-cpp"><span></span><span class="k">explicit</span></code> that requires
+a cast - it inhibits the implicit conversion of a user defined type.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">explicit</span> <span class="nf">Rational</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+
+<span class="k">explicit</span> <span class="k">operator</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+</pre></div>
+</div>
+<p>And the previous expressions need casts
+or an explicit constructor call:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Rational</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Rational</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>       <span class="c1">// constructor</span>
+<span class="n">func</span><span class="p">(</span><span class="n">Rational</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>              <span class="c1">// constructor</span>
+<span class="n">func</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">Rational</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span> <span class="c1">// cast</span>
+<span class="n">func</span><span class="p">((</span><span class="n">Rational</span><span class="p">)</span><span class="mi">3</span><span class="p">);</span>              <span class="c1">// c-style cast</span>
+
+<span class="c1">// explicitly convert a Rational to string</span>
+<span class="c1">// using functional conversion syntax</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="n">string</span><span class="p">(</span><span class="n">Rational</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<div class="admonition-more-to-explore admonition">
+<p class="first admonition-title">More to Explore</p>
+<ul class="last">
+<li><p class="first"><a class="reference external" href="https://stackoverflow.com/questions/4421706/what-are-the-basic-rules-and-idioms-for-operator-overloading">Operator overloading in C++</a> from stackoverflow.
+Much of the content in this section was taken from there.</p>
+</li>
+<li><p class="first"><a class="reference external" href="https://en.cppreference.com/w/cpp/language/operator_comparison">Comparison operators</a>
+from cppreference.com.</p>
+</li>
+<li><p class="first"><a class="reference external" href="https://en.cppreference.com/w/cpp/named_req/Compare">Named requirements: Compare</a>.
+This page also includes a list of the parts of the STL that expect types
+that satisfy this requirement.</p>
+</li>
+<li><p class="first">Effective Java, 3rd edition, Joshua Bloch. Addison-Wesley Professional, Jan 2018.</p>
+<p>The section regarding overloading toString is in section 12 of the
+third edition and section 10 of the second.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+  
+      
+  <li id="relations-prev" class="navLink" title='Previous Section - 12.4. ‘this’ pointer' data-toggle="tooltip">
+    <a href="this.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="this.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - 12.6. Class templates' data-toggle="tooltip" >
+    <a href="templates.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="templates.html" >Next Section - 12.6. Class templates</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+  
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2017-2018 Dave Parillo.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.4.6.dev0.
+    </p>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>
