@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+  <title><title><no title></title></title>
+  <meta http-equiv="content-type" content="text/html; charset=None">
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
+</head>
+<body>
+<h2><title><no title></title></h2>
+
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;caesar.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;help.h&quot;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;    // strcmp</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Define a default a &#39;character handler&#39;</span>
+    <span class="c1">// the variable &#39;handler&#39; provides an option to </span>
+    <span class="c1">// change the encryption function at runtime</span>
+    <span class="n">transform</span> <span class="n">handler</span> <span class="o">=</span> <span class="n">rot13</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">argc</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">strcmp</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s">&quot;-h&quot;</span><span class="p">))</span> <span class="p">{</span>            <span class="c1">// call help and exit</span>
+            <span class="n">help</span><span class="p">(</span><span class="o">*</span><span class="n">argv</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">strcmp</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s">&quot;-l&quot;</span><span class="p">))</span> <span class="p">{</span>     <span class="c1">// use rot13 transform</span>
+            <span class="n">handler</span> <span class="o">=</span> <span class="n">rot13</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">strcmp</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s">&quot;-f&quot;</span><span class="p">))</span> <span class="p">{</span>     <span class="c1">// use rot47 transform</span>
+            <span class="n">handler</span> <span class="o">=</span> <span class="n">rot47</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">usage</span><span class="p">(</span><span class="o">*</span><span class="n">argv</span><span class="p">);</span>
+            <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">getline</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">,</span> <span class="n">message</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">render_text</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">handler</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</body>
+</html>

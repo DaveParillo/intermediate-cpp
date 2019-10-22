@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+  <title><title><no title></title></title>
+  <meta http-equiv="content-type" content="text/html; charset=None">
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
+</head>
+<body>
+<h2><title><no title></title></h2>
+
+<div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
+
+<span class="c1">//</span>
+<span class="c1">// Function to perform simple character rotations through an alphabet.</span>
+<span class="c1">// </span>
+<span class="c1">// Be warned that these functions should NOT be used to encrypt sensitive data!!</span>
+<span class="c1">// These functions are easily decrypted, even using pencil and paper.</span>
+<span class="c1">//</span>
+<span class="c1">// See: https://en.wikipedia.org/wiki/Caesar_cipher</span>
+<span class="c1">//</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="c1">// A pointer to the function that will transform a character</span>
+<span class="n">using</span> <span class="n">transform</span> <span class="o">=</span> <span class="kt">char</span> <span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">c</span><span class="p">);</span>
+
+<span class="c1">// Rotate a character 13 places in the alphabet.</span>
+<span class="c1">//</span>
+<span class="c1">// This function assumes a basic 26 letter Latin alphabet</span>
+<span class="c1">//</span>
+<span class="c1">// If the character received is not within the range [A-Z, a-z],</span>
+<span class="c1">// then the character is returned unchanged.</span>
+<span class="kt">char</span> <span class="nf">rot13</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">c</span><span class="p">);</span>
+
+<span class="c1">// Rotate a character 47 places in the set of printable ASCII characters</span>
+<span class="c1">//</span>
+<span class="c1">// If the character received is not a &#39;printable&#39; character (value &lt; 33),</span>
+<span class="c1">// then the character is returned unchanged.</span>
+<span class="kt">char</span> <span class="nf">rot47</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">c</span><span class="p">);</span>
+
+<span class="c1">// Use a &#39;character handler&#39; (rot13 or rot47) to</span>
+<span class="c1">// transform a message 1 character at a time.</span>
+<span class="kt">void</span> <span class="nf">render_text</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span><span class="p">,</span> <span class="n">transform</span> <span class="n">handler</span><span class="p">);</span>
+</pre></div>
+</body>
+</html>

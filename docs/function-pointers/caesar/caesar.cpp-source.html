@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+  <title><title><no title></title></title>
+  <meta http-equiv="content-type" content="text/html; charset=None">
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
+</head>
+<body>
+<h2><title><no title></title></h2>
+
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;caesar.h&quot;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cctype&gt;      // isalpha, islower</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="c1">// TODO: add locale and extend non english alphabets</span>
+
+<span class="kt">char</span> <span class="nf">rot13</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">isalpha</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="k">return</span> <span class="n">c</span><span class="p">;</span>   <span class="c1">// if not a Latin letter, </span>
+                                      <span class="c1">// then do nothing &amp; return the current char</span>
+
+    <span class="c1">// in order to rotate upper or lower case</span>
+    <span class="c1">// need to know where the alphabet &#39;starts&#39;</span>
+    <span class="k">const</span> <span class="kt">char</span> <span class="n">start</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">islower</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">?</span> <span class="sc">&#39;a&#39;</span> <span class="o">:</span> <span class="sc">&#39;A&#39;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">c</span> <span class="o">-</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">13</span><span class="p">)</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">+</span> <span class="n">start</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">char</span> <span class="nf">rot47</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// first printable character = 33 = &#39;!&#39;</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">char</span> <span class="n">start</span> <span class="o">=</span> <span class="sc">&#39;!&#39;</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">&lt;</span> <span class="n">start</span><span class="p">)</span> <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">c</span> <span class="o">-</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">47</span><span class="p">)</span> <span class="o">%</span> <span class="mi">94</span> <span class="o">+</span> <span class="n">start</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">render_text</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span><span class="p">,</span> <span class="n">transform</span> <span class="n">handler</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">c</span><span class="p">:</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// extract each char from the string</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">handler</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>    <span class="c1">// print transformed character</span>
+    <span class="p">}</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>         <span class="c1">// print newline and flush stream</span>
+<span class="p">}</span>
+</pre></div>
+</body>
+</html>

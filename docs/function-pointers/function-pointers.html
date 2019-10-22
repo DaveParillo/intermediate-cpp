@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>6.1. Function pointers &#8212; Intermediate Modern C++ Overview</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/presenter_mode.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/showEval.css?v=C6382F3" />
+    <link rel="stylesheet" type="text/css" href="../_static/pytutor.css?v=239FC54E" />
+    <link rel="stylesheet" type="text/css" href="../_static/modal-basic.css?v=8A1A42E4" />
+    <link rel="stylesheet" type="text/css" href="../_static/clickable.css?v=58C4E18A" />
+    <link rel="stylesheet" type="text/css" href="../_static/datafile.css?v=C184EB8A" />
+    <link rel="stylesheet" type="text/css" href="../_static/spreadsheet.css?v=B5F018A" />
+    <link rel="stylesheet" type="text/css" href="../_static/jexcel.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/japp.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/parsons.css?v=2F3E13EE" />
+    <link rel="stylesheet" type="text/css" href="../_static/js_lib/prettify.css?v=2A364B6B" />
+    <link rel="stylesheet" type="text/css" href="../_static/fitb.css?v=3BA0E63E" />
+    <link rel="stylesheet" type="text/css" href="../_static/poll.css?v=E220AC33" />
+    <link rel="stylesheet" type="text/css" href="../_static/dragndrop.css?v=1FF7F927" />
+    <link rel="stylesheet" type="text/css" href="../_static/matrixeq.css?v=58BC228F" />
+    <link rel="stylesheet" type="text/css" href="../_static/CodeChat.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabbedstuff.css?v=424F1CC9" />
+    <link rel="stylesheet" type="text/css" href="../_static/video.css?v=E5385B3B" />
+    <link rel="stylesheet" type="text/css" href="../_static/reveal.css?v=4A81D381" />
+    <link rel="stylesheet" type="text/css" href="../_static/activecode.css?v=F471F95B" />
+    <link rel="stylesheet" type="text/css" href="../_static/codemirror.css?v=1CE53237" />
+    <link rel="stylesheet" type="text/css" href="../_static/webgldemo.css?v=B36B48D" />
+    <link rel="stylesheet" type="text/css" href="../_static/webglinteractive.css?v=910DF1E1" />
+    <link rel="stylesheet" type="text/css" href="../_static/accessibility.css?v=808B982A" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css?v=4.1.11" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/runestonebase.js?v=4.1.11"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/showEval.js?v=5B2DD7A6"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js?v=836E01C"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js?v=B64CF0A8"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js?v=42F9EBEA"></script>
+    <script type="text/javascript" src="../_static/pytutor.js?v=82B022B9"></script>
+    <script type="text/javascript" src="../_static/codelens.js?v=CABECD49"></script>
+    <script type="text/javascript" src="../_static/shortanswer.js?v=D42E4CE3"></script>
+    <script type="text/javascript" src="../_static/timed_shortanswer.js?v=B3A117D7"></script>
+    <script type="text/javascript" src="../_static/clickable.js?v=DEB56CF8"></script>
+    <script type="text/javascript" src="../_static/timedclickable.js?v=93989C23"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js?v=BDC8551F"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js?v=5731007D"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="../_static/datafile.js?v=3ED1A80C"></script>
+    <script type="text/javascript" src="../_static/spreadsheet.js?v=9DA8BEAB"></script>
+    <script type="text/javascript" src="../_static/jexcel.js"></script>
+    <script type="text/javascript" src="../_static/japp.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js?v=CA7E8928"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js?v=73056367"></script>
+    <script type="text/javascript" src="../_static/parsons.js?v=68B5F56"></script>
+    <script type="text/javascript" src="../_static/timedparsons.js?v=2EEA9E5A"></script>
+    <script type="text/javascript" src="../_static/fitb.js?v=3FF7EFF0"></script>
+    <script type="text/javascript" src="../_static/timedfitb.js?v=2AA17071"></script>
+    <script type="text/javascript" src="../_static/poll.js?v=13CE919A"></script>
+    <script type="text/javascript" src="../_static/dragndrop.js?v=644C2C6C"></script>
+    <script type="text/javascript" src="../_static/timeddnd.js?v=378F237E"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js?v=D64CFA5A"></script>
+    <script type="text/javascript" src="../_static/animationbase.js?v=A043C3A7"></script>
+    <script type="text/javascript" src="../_static/mchoice.js?v=7B442CDC"></script>
+    <script type="text/javascript" src="../_static/timedmc.js?v=B010A457"></script>
+    <script type="text/javascript" src="../_static/timed.js?v=CEC6219E"></script>
+    <script type="text/javascript" src="../_static/lp.js?v=F137FF7A"></script>
+    <script type="text/javascript" src="../_static/gas.js?v=F0D0F02E"></script>
+    <script type="text/javascript" src="../_static/tabbedstuff.js?v=5BE6106"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js?v=53E888DE"></script>
+    <script type="text/javascript" src="../_static/reveal.js?v=9C3AAF60"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js?v=F1C496C8"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js?v=963AEB3A"></script>
+    <script type="text/javascript" src="../_static/codemirror.js?v=94F552C9"></script>
+    <script type="text/javascript" src="../_static/xml.js?v=236EDFF7"></script>
+    <script type="text/javascript" src="../_static/css.js?v=623153CE"></script>
+    <script type="text/javascript" src="../_static/python.js?v=14A28F1F"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js?v=33B91944"></script>
+    <script type="text/javascript" src="../_static/javascript.js?v=6F38CA04"></script>
+    <script type="text/javascript" src="../_static/sql.js?v=1B4587EC"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js?v=599B42B0"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js?v=88A1430F"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js?v=AE15A4A1"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js?v=8ABDFE7F"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js?v=747279FF"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js?v=7B020E13"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js?v=660E85C3"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js?v=54B21948"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js?v=70E93DF2"></script>
+    <script type="text/javascript" src="../_static/activecode.js?v=FE13F48"></script>
+    <script type="text/javascript" src="../_static/clike.js?v=2DCE0756"></script>
+    <script type="text/javascript" src="../_static/timed_activecode.js?v=C6AD5C24"></script>
+    <script type="text/javascript" src="../_static/sql-wasm.js?v=44FE0709"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js?v=2B768384"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js?v=8408C997"></script>
+    <script type="text/javascript" src="../_static/Blob.js?v=AEC2447"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js?v=4.1.11"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="../_static/presenter_mode.js?v=4.1.11"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6.2. Lambda expressions" href="lambda.html" />
+    <link rel="prev" title="6. Function pointers" href="toctree.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="shortcut icon" href="/intermediate-cpp/static/favicon.ico" type="image/ico" />
+
+<script type="text/javascript">
+  eBookConfig = {};
+  
+    eBookConfig.useRunestoneServices = false;
+    eBookConfig.host = 'https://daveparillo.github.io/intermediate-cpp/' || 'http://127.0.0.1:8000';
+    eBookConfig.app = eBookConfig.host+'/intermediate-cpp';
+    eBookConfig.course = 'intermediate-cpp';
+    eBookConfig.basecourse = 'intermediate-cpp';
+    eBookConfig.isLoggedIn = false;
+  
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.logLevel = 0;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "unknown";
+  eBookConfig.python3 = true;
+  eBookConfig.acDefaultLanguage = 'cpp' ? 'cpp' : 'python'
+  eBookConfig.runestone_version = '4.1.11';
+  eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.enable_chatcodes = false ? false : false;
+
+
+</script>
+
+
+
+
+  </head><body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar" aria-label="navbar toggle" class="visuallyhidden">toggle navbar</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        
+          <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;'>&nbsp;<span aria-label="logo" class="visuallyhidden">Runestone Logo</span> </a>
+        
+        <a class="navbar-brand" href="../index.html" aria-label="index-page">
+          
+          intermediate-cpp
+        </a>
+      </div>
+    </div>
+
+
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav navbar-right" >
+
+        <li class="divider-vertical"></li>
+
+        <!-- social media dropdown -->
+        <!-- end social media dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'><span aria-label="Search" class="visuallyhidden">Search</span></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html' aria-label="index-page">Table of Contents</a></li>
+            
+            <li><a href='../genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        
+        <li class="divider-vertical"></li>
+        <!-- <li id="scratch_ac_link"><a href="javascript:ACFactory.toggleScratchActivecode()">Scratch ActiveCode</a></li> -->
+
+        <!-- <li class="dropdown">             -->
+          <li id="scratch_ac_link" class="dropdown"><a href="javascript:ACFactory.toggleScratchActivecode()">
+              <i class="glyphicon glyphicon-pencil" style="opacity:0.9;"><span aria-label="Scratch Activecode" class="visuallyhidden">Scratch Activecode</span></i></a></li>
+        <!-- </li> -->
+
+        <li class="divider-vertical"></li>
+
+        
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        
+          
+          <li class="divider-vertical"></li>
+        
+        <!-- 
+          
+  <li id="relations-prev" title="Previous Chapter - 6. Function pointers" data-toggle="tooltip">
+    <a href="toctree.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - 6.2. Lambda expressions' data-toggle="tooltip" >              
+    <a href="lambda.html" >
+        <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+      </div> <!-- navbar -->
+
+
+
+
+
+
+
+    </div> <!-- container -->
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content" role="main">
+  
+  <div class="section" id="function-pointers">
+<span id="index-0"></span><h1>6.1. Function pointers<a class="headerlink" href="#function-pointers" title="Permalink to this headline">¶</a></h1>
+<p>In C++ you can point to anything with an address:</p>
+<ul class="simple">
+<li><p>Global variables</p></li>
+<li><p>Stack and free store variables</p></li>
+<li><p>Functions</p></li>
+</ul>
+<p>Recall that when called,
+an <a class="reference internal" href="../glossary.html#term-activation-record"><span class="xref std std-term">activation record</span></a> for a function is pushed onto the <a class="reference internal" href="../glossary.html#term-runtime-stack"><span class="xref std std-term">runtime stack</span></a>.
+This means every function has an address.</p>
+<p>Consider the following code:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="mi">5</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">foo</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>What does this program print?</p>
+<p>Hint: It doesn’t call the function foo</p>
+
+    <div data-component="reveal" id="reveal-fp1"   data-showtitle="Show" data-hidetitle="Hide" >
+    <p>It prints the <em>address</em> of the function <code class="docutils literal notranslate"><span class="pre">foo()</span></code></p>
+
+    </div>
+    <p>When a function is called using <code class="docutils literal notranslate"><span class="pre">operator()</span></code>,
+execution jumps to the <em>address</em> of the function being called.
+We can make use of this to store the address of the function.</p>
+<p>To declare a pointer to a function that returns an <code class="docutils literal notranslate"><span class="pre">int</span></code> and takes no parameters:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">pf</span><span class="p">)();</span>
+</pre></div>
+</div>
+<p>The pointer variable is named <code class="docutils literal notranslate"><span class="pre">pf</span></code>.
+The parentheses around <code class="docutils literal notranslate"><span class="pre">(*pf)</span></code> are required due to operator precedence.
+Without the parentheses:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="o">*</span><span class="nf">pf</span><span class="p">();</span>     <span class="c1">// not a pointer to a function</span>
+
+<span class="c1">// same as above</span>
+<span class="kt">int</span><span class="o">*</span> <span class="nf">pf</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Instead, this declares a function that returns an <code class="docutils literal notranslate"><span class="pre">int*</span></code> and takes no parameters.</p>
+<p>To declare a pointer named <code class="docutils literal notranslate"><span class="pre">func</span></code>
+pointing to a function that returns a <code class="docutils literal notranslate"><span class="pre">double</span></code> and takes two parameters:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Once you have a valid definition,
+you can assign functions to it:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="nf">add</span>     <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">;}</span>
+<span class="kt">double</span> <span class="nf">multiply</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">;}</span>
+<span class="kt">double</span> <span class="nf">pi</span>      <span class="p">()</span>             <span class="p">{</span> <span class="k">return</span> <span class="mf">3.14159265</span><span class="p">;}</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// declare func and assign add to it</span>
+  <span class="kt">double</span> <span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">)</span> <span class="o">=</span> <span class="n">add</span><span class="p">;</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="c1">// prints 4</span>
+
+  <span class="n">func</span> <span class="o">=</span> <span class="n">multiply</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="c1">// prints 6</span>
+
+  <span class="n">func</span> <span class="o">=</span> <span class="n">pi</span><span class="p">;</span>            <span class="c1">// error: pointer to function with</span>
+                        <span class="c1">// wrong number of arguments</span>
+
+  <span class="n">func</span> <span class="o">=</span> <span class="n">add</span><span class="p">();</span>         <span class="c1">// error: can&#39;t assign</span>
+                        <span class="c1">// function return value to function pointer</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A downside to traditional function pointer initialization is
+that this doesn’t look like the initialization syntax we are used to.
+This is a legacy of the C language C++ was originally based on.</p>
+<p>The C++11 <a class="reference external" href="https://en.cppreference.com/w/cpp/language/type alias">type alias</a> allows defining a name that refers to a previously defined type:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>          <span class="c1">// old syntax</span>
+
+<span class="k">using</span> <span class="n">func</span> <span class="o">=</span> <span class="kt">double</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>  <span class="c1">// since C++11</span>
+</pre></div>
+</div>
+
+    <div class="runestone" style="margin-left: auto; margin-right:auto">
+        <div id="p4sDgQ-jao4" class="align-left youtube-video" data-video-height="281" data-video-width="500" data-video-videoid="p4sDgQ-jao4" data-video-divid="p4sDgQ-jao4" data-video-start="0" data-video-end="-1" ></div>
+        <p class="runestone_caption"><span class="runestone_caption_text">Video: (p4sDgQ-jao4)</span> </p>
+    </div>
+    <div class="section" id="example-caesar-ciphers">
+<h2>6.1.1. Example: Caesar ciphers<a class="headerlink" href="#example-caesar-ciphers" title="Permalink to this headline">¶</a></h2>
+<p>A simple substitution cipher, called <a class="reference external" href="https://en.wikipedia.org/wiki/ROT13">ROT13</a>, short for ‘rotate 13 places’
+can be used to obfuscate text by replacing each letter with the letter 13 letters after it in the alphabet.
+It is a special case of the <a class="reference external" href="https://en.wikipedia.org/wiki/Caesar_cipher">Caesar cipher</a>,
+used in ancient Rome to obscure communication between Julius Caesar and his generals.
+A related variation called ROT47 extends the idea of ROT13 to include numbers and common symbols.</p>
+<p>Suppose we want to create a program that allows users to run either ROT13 or ROT47?
+There are many ways to implement such a program.
+This example demonstrates how to use function pointers to dynamically
+control at which function is called within a loop at runtime.</p>
+<p>Often, when writing a program, it is useful to start at ‘the top’.
+Suppose we want a simple command line program that takes
+4 basic inputs:</p>
+<dl class="simple">
+<dt><cite>-h</cite></dt><dd><p>A command line switch to show help.</p>
+</dd>
+<dt><cite>-l</cite></dt><dd><p>A command line switch to transform only letters in the Latin alphabet.
+This switch will enable the ROT13 function.</p>
+</dd>
+<dt><cite>-f</cite></dt><dd><p>A command line switch to transform the full set of printable letters ASCII character set.
+This switch will enable the ROT47 function.</p>
+</dd>
+<dt>standard input</dt><dd><p>This is where the program will get the text to work on.</p>
+</dd>
+</dl>
+<p>Once we have decided on this as our basic framework,
+we can create a file like <code class="docutils literal notranslate"><span class="pre">help.h</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">usage</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Encrypt or decrypt text read from standard input</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;Usage: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; [-h|l|f]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">help</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">usage</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Options:</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;  -h   Show this text and exit.</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;  -l   En(de)crypt using the Latin characters ([A-Z,a-z]</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;         (default)</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;  -f   En(de)crypt using the Full set of &quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;printable ASCII characters</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">Only 1 of any option can be meaningfully specified.</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">The last of either &#39;-l&#39; or &#39;f&#39; provided is used.</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">Running with no input from standard in enters</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;&#39;interactive mode&#39;:</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot; - Text can be entered one message per line.</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot; - The program runs until &#39;CTRL+C&#39; is entered or &quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;   EOF is reached.</span><span class="se">\n\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;Running on plain text creates cipher text</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;Running on cipher text creates plain text</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">;</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The ‘fundamental unit’ of any text input is a <code class="docutils literal notranslate"><span class="pre">char</span></code>,
+so it makes sense to write our transforming functions to work with a single
+character at a time.</p>
+<p>We will write three functions for this program, one for ROT13 and one for ROT47.
+The third function takes a <code class="docutils literal notranslate"><span class="pre">std::string</span></code>  and a function pointer as input,
+and transforms the string using the provided function,
+one character at a time.</p>
+<p>First we declare our interfaces:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
+
+<span class="c1">//</span>
+<span class="c1">// Function to perform simple character rotations through an alphabet.</span>
+<span class="c1">// </span>
+<span class="c1">// Be warned that these functions should NOT be used to encrypt sensitive data!!</span>
+<span class="c1">// These functions are easily decrypted, even using pencil and paper.</span>
+<span class="c1">//</span>
+<span class="c1">// See: https://en.wikipedia.org/wiki/Caesar_cipher</span>
+<span class="c1">//</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="c1">// A pointer to the function that will transform a character</span>
+<span class="k">using</span> <span class="n">transform</span> <span class="o">=</span> <span class="kt">char</span> <span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">c</span><span class="p">);</span>
+
+<span class="c1">// Rotate a character 13 places in the alphabet.</span>
+<span class="c1">//</span>
+<span class="c1">// This function assumes a basic 26 letter Latin alphabet</span>
+<span class="c1">//</span>
+<span class="c1">// If the character received is not within the range [A-Z, a-z],</span>
+<span class="c1">// then the character is returned unchanged.</span>
+<span class="kt">char</span> <span class="nf">rot13</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">c</span><span class="p">);</span>
+
+<span class="c1">// Rotate a character 47 places in the set of printable ASCII characters</span>
+<span class="c1">//</span>
+<span class="c1">// If the character received is not a &#39;printable&#39; character (value &lt; 33),</span>
+<span class="c1">// then the character is returned unchanged.</span>
+<span class="kt">char</span> <span class="nf">rot47</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">c</span><span class="p">);</span>
+
+<span class="c1">// Use a &#39;character handler&#39; (rot13 or rot47) to</span>
+<span class="c1">// transform a message 1 character at a time.</span>
+<span class="kt">void</span> <span class="nf">render_text</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span><span class="p">,</span> <span class="n">transform</span> <span class="n">handler</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The <a class="reference external" href="http://en.cppreference.com/w/cpp/language/type_alias">using declaration</a>
+exists only to simplify our use of our function pointer.
+Any place you see the word <code class="docutils literal notranslate"><span class="pre">transform</span></code>,
+you can literally replace it with
+<code class="docutils literal notranslate"><span class="pre">char</span> <span class="pre">(*)(const</span> <span class="pre">unsigned</span> <span class="pre">char</span> <span class="pre">c)</span></code>
+and not change how the program behaves.</p>
+<p>We implemented our functions to take type <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">char</span></code> because
+they depend on the library functions <code class="docutils literal notranslate"><span class="pre">std::isdigit</span></code> and <code class="docutils literal notranslate"><span class="pre">std::isalpha</span></code>.
+These function have undefined behavior if the character provided
+is not an <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">char</span></code>.</p>
+<p>With these definitions in place, we can implement them:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;caesar.h&quot;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cctype&gt;      // isalpha, islower</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="c1">// TODO: add locale and extend non english alphabets</span>
+
+<span class="kt">char</span> <span class="nf">rot13</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">isalpha</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="k">return</span> <span class="n">c</span><span class="p">;</span>   <span class="c1">// if not a Latin letter, </span>
+                                      <span class="c1">// then do nothing &amp; return the current char</span>
+
+    <span class="c1">// in order to rotate upper or lower case</span>
+    <span class="c1">// need to know where the alphabet &#39;starts&#39;</span>
+    <span class="k">const</span> <span class="kt">char</span> <span class="n">start</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">islower</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">?</span> <span class="sc">&#39;a&#39;</span> <span class="o">:</span> <span class="sc">&#39;A&#39;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">c</span> <span class="o">-</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">13</span><span class="p">)</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">+</span> <span class="n">start</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">char</span> <span class="nf">rot47</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// first printable character = 33 = &#39;!&#39;</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">char</span> <span class="n">start</span> <span class="o">=</span> <span class="sc">&#39;!&#39;</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">&lt;</span> <span class="n">start</span><span class="p">)</span> <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">c</span> <span class="o">-</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">47</span><span class="p">)</span> <span class="o">%</span> <span class="mi">94</span> <span class="o">+</span> <span class="n">start</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">render_text</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span><span class="p">,</span> <span class="n">transform</span> <span class="n">handler</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">c</span><span class="p">:</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// extract each char from the string</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">handler</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>    <span class="c1">// print transformed character</span>
+    <span class="p">}</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>         <span class="c1">// print newline and flush stream</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>And now we have a decent set of functions we can call from a small main program:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;caesar.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;help.h&quot;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;    // strcmp</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Define a default a &#39;character handler&#39;</span>
+    <span class="c1">// the variable &#39;handler&#39; provides an option to </span>
+    <span class="c1">// change the encryption function at runtime</span>
+    <span class="n">transform</span> <span class="n">handler</span> <span class="o">=</span> <span class="n">rot13</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">argc</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">strcmp</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s">&quot;-h&quot;</span><span class="p">))</span> <span class="p">{</span>            <span class="c1">// call help and exit</span>
+            <span class="n">help</span><span class="p">(</span><span class="o">*</span><span class="n">argv</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">strcmp</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s">&quot;-l&quot;</span><span class="p">))</span> <span class="p">{</span>     <span class="c1">// use rot13 transform</span>
+            <span class="n">handler</span> <span class="o">=</span> <span class="n">rot13</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">strcmp</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s">&quot;-f&quot;</span><span class="p">))</span> <span class="p">{</span>     <span class="c1">// use rot47 transform</span>
+            <span class="n">handler</span> <span class="o">=</span> <span class="n">rot47</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">usage</span><span class="p">(</span><span class="o">*</span><span class="n">argv</span><span class="p">);</span>
+            <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">getline</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">,</span> <span class="n">message</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">render_text</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">handler</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note, we did not use the function call operator, <code class="docutils literal notranslate"><span class="pre">operator()</span></code> when
+assigning values to <code class="docutils literal notranslate"><span class="pre">handler</span></code>.
+The name <code class="docutils literal notranslate"><span class="pre">rot13</span></code> points to the address where the function <code class="docutils literal notranslate"><span class="pre">rot13</span></code>
+is stored.</p>
+<hr class="docutils" />
+<div class="admonition-more-to-explore admonition">
+<p class="admonition-title">More to Explore</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Caesar_cipher">Caesar cipher</a> from Wikipedia.</p></li>
+<li><p>From: cppreference.com:</p>
+<ul>
+<li><p><a class="reference external" href="http://en.cppreference.com/w/cpp/language/pointer">pointers</a></p></li>
+<li><p><a class="reference external" href="http://en.cppreference.com/w/cpp/string/byte/isalpha">isalpha</a> and
+<a class="reference external" href="http://en.cppreference.com/w/cpp/string/byte/islower">islower</a>.</p></li>
+<li><p><a class="reference external" href="http://en.cppreference.com/w/cpp/string/byte/strcmp">strcmp</a></p></li>
+<li><p><a class="reference external" href="http://en.cppreference.com/w/cpp/string/basic_string/getline">getline</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+  <div id=scprogresscontainer>
+    You have attempted <span id=scprogresstotal></span> of <span id=scprogressposs></span> activities on this page <div id="subchapterprogress"></div>
+  </div>
+  
+      
+<ul>
+  <li id="relations-prev" class="navLink" title='Previous Section - 6. Function pointers' data-toggle="tooltip">
+    <a href="toctree.html" aria-label="6. Function pointers">
+        <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
+            <i class='prevNav glyphicon glyphicon-chevron-left' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
+        </div>
+    </a>
+  </li>
+</ul>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="toctree.html" aria-label="6. Function pointers"></a>
+  
+<ul>
+  <li id="relations-next" class="navLink" title='Next Section - 6.2. Lambda expressions' data-toggle="tooltip" >
+    <a href="lambda.html" aria-label="6.2. Lambda expressions">
+      <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
+          <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
+      </div>
+    </a>
+  </li>
+</ul>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="lambda.html" aria-label="6.2. Lambda expressions">Next Section - 6.2. Lambda expressions</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2017-2019 Dave Parillo.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 4.1.11.
+    </p>
+  </div>
+</footer>
+
+
+
+
+
+  </body>
+</html>

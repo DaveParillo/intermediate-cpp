@@ -24,6 +24,8 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+sphinx-enki-info.txt
+sphinx_settings.json
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -104,4 +106,5 @@ ENV/
 
 # MacOS X files
 **/.DS_Store
+
 

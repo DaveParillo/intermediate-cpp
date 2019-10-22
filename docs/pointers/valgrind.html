@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>5.3. Pointer debugging &#8212; Intermediate Modern C++ Overview</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/presenter_mode.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/showEval.css?v=C6382F3" />
+    <link rel="stylesheet" type="text/css" href="../_static/pytutor.css?v=239FC54E" />
+    <link rel="stylesheet" type="text/css" href="../_static/modal-basic.css?v=8A1A42E4" />
+    <link rel="stylesheet" type="text/css" href="../_static/clickable.css?v=58C4E18A" />
+    <link rel="stylesheet" type="text/css" href="../_static/datafile.css?v=C184EB8A" />
+    <link rel="stylesheet" type="text/css" href="../_static/spreadsheet.css?v=B5F018A" />
+    <link rel="stylesheet" type="text/css" href="../_static/jexcel.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/japp.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/parsons.css?v=2F3E13EE" />
+    <link rel="stylesheet" type="text/css" href="../_static/js_lib/prettify.css?v=2A364B6B" />
+    <link rel="stylesheet" type="text/css" href="../_static/fitb.css?v=3BA0E63E" />
+    <link rel="stylesheet" type="text/css" href="../_static/poll.css?v=E220AC33" />
+    <link rel="stylesheet" type="text/css" href="../_static/dragndrop.css?v=1FF7F927" />
+    <link rel="stylesheet" type="text/css" href="../_static/matrixeq.css?v=58BC228F" />
+    <link rel="stylesheet" type="text/css" href="../_static/CodeChat.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabbedstuff.css?v=424F1CC9" />
+    <link rel="stylesheet" type="text/css" href="../_static/video.css?v=E5385B3B" />
+    <link rel="stylesheet" type="text/css" href="../_static/reveal.css?v=4A81D381" />
+    <link rel="stylesheet" type="text/css" href="../_static/activecode.css?v=F471F95B" />
+    <link rel="stylesheet" type="text/css" href="../_static/codemirror.css?v=1CE53237" />
+    <link rel="stylesheet" type="text/css" href="../_static/webgldemo.css?v=B36B48D" />
+    <link rel="stylesheet" type="text/css" href="../_static/webglinteractive.css?v=910DF1E1" />
+    <link rel="stylesheet" type="text/css" href="../_static/accessibility.css?v=808B982A" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css?v=4.1.11" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/runestonebase.js?v=4.1.11"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/showEval.js?v=5B2DD7A6"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js?v=836E01C"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js?v=B64CF0A8"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js?v=42F9EBEA"></script>
+    <script type="text/javascript" src="../_static/pytutor.js?v=82B022B9"></script>
+    <script type="text/javascript" src="../_static/codelens.js?v=CABECD49"></script>
+    <script type="text/javascript" src="../_static/shortanswer.js?v=D42E4CE3"></script>
+    <script type="text/javascript" src="../_static/timed_shortanswer.js?v=B3A117D7"></script>
+    <script type="text/javascript" src="../_static/clickable.js?v=DEB56CF8"></script>
+    <script type="text/javascript" src="../_static/timedclickable.js?v=93989C23"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js?v=BDC8551F"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js?v=5731007D"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="../_static/datafile.js?v=3ED1A80C"></script>
+    <script type="text/javascript" src="../_static/spreadsheet.js?v=9DA8BEAB"></script>
+    <script type="text/javascript" src="../_static/jexcel.js"></script>
+    <script type="text/javascript" src="../_static/japp.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js?v=CA7E8928"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js?v=73056367"></script>
+    <script type="text/javascript" src="../_static/parsons.js?v=68B5F56"></script>
+    <script type="text/javascript" src="../_static/timedparsons.js?v=2EEA9E5A"></script>
+    <script type="text/javascript" src="../_static/fitb.js?v=3FF7EFF0"></script>
+    <script type="text/javascript" src="../_static/timedfitb.js?v=2AA17071"></script>
+    <script type="text/javascript" src="../_static/poll.js?v=13CE919A"></script>
+    <script type="text/javascript" src="../_static/dragndrop.js?v=644C2C6C"></script>
+    <script type="text/javascript" src="../_static/timeddnd.js?v=378F237E"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js?v=D64CFA5A"></script>
+    <script type="text/javascript" src="../_static/animationbase.js?v=A043C3A7"></script>
+    <script type="text/javascript" src="../_static/mchoice.js?v=7B442CDC"></script>
+    <script type="text/javascript" src="../_static/timedmc.js?v=B010A457"></script>
+    <script type="text/javascript" src="../_static/timed.js?v=CEC6219E"></script>
+    <script type="text/javascript" src="../_static/lp.js?v=F137FF7A"></script>
+    <script type="text/javascript" src="../_static/gas.js?v=F0D0F02E"></script>
+    <script type="text/javascript" src="../_static/tabbedstuff.js?v=5BE6106"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js?v=53E888DE"></script>
+    <script type="text/javascript" src="../_static/reveal.js?v=9C3AAF60"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js?v=F1C496C8"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js?v=963AEB3A"></script>
+    <script type="text/javascript" src="../_static/codemirror.js?v=94F552C9"></script>
+    <script type="text/javascript" src="../_static/xml.js?v=236EDFF7"></script>
+    <script type="text/javascript" src="../_static/css.js?v=623153CE"></script>
+    <script type="text/javascript" src="../_static/python.js?v=14A28F1F"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js?v=33B91944"></script>
+    <script type="text/javascript" src="../_static/javascript.js?v=6F38CA04"></script>
+    <script type="text/javascript" src="../_static/sql.js?v=1B4587EC"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js?v=599B42B0"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js?v=88A1430F"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js?v=AE15A4A1"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js?v=8ABDFE7F"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js?v=747279FF"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js?v=7B020E13"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js?v=660E85C3"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js?v=54B21948"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js?v=70E93DF2"></script>
+    <script type="text/javascript" src="../_static/activecode.js?v=FE13F48"></script>
+    <script type="text/javascript" src="../_static/clike.js?v=2DCE0756"></script>
+    <script type="text/javascript" src="../_static/timed_activecode.js?v=C6AD5C24"></script>
+    <script type="text/javascript" src="../_static/sql-wasm.js?v=44FE0709"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js?v=2B768384"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js?v=8408C997"></script>
+    <script type="text/javascript" src="../_static/Blob.js?v=AEC2447"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js?v=4.1.11"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="../_static/presenter_mode.js?v=4.1.11"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. Function pointers" href="../function-pointers/toctree.html" />
+    <link rel="prev" title="5.2. Free store pointers" href="free-store.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="shortcut icon" href="/intermediate-cpp/static/favicon.ico" type="image/ico" />
+
+<script type="text/javascript">
+  eBookConfig = {};
+  
+    eBookConfig.useRunestoneServices = false;
+    eBookConfig.host = 'https://daveparillo.github.io/intermediate-cpp/' || 'http://127.0.0.1:8000';
+    eBookConfig.app = eBookConfig.host+'/intermediate-cpp';
+    eBookConfig.course = 'intermediate-cpp';
+    eBookConfig.basecourse = 'intermediate-cpp';
+    eBookConfig.isLoggedIn = false;
+  
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.logLevel = 0;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "unknown";
+  eBookConfig.python3 = true;
+  eBookConfig.acDefaultLanguage = 'cpp' ? 'cpp' : 'python'
+  eBookConfig.runestone_version = '4.1.11';
+  eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.enable_chatcodes = false ? false : false;
+
+
+</script>
+
+
+
+
+  </head><body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar" aria-label="navbar toggle" class="visuallyhidden">toggle navbar</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        
+          <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;'>&nbsp;<span aria-label="logo" class="visuallyhidden">Runestone Logo</span> </a>
+        
+        <a class="navbar-brand" href="../index.html" aria-label="index-page">
+          
+          intermediate-cpp
+        </a>
+      </div>
+    </div>
+
+
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav navbar-right" >
+
+        <li class="divider-vertical"></li>
+
+        <!-- social media dropdown -->
+        <!-- end social media dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'><span aria-label="Search" class="visuallyhidden">Search</span></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html' aria-label="index-page">Table of Contents</a></li>
+            
+            <li><a href='../genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        
+        <li class="divider-vertical"></li>
+        <!-- <li id="scratch_ac_link"><a href="javascript:ACFactory.toggleScratchActivecode()">Scratch ActiveCode</a></li> -->
+
+        <!-- <li class="dropdown">             -->
+          <li id="scratch_ac_link" class="dropdown"><a href="javascript:ACFactory.toggleScratchActivecode()">
+              <i class="glyphicon glyphicon-pencil" style="opacity:0.9;"><span aria-label="Scratch Activecode" class="visuallyhidden">Scratch Activecode</span></i></a></li>
+        <!-- </li> -->
+
+        <li class="divider-vertical"></li>
+
+        
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        
+          
+          <li class="divider-vertical"></li>
+        
+        <!-- 
+          
+  <li id="relations-prev" title="Previous Chapter - 5.2. Free store pointers" data-toggle="tooltip">
+    <a href="free-store.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - 6. Function pointers' data-toggle="tooltip" >              
+    <a href="../function-pointers/toctree.html" >
+        <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+      </div> <!-- navbar -->
+
+
+
+
+
+
+
+    </div> <!-- container -->
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content" role="main">
+  
+  <div class="section" id="pointer-debugging">
+<span id="index-0"></span><h1>5.3. Pointer debugging<a class="headerlink" href="#pointer-debugging" title="Permalink to this headline">¶</a></h1>
+<p>All the techniques described in section <a class="reference internal" href="../back-matter/app-a/debugging.html"><span class="doc">Debugging</span></a> applies
+when debugging pointers.
+What can make debugging pointer errors more difficult is that
+when things go wrong with a pointer, often memory is corrupted
+as well,
+which limits what you can get done with <code class="docutils literal notranslate"><span class="pre">cout</span></code>.</p>
+<p>Tools are your friends.</p>
+<ol class="arabic">
+<li><p>Learn how to use a debugger.</p>
+<p>The debugging section has a brief overview of the gdb debugger
+and links to more information.</p>
+</li>
+<li><p>Consider a dynamic memory checker such as <code class="docutils literal notranslate"><span class="pre">valgrind</span></code>.</p></li>
+</ol>
+<div class="section" id="valgrind">
+<span id="index-1"></span><h2>5.3.1. Valgrind<a class="headerlink" href="#valgrind" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">valgrind</span></code> program can be used to detect some (but not all) common errors in C and C++ programs
+that use pointers and dynamic storage allocation.
+In addition to basic memory checking, <code class="docutils literal notranslate"><span class="pre">valgrind</span></code> can find many bugs related to
+uninitialized variables and undefinded behavior.
+You can run <code class="docutils literal notranslate"><span class="pre">valgrind</span></code> on your program by putting <code class="docutils literal notranslate"><span class="pre">valgrind</span></code> at the start of the command line:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">valgrind</span> <span class="p">.</span><span class="o">/</span><span class="n">my</span><span class="o">-</span><span class="n">program</span>
+</pre></div>
+</div>
+<p>You may pass in arguments to your program or redirect input from the shell:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">valgrind</span> <span class="p">.</span><span class="o">/</span><span class="n">my</span><span class="o">-</span><span class="n">program</span> <span class="n">arg1</span> <span class="n">arg2</span> <span class="o">&lt;</span> <span class="n">test</span><span class="o">-</span><span class="n">input</span>
+</pre></div>
+</div>
+<p>This will run your program and produce a report of any memory allocations and de-allocations it did.
+Valgrind will also warn you about common errors like using uninitialized memory,
+dereferencing pointers to strange places,
+writing off the end of memory blocks allocated using <code class="docutils literal notranslate"><span class="pre">malloc</span></code> or <code class="docutils literal notranslate"><span class="pre">new</span></code>,
+or failing to free blocks.</p>
+<p>You can suppress all of the output except errors using the -q option, like this:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">valgrind</span> <span class="o">-</span><span class="n">q</span> <span class="p">.</span><span class="o">/</span><span class="n">my</span><span class="o">-</span><span class="n">program</span>
+</pre></div>
+</div>
+<p>You can also turn on more tests, e.g.:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">valgrind</span> <span class="o">-</span><span class="n">q</span> <span class="o">--</span><span class="n">tool</span><span class="o">=</span><span class="n">memcheck</span> <span class="o">--</span><span class="n">leak</span><span class="o">-</span><span class="n">check</span><span class="o">=</span><span class="n">yes</span> <span class="p">.</span><span class="o">/</span><span class="n">my</span><span class="o">-</span><span class="n">program</span>
+</pre></div>
+</div>
+<p>See <code class="docutils literal notranslate"><span class="pre">valgrind</span> <span class="pre">--help</span></code> or <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">valgrind</span></code> for more information about the (many) options,
+or look at the documentation at <a class="reference external" href="http://valgrind.org/">http://valgrind.org/</a> for detailed information about what the output means.
+If you want to run <code class="docutils literal notranslate"><span class="pre">valgrind</span></code> on your own machine,
+you may be able to find a version that works at <a class="reference external" href="http://valgrind.org">http://valgrind.org</a>.
+Unfortunately, this is only likely to work if you are running a Unix-like
+operating system (which includes Linux and MacOS X, but not Windows).</p>
+<p>A simple walk-through.
+Let’s say we have the following code in <code class="docutils literal notranslate"><span class="pre">foo.cpp</span></code> with a simple error:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;sum: &quot;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Just as with gdb, compile it with debugging symbols.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>g++ foo.cpp -g3 -o foo
+</pre></div>
+</div>
+<p>Valgrind provides a lot of debugging information very quickly,
+although on some systems, even with debug symbols compiled in,
+your output looks like this:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="o">==</span><span class="mi">1229</span><span class="o">==</span> <span class="n">Conditional</span> <span class="n">jump</span> <span class="n">or</span> <span class="n">move</span> <span class="n">depends</span> <span class="n">on</span> <span class="n">uninitialised</span> <span class="n">value</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="o">==</span><span class="mi">1229</span><span class="o">==</span>    <span class="n">at</span> <span class="mh">0x40DDBA3</span><span class="o">:</span> <span class="n">std</span><span class="o">::</span><span class="n">ostreambuf_iterator</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">char_traits</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">std</span><span class="o">::</span><span class="n">num_put</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">ostreambuf_iterator</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">char_traits</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">_M_insert_int</span><span class="o">&lt;</span><span class="kt">long</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostreambuf_iterator</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">char_traits</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="o">&gt;</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">ios_base</span><span class="o">&amp;</span><span class="p">,</span> <span class="kt">char</span><span class="p">,</span> <span class="kt">long</span><span class="p">)</span> <span class="k">const</span> <span class="p">(</span><span class="n">in</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libstdc</span><span class="o">++</span><span class="p">.</span><span class="n">so</span><span class="mf">.6.0.18</span><span class="p">)</span>
+<span class="o">==</span><span class="mi">1229</span><span class="o">==</span>    <span class="n">by</span> <span class="mh">0x40DE168</span><span class="o">:</span> <span class="n">std</span><span class="o">::</span><span class="n">num_put</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">ostreambuf_iterator</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">char_traits</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">do_put</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostreambuf_iterator</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">char_traits</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="o">&gt;</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">ios_base</span><span class="o">&amp;</span><span class="p">,</span> <span class="kt">char</span><span class="p">,</span> <span class="kt">long</span><span class="p">)</span> <span class="k">const</span> <span class="p">(</span><span class="n">in</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libstdc</span><span class="o">++</span><span class="p">.</span><span class="n">so</span><span class="mf">.6.0.18</span><span class="p">)</span>
+<span class="o">==</span><span class="mi">1229</span><span class="o">==</span>    <span class="n">by</span> <span class="mh">0x40E9F1D</span><span class="o">:</span> <span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">::</span><span class="n">_M_insert</span><span class="o">&lt;</span><span class="kt">long</span><span class="o">&gt;</span><span class="p">(</span><span class="kt">long</span><span class="p">)</span> <span class="p">(</span><span class="n">in</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libstdc</span><span class="o">++</span><span class="p">.</span><span class="n">so</span><span class="mf">.6.0.18</span><span class="p">)</span>
+<span class="o">==</span><span class="mi">1229</span><span class="o">==</span>    <span class="n">by</span> <span class="mh">0x40EA112</span><span class="o">:</span> <span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">::</span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">in</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libstdc</span><span class="o">++</span><span class="p">.</span><span class="n">so</span><span class="mf">.6.0.18</span><span class="p">)</span>
+<span class="o">==</span><span class="mi">1229</span><span class="o">==</span>    <span class="n">by</span> <span class="mh">0x41CB9D2</span><span class="o">:</span> <span class="p">(</span><span class="n">below</span> <span class="n">main</span><span class="p">)</span> <span class="p">(</span><span class="n">in</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libc</span><span class="o">-</span><span class="mf">2.18</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In order to get <code class="docutils literal notranslate"><span class="pre">valgrind</span></code> to report line numbers related to errors
+in calls to library functions, you need to add the command line argument
+<code class="docutils literal notranslate"><span class="pre">--track-origins=yes</span></code>, like this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ valgrind --track-origins=yes ./foo
+
+==1302== Conditional jump or move depends on uninitialised value(s)
+==1302==    at 0x40DDB47: std::ostreambuf_iterator&lt;char, std::char_traits&lt;char&gt; &gt; std::num_put&lt;char, std::ostreambuf_iterator&lt;char, std::char_traits&lt;char&gt; &gt; &gt;::_M_insert_int&lt;long&gt;(std::ostreambuf_iterator&lt;char, std::char_traits&lt;char&gt; &gt;, std::ios_base&amp;, char, long) const (in /usr/lib/libstdc++.so.6.0.18)
+==1302==    by 0x40DE168: std::num_put&lt;char, std::ostreambuf_iterator&lt;char, std::char_traits&lt;char&gt; &gt; &gt;::do_put(std::ostreambuf_iterator&lt;char, std::char_traits&lt;char&gt; &gt;, std::ios_base&amp;, char, long) const (in /usr/lib/libstdc++.so.6.0.18)
+==1302==    by 0x40E9F1D: std::ostream&amp; std::ostream::_M_insert&lt;long&gt;(long) (in /usr/lib/libstdc++.so.6.0.18)
+==1302==    by 0x40EA112: std::ostream::operator&lt;&lt;(int) (in /usr/lib/libstdc++.so.6.0.18)
+==1302==    by 0x41CB9D2: (below main) (in /lib/libc-2.18.so)
+==1302==  Uninitialised value was created by a stack allocation
+==1302==    at 0x8048717: main (foo.cpp:3)
+==1302==
+==1302== Use of uninitialised value of size 4
+</pre></div>
+</div>
+
+    <div data-component="reveal" id="reveal-valgrind-details"   data-showtitle="Show All valgrind output" data-hidetitle="Hide valgrind details" >
+    <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>==1302==    at 0x40DDA53: ??? (in /usr/lib/libstdc++.so.6.0.18)
+==1302==    by 0x40DDB7B: std::ostreambuf_iterator&lt;char, std::char_traits&lt;char&gt; &gt; std::num_put&lt;char, std::ostreambuf_iterator&lt;char, std::char_traits&lt;char&gt; &gt; &gt;::_M_insert_int&lt;long&gt;(std::ostreambuf_iterator&lt;char, std::char_traits&lt;char&gt; &gt;, std::ios_base&amp;, char, long) const (in /usr/lib/libstdc++.so.6.0.18)
+==1302==    by 0x40DE168: std::num_put&lt;char, std::ostreambuf_iterator&lt;char, std::char_traits&lt;char&gt; &gt; &gt;::do_put(std::ostreambuf_iterator&lt;char, std::char_traits&lt;char&gt; &gt;, std::ios_base&amp;, char, long) const (in /usr/lib/libstdc++.so.6.0.18)
+==1302==    by 0x40E9F1D: std::ostream&amp; std::ostream::_M_insert&lt;long&gt;(long) (in /usr/lib/libstdc++.so.6.0.18)
+==1302==    by 0x40EA112: std::ostream::operator&lt;&lt;(int) (in /usr/lib/libstdc++.so.6.0.18)
+==1302==    by 0x41CB9D2: (below main) (in /lib/libc-2.18.so)
+==1302==  Uninitialised value was created by a stack allocation
+==1302==    at 0x8048717: main (foo.cpp:3)
+==1302==
+==1302== Conditional jump or move depends on uninitialised value(s)
+==1302==    at 0x40DDA5C: ??? (in /usr/lib/libstdc++.so.6.0.18)
+==1302==    by 0x40DDB7B: std::ostreambuf_iterator&lt;char, std::char_traits&lt;char&gt; &gt; std::num_put&lt;char, std::ostreambuf_iterator&lt;char, std::char_traits&lt;char&gt; &gt; &gt;::_M_insert_int&lt;long&gt;(std::ostreambuf_iterator&lt;char, std::char_traits&lt;char&gt; &gt;, std::ios_base&amp;, char, long) const (in /usr/lib/libstdc++.so.6.0.18)
+==1302==    by 0x40DE168: std::num_put&lt;char, std::ostreambuf_iterator&lt;char, std::char_traits&lt;char&gt; &gt; &gt;::do_put(std::ostreambuf_iterator&lt;char, std::char_traits&lt;char&gt; &gt;, std::ios_base&amp;, char, long) const (in /usr/lib/libstdc++.so.6.0.18)
+==1302==    by 0x40E9F1D: std::ostream&amp; std::ostream::_M_insert&lt;long&gt;(long) (in /usr/lib/libstdc++.so.6.0.18)
+==1302==    by 0x40EA112: std::ostream::operator&lt;&lt;(int) (in /usr/lib/libstdc++.so.6.0.18)
+==1302==    by 0x41CB9D2: (below main) (in /lib/libc-2.18.so)
+==1302==  Uninitialised value was created by a stack allocation
+==1302==    at 0x8048717: main (foo.cpp:3)
+==1302==
+==1302== Conditional jump or move depends on uninitialised value(s)
+==1302==    at 0x40DDBA3: std::ostreambuf_iterator&lt;char, std::char_traits&lt;char&gt; &gt; std::num_put&lt;char, std::ostreambuf_iterator&lt;char, std::char_traits&lt;char&gt; &gt; &gt;::_M_insert_int&lt;long&gt;(std::ostreambuf_iterator&lt;char, std::char_traits&lt;char&gt; &gt;, std::ios_base&amp;, char, long) const (in /usr/lib/libstdc++.so.6.0.18)
+==1302==    by 0x40DE168: std::num_put&lt;char, std::ostreambuf_iterator&lt;char, std::char_traits&lt;char&gt; &gt; &gt;::do_put(std::ostreambuf_iterator&lt;char, std::char_traits&lt;char&gt; &gt;, std::ios_base&amp;, char, long) const (in /usr/lib/libstdc++.so.6.0.18)
+==1302==    by 0x40E9F1D: std::ostream&amp; std::ostream::_M_insert&lt;long&gt;(long) (in /usr/lib/libstdc++.so.6.0.18)
+==1302==    by 0x40EA112: std::ostream::operator&lt;&lt;(int) (in /usr/lib/libstdc++.so.6.0.18)
+==1302==    by 0x41CB9D2: (below main) (in /lib/libc-2.18.so)
+==1302==  Uninitialised value was created by a stack allocation
+==1302==    at 0x8048717: main (foo.cpp:3)
+==1302==
+sum: 134514654
+==1302==
+==1302== HEAP SUMMARY:
+==1302==     in use at exit: 0 bytes in 0 blocks
+==1302==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==1302==
+==1302== All heap blocks were freed -- no leaks are possible
+==1302==
+==1302== For counts of detected and suppressed errors, rerun with: -v
+==1302== ERROR SUMMARY: 20 errors from 4 contexts (suppressed: 0 from 0)
+</pre></div>
+</div>
+
+    </div>
+    <p>There can be a lot of noise in the output,
+especially when templates are involved.
+If you look at the last line in each group, <code class="docutils literal notranslate"><span class="pre">foo.cpp,</span> <span class="pre">line</span> <span class="pre">3</span></code> is called out each time.
+And that is exactly where the error lies.</p>
+<hr class="docutils" />
+<div class="admonition-more-to-explore admonition">
+<p class="admonition-title">More to Explore</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://valgrind.org/docs/manual/QuickStart.html">The Valgrind Quick Start Guide</a></p></li>
+<li><p><a class="reference external" href="http://pages.cs.wisc.edu/~bart/537/valgrind.html">Valgrind tutorial</a> - from Barton P. Miller</p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=bb1bTJtgXrI">Valgrind video tutorial</a></p></li>
+<li><p><a class="reference external" href="http://maintainablecode.logdown.com/posts/245425-valgrind-is-not-a-leak-checker">Valgrind is not a leak checker blogpost</a></p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+  <div id=scprogresscontainer>
+    You have attempted <span id=scprogresstotal></span> of <span id=scprogressposs></span> activities on this page <div id="subchapterprogress"></div>
+  </div>
+  
+      
+<ul>
+  <li id="relations-prev" class="navLink" title='Previous Section - 5.2. Free store pointers' data-toggle="tooltip">
+    <a href="free-store.html" aria-label="5.2. Free store pointers">
+        <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
+            <i class='prevNav glyphicon glyphicon-chevron-left' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
+        </div>
+    </a>
+  </li>
+</ul>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="free-store.html" aria-label="5.2. Free store pointers"></a>
+  
+<ul>
+  <li id="relations-next" class="navLink" title='Next Section - 6. Function pointers' data-toggle="tooltip" >
+    <a href="../function-pointers/toctree.html" aria-label="6. Function pointers">
+      <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
+          <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
+      </div>
+    </a>
+  </li>
+</ul>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="../function-pointers/toctree.html" aria-label="6. Function pointers">Next Section - 6. Function pointers</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2017-2019 Dave Parillo.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 4.1.11.
+    </p>
+  </div>
+</footer>
+
+
+
+
+
+  </body>
+</html>

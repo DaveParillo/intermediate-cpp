@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>3.2. Keyword: const &#8212; Intermediate Modern C++ Overview</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/presenter_mode.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/showEval.css?v=C6382F3" />
+    <link rel="stylesheet" type="text/css" href="../_static/pytutor.css?v=239FC54E" />
+    <link rel="stylesheet" type="text/css" href="../_static/modal-basic.css?v=8A1A42E4" />
+    <link rel="stylesheet" type="text/css" href="../_static/clickable.css?v=58C4E18A" />
+    <link rel="stylesheet" type="text/css" href="../_static/datafile.css?v=C184EB8A" />
+    <link rel="stylesheet" type="text/css" href="../_static/spreadsheet.css?v=B5F018A" />
+    <link rel="stylesheet" type="text/css" href="../_static/jexcel.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/japp.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/parsons.css?v=2F3E13EE" />
+    <link rel="stylesheet" type="text/css" href="../_static/js_lib/prettify.css?v=2A364B6B" />
+    <link rel="stylesheet" type="text/css" href="../_static/fitb.css?v=3BA0E63E" />
+    <link rel="stylesheet" type="text/css" href="../_static/poll.css?v=E220AC33" />
+    <link rel="stylesheet" type="text/css" href="../_static/dragndrop.css?v=1FF7F927" />
+    <link rel="stylesheet" type="text/css" href="../_static/matrixeq.css?v=58BC228F" />
+    <link rel="stylesheet" type="text/css" href="../_static/CodeChat.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabbedstuff.css?v=424F1CC9" />
+    <link rel="stylesheet" type="text/css" href="../_static/video.css?v=E5385B3B" />
+    <link rel="stylesheet" type="text/css" href="../_static/reveal.css?v=4A81D381" />
+    <link rel="stylesheet" type="text/css" href="../_static/activecode.css?v=F471F95B" />
+    <link rel="stylesheet" type="text/css" href="../_static/codemirror.css?v=1CE53237" />
+    <link rel="stylesheet" type="text/css" href="../_static/webgldemo.css?v=B36B48D" />
+    <link rel="stylesheet" type="text/css" href="../_static/webglinteractive.css?v=910DF1E1" />
+    <link rel="stylesheet" type="text/css" href="../_static/accessibility.css?v=808B982A" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css?v=4.1.11" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/runestonebase.js?v=4.1.11"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/showEval.js?v=5B2DD7A6"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js?v=836E01C"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js?v=B64CF0A8"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js?v=42F9EBEA"></script>
+    <script type="text/javascript" src="../_static/pytutor.js?v=82B022B9"></script>
+    <script type="text/javascript" src="../_static/codelens.js?v=CABECD49"></script>
+    <script type="text/javascript" src="../_static/shortanswer.js?v=D42E4CE3"></script>
+    <script type="text/javascript" src="../_static/timed_shortanswer.js?v=B3A117D7"></script>
+    <script type="text/javascript" src="../_static/clickable.js?v=DEB56CF8"></script>
+    <script type="text/javascript" src="../_static/timedclickable.js?v=93989C23"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js?v=BDC8551F"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js?v=5731007D"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="../_static/datafile.js?v=3ED1A80C"></script>
+    <script type="text/javascript" src="../_static/spreadsheet.js?v=9DA8BEAB"></script>
+    <script type="text/javascript" src="../_static/jexcel.js"></script>
+    <script type="text/javascript" src="../_static/japp.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js?v=CA7E8928"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js?v=73056367"></script>
+    <script type="text/javascript" src="../_static/parsons.js?v=68B5F56"></script>
+    <script type="text/javascript" src="../_static/timedparsons.js?v=2EEA9E5A"></script>
+    <script type="text/javascript" src="../_static/fitb.js?v=3FF7EFF0"></script>
+    <script type="text/javascript" src="../_static/timedfitb.js?v=2AA17071"></script>
+    <script type="text/javascript" src="../_static/poll.js?v=13CE919A"></script>
+    <script type="text/javascript" src="../_static/dragndrop.js?v=644C2C6C"></script>
+    <script type="text/javascript" src="../_static/timeddnd.js?v=378F237E"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js?v=D64CFA5A"></script>
+    <script type="text/javascript" src="../_static/animationbase.js?v=A043C3A7"></script>
+    <script type="text/javascript" src="../_static/mchoice.js?v=7B442CDC"></script>
+    <script type="text/javascript" src="../_static/timedmc.js?v=B010A457"></script>
+    <script type="text/javascript" src="../_static/timed.js?v=CEC6219E"></script>
+    <script type="text/javascript" src="../_static/lp.js?v=F137FF7A"></script>
+    <script type="text/javascript" src="../_static/gas.js?v=F0D0F02E"></script>
+    <script type="text/javascript" src="../_static/tabbedstuff.js?v=5BE6106"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js?v=53E888DE"></script>
+    <script type="text/javascript" src="../_static/reveal.js?v=9C3AAF60"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js?v=F1C496C8"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js?v=963AEB3A"></script>
+    <script type="text/javascript" src="../_static/codemirror.js?v=94F552C9"></script>
+    <script type="text/javascript" src="../_static/xml.js?v=236EDFF7"></script>
+    <script type="text/javascript" src="../_static/css.js?v=623153CE"></script>
+    <script type="text/javascript" src="../_static/python.js?v=14A28F1F"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js?v=33B91944"></script>
+    <script type="text/javascript" src="../_static/javascript.js?v=6F38CA04"></script>
+    <script type="text/javascript" src="../_static/sql.js?v=1B4587EC"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js?v=599B42B0"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js?v=88A1430F"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js?v=AE15A4A1"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js?v=8ABDFE7F"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js?v=747279FF"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js?v=7B020E13"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js?v=660E85C3"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js?v=54B21948"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js?v=70E93DF2"></script>
+    <script type="text/javascript" src="../_static/activecode.js?v=FE13F48"></script>
+    <script type="text/javascript" src="../_static/clike.js?v=2DCE0756"></script>
+    <script type="text/javascript" src="../_static/timed_activecode.js?v=C6AD5C24"></script>
+    <script type="text/javascript" src="../_static/sql-wasm.js?v=44FE0709"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js?v=2B768384"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js?v=8408C997"></script>
+    <script type="text/javascript" src="../_static/Blob.js?v=AEC2447"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js?v=4.1.11"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="../_static/presenter_mode.js?v=4.1.11"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.3. Keyword: auto" href="auto.html" />
+    <link rel="prev" title="3.1. Introduction to functions" href="functions.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="shortcut icon" href="/intermediate-cpp/static/favicon.ico" type="image/ico" />
+
+<script type="text/javascript">
+  eBookConfig = {};
+  
+    eBookConfig.useRunestoneServices = false;
+    eBookConfig.host = 'https://daveparillo.github.io/intermediate-cpp/' || 'http://127.0.0.1:8000';
+    eBookConfig.app = eBookConfig.host+'/intermediate-cpp';
+    eBookConfig.course = 'intermediate-cpp';
+    eBookConfig.basecourse = 'intermediate-cpp';
+    eBookConfig.isLoggedIn = false;
+  
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.logLevel = 0;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "unknown";
+  eBookConfig.python3 = true;
+  eBookConfig.acDefaultLanguage = 'cpp' ? 'cpp' : 'python'
+  eBookConfig.runestone_version = '4.1.11';
+  eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.enable_chatcodes = false ? false : false;
+
+
+</script>
+
+
+
+
+  </head><body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar" aria-label="navbar toggle" class="visuallyhidden">toggle navbar</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        
+          <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;'>&nbsp;<span aria-label="logo" class="visuallyhidden">Runestone Logo</span> </a>
+        
+        <a class="navbar-brand" href="../index.html" aria-label="index-page">
+          
+          intermediate-cpp
+        </a>
+      </div>
+    </div>
+
+
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav navbar-right" >
+
+        <li class="divider-vertical"></li>
+
+        <!-- social media dropdown -->
+        <!-- end social media dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'><span aria-label="Search" class="visuallyhidden">Search</span></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html' aria-label="index-page">Table of Contents</a></li>
+            
+            <li><a href='../genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        
+        <li class="divider-vertical"></li>
+        <!-- <li id="scratch_ac_link"><a href="javascript:ACFactory.toggleScratchActivecode()">Scratch ActiveCode</a></li> -->
+
+        <!-- <li class="dropdown">             -->
+          <li id="scratch_ac_link" class="dropdown"><a href="javascript:ACFactory.toggleScratchActivecode()">
+              <i class="glyphicon glyphicon-pencil" style="opacity:0.9;"><span aria-label="Scratch Activecode" class="visuallyhidden">Scratch Activecode</span></i></a></li>
+        <!-- </li> -->
+
+        <li class="divider-vertical"></li>
+
+        
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        
+          
+          <li class="divider-vertical"></li>
+        
+        <!-- 
+          
+  <li id="relations-prev" title="Previous Chapter - 3.1. Introduction to functions" data-toggle="tooltip">
+    <a href="functions.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - 3.3. Keyword: <code class="docutils literal notranslate"><span class="pre">auto</span></code>' data-toggle="tooltip" >              
+    <a href="auto.html" >
+        <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+      </div> <!-- navbar -->
+
+
+
+
+
+
+
+    </div> <!-- container -->
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content" role="main">
+  
+  <div class="section" id="keyword-const">
+<span id="index-0"></span><h1>3.2. Keyword: <code class="docutils literal notranslate"><span class="pre">const</span></code><a class="headerlink" href="#keyword-const" title="Permalink to this headline">¶</a></h1>
+<p>Use <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=const">const</a> to instruct the compiler to hold something constant.
+The <code class="docutils literal notranslate"><span class="pre">const</span></code> keyword can modify the behavior of anything, depending on where it is used:</p>
+<ul class="simple">
+<li><p>fundamental types</p></li>
+<li><p>structs or classes</p></li>
+<li><p>functions and function parameters</p></li>
+<li><p>pointers and references</p>
+<ul>
+<li><p>or the values stored in pointers and references</p></li>
+</ul>
+</li>
+</ul>
+<p>Programs typically use a lot of constants.
+Mathematical constants like <span class="math notranslate nohighlight">\(\pi\)</span>, or <span class="math notranslate nohighlight">\(e\)</span>, and unit conversions are common.
+Obviously, it would be bad if a program changed the value of <span class="math notranslate nohighlight">\(\pi\)</span> in the middle
+of its execution.
+As programmers, we can make a promise to never change those variables that should
+not change.
+But the language allows a way to enforce the idea.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">const</span></code> is a named constant.
+It can’t be assigned a new value after initialization.
+For example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159265359</span><span class="p">;</span>
+
+<span class="kt">double</span> <span class="n">area</span> <span class="o">=</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">r</span> <span class="o">*</span> <span class="n">r</span><span class="p">;</span>           <span class="c1">// OK to read pi like any other variable</span>
+
+<span class="n">pi</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                             <span class="c1">// this is a compile error</span>
+</pre></div>
+</div>
+<p id="index-1">Returning to our by_reference function from the previous section,
+we have seen that pass by reference makes passing data to functions cheap:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">by_reference</span> <span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;in by_ref the address of x is   &quot;</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>But one of the side-effects of making passing cheap,
+is that now the called function might change the value provided.
+As programmers, we could promise to not change values in functions that shouldn’t,
+but generally, we don’t like promises.
+Programmers prefer contracts.
+Fortunately, <code class="docutils literal notranslate"><span class="pre">const</span></code> allows us to define just such a contract in the declaration:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">by_reference</span> <span class="p">(</span><span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;in by_ref the address of x is   &quot;</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>  <span class="c1">// this is now a compile error</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This is called <strong>passing by constant reference</strong>, or “const ref”, for short.
+Passing by const ref allows us to enforce our intentions.
+If a variable is declared as <code class="docutils literal notranslate"><span class="pre">const</span></code>, it is a compile error to change it.
+Any callers can use this function and rest assured that their data cannot change.
+The more time you spend programming,
+the more you will appreciate how powerful that guarantee is.</p>
+<p>C99 added the <code class="docutils literal notranslate"><span class="pre">const</span></code> keyword, so now it’s in both languages,
+but you don’t see it nearly as often in C.
+Many programmers use <code class="docutils literal notranslate"><span class="pre">#define</span></code> instead.</p>
+<div class="section" id="prefer-const-to-define">
+<span id="index-2"></span><h2>3.2.1. Prefer <code class="docutils literal notranslate"><span class="pre">const</span></code> to <code class="docutils literal notranslate"><span class="pre">#define</span></code><a class="headerlink" href="#prefer-const-to-define" title="Permalink to this headline">¶</a></h2>
+<p>We also prefer <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=inline specifier">inline specifier</a> and <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=enum declaration">enum declaration</a> over
+<a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=define">define</a>.</p>
+<p>There are good reasons to avoid <code class="docutils literal notranslate"><span class="pre">#define</span></code> where alternatives exist.</p>
+<p><code class="docutils literal notranslate"><span class="pre">#define</span></code> is parsed by the <em>preprocessor</em>, not the compiler.
+This mean that effectively, all <code class="docutils literal notranslate"><span class="pre">#define</span></code> directives are literally strings.
+Fundamentally they are no different from any other pre-processor directive (<code class="docutils literal notranslate"><span class="pre">#include</span></code>, <code class="docutils literal notranslate"><span class="pre">#ifdef</span></code>, etc.),
+except that people commonly use <code class="docutils literal notranslate"><span class="pre">#define</span></code> as a placeholder for a numeric <a class="reference internal" href="../glossary.html#term-type"><span class="xref std std-term">type</span></a>,
+or a function.</p>
+<p>For example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#define ASPECT_RATIO 1.653</span>
+</pre></div>
+</div>
+<p>is an old fashioned way to define a constant, but you’ll likely see it ‘in the wild’.
+The pre-processor literally copies the value ‘1.653’ every place in the source code
+it encounters the string ‘ASPECT_RATIO’.
+Then the program is compiled.</p>
+<p>Prefer this instead:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">double</span> <span class="n">ASPECT_RATIO</span> <span class="o">=</span> <span class="mf">1.653</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This version preserves the name ‘ASPECT_RATIO’ which can simplify debugging.
+It is possible to also preserve macro names using
+certain debugging compiler switches, such as <code class="docutils literal notranslate"><span class="pre">-g3</span></code>.</p>
+<div class="section" id="function-like-macros-using-define">
+<span id="index-3"></span><h3>3.2.1.1. Function-like macros using <code class="docutils literal notranslate"><span class="pre">#define</span></code><a class="headerlink" href="#function-like-macros-using-define" title="Permalink to this headline">¶</a></h3>
+<p>If you use <code class="docutils literal notranslate"><span class="pre">#define</span></code> to create a function-like macro, then unexpected behaviors are possible.
+For example,
+a macro to call some function <code class="docutils literal notranslate"><span class="pre">f()</span></code> with the larger of either <code class="docutils literal notranslate"><span class="pre">a</span></code> or <code class="docutils literal notranslate"><span class="pre">b</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="cp">#define CALL_WITH_MAX(a,b) f((a) &gt; (b) ? (a) : (b))</span>
+
+<span class="kt">int</span> <span class="nf">f</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span><span class="p">;</span>
+  <span class="k">const</span> <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">11</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">CALL_WITH_MAX</span><span class="p">(</span><span class="o">++</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>                  <span class="c1">// call f, but throw away the result</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;, a: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span> <span class="c1">// a is one larger each iteration</span>
+  <span class="p">}</span>
+
+  <span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">11</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">CALL_WITH_MAX</span><span class="p">(</span><span class="o">++</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">+</span><span class="mi">10</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;, a: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The number of times <code class="docutils literal notranslate"><span class="pre">a</span></code> is incremented depends on <strong>how</strong> <code class="docutils literal notranslate"><span class="pre">CALL_WITH_MAX</span></code> is called.
+In this case, the value of <code class="docutils literal notranslate"><span class="pre">b</span></code> affects whether <code class="docutils literal notranslate"><span class="pre">a</span></code> is incremented once or twice.
+<strong>Ouch!</strong></p>
+<p>Step through <a class="reference external" href="http://pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0A%23define%20CALL_WITH_MAX%28a,b%29%20f%28%28a%29%20%3E%20%28b%29%20%3F%20%28a%29%20%3A%20%28b%29%29%0A%0Aint%20f%28const%20int%20x%29%20%7B%0A%20%20return%20x%3B%0A%7D%0Aint%20main%28%29%20%7B%0A%20%20int%20a%20%3D%20-5%3B%20%0A%20%20const%20int%20b%20%3D%200%3B%0A%0A%20%20for%20%28int%20i%20%3D%201%3B%20i%20%3C%2011%3B%20%2B%2Bi%29%20%7B%0A%20%20%20%20CALL_WITH_MAX%28%2B%2Ba,%20b%29%3B%0A%20%20%20%20std%3A%3Acout%20%3C%3C%20i%20%3C%3C%20%22,%20a%3A%20%22%20%3C%3C%20a%20%3C%3C%20'%5Cn'%3B%0A%20%20%7D%0A%20%20a%20%3D%20-5%3B%20%0A%20%20for%20%28int%20i%20%3D%201%3B%20i%20%3C%2011%3B%20%2B%2Bi%29%20%7B%0A%20%20%20%20CALL_WITH_MAX%28%2B%2Ba,%20b%2B10%29%3B%0A%20%20%20%20std%3A%3Acout%20%3C%3C%20i%20%3C%3C%20%22,%20a%3A%20%22%20%3C%3C%20a%20%3C%3C%20'%5Cn'%3B%0A%20%20%7D%0A%7D&amp;curInstr=63&amp;mode=display&amp;origin=opt-frontend.js&amp;py=cpp&amp;rawInputLstJSON=%5B%5D">example 17</a> and see for yourself.</p>
+<p><code class="docutils literal notranslate"><span class="pre">#define</span></code> may seem like a shortcut.
+It’s not.</p>
+<p>Use it when no better alternative exists.</p>
+</div>
+</div>
+<div class="section" id="keyword-constexpr">
+<span id="index-4"></span><h2>3.2.2. Keyword: <code class="docutils literal notranslate"><span class="pre">constexpr</span></code><a class="headerlink" href="#keyword-constexpr" title="Permalink to this headline">¶</a></h2>
+<p>The keyword <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=constexpr">constexpr</a> was added in C++11.</p>
+<p>The fundamental difference between <code class="docutils literal notranslate"><span class="pre">const</span></code> and <code class="docutils literal notranslate"><span class="pre">constexpr</span></code> is that
+<code class="docutils literal notranslate"><span class="pre">constexpr</span></code> must be able to be determined at compile time.
+So while this is OK:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">constexpr</span> <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159265359</span><span class="p">;</span>
+
+<span class="c1">// and so is this</span>
+<span class="k">constexpr</span> <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="n">acos</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">// and so is this</span>
+<span class="k">constexpr</span> <span class="kt">double</span> <span class="nf">area</span> <span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">radius</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">radius</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This is not OK in C++11:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">constexpr</span> <span class="kt">double</span> <span class="nf">area</span> <span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">radius</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">assert</span> <span class="p">(</span><span class="n">radius</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">);</span>
+   <span class="k">return</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">radius</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Adding a simple assertion causes this function to no longer compile:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>g++ -std=c++11 -Wall -Wextra -pedantic     area.cpp   -o area
+area.cpp: In function ‘constexpr double area(double)’:
+area.cpp:8:1: error: body of constexpr function ‘constexpr double area(double)’ not a return-statement
+  }
+  ^
+</pre></div>
+</div>
+<p>On compilers that support C++14, if you compile with <code class="docutils literal notranslate"><span class="pre">-std=c++11</span></code> you may see a warning like:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>warning: use of this statement in a constexpr function is a C++14 extension [-Wc++14-extensions]
+  assert (radius &gt; 0);
+</pre></div>
+</div>
+<p>There are some exceptions, but in C++11,
+any function more complex than <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">(some_expression)</span></code>
+is not able to be evaluated at compile time,
+therefore, it won’t compile as a <code class="docutils literal notranslate"><span class="pre">constexpr</span></code> expression.
+You should still use it when you can.</p>
+<p>The rules for <code class="docutils literal notranslate"><span class="pre">constexpr</span></code> changed in C++14 and more in C++17.
+Although not available on the Mesa server, you should still
+<a class="reference external" href="http://en.cppreference.com/w/cpp/language/constexpr">read the docs</a>
+and be aware of what is and is not a valid constant expression
+for whatever environment you are working in.</p>
+</div>
+<div class="section" id="guidelines-for-now">
+<span id="index-5"></span><h2>3.2.3. Guidelines for now<a class="headerlink" href="#guidelines-for-now" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>When creating local variables</p>
+<ul>
+<li><p>Ask: “Does this variable ever change?”</p></li>
+<li><p>If not, consider <code class="docutils literal notranslate"><span class="pre">const</span></code> or <code class="docutils literal notranslate"><span class="pre">constexpr</span></code></p></li>
+</ul>
+</li>
+<li><p>Recall <code class="docutils literal notranslate"><span class="pre">constexpr</span></code> is more restrictive</p>
+<ul>
+<li><p>Constant expression is evaluated at <em>compile time</em></p></li>
+</ul>
+</li>
+<li><p>When passing parameters to functions</p>
+<ul>
+<li><p>Consider passing by <code class="docutils literal notranslate"><span class="pre">const</span></code> reference</p>
+<ul>
+<li><p>Applies only to object types</p>
+<ul>
+<li><p>Pass fundamental types by <code class="docutils literal notranslate"><span class="pre">const</span></code> value if they should not change</p></li>
+</ul>
+</li>
+<li><p>Avoids making an extra (unneeded) copy</p></li>
+<li><p>Prevents unintended modification</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="admonition-try-this admonition">
+<p class="admonition-title">Try This!</p>
+<p>Given the following:</p>
+<p>How many simple changes can you make to the function <code class="docutils literal notranslate"><span class="pre">area</span></code> that are valid
+if the function signature is</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">double</span> <span class="n">area</span> <span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">radius</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>but invalid if the function signature is unchanged?</p>
+</div>
+<hr class="docutils" />
+<div class="admonition-more-to-explore admonition">
+<p class="admonition-title">More to Explore</p>
+<ul class="simple">
+<li><p>From: cppreference.com:
+<a class="reference external" href="http://en.cppreference.com/w/cpp/language/cv">const qualifier</a> and
+<a class="reference external" href="http://en.cppreference.com/w/cpp/language/constant_expression">constexpr</a></p></li>
+<li><p><a class="reference external" href="https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#Rconst-constexpr">C++ Core Guidelines for constexpr</a>
+from GitHub</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+  <div id=scprogresscontainer>
+    You have attempted <span id=scprogresstotal></span> of <span id=scprogressposs></span> activities on this page <div id="subchapterprogress"></div>
+  </div>
+  
+      
+<ul>
+  <li id="relations-prev" class="navLink" title='Previous Section - 3.1. Introduction to functions' data-toggle="tooltip">
+    <a href="functions.html" aria-label="3.1. Introduction to functions">
+        <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
+            <i class='prevNav glyphicon glyphicon-chevron-left' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
+        </div>
+    </a>
+  </li>
+</ul>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="functions.html" aria-label="3.1. Introduction to functions"></a>
+  
+<ul>
+  <li id="relations-next" class="navLink" title='Next Section - 3.3. Keyword: auto ' data-toggle="tooltip" >
+    <a href="auto.html" aria-label="3.3. Keyword: auto ">
+      <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
+          <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
+      </div>
+    </a>
+  </li>
+</ul>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="auto.html" aria-label="3.3. Keyword: auto ">Next Section - 3.3. Keyword: auto </a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2017-2019 Dave Parillo.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 4.1.11.
+    </p>
+  </div>
+</footer>
+
+
+
+
+
+  </body>
+</html>

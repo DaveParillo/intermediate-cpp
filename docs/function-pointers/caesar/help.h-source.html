@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+  <title><title><no title></title></title>
+  <meta http-equiv="content-type" content="text/html; charset=None">
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
+</head>
+<body>
+<h2><title><no title></title></h2>
+
+<div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">usage</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Encrypt or decrypt text read from standard input</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;Usage: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; [-h|l|f]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">help</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">usage</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Options:</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;  -h   Show this text and exit.</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;  -l   En(de)crypt using the Latin characters ([A-Z,a-z]</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;         (default)</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;  -f   En(de)crypt using the Full set of &quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;printable ASCII characters</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">Only 1 of any option can be meaningfully specified.</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">The last of either &#39;-l&#39; or &#39;f&#39; provided is used.</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">Running with no input from standard in enters</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;&#39;interactive mode&#39;:</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot; - Text can be entered one message per line.</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot; - The program runs until &#39;CTRL+C&#39; is entered or &quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;   EOF is reached.</span><span class="se">\n\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;Running on plain text creates cipher text</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;Running on cipher text creates plain text</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">;</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</body>
+</html>

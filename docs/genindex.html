@@ -1,0 +1,2596 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Index &#8212; Intermediate Modern C++ Overview</title>
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/presenter_mode.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/showEval.css?v=C6382F3" />
+    <link rel="stylesheet" type="text/css" href="_static/pytutor.css?v=239FC54E" />
+    <link rel="stylesheet" type="text/css" href="_static/modal-basic.css?v=8A1A42E4" />
+    <link rel="stylesheet" type="text/css" href="_static/clickable.css?v=58C4E18A" />
+    <link rel="stylesheet" type="text/css" href="_static/datafile.css?v=C184EB8A" />
+    <link rel="stylesheet" type="text/css" href="_static/spreadsheet.css?v=B5F018A" />
+    <link rel="stylesheet" type="text/css" href="_static/jexcel.css" />
+    <link rel="stylesheet" type="text/css" href="_static/japp.css" />
+    <link rel="stylesheet" type="text/css" href="_static/parsons.css?v=2F3E13EE" />
+    <link rel="stylesheet" type="text/css" href="_static/js_lib/prettify.css?v=2A364B6B" />
+    <link rel="stylesheet" type="text/css" href="_static/fitb.css?v=3BA0E63E" />
+    <link rel="stylesheet" type="text/css" href="_static/poll.css?v=E220AC33" />
+    <link rel="stylesheet" type="text/css" href="_static/dragndrop.css?v=1FF7F927" />
+    <link rel="stylesheet" type="text/css" href="_static/matrixeq.css?v=58BC228F" />
+    <link rel="stylesheet" type="text/css" href="_static/CodeChat.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabbedstuff.css?v=424F1CC9" />
+    <link rel="stylesheet" type="text/css" href="_static/video.css?v=E5385B3B" />
+    <link rel="stylesheet" type="text/css" href="_static/reveal.css?v=4A81D381" />
+    <link rel="stylesheet" type="text/css" href="_static/activecode.css?v=F471F95B" />
+    <link rel="stylesheet" type="text/css" href="_static/codemirror.css?v=1CE53237" />
+    <link rel="stylesheet" type="text/css" href="_static/webgldemo.css?v=B36B48D" />
+    <link rel="stylesheet" type="text/css" href="_static/webglinteractive.css?v=910DF1E1" />
+    <link rel="stylesheet" type="text/css" href="_static/accessibility.css?v=808B982A" />
+    <link rel="stylesheet" href="_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="_static/runestone-custom-sphinx-bootstrap.css?v=4.1.11" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/runestonebase.js?v=4.1.11"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/showEval.js?v=5B2DD7A6"></script>
+    <script type="text/javascript" src="_static/d3.v2.min.js?v=836E01C"></script>
+    <script type="text/javascript" src="_static/jquery.ba-bbq.min.js?v=B64CF0A8"></script>
+    <script type="text/javascript" src="_static/jquery.jsPlumb-1.3.10-all-min.js?v=42F9EBEA"></script>
+    <script type="text/javascript" src="_static/pytutor.js?v=82B022B9"></script>
+    <script type="text/javascript" src="_static/codelens.js?v=CABECD49"></script>
+    <script type="text/javascript" src="_static/shortanswer.js?v=D42E4CE3"></script>
+    <script type="text/javascript" src="_static/timed_shortanswer.js?v=B3A117D7"></script>
+    <script type="text/javascript" src="_static/clickable.js?v=DEB56CF8"></script>
+    <script type="text/javascript" src="_static/timedclickable.js?v=93989C23"></script>
+    <script type="text/javascript" src="_static/skulpt.min.js?v=BDC8551F"></script>
+    <script type="text/javascript" src="_static/skulpt-stdlib.js?v=5731007D"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="_static/datafile.js?v=3ED1A80C"></script>
+    <script type="text/javascript" src="_static/spreadsheet.js?v=9DA8BEAB"></script>
+    <script type="text/javascript" src="_static/jexcel.js"></script>
+    <script type="text/javascript" src="_static/japp.js"></script>
+    <script type="text/javascript" src="_static/js_lib/prettify.js?v=CA7E8928"></script>
+    <script type="text/javascript" src="_static/js_lib/hammer.min.js?v=73056367"></script>
+    <script type="text/javascript" src="_static/parsons.js?v=68B5F56"></script>
+    <script type="text/javascript" src="_static/timedparsons.js?v=2EEA9E5A"></script>
+    <script type="text/javascript" src="_static/fitb.js?v=3FF7EFF0"></script>
+    <script type="text/javascript" src="_static/timedfitb.js?v=2AA17071"></script>
+    <script type="text/javascript" src="_static/poll.js?v=13CE919A"></script>
+    <script type="text/javascript" src="_static/dragndrop.js?v=644C2C6C"></script>
+    <script type="text/javascript" src="_static/timeddnd.js?v=378F237E"></script>
+    <script type="text/javascript" src="_static/matrixeq.js?v=D64CFA5A"></script>
+    <script type="text/javascript" src="_static/animationbase.js?v=A043C3A7"></script>
+    <script type="text/javascript" src="_static/mchoice.js?v=7B442CDC"></script>
+    <script type="text/javascript" src="_static/timedmc.js?v=B010A457"></script>
+    <script type="text/javascript" src="_static/timed.js?v=CEC6219E"></script>
+    <script type="text/javascript" src="_static/lp.js?v=F137FF7A"></script>
+    <script type="text/javascript" src="_static/gas.js?v=F0D0F02E"></script>
+    <script type="text/javascript" src="_static/tabbedstuff.js?v=5BE6106"></script>
+    <script type="text/javascript" src="_static/runestonevideo.js?v=53E888DE"></script>
+    <script type="text/javascript" src="_static/reveal.js?v=9C3AAF60"></script>
+    <script type="text/javascript" src="_static/jquery.highlight.js?v=F1C496C8"></script>
+    <script type="text/javascript" src="_static/bookfuncs.js?v=963AEB3A"></script>
+    <script type="text/javascript" src="_static/codemirror.js?v=94F552C9"></script>
+    <script type="text/javascript" src="_static/xml.js?v=236EDFF7"></script>
+    <script type="text/javascript" src="_static/css.js?v=623153CE"></script>
+    <script type="text/javascript" src="_static/python.js?v=14A28F1F"></script>
+    <script type="text/javascript" src="_static/htmlmixed.js?v=33B91944"></script>
+    <script type="text/javascript" src="_static/javascript.js?v=6F38CA04"></script>
+    <script type="text/javascript" src="_static/sql.js?v=1B4587EC"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/CLDRPluralRuleParser.js?v=599B42B0"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.js?v=88A1430F"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.messagestore.js?v=AE15A4A1"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.fallbacks.js?v=8ABDFE7F"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.language.js?v=747279FF"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.parser.js?v=7B020E13"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.emitter.js?v=660E85C3"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.emitter.bidi.js?v=54B21948"></script>
+    <script type="text/javascript" src="_static/activecode-i18n.en.js?v=70E93DF2"></script>
+    <script type="text/javascript" src="_static/activecode.js?v=FE13F48"></script>
+    <script type="text/javascript" src="_static/clike.js?v=2DCE0756"></script>
+    <script type="text/javascript" src="_static/timed_activecode.js?v=C6AD5C24"></script>
+    <script type="text/javascript" src="_static/sql-wasm.js?v=44FE0709"></script>
+    <script type="text/javascript" src="_static/webglinteractive.js?v=2B768384"></script>
+    <script type="text/javascript" src="_static/FileSaver.min.js?v=8408C997"></script>
+    <script type="text/javascript" src="_static/Blob.js?v=AEC2447"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="_static/user-highlights.js?v=4.1.11"></script>
+    <script type="text/javascript" src="_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="_static/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="_static/presenter_mode.js?v=4.1.11"></script>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="shortcut icon" href="/intermediate-cpp/static/favicon.ico" type="image/ico" />
+
+<script type="text/javascript">
+  eBookConfig = {};
+  
+    eBookConfig.useRunestoneServices = false;
+    eBookConfig.host = 'https://daveparillo.github.io/intermediate-cpp/' || 'http://127.0.0.1:8000';
+    eBookConfig.app = eBookConfig.host+'/intermediate-cpp';
+    eBookConfig.course = 'intermediate-cpp';
+    eBookConfig.basecourse = 'intermediate-cpp';
+    eBookConfig.isLoggedIn = false;
+  
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.logLevel = 0;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "unknown";
+  eBookConfig.python3 = true;
+  eBookConfig.acDefaultLanguage = 'cpp' ? 'cpp' : 'python'
+  eBookConfig.runestone_version = '4.1.11';
+  eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.enable_chatcodes = false ? false : false;
+
+
+</script>
+
+
+
+
+  </head><body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar" aria-label="navbar toggle" class="visuallyhidden">toggle navbar</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        
+          <a class="brand-logo" style='background: transparent url("_static/img/logo_small.png") no-repeat 0px 0px;'>&nbsp;<span aria-label="logo" class="visuallyhidden">Runestone Logo</span> </a>
+        
+        <a class="navbar-brand" href="index.html" aria-label="index-page">
+          
+          intermediate-cpp
+        </a>
+      </div>
+    </div>
+
+
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav navbar-right" >
+
+        <li class="divider-vertical"></li>
+
+        <!-- social media dropdown -->
+        <!-- end social media dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'><span aria-label="Search" class="visuallyhidden">Search</span></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='index.html' aria-label="index-page">Table of Contents</a></li>
+            
+            <li><a href='#'>Book Index</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        
+        <li class="divider-vertical"></li>
+        <!-- <li id="scratch_ac_link"><a href="javascript:ACFactory.toggleScratchActivecode()">Scratch ActiveCode</a></li> -->
+
+        <!-- <li class="dropdown">             -->
+          <li id="scratch_ac_link" class="dropdown"><a href="javascript:ACFactory.toggleScratchActivecode()">
+              <i class="glyphicon glyphicon-pencil" style="opacity:0.9;"><span aria-label="Scratch Activecode" class="visuallyhidden">Scratch Activecode</span></i></a></li>
+        <!-- </li> -->
+
+        <li class="divider-vertical"></li>
+
+        
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        
+          
+          <li class="divider-vertical"></li>
+        
+        <!-- 
+
+   
+          
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        
+-->
+        
+          <li></li>
+        
+      </ul>
+
+      </div> <!-- navbar -->
+
+
+
+
+
+
+
+    </div> <!-- container -->
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content" role="main">
+  
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#Symbols"><strong>Symbols</strong></a>
+ | <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#K"><strong>K</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ 
+</div>
+<h2 id="Symbols">Symbols</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    #define
+
+      <ul>
+        <li><a href="function-intro/constants.html#index-3">function-like macro</a>
+</li>
+      </ul></li>
+      <li>
+    #include search path
+
+      <ul>
+        <li><a href="function-intro/functions.html#index-1">make</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    ``*this``
+
+      <ul>
+        <li><a href="class-II-functions/this.html#index-0">keyword</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-abstract-base-class"><strong>abstract base class</strong></a>
+
+      <ul>
+        <li><a href="class-III-design/interfaces.html#index-0">interface</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-abstract-data-type"><strong>abstract data type</strong></a>
+</li>
+      <li><a href="class-I-intro/abstraction.html#index-0">abstraction</a>, <a href="class-I-intro/intro.html#index-0">[1]</a>, <a href="class-III-design/oo-concepts.html#index-1">[2]</a>, <a href="glossary.html#term-abstraction"><strong>[3]</strong></a>
+
+      <ul>
+        <li><a href="beginnings/types.html#index-0">fundamental types</a>
+</li>
+      </ul></li>
+      <li><a href="algorithms/intro.html#index-1">accumulate</a>
+</li>
+      <li><a href="glossary.html#term-activation-record"><strong>activation record</strong></a>
+</li>
+      <li>
+    ActiveCode
+
+      <ul>
+        <li><a href="help/navhelp.html#index-1">help</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-activecode"><strong>activecode</strong></a>
+</li>
+      <li><a href="glossary.html#term-adt"><strong>ADT</strong></a>
+</li>
+      <li><a href="glossary.html#term-aggregate-type"><strong>aggregate type</strong></a>
+</li>
+      <li>
+    aggregation
+
+      <ul>
+        <li><a href="class-III-design/uml.html#index-7">UML</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-algorithm"><strong>algorithm</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-0">algorithms</a>
+
+      <ul>
+        <li><a href="algorithms/intro.html#index-2">loops</a>
+</li>
+        <li><a href="algorithms/model.html#index-0">model</a>
+</li>
+        <li><a href="algorithms/copy.html#index-0">refactoring</a>, <a href="algorithms/refactor.html#index-0">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-ancestor"><strong>ancestor</strong></a>
+</li>
+      <li>
+    Andrei Alexandrescu
+
+      <ul>
+        <li><a href="beginnings/scope.html#index-4">namespace using</a>
+</li>
+      </ul></li>
+      <li>
+    answering self-check questions
+
+      <ul>
+        <li><a href="help/navhelp.html#index-3">help</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-anti-pattern"><strong>anti-pattern</strong></a>
+</li>
+      <li>
+    anti-patterns
+
+      <ul>
+        <li><a href="beginnings/what-you-know-now.html#index-1">introductory topics comments</a>
+</li>
+      </ul></li>
+      <li>
+    array
+
+      <ul>
+        <li><a href="containers/sequence-containers.html#index-3">sequence containers</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-array-based-list"><strong>array-based list</strong></a>
+</li>
+      <li><a href="glossary.html#term-array-based-queue"><strong>array-based queue</strong></a>
+</li>
+      <li><a href="glossary.html#term-array-based-stack"><strong>array-based stack</strong></a>
+</li>
+      <li>
+    arrays
+
+      <ul>
+        <li><a href="pointers/pointers.html#index-3">pointers</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-ascii-character-coding"><strong>ASCII character coding</strong></a>
+</li>
+      <li><a href="back-matter/app-a/debugging.html#index-6">assert</a>
+</li>
+      <li><a href="glossary.html#term-assignable"><strong>assignable</strong></a>
+</li>
+      <li>
+    association
+
+      <ul>
+        <li><a href="class-III-design/uml.html#index-6">multiplicity</a>
+</li>
+        <li><a href="class-III-design/uml.html#index-5">UML</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-associative-container"><strong>associative container</strong></a>
+</li>
+      <li><a href="containers/trees.html#index-0">associative containers</a>
+
+      <ul>
+        <li><a href="containers/unordered_map.html#index-0">hashing concepts</a>
+</li>
+        <li><a href="containers/map.html#index-0">map</a>, <a href="containers/set.html#index-0">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-attribute"><strong>attribute</strong></a>
+</li>
+      <li><a href="function-intro/auto.html#index-0">auto</a>
+
+      <ul>
+        <li><a href="function-overloads/trailing-return.html#index-0">keyword</a>
+</li>
+        <li><a href="function-overloads/trailing-return.html#index-0">trailing return type</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-backing-storage"><strong>backing storage</strong></a>
+</li>
+      <li><a href="glossary.html#term-bag"><strong>bag</strong></a>
+</li>
+      <li><a href="glossary.html#term-balanced-tree"><strong>balanced tree</strong></a>
+</li>
+      <li><a href="glossary.html#term-base"><strong>base</strong></a>
+</li>
+      <li><a href="glossary.html#term-base-case"><strong>base case</strong></a>
+</li>
+      <li><a href="glossary.html#term-base-class"><strong>base class</strong></a>
+</li>
+      <li>
+    best practices
+
+      <ul>
+        <li><a href="beginnings/what-you-know-now.html#index-1">introductory topics comments</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-big-oh-notation"><strong>big-Oh notation</strong></a>
+</li>
+      <li><a href="glossary.html#term-binary-search"><strong>binary search</strong></a>
+</li>
+      <li><a href="glossary.html#term-binary-tree"><strong>binary tree</strong></a>
+</li>
+      <li>
+    binary trees
+
+      <ul>
+        <li><a href="trees/trees.html#index-0">trees; recursion</a>
+</li>
+      </ul></li>
+      <li><a href="algorithms/intro.html#index-1">binary_search</a>
+</li>
+      <li><a href="glossary.html#term-binning"><strong>binning</strong></a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    bird inheritance
+
+      <ul>
+        <li><a href="class-III-design/inheritance.html#index-4">graph</a>
+</li>
+      </ul></li>
+      <li>
+    Bjarne Stroustrup
+
+      <ul>
+        <li><a href="back-matter/faq.html#index-0">FAQ</a>
+</li>
+        <li><a href="class-III-design/inheritance.html#index-3">multiple inheritance</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-block"><strong>block</strong></a>
+</li>
+      <li><a href="glossary.html#term-boolean-variable"><strong>boolean variable</strong></a>
+</li>
+      <li><a href="glossary.html#term-bucket"><strong>bucket</strong></a>
+</li>
+      <li><a href="glossary.html#term-bucket-hashing"><strong>bucket hashing</strong></a>
+</li>
+      <li><a href="glossary.html#term-bug"><strong>bug</strong></a>
+</li>
+      <li><a href="back-matter/app-a/make.html#index-1">build steps</a>
+
+      <ul>
+        <li><a href="back-matter/app-a/make.html#index-1">graph</a>
+</li>
+      </ul></li>
+      <li>
+    by reference
+
+      <ul>
+        <li><a href="function-intro/functions.html#index-6">parameter passing</a>
+</li>
+      </ul></li>
+      <li>
+    by value
+
+      <ul>
+        <li><a href="function-intro/functions.html#index-5">parameter passing</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    C++
+
+      <ul>
+        <li><a href="beginnings/what-you-dont.html#index-0">introductory topics</a>
+</li>
+      </ul></li>
+      <li><a href="back-matter/app-a/make.html#index-1">c++ compiler</a>
+</li>
+      <li>
+    C++ evolution
+
+      <ul>
+        <li><a href="beginnings/what-you-dont.html#index-1">graph</a>
+</li>
+      </ul></li>
+      <li>
+    c-string
+
+      <ul>
+        <li><a href="string+vector/string.html#index-1">graph</a>
+</li>
+      </ul></li>
+      <li><a href="function-intro/functions.html#index-3">call stack</a>
+
+      <ul>
+        <li><a href="function-intro/functions.html#index-4">graph</a>, <a href="pointers/pointers.html#index-1">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-ceiling"><strong>ceiling</strong></a>
+</li>
+      <li>
+    chain of responsibility
+
+      <ul>
+        <li><a href="class-III-design/patterns.html#index-3">design pattern</a>
+</li>
+      </ul></li>
+      <li>
+    char array
+
+      <ul>
+        <li><a href="string+vector/string.html#index-0">graph</a>
+</li>
+      </ul></li>
+      <li>
+    char* argv[]
+
+      <ul>
+        <li><a href="pointers/pointers.html#index-6">pointers</a>
+</li>
+      </ul></li>
+      <li><a href="pointers/pointers.html#index-4">character arrays</a>
+</li>
+      <li><a href="glossary.html#term-child"><strong>child</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">clamp</a>
+</li>
+      <li><a href="class-I-intro/intro.html#index-0">class</a>, <a href="glossary.html#term-class"><strong>[1]</strong></a>
+
+      <ul>
+        <li><a href="class-II-functions/this.html#index-0">keyword</a>
+</li>
+        <li><a href="class-II-functions/overloads.html#index-0">operator overloads</a>
+</li>
+        <li><a href="class-II-functions/static.html#index-0">static member functions</a>
+</li>
+        <li><a href="class-II-functions/templates.html#index-0">templates</a>
+</li>
+      </ul></li>
+      <li><a href="class-III-design/composition.html#index-0">class design</a>
+
+      <ul>
+        <li><a href="class-III-design/uml.html#index-0">UML</a>
+</li>
+        <li><a href="class-III-design/uml.html#index-0">visualization</a>
+</li>
+      </ul></li>
+      <li>
+    class diagram
+
+      <ul>
+        <li><a href="class-III-design/uml.html#index-1">graph</a>
+</li>
+        <li><a href="class-III-design/uml.html#index-2">visibility</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-class-hierarchy"><strong>class hierarchy</strong></a>
+</li>
+      <li><a href="glossary.html#term-class-invariant"><strong>class invariant</strong></a>
+</li>
+      <li>
+    class invariants
+
+      <ul>
+        <li><a href="class-III-design/oo-concepts.html#index-2">encapsulation</a>
+</li>
+      </ul></li>
+      <li>
+    class members
+
+      <ul>
+        <li><a href="class-I-intro/pointers.html#index-0">pointers</a>
+</li>
+      </ul></li>
+      <li><a href="class-I-intro/intro.html#index-1">class vs. struct</a>
+</li>
+      <li>
+    classes
+
+      <ul>
+        <li><a href="class-III-design/composition.html#index-0">composition</a>
+</li>
+        <li><a href="class-III-design/inheritance.html#index-0">inheritance</a>
+</li>
+        <li><a href="class-III-design/patterns.html#index-0">patterns</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-client"><strong>client</strong></a>
+</li>
+      <li><a href="glossary.html#term-closed-hash-system"><strong>closed hash system</strong></a>
+</li>
+      <li><a href="glossary.html#term-code-block"><strong>code block</strong></a>
+</li>
+      <li>
+    CodeLens
+
+      <ul>
+        <li><a href="help/navhelp.html#index-2">help</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-codelens"><strong>codelens</strong></a>
+</li>
+      <li><a href="glossary.html#term-cohesion"><strong>cohesion</strong></a>
+</li>
+      <li><a href="glossary.html#term-collision"><strong>collision</strong></a>
+</li>
+      <li><a href="glossary.html#term-collision-resolution"><strong>collision resolution</strong></a>
+</li>
+      <li><a href="glossary.html#term-collision-resolution-policy"><strong>collision resolution policy</strong></a>
+</li>
+      <li>
+    command line
+
+      <ul>
+        <li><a href="pointers/pointers.html#index-6">pointers</a>
+</li>
+      </ul></li>
+      <li>
+    command line arguments
+
+      <ul>
+        <li><a href="pointers/pointers.html#index-7">graph</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-comment"><strong>comment</strong></a>
+</li>
+      <li>
+    comments
+
+      <ul>
+        <li><a href="beginnings/what-you-know-now.html#index-1">anti-patterns, introductory topics</a>
+</li>
+        <li><a href="beginnings/what-you-know-now.html#index-1">best practices, introductory topics</a>
+</li>
+        <li><a href="beginnings/what-you-know-now.html#index-0">introductory topics</a>
+</li>
+      </ul></li>
+      <li>
+    compact list
+
+      <ul>
+        <li><a href="containers/sequence-containers.html#index-5">graph</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-comparable"><strong>comparable</strong></a>
+</li>
+      <li><a href="glossary.html#term-comparator"><strong>comparator</strong></a>
+</li>
+      <li><a href="glossary.html#term-comparison"><strong>comparison</strong></a>
+</li>
+      <li><a href="glossary.html#term-compile"><strong>compile</strong></a>
+</li>
+      <li><a href="glossary.html#term-compile-time-error"><strong>compile-time error</strong></a>
+</li>
+      <li><a href="glossary.html#term-compile-time-polymorphism"><strong>compile-time polymorphism</strong></a>
+</li>
+      <li><a href="back-matter/app-a/make.html#index-1">compiler</a>
+
+      <ul>
+        <li><a href="class-I-intro/interfaces.html#index-1">file extensions</a>
+</li>
+      </ul></li>
+      <li>
+    compiler arguments
+
+      <ul>
+        <li><a href="back-matter/app-a/debugging.html#index-1">debugging</a>
+</li>
+      </ul></li>
+      <li>
+    compiling
+
+      <ul>
+        <li><a href="back-matter/app-a/make.html#index-0">introductory topics</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-complete-binary-tree"><strong>complete binary tree</strong></a>
+</li>
+      <li><a href="glossary.html#term-composite-design-pattern"><strong>Composite design pattern</strong></a>
+</li>
+      <li><a href="glossary.html#term-composite-type"><strong>composite type</strong></a>
+</li>
+      <li><a href="glossary.html#term-composition"><strong>composition</strong></a>
+
+      <ul>
+        <li><a href="class-III-design/composition.html#index-0">classes</a>
+</li>
+        <li><a href="class-III-design/uml.html#index-8">UML</a>
+</li>
+      </ul></li>
+      <li>
+    concepts
+
+      <ul>
+        <li><a href="function-overloads/concepts.html#index-0">templates</a>
+</li>
+      </ul></li>
+      <li>
+    const
+
+      <ul>
+        <li><a href="function-intro/constants.html#index-5">guidelines</a>
+</li>
+        <li><a href="function-intro/constants.html#index-0">keyword</a>, <a href="pointers/pointers.html#index-8">[1]</a>
+</li>
+        <li><a href="pointers/pointers.html#index-8">pointers</a>
+</li>
+      </ul></li>
+      <li><a href="class-I-intro/const.html#index-0">const class functions</a>
+</li>
+      <li><a href="pointers/pointers.html#index-8">const pointers</a>
+</li>
+      <li>
+    const reference
+
+      <ul>
+        <li><a href="function-intro/constants.html#index-1">parameter passing</a>
+</li>
+      </ul></li>
+      <li><a href="function-intro/constants.html#index-2">const vs define</a>
+</li>
+      <li><a href="glossary.html#term-constant-running-time"><strong>constant running time</strong></a>
+</li>
+      <li>
+    constexpr
+
+      <ul>
+        <li><a href="function-intro/constants.html#index-4">keyword</a>
+</li>
+      </ul></li>
+      <li>
+    constructor
+
+      <ul>
+        <li><a href="class-IV-memory/copy.html#index-0">copy</a>
+</li>
+      </ul></li>
+      <li><a href="class-I-intro/constructors.html#index-0">constructors</a>, <a href="class-II-functions/constructors.html#index-0">[1]</a>
+</li>
+      <li><a href="glossary.html#term-container"><strong>container</strong></a>
+</li>
+      <li><a href="glossary.html#term-container-class"><strong>container class</strong></a>
+</li>
+      <li><a href="containers/intro.html#index-0">containers</a>
+
+      <ul>
+        <li><a href="string+vector/intro.html#index-0">string and vector</a>
+</li>
+      </ul></li>
+      <li>
+    copy
+
+      <ul>
+        <li><a href="class-IV-memory/copy.html#index-0">constructor</a>
+</li>
+      </ul></li>
+      <li><a href="algorithms/intro.html#index-1">copy(_if)</a>
+</li>
+      <li><a href="glossary.html#term-cost"><strong>cost</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">count(_if)</a>
+</li>
+      <li>
+    cppreference.com
+
+      <ul>
+        <li><a href="back-matter/faq.html#index-0">FAQ</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-cpu"><strong>CPU</strong></a>
+</li>
+      <li><a href="glossary.html#term-current-position"><strong>current position</strong></a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-data-field"><strong>data field</strong></a>
+</li>
+      <li><a href="glossary.html#term-data-item"><strong>data item</strong></a>
+</li>
+      <li><a href="glossary.html#term-data-member"><strong>data member</strong></a>
+</li>
+      <li><a href="glossary.html#term-data-structure"><strong>data structure</strong></a>
+</li>
+      <li><a href="glossary.html#term-data-type"><strong>data type</strong></a>
+</li>
+      <li><a href="back-matter/app-a/debugging.html#index-0">debugging</a>, <a href="glossary.html#term-debugging"><strong>[1]</strong></a>
+
+      <ul>
+        <li><a href="back-matter/app-a/debugging.html#index-1">compiler arguments</a>
+</li>
+        <li><a href="back-matter/app-a/debugging.html#index-7">gdb</a>
+</li>
+        <li><a href="back-matter/app-a/debugging.html#index-8">gdb commands</a>
+</li>
+        <li><a href="back-matter/app-a/debugging.html#index-4">infinite loop</a>
+</li>
+        <li><a href="back-matter/app-a/debugging.html#index-2">link errors</a>
+</li>
+        <li><a href="pointers/valgrind.html#index-0">pointers</a>
+</li>
+        <li><a href="back-matter/app-a/debugging.html#index-3">runtime errors</a>
+</li>
+        <li><a href="back-matter/app-a/debugging.html#index-5">semantic errors</a>
+</li>
+        <li><a href="back-matter/app-a/debugging.html#index-1">syntax errors</a>
+</li>
+        <li><a href="pointers/valgrind.html#index-1">valgrind</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-declaration"><strong>declaration</strong></a>
+</li>
+      <li>
+    decltype
+
+      <ul>
+        <li><a href="function-overloads/trailing-return.html#index-1">keyword</a>
+</li>
+      </ul></li>
+      <li>
+    dependency
+
+      <ul>
+        <li><a href="class-III-design/uml.html#index-10">UML</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-depth"><strong>depth</strong></a>
+</li>
+      <li>
+    deque
+
+      <ul>
+        <li><a href="containers/sequence-containers.html#index-11">sequence containers</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-dequeue"><strong>dequeue</strong></a>
+</li>
+      <li><a href="glossary.html#term-derived-class"><strong>derived class</strong></a>
+</li>
+      <li><a href="glossary.html#term-descendant"><strong>descendant</strong></a>
+</li>
+      <li><a href="glossary.html#term-deserialization"><strong>deserialization</strong></a>
+</li>
+      <li><a href="glossary.html#term-design-pattern"><strong>design pattern</strong></a>
+
+      <ul>
+        <li><a href="class-III-design/patterns.html#index-3">chain of responsibility</a>
+</li>
+        <li><a href="class-III-design/patterns.html#index-2">strategy</a>
+</li>
+      </ul></li>
+      <li><a href="class-III-design/patterns.html#index-0">design patterns</a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">destroy</a>
+</li>
+      <li><a href="class-III-design/inheritance.html#index-3">diamond of death</a>
+</li>
+      <li><a href="glossary.html#term-dictionary"><strong>dictionary</strong></a>
+</li>
+      <li>
+    Do I need to know math
+
+      <ul>
+        <li><a href="back-matter/q150-do-i-need-to-know-math.html#index-0">FAQ</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-double-hashing"><strong>double hashing</strong></a>
+</li>
+      <li><a href="glossary.html#term-doubly-linked-list"><strong>doubly linked list</strong></a>
+</li>
+      <li><a href="glossary.html#term-dynamic-array"><strong>dynamic array</strong></a>
+</li>
+      <li><a href="glossary.html#term-dynamic-memory-allocation"><strong>dynamic memory allocation</strong></a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-element"><strong>element</strong></a>
+</li>
+      <li><a href="glossary.html#term-empty"><strong>empty</strong></a>
+</li>
+      <li><a href="class-III-design/oo-concepts.html#index-1">encapsulation</a>, <a href="glossary.html#term-encapsulation"><strong>[1]</strong></a>
+
+      <ul>
+        <li><a href="class-III-design/oo-concepts.html#index-2">class invariants</a>
+</li>
+        <li><a href="class-III-design/oo-concepts.html#index-2">oo concepts</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-enqueue"><strong>enqueue</strong></a>
+</li>
+      <li>
+    enum
+
+      <ul>
+        <li><a href="class-II-functions/enum.html#index-0">keyword</a>
+</li>
+      </ul></li>
+      <li><a href="class-II-functions/enum.html#index-0">enumerated types</a>
+</li>
+      <li><a href="glossary.html#term-enumeration"><strong>enumeration</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">equal</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="algorithms/intro.html#index-1">equal_range</a>
+</li>
+      <li><a href="glossary.html#term-equivalence-class"><strong>equivalence class</strong></a>
+</li>
+      <li><a href="glossary.html#term-equivalence-relation"><strong>equivalence relation</strong></a>
+</li>
+      <li><a href="function-intro/error-handling.html#index-0">error-handling</a>
+</li>
+      <li><a href="back-matter/app-a/debugging.html#index-0">errors</a>
+</li>
+      <li><a href="glossary.html#term-exception"><strong>exception</strong></a>
+</li>
+      <li><a href="function-intro/error-handling.html#index-1">exceptions</a>
+
+      <ul>
+        <li><a href="function-intro/error-handling.html#index-3">I/O streams</a>
+</li>
+        <li><a href="function-intro/error-handling.html#index-2">standard exceptions</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-exchange"><strong>exchange</strong></a>
+</li>
+      <li><a href="glossary.html#term-executable"><strong>executable</strong></a>
+</li>
+      <li><a href="glossary.html#term-external-fragmentation"><strong>external fragmentation</strong></a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    FAQ
+
+      <ul>
+        <li><a href="back-matter/faq.html#index-0">Bjarne Stroustrup</a>
+</li>
+        <li><a href="back-matter/faq.html#index-0">cppreference.com</a>
+</li>
+        <li><a href="back-matter/q150-do-i-need-to-know-math.html#index-0">Do I need to know math</a>
+</li>
+        <li><a href="back-matter/faq.html#index-0">frequently asked questions</a>
+</li>
+        <li><a href="back-matter/q101-why-not-an-ide.html#index-0">integrated development environment</a>
+</li>
+        <li><a href="back-matter/faq.html#index-0">Marshall Cline</a>
+</li>
+        <li><a href="back-matter/faq.html#index-0">Microsoft</a>
+</li>
+        <li><a href="back-matter/q110-what-language.html#index-0">picking the right language</a>
+</li>
+        <li><a href="back-matter/q130-what-major.html#index-0">picking the right major</a>
+</li>
+        <li><a href="back-matter/q120-should-i-learn-c-first.html#index-0">should I learn C first</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-fifo"><strong>FIFO</strong></a>
+</li>
+      <li>
+    file extensions
+
+      <ul>
+        <li><a href="class-I-intro/interfaces.html#index-1">compiler</a>
+</li>
+        <li><a href="class-I-intro/interfaces.html#index-1">header</a>
+</li>
+      </ul></li>
+      <li><a href="algorithms/intro.html#index-1">find(_if)</a>
+</li>
+      <li><a href="glossary.html#term-fixed-length-coding"><strong>fixed-length coding</strong></a>
+</li>
+      <li><a href="glossary.html#term-floor"><strong>floor</strong></a>
+</li>
+      <li><a href="glossary.html#term-flyweight"><strong>flyweight</strong></a>
+</li>
+      <li><a href="glossary.html#term-folding-method"><strong>folding method</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">for_each</a>
+</li>
+      <li><a href="glossary.html#term-free-block"><strong>free block</strong></a>
+</li>
+      <li><a href="glossary.html#term-free-block-list"><strong>free block list</strong></a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pointers/free-store.html#index-0">free store</a>, <a href="glossary.html#term-free-store"><strong>[1]</strong></a>
+
+      <ul>
+        <li><a href="pointers/free-store.html#index-0">pointers</a>
+</li>
+      </ul></li>
+      <li>
+    frequently asked questions
+
+      <ul>
+        <li><a href="back-matter/faq.html#index-0">FAQ</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-full-tree"><strong>full tree</strong></a>
+</li>
+      <li><a href="glossary.html#term-function"><strong>function</strong></a>
+
+      <ul>
+        <li><a href="function-overloads/overloads.html#index-0">overloads</a>
+</li>
+        <li><a href="function-overloads/templates.html#index-0">templates</a>
+</li>
+      </ul></li>
+      <li>
+    function overloads
+
+      <ul>
+        <li><a href="function-overloads/overloads.html#index-1">video</a>
+</li>
+      </ul></li>
+      <li>
+    function pointers
+
+      <ul>
+        <li><a href="function-pointers/function-pointers.html#index-0">pointers to functions</a>
+</li>
+        <li><a href="function-pointers/function-pointers.html#index-1">video</a>
+</li>
+      </ul></li>
+      <li>
+    function returns
+
+      <ul>
+        <li><a href="function-intro/functions.html#index-8">video</a>
+</li>
+      </ul></li>
+      <li><a href="function-overloads/templates.html#index-0">function templates</a>
+</li>
+      <li><a href="function-intro/functions.html#index-7">function writing guidelines</a>
+</li>
+      <li>
+    function-like macro
+
+      <ul>
+        <li><a href="function-intro/constants.html#index-3">#define</a>
+</li>
+      </ul></li>
+      <li><a href="function-intro/functions.html#index-0">functions</a>
+
+      <ul>
+        <li><a href="function-intro/functions.html#index-5">passing parameters</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-fundamental-type"><strong>fundamental type</strong></a>
+</li>
+      <li>
+    fundamental types
+
+      <ul>
+        <li><a href="beginnings/types.html#index-0">abstraction</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="back-matter/app-a/make.html#index-1">g++ compiler</a>
+</li>
+      <li><a href="glossary.html#term-garbage"><strong>garbage</strong></a>
+</li>
+      <li><a href="glossary.html#term-garbage-collection"><strong>garbage collection</strong></a>
+</li>
+      <li>
+    gdb
+
+      <ul>
+        <li><a href="back-matter/app-a/debugging.html#index-7">debugging</a>
+</li>
+      </ul></li>
+      <li>
+    gdb commands
+
+      <ul>
+        <li><a href="back-matter/app-a/debugging.html#index-8">debugging</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-general-tree"><strong>general tree</strong></a>
+</li>
+      <li>
+    generalization
+
+      <ul>
+        <li><a href="class-III-design/uml.html#index-3">UML</a>
+</li>
+      </ul></li>
+      <li><a href="algorithms/intro.html#index-1">generate</a>
+</li>
+      <li><a href="glossary.html#term-generic-programming"><strong>generic programming</strong></a>
+</li>
+      <li>
+    git
+
+      <ul>
+        <li><a href="back-matter/app-a/version-control.html#index-0">introductory topics version control</a>
+</li>
+        <li><a href="back-matter/app-a/linux.html#index-1">ssh client</a>
+</li>
+      </ul></li>
+      <li>
+    git editor
+
+      <ul>
+        <li><a href="back-matter/app-a/version-control.html#index-1">vim</a>
+</li>
+      </ul></li>
+      <li>
+    graph
+
+      <ul>
+        <li><a href="class-III-design/inheritance.html#index-4">bird inheritance</a>
+</li>
+        <li><a href="back-matter/app-a/make.html#index-1">build steps</a>
+</li>
+        <li><a href="beginnings/what-you-dont.html#index-1">C++ evolution</a>
+</li>
+        <li><a href="string+vector/string.html#index-1">c-string</a>
+</li>
+        <li><a href="function-intro/functions.html#index-4">call stack</a>, <a href="pointers/pointers.html#index-1">[1]</a>
+</li>
+        <li><a href="string+vector/string.html#index-0">char array</a>
+</li>
+        <li><a href="class-III-design/uml.html#index-1">class diagram</a>
+</li>
+        <li><a href="pointers/pointers.html#index-7">command line arguments</a>
+</li>
+        <li><a href="containers/sequence-containers.html#index-5">compact list</a>
+</li>
+        <li><a href="containers/sequence-containers.html#index-10">queue operations</a>
+</li>
+        <li><a href="class-III-design/oo-concepts.html#index-4">shape inheritance</a>
+</li>
+        <li><a href="containers/sequence-containers.html#index-7">std::forward_list</a>
+</li>
+        <li><a href="containers/sequence-containers.html#index-4">std::list</a>, <a href="containers/sequence-containers.html#index-6">[1]</a>
+</li>
+        <li><a href="containers/sequence-containers.html#index-9">std::queue</a>
+</li>
+        <li><a href="containers/sequence-containers.html#index-8">std::stack</a>
+</li>
+        <li><a href="containers/sequence-containers.html#index-2">std::vector</a>
+</li>
+        <li><a href="algorithms/model.html#index-0">STL model</a>
+</li>
+        <li><a href="string+vector/vector.html#index-1">vector</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    guidelines
+
+      <ul>
+        <li><a href="function-intro/constants.html#index-5">const</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-hash-function"><strong>hash function</strong></a>
+</li>
+      <li><a href="glossary.html#term-hash-system"><strong>hash system</strong></a>
+</li>
+      <li><a href="glossary.html#term-hash-table"><strong>hash table</strong></a>
+</li>
+      <li><a href="glossary.html#term-hashing"><strong>hashing</strong></a>
+</li>
+      <li>
+    hashing concepts
+
+      <ul>
+        <li><a href="containers/unordered_map.html#index-0">associative containers</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-head"><strong>head</strong></a>
+</li>
+      <li>
+    header
+
+      <ul>
+        <li><a href="class-I-intro/interfaces.html#index-1">file extensions</a>
+</li>
+      </ul></li>
+      <li>
+    header files
+
+      <ul>
+        <li><a href="beginnings/what-you-know-now.html#index-0">introductory topics</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-header-guard"><strong>header guard</strong></a>
+</li>
+      <li><a href="glossary.html#term-header-node"><strong>header node</strong></a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-heap"><strong>heap</strong></a>
+</li>
+      <li><a href="glossary.html#term-height"><strong>height</strong></a>
+</li>
+      <li><a href="glossary.html#term-height-balanced"><strong>height balanced</strong></a>
+</li>
+      <li>
+    hello world
+
+      <ul>
+        <li><a href="back-matter/app-a/vim.html#index-3">vim</a>
+</li>
+      </ul></li>
+      <li><a href="help/navhelp.html#index-0">help</a>
+
+      <ul>
+        <li><a href="help/navhelp.html#index-1">ActiveCode</a>
+</li>
+        <li><a href="help/navhelp.html#index-3">answering self-check questions</a>
+</li>
+        <li><a href="help/navhelp.html#index-2">CodeLens</a>
+</li>
+      </ul></li>
+      <li>
+    Herb Sutter
+
+      <ul>
+        <li><a href="beginnings/scope.html#index-4">namespace using</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-high-level-language"><strong>high-level language</strong></a>
+</li>
+      <li><a href="glossary.html#term-home-slot"><strong>home slot</strong></a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    I/O streams
+
+      <ul>
+        <li><a href="function-intro/error-handling.html#index-3">exceptions</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-identifier"><strong>identifier</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">includes</a>
+</li>
+      <li>
+    infinite loop
+
+      <ul>
+        <li><a href="back-matter/app-a/debugging.html#index-4">debugging</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-inherit"><strong>inherit</strong></a>
+</li>
+      <li><a href="class-III-design/oo-concepts.html#index-1">inheritance</a>
+
+      <ul>
+        <li><a href="class-III-design/inheritance.html#index-0">classes</a>
+</li>
+        <li><a href="class-III-design/inheritance.html#index-3">multiple</a>
+</li>
+        <li><a href="class-III-design/oo-concepts.html#index-3">oo concepts</a>
+</li>
+        <li><a href="class-III-design/inheritance.html#index-1">private</a>
+</li>
+        <li><a href="class-III-design/patterns.html#index-1">strategy pattern</a>
+</li>
+        <li><a href="class-III-design/uml.html#index-3">UML</a>
+</li>
+      </ul></li>
+      <li><a href="algorithms/intro.html#index-1">inner_product</a>
+</li>
+      <li><a href="glossary.html#term-inorder-traversal"><strong>inorder traversal</strong></a>
+</li>
+      <li><a href="glossary.html#term-instance-variable"><strong>instance variable</strong></a>
+</li>
+      <li><a href="glossary.html#term-integrated-development-environment"><strong>integrated development environment</strong></a>
+
+      <ul>
+        <li><a href="back-matter/q101-why-not-an-ide.html#index-0">FAQ</a>
+</li>
+      </ul></li>
+      <li><a href="help/navhelp.html#index-0">interactive tools</a>
+</li>
+      <li>
+    interface
+
+      <ul>
+        <li><a href="class-III-design/interfaces.html#index-0">abstract base class</a>
+</li>
+      </ul></li>
+      <li><a href="class-I-intro/interfaces.html#index-0">interfaces and implementation</a>
+</li>
+      <li><a href="glossary.html#term-internal-fragmentation"><strong>internal fragmentation</strong></a>
+</li>
+      <li><a href="glossary.html#term-internal-node"><strong>internal node</strong></a>
+</li>
+      <li>
+    introductory topics
+
+      <ul>
+        <li><a href="beginnings/what-you-dont.html#index-0">C++</a>
+</li>
+        <li><a href="beginnings/what-you-know-now.html#index-0">comments</a>
+</li>
+        <li><a href="beginnings/what-you-know-now.html#index-1">comments anti-patterns</a>
+</li>
+        <li><a href="beginnings/what-you-know-now.html#index-1">comments best practices</a>
+</li>
+        <li><a href="back-matter/app-a/make.html#index-0">compiling</a>
+</li>
+        <li><a href="beginnings/what-you-know-now.html#index-0">header files</a>
+</li>
+        <li><a href="back-matter/app-a/linux.html#index-0">linux</a>
+</li>
+        <li><a href="back-matter/app-a/make.html#index-2">make</a>
+</li>
+        <li><a href="beginnings/types.html#index-0">types</a>
+</li>
+        <li><a href="back-matter/app-a/version-control.html#index-0">version control git</a>
+</li>
+        <li><a href="back-matter/app-a/vim.html#index-0">vim text editors</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-invariants"><strong>invariants</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">iota</a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">is_heap</a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">is_partitioned</a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">is_permutation</a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">is_sorted</a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">ISO C++ standard</a>
+</li>
+      <li><a href="glossary.html#term-iterable"><strong>iterable</strong></a>
+</li>
+      <li><a href="glossary.html#term-iterator"><strong>iterator</strong></a>
+
+      <ul>
+        <li><a href="iterators/iterator-operations.html#index-0">operations</a>
+</li>
+        <li><a href="iterators/using.html#index-0">using</a>
+</li>
+      </ul></li>
+      <li><a href="iterators/iterator-operations.html#index-1">iterator categories</a>
+</li>
+      <li><a href="iterators/iterator-operations.html#index-0">iterator operations</a>
+</li>
+      <li><a href="iterators/iterator-pattern.html#index-0">iterator pattern</a>
+</li>
+      <li><a href="iterators/background.html#index-0">iterators</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-key"><strong>key</strong></a>
+</li>
+      <li><a href="glossary.html#term-key-value-pair"><strong>key-value pair</strong></a>
+</li>
+      <li>
+    keyword
+
+      <ul>
+        <li><a href="class-II-functions/this.html#index-0">``*this``</a>
+</li>
+        <li><a href="function-overloads/trailing-return.html#index-0">auto</a>
+</li>
+        <li><a href="class-II-functions/this.html#index-0">class</a>
+</li>
+        <li><a href="function-intro/constants.html#index-0">const</a>, <a href="pointers/pointers.html#index-8">[1]</a>
+</li>
+        <li><a href="function-intro/constants.html#index-4">constexpr</a>
+</li>
+        <li><a href="function-overloads/trailing-return.html#index-1">decltype</a>
+</li>
+        <li><a href="class-II-functions/enum.html#index-0">enum</a>
+</li>
+        <li><a href="class-III-design/inheritance.html#index-0">virtual</a>, <a href="class-III-design/interfaces.html#index-0">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="function-pointers/lambda.html#index-0">lambda</a>
+
+      <ul>
+        <li><a href="function-pointers/lambda.html#index-2">trailing return type</a>
+</li>
+      </ul></li>
+      <li>
+    lambda - function pointer conversion
+
+      <ul>
+        <li><a href="function-pointers/lambda.html#index-1">video</a>
+</li>
+      </ul></li>
+      <li><a href="function-pointers/lambda.html#index-0">lambda expressions</a>
+</li>
+      <li><a href="function-pointers/lambda.html#index-0">lambda functions</a>
+</li>
+      <li><a href="glossary.html#term-leaf-node"><strong>leaf node</strong></a>
+</li>
+      <li><a href="glossary.html#term-level"><strong>level</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">lexicographical_compare</a>
+</li>
+      <li><a href="glossary.html#term-lifo"><strong>LIFO</strong></a>
+</li>
+      <li><a href="glossary.html#term-linear-probing"><strong>linear probing</strong></a>
+</li>
+      <li><a href="glossary.html#term-linear-probing-by-steps"><strong>linear probing by steps</strong></a>
+</li>
+      <li><a href="glossary.html#term-link-error"><strong>link error</strong></a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    link errors
+
+      <ul>
+        <li><a href="back-matter/app-a/debugging.html#index-2">debugging</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-linked-list"><strong>linked list</strong></a>
+</li>
+      <li>
+    linux
+
+      <ul>
+        <li><a href="back-matter/app-a/linux.html#index-0">introductory topics</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-list"><strong>list</strong></a>
+
+      <ul>
+        <li><a href="containers/sequence-containers.html#index-4">sequence containers</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-local-variable"><strong>local variable</strong></a>
+</li>
+      <li><a href="beginnings/scope.html#index-1">local variables</a>
+</li>
+      <li><a href="glossary.html#term-logical-form"><strong>logical form</strong></a>
+</li>
+      <li>
+    loops
+
+      <ul>
+        <li><a href="algorithms/intro.html#index-2">algorithms</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-low-level-language"><strong>low-level language</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">lower_bound</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    make
+
+      <ul>
+        <li><a href="function-intro/functions.html#index-1">#include search path</a>
+</li>
+        <li><a href="back-matter/app-a/make.html#index-2">introductory topics</a>
+</li>
+      </ul></li>
+      <li><a href="algorithms/intro.html#index-1">make_heap</a>
+</li>
+      <li><a href="glossary.html#term-map"><strong>map</strong></a>
+
+      <ul>
+        <li><a href="containers/map.html#index-0">associative containers</a>, <a href="containers/set.html#index-0">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-mapping"><strong>mapping</strong></a>
+</li>
+      <li>
+    Marshall Cline
+
+      <ul>
+        <li><a href="back-matter/faq.html#index-0">FAQ</a>
+</li>
+      </ul></li>
+      <li>
+    Martin Fowler
+
+      <ul>
+        <li><a href="class-III-design/uml.html#index-9">UML</a>
+</li>
+      </ul></li>
+      <li><a href="algorithms/intro.html#index-1">max</a>
+</li>
+      <li><a href="glossary.html#term-max-heap"><strong>max heap</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">max_element</a>
+</li>
+      <li><a href="glossary.html#term-member"><strong>member</strong></a>
+</li>
+      <li><a href="glossary.html#term-member-function"><strong>member function</strong></a>
+</li>
+      <li><a href="glossary.html#term-memory-leak"><strong>memory leak</strong></a>
+</li>
+      <li><a href="class-IV-memory/memory-management.html#index-0">memory management</a>, <a href="pointers/free-store.html#index-1">[1]</a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">merge</a>
+</li>
+      <li><a href="glossary.html#term-method"><strong>method</strong></a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    Microsoft
+
+      <ul>
+        <li><a href="back-matter/faq.html#index-0">FAQ</a>
+</li>
+      </ul></li>
+      <li><a href="algorithms/intro.html#index-1">min</a>
+</li>
+      <li><a href="glossary.html#term-min-heap"><strong>min heap</strong></a>
+</li>
+      <li><a href="glossary.html#term-mod"><strong>mod</strong></a>
+</li>
+      <li>
+    model
+
+      <ul>
+        <li><a href="algorithms/model.html#index-0">algorithms</a>
+</li>
+      </ul></li>
+      <li>
+    modes
+
+      <ul>
+        <li><a href="back-matter/app-a/vim.html#index-1">vim</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-modulus"><strong>modulus</strong></a>
+</li>
+      <li>
+    motions
+
+      <ul>
+        <li><a href="back-matter/app-a/vim.html#index-2">vim</a>
+</li>
+      </ul></li>
+      <li><a href="algorithms/intro.html#index-1">move</a>
+</li>
+      <li><a href="glossary.html#term-multilist"><strong>multilist</strong></a>
+</li>
+      <li>
+    multiple
+
+      <ul>
+        <li><a href="class-III-design/inheritance.html#index-3">inheritance</a>
+</li>
+      </ul></li>
+      <li>
+    multiple inheritance
+
+      <ul>
+        <li><a href="class-III-design/inheritance.html#index-3">Bjarne Stroustrup</a>
+</li>
+      </ul></li>
+      <li>
+    multiplicity
+
+      <ul>
+        <li><a href="class-III-design/uml.html#index-6">association</a>
+</li>
+      </ul></li>
+      <li><a href="iterators/iterator-operations.html#index-1">mutable iterator</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-name"><strong>name</strong></a>
+</li>
+      <li><a href="beginnings/scope.html#index-2">namespace</a>
+
+      <ul>
+        <li><a href="beginnings/scope.html#index-3">using directive</a>
+</li>
+      </ul></li>
+      <li>
+    namespace using
+
+      <ul>
+        <li><a href="beginnings/scope.html#index-4">Andrei Alexandrescu</a>
+</li>
+        <li><a href="beginnings/scope.html#index-4">Herb Sutter</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-natural-language"><strong>natural language</strong></a>
+</li>
+      <li><a href="glossary.html#term-natural-order"><strong>natural order</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">next_permutation</a>
+</li>
+      <li><a href="glossary.html#term-node"><strong>node</strong></a>
+</li>
+      <li>
+    non-virtual functions
+
+      <ul>
+        <li><a href="class-III-design/inheritance.html#index-2">manatory interfaces;</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="class-I-intro/intro.html#index-0">object</a>, <a href="glossary.html#term-object"><strong>[1]</strong></a>
+</li>
+      <li><a href="glossary.html#term-object-code"><strong>object code</strong></a>
+</li>
+      <li>
+    object oriented concepts
+
+      <ul>
+        <li><a href="class-III-design/oo-concepts.html#index-1">SOLID</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-object-oriented-programming"><strong>object-oriented programming</strong></a>
+
+      <ul>
+        <li><a href="class-III-design/oo-concepts.html#index-0">oo concepts</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-object-oriented-programming-paradigm"><strong>object-oriented programming paradigm</strong></a>
+</li>
+      <li>
+    oo concepts
+
+      <ul>
+        <li><a href="class-III-design/oo-concepts.html#index-2">encapsulation</a>
+</li>
+        <li><a href="class-III-design/oo-concepts.html#index-3">inheritance</a>
+</li>
+        <li><a href="class-III-design/oo-concepts.html#index-5">polymorphism</a>, <a href="class-III-design/oo-concepts.html#index-6">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-open-addressing"><strong>open addressing</strong></a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-open-hash-system"><strong>open hash system</strong></a>
+</li>
+      <li><a href="glossary.html#term-operating-system"><strong>operating system</strong></a>
+</li>
+      <li>
+    operations
+
+      <ul>
+        <li><a href="iterators/iterator-operations.html#index-0">iterator</a>
+</li>
+      </ul></li>
+      <li>
+    operator overloads
+
+      <ul>
+        <li><a href="class-II-functions/overloads.html#index-0">class</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-overflow"><strong>overflow</strong></a>
+</li>
+      <li><a href="glossary.html#term-overflow-bucket"><strong>overflow bucket</strong></a>
+</li>
+      <li><a href="function-overloads/overloads.html#index-0">overloading functions</a>
+</li>
+      <li><a href="class-II-functions/overloads.html#index-1">overloading guidelines</a>
+</li>
+      <li>
+    overloads
+
+      <ul>
+        <li><a href="function-overloads/overloads.html#index-0">function</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    parameter passing
+
+      <ul>
+        <li><a href="function-intro/functions.html#index-6">by reference</a>
+</li>
+        <li><a href="function-intro/functions.html#index-5">by value</a>
+</li>
+        <li><a href="function-intro/constants.html#index-1">const reference</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-parameters"><strong>parameters</strong></a>
+</li>
+      <li><a href="glossary.html#term-parent"><strong>parent</strong></a>
+</li>
+      <li><a href="glossary.html#term-parse"><strong>parse</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">partition_copy</a>
+</li>
+      <li><a href="function-intro/functions.html#index-6">pass by reference</a>
+</li>
+      <li><a href="function-intro/functions.html#index-5">pass by value</a>
+</li>
+      <li>
+    passing parameters
+
+      <ul>
+        <li><a href="function-intro/functions.html#index-5">functions</a>
+</li>
+      </ul></li>
+      <li>
+    patterns
+
+      <ul>
+        <li><a href="class-III-design/patterns.html#index-0">classes</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-permutation"><strong>permutation</strong></a>
+</li>
+      <li><a href="glossary.html#term-physical-form"><strong>physical form</strong></a>
+</li>
+      <li>
+    picking the right language
+
+      <ul>
+        <li><a href="back-matter/q110-what-language.html#index-0">FAQ</a>
+</li>
+      </ul></li>
+      <li>
+    picking the right major
+
+      <ul>
+        <li><a href="back-matter/q130-what-major.html#index-0">FAQ</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-pigeonhole-principle"><strong>Pigeonhole Principle</strong></a>
+</li>
+      <li><a href="glossary.html#term-pod"><strong>POD</strong></a>
+</li>
+      <li>
+    pointer
+
+      <ul>
+        <li><a href="function-intro/functions.html#index-3">stack pointer</a>
+</li>
+      </ul></li>
+      <li>
+    pointer to reference
+
+      <ul>
+        <li><a href="pointers/pointers.html#index-5">video</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-pointer-based-implementation-for-binary-tree-nodes"><strong>pointer-based implementation for binary tree nodes</strong></a>
+</li>
+      <li><a href="pointers/pointers.html#index-0">pointers</a>
+
+      <ul>
+        <li><a href="pointers/pointers.html#index-3">arrays</a>
+</li>
+        <li><a href="pointers/pointers.html#index-6">char* argv[]</a>
+</li>
+        <li><a href="class-I-intro/pointers.html#index-0">class members</a>
+</li>
+        <li><a href="pointers/pointers.html#index-6">command line</a>
+</li>
+        <li><a href="pointers/pointers.html#index-8">const</a>
+</li>
+        <li><a href="pointers/valgrind.html#index-0">debugging</a>
+</li>
+        <li><a href="pointers/free-store.html#index-0">free store</a>
+</li>
+        <li><a href="pointers/pointers.html#index-2">references</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="class-III-design/oo-concepts.html#index-1">polymorphism</a>, <a href="glossary.html#term-polymorphism"><strong>[1]</strong></a>
+
+      <ul>
+        <li><a href="class-III-design/oo-concepts.html#index-5">oo concepts</a>, <a href="class-III-design/oo-concepts.html#index-6">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-pop"><strong>pop</strong></a>
+</li>
+      <li><a href="glossary.html#term-portability"><strong>portability</strong></a>
+</li>
+      <li><a href="glossary.html#term-position"><strong>position</strong></a>
+</li>
+      <li><a href="glossary.html#term-postorder-traversal"><strong>postorder traversal</strong></a>
+</li>
+      <li><a href="glossary.html#term-predicate"><strong>predicate</strong></a>
+</li>
+      <li><a href="glossary.html#term-predicate-function"><strong>predicate function</strong></a>
+</li>
+      <li><a href="glossary.html#term-preorder-traversal"><strong>preorder traversal</strong></a>
+</li>
+      <li><a href="glossary.html#term-primary-clustering"><strong>primary clustering</strong></a>
+</li>
+      <li><a href="glossary.html#term-primitive-type"><strong>primitive type</strong></a>
+</li>
+      <li><a href="glossary.html#term-priority"><strong>priority</strong></a>
+</li>
+      <li><a href="glossary.html#term-priority-queue"><strong>priority queue</strong></a>
+</li>
+      <li>
+    private
+
+      <ul>
+        <li><a href="class-III-design/inheritance.html#index-1">inheritance</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-probe-function"><strong>probe function</strong></a>
+</li>
+      <li><a href="glossary.html#term-probe-sequence"><strong>probe sequence</strong></a>
+</li>
+      <li><a href="glossary.html#term-problem"><strong>problem</strong></a>
+</li>
+      <li><a href="glossary.html#term-problem-solving"><strong>problem solving</strong></a>
+</li>
+      <li><a href="glossary.html#term-procedural"><strong>procedural</strong></a>
+</li>
+      <li><a href="glossary.html#term-procedural-programming-paradigm"><strong>procedural programming paradigm</strong></a>
+</li>
+      <li><a href="glossary.html#term-program"><strong>program</strong></a>
+</li>
+      <li><a href="glossary.html#term-programming-language"><strong>programming language</strong></a>
+</li>
+      <li><a href="glossary.html#term-pseudo-random-probing"><strong>pseudo-random probing</strong></a>
+</li>
+      <li><a href="glossary.html#term-push"><strong>push</strong></a>
+</li>
+      <li><a href="glossary.html#term-push-back"><strong>push_back</strong></a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-quadratic-probing"><strong>quadratic probing</strong></a>
+</li>
+      <li><a href="glossary.html#term-queue"><strong>queue</strong></a>
+
+      <ul>
+        <li><a href="containers/sequence-containers.html#index-9">sequence containers</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    queue operations
+
+      <ul>
+        <li><a href="containers/sequence-containers.html#index-10">graph</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-radix"><strong>radix</strong></a>
+</li>
+      <li><a href="glossary.html#term-raii"><strong>RAII</strong></a>
+</li>
+      <li>
+    realization
+
+      <ul>
+        <li><a href="class-III-design/uml.html#index-4">UML</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-record"><strong>record</strong></a>
+</li>
+      <li><a href="glossary.html#term-recursion"><strong>recursion</strong></a>
+</li>
+      <li><a href="glossary.html#term-recursive-call"><strong>recursive call</strong></a>
+</li>
+      <li><a href="glossary.html#term-recursive-data-structure"><strong>recursive data structure</strong></a>
+</li>
+      <li><a href="glossary.html#term-recursive-function"><strong>recursive function</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">reduce</a>
+</li>
+      <li>
+    refactoring
+
+      <ul>
+        <li><a href="algorithms/copy.html#index-0">algorithms</a>, <a href="algorithms/refactor.html#index-0">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-reference"><strong>reference</strong></a>
+</li>
+      <li><a href="glossary.html#term-reference-count-algorithm"><strong>reference count algorithm</strong></a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    references
+
+      <ul>
+        <li><a href="pointers/pointers.html#index-2">pointers</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-reflexive"><strong>reflexive</strong></a>
+</li>
+      <li><a href="glossary.html#term-regular-type"><strong>regular type</strong></a>
+</li>
+      <li><a href="glossary.html#term-relation"><strong>relation</strong></a>
+</li>
+      <li><a href="function-overloads/concepts.html#index-1">requires</a>
+</li>
+      <li><a href="glossary.html#term-root"><strong>root</strong></a>
+</li>
+      <li><a href="glossary.html#term-runtime-environment"><strong>runtime environment</strong></a>
+</li>
+      <li><a href="glossary.html#term-0"><strong>runtime error</strong></a>, <a href="glossary.html#term-runtime-error"><strong>[1]</strong></a>
+</li>
+      <li>
+    runtime errors
+
+      <ul>
+        <li><a href="back-matter/app-a/debugging.html#index-3">debugging</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-runtime-polymorphism"><strong>runtime polymorphism</strong></a>
+
+      <ul>
+        <li><a href="class-III-design/oo-concepts.html#index-5">compile-time polymorphism</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-runtime-stack"><strong>runtime stack</strong></a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="beginnings/scope.html#index-0">scope</a>, <a href="glossary.html#term-scope"><strong>[1]</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">search</a>, <a href="help/navhelp.html#index-0">[1]</a>
+</li>
+      <li><a href="glossary.html#term-secondary-clustering"><strong>secondary clustering</strong></a>
+</li>
+      <li><a href="glossary.html#term-semantic-error"><strong>semantic error</strong></a>
+</li>
+      <li>
+    semantic errors
+
+      <ul>
+        <li><a href="back-matter/app-a/debugging.html#index-5">debugging</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-semantics"><strong>semantics</strong></a>
+</li>
+      <li><a href="glossary.html#term-separate-chaining"><strong>separate chaining</strong></a>
+</li>
+      <li><a href="glossary.html#term-sequence"><strong>sequence</strong></a>
+</li>
+      <li><a href="glossary.html#term-sequence-container"><strong>sequence container</strong></a>
+</li>
+      <li><a href="containers/sequence-containers.html#index-0">sequence containers</a>
+
+      <ul>
+        <li><a href="containers/sequence-containers.html#index-3">array</a>
+</li>
+        <li><a href="containers/sequence-containers.html#index-11">deque</a>
+</li>
+        <li><a href="containers/sequence-containers.html#index-4">list</a>
+</li>
+        <li><a href="containers/sequence-containers.html#index-9">queue</a>
+</li>
+        <li><a href="containers/sequence-containers.html#index-8">stack</a>
+</li>
+        <li><a href="containers/sequence-containers.html#index-1">vector</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-sequential-tree-representation"><strong>sequential tree representation</strong></a>
+</li>
+      <li><a href="serialization/serialization.html#index-1">serialization</a>, <a href="glossary.html#term-serialization"><strong>[1]</strong></a>
+</li>
+      <li><a href="glossary.html#term-set"><strong>set</strong></a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">set_difference</a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">set_union</a>
+</li>
+      <li><a href="class-III-design/inheritance.html#index-2">shadowing</a>
+</li>
+      <li>
+    shape inheritance
+
+      <ul>
+        <li><a href="class-III-design/oo-concepts.html#index-4">graph</a>
+</li>
+      </ul></li>
+      <li>
+    should I learn C first
+
+      <ul>
+        <li><a href="back-matter/q120-should-i-learn-c-first.html#index-0">FAQ</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-sibling"><strong>sibling</strong></a>
+</li>
+      <li><a href="glossary.html#term-signature"><strong>signature</strong></a>
+</li>
+      <li><a href="glossary.html#term-simple-type"><strong>simple type</strong></a>
+</li>
+      <li><a href="glossary.html#term-simulating-recursion"><strong>simulating recursion</strong></a>
+</li>
+      <li><a href="glossary.html#term-singly-linked-list"><strong>singly linked list</strong></a>
+</li>
+      <li><a href="glossary.html#term-slot"><strong>slot</strong></a>
+</li>
+      <li>
+    smart pointer
+
+      <ul>
+        <li><a href="pointers/free-store.html#index-1">auto_ptr; unique_ptr; shared_ptr</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-software-engineering"><strong>software engineering</strong></a>
+</li>
+      <li><a href="glossary.html#term-software-reuse"><strong>software reuse</strong></a>
+</li>
+      <li>
+    SOLID
+
+      <ul>
+        <li><a href="class-III-design/oo-concepts.html#index-1">object oriented concepts</a>
+</li>
+      </ul></li>
+      <li><a href="algorithms/intro.html#index-1">sort</a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">sort_heap</a>
+</li>
+      <li><a href="glossary.html#term-source-code"><strong>source code</strong></a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    ssh client
+
+      <ul>
+        <li><a href="back-matter/app-a/linux.html#index-1">git</a>
+</li>
+      </ul></li>
+      <li><a href="algorithms/intro.html#index-1">stable_partition</a>, <a href="algorithms/intro.html#index-1">[1]</a>
+</li>
+      <li><a href="glossary.html#term-stack"><strong>stack</strong></a>
+
+      <ul>
+        <li><a href="containers/sequence-containers.html#index-8">sequence containers</a>
+</li>
+      </ul></li>
+      <li>
+    stack pointer
+
+      <ul>
+        <li><a href="function-intro/functions.html#index-3">pointer</a>
+</li>
+      </ul></li>
+      <li>
+    standard exceptions
+
+      <ul>
+        <li><a href="function-intro/error-handling.html#index-2">exceptions</a>
+</li>
+      </ul></li>
+      <li><a href="function-intro/functions.html#index-2">static functions</a>
+</li>
+      <li>
+    static member functions
+
+      <ul>
+        <li><a href="class-II-functions/static.html#index-0">class</a>
+</li>
+      </ul></li>
+      <li><a href="algorithms/model.html#index-1">std::find</a>
+</li>
+      <li>
+    std::forward_list
+
+      <ul>
+        <li><a href="containers/sequence-containers.html#index-7">graph</a>
+</li>
+      </ul></li>
+      <li><a href="function-pointers/std_function.html#index-0">std::function</a>
+</li>
+      <li>
+    std::list
+
+      <ul>
+        <li><a href="containers/sequence-containers.html#index-4">graph</a>, <a href="containers/sequence-containers.html#index-6">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    std::queue
+
+      <ul>
+        <li><a href="containers/sequence-containers.html#index-9">graph</a>
+</li>
+      </ul></li>
+      <li>
+    std::stack
+
+      <ul>
+        <li><a href="containers/sequence-containers.html#index-8">graph</a>
+</li>
+      </ul></li>
+      <li>
+    std::vector
+
+      <ul>
+        <li><a href="containers/sequence-containers.html#index-2">graph</a>
+</li>
+      </ul></li>
+      <li>
+    STL model
+
+      <ul>
+        <li><a href="algorithms/model.html#index-0">graph</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-strategy"><strong>strategy</strong></a>
+
+      <ul>
+        <li><a href="class-III-design/patterns.html#index-2">design pattern</a>
+</li>
+      </ul></li>
+      <li>
+    strategy pattern
+
+      <ul>
+        <li><a href="class-III-design/patterns.html#index-1">inheritance</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-stream"><strong>stream</strong></a>
+</li>
+      <li><a href="serialization/serialization.html#index-0">stream model</a>
+</li>
+      <li>
+    string and vector
+
+      <ul>
+        <li><a href="string+vector/intro.html#index-0">containers</a>
+</li>
+      </ul></li>
+      <li><a href="class-I-intro/intro.html#index-1">struct vs. class</a>
+</li>
+      <li><a href="glossary.html#term-subclass"><strong>subclass</strong></a>
+</li>
+      <li><a href="glossary.html#term-subtree"><strong>subtree</strong></a>
+</li>
+      <li><a href="glossary.html#term-symmetric"><strong>symmetric</strong></a>
+</li>
+      <li><a href="glossary.html#term-syntax"><strong>syntax</strong></a>
+</li>
+      <li><a href="glossary.html#term-syntax-error"><strong>syntax error</strong></a>
+</li>
+      <li>
+    syntax errors
+
+      <ul>
+        <li><a href="back-matter/app-a/debugging.html#index-1">debugging</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-tail"><strong>tail</strong></a>
+</li>
+      <li><a href="glossary.html#term-template"><strong>template</strong></a>
+</li>
+      <li>
+    templates
+
+      <ul>
+        <li><a href="class-II-functions/templates.html#index-0">class</a>
+</li>
+        <li><a href="function-overloads/concepts.html#index-0">concepts</a>
+</li>
+        <li><a href="function-overloads/templates.html#index-0">function</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-test-driven-development"><strong>test-driven development</strong></a>
+</li>
+      <li>
+    text editors
+
+      <ul>
+        <li><a href="back-matter/app-a/vim.html#index-0">introductory topics vim</a>
+</li>
+      </ul></li>
+      <li><a href="class-II-functions/this.html#index-0">this pointer</a>
+</li>
+      <li><a href="glossary.html#term-token"><strong>token</strong></a>
+</li>
+      <li><a href="glossary.html#term-total-order"><strong>total order</strong></a>
+</li>
+      <li><a href="glossary.html#term-trailing-return-type"><strong>trailing return type</strong></a>
+
+      <ul>
+        <li><a href="function-overloads/trailing-return.html#index-0">auto</a>
+</li>
+        <li><a href="function-pointers/lambda.html#index-2">lambda</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="algorithms/intro.html#index-1">transform</a>
+</li>
+      <li><a href="glossary.html#term-transitive"><strong>transitive</strong></a>
+</li>
+      <li><a href="glossary.html#term-traversal"><strong>traversal</strong></a>
+</li>
+      <li><a href="glossary.html#term-traverse"><strong>traverse</strong></a>
+</li>
+      <li><a href="trees/trees.html#index-1">traverval</a>
+</li>
+      <li><a href="glossary.html#term-tree"><strong>tree</strong></a>
+</li>
+      <li><a href="glossary.html#term-tree-traversal"><strong>tree traversal</strong></a>
+</li>
+      <li><a href="containers/trees.html#index-0">trees</a>
+</li>
+      <li><a href="glossary.html#term-tuple"><strong>tuple</strong></a>
+</li>
+      <li><a href="glossary.html#term-two-s-complement"><strong>two&#39;s complement</strong></a>
+</li>
+      <li><a href="glossary.html#term-type"><strong>type</strong></a>
+</li>
+      <li><a href="glossary.html#term-type-invariant"><strong>type invariant</strong></a>
+</li>
+      <li>
+    types
+
+      <ul>
+        <li><a href="beginnings/types.html#index-0">introductory topics</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    UML
+
+      <ul>
+        <li><a href="class-III-design/uml.html#index-7">aggregation</a>
+</li>
+        <li><a href="class-III-design/uml.html#index-5">association</a>
+</li>
+        <li><a href="class-III-design/uml.html#index-0">class design</a>
+</li>
+        <li><a href="class-III-design/uml.html#index-8">composition</a>
+</li>
+        <li><a href="class-III-design/uml.html#index-10">dependency</a>
+</li>
+        <li><a href="class-III-design/uml.html#index-3">generalization</a>
+</li>
+        <li><a href="class-III-design/uml.html#index-3">inheritance</a>
+</li>
+        <li><a href="class-III-design/uml.html#index-9">Martin Fowler</a>
+</li>
+        <li><a href="class-III-design/uml.html#index-4">realization</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-unary-function"><strong>unary function</strong></a>
+</li>
+      <li>
+    unified modeling langauage
+
+      <ul>
+        <li><a href="class-III-design/uml.html#index-0">UML</a>
+</li>
+      </ul></li>
+      <li><a href="algorithms/intro.html#index-1">uninitialized_copy</a>
+</li>
+      <li><a href="algorithms/intro.html#index-1">uninitialized_fill</a>
+</li>
+      <li><a href="glossary.html#term-unit-test"><strong>unit test</strong></a>
+</li>
+      <li><a href="glossary.html#term-unsorted-list"><strong>unsorted list</strong></a>
+</li>
+      <li>
+    using
+
+      <ul>
+        <li><a href="iterators/using.html#index-0">iterator</a>
+</li>
+      </ul></li>
+      <li>
+    using directive
+
+      <ul>
+        <li><a href="beginnings/scope.html#index-3">namespace</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    valgrind
+
+      <ul>
+        <li><a href="pointers/valgrind.html#index-1">debugging</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-variable-length-coding"><strong>variable-length coding</strong></a>
+</li>
+      <li><a href="string+vector/vector.html#index-0">vector</a>, <a href="glossary.html#term-vector"><strong>[1]</strong></a>
+
+      <ul>
+        <li><a href="string+vector/vector.html#index-1">graph</a>
+</li>
+        <li><a href="containers/sequence-containers.html#index-1">sequence containers</a>
+</li>
+      </ul></li>
+      <li>
+    version control
+
+      <ul>
+        <li><a href="back-matter/app-a/version-control.html#index-0">git, introductory topics</a>
+</li>
+      </ul></li>
+      <li>
+    video
+
+      <ul>
+        <li><a href="function-overloads/overloads.html#index-1">function overloads</a>
+</li>
+        <li><a href="function-pointers/function-pointers.html#index-1">function pointers</a>
+</li>
+        <li><a href="function-intro/functions.html#index-8">function returns</a>
+</li>
+        <li><a href="function-pointers/lambda.html#index-1">lambda - function pointer conversion</a>
+</li>
+        <li><a href="pointers/pointers.html#index-5">pointer to reference</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    vim
+
+      <ul>
+        <li><a href="back-matter/app-a/version-control.html#index-1">git editor</a>
+</li>
+        <li><a href="back-matter/app-a/vim.html#index-3">hello world</a>
+</li>
+        <li><a href="back-matter/app-a/vim.html#index-1">modes</a>
+</li>
+        <li><a href="back-matter/app-a/vim.html#index-2">motions</a>
+</li>
+        <li><a href="back-matter/app-a/vim.html#index-0">text editors, introductory topics</a>
+</li>
+      </ul></li>
+      <li>
+    virtual
+
+      <ul>
+        <li><a href="class-III-design/inheritance.html#index-0">keyword</a>, <a href="class-III-design/interfaces.html#index-0">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    visibility
+
+      <ul>
+        <li><a href="class-III-design/uml.html#index-2">class diagram</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-visit"><strong>visit</strong></a>
+</li>
+      <li><a href="glossary.html#term-visitor"><strong>visitor</strong></a>
+</li>
+      <li>
+    visualization
+
+      <ul>
+        <li><a href="class-III-design/uml.html#index-0">class design</a>
+</li>
+      </ul></li>
+      <li><a href="glossary.html#term-volatile"><strong>volatile</strong></a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+  <div id=scprogresscontainer>
+    You have attempted <span id=scprogresstotal></span> of <span id=scprogressposs></span> activities on this page <div id="subchapterprogress"></div>
+  </div>
+  
+      
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2017-2019 Dave Parillo.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 4.1.11.
+    </p>
+  </div>
+</footer>
+
+
+
+
+
+  </body>
+</html>

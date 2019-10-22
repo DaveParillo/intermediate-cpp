@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>7.2. Sequence Containers &#8212; Intermediate Modern C++ Overview</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/presenter_mode.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/showEval.css?v=C6382F3" />
+    <link rel="stylesheet" type="text/css" href="../_static/pytutor.css?v=239FC54E" />
+    <link rel="stylesheet" type="text/css" href="../_static/modal-basic.css?v=8A1A42E4" />
+    <link rel="stylesheet" type="text/css" href="../_static/clickable.css?v=58C4E18A" />
+    <link rel="stylesheet" type="text/css" href="../_static/datafile.css?v=C184EB8A" />
+    <link rel="stylesheet" type="text/css" href="../_static/spreadsheet.css?v=B5F018A" />
+    <link rel="stylesheet" type="text/css" href="../_static/jexcel.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/japp.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/parsons.css?v=2F3E13EE" />
+    <link rel="stylesheet" type="text/css" href="../_static/js_lib/prettify.css?v=2A364B6B" />
+    <link rel="stylesheet" type="text/css" href="../_static/fitb.css?v=3BA0E63E" />
+    <link rel="stylesheet" type="text/css" href="../_static/poll.css?v=E220AC33" />
+    <link rel="stylesheet" type="text/css" href="../_static/dragndrop.css?v=1FF7F927" />
+    <link rel="stylesheet" type="text/css" href="../_static/matrixeq.css?v=58BC228F" />
+    <link rel="stylesheet" type="text/css" href="../_static/CodeChat.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabbedstuff.css?v=424F1CC9" />
+    <link rel="stylesheet" type="text/css" href="../_static/video.css?v=E5385B3B" />
+    <link rel="stylesheet" type="text/css" href="../_static/reveal.css?v=4A81D381" />
+    <link rel="stylesheet" type="text/css" href="../_static/activecode.css?v=F471F95B" />
+    <link rel="stylesheet" type="text/css" href="../_static/codemirror.css?v=1CE53237" />
+    <link rel="stylesheet" type="text/css" href="../_static/webgldemo.css?v=B36B48D" />
+    <link rel="stylesheet" type="text/css" href="../_static/webglinteractive.css?v=910DF1E1" />
+    <link rel="stylesheet" type="text/css" href="../_static/accessibility.css?v=808B982A" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css?v=4.1.11" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/runestonebase.js?v=4.1.11"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/showEval.js?v=5B2DD7A6"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js?v=836E01C"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js?v=B64CF0A8"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js?v=42F9EBEA"></script>
+    <script type="text/javascript" src="../_static/pytutor.js?v=82B022B9"></script>
+    <script type="text/javascript" src="../_static/codelens.js?v=CABECD49"></script>
+    <script type="text/javascript" src="../_static/shortanswer.js?v=D42E4CE3"></script>
+    <script type="text/javascript" src="../_static/timed_shortanswer.js?v=B3A117D7"></script>
+    <script type="text/javascript" src="../_static/clickable.js?v=DEB56CF8"></script>
+    <script type="text/javascript" src="../_static/timedclickable.js?v=93989C23"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js?v=BDC8551F"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js?v=5731007D"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="../_static/datafile.js?v=3ED1A80C"></script>
+    <script type="text/javascript" src="../_static/spreadsheet.js?v=9DA8BEAB"></script>
+    <script type="text/javascript" src="../_static/jexcel.js"></script>
+    <script type="text/javascript" src="../_static/japp.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js?v=CA7E8928"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js?v=73056367"></script>
+    <script type="text/javascript" src="../_static/parsons.js?v=68B5F56"></script>
+    <script type="text/javascript" src="../_static/timedparsons.js?v=2EEA9E5A"></script>
+    <script type="text/javascript" src="../_static/fitb.js?v=3FF7EFF0"></script>
+    <script type="text/javascript" src="../_static/timedfitb.js?v=2AA17071"></script>
+    <script type="text/javascript" src="../_static/poll.js?v=13CE919A"></script>
+    <script type="text/javascript" src="../_static/dragndrop.js?v=644C2C6C"></script>
+    <script type="text/javascript" src="../_static/timeddnd.js?v=378F237E"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js?v=D64CFA5A"></script>
+    <script type="text/javascript" src="../_static/animationbase.js?v=A043C3A7"></script>
+    <script type="text/javascript" src="../_static/mchoice.js?v=7B442CDC"></script>
+    <script type="text/javascript" src="../_static/timedmc.js?v=B010A457"></script>
+    <script type="text/javascript" src="../_static/timed.js?v=CEC6219E"></script>
+    <script type="text/javascript" src="../_static/lp.js?v=F137FF7A"></script>
+    <script type="text/javascript" src="../_static/gas.js?v=F0D0F02E"></script>
+    <script type="text/javascript" src="../_static/tabbedstuff.js?v=5BE6106"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js?v=53E888DE"></script>
+    <script type="text/javascript" src="../_static/reveal.js?v=9C3AAF60"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js?v=F1C496C8"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js?v=963AEB3A"></script>
+    <script type="text/javascript" src="../_static/codemirror.js?v=94F552C9"></script>
+    <script type="text/javascript" src="../_static/xml.js?v=236EDFF7"></script>
+    <script type="text/javascript" src="../_static/css.js?v=623153CE"></script>
+    <script type="text/javascript" src="../_static/python.js?v=14A28F1F"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js?v=33B91944"></script>
+    <script type="text/javascript" src="../_static/javascript.js?v=6F38CA04"></script>
+    <script type="text/javascript" src="../_static/sql.js?v=1B4587EC"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js?v=599B42B0"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js?v=88A1430F"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js?v=AE15A4A1"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js?v=8ABDFE7F"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js?v=747279FF"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js?v=7B020E13"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js?v=660E85C3"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js?v=54B21948"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js?v=70E93DF2"></script>
+    <script type="text/javascript" src="../_static/activecode.js?v=FE13F48"></script>
+    <script type="text/javascript" src="../_static/clike.js?v=2DCE0756"></script>
+    <script type="text/javascript" src="../_static/timed_activecode.js?v=C6AD5C24"></script>
+    <script type="text/javascript" src="../_static/sql-wasm.js?v=44FE0709"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js?v=2B768384"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js?v=8408C997"></script>
+    <script type="text/javascript" src="../_static/Blob.js?v=AEC2447"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js?v=4.1.11"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="../_static/presenter_mode.js?v=4.1.11"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7.3. Tree ADT concepts" href="trees.html" />
+    <link rel="prev" title="7.1. Standard Template Library Containers" href="intro.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="shortcut icon" href="/intermediate-cpp/static/favicon.ico" type="image/ico" />
+
+<script type="text/javascript">
+  eBookConfig = {};
+  
+    eBookConfig.useRunestoneServices = false;
+    eBookConfig.host = 'https://daveparillo.github.io/intermediate-cpp/' || 'http://127.0.0.1:8000';
+    eBookConfig.app = eBookConfig.host+'/intermediate-cpp';
+    eBookConfig.course = 'intermediate-cpp';
+    eBookConfig.basecourse = 'intermediate-cpp';
+    eBookConfig.isLoggedIn = false;
+  
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.logLevel = 0;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "unknown";
+  eBookConfig.python3 = true;
+  eBookConfig.acDefaultLanguage = 'cpp' ? 'cpp' : 'python'
+  eBookConfig.runestone_version = '4.1.11';
+  eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.enable_chatcodes = false ? false : false;
+
+
+</script>
+
+
+
+
+  </head><body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar" aria-label="navbar toggle" class="visuallyhidden">toggle navbar</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        
+          <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;'>&nbsp;<span aria-label="logo" class="visuallyhidden">Runestone Logo</span> </a>
+        
+        <a class="navbar-brand" href="../index.html" aria-label="index-page">
+          
+          intermediate-cpp
+        </a>
+      </div>
+    </div>
+
+
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav navbar-right" >
+
+        <li class="divider-vertical"></li>
+
+        <!-- social media dropdown -->
+        <!-- end social media dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'><span aria-label="Search" class="visuallyhidden">Search</span></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html' aria-label="index-page">Table of Contents</a></li>
+            
+            <li><a href='../genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        
+        <li class="divider-vertical"></li>
+        <!-- <li id="scratch_ac_link"><a href="javascript:ACFactory.toggleScratchActivecode()">Scratch ActiveCode</a></li> -->
+
+        <!-- <li class="dropdown">             -->
+          <li id="scratch_ac_link" class="dropdown"><a href="javascript:ACFactory.toggleScratchActivecode()">
+              <i class="glyphicon glyphicon-pencil" style="opacity:0.9;"><span aria-label="Scratch Activecode" class="visuallyhidden">Scratch Activecode</span></i></a></li>
+        <!-- </li> -->
+
+        <li class="divider-vertical"></li>
+
+        
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        
+          
+          <li class="divider-vertical"></li>
+        
+        <!-- 
+          
+  <li id="relations-prev" title="Previous Chapter - 7.1. Standard Template Library Containers" data-toggle="tooltip">
+    <a href="intro.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - 7.3. Tree ADT concepts' data-toggle="tooltip" >              
+    <a href="trees.html" >
+        <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+      </div> <!-- navbar -->
+
+
+
+
+
+
+
+    </div> <!-- container -->
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content" role="main">
+  
+  <div class="section" id="sequence-containers">
+<span id="index-0"></span><h1>7.2. Sequence Containers<a class="headerlink" href="#sequence-containers" title="Permalink to this headline">¶</a></h1>
+<p>Like a raw array and <code class="docutils literal notranslate"><span class="pre">vector</span></code>, all of the containers in this section
+store a sequence of elements of a given type.
+Although all sequence containers store data sequentially,
+it does not mean that the data is stored in a contiguous memory block.
+Nor do all containers allow elements to be accessed by index using <code class="docutils literal notranslate"><span class="pre">operator[]</span></code>.</p>
+<div class="section" id="the-vector-class">
+<span id="index-1"></span><h2>7.2.1. The vector class<a class="headerlink" href="#the-vector-class" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::vector">std::vector</a> is a sequence container that simulates a dynamically sized array.
+If you have taken a class in linear algebra, vector has nothing to do with mathematics,
+but is just about a sequential data structure.</p>
+<p>Like an array, elements are stored continuously.
+This means that elements can be accessed not only through iterators,
+but also using offsets to regular pointers to elements.
+The benefit of this is that a pointer to an element of a vector may be passed
+to any function that expects a pointer to an element of an array.</p>
+<p>Unlike an array,
+vector storage is handled automatically, being expanded and contracted as needed.
+Vectors usually occupy more space than static arrays,
+because more memory is allocated to handle future growth.
+This way a vector does not need to reallocate each time an element is inserted,
+but only when the additional memory is exhausted.
+The total amount of allocated memory can be queried using <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=vector::capacity()">vector::capacity()</a> function.
+Starting in C++11, extra memory can be returned to the system via a call to <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=vector::shrink_to_fit()">vector::shrink_to_fit()</a>.</p>
+<p id="index-2">Given a vector declared as:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>This creates a vector of type <code class="docutils literal notranslate"><span class="pre">int</span></code>, with size 6 and the first 4 values initialized:</p>
+<div class="graphviz"><img src="../_images/graphviz-ded433212d3ec72259ce7933f7304a2faf7eb2ae.png" alt="A vector of type int" class="graphviz" /></div>
+<p>The data layout of a vector makes it easy to pass a vector to a legacy C
+function that expects a raw array.
+This is something that comes up more often than you might expect.
+The book <em>Effective STL</em> has a good discussion of
+passing string and vector objects to legacy C functions<a class="footnote-reference brackets" href="#id3" id="id1">1</a>.</p>
+<p>Given a legacy C function that expects a raw array:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">print_sum</span> <span class="p">(</span><span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="n">values</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">array_size</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array_size</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+  <span class="p">}</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Sum of ints in the array is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We expect to be able to pass in an array and print the sum:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="kt">int</span> <span class="n">data</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="o">-</span><span class="mi">19</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">222</span><span class="p">,</span> <span class="o">-</span><span class="mi">3000</span><span class="p">,</span> <span class="mi">4000</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span> <span class="p">};</span>
+  <span class="k">const</span> <span class="kt">int</span> <span class="n">numValues</span> <span class="o">=</span> <span class="k">sizeof</span> <span class="n">data</span> <span class="o">/</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+
+  <span class="n">print_sum</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">num_values</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We can pass a <code class="docutils literal notranslate"><span class="pre">vector</span></code> to this same legacy function:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">data</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="o">-</span><span class="mi">19</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">222</span><span class="p">,</span> <span class="o">-</span><span class="mi">3000</span><span class="p">,</span> <span class="mi">4000</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span> <span class="p">};</span>
+  <span class="k">const</span> <span class="kt">int</span> <span class="n">num_values</span> <span class="o">=</span> <span class="k">sizeof</span> <span class="n">data</span> <span class="o">/</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+
+  <span class="n">print_sum</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">num_values</span><span class="p">);</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+  <span class="n">v</span><span class="p">.</span><span class="n">insert</span> <span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">data</span><span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">num_values</span><span class="p">);</span>     <span class="c1">// insert the ints in data</span>
+                                                 <span class="c1">// into v at the front</span>
+
+  <span class="n">print_sum</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>   <span class="c1">// ok, unless v is empty</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">v</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>              <span class="c1">// safer</span>
+    <span class="n">print_sum</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">());</span> <span class="c1">//&amp;v[0] is better than v.begin()</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-array-class">
+<span id="index-3"></span><h2>7.2.2. The array class<a class="headerlink" href="#the-array-class" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::array">std::array</a> is a container that encapsulates fixed size arrays.
+Since it is literally a wrapper around a raw array,
+the size of the <code class="docutils literal notranslate"><span class="pre">std::array</span></code> must be defined when declared.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">array</span> <span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">12</span><span class="o">&gt;</span> <span class="n">days_per_month</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">std::array</span></code> class is very lightweight and has effectively no
+costs over a raw array.
+Additionally, <code class="docutils literal notranslate"><span class="pre">std::array</span></code> provides convenience functions such as:</p>
+<dl class="simple">
+<dt><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=array::at()">array::at()</a></dt><dd><p>range checked access</p>
+</dd>
+<dt><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=array::front()">array::front()</a> and <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=array::back()">array::back()</a></dt><dd><p>access to the first and last elements</p>
+</dd>
+<dt><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=array::size()">array::size()</a></dt><dd><p>return the number of elements</p>
+</dd>
+<dt><a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=array::empty()">array::empty()</a></dt><dd><p>check if the container is empty</p>
+</dd>
+</dl>
+<p>Unlike a raw array, <code class="docutils literal notranslate"><span class="pre">std::array</span></code> cannot infer its size if
+declared with an initializer list:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;array&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// compile error: array template parameter missing:</span>
+  <span class="c1">//std::array&lt;char&gt; letters = {{&#39;h&#39;, &#39;o&#39;, &#39;w&#39;, &#39;d&#39;, &#39;y&#39;, &#39;!&#39;}};</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="mi">6</span><span class="o">&gt;</span> <span class="n">letters</span> <span class="o">=</span> <span class="p">{{</span><span class="sc">&#39;h&#39;</span><span class="p">,</span> <span class="sc">&#39;o&#39;</span><span class="p">,</span> <span class="sc">&#39;w&#39;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="sc">&#39;y&#39;</span><span class="p">,</span> <span class="sc">&#39;!&#39;</span><span class="p">}};</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">letters</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;The first character is: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">letters</span><span class="p">.</span><span class="n">front</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;The last character is: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">letters</span><span class="p">.</span><span class="n">back</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">c</span><span class="p">:</span> <span class="n">letters</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">c</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-list-class">
+<span id="index-4"></span><h2>7.2.3. The list class<a class="headerlink" href="#the-list-class" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::list">std::list</a> is a sequence container that stores data in <a class="reference internal" href="../glossary.html#term-node"><span class="xref std std-term">nodes</span></a>.
+Each <a class="reference internal" href="../glossary.html#term-node"><span class="xref std std-term">node</span></a> in a <a class="reference internal" href="../glossary.html#term-list"><span class="xref std std-term">list</span></a> points to the next (and previous) node in the <a class="reference internal" href="../glossary.html#term-list"><span class="xref std std-term">list</span></a>.
+Each node is a separate object that exists to encapsulate a piece of data
+and to allow navigation to adjacent nodes.</p>
+<div class="graphviz"><img src="../_images/graphviz-bb8683f52c6981b957c65bcc93418da840b2b13a.png" alt="Linked list nodes" class="graphviz" /></div>
+<p id="index-5">A more compact way to graphically represent our <a class="reference internal" href="../glossary.html#term-doubly-linked-list"><span class="xref std std-term">doubly linked list</span></a> is like this:</p>
+<div class="graphviz"><img src="../_images/graphviz-fc76803fe0e16007b0325dc079a40bf6cb4f4400.png" alt="A compact linked list diagram" class="graphviz" /></div>
+<p>A <a class="reference internal" href="../glossary.html#term-linked-list"><span class="xref std std-term">linked list</span></a> that stores a sequence of <code class="docutils literal notranslate"><span class="pre">int</span></code>s can be trivially implemented using a <code class="docutils literal notranslate"><span class="pre">struct</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">node</span> <span class="p">{</span>
+   <span class="kt">int</span> <span class="n">value</span><span class="p">;</span>
+   <span class="n">node</span><span class="o">*</span> <span class="n">next</span><span class="p">;</span>
+   <span class="n">node</span><span class="o">*</span> <span class="n">prev</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">node</span></code> contains a single value it ‘owns’,
+plus pointers to adjacent nodes.</p>
+<p id="index-6">Creating a <a class="reference internal" href="../glossary.html#term-linked-list"><span class="xref std std-term">linked list</span></a> from such a ‘home grown’ <code class="docutils literal notranslate"><span class="pre">struct</span></code> is not complicated,
+but it isn’t pretty either:</p>
+<div class="sidebar">
+<p class="sidebar-title">An empty list</p>
+<div class="graphviz"><img src="../_images/graphviz-550f7a58fbc42d829f3519ed4d1405a20576c05d.png" alt="digraph empty {
+graph [
+   nodesep=1,
+];
+node [fontname = &quot;Bitstream Vera Sans&quot;, fontsize=14,
+      style=dotted,
+      shape=box, width=0.5, height=.25];
+
+head -&gt; tail [constraint=false];
+tail-&gt; head [constraint=false];
+}" class="graphviz" /></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// create an empty list</span>
+<span class="n">node</span><span class="o">*</span> <span class="n">head</span> <span class="o">=</span> <span class="k">new</span> <span class="n">node</span><span class="p">;</span>
+<span class="n">node</span><span class="o">*</span> <span class="n">tail</span> <span class="o">=</span> <span class="k">new</span> <span class="n">node</span><span class="p">;</span>
+<span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">tail</span><span class="p">;</span>
+<span class="n">tail</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="sidebar">
+<p class="sidebar-title">Insert node ‘a’ to our list</p>
+<div class="graphviz"><img src="../_images/graphviz-f5d9725ddb17480ec39af1cae42182e73f03491a.png" alt="digraph node_a {
+graph [
+   rankdir=LR,
+   nodesep=1
+];
+node [fontname = &quot;Bitstream Vera Sans&quot;, fontsize=14,
+      style=filled, fillcolor=lightblue,
+      shape=box, width=0.5, height=.25];
+
+head,tail [style=dotted, fillcolor=white];
+
+head,tail-&gt; a
+a -&gt; head, tail
+}" class="graphviz" /></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// insert node a into the list</span>
+<span class="n">node</span><span class="o">*</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">node</span><span class="p">;</span>
+<span class="n">a</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">=</span> <span class="mi">61</span><span class="p">;</span>
+<span class="n">a</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">tail</span><span class="p">;</span>
+<span class="n">a</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+<span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+<span class="n">tail</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="sidebar">
+<p class="sidebar-title">Insert node ‘b’ after a</p>
+<div class="graphviz"><img src="../_images/graphviz-1ab14f2a20ac3404e603556810b49a97c543a078.png" alt="digraph node_b {
+graph [
+    rankdir=LR,
+    nodesep=1
+ ];
+ node [fontname = &quot;Bitstream Vera Sans&quot;, fontsize=14,
+       style=filled, fillcolor=lightblue,
+       shape=box, width=0.5, height=.25];
+
+ head,tail [style=dotted, fillcolor=white];
+
+ head -&gt; a -&gt; b -&gt; tail;
+ tail -&gt; b -&gt; a -&gt; head;
+}" class="graphviz" /></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// insert node b after node a</span>
+<span class="n">node</span><span class="o">*</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">node</span><span class="p">;</span>
+<span class="n">b</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">=</span> <span class="mi">62</span><span class="p">;</span>
+<span class="n">b</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">tail</span><span class="p">;</span>
+<span class="n">b</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+<span class="n">a</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+<span class="n">tail</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>At this point, we have created the basic structure shown in the first list diagram.
+Once we have such a list, we can access all of the elements,
+if we have a pointer to any one of them.
+For example, to print all of the elements, we could:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">node</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span><span class="p">;</span>
+  <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Which, given the list we created, will print <code class="docutils literal notranslate"><span class="pre">61</span> <span class="pre">62\0</span></code>.</p>
+<p>Obviously, no one would want to use such a list.
+Every trivial detail needs to be managed, and any program using it
+would be more likely to leak memory or fail suddenly due to some programming error.</p>
+<p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::list">std::list</a> class hides all the implementation details and
+provides a list with many convenient features:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;list&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">print_list</span><span class="p">(</span><span class="k">const</span> <span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span> <span class="p">};</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;size: &quot;</span>  <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">front: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">back: &quot;</span>  <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n\n</span><span class="s">push_back 13: &quot;</span><span class="p">;</span>
+  <span class="n">list</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">size: &quot;</span>  <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">back() &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
+
+  <span class="n">print_list</span><span class="p">(</span><span class="n">list</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">print_list</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">list</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">list</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;list is empty.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;list contains:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="nl">i</span><span class="p">:</span> <span class="n">list</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The defining operations of a <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::list">std::list</a> are:</p>
+<dl class="simple">
+<dt>push_back</dt><dd><p>Add a new element to the end of the list.</p>
+</dd>
+<dt>pop_back</dt><dd><p>Remove an element from the end of the list.</p>
+</dd>
+<dt>back</dt><dd><p>Get the value of the element at the end of the list.</p>
+</dd>
+<dt>push_front</dt><dd><p>Add a new element to the beginning of the list.</p>
+</dd>
+<dt>pop_front</dt><dd><p>Remove an element from the beginning of the list.</p>
+</dd>
+<dt>front</dt><dd><p>Get the value of the element at the beginning of the list.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>empty() vs. size() == 0</p>
+<p>In most containers, calling <code class="docutils literal notranslate"><span class="pre">size()</span></code> is constant time.</p>
+<p>That is it takes the same amount of time regardless of
+the number items in the container.</p>
+<p>Not so for lists.</p>
+<p>There are situations where a list cannot determine the size
+without traversing the range and counting them.</p>
+<p>In general, never assume <code class="docutils literal notranslate"><span class="pre">size()</span></code> is as efficient as <code class="docutils literal notranslate"><span class="pre">empty()</span></code>.</p>
+<p>If you <strong>really</strong> want to know if a container is empty (or not),
+then call <code class="docutils literal notranslate"><span class="pre">empty()</span></code>.</p>
+<p>If you <strong>really</strong> want to know the number of elements in a container,
+then call <code class="docutils literal notranslate"><span class="pre">size()</span></code>.</p>
+<p>See <em>Effective STL</em>, for more details<a class="footnote-reference brackets" href="#id4" id="id2">2</a>.</p>
+</div>
+<p>Underneath, the standard library <code class="docutils literal notranslate"><span class="pre">list</span></code> is not very different from the <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">node</span></code> above.
+The primary characteristics are:</p>
+<ul class="simple">
+<li><p>All data is stored on the heap</p></li>
+<li><p>Node traversal is accomplished by following pointers from one node to the next</p></li>
+<li><p>Access based on an index is not allowed.
+This kind of access, called <em>random  access</em> describes
+the ability to compute a location in memory using a starting address and an offset.
+Arrays and vectors support random access.
+Linked lists do not.</p></li>
+</ul>
+<div class="section" id="std-forward-list">
+<span id="index-7"></span><h3>7.2.3.1. std::forward_list<a class="headerlink" href="#std-forward-list" title="Permalink to this headline">¶</a></h3>
+<p>Like <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::list">std::list</a>,
+the <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::forward_list">std::forward_list</a> is a container that stores elements in <a class="reference internal" href="../glossary.html#term-node"><span class="xref std std-term">nodes</span></a>
+A <a class="reference internal" href="../glossary.html#term-singly-linked-list"><span class="xref std std-term">forward list</span></a> only defines pointers to the next node in the list.
+This means that a forward list can only be traversed in the direction of the tail.</p>
+<div class="graphviz"><img src="../_images/graphviz-c66303b3f7f17cda7addc717287c22b1352dd0e9.png" alt="digraph list {
+rankdir=LR;
+node [fontname = &quot;Bitstream Vera Sans&quot;, fontsize=14,
+          style=filled, fillcolor=lightblue,
+          shape=record];
+
+head [shape=box];
+a [label=&quot;{ &lt;data&gt; 8 | &lt;ref&gt;  }&quot;, width=1.2]
+b [label=&quot;{ &lt;data&gt; 13 | &lt;ref&gt;  }&quot;];
+c [label=&quot;{ &lt;data&gt; 21 | &lt;ref&gt;  }&quot;];
+tail [shape=box];
+head:e -&gt; a:w     [arrowhead=vee];
+a:ref:c -&gt; b:data [arrowhead=vee, arrowtail=dot, dir=both, tailclip=false, arrowsize=1.2];
+b:ref:c -&gt; c:data [arrowhead=vee, arrowtail=dot, dir=both, tailclip=false];
+c:ref:c -&gt; tail:w [arrowhead=vee, arrowtail=dot, dir=both, tailclip=false];
+}" class="graphviz" /></div>
+<p>The defining operations of a <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::forward_list">std::forward_list</a> are:</p>
+<dl class="simple">
+<dt>push_front</dt><dd><p>Add a new element to the beginning of the list.</p>
+</dd>
+<dt>pop_front</dt><dd><p>Remove an element from the beginning of the list.</p>
+</dd>
+<dt>front</dt><dd><p>Get the value of the element at the beginning of the list.</p>
+</dd>
+</dl>
+<p>Compared to <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::list">std::list</a> this container provides more space efficient storage
+when bidirectional iteration is not needed.
+A very light-weight container,
+it does not have any overhead compared to its implementation in C.</p>
+</div>
+</div>
+<div class="section" id="the-stack-class">
+<span id="index-8"></span><h2>7.2.4. The stack class<a class="headerlink" href="#the-stack-class" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::stack">std::stack</a> is a container adapter that gives the programmer the
+functionality of a stack - specifically, a Last-In-First-Out (LIFO) data structure.</p>
+<p>The class template acts as a wrapper to the underlying container - only
+a specific set of functions is provided.
+The stack pushes and pops the element from the back of the underlying container,
+known as the top of the stack.</p>
+<p>The defining operations of a <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::stack">std::stack</a> are:</p>
+<dl class="simple">
+<dt>push</dt><dd><p>Add a new element to the top of the stack.</p>
+</dd>
+<dt>pop</dt><dd><p>Remove an element from the top of the stack.</p>
+</dd>
+<dt>top</dt><dd><p>Get the value of the element at the top of the stack.</p>
+</dd>
+</dl>
+<div class="graphviz"><img src="../_images/graphviz-85f0f50b00b3a4691d278891513684df0f65a07a.png" alt="std::stack elements" class="graphviz" /></div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stack&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="p">;</span>
+
+<span class="cp">#define StackContainer typename</span>
+
+<span class="c1">// remove all elements from a stack and print them out</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="n">StackContainer</span> <span class="n">C</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">pop_all</span><span class="p">(</span><span class="n">C</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">s</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span><span class="p">;</span>
+    <span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">popped all from stack</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="n">stack</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">strings</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;push strings onto stack...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="n">strings</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="s">&quot;one&quot;</span><span class="p">);</span>
+  <span class="n">strings</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="s">&quot;two&quot;</span><span class="p">);</span>
+  <span class="n">strings</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="s">&quot;three&quot;</span><span class="p">);</span>
+  <span class="n">strings</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="s">&quot;four&quot;</span><span class="p">);</span>
+  <span class="n">strings</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="s">&quot;five&quot;</span><span class="p">);</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;size of stack before: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">strings</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="n">pop_all</span> <span class="p">(</span><span class="n">strings</span><span class="p">);</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;size of stack after: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">strings</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">strings</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;stack is empty.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>which returns:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>push strings onto stack...
+size of stack before: 5
+five four three two one
+popped all from stack
+size of stack after: 0
+stack is empty.
+</pre></div>
+</div>
+<p>It is also possible to initialize a stack from a vector, list or array:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stack&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;list&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="p">;</span>
+
+<span class="cp">#define StackContainer typename</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="n">StackContainer</span> <span class="n">C</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">pop_all</span><span class="p">(</span><span class="n">C</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">s</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span><span class="p">;</span>
+    <span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">popped all from stack</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;initialize stack from list:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">tmp</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span> <span class="p">};</span>
+  <span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">numbers</span><span class="p">(</span><span class="n">tmp</span><span class="p">);</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;list has &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">tmp</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; entries</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="n">pop_all</span> <span class="p">(</span><span class="n">numbers</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;stack is empty.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>which returns:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>initialize stack from list:
+list has 5 entries
+5 4 3 2 1
+popped all from stack
+stack is empty.
+</pre></div>
+</div>
+<p>Notice the elements from the list are pushed onto the stack in the order
+they are retrieved from the list.
+The number <code class="docutils literal notranslate"><span class="pre">1</span></code> is pushed first, so when iniitialization is complete,
+it is on the bottom of the stack.</p>
+<p>Stack elements <strong>cannot</strong> be accessed directly in the way
+you are used to with other sequential containers like
+arrays, vectors, and lists.
+To ‘visit’ each element in a <code class="docutils literal notranslate"><span class="pre">stack</span></code>, the items need to be popped off.</p>
+<p>If you think you need to visit all the elements in a <code class="docutils literal notranslate"><span class="pre">stack</span></code>,
+then you probably should not be using a <code class="docutils literal notranslate"><span class="pre">stack</span></code>.</p>
+<p>The STL containers <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>, <code class="docutils literal notranslate"><span class="pre">std::list</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">std::deque</span></code> can be adapted to create a <code class="docutils literal notranslate"><span class="pre">stack</span></code>.</p>
+</div>
+<div class="section" id="the-queue-class">
+<span id="index-9"></span><h2>7.2.5. The queue class<a class="headerlink" href="#the-queue-class" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::queue">std::queue</a> is a container adapter that gives the programmer the
+functionality of a queue - specifically, a FIFO (first-in, first-out) data structure.</p>
+<p>The class template acts as a wrapper to the underlying container - only
+a specific set of functions is provided.
+The queue pushes elements on the back of the underlying container,
+and pops them from the front.</p>
+<div class="graphviz"><img src="../_images/graphviz-6ceee6dc69dd09a4c56f8e0de1f6329ea0006225.png" alt="std::queue elements" class="graphviz" /></div>
+<p id="index-10">The defining operations of a <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::queue">std::queue</a> are:</p>
+<dl class="simple">
+<dt>push</dt><dd><p>Add a new element to the back (end) of the queue.</p>
+</dd>
+<dt>pop</dt><dd><p>Remove an element from the front (beginning) of the queue.</p>
+</dd>
+<dt>front</dt><dd><p>Get the value of the element at the beginning of the queue.</p>
+</dd>
+<dt>back</dt><dd><p>Get the value of the element at the end of the queue.</p>
+</dd>
+</dl>
+<div class="graphviz"><img src="../_images/graphviz-58a17821ab3f0ceadf4451e7cd0ecf372586bdff.png" alt="std::queue operations" class="graphviz" /></div>
+<p>Minor modifications change <code class="docutils literal notranslate"><span class="pre">pop_all()</span></code> from a function
+performing <code class="docutils literal notranslate"><span class="pre">stack</span></code> operations into one
+performing <code class="docutils literal notranslate"><span class="pre">queue</span></code> operations:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;queue&gt;</span><span class="cp"></span>
+
+<span class="cp">#define QueueContainer typename</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="n">QueueContainer</span> <span class="n">C</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">pop_all</span><span class="p">(</span><span class="n">C</span><span class="o">&amp;</span> <span class="n">q</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span><span class="p">;</span>
+    <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">popped all from queue</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The STL containers <code class="docutils literal notranslate"><span class="pre">std::list</span></code> and <code class="docutils literal notranslate"><span class="pre">std::deque</span></code> can be adapted to create a queue.</p>
+</div>
+<div class="section" id="the-deque-class">
+<span id="index-11"></span><h2>7.2.6. The deque class<a class="headerlink" href="#the-deque-class" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::deque">std::deque</a> (double-ended queue) is an indexed sequence container that
+allows fast insertion and deletion at both its beginning and its end.
+In addition,
+insertion and deletion at either end of a <code class="docutils literal notranslate"><span class="pre">deque</span></code> never invalidates pointers
+or references to the rest of the elements.</p>
+<p>It’s primary role in the standard library is to function as
+the default container underlying <code class="docutils literal notranslate"><span class="pre">std::stack</span></code> and <code class="docutils literal notranslate"><span class="pre">std::queue</span></code>.</p>
+<hr class="docutils" />
+<div class="admonition-more-to-explore admonition">
+<p class="admonition-title">More to Explore</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://en.cppreference.com/w/cpp/container">STL containers library</a></p></li>
+<li><p><a class="reference external" href="https://visualgo.net/en/list?slide=1">Visualgo: lists</a></p></li>
+</ul>
+</div>
+<div class="topic">
+<p class="topic-title first">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Effective STL (Item #16) by Scott Meyers (Addison-Wesley Professional).  Copyright 2001 Scott Meyers, 978-0-201-74962-5.</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Effective STL (Item #4).</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+  <div id=scprogresscontainer>
+    You have attempted <span id=scprogresstotal></span> of <span id=scprogressposs></span> activities on this page <div id="subchapterprogress"></div>
+  </div>
+  
+      
+<ul>
+  <li id="relations-prev" class="navLink" title='Previous Section - 7.1. Standard Template Library Containers' data-toggle="tooltip">
+    <a href="intro.html" aria-label="7.1. Standard Template Library Containers">
+        <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
+            <i class='prevNav glyphicon glyphicon-chevron-left' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
+        </div>
+    </a>
+  </li>
+</ul>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="intro.html" aria-label="7.1. Standard Template Library Containers"></a>
+  
+<ul>
+  <li id="relations-next" class="navLink" title='Next Section - 7.3. Tree ADT concepts' data-toggle="tooltip" >
+    <a href="trees.html" aria-label="7.3. Tree ADT concepts">
+      <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
+          <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
+      </div>
+    </a>
+  </li>
+</ul>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="trees.html" aria-label="7.3. Tree ADT concepts">Next Section - 7.3. Tree ADT concepts</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2017-2019 Dave Parillo.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 4.1.11.
+    </p>
+  </div>
+</footer>
+
+
+
+
+
+  </body>
+</html>

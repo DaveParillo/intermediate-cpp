@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>1.3. Scope &#8212; Intermediate Modern C++ Overview</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/presenter_mode.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/showEval.css?v=C6382F3" />
+    <link rel="stylesheet" type="text/css" href="../_static/pytutor.css?v=239FC54E" />
+    <link rel="stylesheet" type="text/css" href="../_static/modal-basic.css?v=8A1A42E4" />
+    <link rel="stylesheet" type="text/css" href="../_static/clickable.css?v=58C4E18A" />
+    <link rel="stylesheet" type="text/css" href="../_static/datafile.css?v=C184EB8A" />
+    <link rel="stylesheet" type="text/css" href="../_static/spreadsheet.css?v=B5F018A" />
+    <link rel="stylesheet" type="text/css" href="../_static/jexcel.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/japp.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/parsons.css?v=2F3E13EE" />
+    <link rel="stylesheet" type="text/css" href="../_static/js_lib/prettify.css?v=2A364B6B" />
+    <link rel="stylesheet" type="text/css" href="../_static/fitb.css?v=3BA0E63E" />
+    <link rel="stylesheet" type="text/css" href="../_static/poll.css?v=E220AC33" />
+    <link rel="stylesheet" type="text/css" href="../_static/dragndrop.css?v=1FF7F927" />
+    <link rel="stylesheet" type="text/css" href="../_static/matrixeq.css?v=58BC228F" />
+    <link rel="stylesheet" type="text/css" href="../_static/CodeChat.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabbedstuff.css?v=424F1CC9" />
+    <link rel="stylesheet" type="text/css" href="../_static/video.css?v=E5385B3B" />
+    <link rel="stylesheet" type="text/css" href="../_static/reveal.css?v=4A81D381" />
+    <link rel="stylesheet" type="text/css" href="../_static/activecode.css?v=F471F95B" />
+    <link rel="stylesheet" type="text/css" href="../_static/codemirror.css?v=1CE53237" />
+    <link rel="stylesheet" type="text/css" href="../_static/webgldemo.css?v=B36B48D" />
+    <link rel="stylesheet" type="text/css" href="../_static/webglinteractive.css?v=910DF1E1" />
+    <link rel="stylesheet" type="text/css" href="../_static/accessibility.css?v=808B982A" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css?v=4.1.11" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/runestonebase.js?v=4.1.11"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/showEval.js?v=5B2DD7A6"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js?v=836E01C"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js?v=B64CF0A8"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js?v=42F9EBEA"></script>
+    <script type="text/javascript" src="../_static/pytutor.js?v=82B022B9"></script>
+    <script type="text/javascript" src="../_static/codelens.js?v=CABECD49"></script>
+    <script type="text/javascript" src="../_static/shortanswer.js?v=D42E4CE3"></script>
+    <script type="text/javascript" src="../_static/timed_shortanswer.js?v=B3A117D7"></script>
+    <script type="text/javascript" src="../_static/clickable.js?v=DEB56CF8"></script>
+    <script type="text/javascript" src="../_static/timedclickable.js?v=93989C23"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js?v=BDC8551F"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js?v=5731007D"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="../_static/datafile.js?v=3ED1A80C"></script>
+    <script type="text/javascript" src="../_static/spreadsheet.js?v=9DA8BEAB"></script>
+    <script type="text/javascript" src="../_static/jexcel.js"></script>
+    <script type="text/javascript" src="../_static/japp.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js?v=CA7E8928"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js?v=73056367"></script>
+    <script type="text/javascript" src="../_static/parsons.js?v=68B5F56"></script>
+    <script type="text/javascript" src="../_static/timedparsons.js?v=2EEA9E5A"></script>
+    <script type="text/javascript" src="../_static/fitb.js?v=3FF7EFF0"></script>
+    <script type="text/javascript" src="../_static/timedfitb.js?v=2AA17071"></script>
+    <script type="text/javascript" src="../_static/poll.js?v=13CE919A"></script>
+    <script type="text/javascript" src="../_static/dragndrop.js?v=644C2C6C"></script>
+    <script type="text/javascript" src="../_static/timeddnd.js?v=378F237E"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js?v=D64CFA5A"></script>
+    <script type="text/javascript" src="../_static/animationbase.js?v=A043C3A7"></script>
+    <script type="text/javascript" src="../_static/mchoice.js?v=7B442CDC"></script>
+    <script type="text/javascript" src="../_static/timedmc.js?v=B010A457"></script>
+    <script type="text/javascript" src="../_static/timed.js?v=CEC6219E"></script>
+    <script type="text/javascript" src="../_static/lp.js?v=F137FF7A"></script>
+    <script type="text/javascript" src="../_static/gas.js?v=F0D0F02E"></script>
+    <script type="text/javascript" src="../_static/tabbedstuff.js?v=5BE6106"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js?v=53E888DE"></script>
+    <script type="text/javascript" src="../_static/reveal.js?v=9C3AAF60"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js?v=F1C496C8"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js?v=963AEB3A"></script>
+    <script type="text/javascript" src="../_static/codemirror.js?v=94F552C9"></script>
+    <script type="text/javascript" src="../_static/xml.js?v=236EDFF7"></script>
+    <script type="text/javascript" src="../_static/css.js?v=623153CE"></script>
+    <script type="text/javascript" src="../_static/python.js?v=14A28F1F"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js?v=33B91944"></script>
+    <script type="text/javascript" src="../_static/javascript.js?v=6F38CA04"></script>
+    <script type="text/javascript" src="../_static/sql.js?v=1B4587EC"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js?v=599B42B0"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js?v=88A1430F"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js?v=AE15A4A1"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js?v=8ABDFE7F"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js?v=747279FF"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js?v=7B020E13"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js?v=660E85C3"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js?v=54B21948"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js?v=70E93DF2"></script>
+    <script type="text/javascript" src="../_static/activecode.js?v=FE13F48"></script>
+    <script type="text/javascript" src="../_static/clike.js?v=2DCE0756"></script>
+    <script type="text/javascript" src="../_static/timed_activecode.js?v=C6AD5C24"></script>
+    <script type="text/javascript" src="../_static/sql-wasm.js?v=44FE0709"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js?v=2B768384"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js?v=8408C997"></script>
+    <script type="text/javascript" src="../_static/Blob.js?v=AEC2447"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js?v=4.1.11"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="../_static/presenter_mode.js?v=4.1.11"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.4. What you don’t need to know (yet)" href="what-you-dont.html" />
+    <link rel="prev" title="1.2. Types" href="types.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="shortcut icon" href="/intermediate-cpp/static/favicon.ico" type="image/ico" />
+
+<script type="text/javascript">
+  eBookConfig = {};
+  
+    eBookConfig.useRunestoneServices = false;
+    eBookConfig.host = 'https://daveparillo.github.io/intermediate-cpp/' || 'http://127.0.0.1:8000';
+    eBookConfig.app = eBookConfig.host+'/intermediate-cpp';
+    eBookConfig.course = 'intermediate-cpp';
+    eBookConfig.basecourse = 'intermediate-cpp';
+    eBookConfig.isLoggedIn = false;
+  
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.logLevel = 0;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "unknown";
+  eBookConfig.python3 = true;
+  eBookConfig.acDefaultLanguage = 'cpp' ? 'cpp' : 'python'
+  eBookConfig.runestone_version = '4.1.11';
+  eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.enable_chatcodes = false ? false : false;
+
+
+</script>
+
+
+
+
+  </head><body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar" aria-label="navbar toggle" class="visuallyhidden">toggle navbar</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        
+          <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;'>&nbsp;<span aria-label="logo" class="visuallyhidden">Runestone Logo</span> </a>
+        
+        <a class="navbar-brand" href="../index.html" aria-label="index-page">
+          
+          intermediate-cpp
+        </a>
+      </div>
+    </div>
+
+
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav navbar-right" >
+
+        <li class="divider-vertical"></li>
+
+        <!-- social media dropdown -->
+        <!-- end social media dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'><span aria-label="Search" class="visuallyhidden">Search</span></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html' aria-label="index-page">Table of Contents</a></li>
+            
+            <li><a href='../genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        
+        <li class="divider-vertical"></li>
+        <!-- <li id="scratch_ac_link"><a href="javascript:ACFactory.toggleScratchActivecode()">Scratch ActiveCode</a></li> -->
+
+        <!-- <li class="dropdown">             -->
+          <li id="scratch_ac_link" class="dropdown"><a href="javascript:ACFactory.toggleScratchActivecode()">
+              <i class="glyphicon glyphicon-pencil" style="opacity:0.9;"><span aria-label="Scratch Activecode" class="visuallyhidden">Scratch Activecode</span></i></a></li>
+        <!-- </li> -->
+
+        <li class="divider-vertical"></li>
+
+        
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        
+          
+          <li class="divider-vertical"></li>
+        
+        <!-- 
+          
+  <li id="relations-prev" title="Previous Chapter - 1.2. Types" data-toggle="tooltip">
+    <a href="types.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - 1.4. What you don’t need to know (yet)' data-toggle="tooltip" >              
+    <a href="what-you-dont.html" >
+        <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+      </div> <!-- navbar -->
+
+
+
+
+
+
+
+    </div> <!-- container -->
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content" role="main">
+  
+  <div class="section" id="scope">
+<span id="index-0"></span><h1>1.3. Scope<a class="headerlink" href="#scope" title="Permalink to this headline">¶</a></h1>
+<p>Each name that appears in a C++ program is only valid in some <em>possibly discontiguous</em>
+portion of the source code called its <a class="reference internal" href="../glossary.html#term-scope"><span class="xref std std-term">scope</span></a>.</p>
+<p>Within a scope,
+unqualified name lookup can be used to associate the name with its declaration.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                  <span class="c1">// global variable</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>               <span class="c1">// local variable</span>
+  <span class="n">assert</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">42</span><span class="p">);</span>         <span class="c1">// local scope definition replaces the global</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">func</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="n">assert</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">3</span><span class="p">);</span>          <span class="c1">// only name &#39;n&#39; in scope is the global one</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition-macro-assert admonition">
+<p class="admonition-title">Macro assert</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">assert</span></code> macro from C is a simple way to validate
+something in your program that <strong>must</strong> be true before you
+proceed.
+To use the assert macro, <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;cassert&gt;</span></code>,
+then call the function <code class="docutils literal notranslate"><span class="pre">assert</span></code>.
+The assert function takes a boolean variable or
+an expression that evaluates to a <code class="docutils literal notranslate"><span class="pre">bool</span></code>.</p>
+<p>Use the assert macro in your own code to validate function
+parameters or any other important checks.</p>
+</div>
+<p>In the following example,
+all of the assertions about <code class="docutils literal notranslate"><span class="pre">n</span></code> are <code class="docutils literal notranslate"><span class="pre">true</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+  <span class="n">assert</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">42</span><span class="p">);</span>
+
+  <span class="c1">// a new block scope can be created anywhere</span>
+  <span class="p">{</span>
+    <span class="kt">double</span> <span class="n">n</span> <span class="o">=</span> <span class="o">-</span><span class="mf">3.14159</span><span class="p">;</span>
+    <span class="n">assert</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="o">-</span><span class="mf">3.1415</span> <span class="o">&lt;</span> <span class="mf">0.01</span><span class="p">);</span>
+
+  <span class="p">}</span> <span class="c1">// double n is no longer in scope</span>
+
+  <span class="n">assert</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">42</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Errors related to scope are common,
+especially for beginning programmers who tend to rely more on
+global variables, or variables with more scope than needed.
+For example, what is the output of the following?</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i1</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i1</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i1</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i1</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="kt">int</span> <span class="n">i2</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i1</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i2</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i2</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+
+    <div data-component="reveal" id="reveal-scope-1"   data-showtitle="Show Answer" data-hidetitle="Hide" >
+    <p>If you guessed <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">1</span> <span class="pre">2</span> <span class="pre">3</span> <span class="pre">4</span> <span class="pre">5</span> <span class="pre">6</span> <span class="pre">7</span> <span class="pre">8</span> <span class="pre">9</span></code> , then you got it!</p>
+<p>Can you explain <em>why</em>?</p>
+<p>Hint:  What is the value of <code class="docutils literal notranslate"><span class="pre">i2</span></code> when the end of main is reached?</p>
+<p>What should be done to fix this program?</p>
+
+    </div>
+    <div class="admonition-try-this admonition">
+<p class="admonition-title">Try This!</p>
+<p>Change the preceeding program and put the declarations for
+<code class="docutils literal notranslate"><span class="pre">i1</span></code> and <code class="docutils literal notranslate"><span class="pre">i2</span></code> in their respective <code class="docutils literal notranslate"><span class="pre">for</span></code> loops.
+Don’t make any other changes.</p>
+<p>What happens?</p>
+<p>Why is this better than the unmodified program?</p>
+</div>
+<div class="section" id="local-variables">
+<span id="index-1"></span><h2>1.3.1. Local variables<a class="headerlink" href="#local-variables" title="Permalink to this headline">¶</a></h2>
+<p>You may read somewhere that global variables are evil, harmful, or whatever.
+There are no <em>harmful</em> language features.</p>
+<p>There <em>are</em> some language features that can get you into trouble if you have not
+carefully weighed the pros and cons of their use.
+That is why in this book, we generally like to avoid absolutes and to use instead <em>prefer</em>.</p>
+<p>We <em>prefer</em> keeping scope to the absolute minimum to get something done.
+Because we prefer keeping scope to a minimum, we <em>prefer</em>:</p>
+<ul class="simple">
+<li><p>Local variables over global variables.</p></li>
+<li><p>Declaring variables in the block where they are used.</p>
+<ul>
+<li><p>Even a local variable can have too much scope, as in the preceding example.</p></li>
+</ul>
+</li>
+</ul>
+<p>There is no reason in modern languages to declare all your variables at the start of a function.
+This is actually a requirement of alder languages like FORTRAN and old C.
+In modern languages, it’s an old habit some people have carried forward for no good reason.</p>
+<p>One of the simplest things you can do as a programmer to improve the clarity and
+maintainability of your code and reduce errors is to minimize the scope of local variables.
+The most powerful technique for minimizing the scope of local variables
+is to declare them where they are first used.</p>
+<p>The more distance between the top of a function and the place
+where a variable is actually used, the more important this advice is.
+If a variable is initialized far from it’s first use, the reader has
+probably forgotten the initial value,
+or even if the variable is local or global.</p>
+<p>Long methods with dozens of local variable are part of the reason special
+variable naming schemes became popular in some programming circles
+in the 70’s - 90’s.
+Some are still popular even today (Hungarian notation).
+Generally, all of these systems attempt to compensate for confusion created by
+poor design choices.</p>
+<p>Declaring a variable too early creates the problems described earlier,
+but also creates the problem of causing the scope to extend later than needed.
+When a variable is declared before the block in which it is used,
+it also exists after the block scope ends.
+This is the fundamental problem with our two <code class="docutils literal notranslate"><span class="pre">for</span></code> loops in the previous example.</p>
+<p>This is a classic <a class="reference internal" href="../glossary.html#term-semantic-error"><span class="xref std std-term">semantic error</span></a>.
+The code compiles and runs,
+but does not produce the expected result.</p>
+<p>One of the reasons we prefer <code class="docutils literal notranslate"><span class="pre">for</span></code> loops to <code class="docutils literal notranslate"><span class="pre">while</span></code> loops is that
+for loops allow us to initialize the loop variables within the for block.
+While loops, in contrast, nearly always define a variable controlling the exit condition
+outside the scope of the while block.</p>
+<p><strong>Prefer initialized local variables to unitialized ones</strong>.
+Uninitialized variables are a common source of error.
+If you code contains conditional logic or loops and the variable
+is accessed in its uninitialized state only occasionally,
+the result can be bugs that are difficult to identify and fix.</p>
+</div>
+<div class="section" id="keyword-namespace">
+<span id="index-2"></span><h2>1.3.2. Keyword: <code class="docutils literal notranslate"><span class="pre">namespace</span></code><a class="headerlink" href="#keyword-namespace" title="Permalink to this headline">¶</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">namespace</span></code> is simply a named block that defines a scope.
+Namespaces provide a method for preventing name conflicts in large projects.</p>
+<p>Symbols declared inside a namespace block are placed in a named scope that prevents them from being mistaken for identically-named symbols in other scopes.</p>
+<p>Multiple namespace blocks with the same name are allowed.
+All declarations within those blocks are declared in the named scope.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// declare some things in the mesa namespace</span>
+<span class="k">namespace</span> <span class="n">mesa</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.1416</span><span class="p">;</span>
+  <span class="kt">void</span> <span class="nf">details</span> <span class="p">(</span><span class="kt">char</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">mesa</span><span class="o">::</span><span class="n">details</span> <span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// define the function declared earlier</span>
+  <span class="c1">// do something</span>
+<span class="p">}</span>
+
+<span class="c1">//void mesa::oops () {       // error: oops not yet declared in mesa namespace</span>
+<span class="c1">//}</span>
+
+<span class="k">namespace</span> <span class="n">mesa</span> <span class="p">{</span>  <span class="c1">// a separate mesa namespace block</span>
+  <span class="kt">void</span> <span class="n">oops</span> <span class="p">();</span>
+  <span class="k">namespace</span> <span class="n">cisc</span> <span class="p">{</span>
+    <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159265358979</span><span class="p">;</span>  <span class="c1">// not the same variable as mesa::pi</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">using</span> <span class="n">mesa</span><span class="o">::</span><span class="n">cisc</span><span class="o">::</span><span class="n">pi</span><span class="p">;</span>
+  <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.f</span><span class="p">;</span>
+  <span class="n">mesa</span><span class="o">::</span><span class="n">details</span><span class="p">(</span><span class="sc">&#39;a&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The larger your project, the more important it is to partition the global namespace.
+By default, all symbols are declared in the <em>global namespace</em> (<code class="docutils literal notranslate"><span class="pre">::</span></code>).</p>
+<p>What is the problem with the global namespace?</p>
+<ul class="simple">
+<li><p>There is only 1 of them</p></li>
+<li><p>Name conflicts can be common on large projects</p></li>
+<li><p>Complicates mixing third party libraries</p></li>
+</ul>
+<p>Well-behaved third party libraries will not put much (if anything) in the global namespace.</p>
+<p>You can put anything in a namespace, except <code class="docutils literal notranslate"><span class="pre">main</span></code>.
+The function main has a few special rules and one is that it must be in the global namespace.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">using</span></code> directive allows all the names in a namespace to be used
+without the namespace-name as an explicit qualifier.
+Use a using directive in an implementation file (i.e. <code class="docutils literal notranslate"><span class="pre">*.cpp</span></code>)
+if you are using several different identifiers in a namespace;
+if you are just using one or two identifiers,
+then consider a using declaration to only bring those identifiers into scope
+and not all the identifiers in the namespace.
+If a local variable has the same name as a namespace variable,
+the namespace variable is hidden.
+It is an error to have a namespace variable with the same name as a global variable.</p>
+<div class="section" id="using-namespaces">
+<span id="index-3"></span><h3>1.3.2.1. Using namespaces<a class="headerlink" href="#using-namespaces" title="Permalink to this headline">¶</a></h3>
+<p>What’s wrong with <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">namespace</span> <span class="pre">std;</span></code>?</p>
+<p>Nothing, technically.
+It was a simplification in your first semester classes.
+The intent was to avoid ‘burdening’ you with having to care about this technical detail.</p>
+<p><strong>BUT</strong></p>
+<p>The using-directive <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">namespace</span> <span class="pre">std;</span></code> at any namespace scope introduces
+<em>every</em> name from the namespace std into the global namespace
+(since the global namespace is the nearest namespace that contains both std and any user-declared namespace),
+which may lead to undesirable name collisions.
+This, and other using directives are generally considered bad practice at file scope of a header file.
+Additionally, shadowing names in the standard namespace can lead to unexpected behaviors.</p>
+<div id='namespace' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Example: namespace std" >
+<p>It can be hard to remember every name that might be
+imported when <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">namespace</span> <span class="pre">std;</span></code>.
+Even when only 1 header is included.</p>
+<p>The following example seems innocent enough,
+until you learn that <a class="reference external" href="https://en.cppreference.com/w/cpp/io/manip/showpoint">showpoint</a> is a name
+in <code class="docutils literal notranslate"><span class="pre">std::ios</span></code></p>
+<p>Run the following example twice,
+first as is, then remove the line <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">showpoint</span> <span class="pre">=</span> <span class="pre">true;</span></code>:</p>
+
+<div data-childcomponent="ac-namespace-1" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac-namespace-1 data-lang="cpp" 
+      data-timelimit=25000    
+    data-audio=''      
+          >
+#include <iostream>
+
+using namespace std;
+
+int main () {
+  bool showpoint = true;
+
+  cout << "1.0 with showpoint: " << showpoint << 1.0 << '\n'
+       << "1.0 with noshowpoint: " << noshowpoint << 1.0 << '\n';
+
+}
+</textarea>
+</div>
+</div>
+    </div>
+
+<p>Errors using namespace directives are seldom this obviously wrong.</p>
+<div id='so_question' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Stack Overflow" >
+<p>Here is a simplification of a
+<a class="reference external" href="https://stackoverflow.com/questions/2712076/how-to-use-an-iterator">real question</a>
+asked on stack overflow:</p>
+
+<div data-childcomponent="ac-namespace-2" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac-namespace-2 data-lang="cpp" 
+      data-timelimit=25000    
+    data-audio=''      
+    data-compileargs="[&#x27;-Wall&#x27;, &#x27;-Wextra&#x27;, &#x27;-std=c++11&#x27;]"      >
+#include <iostream>
+#include <vector>
+#include <cmath>
+using namespace std;
+
+struct point {
+  float x;
+  float y;
+};
+
+// calculate the distance between two points
+float distance(const point& p1, const point& p2) {
+  return sqrt((p1.x - p2.x)*(p1.x - p2.x) +
+              (p1.y - p2.y)*(p1.y - p2.y));
+}
+
+int main() {
+  vector <point> po;
+  point p1; p1.x = 0; p1.y = 0;
+  point p2; p2.x = 100; p2.y = 100;
+  po.push_back(p1);
+  po.push_back(p2);
+
+  for (auto ii = po.begin(); ii != po.end(); ii++) {
+    for (auto jj = po.begin(); jj != po.end(); jj++) {
+      cout << distance(ii,jj) << " ";
+    }
+  }
+  return 0;
+}
+</textarea>
+</div>
+<p>This code compiles and runs and says the answer is: <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">1</span> <span class="pre">-1</span> <span class="pre">0</span></code>.
+I think we can all agree that is not the correct answer for two points <code class="docutils literal notranslate"><span class="pre">(0,0)</span></code> and <code class="docutils literal notranslate"><span class="pre">(100,100)</span></code>.</p>
+</div>
+    </div>
+
+<div class="admonition-try-this admonition">
+<p class="admonition-title">Try This!</p>
+<p>What is wrong with the program?</p>
+<p>Can you fix it?</p>
+</div>
+<p>The problem with each of the preceding programs was that the
+author did not realize the potential pitfalls with <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">namspace</span> <span class="pre">std;</span></code>.</p>
+<p id="index-4">One final word from two experts:</p>
+<blockquote>
+<div><p><strong>Summary</strong></p>
+<p>Namespace usings are for your convenience, not for you to inflict on others:
+Never write a <code class="docutils literal notranslate"><span class="pre">using</span></code> declaration or a <code class="docutils literal notranslate"><span class="pre">using</span></code> directive before an <code class="docutils literal notranslate"><span class="pre">#include</span></code> directive.</p>
+<p>Corollary: In header files,
+don’t write namespace-level using directives or using declarations;
+instead, explicitly namespace-qualify all names.
+(The second rule follows from the first,
+because headers can never know what other header <code class="docutils literal notranslate"><span class="pre">#include</span></code> might appear after them.)</p>
+<p><strong>Discussion</strong></p>
+<p>In short:
+You can and should use namespace using declarations and directives liberally
+in your implementation files after <code class="docutils literal notranslate"><span class="pre">#include</span></code> directives and feel good about it.
+Despite repeated assertions to the contrary,
+namespace <code class="docutils literal notranslate"><span class="pre">using</span></code> declarations and directives are not evil and they do not defeat the purpose of namespaces.
+Rather, they are what make namespaces usable.</p>
+<p class="attribution">—Herb Sutter and Andrei Alexandrescu, C++ Coding Standards</p>
+</div></blockquote>
+<hr class="docutils" />
+<div class="admonition-more-to-explore admonition">
+<p class="admonition-title">More to Explore</p>
+<ul class="simple">
+<li><p>From: cppreference.com:
+<a class="reference external" href="http://en.cppreference.com/w/cpp/language/scope">scope</a>
+<a class="reference external" href="http://en.cppreference.com/w/cpp/language/namespace">namespace declarations</a> and
+<a class="reference external" href="http://en.cppreference.com/w/cpp/language/namespace_alias">namespace alias</a></p></li>
+<li><p>From stack overflow: <a class="reference external" href="https://stackoverflow.com/questions/1452721/why-is-using-namespace-std-considered-bad-practice">Why is using namespace std considered bad practice?</a></p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+  <div id=scprogresscontainer>
+    You have attempted <span id=scprogresstotal></span> of <span id=scprogressposs></span> activities on this page <div id="subchapterprogress"></div>
+  </div>
+  
+      
+<ul>
+  <li id="relations-prev" class="navLink" title='Previous Section - 1.2. Types' data-toggle="tooltip">
+    <a href="types.html" aria-label="1.2. Types">
+        <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
+            <i class='prevNav glyphicon glyphicon-chevron-left' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
+        </div>
+    </a>
+  </li>
+</ul>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="types.html" aria-label="1.2. Types"></a>
+  
+<ul>
+  <li id="relations-next" class="navLink" title='Next Section - 1.4. What you don’t need to know (yet)' data-toggle="tooltip" >
+    <a href="what-you-dont.html" aria-label="1.4. What you don’t need to know (yet)">
+      <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
+          <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
+      </div>
+    </a>
+  </li>
+</ul>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="what-you-dont.html" aria-label="1.4. What you don’t need to know (yet)">Next Section - 1.4. What you don’t need to know (yet)</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2017-2019 Dave Parillo.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 4.1.11.
+    </p>
+  </div>
+</footer>
+
+
+
+
+
+  </body>
+</html>

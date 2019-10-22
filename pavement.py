@@ -13,16 +13,16 @@ home_dir = os.getcwd()
 #master_url = 'http://127.0.0.1:8000'
 master_url = 'https://daveparillo.github.io/intermediate-cpp/'
 master_app = 'intermediate-cpp'
-serving_dir = "./build/intermediate-cpp"
+serving_dir = "./docs"
 dest = "../../static"
 
 options(
     sphinx = Bunch(docroot=".",),
 
     build = Bunch(
-        builddir="./build/intermediate-cpp",
+        builddir=serving_dir,
         sourcedir="_sources",
-        outdir="./build/intermediate-cpp",
+        outdir=serving_dir,
         confdir=".",
         project_name = "intermediate-cpp",
         template_args={'course_id': 'intermediate-cpp',
@@ -31,7 +31,12 @@ options(
                        'loglevel': 0,
                        'course_url':master_url,
                        'use_services': 'false',
-                       'python3': 'false',
+                       'downloads_enabled': 'false',
+                       'enable_chatcodes': 'false',
+                       'allow_pairs': 'false',
+                       'dynamic_pages': False,
+                       'minimal_outside_links': True,
+                       'python3': 'true',
                        'dburl': '',
                        'default_ac_lang': 'cpp',
                        'basecourse': 'intermediate-cpp',

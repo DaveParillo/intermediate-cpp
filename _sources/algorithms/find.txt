@@ -4,6 +4,7 @@
 
    #include <algorithm>
    #include <iostream>
+   #include <numeric>
    #include <vector>
 
    // function to find 'x' between first and last

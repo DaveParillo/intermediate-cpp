@@ -19,6 +19,7 @@ import sys, os
 sys.path.insert(0, os.path.abspath('./_extensions'))
 
 from runestone import runestone_static_dirs, runestone_extensions
+import pkg_resources
 
 # -- General configuration -----------------------------------------------------
 
@@ -33,7 +34,7 @@ extensions = ['sphinx.ext.mathjax',
               'matplotlib.sphinxext.plot_directive',
               'cppreference'] + runestone_extensions()
 
-graphviz_dot='/opt/local/bin/dot'
+# graphviz_dot='/usr/bin/dot'
 # extlinks dict
 #            role       url                                              prefix
 extlinks = {
@@ -60,7 +61,7 @@ extlinks = {
 #,'runestone.video','runestone.reveal','runestone.poll','runestone.tabbedStuff','runestone.disqus','runestone.codelens','runestone.activecode', 'runestone.assess', 'runestone.animation','runestone.meta', 'runestone.parsons', 'runestone.blockly', 'runestone.livecode']
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = [pkg_resources.resource_filename('runestone', 'common/project_template/_templates')]
 
 # The suffix of source filenames.
 source_suffix = '.rst'
@@ -76,7 +77,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Intermediate Modern C++'
-copyright = '2017-2018 Dave Parillo'
+copyright = '2017-2019 Dave Parillo'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -183,7 +184,7 @@ html_theme_options = {
 #html_style = "style.css"
 
 # Add any paths that contain custom themes here, relative to this directory.
-html_theme_path = ["_templates/plugin_layouts"]
+html_theme_path = [pkg_resources.resource_filename('runestone', 'common/project_template/_templates/plugin_layouts')]
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".

@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>2.2. The string class &#8212; Intermediate Modern C++ Overview</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/presenter_mode.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/showEval.css?v=C6382F3" />
+    <link rel="stylesheet" type="text/css" href="../_static/pytutor.css?v=239FC54E" />
+    <link rel="stylesheet" type="text/css" href="../_static/modal-basic.css?v=8A1A42E4" />
+    <link rel="stylesheet" type="text/css" href="../_static/clickable.css?v=58C4E18A" />
+    <link rel="stylesheet" type="text/css" href="../_static/datafile.css?v=C184EB8A" />
+    <link rel="stylesheet" type="text/css" href="../_static/spreadsheet.css?v=B5F018A" />
+    <link rel="stylesheet" type="text/css" href="../_static/jexcel.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/japp.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/parsons.css?v=2F3E13EE" />
+    <link rel="stylesheet" type="text/css" href="../_static/js_lib/prettify.css?v=2A364B6B" />
+    <link rel="stylesheet" type="text/css" href="../_static/fitb.css?v=3BA0E63E" />
+    <link rel="stylesheet" type="text/css" href="../_static/poll.css?v=E220AC33" />
+    <link rel="stylesheet" type="text/css" href="../_static/dragndrop.css?v=1FF7F927" />
+    <link rel="stylesheet" type="text/css" href="../_static/matrixeq.css?v=58BC228F" />
+    <link rel="stylesheet" type="text/css" href="../_static/CodeChat.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabbedstuff.css?v=424F1CC9" />
+    <link rel="stylesheet" type="text/css" href="../_static/video.css?v=E5385B3B" />
+    <link rel="stylesheet" type="text/css" href="../_static/reveal.css?v=4A81D381" />
+    <link rel="stylesheet" type="text/css" href="../_static/activecode.css?v=F471F95B" />
+    <link rel="stylesheet" type="text/css" href="../_static/codemirror.css?v=1CE53237" />
+    <link rel="stylesheet" type="text/css" href="../_static/webgldemo.css?v=B36B48D" />
+    <link rel="stylesheet" type="text/css" href="../_static/webglinteractive.css?v=910DF1E1" />
+    <link rel="stylesheet" type="text/css" href="../_static/accessibility.css?v=808B982A" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css?v=4.1.11" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/runestonebase.js?v=4.1.11"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/showEval.js?v=5B2DD7A6"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js?v=836E01C"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js?v=B64CF0A8"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js?v=42F9EBEA"></script>
+    <script type="text/javascript" src="../_static/pytutor.js?v=82B022B9"></script>
+    <script type="text/javascript" src="../_static/codelens.js?v=CABECD49"></script>
+    <script type="text/javascript" src="../_static/shortanswer.js?v=D42E4CE3"></script>
+    <script type="text/javascript" src="../_static/timed_shortanswer.js?v=B3A117D7"></script>
+    <script type="text/javascript" src="../_static/clickable.js?v=DEB56CF8"></script>
+    <script type="text/javascript" src="../_static/timedclickable.js?v=93989C23"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js?v=BDC8551F"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js?v=5731007D"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="../_static/datafile.js?v=3ED1A80C"></script>
+    <script type="text/javascript" src="../_static/spreadsheet.js?v=9DA8BEAB"></script>
+    <script type="text/javascript" src="../_static/jexcel.js"></script>
+    <script type="text/javascript" src="../_static/japp.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js?v=CA7E8928"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js?v=73056367"></script>
+    <script type="text/javascript" src="../_static/parsons.js?v=68B5F56"></script>
+    <script type="text/javascript" src="../_static/timedparsons.js?v=2EEA9E5A"></script>
+    <script type="text/javascript" src="../_static/fitb.js?v=3FF7EFF0"></script>
+    <script type="text/javascript" src="../_static/timedfitb.js?v=2AA17071"></script>
+    <script type="text/javascript" src="../_static/poll.js?v=13CE919A"></script>
+    <script type="text/javascript" src="../_static/dragndrop.js?v=644C2C6C"></script>
+    <script type="text/javascript" src="../_static/timeddnd.js?v=378F237E"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js?v=D64CFA5A"></script>
+    <script type="text/javascript" src="../_static/animationbase.js?v=A043C3A7"></script>
+    <script type="text/javascript" src="../_static/mchoice.js?v=7B442CDC"></script>
+    <script type="text/javascript" src="../_static/timedmc.js?v=B010A457"></script>
+    <script type="text/javascript" src="../_static/timed.js?v=CEC6219E"></script>
+    <script type="text/javascript" src="../_static/lp.js?v=F137FF7A"></script>
+    <script type="text/javascript" src="../_static/gas.js?v=F0D0F02E"></script>
+    <script type="text/javascript" src="../_static/tabbedstuff.js?v=5BE6106"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js?v=53E888DE"></script>
+    <script type="text/javascript" src="../_static/reveal.js?v=9C3AAF60"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js?v=F1C496C8"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js?v=963AEB3A"></script>
+    <script type="text/javascript" src="../_static/codemirror.js?v=94F552C9"></script>
+    <script type="text/javascript" src="../_static/xml.js?v=236EDFF7"></script>
+    <script type="text/javascript" src="../_static/css.js?v=623153CE"></script>
+    <script type="text/javascript" src="../_static/python.js?v=14A28F1F"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js?v=33B91944"></script>
+    <script type="text/javascript" src="../_static/javascript.js?v=6F38CA04"></script>
+    <script type="text/javascript" src="../_static/sql.js?v=1B4587EC"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js?v=599B42B0"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js?v=88A1430F"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js?v=AE15A4A1"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js?v=8ABDFE7F"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js?v=747279FF"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js?v=7B020E13"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js?v=660E85C3"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js?v=54B21948"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js?v=70E93DF2"></script>
+    <script type="text/javascript" src="../_static/activecode.js?v=FE13F48"></script>
+    <script type="text/javascript" src="../_static/clike.js?v=2DCE0756"></script>
+    <script type="text/javascript" src="../_static/timed_activecode.js?v=C6AD5C24"></script>
+    <script type="text/javascript" src="../_static/sql-wasm.js?v=44FE0709"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js?v=2B768384"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js?v=8408C997"></script>
+    <script type="text/javascript" src="../_static/Blob.js?v=AEC2447"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js?v=4.1.11"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="../_static/presenter_mode.js?v=4.1.11"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.3. The vector class" href="vector.html" />
+    <link rel="prev" title="2.1. Using string and vector" href="intro.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="shortcut icon" href="/intermediate-cpp/static/favicon.ico" type="image/ico" />
+
+<script type="text/javascript">
+  eBookConfig = {};
+  
+    eBookConfig.useRunestoneServices = false;
+    eBookConfig.host = 'https://daveparillo.github.io/intermediate-cpp/' || 'http://127.0.0.1:8000';
+    eBookConfig.app = eBookConfig.host+'/intermediate-cpp';
+    eBookConfig.course = 'intermediate-cpp';
+    eBookConfig.basecourse = 'intermediate-cpp';
+    eBookConfig.isLoggedIn = false;
+  
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.logLevel = 0;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "unknown";
+  eBookConfig.python3 = true;
+  eBookConfig.acDefaultLanguage = 'cpp' ? 'cpp' : 'python'
+  eBookConfig.runestone_version = '4.1.11';
+  eBookConfig.jobehost = 'https://fierce-ridge-58946.herokuapp.com/http://jobe2.cosc.canterbury.ac.nz';
+  eBookConfig.proxyuri_runs = '/jobe/index.php/restapi/runs/';
+  eBookConfig.proxyuri_files = '/jobe/index.php/restapi/files/';
+  eBookConfig.enable_chatcodes = false ? false : false;
+
+
+</script>
+
+
+
+
+  </head><body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar" aria-label="navbar toggle" class="visuallyhidden">toggle navbar</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        
+          <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;'>&nbsp;<span aria-label="logo" class="visuallyhidden">Runestone Logo</span> </a>
+        
+        <a class="navbar-brand" href="../index.html" aria-label="index-page">
+          
+          intermediate-cpp
+        </a>
+      </div>
+    </div>
+
+
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav navbar-right" >
+
+        <li class="divider-vertical"></li>
+
+        <!-- social media dropdown -->
+        <!-- end social media dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'><span aria-label="Search" class="visuallyhidden">Search</span></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html' aria-label="index-page">Table of Contents</a></li>
+            
+            <li><a href='../genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        
+        <li class="divider-vertical"></li>
+        <!-- <li id="scratch_ac_link"><a href="javascript:ACFactory.toggleScratchActivecode()">Scratch ActiveCode</a></li> -->
+
+        <!-- <li class="dropdown">             -->
+          <li id="scratch_ac_link" class="dropdown"><a href="javascript:ACFactory.toggleScratchActivecode()">
+              <i class="glyphicon glyphicon-pencil" style="opacity:0.9;"><span aria-label="Scratch Activecode" class="visuallyhidden">Scratch Activecode</span></i></a></li>
+        <!-- </li> -->
+
+        <li class="divider-vertical"></li>
+
+        
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        
+          
+          <li class="divider-vertical"></li>
+        
+        <!-- 
+          
+  <li id="relations-prev" title="Previous Chapter - 2.1. Using string and vector" data-toggle="tooltip">
+    <a href="intro.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - 2.3. The vector class' data-toggle="tooltip" >              
+    <a href="vector.html" >
+        <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+      </div> <!-- navbar -->
+
+
+
+
+
+
+
+    </div> <!-- container -->
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content" role="main">
+  
+  <div class="section" id="the-string-class">
+<h1>2.2. The string class<a class="headerlink" href="#the-string-class" title="Permalink to this headline">¶</a></h1>
+<p>A short review of how string abstractions are handled in C,
+followed by a short <a class="reference external" href="https://en.cppreference.com/w/cpp/string">string</a> primer.</p>
+<div class="section" id="string-abstractions-in-c">
+<h2>2.2.1. String abstractions in C<a class="headerlink" href="#string-abstractions-in-c" title="Permalink to this headline">¶</a></h2>
+<p>In the C language,
+the abstract idea of a string is implemented with an array of characters.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// the char array must be null terminated</span>
+<span class="kt">char</span> <span class="n">a</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="sc">&#39;h&#39;</span><span class="p">,</span> <span class="sc">&#39;e&#39;</span><span class="p">,</span> <span class="sc">&#39;l&#39;</span><span class="p">,</span> <span class="sc">&#39;l&#39;</span><span class="p">,</span> <span class="sc">&#39;o&#39;</span><span class="p">,</span> <span class="sc">&#39;\0&#39;</span><span class="p">};</span>  <span class="c1">// null == &#39;\0&#39;</span>
+
+<span class="kt">char</span> <span class="n">b</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="sc">&#39;h&#39;</span><span class="p">,</span> <span class="sc">&#39;e&#39;</span><span class="p">,</span> <span class="sc">&#39;l&#39;</span><span class="p">,</span> <span class="sc">&#39;l&#39;</span><span class="p">,</span> <span class="sc">&#39;o&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>     <span class="c1">// null == 0 also</span>
+
+<span class="c1">// a quoted literal is just a special case of a char array</span>
+<span class="kt">char</span><span class="o">*</span> <span class="n">c</span> <span class="o">=</span> <span class="s">&quot;hello&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Arrays of <code class="docutils literal notranslate"><span class="pre">char</span></code> that are null terminated are commonly called <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=C strings">C strings</a>.
+Given the C string:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span><span class="p">[]</span> <span class="n">howdy</span> <span class="o">=</span> <span class="s">&quot;hi there!&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p id="index-0">In memory, <code class="docutils literal notranslate"><span class="pre">howdy</span></code> is automatically transformed into:</p>
+<div class="graphviz"><img src="../_images/graphviz-7d3770ab8f35d5348aba0fbbe544b0eb3b93dd25.png" alt="digraph char_array {
+  fontname = &quot;Bitstream Vera Sans&quot;
+  label=&quot;Character array in memory&quot;
+  node [
+     fontname = &quot;Courier&quot;
+     fontsize = 14
+     shape = &quot;record&quot;
+     style=filled
+     fillcolor=lightblue
+  ]
+  arr [
+     label = &quot;{'h'|'i'|' '|'t'|'h'|'e'|'r'|'e'|'!'|'\\0'}&quot;;
+  ]
+  idx [
+     color = white;
+     fillcolor=white;
+     label = &quot;{howdy[0]|howdy[1]|howdy[2]|howdy[3]|howdy[4]|howdy[5]|howdy[6]|howdy[7]|howdy[8]|howdy[9]}&quot;;
+  ]
+
+
+}" class="graphviz" /></div>
+<p>The last character in the array, <code class="docutils literal notranslate"><span class="pre">'\0'</span></code> is the <em>null character</em>,
+and is used to indicate the end of the string.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Care must be taken to ensure that the array is large enough to hold
+all of the characters AND the null terminator.
+Forgetting to account for null,
+or having a ‘off by one error’ is one of the most
+common mistakes when working with C strings.</p>
+</div>
+<p id="index-1">A C string may allocate more memory that the characters currently stored in it.
+An array declaration like this:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span> <span class="n">hi</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;Hello&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>results in an in-memory representation like this:</p>
+<div class="graphviz"><img src="../_images/graphviz-ff303e4cf50370484f5c4d8ecd538743ce4e202e.png" alt="digraph c {
+  rankdir=LR
+  fontname = &quot;Bitstream Vera Sans&quot;
+  label=&quot;Character array with reserve memory&quot;
+  node [
+     fontname = &quot;Courier&quot;
+     fontsize = 14
+     shape = &quot;record&quot;
+     style=filled
+     fillcolor=lightblue
+  ]
+  arr [
+     label = &quot;{H|e|l|l|o|\\0| | | | }&quot;
+  ]
+
+}" class="graphviz" /></div>
+<p>The array elements after the null are unused, but could be.
+So, an array of size 10 has space for 4 more characters, 9 total.</p>
+<p>A key limitation of C strings is that because they are arrays,
+you must declare in advance how many characters the string will hold.
+The compiler will always statically determine the size,
+even if an explicit size is not provided.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span><span class="p">[]</span> <span class="n">hi</span>     <span class="o">=</span> <span class="s">&quot;Hello&quot;</span><span class="p">;</span>  <span class="c1">// size 6</span>
+<span class="kt">char</span>   <span class="n">hi</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;Hello&quot;</span><span class="p">;</span>  <span class="c1">// size 10</span>
+</pre></div>
+</div>
+<p>C strings have an advantage of being extremely lightweight and simple.
+Their main disadvantage is that they are too simple for many applications.
+Their simplicity makes them a pain to work with,
+which is why the Standard Template Library (STL) contains the <a class="reference external" href="https://en.cppreference.com/w/cpp/string">string</a> class.</p>
+</div>
+<div class="section" id="a-string-class-primer">
+<h2>2.2.2. A string class primer<a class="headerlink" href="#a-string-class-primer" title="Permalink to this headline">¶</a></h2>
+<p>Like a C string, a <code class="docutils literal notranslate"><span class="pre">std::string</span></code> is simply a sequence of characters:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;        // access std::string functions</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">;</span>       <span class="c1">// just use &#39;string&#39; for type std::string</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">string</span> <span class="n">x</span><span class="p">;</span>                          <span class="c1">// empty string</span>
+  <span class="n">string</span> <span class="n">greet</span> <span class="o">=</span>  <span class="s">&quot;Hello, World!&quot;</span><span class="p">;</span>   <span class="c1">// create from C string</span>
+  <span class="n">string</span> <span class="n">hello</span>   <span class="p">(</span><span class="s">&quot;Hello, World!&quot;</span><span class="p">);</span>  <span class="c1">// as above, constructor style syntax</span>
+  <span class="n">string</span> <span class="n">howdy</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;Hello, World!&quot;</span><span class="p">};</span>  <span class="c1">// C++11 only</span>
+  <span class="n">string</span> <span class="n">howdy</span>   <span class="p">{</span><span class="s">&quot;Hello, World!&quot;</span><span class="p">};</span>  <span class="c1">// as above, = is optional</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Unlike a C string, a <code class="docutils literal notranslate"><span class="pre">std::string</span></code> is a full-fledged <em>object</em>.
+It knows it’s own size, and comes with many convenience functions.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">string</span> <span class="n">a</span> <span class="o">=</span> <span class="s">&quot;hello&quot;</span><span class="p">;</span>
+  <span class="n">a</span> <span class="o">+=</span> <span class="s">&quot;, world!&quot;</span><span class="p">;</span>        <span class="c1">// joining strings is pretty easy</span>
+
+  <span class="c1">// Copying or creating one string from another feels as natural</span>
+  <span class="c1">// as a fundamental type.</span>
+  <span class="n">string</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span>             <span class="c1">// Same goes for comparisons</span>
+  <span class="p">{</span>
+    <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;H&#39;</span><span class="p">;</span>           <span class="c1">// and a string feels like an &#39;array of char&#39;</span>
+    <span class="n">b</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;W&#39;</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span> <span class="c1">// and has stream support</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Using the <a class="reference external" href="https://en.cppreference.com/w/cpp/string/basic_string/operator_at">operator[]</a> to access select characters in a string is,
+like an array,
+not range checked.
+This means that if you use an index referring to an invalid position,
+then your program might have undefined behavior, or fail unexpectedly.
+You can use the function <a class="reference external" href="https://en.cppreference.com/w/cpp/string/basic_string/at">at</a> anywhere <code class="docutils literal notranslate"><span class="pre">operator[]</span></code> is allowed.
+The <code class="docutils literal notranslate"><span class="pre">at</span></code> function is range checked.
+While there is a cost associated with this check,
+if the index provided is out of range,
+then an <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::out_of_range">std::out_of_range</a> exception is thrown,
+which must be caught,
+otherwise the program will terminate.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">b</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="o">=</span> <span class="sc">&#39;H&#39;</span><span class="p">;</span>   <span class="c1">// might be OK</span>
+  <span class="n">b</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="sc">&#39;W&#39;</span><span class="p">;</span>   <span class="c1">// never OK.  throws exception</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Remember that a <code class="docutils literal notranslate"><span class="pre">std::string</span></code> is <strong>not</strong> a C string.
+Declarations like this are a common source of confusion for new programmers:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">my_string</span> <span class="o">=</span> <span class="s">&quot;Howdy!&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>What type is <code class="docutils literal notranslate"><span class="pre">my_string</span></code>?</p>
+
+    <div data-component="reveal" id="reveal_my_string"   data-showtitle="Show" data-hidetitle="Hide" >
+    <p><code class="docutils literal notranslate"><span class="pre">my_string</span></code> is <strong>not</strong> a std::string.</p>
+<p>The default type for characters enclosed in double quotes is <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">char*</span></code>.</p>
+
+    </div>
+    <p>This is one of those situations where <a class="reference external" href="https://en.cppreference.com/w/cpp/language/auto">auto</a> may not be deducing the type
+you actually want.
+There are several simple ways to use auto <em>and</em> get the type
+deduced to be a <code class="docutils literal notranslate"><span class="pre">std::string</span></code>.</p>
+<p>In C++14, you can simply append a <code class="docutils literal notranslate"><span class="pre">s</span></code> to the end of the string literal.
+This identifies the literal as type std::string.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">my_string</span> <span class="o">=</span> <span class="s">&quot;Howdy!&quot;</span><span class="n">s</span><span class="p">;</span>    <span class="c1">// preferred</span>
+</pre></div>
+</div>
+<p>Alternatively, you can call the string constructor explicitly, which
+works for C++ versions older than C++14.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">my_string</span> <span class="o">=</span> <span class="n">string</span><span class="p">(</span><span class="s">&quot;Howdy!&quot;</span><span class="p">);</span>
+
+<span class="k">auto</span> <span class="n">your_str</span>  <span class="o">=</span> <span class="n">string</span><span class="p">{</span><span class="s">&quot;Howdy!&quot;</span><span class="p">};</span>  <span class="c1">// C++11 initialization syntax</span>
+</pre></div>
+</div>
+<div class="section" id="getting-information-out-of-a-string">
+<h3>2.2.2.1. Getting information out of a string<a class="headerlink" href="#getting-information-out-of-a-string" title="Permalink to this headline">¶</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">string</span></code> knows its own size and can provide other useful information.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">string</span> <span class="n">my_string</span> <span class="o">=</span> <span class="s">&quot;Hello&quot;</span><span class="p">;</span>
+
+  <span class="n">assert</span><span class="p">(</span> <span class="n">my_string</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">5</span> <span class="p">);</span>  <span class="c1">// .length() is available also</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">my_string</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">my_string</span> <span class="o">+=</span> <span class="s">&quot;, there.&quot;</span><span class="p">;</span>       <span class="c1">// my_string == &quot;Hello, there.&quot;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>And the string class provides many functions dedicated to finding substrings
+within a string.</p>
+<div id='tab_find_string' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Example: find" >
+<p>The simplest example is the <a class="reference external" href="https://en.cppreference.com/w/cpp/string/basic_string/find">find</a> function.</p>
+<p>Given any string object, for example, this string:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>  <span class="k">auto</span> <span class="n">us</span> <span class="o">=</span> <span class="s">&quot;team&quot;</span><span class="n">s</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>defined using the C++14 string literal syntax,
+creates a new object <code class="docutils literal notranslate"><span class="pre">us</span></code>.</p>
+<p>Once we have a <code class="docutils literal notranslate"><span class="pre">string</span></code>, calling the string member function
+find always returns a position:</p>
+<ul class="simple">
+<li><p>Either a position within the string, or</p></li>
+<li><p>The special value <a class="reference external" href="https://en.cppreference.com/w/cpp/string/basic_string/npos">std::string::npos</a>
+which means the value was not found in the string.</p></li>
+</ul>
+<p>We can use this to check if we found what we were looking for:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>  <span class="kt">size_t</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">us</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="sc">&#39;i&#39;</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">pos</span> <span class="o">==</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">::</span><span class="n">npos</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;There is no &#39;i&#39; in &#39;team&#39;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p>The position returned by find is a zero-based index
+into the string.</p>
+<p>Find can also take a sequence of characters.
+In that case, it returns the position to the first <code class="docutils literal notranslate"><span class="pre">char</span></code>
+where the entire sequence is matched.</p>
+<p><strong>Reverse find</strong></p>
+<p>Similar to <code class="docutils literal notranslate"><span class="pre">find</span></code>, <a class="reference external" href="https://en.cppreference.com/w/cpp/string/basic_string/rfind">rfind</a> performs the same
+task as find, but iterates through the string in reverse order:
+starting at the end and moving towards the first character.
+Keep in mind that the position returned is still based
+on the same index positions as regular <code class="docutils literal notranslate"><span class="pre">find</span></code>.</p>
+<p><strong>Find first of</strong></p>
+<p>The <a class="reference external" href="https://en.cppreference.com/w/cpp/string/basic_string/find_first_of">find_first_of</a> function takes a <code class="docutils literal notranslate"><span class="pre">char</span></code> sequence,
+but unlike find where the entire sequence is used to find a match,
+<code class="docutils literal notranslate"><span class="pre">find_first_of</span></code> examines each character in the sequence,
+on at a time, and returns the <em>minimum position</em> of <strong>any</strong>
+of the characters listed as function arguments in the string.
+For example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>  <span class="k">auto</span> <span class="n">hi</span> <span class="o">=</span> <span class="s">&quot;Hello world&quot;</span><span class="n">s</span><span class="p">;</span>
+  <span class="n">pos</span> <span class="o">=</span> <span class="n">hi</span><span class="p">.</span><span class="n">find_first_of</span><span class="p">(</span><span class="s">&quot;aeiou&quot;</span><span class="p">);</span>      <span class="c1">// pos == 1  (e)</span>
+</pre></div>
+</div>
+<p>The function returns the position of ‘e’ in ‘Hello world’,
+even though ‘e’ and ‘o’ are both present,
+because ‘e’ is first.</p>
+<p>The order of the character arguments do not matter.
+The results would be exactly the same if the arguments were
+‘uoiea’.
+Don’t take my word for it, try it yourself.</p>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div data-childcomponent="ac-string-std-find" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac-string-std-find data-lang="cpp" 
+      data-timelimit=25000    
+    data-audio=''      
+    data-compileargs="[&#x27;-Wall&#x27;, &#x27;-Wextra&#x27;, &#x27;-pedantic&#x27;, &#x27;-std=c++1y&#x27;]"      >
+#include <iostream>
+#include <string>
+
+int main() {
+  auto us = "team"s;
+  size_t pos = us.find('i');
+  if(pos == std::string::npos) {
+    std::cout << "There is no 'i' in 'team'\n";
+  }
+  auto hi = "Hello world"s;
+  pos = hi.find("wor");                 // pos == 6
+
+       if (hi.find('o') == hi.rfind('o') {
+    std::cout << "There must be exactly 1 'o' in this string\n";
+       }
+  pos = hi.find_first_of("aeiou");      // pos == 1  (e)
+  pos = hi.find_first_not_of("aeiou");  // pos == 0  (H)
+
+  return 0;
+}
+</textarea>
+</div>
+</div>
+    </div>
+
+<p>The special value <a class="reference external" href="https://en.cppreference.com/w/cpp/string/basic_string/npos">std::string::npos</a> is used both as an end of string indicator
+by functions that expect a string and
+as an indicator of <em>not found</em> by functions that return an index (like find).</p>
+
+    <div class="runestone" style="margin-left: auto; margin-right:auto">
+        <div id="nkKeA74p3RY" class="align-left youtube-video" data-video-height="281" data-video-width="500" data-video-videoid="nkKeA74p3RY" data-video-divid="nkKeA74p3RY" data-video-start="0" data-video-end="-1" ></div>
+        <p class="runestone_caption"><span class="runestone_caption_text">Video: (nkKeA74p3RY)</span> </p>
+    </div>
+    </div>
+<div class="section" id="converting-a-std-string-to-c-string">
+<h3>2.2.2.2. Converting a std::string to C string<a class="headerlink" href="#converting-a-std-string-to-c-string" title="Permalink to this headline">¶</a></h3>
+<p>You cannot use <code class="docutils literal notranslate"><span class="pre">std::string</span></code> in a function
+that expects <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">char*</span></code> - you must convert it
+to a null terminated character array.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span> <span class="k">auto</span> <span class="n">my_name</span> <span class="o">=</span> <span class="s">&quot;Alice&quot;</span><span class="n">s</span><span class="p">;</span>
+
+
+<span class="n">printf</span> <span class="p">(</span><span class="s">&quot;Hello again, %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">my_name</span><span class="p">);</span>       <span class="c1">// compile error!</span>
+
+<span class="c1">// the c_str() function converts a string into a c string</span>
+<span class="n">printf</span> <span class="p">(</span><span class="s">&quot;Hello again, %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">my_name</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="final-words">
+<h2>2.2.3. Final words<a class="headerlink" href="#final-words" title="Permalink to this headline">¶</a></h2>
+<p>This was a very brief introduction and barely captures what std::string
+is capable of.
+Check out the documentation at cppreference.com to get a feel for the functions
+and capabilities available.</p>
+</div>
+<div class="section" id="skill-check">
+<h2>2.2.4. Skill Check<a class="headerlink" href="#skill-check" title="Permalink to this headline">¶</a></h2>
+<p>The questions in this hidden section provide a chance to demonstrate
+your understanding of the concepts discussed so far.</p>
+
+    <div data-component="reveal" id="reveal-skill-check-string"   data-showtitle="Show" data-hidetitle="Hide" >
+    
+        <div class="runestone">
+        <div data-component="fillintheblank" id="string_fitb1">
+            <p>sc-1-1: Given the following:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">x</span> <span class="o">=</span> <span class="s">&quot;The rain in Spain. . . &quot;</span><span class="p">;</span>
+<span class="kt">size_t</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">&quot;in&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>What is the value of <code class="docutils literal notranslate"><span class="pre">pos</span></code>?</p>
+<input type="text">
+        <script type="application/json">
+            [[{"number": [6, 6], "feedback": "<p>Correct.</p>\n"}, {"number": [9, 9], "feedback": "<p>No. There is another substring \u2018in\u2019</p>\n"}, {"number": [7, 7], "feedback": "<p>String positions are zero-based</p>\n"}, {"regex": "^\\s*x\\s*$", "regexFlags": "", "feedback": "<p>Try again.</p>\n"}]]
+        </script>
+
+        </div>
+        </div>
+            
+        <div class="runestone" style="max-width: none;">
+        <pre data-component="parsons" id="string_pp1"  data-adaptive="true"    data-noindent="true"  data-language="c" >
+        <span data-question>sc-1-2: </span>int main() {
+---
+  std::string  us = "Team USA";
+---
+  auto snowflake = us.find_first_of("Korea");
+---
+  if (snowflake == std::string::npos) {
+---
+    std::cout << "Did not find anything\n";
+---
+  } else {
+---
+    std::cout << "Found it!\n";
+---
+  }
+  return snowflake;
+---
+}
+        </pre>
+        </div>
+    
+        <div class="runestone">
+        <div data-component="fillintheblank" id="string_fitb2">
+            <p>sc-1-3: Given the following:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">char</span> <span class="n">text</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+<span class="n">strcpy</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="s">&quot;hello&quot;</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>What is the value of <code class="docutils literal notranslate"><span class="pre">len</span></code>?</p>
+<input type="text">
+        <script type="application/json">
+            [[{"number": [5, 5], "feedback": "<p>Correct.</p>\n"}, {"number": [6, 6], "feedback": "<p>String length does not include the null character.</p>\n"}, {"number": [4, 4], "feedback": "<p>Sizes are not indexes.</p>\n"}, {"regex": "^\\s*x\\s*$", "regexFlags": "", "feedback": "<p>Try again.</p>\n"}]]
+        </script>
+
+        </div>
+        </div>
+            
+<div data-childcomponent="string_sc_ac1" class="runestone explainer ac_section alert alert-warning">
+<p>Fix the errors in the <code class="docutils literal notranslate"><span class="pre">printf</span></code> line below:</p>
+
+<textarea data-component="activecode" id=string_sc_ac1 data-lang="cpp" 
+      data-timelimit=25000    
+    data-audio=''      
+    data-compileargs="[&#x27;-Wall&#x27;, &#x27;-Wextra&#x27; &#x27;-std=c++11&#x27;]"      >
+#include <cstdio>
+#include <string>
+
+int main() {
+  std::string yazoo = "ritish alternative band";
+  char c = 'B';
+
+  printf ("%c%s\n",c, yazoo);
+}
+</textarea>
+</div>
+
+        <div class="runestone">
+        <div data-component="fillintheblank" id="string_fitb3">
+            <p>sc-1-4: Which <code class="docutils literal notranslate"><span class="pre">#include</span></code> is required to use functions such as
+<code class="docutils literal notranslate"><span class="pre">std::atoi</span></code> and <code class="docutils literal notranslate"><span class="pre">std::atof</span></code>?</p>
+<input type="text">
+        <script type="application/json">
+            [[{"regex": "^\\s*cstdlib\\s*$", "regexFlags": "", "feedback": "<p>Correct.</p>\n"}, {"regex": "^\\s*cstring\\s*$", "regexFlags": "", "feedback": "<p>These are C library functions</p>\n"}, {"regex": "^\\s*string\\s*$", "regexFlags": "", "feedback": "<p>These are C library functions</p>\n"}, {"regex": "^\\s*x\\s*$", "regexFlags": "", "feedback": "<p>Try again.</p>\n"}]]
+        </script>
+
+        </div>
+        </div>
+            
+        <div class="runestone">
+        <div data-component="fillintheblank" id="string_fitb4">
+            <p>sc-1-5: Which <code class="docutils literal notranslate"><span class="pre">#include</span></code> is required to use functions such as
+<code class="docutils literal notranslate"><span class="pre">std::stoi</span></code> and <code class="docutils literal notranslate"><span class="pre">std::stol</span></code>?</p>
+<input type="text">
+        <script type="application/json">
+            [[{"regex": "^\\s*string\\s*$", "regexFlags": "", "feedback": "<p>Correct.</p>\n"}, {"regex": "^\\s*cstring\\s*$", "regexFlags": "", "feedback": "<p>These are not C functions</p>\n"}, {"regex": "^\\s*cstdlib\\s*$", "regexFlags": "", "feedback": "<p>These are string functions added in C++11</p>\n"}, {"regex": "^\\s*x\\s*$", "regexFlags": "", "feedback": "<p>Try again.</p>\n"}]]
+        </script>
+
+        </div>
+        </div>
+            
+        <div class="runestone">
+        <div data-component="fillintheblank" id="string_fitb5">
+            <p>sc-1-6: Given the following:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(){</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="s">&quot;Donald Duck&quot;</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">find_first_of</span><span class="p">(</span><span class="sc">&#39; &#39;</span><span class="p">)</span> <span class="o">==</span> <span class="n">s</span><span class="p">.</span><span class="n">find_last_of</span><span class="p">(</span><span class="sc">&#39; &#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">value</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>What value is returned from main?</p>
+<input type="text">
+        <script type="application/json">
+            [[{"number": [3, 3], "feedback": "<p>Correct.</p>\n"}, {"number": [0, 0], "feedback": "<p>In an if/else block one of the blocks must always be\nentered.</p>\n"}, {"number": [5, 5], "feedback": "<p>What positions are returned from both find statements?</p>\n"}, {"regex": "^\\s*x\\s*$", "regexFlags": "", "feedback": "<p>Try again.</p>\n"}]]
+        </script>
+
+        </div>
+        </div>
+            
+    </div>
+    <hr class="docutils" />
+<div class="admonition-more-to-explore admonition">
+<p class="admonition-title">More to Explore</p>
+<ul class="simple">
+<li><p>cppreference.com <a class="reference external" href="http://en.cppreference.com/w/cpp/string">Strings library</a> overview</p></li>
+<li><p>YoLinux <a class="reference external" href="http://www.yolinux.com/TUTORIALS/LinuxTutorialC++StringClass.html">String class tutorial</a></p></li>
+<li><p>Bjarne Stroustrup’s C++11 FAQ: <a class="reference external" href="http://www.stroustrup.com/C++11FAQ.html#raw-strings">Raw String literals</a></p></li>
+<li><p>Mike Shahar post: <a class="reference external" href="https://shaharmike.com/cpp/std-string/">Exploring std::string</a></p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+  <div id=scprogresscontainer>
+    You have attempted <span id=scprogresstotal></span> of <span id=scprogressposs></span> activities on this page <div id="subchapterprogress"></div>
+  </div>
+  
+      
+<ul>
+  <li id="relations-prev" class="navLink" title='Previous Section - 2.1. Using string and vector' data-toggle="tooltip">
+    <a href="intro.html" aria-label="2.1. Using string and vector">
+        <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
+            <i class='prevNav glyphicon glyphicon-chevron-left' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
+        </div>
+    </a>
+  </li>
+</ul>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="intro.html" aria-label="2.1. Using string and vector"></a>
+  
+<ul>
+  <li id="relations-next" class="navLink" title='Next Section - 2.3. The vector class' data-toggle="tooltip" >
+    <a href="vector.html" aria-label="2.3. The vector class">
+      <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
+          <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
+      </div>
+    </a>
+  </li>
+</ul>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="vector.html" aria-label="2.3. The vector class">Next Section - 2.3. The vector class</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2017-2019 Dave Parillo.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 4.1.11.
+    </p>
+  </div>
+</footer>
+
+
+
+
+
+  </body>
+</html>
