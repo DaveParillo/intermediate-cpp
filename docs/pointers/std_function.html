@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>15. Serialization &#8212; Intermediate Modern C++ Overview</title>
+    <title>5.6. The std::function template &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -119,8 +119,8 @@
     <script type="text/javascript" src="../_static/presenter_mode.js?v=4.1.11"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="15.1. Fundamental I/O concepts" href="serialization.html" />
-    <link rel="prev" title="14.2. Memory management" href="../class-IV-memory/memory-management.html" />
+    <link rel="next" title="6. Introduction to classes" href="../class-I-intro/toctree.html" />
+    <link rel="prev" title="5.5. Lambda expressions" href="lambda.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -246,14 +246,14 @@
         
         <!-- 
           
-  <li id="relations-prev" title="Previous Chapter - 14.2. Memory management" data-toggle="tooltip">
-    <a href="../class-IV-memory/memory-management.html" >
+  <li id="relations-prev" title="Previous Chapter - 5.5. Lambda expressions" data-toggle="tooltip">
+    <a href="lambda.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - 15.1. Fundamental I/O concepts' data-toggle="tooltip" >              
-    <a href="serialization.html" >
+  <li id="relations-next" title='Next Chapter - 6. Introduction to classes' data-toggle="tooltip" >              
+    <a href="../class-I-intro/toctree.html" >
         <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
   </li>
@@ -291,17 +291,69 @@
 
 <div class="container" id="main-content" role="main">
   
-  <div class="section" id="serialization">
-<h1>15. Serialization<a class="headerlink" href="#serialization" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Serialization</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="serialization.html">15.1. Fundamental I/O concepts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="serialization.html#the-stream-model">15.1.1. The stream model</a></li>
+  <div class="section" id="the-std-function-template">
+<span id="index-0"></span><h1>5.6. The std::function template<a class="headerlink" href="#the-std-function-template" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="https://en.cppreference.com/w/cpp/utility/functional/function">std::function</a> wrapper provides a standard way to pass around lambda expressions,
+function pointers, and function objects.
+Introduced in C++11, its facilities are accessed from <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;functional&gt;</span></code>.
+The primary goal of <code class="docutils literal notranslate"><span class="pre">std::function</span></code> is clarity:
+to simplify and standardize the way function pointers are moved within a program.</p>
+<p>Starting with a simple function:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">print_num</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Before <code class="docutils literal notranslate"><span class="pre">std::function</span></code>, we would declare a function pointer like this:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">print_func</span><span class="p">)(</span><span class="kt">int</span> <span class="n">val</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This defines a pointer to a function that returns <code class="docutils literal notranslate"><span class="pre">void</span></code> and take one <code class="docutils literal notranslate"><span class="pre">int</span></code> parameter.
+The syntax is messy:</p>
+<ul class="simple">
+<li><p>The pointer operator requires surrounding parentheses to resolve order of operations problems</p></li>
+<li><p>The return type is ‘far away’ from the parameters</p></li>
+<li><p>The syntax is generally inconsistent with modern C++.</p></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="serialization.html#serialization">15.2. Serialization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="serialization.html#subsection">15.2.1. Subsection</a></li>
+<p>Compare the previous declaration with:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span>  <span class="n">print_func</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This syntax is more consistent with other declarations:</p>
+<ul class="simple">
+<li><p>The variable type is listed first: it’s a function pointer</p></li>
+<li><p>The function parameters and return type are all together as template parameters
+and the parameters look like a traditional function declaration.</p></li>
+<li><p>The name of the variable follows the type</p></li>
+</ul>
+<p>We can store any function-like entity using a consistent syntax:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;functional&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="nf">print_num</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// store a free function</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">print_func</span> <span class="o">=</span> <span class="n">print_num</span><span class="p">;</span>
+  <span class="n">print_func</span><span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="p">);</span>
+
+  <span class="c1">// store a lambda</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">()</span><span class="o">&gt;</span> <span class="n">print_42</span> <span class="o">=</span> <span class="p">[]()</span> <span class="p">{</span> <span class="n">print_num</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span> <span class="p">};</span>
+  <span class="n">print_42</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<div class="admonition-more-to-explore admonition">
+<p class="admonition-title">More to Explore</p>
+<ul class="simple">
+<li><p>From: cppreference.com:</p>
+<ul>
+<li><p><a class="reference external" href="https://en.cppreference.com/w/cpp/utility/functional/function">std::function</a></p></li>
 </ul>
 </li>
 </ul>
@@ -315,26 +367,26 @@
   
       
 <ul>
-  <li id="relations-prev" class="navLink" title='Previous Section - 14.2. Memory management' data-toggle="tooltip">
-    <a href="../class-IV-memory/memory-management.html" aria-label="14.2. Memory management">
+  <li id="relations-prev" class="navLink" title='Previous Section - 5.5. Lambda expressions' data-toggle="tooltip">
+    <a href="lambda.html" aria-label="5.5. Lambda expressions">
         <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
             <i class='prevNav glyphicon glyphicon-chevron-left' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
         </div>
     </a>
   </li>
 </ul>
-  <a class="navLinkBg" id="navLinkBgLeft"  href="../class-IV-memory/memory-management.html" aria-label="14.2. Memory management"></a>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="lambda.html" aria-label="5.5. Lambda expressions"></a>
   
 <ul>
-  <li id="relations-next" class="navLink" title='Next Section - 15.1. Fundamental I/O concepts' data-toggle="tooltip" >
-    <a href="serialization.html" aria-label="15.1. Fundamental I/O concepts">
+  <li id="relations-next" class="navLink" title='Next Section - 6. Introduction to classes' data-toggle="tooltip" >
+    <a href="../class-I-intro/toctree.html" aria-label="6. Introduction to classes">
       <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
           <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
       </div>
     </a>
   </li>
 </ul>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="serialization.html" aria-label="15.1. Fundamental I/O concepts">Next Section - 15.1. Fundamental I/O concepts</a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="../class-I-intro/toctree.html" aria-label="6. Introduction to classes">Next Section - 6. Introduction to classes</a>
 
 <script type="text/javascript">
 
@@ -352,7 +404,7 @@
       
     </p>
     <p>
-        &copy; Copyright 2017-2019 Dave Parillo.
+        &copy; Copyright 2017-2020 Dave Parillo.
       Created using <a href="http://runestoneinteractive.org/">Runestone</a> 4.1.11.
     </p>
   </div>

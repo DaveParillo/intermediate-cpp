@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>10.3. Refactoring to Algorithms &#8212; Intermediate Modern C++ Overview</title>
+    <title>13.3. Refactoring to Algorithms &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -119,8 +119,8 @@
     <script type="text/javascript" src="../_static/presenter_mode.js?v=4.1.11"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="10.4. std::copy and Iterator Adapters" href="copy.html" />
-    <link rel="prev" title="10.2. Basic Model" href="model.html" />
+    <link rel="next" title="13.4. std::copy and Iterator Adapters" href="copy.html" />
+    <link rel="prev" title="13.2. Basic Model" href="model.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -246,13 +246,13 @@
         
         <!-- 
           
-  <li id="relations-prev" title="Previous Chapter - 10.2. Basic Model" data-toggle="tooltip">
+  <li id="relations-prev" title="Previous Chapter - 13.2. Basic Model" data-toggle="tooltip">
     <a href="model.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - 10.4. std::copy and Iterator Adapters' data-toggle="tooltip" >              
+  <li id="relations-next" title='Next Chapter - 13.4. std::copy and Iterator Adapters' data-toggle="tooltip" >              
     <a href="copy.html" >
         <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
@@ -292,7 +292,7 @@
 <div class="container" id="main-content" role="main">
   
   <div class="section" id="refactoring-to-algorithms">
-<span id="index-0"></span><h1>10.3. Refactoring to Algorithms<a class="headerlink" href="#refactoring-to-algorithms" title="Permalink to this headline">¶</a></h1>
+<span id="index-0"></span><h1>13.3. Refactoring to Algorithms<a class="headerlink" href="#refactoring-to-algorithms" title="Permalink to this headline">¶</a></h1>
 <p>The primary objective of refactoring is to improve code.
 Those improvements might take many forms.
 In this section we are going to focus on refactoring a pair
@@ -421,7 +421,7 @@ int main () {
     </div>
 
 <div class="section" id="removing-a-final-assumption">
-<h2>10.3.1. Removing a final assumption<a class="headerlink" href="#removing-a-final-assumption" title="Permalink to this headline">¶</a></h2>
+<h2>13.3.1. Removing a final assumption<a class="headerlink" href="#removing-a-final-assumption" title="Permalink to this headline">¶</a></h2>
 <p>Can we make <code class="docutils literal notranslate"><span class="pre">sum</span></code> even more generic?</p>
 <p>Sum still has a hard-coded assumption that addition ( the <code class="docutils literal notranslate"><span class="pre">operator+</span></code> function)
 is the operation that we always want to perform.</p>
@@ -539,26 +539,26 @@ The STL has a large collection of
   
       
 <ul>
-  <li id="relations-prev" class="navLink" title='Previous Section - 10.2. Basic Model' data-toggle="tooltip">
-    <a href="model.html" aria-label="10.2. Basic Model">
+  <li id="relations-prev" class="navLink" title='Previous Section - 13.2. Basic Model' data-toggle="tooltip">
+    <a href="model.html" aria-label="13.2. Basic Model">
         <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
             <i class='prevNav glyphicon glyphicon-chevron-left' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
         </div>
     </a>
   </li>
 </ul>
-  <a class="navLinkBg" id="navLinkBgLeft"  href="model.html" aria-label="10.2. Basic Model"></a>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="model.html" aria-label="13.2. Basic Model"></a>
   
 <ul>
-  <li id="relations-next" class="navLink" title='Next Section - 10.4. std::copy and Iterator Adapters' data-toggle="tooltip" >
-    <a href="copy.html" aria-label="10.4. std::copy and Iterator Adapters">
+  <li id="relations-next" class="navLink" title='Next Section - 13.4. std::copy and Iterator Adapters' data-toggle="tooltip" >
+    <a href="copy.html" aria-label="13.4. std::copy and Iterator Adapters">
       <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
           <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
       </div>
     </a>
   </li>
 </ul>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="copy.html" aria-label="10.4. std::copy and Iterator Adapters">Next Section - 10.4. std::copy and Iterator Adapters</a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="copy.html" aria-label="13.4. std::copy and Iterator Adapters">Next Section - 13.4. std::copy and Iterator Adapters</a>
 
 <script type="text/javascript">
 
@@ -576,7 +576,7 @@ The STL has a large collection of
       
     </p>
     <p>
-        &copy; Copyright 2017-2019 Dave Parillo.
+        &copy; Copyright 2017-2020 Dave Parillo.
       Created using <a href="http://runestoneinteractive.org/">Runestone</a> 4.1.11.
     </p>
   </div>

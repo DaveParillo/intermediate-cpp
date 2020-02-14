@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>13.5. Abstract base classes &#8212; Intermediate Modern C++ Overview</title>
+    <title>8.5. Abstract base classes &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -119,8 +119,8 @@
     <script type="text/javascript" src="../_static/presenter_mode.js?v=4.1.11"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="13.6. Design patterns" href="patterns.html" />
-    <link rel="prev" title="13.4. Inheritance" href="inheritance.html" />
+    <link rel="next" title="8.6. Design patterns" href="patterns.html" />
+    <link rel="prev" title="8.4. Inheritance" href="inheritance.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -246,13 +246,13 @@
         
         <!-- 
           
-  <li id="relations-prev" title="Previous Chapter - 13.4. Inheritance" data-toggle="tooltip">
+  <li id="relations-prev" title="Previous Chapter - 8.4. Inheritance" data-toggle="tooltip">
     <a href="inheritance.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - 13.6. Design patterns' data-toggle="tooltip" >              
+  <li id="relations-next" title='Next Chapter - 8.6. Design patterns' data-toggle="tooltip" >              
     <a href="patterns.html" >
         <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
@@ -292,7 +292,7 @@
 <div class="container" id="main-content" role="main">
   
   <div class="section" id="abstract-base-classes">
-<span id="index-0"></span><h1>13.5. Abstract base classes<a class="headerlink" href="#abstract-base-classes" title="Permalink to this headline">¶</a></h1>
+<span id="index-0"></span><h1>8.5. Abstract base classes<a class="headerlink" href="#abstract-base-classes" title="Permalink to this headline">¶</a></h1>
 <p>Often the functions declared in a base class cannot be defined
 in the base class, but instead can only be implemented in the derived
 classes.
@@ -394,7 +394,7 @@ or by declaring an existing virtual function as pure virtual.</p>
 </pre></div>
 </div>
 <div class="section" id="interfaces">
-<h2>13.5.1. Interfaces<a class="headerlink" href="#interfaces" title="Permalink to this headline">¶</a></h2>
+<h2>8.5.1. Interfaces<a class="headerlink" href="#interfaces" title="Permalink to this headline">¶</a></h2>
 <p>When an abstract base class declares no member variables and
 declares <strong>only</strong> pure virtual functions,
 then the class is referred to as an <em>interface</em>.
@@ -529,7 +529,7 @@ when the base class was originally written.</p>
 </div>
 </div>
 <div class="section" id="the-final-specifier">
-<h2>13.5.2. The final specifier<a class="headerlink" href="#the-final-specifier" title="Permalink to this headline">¶</a></h2>
+<h2>8.5.2. The final specifier<a class="headerlink" href="#the-final-specifier" title="Permalink to this headline">¶</a></h2>
 <p>Added in C++11,
 this keyword specifies that a virtual function cannot be overridden
 in a derived class or that a class cannot be inherited from.</p>
@@ -579,26 +579,26 @@ Attempting to override a final function is a compile error.</p>
   
       
 <ul>
-  <li id="relations-prev" class="navLink" title='Previous Section - 13.4. Inheritance' data-toggle="tooltip">
-    <a href="inheritance.html" aria-label="13.4. Inheritance">
+  <li id="relations-prev" class="navLink" title='Previous Section - 8.4. Inheritance' data-toggle="tooltip">
+    <a href="inheritance.html" aria-label="8.4. Inheritance">
         <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
             <i class='prevNav glyphicon glyphicon-chevron-left' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
         </div>
     </a>
   </li>
 </ul>
-  <a class="navLinkBg" id="navLinkBgLeft"  href="inheritance.html" aria-label="13.4. Inheritance"></a>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="inheritance.html" aria-label="8.4. Inheritance"></a>
   
 <ul>
-  <li id="relations-next" class="navLink" title='Next Section - 13.6. Design patterns' data-toggle="tooltip" >
-    <a href="patterns.html" aria-label="13.6. Design patterns">
+  <li id="relations-next" class="navLink" title='Next Section - 8.6. Design patterns' data-toggle="tooltip" >
+    <a href="patterns.html" aria-label="8.6. Design patterns">
       <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
           <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
       </div>
     </a>
   </li>
 </ul>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="patterns.html" aria-label="13.6. Design patterns">Next Section - 13.6. Design patterns</a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="patterns.html" aria-label="8.6. Design patterns">Next Section - 8.6. Design patterns</a>
 
 <script type="text/javascript">
 
@@ -616,7 +616,7 @@ Attempting to override a final function is a compile error.</p>
       
     </p>
     <p>
-        &copy; Copyright 2017-2019 Dave Parillo.
+        &copy; Copyright 2017-2020 Dave Parillo.
       Created using <a href="http://runestoneinteractive.org/">Runestone</a> 4.1.11.
     </p>
   </div>

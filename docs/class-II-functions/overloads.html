@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>12.5. Operator overloads &#8212; Intermediate Modern C++ Overview</title>
+    <title>7.5. Operator overloads &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -119,8 +119,8 @@
     <script type="text/javascript" src="../_static/presenter_mode.js?v=4.1.11"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="12.6. Class templates" href="templates.html" />
-    <link rel="prev" title="12.4. ‘this’ pointer" href="this.html" />
+    <link rel="next" title="7.6. Class templates" href="templates.html" />
+    <link rel="prev" title="7.4. ‘this’ pointer" href="this.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -246,13 +246,13 @@
         
         <!-- 
           
-  <li id="relations-prev" title="Previous Chapter - 12.4. ‘this’ pointer" data-toggle="tooltip">
+  <li id="relations-prev" title="Previous Chapter - 7.4. ‘this’ pointer" data-toggle="tooltip">
     <a href="this.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - 12.6. Class templates' data-toggle="tooltip" >              
+  <li id="relations-next" title='Next Chapter - 7.6. Class templates' data-toggle="tooltip" >              
     <a href="templates.html" >
         <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
@@ -292,7 +292,7 @@
 <div class="container" id="main-content" role="main">
   
   <div class="section" id="operator-overloads">
-<span id="index-0"></span><h1>12.5. Operator overloads<a class="headerlink" href="#operator-overloads" title="Permalink to this headline">¶</a></h1>
+<span id="index-0"></span><h1>7.5. Operator overloads<a class="headerlink" href="#operator-overloads" title="Permalink to this headline">¶</a></h1>
 <p>There are many reasons to want to overload the builtin operator
 functions for user defined types.</p>
 <p><strong>Case 1</strong></p>
@@ -352,7 +352,7 @@ since most operators defer their actual work to plain functions.
 The programming community has already thought long and hard on
 techniques to make overloads efficient and easy to maintain.</p>
 <div class="section" id="basic-overloading-guidelines">
-<span id="index-1"></span><h2>12.5.1. Basic overloading guidelines<a class="headerlink" href="#basic-overloading-guidelines" title="Permalink to this headline">¶</a></h2>
+<span id="index-1"></span><h2>7.5.1. Basic overloading guidelines<a class="headerlink" href="#basic-overloading-guidelines" title="Permalink to this headline">¶</a></h2>
 <p>Most C++ operators can be overloaded.
 You cannot change the meaning of operators for built-in types in C++.
 Operators can only be overloaded when at least 1 operand is a user-defined type.
@@ -404,7 +404,7 @@ then most users expect to also to be able to check <code class="docutils literal
 function signatures for some of the most common operator overloads.</p>
 </div>
 <div class="section" id="assignment-operator">
-<h2>12.5.2. Assignment operator<a class="headerlink" href="#assignment-operator" title="Permalink to this headline">¶</a></h2>
+<h2>7.5.2. Assignment operator<a class="headerlink" href="#assignment-operator" title="Permalink to this headline">¶</a></h2>
 <p>The copy assignment operator is called when an object appears
 on the left side of an assignment expression.</p>
 <p>The canonical copy-assignment operator is expected to perform
@@ -452,7 +452,7 @@ is required for this technique to work:</p>
 </div>
 </div>
 <div class="section" id="insertion-and-extraction-operators">
-<h2>12.5.3. Insertion and extraction operators<a class="headerlink" href="#insertion-and-extraction-operators" title="Permalink to this headline">¶</a></h2>
+<h2>7.5.3. Insertion and extraction operators<a class="headerlink" href="#insertion-and-extraction-operators" title="Permalink to this headline">¶</a></h2>
 <p>The bitshift operators <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code>,
 although still used in hardware interfacing for the bit-manipulation functions
 they inherit from C,
@@ -516,7 +516,7 @@ non-member non-friend functions. The canonical forms are:</p>
 </div>
 </div>
 <div class="section" id="function-call-operator">
-<h2>12.5.4. Function call operator<a class="headerlink" href="#function-call-operator" title="Permalink to this headline">¶</a></h2>
+<h2>7.5.4. Function call operator<a class="headerlink" href="#function-call-operator" title="Permalink to this headline">¶</a></h2>
 <p>When a user-defined class overloads the function call operator,
 <code class="docutils literal notranslate"><span class="pre">operator()</span></code>, it becomes a FunctionObject type.
 A function object is a class that can be called as if it was a function.
@@ -546,7 +546,7 @@ A single class can contain more than 1 function call operator overload,
 subject to the other rules of function overloading.</p>
 </div>
 <div class="section" id="relational-operators">
-<h2>12.5.5. Relational operators<a class="headerlink" href="#relational-operators" title="Permalink to this headline">¶</a></h2>
+<h2>7.5.5. Relational operators<a class="headerlink" href="#relational-operators" title="Permalink to this headline">¶</a></h2>
 <p>Standard algorithms such as std::sort and containers such as
 <a class="reference external" href="http://en.cppreference.com/mwiki/index.php?search=std::set">std::set</a> expect <code class="docutils literal notranslate"><span class="pre">operator</span> <span class="pre">&lt;</span></code> to be defined, by default,
 for the user-provided types, and expect it to implement strict
@@ -630,7 +630,7 @@ defined as defaulted:</p>
 </div>
 </div>
 <div class="section" id="binary-arithmetic-operators">
-<h2>12.5.6. Binary arithmetic operators<a class="headerlink" href="#binary-arithmetic-operators" title="Permalink to this headline">¶</a></h2>
+<h2>7.5.6. Binary arithmetic operators<a class="headerlink" href="#binary-arithmetic-operators" title="Permalink to this headline">¶</a></h2>
 <p>Binary operators are typically implemented as non-members to maintain symmetry.
 For example, when adding a complex number and an integer,
 if <code class="docutils literal notranslate"><span class="pre">operator+</span></code> is a member function of the complex type,
@@ -669,7 +669,7 @@ compound assignments:</p>
 <p>The remaining binary arithmetic operators are implemented using the same pattern.</p>
 </div>
 <div class="section" id="increment-and-decrement-operators">
-<h2>12.5.7. Increment and decrement operators<a class="headerlink" href="#increment-and-decrement-operators" title="Permalink to this headline">¶</a></h2>
+<h2>7.5.7. Increment and decrement operators<a class="headerlink" href="#increment-and-decrement-operators" title="Permalink to this headline">¶</a></h2>
 <p>When the postfix increment and decrement appear in an expression,
 the corresponding user-defined function (<code class="docutils literal notranslate"><span class="pre">operator++</span></code> or <code class="docutils literal notranslate"><span class="pre">operator--</span></code>)
 is called with an integer argument 0.
@@ -698,7 +698,7 @@ in terms of the prefix version:</p>
 </div>
 </div>
 <div class="section" id="conversion-operators">
-<h2>12.5.8. Conversion operators<a class="headerlink" href="#conversion-operators" title="Permalink to this headline">¶</a></h2>
+<h2>7.5.8. Conversion operators<a class="headerlink" href="#conversion-operators" title="Permalink to this headline">¶</a></h2>
 <p>C++ allows you to create operators to convert between your type and other ADT’s.
 A conversion function is declared like a non-static member function or
 member function template with</p>
@@ -809,26 +809,26 @@ third edition and section 10 of the second.</p>
   
       
 <ul>
-  <li id="relations-prev" class="navLink" title='Previous Section - 12.4. ‘this’ pointer' data-toggle="tooltip">
-    <a href="this.html" aria-label="12.4. ‘this’ pointer">
+  <li id="relations-prev" class="navLink" title='Previous Section - 7.4. ‘this’ pointer' data-toggle="tooltip">
+    <a href="this.html" aria-label="7.4. ‘this’ pointer">
         <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
             <i class='prevNav glyphicon glyphicon-chevron-left' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
         </div>
     </a>
   </li>
 </ul>
-  <a class="navLinkBg" id="navLinkBgLeft"  href="this.html" aria-label="12.4. ‘this’ pointer"></a>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="this.html" aria-label="7.4. ‘this’ pointer"></a>
   
 <ul>
-  <li id="relations-next" class="navLink" title='Next Section - 12.6. Class templates' data-toggle="tooltip" >
-    <a href="templates.html" aria-label="12.6. Class templates">
+  <li id="relations-next" class="navLink" title='Next Section - 7.6. Class templates' data-toggle="tooltip" >
+    <a href="templates.html" aria-label="7.6. Class templates">
       <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
           <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
       </div>
     </a>
   </li>
 </ul>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="templates.html" aria-label="12.6. Class templates">Next Section - 12.6. Class templates</a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="templates.html" aria-label="7.6. Class templates">Next Section - 7.6. Class templates</a>
 
 <script type="text/javascript">
 
@@ -846,7 +846,7 @@ third edition and section 10 of the second.</p>
       
     </p>
     <p>
-        &copy; Copyright 2017-2019 Dave Parillo.
+        &copy; Copyright 2017-2020 Dave Parillo.
       Created using <a href="http://runestoneinteractive.org/">Runestone</a> 4.1.11.
     </p>
   </div>

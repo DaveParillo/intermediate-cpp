@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>13. Class design &#8212; Intermediate Modern C++ Overview</title>
+    <title>8. Class design &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -119,8 +119,8 @@
     <script type="text/javascript" src="../_static/presenter_mode.js?v=4.1.11"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="13.1. Object-oriented concepts" href="oo-concepts.html" />
-    <link rel="prev" title="12.6. Class templates" href="../class-II-functions/templates.html" />
+    <link rel="next" title="8.1. Object-oriented concepts" href="oo-concepts.html" />
+    <link rel="prev" title="7.6. Class templates" href="../class-II-functions/templates.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -246,13 +246,13 @@
         
         <!-- 
           
-  <li id="relations-prev" title="Previous Chapter - 12.6. Class templates" data-toggle="tooltip">
+  <li id="relations-prev" title="Previous Chapter - 7.6. Class templates" data-toggle="tooltip">
     <a href="../class-II-functions/templates.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - 13.1. Object-oriented concepts' data-toggle="tooltip" >              
+  <li id="relations-next" title='Next Chapter - 8.1. Object-oriented concepts' data-toggle="tooltip" >              
     <a href="oo-concepts.html" >
         <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
@@ -292,41 +292,41 @@
 <div class="container" id="main-content" role="main">
   
   <div class="section" id="class-design">
-<h1>13. Class design<a class="headerlink" href="#class-design" title="Permalink to this headline">¶</a></h1>
+<h1>8. Class design<a class="headerlink" href="#class-design" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Class design</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="oo-concepts.html">13.1. Object-oriented concepts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="oo-concepts.html#object-oriented-programming-principles">13.1.1. Object-oriented programming principles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="oo-concepts.html#encapsulation">13.1.2. Encapsulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="oo-concepts.html#inheritance">13.1.3. Inheritance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="oo-concepts.html#polymorphism">13.1.4. Polymorphism</a></li>
-<li class="toctree-l2"><a class="reference internal" href="oo-concepts.html#abstraction">13.1.5. Abstraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oo-concepts.html">8.1. Object-oriented concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="oo-concepts.html#object-oriented-programming-principles">8.1.1. Object-oriented programming principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oo-concepts.html#encapsulation">8.1.2. Encapsulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oo-concepts.html#inheritance">8.1.3. Inheritance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oo-concepts.html#polymorphism">8.1.4. Polymorphism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oo-concepts.html#abstraction">8.1.5. Abstraction</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="uml.html">13.2. Unified modeling language</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="uml.html#static-and-dynamic-diagrams">13.2.1. Static and Dynamic diagrams</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uml.html#class-diagrams">13.2.2. Class diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uml.html">8.2. Unified modeling language</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="uml.html#static-and-dynamic-diagrams">8.2.1. Static and Dynamic diagrams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uml.html#class-diagrams">8.2.2. Class diagrams</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="composition.html">13.3. Composition</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inheritance.html">13.4. Inheritance</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="inheritance.html#base-class-references-and-pointers">13.4.1. Base class references and pointers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inheritance.html#when-to-use-inheritance">13.4.2. When to use inheritance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inheritance.html#private-inheritance">13.4.3. Private inheritance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inheritance.html#non-virtual-base-class-functions">13.4.4. Non-virtual base class functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inheritance.html#multiple-inheritance">13.4.5. Multiple inheritance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inheritance.html#design-problems">13.4.6. Design problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="composition.html">8.3. Composition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inheritance.html">8.4. Inheritance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inheritance.html#base-class-references-and-pointers">8.4.1. Base class references and pointers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inheritance.html#when-to-use-inheritance">8.4.2. When to use inheritance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inheritance.html#private-inheritance">8.4.3. Private inheritance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inheritance.html#non-virtual-base-class-functions">8.4.4. Non-virtual base class functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inheritance.html#multiple-inheritance">8.4.5. Multiple inheritance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inheritance.html#design-problems">8.4.6. Design problems</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="interfaces.html">13.5. Abstract base classes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="interfaces.html#interfaces">13.5.1. Interfaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="interfaces.html#the-final-specifier">13.5.2. The final specifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interfaces.html">8.5. Abstract base classes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="interfaces.html#interfaces">8.5.1. Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interfaces.html#the-final-specifier">8.5.2. The final specifier</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="patterns.html">13.6. Design patterns</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="patterns.html#fixing-an-inheritance-problem">13.6.1. Fixing an inheritance problem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="patterns.html#chain-of-responsibility-pattern">13.6.2. Chain of Responsibility pattern</a></li>
+<li class="toctree-l1"><a class="reference internal" href="patterns.html">8.6. Design patterns</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="patterns.html#fixing-an-inheritance-problem">8.6.1. Fixing an inheritance problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="patterns.html#chain-of-responsibility-pattern">8.6.2. Chain of Responsibility pattern</a></li>
 </ul>
 </li>
 </ul>
@@ -340,26 +340,26 @@
   
       
 <ul>
-  <li id="relations-prev" class="navLink" title='Previous Section - 12.6. Class templates' data-toggle="tooltip">
-    <a href="../class-II-functions/templates.html" aria-label="12.6. Class templates">
+  <li id="relations-prev" class="navLink" title='Previous Section - 7.6. Class templates' data-toggle="tooltip">
+    <a href="../class-II-functions/templates.html" aria-label="7.6. Class templates">
         <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
             <i class='prevNav glyphicon glyphicon-chevron-left' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
         </div>
     </a>
   </li>
 </ul>
-  <a class="navLinkBg" id="navLinkBgLeft"  href="../class-II-functions/templates.html" aria-label="12.6. Class templates"></a>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="../class-II-functions/templates.html" aria-label="7.6. Class templates"></a>
   
 <ul>
-  <li id="relations-next" class="navLink" title='Next Section - 13.1. Object-oriented concepts' data-toggle="tooltip" >
-    <a href="oo-concepts.html" aria-label="13.1. Object-oriented concepts">
+  <li id="relations-next" class="navLink" title='Next Section - 8.1. Object-oriented concepts' data-toggle="tooltip" >
+    <a href="oo-concepts.html" aria-label="8.1. Object-oriented concepts">
       <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
           <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
       </div>
     </a>
   </li>
 </ul>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="oo-concepts.html" aria-label="13.1. Object-oriented concepts">Next Section - 13.1. Object-oriented concepts</a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="oo-concepts.html" aria-label="8.1. Object-oriented concepts">Next Section - 8.1. Object-oriented concepts</a>
 
 <script type="text/javascript">
 
@@ -377,7 +377,7 @@
       
     </p>
     <p>
-        &copy; Copyright 2017-2019 Dave Parillo.
+        &copy; Copyright 2017-2020 Dave Parillo.
       Created using <a href="http://runestoneinteractive.org/">Runestone</a> 4.1.11.
     </p>
   </div>

@@ -277,44 +277,33 @@
 
 <div class="container" id="main-content" role="main">
   
-  <script type="text/javascript">document.addEventListener("DOMContentLoaded", function(event) {let walk_tree = function(elements,func_walk,func_child) {let walk_children = [];for (let index = 0; index < elements.length; ++index) {let that = elements[index];while (that && !func_walk(that)) {that = that.parentElement;}if (that) {that = func_walk(that);walk_children.push(that);while (that && func_child(that)) {that = func_child(that);walk_children.push(that);}}}return walk_children;};let code = document.getElementsByClassName("fenced-code");walk_tree(code, x => x.nextElementSibling, x => x.firstElementChild).map(x => {x.style.marginTop = 0;x.style.paddingTop = 0;});walk_tree(code, x => x.previousElementSibling, x => x.lastElementChild).map(x => {x.style.marginBottom = 0;x.style.paddingBottom = 0;});});</script><div class="code fenced-code highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;caesar.h&quot;</span><span class="cp"></span>
+  <script type="text/javascript">document.addEventListener("DOMContentLoaded", function(event) {let walk_tree = function(elements,func_walk,func_child) {let walk_children = [];for (let index = 0; index < elements.length; ++index) {let that = elements[index];while (that && !func_walk(that)) {that = that.parentElement;}if (that) {that = func_walk(that);walk_children.push(that);while (that && func_child(that)) {that = func_child(that);walk_children.push(that);}}}return walk_children;};let code = document.getElementsByClassName("fenced-code");walk_tree(code, x => x.nextElementSibling, x => x.firstElementChild).map(x => {x.style.marginTop = 0;x.style.paddingTop = 0;});walk_tree(code, x => x.previousElementSibling, x => x.lastElementChild).map(x => {x.style.marginBottom = 0;x.style.paddingBottom = 0;});});</script><div class="code fenced-code highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
 
 <span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;cctype&gt;      // isalpha, islower</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
- 
-</pre></div>
-</div>
-<p>TODO: add locale and extend non english alphabets</p>
-<div class="code fenced-code highlight-cpp notranslate"><div class="highlight"><pre><span></span> 
-<span class="kt">char</span> <span class="nf">rot13</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">isalpha</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="k">return</span> <span class="n">c</span><span class="p">;</span>   <span class="c1">// if not a Latin letter,</span>
-</pre></div>
-</div>
-<div class="CodeChat-indent" style="margin-left:19.0em;"><p>then do nothing &amp; return the current char</p>
-</div><div class="code fenced-code highlight-cpp notranslate"><div class="highlight"><pre><span></span> 
-</pre></div>
-</div>
-<div class="CodeChat-indent" style="margin-left:2.0em;"><p>in order to rotate upper or lower case
-need to know where the alphabet ‘starts’</p>
-</div><div class="code fenced-code highlight-cpp notranslate"><div class="highlight"><pre><span></span>    <span class="k">const</span> <span class="kt">char</span> <span class="n">start</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">islower</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">?</span> <span class="sc">&#39;a&#39;</span> <span class="o">:</span> <span class="sc">&#39;A&#39;</span><span class="p">;</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">c</span> <span class="o">-</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">13</span><span class="p">)</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">+</span> <span class="n">start</span><span class="p">;</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">usage</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Encrypt or decrypt text read from standard input</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;Usage: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; [-h|l|f]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">char</span> <span class="n">rot47</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
-</pre></div>
-</div>
-<div class="CodeChat-indent" style="margin-left:2.0em;"><p>first printable character = 33 = ‘!’</p>
-</div><div class="code fenced-code highlight-cpp notranslate"><div class="highlight"><pre><span></span>    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">char</span> <span class="n">start</span> <span class="o">=</span> <span class="sc">&#39;!&#39;</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">&lt;</span> <span class="n">start</span><span class="p">)</span> <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">c</span> <span class="o">-</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">47</span><span class="p">)</span> <span class="o">%</span> <span class="mi">94</span> <span class="o">+</span> <span class="n">start</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="n">render_text</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span><span class="p">,</span> <span class="n">transform</span> <span class="n">handler</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">c</span><span class="p">:</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// extract each char from the string</span>
-        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">handler</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>    <span class="c1">// print transformed character</span>
-    <span class="p">}</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>         <span class="c1">// print newline and flush stream</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">help</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">usage</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Options:</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;  -h   Show this text and exit.</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;  -l   En(de)crypt using the Latin characters ([A-Z,a-z]</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;         (default)</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;  -f   En(de)crypt using the Full set of &quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;printable ASCII characters</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">Only 1 of any option can be meaningfully specified.</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">The last of either &#39;-l&#39; or &#39;f&#39; provided is used.</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">Running with no input from standard in enters</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;&#39;interactive mode&#39;:</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot; - Text can be entered one message per line.</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot; - The program runs until &#39;CTRL+C&#39; is entered or &quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;   EOF is reached.</span><span class="se">\n\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;Running on plain text creates cipher text</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;Running on cipher text creates plain text</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">;</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -342,7 +331,7 @@ need to know where the alphabet ‘starts’</p>
       
     </p>
     <p>
-        &copy; Copyright 2017-2019 Dave Parillo.
+        &copy; Copyright 2017-2020 Dave Parillo.
       Created using <a href="http://runestoneinteractive.org/">Runestone</a> 4.1.11.
     </p>
   </div>

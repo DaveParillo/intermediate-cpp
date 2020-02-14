@@ -278,37 +278,43 @@
 <div class="container" id="main-content" role="main">
   
   <script type="text/javascript">document.addEventListener("DOMContentLoaded", function(event) {let walk_tree = function(elements,func_walk,func_child) {let walk_children = [];for (let index = 0; index < elements.length; ++index) {let that = elements[index];while (that && !func_walk(that)) {that = that.parentElement;}if (that) {that = func_walk(that);walk_children.push(that);while (that && func_child(that)) {that = func_child(that);walk_children.push(that);}}}return walk_children;};let code = document.getElementsByClassName("fenced-code");walk_tree(code, x => x.nextElementSibling, x => x.firstElementChild).map(x => {x.style.marginTop = 0;x.style.paddingTop = 0;});walk_tree(code, x => x.previousElementSibling, x => x.lastElementChild).map(x => {x.style.marginBottom = 0;x.style.paddingBottom = 0;});});</script><div class="code fenced-code highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;caesar.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;help.h&quot;</span><span class="cp"></span>
 
-<span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;    // strcmp</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cctype&gt;      // isalpha, islower</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+ 
 </pre></div>
 </div>
-<div class="CodeChat-indent" style="margin-left:2.0em;"><p>Define a default a ‘character handler’
-the variable ‘handler’ provides an option to
-change the encryption function at runtime</p>
-</div><div class="code fenced-code highlight-cpp notranslate"><div class="highlight"><pre><span></span>    <span class="n">transform</span> <span class="n">handler</span> <span class="o">=</span> <span class="n">rot13</span><span class="p">;</span>
+<p>TODO: add locale and extend non english alphabets</p>
+<div class="code fenced-code highlight-cpp notranslate"><div class="highlight"><pre><span></span> 
+<span class="kt">char</span> <span class="nf">rot13</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">isalpha</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="k">return</span> <span class="n">c</span><span class="p">;</span>   <span class="c1">// if not a Latin letter,</span>
+</pre></div>
+</div>
+<div class="CodeChat-indent" style="margin-left:19.0em;"><p>then do nothing &amp; return the current char</p>
+</div><div class="code fenced-code highlight-cpp notranslate"><div class="highlight"><pre><span></span> 
+</pre></div>
+</div>
+<div class="CodeChat-indent" style="margin-left:2.0em;"><p>in order to rotate upper or lower case
+need to know where the alphabet ‘starts’</p>
+</div><div class="code fenced-code highlight-cpp notranslate"><div class="highlight"><pre><span></span>    <span class="k">const</span> <span class="kt">char</span> <span class="n">start</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">islower</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">?</span> <span class="sc">&#39;a&#39;</span> <span class="o">:</span> <span class="sc">&#39;A&#39;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">c</span> <span class="o">-</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">13</span><span class="p">)</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">+</span> <span class="n">start</span><span class="p">;</span>
+<span class="p">}</span>
 
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">argc</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">strcmp</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s">&quot;-h&quot;</span><span class="p">))</span> <span class="p">{</span>            <span class="c1">// call help and exit</span>
-            <span class="n">help</span><span class="p">(</span><span class="o">*</span><span class="n">argv</span><span class="p">);</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">strcmp</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s">&quot;-l&quot;</span><span class="p">))</span> <span class="p">{</span>     <span class="c1">// use rot13 transform</span>
-            <span class="n">handler</span> <span class="o">=</span> <span class="n">rot13</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">strcmp</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s">&quot;-f&quot;</span><span class="p">))</span> <span class="p">{</span>     <span class="c1">// use rot47 transform</span>
-            <span class="n">handler</span> <span class="o">=</span> <span class="n">rot47</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="n">usage</span><span class="p">(</span><span class="o">*</span><span class="n">argv</span><span class="p">);</span>
-            <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+<span class="kt">char</span> <span class="n">rot47</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+</pre></div>
+</div>
+<div class="CodeChat-indent" style="margin-left:2.0em;"><p>first printable character = 33 = ‘!’</p>
+</div><div class="code fenced-code highlight-cpp notranslate"><div class="highlight"><pre><span></span>    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">char</span> <span class="n">start</span> <span class="o">=</span> <span class="sc">&#39;!&#39;</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">&lt;</span> <span class="n">start</span><span class="p">)</span> <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">c</span> <span class="o">-</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">47</span><span class="p">)</span> <span class="o">%</span> <span class="mi">94</span> <span class="o">+</span> <span class="n">start</span><span class="p">;</span>
+<span class="p">}</span>
 
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">getline</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">,</span> <span class="n">message</span><span class="p">))</span> <span class="p">{</span>
-        <span class="n">render_text</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">handler</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">render_text</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">message</span><span class="p">,</span> <span class="n">transform</span> <span class="n">handler</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">c</span><span class="p">:</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// extract each char from the string</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">handler</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>    <span class="c1">// print transformed character</span>
     <span class="p">}</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>         <span class="c1">// print newline and flush stream</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -336,7 +342,7 @@ change the encryption function at runtime</p>
       
     </p>
     <p>
-        &copy; Copyright 2017-2019 Dave Parillo.
+        &copy; Copyright 2017-2020 Dave Parillo.
       Created using <a href="http://runestoneinteractive.org/">Runestone</a> 4.1.11.
     </p>
   </div>

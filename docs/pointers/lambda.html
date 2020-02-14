@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>6.2. Lambda expressions &#8212; Intermediate Modern C++ Overview</title>
+    <title>5.5. Lambda expressions &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -119,8 +119,8 @@
     <script type="text/javascript" src="../_static/presenter_mode.js?v=4.1.11"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6.3. The std::function template" href="std_function.html" />
-    <link rel="prev" title="6.1. Function pointers" href="function-pointers.html" />
+    <link rel="next" title="5.6. The std::function template" href="std_function.html" />
+    <link rel="prev" title="5.4. Function pointers" href="function-pointers.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -246,13 +246,13 @@
         
         <!-- 
           
-  <li id="relations-prev" title="Previous Chapter - 6.1. Function pointers" data-toggle="tooltip">
+  <li id="relations-prev" title="Previous Chapter - 5.4. Function pointers" data-toggle="tooltip">
     <a href="function-pointers.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - 6.3. The std::function template' data-toggle="tooltip" >              
+  <li id="relations-next" title='Next Chapter - 5.6. The std::function template' data-toggle="tooltip" >              
     <a href="std_function.html" >
         <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
@@ -292,7 +292,7 @@
 <div class="container" id="main-content" role="main">
   
   <div class="section" id="lambda-expressions">
-<span id="index-0"></span><h1>6.2. Lambda expressions<a class="headerlink" href="#lambda-expressions" title="Permalink to this headline">¶</a></h1>
+<span id="index-0"></span><h1>5.5. Lambda expressions<a class="headerlink" href="#lambda-expressions" title="Permalink to this headline">¶</a></h1>
 <p>A <em>lambda expression</em>, or simply <em>lambda</em>,
 provides a means to define an anonymous function right at the location
 where it is invoked or passed as an argument to a function.</p>
@@ -454,7 +454,7 @@ statement, so an explicit return is not needed.</p>
 <p>Rewrite the rot13/rot47 program to use lambdas to perform the rotation instead of traditional function calls</p>
 </div>
 <div class="section" id="assigning-a-lambda-to-a-variable">
-<h2>6.2.1. Assigning a lambda to a variable<a class="headerlink" href="#assigning-a-lambda-to-a-variable" title="Permalink to this headline">¶</a></h2>
+<h2>5.5.1. Assigning a lambda to a variable<a class="headerlink" href="#assigning-a-lambda-to-a-variable" title="Permalink to this headline">¶</a></h2>
 <p>A lambda does not always need to be defined within another function or
 within a function parameter list.
 You can define a lambda any place a normal function can be defined,
@@ -514,7 +514,7 @@ as this video demonstrates:</p>
     </div>
     </div>
 <div class="section" id="trailing-return-types-in-lambda-expressions">
-<span id="index-2"></span><h2>6.2.2. Trailing return types in lambda expressions<a class="headerlink" href="#trailing-return-types-in-lambda-expressions" title="Permalink to this headline">¶</a></h2>
+<span id="index-2"></span><h2>5.5.2. Trailing return types in lambda expressions<a class="headerlink" href="#trailing-return-types-in-lambda-expressions" title="Permalink to this headline">¶</a></h2>
 <p>When the compiler cannot deduce the correct type,
 or does not deduce the desired type,
 then the return type must be specified.</p>
@@ -570,26 +570,26 @@ immediately called it using <code class="docutils literal notranslate"><span cla
   
       
 <ul>
-  <li id="relations-prev" class="navLink" title='Previous Section - 6.1. Function pointers' data-toggle="tooltip">
-    <a href="function-pointers.html" aria-label="6.1. Function pointers">
+  <li id="relations-prev" class="navLink" title='Previous Section - 5.4. Function pointers' data-toggle="tooltip">
+    <a href="function-pointers.html" aria-label="5.4. Function pointers">
         <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
             <i class='prevNav glyphicon glyphicon-chevron-left' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
         </div>
     </a>
   </li>
 </ul>
-  <a class="navLinkBg" id="navLinkBgLeft"  href="function-pointers.html" aria-label="6.1. Function pointers"></a>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="function-pointers.html" aria-label="5.4. Function pointers"></a>
   
 <ul>
-  <li id="relations-next" class="navLink" title='Next Section - 6.3. The std::function template' data-toggle="tooltip" >
-    <a href="std_function.html" aria-label="6.3. The std::function template">
+  <li id="relations-next" class="navLink" title='Next Section - 5.6. The std::function template' data-toggle="tooltip" >
+    <a href="std_function.html" aria-label="5.6. The std::function template">
       <div style="background-color: white; border-style:solid; border-color:lightgrey; border-width:2px; width:100px; height:50px">
           <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right' style="top:50%; transform:translateY(-50%)translateX(-50%); left: 50%;"></i>
       </div>
     </a>
   </li>
 </ul>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="std_function.html" aria-label="6.3. The std::function template">Next Section - 6.3. The std::function template</a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="std_function.html" aria-label="5.6. The std::function template">Next Section - 5.6. The std::function template</a>
 
 <script type="text/javascript">
 
@@ -607,7 +607,7 @@ immediately called it using <code class="docutils literal notranslate"><span cla
       
     </p>
     <p>
-        &copy; Copyright 2017-2019 Dave Parillo.
+        &copy; Copyright 2017-2020 Dave Parillo.
       Created using <a href="http://runestoneinteractive.org/">Runestone</a> 4.1.11.
     </p>
   </div>

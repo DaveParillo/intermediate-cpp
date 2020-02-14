@@ -59,7 +59,7 @@ Later, we will see that some types are long and complicated -
 having to type them out, as was required prior to C++11,
 is a chore.
 ``auto`` frees us from having to declare a type the compiler already knows about.
-Additionally, some types, such as those returned by :doc:`lambda expressions <../function-pointers/lambda>`,
+Additionally, some types, such as those returned by :doc:`lambda expressions <../pointers/lambda>`,
 are hidden from us - auto is the only option in these cases.
 
 When variables are initialized using auto, 
@@ -117,7 +117,7 @@ you can use auto to declare a variable where the initialization
 expression involves iterators, templates, pointers to functions, or pointers to members.
 You can also use ``auto`` to declare and initialize a variable to a lambda expression. 
 You can't declare the type of a lambda yourself because the type of a 
-:doc:`lambda expression <../function-pointers/lambda>` is known only to the compiler.
+:doc:`lambda expression <../pointers/lambda>` is known only to the compiler.
 
 ``auto`` is also commonly used when a type would be redundant, especially in
 *range-for loops*:

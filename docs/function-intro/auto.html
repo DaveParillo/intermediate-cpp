@@ -334,7 +334,7 @@ Later, we will see that some types are long and complicated -
 having to type them out, as was required prior to C++11,
 is a chore.
 <code class="docutils literal notranslate"><span class="pre">auto</span></code> frees us from having to declare a type the compiler already knows about.
-Additionally, some types, such as those returned by <a class="reference internal" href="../function-pointers/lambda.html"><span class="doc">lambda expressions</span></a>,
+Additionally, some types, such as those returned by <a class="reference internal" href="../pointers/lambda.html"><span class="doc">lambda expressions</span></a>,
 are hidden from us - auto is the only option in these cases.</p>
 <p>When variables are initialized using auto,
 they inherit the <em>type</em> from the initializer, but not its <em>constness</em>.</p>
@@ -378,7 +378,7 @@ you can use auto to declare a variable where the initialization
 expression involves iterators, templates, pointers to functions, or pointers to members.
 You can also use <code class="docutils literal notranslate"><span class="pre">auto</span></code> to declare and initialize a variable to a lambda expression.
 You can’t declare the type of a lambda yourself because the type of a
-<a class="reference internal" href="../function-pointers/lambda.html"><span class="doc">lambda expression</span></a> is known only to the compiler.</p>
+<a class="reference internal" href="../pointers/lambda.html"><span class="doc">lambda expression</span></a> is known only to the compiler.</p>
 <p><code class="docutils literal notranslate"><span class="pre">auto</span></code> is also commonly used when a type would be redundant, especially in
 <em>range-for loops</em>:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">numbers</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mf">8.8</span><span class="p">};</span>
@@ -486,7 +486,7 @@ The <a class="reference external" href="http://en.cppreference.com/w/cpp/languag
       
     </p>
     <p>
-        &copy; Copyright 2017-2019 Dave Parillo.
+        &copy; Copyright 2017-2020 Dave Parillo.
       Created using <a href="http://runestoneinteractive.org/">Runestone</a> 4.1.11.
     </p>
   </div>

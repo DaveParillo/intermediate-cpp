@@ -21,22 +21,30 @@ Main Body
    function-intro/toctree.rst
    function-overloads/toctree.rst
    pointers/toctree.rst
-   function-pointers/toctree.rst
-   containers/toctree.rst
-   iterators/toctree.rst
-   algorithms/toctree.rst
+
    class-I-intro/toctree.rst
    class-II-functions/toctree.rst
    class-III-design/toctree.rst
    class-IV-memory/toctree.rst
-   serialization/toctree.rst
+
+   containers/toctree.rst
+   trees/toctree.rst
+   iterators/toctree.rst
+   algorithms/toctree.rst
 
    glossary.rst
 
 
 Back Matter
 -----------
+.. toctree::
+   :maxdepth: 1
+
+   back-matter/app-a/toctree.rst
+   back-matter/faq.rst
+
 * :ref:`search`
 * :ref:`glossary`
 * :ref:`genindex`
+
 

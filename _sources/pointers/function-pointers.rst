@@ -8,8 +8,8 @@
 
 .. index:: function pointers; pointers to functions
 
-Function pointers
-=================
+Pointers to functions
+=====================
 
 In C++ you can point to anything with an address:
 
@@ -17,8 +17,8 @@ In C++ you can point to anything with an address:
 - Stack and free store variables
 - Functions
 
-Recall that when called, 
-an :term:`activation record` for a function is pushed onto the :term:`runtime stack`.
+When a function is called, 
+an :term:`activation record` for the function is pushed onto the :term:`runtime stack`.
 This means every function has an address.
 
 Consider the following code:
@@ -40,9 +40,9 @@ Hint: It doesn't call the function foo
 
 .. reveal:: reveal-fp1
 
-   It prints the *address* of the function ``foo()``
+   It prints the *address* of the function named ``foo``
 
-When a function is called using ``operator()``,
+When a function is called using ``operator()`` (the function call operator),
 execution jumps to the *address* of the function being called.
 We can make use of this to store the address of the function.
 
