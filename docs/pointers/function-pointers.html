@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>5.4. Function pointers &#8212; Intermediate Modern C++ Overview</title>
+    <title>5.4. Pointers to functions &#8212; Intermediate Modern C++ Overview</title>
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
@@ -291,16 +291,16 @@
 
 <div class="container" id="main-content" role="main">
   
-  <div class="section" id="function-pointers">
-<span id="index-0"></span><h1>5.4. Function pointers<a class="headerlink" href="#function-pointers" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="pointers-to-functions">
+<span id="index-0"></span><h1>5.4. Pointers to functions<a class="headerlink" href="#pointers-to-functions" title="Permalink to this headline">¶</a></h1>
 <p>In C++ you can point to anything with an address:</p>
 <ul class="simple">
 <li><p>Global variables</p></li>
 <li><p>Stack and free store variables</p></li>
 <li><p>Functions</p></li>
 </ul>
-<p>Recall that when called,
-an <a class="reference internal" href="../glossary.html#term-activation-record"><span class="xref std std-term">activation record</span></a> for a function is pushed onto the <a class="reference internal" href="../glossary.html#term-runtime-stack"><span class="xref std std-term">runtime stack</span></a>.
+<p>When a function is called,
+an <a class="reference internal" href="../glossary.html#term-activation-record"><span class="xref std std-term">activation record</span></a> for the function is pushed onto the <a class="reference internal" href="../glossary.html#term-runtime-stack"><span class="xref std std-term">runtime stack</span></a>.
 This means every function has an address.</p>
 <p>Consider the following code:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
@@ -316,10 +316,10 @@ This means every function has an address.</p>
 <p>Hint: It doesn’t call the function foo</p>
 
     <div data-component="reveal" id="reveal-fp1"   data-showtitle="Show" data-hidetitle="Hide" >
-    <p>It prints the <em>address</em> of the function <code class="docutils literal notranslate"><span class="pre">foo()</span></code></p>
+    <p>It prints the <em>address</em> of the function named <code class="docutils literal notranslate"><span class="pre">foo</span></code></p>
 
     </div>
-    <p>When a function is called using <code class="docutils literal notranslate"><span class="pre">operator()</span></code>,
+    <p>When a function is called using <code class="docutils literal notranslate"><span class="pre">operator()</span></code> (the function call operator),
 execution jumps to the <em>address</em> of the function being called.
 We can make use of this to store the address of the function.</p>
 <p>To declare a pointer to a function that returns an <code class="docutils literal notranslate"><span class="pre">int</span></code> and takes no parameters:</p>
