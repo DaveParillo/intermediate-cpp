@@ -10,7 +10,8 @@
 
 The Binary Tree ADT
 ===================
-A :term:`tree` is a *hierarchical* abstract data type.
+Unlike the linear sequences covered so far,
+a :term:`tree` is a *hierarchical* abstract data type.
 Conceptually, it can be thought of as a collection of
 *nodes* defined by parent-child relationships.
 
@@ -56,9 +57,9 @@ But where are the *first* and *last* elements of a tree?
 
 The short answer is that there is no single answer.
 Since a tree is not a sequential data structure,
-a tree allows for different sequences (or traverals).
-There are several different types of traverals.
-The most common tree traverals are:
+a tree allows for different sequences (or traversals).
+There are several different types of traversals.
+The most common tree traversals are:
 
 - Preorder
 - Postorder

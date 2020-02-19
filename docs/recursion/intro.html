@@ -305,8 +305,7 @@ does <strong>not</strong> use recursion to produce an answer</p></li>
 toward the base case</p></li>
 </ul>
 <p>Some famous sequences in mathematics,
-such as the Fibonacci sequence are
-generated recursively, as we will demonstrate momentarily.</p>
+such as the Fibonacci sequence are generated recursively.</p>
 <div class="section" id="accumulating-a-sum">
 <h2>11.1.1. Accumulating a sum<a class="headerlink" href="#accumulating-a-sum" title="Permalink to this headline">¶</a></h2>
 <p>Consider a problem you are already familiar with:
@@ -449,7 +448,7 @@ after the first element (which might be nothing).</p>
   <span class="k">if</span> <span class="p">(</span><span class="n">values</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
   
   <span class="c1">// recursive case</span>
-  <span class="k">auto</span> <span class="n">slice</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="p">(</span><span class="n">values</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">values</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+  <span class="k">auto</span> <span class="n">slice</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">values</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">values</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
   <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">accumulate</span><span class="p">(</span><span class="n">slice</span><span class="p">);</span>
 <span class="p">}</span>
          
@@ -482,7 +481,7 @@ int accumulate(const std::vector<int>& values) {
   if (values.empty()) return 0;
 
   // recursive case
-  auto slice = std::vector(values.begin()+1, values.end());
+  auto slice = std::vector<int>(values.begin()+1, values.end());
   return values[0] + accumulate(slice);
 }
 
@@ -506,6 +505,7 @@ outlined when we grouped the addition sequence using parentheses.</p>
 <p class="admonition-title">More to Explore</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Recursion_(computer_science)">Recursion on Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=SjSHVDfXHQ4">TED: The magic of Fibonacci numbers, Arthur Benjamin</a></p></li>
 </ul>
 </div>
 </div>

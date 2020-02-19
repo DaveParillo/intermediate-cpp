@@ -336,11 +336,11 @@ problem by using the three properties of recursive functions.</p>
             <ul data-component="multiplechoice" data-multipleanswers="false"  id="question_recsimp_1">
             <p>sc-1-1: How many recursive calls are made when computing the sum of the vector {2,4,6,8,10}?</p>
 
-            <li data-component="answer"  id="question_recsimp_1_opt_a">6</li><li data-component="feedback">There are only five numbers on the vector, the number of recursive calls will not be greater than the size of the vector.</li>
+            <li data-component="answer"  id="question_recsimp_1_opt_a">6</li><li data-component="feedback">Good choice: our accumulate example called once for each element, plus the empty vector.</li>
             
-            <li data-component="answer"  id="question_recsimp_1_opt_b">5</li><li data-component="feedback">The initial call to listsum is not a recursive call.</li>
+            <li data-component="answer"  id="question_recsimp_1_opt_b">5</li><li data-component="feedback">The last call to accumulate is always an empty vector</li>
             
-            <li data-component="answer" data-correct id="question_recsimp_1_opt_c">4</li><li data-component="feedback">the first recursive call passes the vector {4,6,8,10}, the second {6,8,10} and so on until [10].</li>
+            <li data-component="answer" data-correct id="question_recsimp_1_opt_c">4</li><li data-component="feedback">the first recursive call passes the vector {4,6,8,10}, the second {6,8,10} and so on until the vector is empty.</li>
             
             <li data-component="answer"  id="question_recsimp_1_opt_d">3</li><li data-component="feedback">This would not be enough calls to cover all the numbers on the vector</li>
             

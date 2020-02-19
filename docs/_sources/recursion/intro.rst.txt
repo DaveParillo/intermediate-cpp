@@ -22,8 +22,7 @@ can be defined by two properties:
   toward the base case
 
 Some famous sequences in mathematics, 
-such as the Fibonacci sequence are
-generated recursively, as we will demonstrate momentarily.
+such as the Fibonacci sequence are generated recursively.
 
 Accumulating a sum
 ------------------
@@ -139,4 +138,5 @@ outlined when we grouped the addition sequence using parentheses.
 .. admonition:: More to Explore
 
    - `Recursion on Wikipedia <https://en.wikipedia.org/wiki/Recursion_(computer_science)>`_
+   - `TED: The magic of Fibonacci numbers, Arthur Benjamin <https://www.youtube.com/watch?v=SjSHVDfXHQ4>`_
 
