@@ -6,8 +6,6 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-.. index:: 
-
 Properties of recursive functions
 =================================
 All recursive algorithms must implement 3 properties:
