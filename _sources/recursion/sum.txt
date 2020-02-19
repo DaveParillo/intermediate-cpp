@@ -1,0 +1,25 @@
+.. activecode:: ac-recursion-sum
+   :language: cpp
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+
+   #include <iostream>
+   #include <vector>
+
+   // iterative sum
+   int accumulate(const std::vector<int>& values) {
+     int sum = 0;
+     for (const auto& x: values) {
+       sum = sum + x;
+     }
+     return sum;
+   }
+            
+   int main () {
+     std::vector<int> values = {1,2,3,4,5,6,7,8,9,10};
+
+     auto sum = accumulate(values);
+     std::cout << "sum is: " << sum << '\n';
+     
+     return sum;
+   }
+

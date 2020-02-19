@@ -28,7 +28,7 @@ Main Body
    class-IV-memory/toctree.rst
 
    containers/toctree.rst
-   trees/toctree.rst
+   recursion/toctree.rst
    iterators/toctree.rst
    algorithms/toctree.rst
 

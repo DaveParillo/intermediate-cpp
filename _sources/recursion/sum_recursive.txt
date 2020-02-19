@@ -1,0 +1,26 @@
+.. activecode:: ac-recursion-sum-recursive
+   :language: cpp
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+
+   #include <iostream>
+   #include <vector>
+
+   // recursive sum
+   int accumulate(const std::vector<int>& values) {
+     // base case
+     if (values.empty()) return 0;
+     
+     // recursive case
+     auto slice = std::vector<int>(values.begin()+1, values.end());
+     return values[0] + accumulate(slice);
+   }
+            
+   int main () {
+     std::vector<int> values = {1,2,3,4,5,6,7,8,9,10};
+
+     auto sum = accumulate(values);
+     std::cout << "sum is: " << sum << '\n';
+     
+     return sum;
+   }
+
