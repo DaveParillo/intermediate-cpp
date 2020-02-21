@@ -1,0 +1,20 @@
+.. activecode:: ac-recursion-to_string
+   :language: cpp
+   :caption: Recursively converting from int to string
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+
+   #include <iostream>
+   #include <string>
+
+   std::string to_string(int n, int base) {
+     const char* digits = "0123456789ABCDEF";
+     if (n < base) {
+       return std::string(1, digits[n]);
+     }
+     return to_string(n/base, base).append(1, digits[n%base]);
+   }
+
+   int main() {
+     std::cout << to_string(314159, 16) << '\n';
+   }
+

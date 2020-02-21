@@ -7,5 +7,6 @@ Recursion
 
    intro.rst
    properties.rst
+   to_string.rst
    trees.rst
 
