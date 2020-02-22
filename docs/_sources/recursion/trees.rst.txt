@@ -149,6 +149,8 @@ Visit all nodes **before** visiting children:
            print(node->right);
          }
 
+         ====
+
          int main() {
            tree<char> a;
            tree<char> b;
@@ -236,6 +238,8 @@ Visit all nodes **after** visiting children:
            std::cout << node->value << ' ';
          }
 
+         ====
+
          int main() {
            tree<char> a;
            tree<char> b;
@@ -322,6 +326,8 @@ visit the right child (and the right child subtree),
            std::cout << node->value << ' ';
            print(node->right);
          }
+
+         ====
 
          int main() {
            tree<char> a;
@@ -421,6 +427,8 @@ then visit the children one level deeper.
              if(tmp->right) q.push(tmp->right);
            }
          }
+
+         ====
 
          int main() {
            tree<char> a;

@@ -72,7 +72,7 @@ right side of the diagram.
      node [
         shape=box,
         fontname = "Bitstream Vera Sans"
-        fontsize = 14
+        fontsize = 12
         style=filled
         fillcolor=lightblue
      ];
@@ -123,6 +123,7 @@ right side of the diagram.
          :end-before: int main
          :dedent: 3
          :linenos:
+         :emphasize-lines: 3,6
 
       Notice that in line 3 we check for the base case where ``n``
       is less than the base we are converting to.
@@ -135,6 +136,13 @@ right side of the diagram.
       by making the recursive call and by reducing the
       problem size using division.
 
+      .. note::
+
+         The standard library includes a set of functions called
+         :string:`std::to_string<to_string>` to convert a 
+         variety of numeric types into a `std::string`,
+         but it does not handle arbitrary change of base.
+
    .. tab:: Run It
 
       .. include:: to_string.txt
@@ -142,7 +150,68 @@ right side of the diagram.
 
 Let’s trace the algorithm again; this time we will convert the number 10
 to its base 2 string representation (``"1010"``).
-The figure below shows that we get the results we are looking for,
+
+
+.. graphviz::
+   :alt: Converting a number in base 2
+
+   digraph foo {
+     fontname = "Bitstream Vera Sans"
+     label="Converting 10 to base 2 (binary)";
+     labelloc=bottom;
+     nodesep=0.5;
+     ranksep=0.5;
+
+     node [
+        shape=box,
+        fontname = "Bitstream Vera Sans"
+        fontsize = 12
+        style=filled
+        fillcolor=lightblue
+     ];
+
+     step1 [label="to_string(10)"];
+     step3 [label="to_string(5)"];
+     step5 [label="to_string(2)"];
+     step7 [label="to_string(1)"];
+
+     step2 [label="10 % 2"];
+     step4 [label="5 % 2"];
+     step6 [label="2 % 2"];
+     step8 [label="1 < 2"];
+
+     node [
+        fillcolor=wheat
+     ];
+
+     r1 [label="0"];
+     r2 [label="1"];
+     r3 [label="0"];
+     r4 [label="1"];
+
+     step1 -> step2 -> step3 -> step4 -> step5 -> step6 -> step7 -> step8;
+     step2 -> r1[style=dotted, label="+"];
+     step4 -> r2[style=dotted, label="+"];
+     step6 -> r3[style=dotted, label="+"];
+     step8 -> r4[style=dotted];
+     
+     edge [
+        style=invis;
+     ]
+
+     Remainder [shape=plain, fillcolor=white];
+     Remainder -> r1;
+
+     {rank=same step1 step2 r1} -> 
+     {rank=same step3 step4 r2} -> 
+     {rank=same step5 step6 r3} ->
+     {rank=same step7 step8 r4}
+
+   }
+
+
+
+The previous figure shows that we get the results we are looking for,
 but it looks like the digits are in the wrong order. The algorithm works
 correctly because we make the recursive call first on line
 6, then we add the string representation of the remainder.
@@ -156,8 +225,7 @@ we get the result in the proper order.
 
 .. admonition:: More to Explore
 
-   - `Recursion on Wikipedia <https://en.wikipedia.org/wiki/Recursion_(computer_science)>`_
-   - `TED: The magic of Fibonacci numbers, Arthur Benjamin <https://www.youtube.com/watch?v=SjSHVDfXHQ4>`_
+   - :string:`std::to_string<to_string>` from `cppreference.com <https://en.cppreference.com/w/>`__
 
 
 Content on this page is adapted from 

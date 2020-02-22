@@ -335,7 +335,7 @@ which we can do easily since it satisfies the base case condition of
 we have just performed is illustrated in the figure below. Notice that
 the numbers we want to remember are in the remainder boxes along the
 right side of the diagram.</p>
-<div class="graphviz"><img src="../_images/graphviz-7a8a6137e246a430313eb125e91af85f8bd8f0a1.png" alt="Converting a number in base 10" class="graphviz" /></div>
+<div class="graphviz"><img src="../_images/graphviz-b2438e3aa481fa46868d50225908adb68a18ec6f.png" alt="Converting a number in base 10" class="graphviz" /></div>
 <div id='stringify' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="to_string" >
 <div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -345,11 +345,11 @@ right side of the diagram.</p>
 6
 7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">to_string</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">base</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">digits</span> <span class="o">=</span> <span class="s">&quot;0123456789ABCDEF&quot;</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="n">base</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">digits</span><span class="p">[</span><span class="n">n</span><span class="p">]);</span>
+<span class="hll">  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="n">base</span><span class="p">)</span> <span class="p">{</span>
+</span>    <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">digits</span><span class="p">[</span><span class="n">n</span><span class="p">]);</span>
   <span class="p">}</span>
-  <span class="k">return</span> <span class="n">to_string</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">base</span><span class="p">,</span> <span class="n">base</span><span class="p">).</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">digits</span><span class="p">[</span><span class="n">n</span><span class="o">%</span><span class="n">base</span><span class="p">]);</span>
-<span class="p">}</span>
+<span class="hll">  <span class="k">return</span> <span class="n">to_string</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">base</span><span class="p">,</span> <span class="n">base</span><span class="p">).</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">digits</span><span class="p">[</span><span class="n">n</span><span class="o">%</span><span class="n">base</span><span class="p">]);</span>
+</span><span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
 <p>Notice that in line 3 we check for the base case where <code class="docutils literal notranslate"><span class="pre">n</span></code>
@@ -360,6 +360,13 @@ recursion stops and a char from <code class="docutils literal notranslate"><span
 properties of recursion -
 by making the recursive call and by reducing the
 problem size using division.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The standard library includes a set of functions called
+<a class="reference external" href="https://en.cppreference.com/w/cpp/string/basic_string/to_string">std::to_string</a> to convert a
+variety of numeric types into a <cite>std::string</cite>,
+but it does not handle arbitrary change of base.</p>
+</div>
 </div><div data-component="tab" data-tabname="Run It" >
 
 <div data-childcomponent="ac-recursion-to_string" class="runestone explainer ac_section alert alert-warning">
@@ -388,8 +395,9 @@ int main() {
     </div>
 
 <p>Let’s trace the algorithm again; this time we will convert the number 10
-to its base 2 string representation (<code class="docutils literal notranslate"><span class="pre">&quot;1010&quot;</span></code>).
-The figure below shows that we get the results we are looking for,
+to its base 2 string representation (<code class="docutils literal notranslate"><span class="pre">&quot;1010&quot;</span></code>).</p>
+<div class="graphviz"><img src="../_images/graphviz-c1ccbc7b5bc64c62332823aded48dd9ff70cf11b.png" alt="Converting a number in base 2" class="graphviz" /></div>
+<p>The previous figure shows that we get the results we are looking for,
 but it looks like the digits are in the wrong order. The algorithm works
 correctly because we make the recursive call first on line
 6, then we add the string representation of the remainder.
@@ -401,8 +409,7 @@ we get the result in the proper order.</p>
 <div class="admonition-more-to-explore admonition">
 <p class="admonition-title">More to Explore</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Recursion_(computer_science)">Recursion on Wikipedia</a></p></li>
-<li><p><a class="reference external" href="https://www.youtube.com/watch?v=SjSHVDfXHQ4">TED: The magic of Fibonacci numbers, Arthur Benjamin</a></p></li>
+<li><p><a class="reference external" href="https://en.cppreference.com/w/cpp/string/basic_string/to_string">std::to_string</a> from <a class="reference external" href="https://en.cppreference.com/w/">cppreference.com</a></p></li>
 </ul>
 </div>
 <p>Content on this page is adapted from
