@@ -32,8 +32,8 @@ The current textbook compiler supports C++14, at least partly.
       auto c = 299'792'458;
 
       // std::string literal
-      // auto units = "m/s"s;    // valid c++14
-      std::string units = "m/s"; // online book requires this
+      using namespace std::literals;
+      auto units = "m/s"s;    // valid c++14
 
       std::cout << "speed of light: " << c << " " << units << '\n';
    }
