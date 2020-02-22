@@ -26,7 +26,7 @@ The current textbook compiler supports C++14, at least partly.
 
       // make a unique pointer
       std::unique_ptr<int> p1 = std::make_unique<int>(3);
-      std::cout << a << " " << b << " " << *p1 << "\n";
+      std::cout << a << " " << b << " " << *p1 << '\n';
 
       // quoted numeric literal
       auto c = 299'792'458;
@@ -35,5 +35,5 @@ The current textbook compiler supports C++14, at least partly.
       // auto units = "m/s"s;    // valid c++14
       std::string units = "m/s"; // online book requires this
 
-      std::cout << "speed of light: " << c << " " << units << "\n";
+      std::cout << "speed of light: " << c << " " << units << '\n';
    }

@@ -46,8 +46,8 @@ Chapters
    class-III-design/toctree.rst
    class-IV-memory/toctree.rst
 
-   containers/toctree.rst
    recursion/toctree.rst
+   containers/toctree.rst
    iterators/toctree.rst
    algorithms/toctree.rst
 

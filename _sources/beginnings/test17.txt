@@ -10,13 +10,14 @@
    #include <type_traits>
 
    template <typename T> 
-   // auto return type deduction: c++14
-   auto get_value(T t) { 
+   // auto return type deduction: C++14
+   auto get_value(T value) { 
       // constexpr-if: C++17
-      if constexpr (std::is_pointer_v<T>) {  // C++11
-          return *t;
+      // is_pointer type trait: C++11
+      if constexpr (std::is_pointer<T>::value) {
+          return *value;
       } else {
-          return t;
+          return value;
       }
    }
 
@@ -31,5 +32,6 @@
                  
      std::cout << get_value(*p) << '\n';
      std::cout << get_value(i) << '\n';
+     return i;
    }
 

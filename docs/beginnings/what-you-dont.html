@@ -423,7 +423,7 @@ int main() {
 
    // make a unique pointer
    std::unique_ptr<int> p1 = std::make_unique<int>(3);
-   std::cout << a << " " << b << " " << *p1 << "\n";
+   std::cout << a << " " << b << " " << *p1 << '\n';
 
    // quoted numeric literal
    auto c = 299'792'458;
@@ -432,7 +432,7 @@ int main() {
    // auto units = "m/s"s;    // valid c++14
    std::string units = "m/s"; // online book requires this
 
-   std::cout << "speed of light: " << c << " " << units << "\n";
+   std::cout << "speed of light: " << c << " " << units << '\n';
 }
 </textarea>
 </div>
@@ -452,13 +452,14 @@ int main() {
 #include <type_traits>
 
 template <typename T>
-// auto return type deduction: c++14
-auto get_value(T t) {
+// auto return type deduction: C++14
+auto get_value(T value) {
    // constexpr-if: C++17
-   if constexpr (std::is_pointer_v<T>) {  // C++11
-       return *t;
+   // is_pointer type trait: C++11
+   if constexpr (std::is_pointer<T>::value) {
+       return *value;
    } else {
-       return t;
+       return value;
    }
 }
 
@@ -473,6 +474,7 @@ int main() {
 
   std::cout << get_value(*p) << '\n';
   std::cout << get_value(i) << '\n';
+  return i;
 }
 </textarea>
 </div>
