@@ -1,0 +1,36 @@
+.. activecode:: ac-container-deque-palindrome
+   :language: cpp
+   :caption: Palindrome checker using std::deque
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+
+   #include <iostream>
+   #include <deque>
+   #include <iostream>
+   #include <string>
+
+   using std::deque;
+   using std::string;
+
+   bool check_palindrome(const string& value) {
+     if (value.size() < 2) return true;
+     deque<char> letters (value.begin(), value.end());
+
+     while (letters.size() > 1) {
+       char first = letters.front();  // could omit these temporaries
+       char last = letters.back();
+       if (first != last) {
+          return false;
+       }
+       letters.pop_front();
+       letters.pop_back();
+     }
+     return true;
+   }
+
+   int main() {
+     std::cout << std::boolalpha 
+               << check_palindrome("not a palindrome") << '\n';
+     std::cout << check_palindrome("radar") << '\n';
+     return 0;
+   }
+

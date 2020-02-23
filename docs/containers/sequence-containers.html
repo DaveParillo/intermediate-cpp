@@ -812,11 +812,342 @@ insertion and deletion at either end of a <code class="docutils literal notransl
 or references to the rest of the elements.</p>
 <p>It’s primary role in the standard library is to function as
 the default container underlying <code class="docutils literal notranslate"><span class="pre">std::stack</span></code> and <code class="docutils literal notranslate"><span class="pre">std::queue</span></code>.</p>
+<div id='deque' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="std::deque" >
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;deque&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">deque</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">print</span> <span class="p">(</span><span class="k">const</span> <span class="n">deque</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&amp;</span> <span class="n">container</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n\n</span><span class="s">Items in the Deque: </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">value</span><span class="p">:</span> <span class="n">container</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">deque</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">d</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Deque Empty? &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="n">d</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">&quot;Zebra&quot;</span><span class="p">);</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Deque Empty? &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+  <span class="n">d</span><span class="p">.</span><span class="n">push_front</span><span class="p">(</span><span class="s">&quot;Turtle&quot;</span><span class="p">);</span>
+  <span class="n">d</span><span class="p">.</span><span class="n">push_front</span><span class="p">(</span><span class="s">&quot;Panda&quot;</span><span class="p">);</span>
+  <span class="n">d</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">&quot;Catfish&quot;</span><span class="p">);</span>
+  <span class="n">d</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">&quot;Giraffe&quot;</span><span class="p">);</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Deque Size: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Item at the front: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">front</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Item at the back: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">back</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+  <span class="n">print</span> <span class="p">(</span><span class="n">d</span><span class="p">);</span>
+
+  <span class="n">d</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+  <span class="n">d</span><span class="p">.</span><span class="n">pop_front</span><span class="p">();</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">Item at the front: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">Item at the back: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">Deque Size: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+
+  <span class="n">print</span> <span class="p">(</span><span class="n">d</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+    
+</pre></div>
+</td></tr></table></div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div data-childcomponent="ac-container-deque-example" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac-container-deque-example data-lang="cpp" 
+      data-timelimit=25000    
+    data-audio=''      
+    data-compileargs="[&#x27;-Wall&#x27;, &#x27;-Wextra&#x27;, &#x27;-pedantic&#x27;, &#x27;-std=c++11&#x27;]"     data-caption='Basic std::deque usage' >
+#include <iostream>
+#include <deque>
+#include <string>
+
+using std::cout;
+using std::deque;
+using std::string;
+
+void print (const deque<string>& container)
+{
+  cout << "\n\nItems in the Deque: \n";
+  for (const auto& value: container) {
+    cout << value << " ";
+  }
+  cout << '\n';
+
+}
+
+int main() {
+  deque<string> d;
+  cout << "Deque Empty? " << d.empty() << endl;
+  d.push_back("Zebra");
+  cout << "Deque Empty? " << d.empty() << endl;
+
+  d.push_front("Turtle");
+  d.push_front("Panda");
+  d.push_back("Catfish");
+  d.push_back("Giraffe");
+
+  cout << "Deque Size: " << d.size() << endl;
+  cout << "Item at the front: " << d.front() << endl;
+  cout << "Item at the back: " << d.back() << endl;
+
+  print (d);
+
+  d.pop_back();
+  d.pop_front();
+
+  cout << endl << "\nItem at the front: " << d.front();
+  cout << "\nItem at the back: " << d.back();
+  cout << "\nDeque Size: " << d.size();
+
+  print (d);
+
+  return 0;
+}
+</textarea>
+</div>
+</div>
+    </div>
+
+<p>An interesting problem that can be easily solved using the deque
+data structure is the classic palindrome problem.
+A <strong>palindrome</strong> is a string that reads the same forward and backward,
+for example, <em>radar</em>, <em>toot</em>, and <em>madam</em>.
+We would like to construct an algorithm to input a string of characters and
+check whether it is a palindrome.</p>
+<p>One solution to this problem uses a deque to store the characters of the string.
+First store each character in the string into a new deque.
+Using the properties of the deque, we can process the characters from both ends
+and compare them to each other.</p>
+<p>Since we can remove both of them directly,
+we can compare them and continue only if they match.
+If we can keep matching first and the last items,
+we will eventually either run out of characters or
+be left with a deque of size 1 depending on whether the length of the
+original string was even or odd. In either case,
+the string must be a palindrome.</p>
+<div id='check_palindrome' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Check Palindrome" >
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;deque&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">deque</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">;</span>
+
+<span class="kt">bool</span> <span class="nf">check_palindrome</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">value</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+  <span class="n">deque</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">letters</span> <span class="p">(</span><span class="n">value</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">value</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="n">letters</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">first</span> <span class="o">=</span> <span class="n">letters</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>  <span class="c1">// could omit these temporaries</span>
+    <span class="kt">char</span> <span class="n">last</span> <span class="o">=</span> <span class="n">letters</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">first</span> <span class="o">!=</span> <span class="n">last</span><span class="p">)</span> <span class="p">{</span>
+       <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">letters</span><span class="p">.</span><span class="n">pop_front</span><span class="p">();</span>
+    <span class="n">letters</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div data-childcomponent="ac-container-deque-palindrome" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac-container-deque-palindrome data-lang="cpp" 
+      data-timelimit=25000    
+    data-audio=''      
+    data-compileargs="[&#x27;-Wall&#x27;, &#x27;-Wextra&#x27;, &#x27;-pedantic&#x27;, &#x27;-std=c++11&#x27;]"     data-caption='Palindrome checker using std::deque' >
+#include <iostream>
+#include <deque>
+#include <iostream>
+#include <string>
+
+using std::deque;
+using std::string;
+
+bool check_palindrome(const string& value) {
+  if (value.size() < 2) return true;
+  deque<char> letters (value.begin(), value.end());
+
+  while (letters.size() > 1) {
+    char first = letters.front();  // could omit these temporaries
+    char last = letters.back();
+    if (first != last) {
+       return false;
+    }
+    letters.pop_front();
+    letters.pop_back();
+  }
+  return true;
+}
+
+int main() {
+  std::cout << std::boolalpha
+            << check_palindrome("not a palindrome") << '\n';
+  std::cout << check_palindrome("radar") << '\n';
+  return 0;
+}
+</textarea>
+</div>
+</div>
+    </div>
+
+<p id="index-12">A moment of full disclosure:
+even though it is possible to use a deque to determine if a string is a
+palindrome or not, it’s far from the simplest or most efficient
+solution tot he the problem.
+Simply checking the string characters directly is better:</p>
+<div id='is_palindrome' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Is Palindrome" >
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="kt">bool</span> <span class="nf">is_palindrome</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+ <span class="k">return</span> <span class="n">equal</span><span class="p">(</span><span class="n">value</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> 
+              <span class="n">value</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="n">value</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> 
+              <span class="n">value</span><span class="p">.</span><span class="n">rbegin</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>The STL provides the <a class="reference external" href="https://en.cppreference.com/w/cpp/algorithm/equal">equal</a> template which allows
+comparing the values in a pair ranges.</p>
+<p>The first <cite>begin</cite> and <cite>end</cite> define a range of values to be compared.
+The second <cite>begin</cite> defines the start of the second range of values.
+The second <cite>end</cite> does not need to be specified, because the comparison
+stops once the first end is reached.</p>
+<p>Notice that in this example, the second begin is <cite>rbegin</cite>.
+This means the second iterator starts at the <strong>reverse beginning</strong>,
+which is the <em>end</em> of the string and each iteration moves one
+step closer to the begining.</p>
+</div><div data-component="tab" data-tabname="Run It" >
+
+<div data-childcomponent="ac-container-equal-palindrome" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=ac-container-equal-palindrome data-lang="cpp" 
+      data-timelimit=25000    
+    data-audio=''      
+    data-compileargs="[&#x27;-Wall&#x27;, &#x27;-Wextra&#x27;, &#x27;-pedantic&#x27;, &#x27;-std=c++11&#x27;]"     data-caption='Palindrome checker using std::equal' >
+#include <algorithm>
+#include <iostream>
+#include <string>
+
+bool is_palindrome(const std::string& value) {
+ return equal(value.begin(),
+              value.begin() + value.size()/2,
+              value.rbegin());
+}
+
+int main() {
+  std::cout << std::boolalpha
+            << is_palindrome("not a palindrome") << '\n';
+  std::cout << is_palindrome("radar") << '\n';
+  return 0;
+}
+</textarea>
+</div>
+</div>
+    </div>
+
+<p>While this solution does require more familiarity with the standard library,
+it avoids copying the string into the container,
+removing elements from the container, and is generally simpler.</p>
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">
 <p class="admonition-title">More to Explore</p>
 <ul class="simple">
 <li><p><a class="reference external" href="http://en.cppreference.com/w/cpp/container">STL containers library</a></p></li>
+<li><p><a class="reference external" href="http://en.cppreference.com/w/cpp/iterator">STL iterator library</a></p></li>
 <li><p><a class="reference external" href="https://visualgo.net/en/list?slide=1">Visualgo: lists</a></p></li>
 </ul>
 </div>

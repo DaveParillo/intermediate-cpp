@@ -1,0 +1,54 @@
+.. activecode:: ac-container-deque-example
+   :language: cpp
+   :caption: Basic std::deque usage
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+
+   #include <iostream>
+   #include <deque>
+   #include <string>
+
+   using std::cout;
+   using std::deque;
+   using std::string;
+
+   void print (const deque<string>& container)
+   {
+     cout << "\n\nItems in the Deque: \n";
+     for (const auto& value: container) {
+       cout << value << " ";
+     }
+     cout << '\n';
+
+   }
+
+   int main() {
+     deque<string> d;
+     cout << "Deque Empty? " << d.empty() << endl;
+     d.push_back("Zebra");
+     cout << "Deque Empty? " << d.empty() << endl;
+
+     d.push_front("Turtle");
+     d.push_front("Panda");
+     d.push_back("Catfish");
+     d.push_back("Giraffe");
+
+     cout << "Deque Size: " << d.size() << endl;
+     cout << "Item at the front: " << d.front() << endl;
+     cout << "Item at the back: " << d.back() << endl;
+
+     print (d);
+
+     d.pop_back();
+     d.pop_front();
+
+     cout << endl << "\nItem at the front: " << d.front();
+     cout << "\nItem at the back: " << d.back();
+     cout << "\nDeque Size: " << d.size();
+
+     print (d);
+
+     return 0;
+   }
+
+       
+

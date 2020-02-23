@@ -1,0 +1,22 @@
+.. activecode:: ac-container-equal-palindrome
+   :language: cpp
+   :caption: Palindrome checker using std::equal
+   :compileargs: ['-Wall', '-Wextra', '-pedantic', '-std=c++11']
+
+   #include <algorithm>
+   #include <iostream>
+   #include <string>
+
+   bool is_palindrome(const std::string& value) {
+    return equal(value.begin(), 
+                 value.begin() + value.size()/2, 
+                 value.rbegin());
+   }
+
+   int main() {
+     std::cout << std::boolalpha 
+               << is_palindrome("not a palindrome") << '\n';
+     std::cout << is_palindrome("radar") << '\n';
+     return 0;
+   }
+
