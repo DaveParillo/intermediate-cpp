@@ -599,7 +599,7 @@ Forgetting to initialize a member often happens when a new member is added to an
 
             <div class="runestone alert alert-warning">
             <ul data-component="multiplechoice" data-multipleanswers="true" data-random id="mc-class-constructors-1">
-            <p>beginnings-1: Given:</p>
+            <p>sc-1-1: Given:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">date</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">;</span>
 
@@ -640,8 +640,7 @@ If this is not true for your type, then we say that your type has <a class="refe
 Class invariants are guarantees made by your type.
 Invariants represent things that must hold true for your class to be valid.</p>
 <p>Let say we need to prevent <code class="docutils literal notranslate"><span class="pre">Talk</span></code> from allowing zero length strings in the member <code class="docutils literal notranslate"><span class="pre">text_</span></code>.
-Currently, since everything is public, there is no way to prevent that,
-but it is easily fixed:</p>
+Currently, since everything is public, but it is easily fixed:</p>
 <div id='ex4' data-component="tabbedStuff"  class='alert alert-warning'><div data-component="tab" data-tabname="Example" >
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
@@ -744,7 +743,8 @@ to enforce the “can’t be empty” invariant.</p></li>
 </ul>
 <div class="admonition-try-this admonition">
 <p class="admonition-title">Try This!!</p>
-<p>Modify a constructor in last example so that it prints “”default text”.</p>
+<p>Modify the last example so that it accepts an additional class
+member variable to repeat what <code class="docutils literal notranslate"><span class="pre">Talk</span></code> says more than once.</p>
 </div>
 <hr class="docutils" />
 <div class="admonition-more-to-explore admonition">

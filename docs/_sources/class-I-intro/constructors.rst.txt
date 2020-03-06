@@ -261,8 +261,7 @@ Class invariants are guarantees made by your type.
 Invariants represent things that must hold true for your class to be valid.
 
 Let say we need to prevent ``Talk`` from allowing zero length strings in the member ``text_``.
-Currently, since everything is public, there is no way to prevent that,
-but it is easily fixed:
+Currently, since everything is public, but it is easily fixed:
 
 .. tabbed:: ex4
 
@@ -295,7 +294,8 @@ We made several changes:
 
 .. admonition:: Try This!!
 
-   Modify a constructor in last example so that it prints ""default text".
+   Modify the last example so that it accepts an additional class
+   member variable to repeat what ``Talk`` says more than once.
 
 -----
 
