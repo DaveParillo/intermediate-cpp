@@ -172,7 +172,7 @@ in the same position in the vector.
      if (x == y) {
        std::cout << "x and y are equal\n";
      } else {
-       std::cout << "x and y are equal\n";
+       std::cout << "x and y are not equal\n";
      }
      return 0;
    }
