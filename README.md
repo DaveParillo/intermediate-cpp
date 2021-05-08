@@ -1,5 +1,17 @@
 # Intermediate Modern C++: Interactive Edition
 
+**Note**
+
+Starting in 2020, I depercated this book in favor of a 'reader' more specific to my 
+actual course content.
+The [cisc187 reader](https://daveparillo.github.io/cisc187-reader/)
+is very similar to this book and is the one I am actively maintaiing at this time.
+If someone wants to fork this and run with it, you have my blessing,
+however, be aware that there are quite a few updates in the reader.
+It also has the additional advantage of a set of 
+[programming assignments](https://daveparillo.github.io/cisc187-assignments/)
+that pair well with each of the chapters in the book.
+
 A C++ textbook based on [runestone interactive](http://runestoneinteractive.org/build/html/index.html).
 
 Does the world really need another programming textbook?
