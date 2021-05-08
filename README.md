@@ -2,10 +2,10 @@
 
 **Note**
 
-Starting in 2020, I depercated this book in favor of a 'reader' more specific to my 
+Starting in 2020, I deprecated this book in favor of a 'reader' more specific to my 
 actual course content.
 The [cisc187 reader](https://daveparillo.github.io/cisc187-reader/)
-is very similar to this book and is the one I am actively maintaiing at this time.
+is very similar to this book and is the one I actively maintain.
 If someone wants to fork this and run with it, you have my blessing,
 however, be aware that there are quite a few updates in the reader.
 It also has the additional advantage of a set of 
